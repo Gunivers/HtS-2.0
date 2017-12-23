@@ -2,3 +2,7 @@ name: HtS
 version: 1.0
 author: theogiraudet
 main: fr.HtSTeam.HtS.Main
+commands:
+ test:
+  description: Lance le jeu.
+  usage: Erreur syntaxe ! Faites /start
