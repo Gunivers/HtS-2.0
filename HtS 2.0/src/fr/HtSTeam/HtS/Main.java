@@ -35,7 +35,7 @@ public class Main extends JavaPlugin {
 		CommandsManager.loadCommands(this);
 		new BorderOption();
 		System.out.println(OptionsManager.optionsList.size());
-		
+				
 	}
 	
 }
