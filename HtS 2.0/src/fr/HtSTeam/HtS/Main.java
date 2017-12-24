@@ -31,7 +31,7 @@ public class Main extends JavaPlugin {
 				world.setSpawnLocation(0, 205, 0);
 			}	
 		}
-		
+				
 		CommandsManager.loadCommands(this);
 		new BorderOption();
 		System.out.println(OptionsManager.optionsList.size());
