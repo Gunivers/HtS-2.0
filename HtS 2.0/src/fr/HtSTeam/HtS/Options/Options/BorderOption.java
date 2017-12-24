@@ -7,9 +7,9 @@ import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import fr.HtSTeam.HtS.Options.OptionsInput;
+import fr.HtSTeam.HtS.Options.OptionsManager;
 
-public class BorderOption extends OptionsInput {
+public class BorderOption extends OptionsManager {
 	
 	public BorderOption() {
 		super("Taille de la bordure", "1000*1000", Material.IRON_BARDING, "500");
