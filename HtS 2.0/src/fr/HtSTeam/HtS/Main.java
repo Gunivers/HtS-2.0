@@ -11,13 +11,17 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.HtSTeam.HtS.Commands.CommandsManager;
+import fr.HtSTeam.HtS.Options.OptionsManager;
+import fr.HtSTeam.HtS.Options.Options.BorderOption;
 
 public class Main extends JavaPlugin {
 	
 	public HashMap<Player, UUID> uuidPlayer = new HashMap<>();
+	public static Main plugin;
 
 	@Override
 	public void onEnable() {
+		plugin = this;
 		System.out.println("Lancement de HtS...");
 		
 		for(World world : Bukkit.getWorlds()) {
@@ -29,9 +33,9 @@ public class Main extends JavaPlugin {
 		}
 		
 		CommandsManager.loadCommands(this);
+		new BorderOption();
+		System.out.println(OptionsManager.optionsList.size());
+		
 	}
 	
-	public void test() {
-		System.out.println("a");
-	}
 }
