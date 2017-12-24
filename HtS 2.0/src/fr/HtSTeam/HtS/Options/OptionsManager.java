@@ -15,11 +15,11 @@ public abstract class OptionsManager {
 	
 	public OptionsManager(String name, String description, Material material) {
 		icon = new ItemStackManager(material, (short) 0, 1, name, description, false);
-		
 	}
 	
 	public String getDescription() { return icon.getLore(); }
 	public String getName() { return icon.getName(); }
+	public ItemStackManager getItemStackManager() { return icon; }
 	
 	
 
