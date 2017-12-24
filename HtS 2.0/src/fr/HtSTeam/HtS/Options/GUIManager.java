@@ -44,4 +44,10 @@ public class GUIManager extends OptionsManager {
 		p.closeInventory();
 		p.openInventory(inv);
 	}
+
+	@Override
+	public void event() {
+		// TODO Auto-generated method stub
+		
+	}
 }

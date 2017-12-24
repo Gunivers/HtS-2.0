@@ -23,4 +23,10 @@ public class BorderOption extends OptionsManager {
 		
 	}
 
+	@Override
+	public void event() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

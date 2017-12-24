@@ -9,8 +9,9 @@ import org.bukkit.plugin.PluginManager;
 
 import fr.HtSTeam.HtS.ItemStackManager;
 import fr.HtSTeam.HtS.Main;
+import fr.HtSTeam.HtS.Options.Options.EventsOption;
 
-public abstract class OptionsManager implements Listener {
+public abstract class OptionsManager implements Listener, EventsOption {
 	
 	public static Map<OptionsManager, Object> optionsList = new HashMap<OptionsManager, Object>();
 	
