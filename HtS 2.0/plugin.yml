@@ -1,6 +1,6 @@
 name: HtS
 version: 1.0
-author: theogiraudet
+authors: [IkBrunel, theogiraudet]
 main: fr.HtSTeam.HtS.Main
 commands:
  test:

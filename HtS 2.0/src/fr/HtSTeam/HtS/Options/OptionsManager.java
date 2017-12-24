@@ -17,7 +17,7 @@ public abstract class OptionsManager implements Listener {
 	private ItemStackManager icon;
 	Object defaultValue;
 	
-	public OptionsManager(String name, String description, Material material, Object defaultValue) {
+	public OptionsManager(Material material, String name, String description, Object defaultValue) {
 			icon = new ItemStackManager(material, (short) 0, 1, name, description, false);
 			this.defaultValue = defaultValue;
 			OptionsManager.optionsList.put(this, defaultValue);
@@ -25,7 +25,7 @@ public abstract class OptionsManager implements Listener {
 			pm.registerEvents(this, Main.plugin);
 	}
 	
-	public OptionsManager(String name, String description, Material material, boolean defaultValue) {
+	public OptionsManager(Material material, String name, String description, boolean defaultValue) {
 			icon = new ItemStackManager(material, (short) 0, 1, name, description, defaultValue);
 			OptionsManager.optionsList.put(this, defaultValue);
 	}
