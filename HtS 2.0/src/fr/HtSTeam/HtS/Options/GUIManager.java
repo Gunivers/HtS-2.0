@@ -18,7 +18,7 @@ public class GUIManager extends OptionsManager {
 	private Inventory inv;
 	
 	public GUIManager(String name, int rows, String nameIcon, String description, Material material) {
-		super(nameIcon, description, material, null);
+		super(material, description, nameIcon, null);
 		guiList.add(this);
 		if (rows > 6)
 			return;
