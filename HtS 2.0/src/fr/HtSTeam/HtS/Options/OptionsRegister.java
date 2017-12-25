@@ -2,8 +2,13 @@ package fr.HtSTeam.HtS.Options;
 
 import org.bukkit.Material;
 
+import fr.HtSTeam.HtS.Options.Options.AddBlankScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.BorderOption;
+import fr.HtSTeam.HtS.Options.Options.BorderScoreboardOption;
+import fr.HtSTeam.HtS.Options.Options.KilledScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.PlayerScoreboardOption;
+import fr.HtSTeam.HtS.Options.Options.RemoveBlankScoreboardOption;
+import fr.HtSTeam.HtS.Options.Options.TimerScoreboardOption;
 import fr.HtSTeam.HtS.Options.Structure.GUIManager;
 
 public class OptionsRegister {
@@ -17,6 +22,11 @@ public class OptionsRegister {
 		
 		// Scoreboard
 		new PlayerScoreboardOption();
+		new KilledScoreboardOption();
+		new TimerScoreboardOption();
+		new BorderScoreboardOption();		
+		new AddBlankScoreboardOption();
+		new RemoveBlankScoreboardOption();
 	}
 	
 }

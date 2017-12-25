@@ -43,6 +43,19 @@ public class ScoreBoard {
 			switch(display.get(i)) {
 				case "PlayerScoreboardOption":
 					builder.next(getPlayerAlive() + " joueurs en vie");
+					break;
+				case "KilledScoreboardOption":
+					builder.next(getPlayerKilled() + " joueurs tués");
+					break;
+				case "TimerScoreboardOption":
+					builder.next(getTime());
+					break;
+				case "BorderScoreboardOption":
+					builder.next("500x500");
+					break;
+				case "AddBlankScoreboardOption":
+					builder.blank();
+					break;
 			}
 		}
 		
@@ -50,6 +63,15 @@ public class ScoreBoard {
 	}
 
 	private static String getPlayerAlive() {
-		return "5";
+		return "3";
 	}
+	
+	private static String getPlayerKilled() {
+		return "6";
+	}
+	
+	private static String getTime() {
+		return "00:00:00";
+	}
+
 }

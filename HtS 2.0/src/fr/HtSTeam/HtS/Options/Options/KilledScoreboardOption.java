@@ -7,10 +7,10 @@ import fr.HtSTeam.HtS.ScoreBoard;
 import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 
-public class PlayerScoreboardOption extends OptionsManager {
-
-	public PlayerScoreboardOption() {
-		super(Material.TOTEM, "Nombres de joueurs", "Affiche le nombre de joueurs encore en vie", false, OptionsRegister.scoreboard);
+public class KilledScoreboardOption extends OptionsManager {
+	
+	public KilledScoreboardOption() {
+		super(Material.SKULL_ITEM, "Nombres de joueurs tués", "Affiche le nombre de joueurs tués", false, OptionsRegister.scoreboard);
 	}
 	
 	private boolean activated = false;
@@ -19,10 +19,11 @@ public class PlayerScoreboardOption extends OptionsManager {
 	public void event(Player p) {
 		if(activated) {
 			activated = false;
-			ScoreBoard.display.remove("PlayerScoreboardOption");
+			ScoreBoard.display.remove("KilledScoreboardOption");
 		} else {
 			activated = true;
-			ScoreBoard.display.add("PlayerScoreboardOption");
+			ScoreBoard.display.add("KilledScoreboardOption");
 		}
 	}
+	
 }
