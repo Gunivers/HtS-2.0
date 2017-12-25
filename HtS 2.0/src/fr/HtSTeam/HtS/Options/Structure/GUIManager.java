@@ -1,8 +1,10 @@
 package fr.HtSTeam.HtS.Options.Structure;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -12,18 +14,19 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import fr.HtSTeam.HtS.ItemStackManager;
+
 public class GUIManager extends OptionsManager {
 	
 	public static ArrayList<GUIManager> guiList = new ArrayList<GUIManager>();
-	public Map<ItemStack, OptionsManager> guiContent = new HashMap<ItemStack, OptionsManager>();
+	public Map<ItemStackManager, OptionsManager> guiContent = new HashMap<ItemStackManager, OptionsManager>();
 	
 	private Inventory inv;
-	private GUIManager parent;
+	
 	
 	public GUIManager(String name, int rows, String nameIcon, String description, Material material, GUIManager gui) {
 		super(material, description, nameIcon, null, gui);
 		guiList.add(this);
-		parent = gui;
 		if (rows > 6)
 			return;
 		inv = Bukkit.createInventory(null, rows * 9, name);		
@@ -36,7 +39,7 @@ public class GUIManager extends OptionsManager {
 	public void put(OptionsManager optionsManager) {
 		if (guiContent.entrySet().size() >= inv.getSize() - 1)
 			return;
-		guiContent.put(optionsManager.getItemStackManager().getItemStack(), optionsManager);
+		guiContent.put(optionsManager.getItemStackManager(), optionsManager);
 		if(parent == null)
 			inv.setItem(guiContent.entrySet().size() - 1, optionsManager.getItemStackManager().getItemStack());
 		else
@@ -51,25 +54,40 @@ public class GUIManager extends OptionsManager {
 		p.closeInventory();
 	}
 	
-	public void update(Player p) {
+	public void refresh(Player p) {
 		p.closeInventory();
 		p.openInventory(inv);
 	}
 	
+	public void update(OptionsManager om) {
+		for(Entry<ItemStackManager, OptionsManager> is : guiContent.entrySet()) {
+			if(is.getValue() == om) {
+				for(ItemStack is2 : inv.getContents()) {
+					if(is2 != null && is2.getItemMeta().getDisplayName().equals(is.getKey().getName())) {
+						inv.setItem(Arrays.asList(inv.getContents()).indexOf(is2), om.getItemStackManager().getItemStack());
+						return;
+					}
+				}
+				
+			}
+		}
+	}
+	
 	public void addReturnButton() {
-		if(parent != null) {
+		if(!parent.equals(null)) {
+			GUIManager parent2 = parent;
 			OptionsManager om = new OptionsManager(Material.BARRIER, "Retour", null, null, null) {
 
 				@Override
 				public void event(Player p) {
-					parent.update(p);
+					parent2.refresh(p);
 					
 				}
 				
 			};
 		
 			inv.setItem(inv.getSize() - 1, om.getItemStackManager().getItemStack());	
-			guiContent.put(om.getItemStackManager().getItemStack(), om);
+			guiContent.put(om.getItemStackManager(), om);
 			
 		}
 	
@@ -80,14 +98,16 @@ public class GUIManager extends OptionsManager {
 	
 	@EventHandler
 	public void onClick(InventoryClickEvent e) {
-		if (guiContent.containsKey(e.getCurrentItem())) {
-			e.setCancelled(true);
-			guiContent.get(e.getCurrentItem()).event((Player) e.getWhoClicked());
+		for(Entry<ItemStackManager, OptionsManager> ism : guiContent.entrySet()) {
+			if(ism.getKey().getItemStack().equals(e.getCurrentItem())) {
+				e.setCancelled(true);
+				ism.getValue().event((Player) e.getWhoClicked());;
+			}
 		}
 	}
 	
 	@Override
 	public void event(Player p) {
-		update(p);
+		refresh(p);
 	}
 }
