@@ -4,28 +4,28 @@ import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Options.OptionsManager;
+import fr.HtSTeam.HtS.Options.OptionsRegister;
 
 public class BorderOption extends OptionsManager {
 	
 	public BorderOption() {
-		super(Material.IRON_BARDING, "Taille de la bordure", "1000*1000", "500");
+		super(Material.IRON_BARDING, "Taille de la bordure", "1000*1000", "500", OptionsRegister.option1);
 	}
 
 	public static UUID playerBorder = null;
 
-	@EventHandler
+	/*@EventHandler
 	public void onPlayerChat(AsyncPlayerChatEvent e) {		
 		Bukkit.broadcastMessage("Test");
 		
-	}
+	}*/
 
 	@Override
-	public void event() {
-		// TODO Auto-generated method stub
+	public void event(Player p) {
+		Bukkit.broadcastMessage("Test");
 		
 	}
 

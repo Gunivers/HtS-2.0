@@ -16,25 +16,36 @@ public abstract class OptionsManager implements Listener, EventsOption {
 	public static Map<OptionsManager, Object> optionsList = new HashMap<OptionsManager, Object>();
 	
 	private ItemStackManager icon;
-	Object defaultValue;
+	private Object defaultValue;
 	
-	public OptionsManager(Material material, String name, String description, Object defaultValue) {
-			icon = new ItemStackManager(material, (short) 0, 1, name, description, false);
+	public OptionsManager(Material material, String name, String description, Object defaultValue, GUIManager gui) {
+			this.icon = new ItemStackManager(material, (short) 0, 1, name, description, false);
 			this.defaultValue = defaultValue;
 			OptionsManager.optionsList.put(this, defaultValue);
 			PluginManager pm = Main.plugin.getServer().getPluginManager();
 			pm.registerEvents(this, Main.plugin);
+			this.addAt(gui);
 	}
 	
-	public OptionsManager(Material material, String name, String description, boolean defaultValue) {
-			icon = new ItemStackManager(material, (short) 0, 1, name, description, defaultValue);
+	public OptionsManager(Material material, String name, String description, boolean defaultValue, GUIManager gui) {
+			this.icon = new ItemStackManager(material, (short) 0, 1, name, description, defaultValue);
+			this.defaultValue = defaultValue;
 			OptionsManager.optionsList.put(this, defaultValue);
+			this.addAt(gui);
 	}
 	
+
 	public String getDescription() { return icon.getLore(); }
 	public String getName() { return icon.getName(); }
 	public ItemStackManager getItemStackManager() { return icon; }
+	public Object getDefaultValue() { return defaultValue; }
 	
+	public void addAt(GUIManager gm) { 		
+		if(gm != null) {
+			System.out.println(this.getItemStackManager());
+			gm.put(this);
+		}
+		}
 	
 
 }

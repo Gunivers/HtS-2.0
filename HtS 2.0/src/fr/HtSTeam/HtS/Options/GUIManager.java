@@ -19,8 +19,8 @@ public class GUIManager extends OptionsManager {
 	
 	private Inventory inv;
 	
-	public GUIManager(String name, int rows, String nameIcon, String description, Material material) {
-		super(material, description, nameIcon, null);
+	public GUIManager(String name, int rows, String nameIcon, String description, Material material, GUIManager gui) {
+		super(material, description, nameIcon, null, gui);
 		guiList.add(this);
 		if (rows > 6)
 			return;
@@ -54,12 +54,13 @@ public class GUIManager extends OptionsManager {
 	
 	@EventHandler
 	public void onClick(InventoryClickEvent e) {
+		e.setCancelled(true);
 		if (guiContent.containsKey(e.getCurrentItem()))
-			guiContent.get(e.getCurrentItem()).event();
+			guiContent.get(e.getCurrentItem()).event((Player) e.getWhoClicked());
 	}
 	
 	@Override
-	public void event() {
-		// TODO Auto-generated method stub
+	public void event(Player p) {
+		update(p);
 	}
 }

@@ -11,8 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.HtSTeam.HtS.Commands.CommandsManager;
-import fr.HtSTeam.HtS.Options.OptionsManager;
-import fr.HtSTeam.HtS.Options.Options.BorderOption;
+import fr.HtSTeam.HtS.Options.OptionsRegister;
 
 public class Main extends JavaPlugin {
 	
@@ -33,8 +32,7 @@ public class Main extends JavaPlugin {
 		}
 				
 		CommandsManager.loadCommands(this);
-		new BorderOption();
-		System.out.println(OptionsManager.optionsList.size());
+		OptionsRegister.register();
 				
 	}
 	
