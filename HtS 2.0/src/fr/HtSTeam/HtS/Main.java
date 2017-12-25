@@ -41,7 +41,7 @@ public class Main extends JavaPlugin {
 				
 	}	
 
-    public static void SendJsonMessage(Player p, String message, String cmd) {
+    public static void sendJsonCMDMessage(Player p, String message, String cmd) {
         ((CraftPlayer) p).getHandle().playerConnection.sendPacket(new PacketPlayOutChat(ChatSerializer.a("{text:\"" + message + "\",clickEvent:{action:suggest_command,value:\"" + cmd + "\"}}")));
     }
 }
