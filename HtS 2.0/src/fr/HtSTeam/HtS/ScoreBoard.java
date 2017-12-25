@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.bukkit.entity.Player;
 
-import fr.HtSTeam.HtS.Options.Options.BorderOption;
+import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Scoreboard.Entry;
 import fr.HtSTeam.HtS.Scoreboard.EntryBuilder;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard;
@@ -52,7 +52,7 @@ public class ScoreBoard {
 					builder.next(getTime());
 					break;
 				case "BorderScoreboardOption":
-					builder.next(Integer.toString(BorderOption.borderSize));
+					builder.next(OptionsRegister.borderoption.getValue() + "x" + OptionsRegister.borderoption.getValue());
 					break;
 				case "AddBlankScoreboardOption":
 					builder.blank();
