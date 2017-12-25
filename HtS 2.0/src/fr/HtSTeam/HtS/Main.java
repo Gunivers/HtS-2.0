@@ -22,7 +22,8 @@ public class Main extends JavaPlugin {
 	
 	public HashMap<Player, UUID> uuidPlayer = new HashMap<>();
 	public static Main plugin;
-
+	public static String hts_name = "HtS XII";
+	
 	@Override
 	public void onEnable() {
 		plugin = this;

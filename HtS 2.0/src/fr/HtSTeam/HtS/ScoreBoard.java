@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.bukkit.entity.Player;
 
+import fr.HtSTeam.HtS.Options.Options.BorderOption;
 import fr.HtSTeam.HtS.Scoreboard.Entry;
 import fr.HtSTeam.HtS.Scoreboard.EntryBuilder;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard;
@@ -21,7 +22,7 @@ public class ScoreBoard {
 
 			@Override
 			public String getTitle(Player player) {
-				return "Title Or Nothing";
+				return Main.hts_name;
 			}
 
 			@Override
@@ -51,7 +52,7 @@ public class ScoreBoard {
 					builder.next(getTime());
 					break;
 				case "BorderScoreboardOption":
-					builder.next("500x500");
+					builder.next(Integer.toString(BorderOption.borderSize));
 					break;
 				case "AddBlankScoreboardOption":
 					builder.blank();
