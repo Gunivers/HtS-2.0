@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Options;
+package fr.HtSTeam.HtS.Options.Structure;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,7 +37,10 @@ public class GUIManager extends OptionsManager {
 		if (guiContent.entrySet().size() >= inv.getSize() - 1)
 			return;
 		guiContent.put(optionsManager.getItemStackManager().getItemStack(), optionsManager);
-		inv.setItem(guiContent.entrySet().size() - 1, optionsManager.getItemStackManager().getItemStack());		
+		if(parent == null)
+			inv.setItem(guiContent.entrySet().size() - 1, optionsManager.getItemStackManager().getItemStack());
+		else
+			inv.setItem(guiContent.entrySet().size() - 2, optionsManager.getItemStackManager().getItemStack());		
 	}
 	
 	public void open(Player p) {

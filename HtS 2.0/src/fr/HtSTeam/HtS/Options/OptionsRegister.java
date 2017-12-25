@@ -3,6 +3,7 @@ package fr.HtSTeam.HtS.Options;
 import org.bukkit.Material;
 
 import fr.HtSTeam.HtS.Options.Options.BorderOption;
+import fr.HtSTeam.HtS.Options.Structure.GUIManager;
 
 public class OptionsRegister {
 	

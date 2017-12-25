@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Options;
+package fr.HtSTeam.HtS.Options.Structure;
 
 import java.util.HashMap;
 import java.util.Map;
