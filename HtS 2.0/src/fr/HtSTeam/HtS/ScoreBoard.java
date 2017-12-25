@@ -23,7 +23,7 @@ public class ScoreBoard {
 
 			@Override
 			public List<Entry> getEntries(Player player) {			
-					return new EntryBuilder().next("§r                    ")
+					return new EntryBuilder()
 							.next("Line 1")
 							.blank()
 							.next("Line 3")

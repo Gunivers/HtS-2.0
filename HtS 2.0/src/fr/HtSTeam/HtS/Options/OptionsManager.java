@@ -41,10 +41,8 @@ public abstract class OptionsManager implements Listener, EventsOption {
 	public Object getDefaultValue() { return defaultValue; }
 	
 	public void addAt(GUIManager gm) { 		
-		if(gm != null) {
-			System.out.println(this.getItemStackManager());
+		if(gm != null) 
 			gm.put(this);
-		}
 		}
 	
 
