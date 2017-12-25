@@ -17,11 +17,13 @@ public abstract class OptionsManager implements Listener, EventsOption {
 	private ItemStackManager icon;
 	private Object defaultValue;
 	protected GUIManager parent;
+	private String value;
 	
-	public OptionsManager(Material material, String name, String description, Object defaultValue, GUIManager gui) {
+	public OptionsManager(Material material, String name, String description, String defaultValue, GUIManager gui) {
 			parent = gui;
 			this.icon = new ItemStackManager(material, (short) 0, 1, name, description, false);
 			this.defaultValue = defaultValue;
+			this.value = defaultValue;
 			OptionsManager.optionsList.put(this, defaultValue);
 			PluginManager pm = Main.plugin.getServer().getPluginManager();
 			pm.registerEvents(this, Main.plugin);
@@ -41,6 +43,12 @@ public abstract class OptionsManager implements Listener, EventsOption {
 	public String getName() { return icon.getName(); }
 	public ItemStackManager getItemStackManager() { return icon; }
 	public Object getDefaultValue() { return defaultValue; }
+	
+	public void setValue(String value) {
+		this.value = value;
+		OptionsManager.optionsList.replace(this, value);
+	}
+	public String getValue() { return value; }
 
 	public void addAt(GUIManager gm) { 		
 		if(gm != null) 
