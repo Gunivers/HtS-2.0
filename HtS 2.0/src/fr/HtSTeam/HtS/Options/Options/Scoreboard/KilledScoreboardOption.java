@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Options.Options;
+package fr.HtSTeam.HtS.Options.Options.Scoreboard;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -10,7 +10,7 @@ import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 public class KilledScoreboardOption extends OptionsManager {
 	
 	public KilledScoreboardOption() {
-		super(Material.SKULL_ITEM, "Nombres de joueurs tués", "Affiche le nombre de joueurs tués", false, OptionsRegister.scoreboard);
+		super(Material.SKULL_ITEM, "Nombres de joueurs tuÃ©s", "Affiche le nombre de joueurs tuÃ©s", false, OptionsRegister.scoreboard);
 	}
 	
 	private boolean activated = false;

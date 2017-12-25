@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Options.Options;
+package fr.HtSTeam.HtS.Options.Options.Scoreboard;
 
 import java.util.Collections;
 

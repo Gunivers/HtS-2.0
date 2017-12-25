@@ -2,13 +2,13 @@ package fr.HtSTeam.HtS.Options;
 
 import org.bukkit.Material;
 
-import fr.HtSTeam.HtS.Options.Options.AddBlankScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.BorderOption;
-import fr.HtSTeam.HtS.Options.Options.BorderScoreboardOption;
-import fr.HtSTeam.HtS.Options.Options.KilledScoreboardOption;
-import fr.HtSTeam.HtS.Options.Options.PlayerScoreboardOption;
-import fr.HtSTeam.HtS.Options.Options.RemoveBlankScoreboardOption;
-import fr.HtSTeam.HtS.Options.Options.TimerScoreboardOption;
+import fr.HtSTeam.HtS.Options.Options.Scoreboard.AddBlankScoreboardOption;
+import fr.HtSTeam.HtS.Options.Options.Scoreboard.BorderScoreboardOption;
+import fr.HtSTeam.HtS.Options.Options.Scoreboard.KilledScoreboardOption;
+import fr.HtSTeam.HtS.Options.Options.Scoreboard.PlayerScoreboardOption;
+import fr.HtSTeam.HtS.Options.Options.Scoreboard.RemoveBlankScoreboardOption;
+import fr.HtSTeam.HtS.Options.Options.Scoreboard.TimerScoreboardOption;
 import fr.HtSTeam.HtS.Options.Structure.GUIManager;
 
 public class OptionsRegister {

@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Options.Options;
+package fr.HtSTeam.HtS.Options.Options.Scoreboard;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

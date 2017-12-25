@@ -35,7 +35,7 @@ public class ScoreBoard {
 	
 	private static List<Entry> getBuild() {
 		if(display == null || display.size() == 0)
-			return new EntryBuilder().next("§4SCOREBOARD").next("§4NOT").next("§4INITIALIZED").build();
+			return new EntryBuilder().next("Â§4SCOREBOARD").next("Â§4NOT").next("Â§4INITIALIZED").build();
 		
 		EntryBuilder builder = new EntryBuilder();
 		
@@ -45,7 +45,7 @@ public class ScoreBoard {
 					builder.next(getPlayerAlive() + " joueurs en vie");
 					break;
 				case "KilledScoreboardOption":
-					builder.next(getPlayerKilled() + " joueurs tués");
+					builder.next(getPlayerKilled() + " joueurs tuÃ©s");
 					break;
 				case "TimerScoreboardOption":
 					builder.next(getTime());
