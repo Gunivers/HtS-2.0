@@ -12,7 +12,7 @@ import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 public class BorderOption extends OptionsManager {
 	
 	public BorderOption() {
-		super(Material.IRON_BARDING, "Taille de la bordure", "1000*1000", "500", OptionsRegister.option1);
+		super(Material.IRON_BARDING, "Taille de la bordure", "1000*1000", "500", OptionsRegister.uhc);
 	}
 
 	public static UUID playerBorder = null;

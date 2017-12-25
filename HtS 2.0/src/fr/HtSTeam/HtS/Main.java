@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.HtSTeam.HtS.Commands.CommandsManager;
+import fr.HtSTeam.HtS.Events.EventManager;
 import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Scoreboard.ScoreboardLib;
 import net.minecraft.server.v1_12_R1.IChatBaseComponent.ChatSerializer;
@@ -34,7 +35,8 @@ public class Main extends JavaPlugin {
 				world.setSpawnLocation(0, 205, 0);
 			}	
 		}
-				
+			
+		EventManager.loadEvents(this);
 		CommandsManager.loadCommands(this);
 		OptionsRegister.register();
 		ScoreboardLib.setPluginInstance(this);

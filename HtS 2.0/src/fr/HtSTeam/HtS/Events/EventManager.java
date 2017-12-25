@@ -9,9 +9,9 @@ public class EventManager {
 	
 	public static void loadEvents(Main main) {
 
-		@SuppressWarnings("unused")
 		PluginManager pm = Bukkit.getServer().getPluginManager();
-
+		
+		pm.registerEvents(new JoinEvent(), main);
 	}
 
 }
