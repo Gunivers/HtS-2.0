@@ -77,9 +77,11 @@ public class GUIManager extends OptionsManager {
 	
 	@EventHandler
 	public void onClick(InventoryClickEvent e) {
-		e.setCancelled(true);
-		if (guiContent.containsKey(e.getCurrentItem()))
+		if (guiContent.containsKey(e.getCurrentItem())) {
+			e.setCancelled(true);
 			guiContent.get(e.getCurrentItem()).event((Player) e.getWhoClicked());
+		}
+
 	}
 	
 	@Override
