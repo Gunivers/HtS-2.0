@@ -14,8 +14,8 @@ import fr.HtSTeam.HtS.Options.Structure.GUIManager;
 public class OptionsRegister {
 	
 	public static GUIManager main = new GUIManager("Options", 3, "Options", "Ouvre les options", Material.BARRIER, null);
-	public static GUIManager uhc = new GUIManager("UHC", 1, "UHC", "Régler les UHC", Material.GOLDEN_APPLE, OptionsRegister.main);
-	public static GUIManager scoreboard = new GUIManager("Scoreboard", 1, "Scoreboard", "Régler le scoreboard", Material.SIGN, OptionsRegister.main);
+	public static GUIManager uhc = new GUIManager("UHC", 1, "UHC", "RÃ©gler les UHC", Material.GOLDEN_APPLE, OptionsRegister.main);
+	public static GUIManager scoreboard = new GUIManager("Scoreboard", 1, "Scoreboard", "RÃ©gler le scoreboard", Material.SIGN, OptionsRegister.main);
 	
 	public static void register() {
 		new BorderOption();
