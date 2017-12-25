@@ -81,7 +81,6 @@ public class GUIManager extends OptionsManager {
 			e.setCancelled(true);
 			guiContent.get(e.getCurrentItem()).event((Player) e.getWhoClicked());
 		}
-
 	}
 	
 	@Override

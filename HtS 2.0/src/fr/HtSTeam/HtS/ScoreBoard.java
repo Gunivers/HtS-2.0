@@ -12,7 +12,7 @@ import fr.HtSTeam.HtS.Scoreboard.ScoreboardLib;
 
 public class ScoreBoard {
 
-	public static void send(Player player, Main main) {
+	public static void send(Player player) {
 
 		Scoreboard scoreboard = ScoreboardLib.createScoreboard(player).setHandler(new ScoreboardHandler() {
 
