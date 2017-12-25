@@ -52,7 +52,7 @@ public class ScoreBoard {
 					builder.next(getTime());
 					break;
 				case "BorderScoreboardOption":
-					builder.next(OptionsRegister.borderoption.getValue() + "x" + OptionsRegister.borderoption.getValue());
+					builder.next(OptionsRegister.borderOption.getValue() + "x" + OptionsRegister.borderOption.getValue());
 					break;
 				case "AddBlankScoreboardOption":
 					builder.blank();

@@ -17,10 +17,10 @@ public class OptionsRegister {
 	public static GUIManager uhc = new GUIManager("UHC", 1, "UHC", "Régler les UHC", Material.GOLDEN_APPLE, OptionsRegister.main);
 	public static GUIManager scoreboard = new GUIManager("Scoreboard", 1, "Scoreboard", "Régler le scoreboard", Material.SIGN, OptionsRegister.main);
 	
-	public static BorderOption borderoption;
+	public static BorderOption borderOption;
 	
 	public static void register() {
-		borderoption = new BorderOption();
+		borderOption = new BorderOption();
 		
 		// Scoreboard
 		new PlayerScoreboardOption();
