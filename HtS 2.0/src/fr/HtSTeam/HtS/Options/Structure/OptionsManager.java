@@ -16,8 +16,10 @@ public abstract class OptionsManager implements Listener, EventsOption {
 	
 	private ItemStackManager icon;
 	private Object defaultValue;
+	protected GUIManager parent;
 	
 	public OptionsManager(Material material, String name, String description, Object defaultValue, GUIManager gui) {
+			parent = gui;
 			this.icon = new ItemStackManager(material, (short) 0, 1, name, description, false);
 			this.defaultValue = defaultValue;
 			OptionsManager.optionsList.put(this, defaultValue);
@@ -27,6 +29,7 @@ public abstract class OptionsManager implements Listener, EventsOption {
 	}
 	
 	public OptionsManager(Material material, String name, String description, boolean defaultValue, GUIManager gui) {
+			parent = gui;
 			this.icon = new ItemStackManager(material, (short) 0, 1, name, description, defaultValue);
 			this.defaultValue = defaultValue;
 			OptionsManager.optionsList.put(this, defaultValue);
@@ -38,7 +41,7 @@ public abstract class OptionsManager implements Listener, EventsOption {
 	public String getName() { return icon.getName(); }
 	public ItemStackManager getItemStackManager() { return icon; }
 	public Object getDefaultValue() { return defaultValue; }
-	
+
 	public void addAt(GUIManager gm) { 		
 		if(gm != null) 
 			gm.put(this);
