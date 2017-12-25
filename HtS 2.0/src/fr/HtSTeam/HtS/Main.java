@@ -13,6 +13,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.HtSTeam.HtS.Commands.CommandsManager;
 import fr.HtSTeam.HtS.Options.OptionsRegister;
+import fr.HtSTeam.HtS.Scoreboard.ScoreboardLib;
 import net.minecraft.server.v1_12_R1.IChatBaseComponent.ChatSerializer;
 import net.minecraft.server.v1_12_R1.PacketPlayOutChat;
 
@@ -36,7 +37,7 @@ public class Main extends JavaPlugin {
 				
 		CommandsManager.loadCommands(this);
 		OptionsRegister.register();
-				
+		ScoreboardLib.setPluginInstance(this);
 	}	
 
     public static void sendJsonCMDMessage(Player p, String message, String cmd) {

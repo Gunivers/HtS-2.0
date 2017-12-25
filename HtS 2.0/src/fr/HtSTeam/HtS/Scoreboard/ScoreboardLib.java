@@ -18,8 +18,8 @@ public final class ScoreboardLib extends JavaPlugin {
         ScoreboardLib.instance = instance;
     }
 
-    public static SimpleScoreboard createScoreboard(Player holder) {
-        return  new SimpleScoreboard(holder);
+    public static Scoreboard createScoreboard(Player holder) {
+        return (Scoreboard) new SimpleScoreboard(holder);
     }
 
     @Override
