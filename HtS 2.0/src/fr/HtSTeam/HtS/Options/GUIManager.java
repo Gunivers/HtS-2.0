@@ -7,6 +7,8 @@ import java.util.Map;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -24,6 +26,8 @@ public class GUIManager extends OptionsManager {
 			return;
 		inv = Bukkit.createInventory(null, rows * 9, name);		
 	}
+	
+	// Common Methods
 	
 	public void put(OptionsManager optionsManager) {
 		if (guiContent.entrySet().size() >= inv.getSize())
@@ -44,10 +48,18 @@ public class GUIManager extends OptionsManager {
 		p.closeInventory();
 		p.openInventory(inv);
 	}
-
+	
+	
+	// Events
+	
+	@EventHandler
+	public void onClick(InventoryClickEvent e) {
+		if (guiContent.containsKey(e.getCurrentItem()))
+			guiContent.get(e.getCurrentItem()).event();
+	}
+	
 	@Override
 	public void event() {
 		// TODO Auto-generated method stub
-		
 	}
 }
