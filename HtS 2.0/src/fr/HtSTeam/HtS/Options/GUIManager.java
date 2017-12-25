@@ -18,19 +18,23 @@ public class GUIManager extends OptionsManager {
 	public Map<ItemStack, OptionsManager> guiContent = new HashMap<ItemStack, OptionsManager>();
 	
 	private Inventory inv;
+	private GUIManager parent;
 	
 	public GUIManager(String name, int rows, String nameIcon, String description, Material material, GUIManager gui) {
 		super(material, description, nameIcon, null, gui);
 		guiList.add(this);
+		parent = gui;
 		if (rows > 6)
 			return;
 		inv = Bukkit.createInventory(null, rows * 9, name);		
+		if(gui != null)
+			addReturnButton();
 	}
 	
 	// Common Methods
 	
 	public void put(OptionsManager optionsManager) {
-		if (guiContent.entrySet().size() >= inv.getSize())
+		if (guiContent.entrySet().size() >= inv.getSize() - 1)
 			return;
 		guiContent.put(optionsManager.getItemStackManager().getItemStack(), optionsManager);
 		inv.setItem(guiContent.entrySet().size() - 1, optionsManager.getItemStackManager().getItemStack());		
@@ -47,6 +51,25 @@ public class GUIManager extends OptionsManager {
 	public void update(Player p) {
 		p.closeInventory();
 		p.openInventory(inv);
+	}
+	
+	public void addReturnButton() {
+		if(parent != null) {
+			OptionsManager om = new OptionsManager(Material.BARRIER, "Retour", null, null, null) {
+
+				@Override
+				public void event(Player p) {
+					parent.update(p);
+					
+				}
+				
+			};
+		
+			inv.setItem(inv.getSize() - 1, om.getItemStackManager().getItemStack());	
+			guiContent.put(om.getItemStackManager().getItemStack(), om);
+			
+		}
+	
 	}
 	
 	
