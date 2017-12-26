@@ -15,8 +15,9 @@ public class NoRegenOption extends OptionsManager {
 	private boolean activate = false;
 
 	public NoRegenOption() {
-		super(Material.RED_ROSE, "Régération naturelle", "§4Désactivé", "Désactivé", OptionsRegister.uhc);
-		
+		super(Material.INK_SACK, "Régération naturelle", "§4Désactivé", "Désactivé", OptionsRegister.uhc);
+		getItemStackManager().setItem(Material.INK_SACK, (short) 8);
+		parent.update(this);
 	}
 
 	@Override
@@ -25,9 +26,11 @@ public class NoRegenOption extends OptionsManager {
 		if(activate) {
 			setValue("Activé");
 			getItemStackManager().setLore("§2Activé");
+			getItemStackManager().setItem(Material.INK_SACK, (short) 9);
 		} else {
 			setValue("Désactivé");
 			getItemStackManager().setLore("§4Désactivé");
+			getItemStackManager().setItem(Material.INK_SACK, (short) 8);
 		}
 		parent.update(this);
 		
