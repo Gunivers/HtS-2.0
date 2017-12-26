@@ -32,8 +32,8 @@ public class OptionsRegister {
 		new DifficultOption();
 		new NoRegenOption();
 		new DayLightCycleOption();
-		new WeatherOption();
 		new FixDayOption();
+		new WeatherOption();
 		
 		// Scoreboard
 		new PlayerScoreboardOption();
