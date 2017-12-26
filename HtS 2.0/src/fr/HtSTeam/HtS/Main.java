@@ -36,7 +36,7 @@ public class Main extends JavaPlugin {
 				world.setSpawnLocation(0, 205, 0);
 			}	
 		}
-			
+		Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "gamerule sendCommandFeedback false");
 		EventManager.loadEvents(this);
 		CommandsManager.loadCommands(this);
 		OptionsRegister.register();

@@ -1,16 +1,15 @@
 package fr.HtSTeam.HtS.Options.Options.UHC;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.weather.WeatherChangeEvent;
 
 import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 
 public class DayLightCycleOption extends OptionsManager {
 	
-	private boolean activate = false;
+	private boolean activate = true;
 
 	public DayLightCycleOption() {
 		super(Material.DOUBLE_PLANT, "Cycle jour/nuit", "§2Activé", "Activé", OptionsRegister.uhc);
@@ -23,16 +22,12 @@ public class DayLightCycleOption extends OptionsManager {
 		if(activate) {
 			setValue("Activé");
 			getItemStackManager().setLore("§2Activé");
+			Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "gamerule doDaylightCycle true");
 		} else {
 			setValue("Désactivé");
 			getItemStackManager().setLore("§4Désactivé");
+			Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "gamerule doDaylightCycle false");
 		}		
+		parent.update(this);
 	}
-	
-	@EventHandler
-	public void onTimeChange(WeatherChangeEvent e) {
-		if(!activate)
-			e.setCancelled(true);
-	}
-
 }
