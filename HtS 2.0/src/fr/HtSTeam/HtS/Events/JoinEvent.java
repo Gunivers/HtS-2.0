@@ -5,6 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
+import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.ScoreBoard;
 
 public class JoinEvent implements Listener {
@@ -13,6 +14,7 @@ public class JoinEvent implements Listener {
 	public void onPlayerJoin(PlayerJoinEvent e) {
 		Player p = e.getPlayer();
 		
+		p.setScoreboard(Main.b);
 		ScoreBoard.send(p);
 	}
 }
