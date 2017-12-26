@@ -9,10 +9,10 @@ import fr.HtSTeam.HtS.Options.Structure.TeamManager;
 
 public class FriendlyFireOption extends OptionsManager {
 
-	private boolean activate = false;
+	private boolean activate = true;
 	
 	public FriendlyFireOption() {
-		super(Material.BLAZE_POWDER, "FriendlyFire", "§4Désactivé", "Désactivé", OptionsRegister.teams);
+		super(Material.BLAZE_POWDER, "FriendlyFire", "§2Activé", "Activé", OptionsRegister.teams);
 	}
 	
 	@Override
