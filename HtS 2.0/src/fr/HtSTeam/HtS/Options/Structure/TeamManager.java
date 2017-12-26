@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS;
+package fr.HtSTeam.HtS.Options.Structure;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +10,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Team;
 import org.bukkit.scoreboard.Team.Option;
 import org.bukkit.scoreboard.Team.OptionStatus;
+
+import fr.HtSTeam.HtS.Main;
 
 public class TeamManager {
 		
@@ -54,8 +56,20 @@ public class TeamManager {
 		team.setAllowFriendlyFire(friendlyfire);
 	}
 	
+	public void setTeamSeeInvisible(boolean invisible) {
+		team.setCanSeeFriendlyInvisibles(invisible);
+	}
+	
 	public void setTeamNameTag(OptionStatus visible) {
 		team.setOption(Option.NAME_TAG_VISIBILITY, visible);
+	}
+	
+	public void setTeamCollision(OptionStatus collision) {
+		team.setOption(Option.COLLISION_RULE, collision);
+	}
+	
+	public void setTeamDeathMessage(OptionStatus deathmsg) {
+		team.setOption(Option.DEATH_MESSAGE_VISIBILITY, deathmsg);
 	}
 	
 	public String getTeamName() { return teamName; }

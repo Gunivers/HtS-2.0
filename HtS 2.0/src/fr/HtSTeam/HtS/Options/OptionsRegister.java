@@ -8,7 +8,11 @@ import fr.HtSTeam.HtS.Options.Options.Scoreboard.KilledScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.PlayerScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.RemoveBlankScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.TimerScoreboardOption;
+import fr.HtSTeam.HtS.Options.Options.Team.CollisionTeamOption;
+import fr.HtSTeam.HtS.Options.Options.Team.DeathMeassageTeamOption;
 import fr.HtSTeam.HtS.Options.Options.Team.FriendlyFireOption;
+import fr.HtSTeam.HtS.Options.Options.Team.NameTagTeamOption;
+import fr.HtSTeam.HtS.Options.Options.Team.SeeInvisibleOption;
 import fr.HtSTeam.HtS.Options.Options.UHC.BorderOption;
 import fr.HtSTeam.HtS.Options.Options.UHC.DayLightCycleOption;
 import fr.HtSTeam.HtS.Options.Options.UHC.DifficultOption;
@@ -45,6 +49,10 @@ public class OptionsRegister {
 		
 		// Team
 		new FriendlyFireOption();
+		new SeeInvisibleOption();
+		new NameTagTeamOption();
+		new CollisionTeamOption();
+		new DeathMeassageTeamOption();
 	}
 	
 }

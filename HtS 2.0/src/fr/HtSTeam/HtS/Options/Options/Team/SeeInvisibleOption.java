@@ -7,12 +7,12 @@ import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 import fr.HtSTeam.HtS.Options.Structure.TeamManager;
 
-public class FriendlyFireOption extends OptionsManager {
-
+public class SeeInvisibleOption extends OptionsManager {
+		
 	private boolean activate = false;
 	
-	public FriendlyFireOption() {
-		super(Material.BLAZE_POWDER, "FriendlyFire", "§4Désactivé", "Désactivé", OptionsRegister.teams);
+	public SeeInvisibleOption() {
+		super(Material.GLASS_BOTTLE, "Invisibilité visible", "§4Désactivé", "Désactivé", OptionsRegister.teams);
 	}
 	
 	@Override
@@ -22,13 +22,14 @@ public class FriendlyFireOption extends OptionsManager {
 			setValue("Activé");
 			getItemStackManager().setLore("§2Activé");
 			for (TeamManager teamManager : TeamManager.teamList)
-				teamManager.setTeamFriendlyFire(true);
+				teamManager.setTeamSeeInvisible(true);
 		} else {
 			setValue("Désactivé");
 			getItemStackManager().setLore("§4Désactivé");
 			for (TeamManager teamManager : TeamManager.teamList)
-				teamManager.setTeamFriendlyFire(false);
+				teamManager.setTeamSeeInvisible(false);
 		}
 		parent.update(this);
 	}
+	
 }
