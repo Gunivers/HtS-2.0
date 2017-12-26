@@ -7,9 +7,6 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.PotionMeta;
-import org.bukkit.potion.PotionData;
-import org.bukkit.potion.PotionType;
 
 
 public class ItemStackManager {
@@ -18,8 +15,7 @@ public class ItemStackManager {
 	private String name, lore;
 	private short data;
 	private int number;
-	private boolean glint, level;
-	private PotionType potionType;
+	private boolean glint;
 
 	
 	public ItemStackManager(Material item, short data, int number, String name, String lore, boolean glint) {
@@ -44,38 +40,22 @@ public class ItemStackManager {
 	public void setLore(String lore) { this.lore = lore; }
 	public void setAmount(int amount) { this.number = amount; }
 	public void setGlint(boolean glint) { this.glint = glint; }
+	public void setItem(Material material, short data) { this.item = material; this.data = data; }
 	
 	public ItemStack getItemStack() {
-		if (item != Material.POTION) {
-			ItemStack is = new ItemStack(this.item, this.number, (short) this.data);
-			ItemMeta isM = is.getItemMeta();
-			ArrayList<String> lore = new ArrayList<String>();
-			lore.add(this.lore);
-			isM.setDisplayName(this.name);
-			if (this.lore != null)
-				isM.setLore(lore);
-			if (this.glint == true) {
-				isM.addEnchant(Enchantment.DURABILITY, 1, false);
-				isM.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
-			}
-			is.setItemMeta(isM);
-			return is;
-		} else {
-			ItemStack potion = new ItemStack(item, 1);
-			PotionMeta potionM = (PotionMeta) potion.getItemMeta();
-			potionM.setBasePotionData(new PotionData(potionType, false, level));
-			ArrayList<String> lore = new ArrayList<String>();
-			lore.add(this.lore);
-			potionM.setDisplayName(this.name);
-			if (this.lore != null)
-				potionM.setLore(lore);
-			if (this.glint == true) {
-				potionM.addEnchant(Enchantment.DURABILITY, 1, false);
-				potionM.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
-			}
-			potion.setItemMeta(potionM);
-			return potion;
+		ItemStack is = new ItemStack(this.item, this.number, (short) this.data);
+		ItemMeta isM = is.getItemMeta();
+		ArrayList<String> lore = new ArrayList<String>();
+		lore.add(this.lore);
+		isM.setDisplayName(this.name);
+		if (this.lore != null)
+			isM.setLore(lore);
+		if (this.glint == true) {
+			isM.addEnchant(Enchantment.DURABILITY, 1, false);
+			isM.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
 		}
+		is.setItemMeta(isM);
+		return is;
 	}
 
 

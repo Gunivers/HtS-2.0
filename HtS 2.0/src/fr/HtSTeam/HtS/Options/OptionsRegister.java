@@ -12,7 +12,9 @@ import fr.HtSTeam.HtS.Options.Options.Team.FriendlyFireOption;
 import fr.HtSTeam.HtS.Options.Options.UHC.BorderOption;
 import fr.HtSTeam.HtS.Options.Options.UHC.DayLightCycleOption;
 import fr.HtSTeam.HtS.Options.Options.UHC.DifficultOption;
+import fr.HtSTeam.HtS.Options.Options.UHC.FixDayOption;
 import fr.HtSTeam.HtS.Options.Options.UHC.NoRegenOption;
+import fr.HtSTeam.HtS.Options.Options.UHC.WeatherOption;
 import fr.HtSTeam.HtS.Options.Structure.GUIManager;
 
 public class OptionsRegister {
@@ -30,6 +32,8 @@ public class OptionsRegister {
 		new DifficultOption();
 		new NoRegenOption();
 		new DayLightCycleOption();
+		new WeatherOption();
+		new FixDayOption();
 		
 		// Scoreboard
 		new PlayerScoreboardOption();
