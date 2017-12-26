@@ -10,6 +10,7 @@ import org.bukkit.World.Environment;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scoreboard.Scoreboard;
 
 import fr.HtSTeam.HtS.Commands.CommandsManager;
 import fr.HtSTeam.HtS.Events.EventManager;
@@ -24,6 +25,8 @@ public class Main extends JavaPlugin {
 	public static Main plugin;
 	public static String hts_name = "HtS XII";
 	
+	public static Scoreboard b;
+	
 	@Override
 	public void onEnable() {
 		plugin = this;
@@ -36,6 +39,9 @@ public class Main extends JavaPlugin {
 				world.setSpawnLocation(0, 205, 0);
 			}	
 		}
+
+		b = Bukkit.getScoreboardManager().getNewScoreboard();
+		
 		Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "gamerule sendCommandFeedback false");
 		EventManager.loadEvents(this);
 		CommandsManager.loadCommands(this);
