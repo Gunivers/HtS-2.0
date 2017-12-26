@@ -10,7 +10,7 @@ import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 public class BorderScoreboardOption extends OptionsManager {
 	
 	public BorderScoreboardOption() {
-		super(Material.IRON_FENCE, "Ajout Border", "Ajoute la taille de la border", false, OptionsRegister.scoreboard);
+		super(Material.IRON_FENCE, "Ajout Border", "Ajoute la taille de la border", null, OptionsRegister.scoreboard);
 	}
 	
 	private boolean activated = false;

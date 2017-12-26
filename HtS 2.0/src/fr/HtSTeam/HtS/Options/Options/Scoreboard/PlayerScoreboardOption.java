@@ -10,7 +10,7 @@ import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 public class PlayerScoreboardOption extends OptionsManager {
 
 	public PlayerScoreboardOption() {
-		super(Material.TOTEM, "Nombres de joueurs", "Affiche le nombre de joueurs encore en vie", false, OptionsRegister.scoreboard);
+		super(Material.TOTEM, "Nombres de joueurs", "Affiche le nombre de joueurs encore en vie", null, OptionsRegister.scoreboard);
 	}
 	
 	private boolean activated = false;

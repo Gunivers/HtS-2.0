@@ -10,7 +10,7 @@ import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 public class TimerScoreboardOption extends OptionsManager {
 	
 	public TimerScoreboardOption() {
-		super(Material.WATCH, "Ajout du timer", "Ajoute la dur�e �coulée puis le début", false, OptionsRegister.scoreboard);
+		super(Material.WATCH, "Ajout du timer", "Ajoute la dur�e �coulée puis le début", null, OptionsRegister.scoreboard);
 	}
 	
 	private boolean activated = false;

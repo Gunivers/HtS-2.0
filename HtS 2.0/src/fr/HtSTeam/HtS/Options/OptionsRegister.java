@@ -9,6 +9,7 @@ import fr.HtSTeam.HtS.Options.Options.Scoreboard.PlayerScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.RemoveBlankScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.TimerScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.UHC.BorderOption;
+import fr.HtSTeam.HtS.Options.Options.UHC.DayLightCycleOption;
 import fr.HtSTeam.HtS.Options.Options.UHC.DifficultOption;
 import fr.HtSTeam.HtS.Options.Options.UHC.NoRegenOption;
 import fr.HtSTeam.HtS.Options.Structure.GUIManager;
@@ -26,6 +27,7 @@ public class OptionsRegister {
 		borderOption = new BorderOption();
 		new DifficultOption();
 		new NoRegenOption();
+		new DayLightCycleOption();
 		
 		// Scoreboard
 		new PlayerScoreboardOption();

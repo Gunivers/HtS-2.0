@@ -30,15 +30,6 @@ public abstract class OptionsManager implements Listener, EventsOption {
 			this.addAt(gui);
 	}
 	
-	public OptionsManager(Material material, String name, String description, boolean defaultValue, GUIManager gui) {
-			parent = gui;
-			this.icon = new ItemStackManager(material, (short) 0, 1, "§r" + name, "§r" + description, defaultValue);
-			this.defaultValue = defaultValue;
-			OptionsManager.optionsList.put(this, defaultValue);
-			this.addAt(gui);
-	}
-	
-
 	public String getDescription() { return icon.getLore(); }
 	public String getName() { return icon.getName(); }
 	public ItemStackManager getItemStackManager() { return icon; }

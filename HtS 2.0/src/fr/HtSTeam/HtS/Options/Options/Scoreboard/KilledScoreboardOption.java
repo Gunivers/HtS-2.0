@@ -10,7 +10,7 @@ import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 public class KilledScoreboardOption extends OptionsManager {
 	
 	public KilledScoreboardOption() {
-		super(Material.SKULL_ITEM, "Nombres de joueurs tués", "Affiche le nombre de joueurs tués", false, OptionsRegister.scoreboard);
+		super(Material.SKULL_ITEM, "Nombres de joueurs tués", "Affiche le nombre de joueurs tués", null, OptionsRegister.scoreboard);
 	}
 	
 	private boolean activated = false;
