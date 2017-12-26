@@ -5,7 +5,7 @@ import fr.HtSTeam.HtS.Main;
 public class CommandsManager {
 	
 	public static void loadCommands(Main main) {
-		main.getCommand("test").setExecutor(new Test(main));
+		main.getCommand("option").setExecutor(new OptionCommand(main));
 		
 	}
 

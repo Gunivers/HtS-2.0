@@ -3,6 +3,6 @@ version: 1.0
 authors: [IkBrunel, theogiraudet]
 main: fr.HtSTeam.HtS.Main
 commands:
- test:
-  description: Lance le jeu.
-  usage: Erreur syntaxe ! Faites /start
+ option:
+  description: Ouvre le menu des options
+  usage: Erreur syntaxe ! Faites /option

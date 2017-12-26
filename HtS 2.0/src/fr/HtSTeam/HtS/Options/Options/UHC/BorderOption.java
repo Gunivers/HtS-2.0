@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Options.Options;
+package fr.HtSTeam.HtS.Options.Options.UHC;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

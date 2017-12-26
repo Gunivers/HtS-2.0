@@ -25,7 +25,7 @@ public class GUIManager extends OptionsManager {
 	
 	
 	public GUIManager(String name, int rows, String nameIcon, String description, Material material, GUIManager gui) {
-		super(material, description, nameIcon, null, gui);
+		super(material, nameIcon, description, null, gui);
 		guiList.add(this);
 		if (rows > 6)
 			return;
