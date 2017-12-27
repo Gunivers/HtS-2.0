@@ -14,6 +14,7 @@ import fr.HtSTeam.HtS.Options.Options.Team.FriendlyFireOption;
 import fr.HtSTeam.HtS.Options.Options.Team.NameTagTeamOption;
 import fr.HtSTeam.HtS.Options.Options.Team.SeeInvisibleOption;
 import fr.HtSTeam.HtS.Options.Options.UHC.BorderOption;
+import fr.HtSTeam.HtS.Options.Options.UHC.BreathOption;
 import fr.HtSTeam.HtS.Options.Options.UHC.DayLightCycleOption;
 import fr.HtSTeam.HtS.Options.Options.UHC.DifficultOption;
 import fr.HtSTeam.HtS.Options.Options.UHC.FixDayOption;
@@ -32,12 +33,15 @@ public class OptionsRegister {
 	public static BorderOption borderOption;
 	
 	public static void register() {
+		
+		//UHC
 		borderOption = new BorderOption();
 		new DifficultOption();
 		new NoRegenOption();
 		new DayLightCycleOption();
 		new FixDayOption();
 		new WeatherOption();
+		new BreathOption();
 		
 		// Scoreboard
 		new PlayerScoreboardOption();

@@ -18,7 +18,7 @@ public class BorderOption extends OptionsManager {
 	private WorldBorder border = Bukkit.getWorld("world").getWorldBorder();
 	
 	public BorderOption() {
-		super(Material.IRON_FENCE, "Taille de la bordure", "1000 * 1000", "1000", OptionsRegister.uhc);
+		super(Material.IRON_FENCE, "Taille de la bordure", "§d1000 * 1000", "1000", OptionsRegister.uhc);
 		border.setCenter(0.0, 0.0);
 		border.setSize(1000);
 	}
@@ -40,7 +40,7 @@ public class BorderOption extends OptionsManager {
 				if(value >= 500 && value <= 2500) {
 					setValue(Integer.toString(value * 2));
 					p.sendMessage("§2Bordure à " + value + " blocs du centre." );
-					this.getItemStackManager().setLore(value * 2 + " * " + value * 2);
+					this.getItemStackManager().setLore("§d" + value * 2 + " * " + value * 2);
 					parent.update(this);
 					request = true;
 					border.setSize(value * 2);
