@@ -1,9 +1,13 @@
 package fr.HtSTeam.HtS.Options.Options.UHC;
 
 import org.bukkit.Material;
+import org.bukkit.World.Environment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
@@ -52,6 +56,19 @@ public class BreathOption extends OptionsManager {
 			} catch(NumberFormatException e2) {
 				p.sendMessage("§4Valeur invalide.");
 			}
+		}
+	}
+	
+	@EventHandler
+	public void playerHeight(PlayerMoveEvent e) {
+		if(getItemStackManager().getMaterial().equals(Material.GLOWSTONE_DUST)) {
+			if(e.getPlayer().getLocation().getY() <= 36 && e.getPlayer().getWorld().getEnvironment() == Environment.NORMAL) {
+				e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 10000 * 20, 0, false, false));
+				e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 10000 * 20, 0, false, false));
+			} else if (e.getPlayer().getLocation().getY() > 36 && e.getPlayer().getWorld().getEnvironment() == Environment.NORMAL) {
+				e.getPlayer().removePotionEffect(PotionEffectType.BLINDNESS);
+				e.getPlayer().removePotionEffect(PotionEffectType.CONFUSION);
+				}
 		}
 	}
 
