@@ -16,6 +16,5 @@ public class AddBlankScoreboardOption extends OptionsManager {
 	@Override
 	public void event(Player p) {
 			ScoreBoard.display.add("AddBlankScoreboardOption");
-
 	}
 }
