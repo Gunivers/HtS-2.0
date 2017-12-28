@@ -11,11 +11,15 @@ import org.bukkit.potion.PotionEffectType;
 
 import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
+import fr.HtSTeam.HtS.Options.Structure.Timer;
+import fr.HtSTeam.HtS.Options.Structure.UsingTimer;
 
+@UsingTimer
 public class BreathOption extends OptionsManager {
 	
 	private boolean request = false; 
 	private Player p;
+	private boolean activate = false;
 
 	public BreathOption() {
 		super(Material.SULPHUR, "Souffle des profondeurs", "§4Désactivé", "Désactivé", OptionsRegister.uhc);
@@ -61,7 +65,7 @@ public class BreathOption extends OptionsManager {
 	
 	@EventHandler
 	public void playerHeight(PlayerMoveEvent e) {
-		if(getItemStackManager().getMaterial().equals(Material.GLOWSTONE_DUST)) {
+		if(activate && getItemStackManager().getMaterial().equals(Material.GLOWSTONE_DUST)) {
 			if(e.getPlayer().getLocation().getY() <= 36 && e.getPlayer().getWorld().getEnvironment() == Environment.NORMAL) {
 				e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 10000 * 20, 0, false, false));
 				e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 10000 * 20, 0, false, false));
@@ -70,6 +74,11 @@ public class BreathOption extends OptionsManager {
 				e.getPlayer().removePotionEffect(PotionEffectType.CONFUSION);
 				}
 		}
+	}
+	
+	@Timer(time=1)
+	private void active() {
+		activate = true;
 	}
 
 }
