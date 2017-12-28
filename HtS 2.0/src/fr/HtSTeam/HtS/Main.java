@@ -1,6 +1,8 @@
 package fr.HtSTeam.HtS;
 
+import java.lang.reflect.Method;
 import java.util.HashMap;
+import java.util.Set;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -15,6 +17,8 @@ import org.bukkit.scoreboard.Scoreboard;
 import fr.HtSTeam.HtS.Commands.CommandsManager;
 import fr.HtSTeam.HtS.Events.EventManager;
 import fr.HtSTeam.HtS.Options.OptionsRegister;
+import fr.HtSTeam.HtS.Options.Structure.Timer;
+import fr.HtSTeam.HtS.Options.Structure.UsingTimer;
 import fr.HtSTeam.HtS.Scoreboard.ScoreboardLib;
 import net.minecraft.server.v1_12_R1.IChatBaseComponent.ChatSerializer;
 import net.minecraft.server.v1_12_R1.PacketPlayOutChat;
@@ -52,4 +56,24 @@ public class Main extends JavaPlugin {
     public static void sendJsonCMDMessage(Player p, String message, String cmd) {
         ((CraftPlayer) p).getHandle().playerConnection.sendPacket(new PacketPlayOutChat(ChatSerializer.a("{text:\"" + message + "\",clickEvent:{action:suggest_command,value:\"" + cmd + "\"}}")));
     }
+    
+    
+	public void executeTimer() {
+		Set<Class<?>> classes = new org.reflections.Reflections("fr.HtSTeam.HtS.Options").getTypesAnnotatedWith(UsingTimer.class);
+		System.out.println("found classes " + classes.size());
+		for (Class<?> c : classes) {
+			for (Method m : c.getMethods()) {
+				try {
+					if (m.isAnnotationPresent(Timer.class)) {
+						Timer timer = m.getAnnotation(Timer.class);
+						Object o = c.newInstance();
+						if (timer.time() == getTimerMinute())
+							m.invoke(o);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 }
