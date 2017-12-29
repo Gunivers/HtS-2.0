@@ -18,6 +18,12 @@ public class PlayerInGame implements Listener {
 	public List<Player> getPlayerInGame() { return playerInGame; }
 	
 	public void removePlayer(Player p) { playerInGame.remove(p); }
+	
+	public void addPlayer(Player p) {
+		if(!playerInGame.contains(p))
+			playerInGame.add(p);
+	}
+	
 	public void clear() { playerInGame.clear(); }
 	
 	

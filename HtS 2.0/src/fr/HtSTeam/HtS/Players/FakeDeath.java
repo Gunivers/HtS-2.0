@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS;
+package fr.HtSTeam.HtS.Players;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -8,11 +8,14 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
-public class FakeDeath {
+import fr.HtSTeam.HtS.Main;
+
+public class FakeDeath implements Listener {
 
 	@SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.LOWEST)

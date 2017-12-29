@@ -20,14 +20,14 @@ public class DeathLoot {
 		deathLoot.add(ism.getItemStack());
 	}
 	
-	public void addItem(Material material) {
-		deathLoot.add(new ItemStack(material, 1, (short) 0));
+	public void addItem(Material material, short dataValue) {
+		deathLoot.add(new ItemStack(material, 1, dataValue));
 	}
 	
 	public void removeItem(Material material) {
-		for(ItemStack im : deathLoot)
-			if(im.getType().equals(material))
-				deathLoot.remove(im);
+			for(int i = 0; i < deathLoot.size(); i++)
+				if(deathLoot.get(i).getType().equals(material))
+					deathLoot.remove(deathLoot.get(i));
 	}
 	
 }

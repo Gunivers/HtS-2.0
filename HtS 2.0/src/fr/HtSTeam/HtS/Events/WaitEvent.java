@@ -1,5 +1,6 @@
 package fr.HtSTeam.HtS.Events;
 
+import org.bukkit.GameMode;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -19,7 +20,7 @@ public class WaitEvent implements Listener {
 	
 	@EventHandler
 	public void interact(BlockBreakEvent e) {
-		if(EnumState.getState().equals(EnumState.WAIT)) {
+		if(EnumState.getState().equals(EnumState.WAIT) && !e.getPlayer().getGameMode().equals(GameMode.CREATIVE)) {
 			e.setCancelled(true);
 		}
 	}

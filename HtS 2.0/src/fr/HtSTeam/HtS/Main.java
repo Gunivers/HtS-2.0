@@ -26,6 +26,7 @@ import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 import fr.HtSTeam.HtS.Options.Structure.Timer;
 import fr.HtSTeam.HtS.Players.DeathLoot;
+import fr.HtSTeam.HtS.Players.FakeDeath;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
 import fr.HtSTeam.HtS.Scoreboard.ScoreboardLib;
 import net.minecraft.server.v1_12_R1.IChatBaseComponent.ChatSerializer;

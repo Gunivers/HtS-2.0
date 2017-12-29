@@ -6,6 +6,7 @@ public class CommandsManager {
 	
 	public static void loadCommands(Main main) {
 		main.getCommand("option").setExecutor(new OptionCommand(main));
+		main.getCommand("start").setExecutor(new OptionCommand(main));
 		
 	}
 
