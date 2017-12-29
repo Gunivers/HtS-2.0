@@ -22,7 +22,7 @@ public class ScoreBoard {
 
 			@Override
 			public String getTitle(Player player) {
-				return Main.hts_name;
+				return Main.HTSNAME;
 			}
 
 			@Override

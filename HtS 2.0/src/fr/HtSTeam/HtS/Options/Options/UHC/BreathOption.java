@@ -12,15 +12,13 @@ import org.bukkit.potion.PotionEffectType;
 import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 import fr.HtSTeam.HtS.Options.Structure.Timer;
-import fr.HtSTeam.HtS.Options.Structure.UsingTimer;
 
-@UsingTimer
 public class BreathOption extends OptionsManager {
 	
 	private boolean request = false; 
 	private Player p;
 	private boolean activate = false;
-
+	
 	public BreathOption() {
 		super(Material.SULPHUR, "Souffle des profondeurs", "§4Désactivé", "Désactivé", OptionsRegister.uhc);
 	}
@@ -76,9 +74,8 @@ public class BreathOption extends OptionsManager {
 		}
 	}
 	
-	@Timer(time=1)
+	@Timer(1)
 	private void active() {
 		activate = true;
 	}
-
 }
