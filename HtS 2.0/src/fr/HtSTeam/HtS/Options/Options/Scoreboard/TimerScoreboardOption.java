@@ -10,7 +10,7 @@ import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 public class TimerScoreboardOption extends OptionsManager {
 	
 	public TimerScoreboardOption() {
-		super(Material.WATCH, "Ajout du timer", "Ajoute la durée écoulée puis le début", null, OptionsRegister.scoreboard);
+		super(Material.WATCH, "Timer", "Affiche la durée écoulée puis le début de la partie", null, OptionsRegister.scoreboard);
 	}
 	
 	private boolean activated = false;
