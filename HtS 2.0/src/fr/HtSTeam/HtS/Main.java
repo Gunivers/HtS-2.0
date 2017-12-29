@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.UUID;
 import java.util.jar.JarEntry;
@@ -22,6 +23,7 @@ import org.bukkit.scoreboard.Scoreboard;
 import fr.HtSTeam.HtS.Commands.CommandsManager;
 import fr.HtSTeam.HtS.Events.EventManager;
 import fr.HtSTeam.HtS.Options.OptionsRegister;
+import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 import fr.HtSTeam.HtS.Options.Structure.Timer;
 import fr.HtSTeam.HtS.Scoreboard.ScoreboardLib;
 import net.minecraft.server.v1_12_R1.IChatBaseComponent.ChatSerializer;
@@ -70,14 +72,15 @@ public class Main extends JavaPlugin {
     
     
 	public void executeTimer() {
-		for (Class<?> c : getClasses(getFile(), "fr.HtSTeam.HtS")) {
+		for (Class<?> c : getClasses(getFile(), "fr.HtSTeam.Options.Options")) {
 			for (Method m : c.getMethods()) {
 				try {
 					if (m.isAnnotationPresent(Timer.class)) {
-						Timer timer = m.getAnnotation(Timer.class);
-						Object o = c.newInstance();
-						if (timer.value() == 10)
-							m.invoke(o);
+						for (Entry<OptionsManager, Object> entry : OptionsManager.optionsList.entrySet()) {
+							if(entry.getValue().equals(c))
+								if(entry.getKey().getValue() == "10")
+									m.invoke(null);
+						}
 					}
 				} catch (Exception e) {
 					e.printStackTrace();

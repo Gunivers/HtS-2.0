@@ -74,7 +74,7 @@ public class BreathOption extends OptionsManager {
 		}
 	}
 	
-	@Timer(1)
+	@Timer
 	private void active() {
 		activate = true;
 	}
