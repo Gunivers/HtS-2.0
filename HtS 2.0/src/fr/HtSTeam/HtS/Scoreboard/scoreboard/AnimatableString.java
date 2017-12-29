@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Scoreboard;
+package fr.HtSTeam.HtS.Scoreboard.scoreboard;
 
 public interface AnimatableString {
 

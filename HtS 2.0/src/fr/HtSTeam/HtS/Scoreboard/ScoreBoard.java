@@ -1,26 +1,29 @@
-package fr.HtSTeam.HtS;
+package fr.HtSTeam.HtS.Scoreboard;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.bukkit.entity.Player;
 
+import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Options.Structure.TeamManager;
-import fr.HtSTeam.HtS.Scoreboard.Entry;
-import fr.HtSTeam.HtS.Scoreboard.EntryBuilder;
-import fr.HtSTeam.HtS.Scoreboard.Scoreboard;
-import fr.HtSTeam.HtS.Scoreboard.ScoreboardHandler;
-import fr.HtSTeam.HtS.Scoreboard.ScoreboardLib;
+import fr.HtSTeam.HtS.Scoreboard.scoreboard.Entry;
+import fr.HtSTeam.HtS.Scoreboard.scoreboard.EntryBuilder;
+import fr.HtSTeam.HtS.Scoreboard.scoreboard.Scoreboard;
+import fr.HtSTeam.HtS.Scoreboard.scoreboard.ScoreboardHandler;
+import fr.HtSTeam.HtS.Scoreboard.scoreboard.ScoreboardLib;
 
 public class ScoreBoard {
 	
-	public static ArrayList<String> display = new ArrayList<String>(); 
+	public static ArrayList<String> display = new ArrayList<String>();
+	public static Map<Player, Scoreboard> scoreboards = new HashMap<Player, Scoreboard>();
 	
 	public static void send(Player player) {
 
 		Scoreboard scoreboard = ScoreboardLib.createScoreboard(player).setHandler(new ScoreboardHandler() {
-
 			@Override
 			public String getTitle(Player player) {
 				return Main.HTSNAME;
@@ -33,6 +36,7 @@ public class ScoreBoard {
 
 		}).setUpdateInterval(2l);
 		scoreboard.activate();
+		scoreboards.put(player, scoreboard);
 	}
 	
 	private static List<Entry> getBuild() {
@@ -44,12 +48,12 @@ public class ScoreBoard {
 		for(int i = 0; i < display.size(); i++) {
 			switch(display.get(i)) {
 				case "PlayerScoreboardOption":
-					builder.next("§4Joueur:").next(getPlayerAlive());
+					builder.next("§4Joueurs:").next(getPlayerAlive());
 					if (TeamManager.teamList.size() != 0)
-						builder.next("§4Equipe:").next(Integer.toString(TeamManager.teamList.size()));
+						builder.next("§4Equipes:").next(Integer.toString(TeamManager.teamList.size()));
 					break;
 				case "KilledScoreboardOption":
-					builder.next("§4Tuer:").next(getPlayerKilled());
+					builder.next("§4Tuers:").next(getPlayerKilled());
 					break;
 				case "TimerScoreboardOption":
 					builder.next("§4Timer:").next(getTime());
