@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Scoreboard.scoreboard;
+package fr.HtSTeam.HtS.Scoreboard.Scoreboard;
 
 public class StaticString implements AnimatableString {
 

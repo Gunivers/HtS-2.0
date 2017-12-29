@@ -27,7 +27,7 @@ import fr.HtSTeam.HtS.Options.Structure.Timer;
 import fr.HtSTeam.HtS.Players.DeathLoot;
 import fr.HtSTeam.HtS.Players.FakeDeath;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
-import fr.HtSTeam.HtS.Scoreboard.scoreboard.ScoreboardLib;
+import fr.HtSTeam.HtS.Scoreboard.Scoreboard.ScoreboardLib;
 
 public class Main extends JavaPlugin {
 	

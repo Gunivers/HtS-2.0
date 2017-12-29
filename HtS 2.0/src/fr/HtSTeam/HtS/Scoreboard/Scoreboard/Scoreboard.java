@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Scoreboard.scoreboard;
+package fr.HtSTeam.HtS.Scoreboard.Scoreboard;
 
 import org.bukkit.entity.Player;
 

@@ -10,11 +10,11 @@ import org.bukkit.entity.Player;
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Options.Structure.TeamManager;
-import fr.HtSTeam.HtS.Scoreboard.scoreboard.Entry;
-import fr.HtSTeam.HtS.Scoreboard.scoreboard.EntryBuilder;
-import fr.HtSTeam.HtS.Scoreboard.scoreboard.Scoreboard;
-import fr.HtSTeam.HtS.Scoreboard.scoreboard.ScoreboardHandler;
-import fr.HtSTeam.HtS.Scoreboard.scoreboard.ScoreboardLib;
+import fr.HtSTeam.HtS.Scoreboard.Scoreboard.Entry;
+import fr.HtSTeam.HtS.Scoreboard.Scoreboard.EntryBuilder;
+import fr.HtSTeam.HtS.Scoreboard.Scoreboard.Scoreboard;
+import fr.HtSTeam.HtS.Scoreboard.Scoreboard.ScoreboardHandler;
+import fr.HtSTeam.HtS.Scoreboard.Scoreboard.ScoreboardLib;
 
 public class ScoreBoard {
 	
