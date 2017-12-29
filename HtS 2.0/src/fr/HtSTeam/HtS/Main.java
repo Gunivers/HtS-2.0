@@ -31,7 +31,7 @@ public class Main extends JavaPlugin {
 	
 	public HashMap<Player, UUID> uuidPlayer = new HashMap<>();
 	public static Main plugin;
-	public static String hts_name = "HtS XII";
+	public final static String HTSNAME = "HtS XII";
 	
 	public static Scoreboard b;
 	
@@ -56,6 +56,13 @@ public class Main extends JavaPlugin {
 		OptionsRegister.register();
 		ScoreboardLib.setPluginInstance(this);
 	}	
+	
+	
+	
+	
+	
+	
+	
 
 	public static void sendJsonCMDMessage(Player p, String message, String cmd) {
         ((CraftPlayer) p).getHandle().playerConnection.sendPacket(new PacketPlayOutChat(ChatSerializer.a("{text:\"" + message + "\",clickEvent:{action:suggest_command,value:\"" + cmd + "\"}}")));
