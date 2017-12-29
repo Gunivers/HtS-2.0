@@ -1,9 +1,14 @@
 package fr.HtSTeam.HtS;
 
+import java.io.File;
 import java.lang.reflect.Method;
+import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
@@ -18,7 +23,6 @@ import fr.HtSTeam.HtS.Commands.CommandsManager;
 import fr.HtSTeam.HtS.Events.EventManager;
 import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Options.Structure.Timer;
-import fr.HtSTeam.HtS.Options.Structure.UsingTimer;
 import fr.HtSTeam.HtS.Scoreboard.ScoreboardLib;
 import net.minecraft.server.v1_12_R1.IChatBaseComponent.ChatSerializer;
 import net.minecraft.server.v1_12_R1.PacketPlayOutChat;
@@ -53,21 +57,19 @@ public class Main extends JavaPlugin {
 		ScoreboardLib.setPluginInstance(this);
 	}	
 
-    public static void sendJsonCMDMessage(Player p, String message, String cmd) {
+	public static void sendJsonCMDMessage(Player p, String message, String cmd) {
         ((CraftPlayer) p).getHandle().playerConnection.sendPacket(new PacketPlayOutChat(ChatSerializer.a("{text:\"" + message + "\",clickEvent:{action:suggest_command,value:\"" + cmd + "\"}}")));
     }
     
     
 	public void executeTimer() {
-		Set<Class<?>> classes = new org.reflections.Reflections("fr.HtSTeam.HtS.Options").getTypesAnnotatedWith(UsingTimer.class);
-		System.out.println("found classes " + classes.size());
-		for (Class<?> c : classes) {
+		for (Class<?> c : getClasses(getFile(), "fr.HtSTeam.HtS")) {
 			for (Method m : c.getMethods()) {
 				try {
 					if (m.isAnnotationPresent(Timer.class)) {
 						Timer timer = m.getAnnotation(Timer.class);
 						Object o = c.newInstance();
-						if (timer.time() == getTimerMinute())
+						if (timer.value() == 10)
 							m.invoke(o);
 					}
 				} catch (Exception e) {
@@ -75,5 +77,22 @@ public class Main extends JavaPlugin {
 				}
 			}
 		}
+	}
+	
+    private Set<Class<?>> getClasses(File jarFile, String packageName) {
+		Set<Class<?>> classes = new HashSet<Class<?>>();
+		try {
+			JarFile file = new JarFile(jarFile);
+			for (Enumeration<JarEntry> entry = file.entries(); entry.hasMoreElements();) {
+				JarEntry jarEntry = entry.nextElement();
+				String name = jarEntry.getName().replace("/", ".");
+				if (name.startsWith(packageName) && name.endsWith(".class"))
+					classes.add(Class.forName(name.substring(0, name.length() - 6)));
+			}
+			file.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return classes;
 	}
 }

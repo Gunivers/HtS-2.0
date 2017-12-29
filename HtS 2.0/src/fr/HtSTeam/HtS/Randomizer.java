@@ -6,7 +6,9 @@ public class Randomizer {
 
 	private static Random random = new Random();
 	private static int coords[] = new int[3];
-
+	
+	public Randomizer() { }
+	
 	public static int Rand(int n) {
 		return random.nextInt(n);
 	}
