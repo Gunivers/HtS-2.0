@@ -43,6 +43,8 @@ public class TeamManager {
 	public void removePlayer(Player p) {
 		playerTeam.remove(p, this);
 		team.removeEntry(p.getName());
+		if(getTeamSize() == 0)
+			teamList.remove(this);
 	}
 	
 	public void clearTeam() {
@@ -50,6 +52,7 @@ public class TeamManager {
 			playerTeam.remove(Bukkit.getPlayer(entry), this);
 			team.removeEntry(entry);
 		}
+		teamList.remove(this);
 	}
 	
 	public void setTeamFriendlyFire(boolean friendlyfire) {

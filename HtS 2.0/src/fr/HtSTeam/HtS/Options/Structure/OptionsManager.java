@@ -7,8 +7,8 @@ import org.bukkit.Material;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 
-import fr.HtSTeam.HtS.ItemStackManager;
 import fr.HtSTeam.HtS.Main;
+import fr.HtSTeam.HtS.Utils.ItemStackManager;
 
 public abstract class OptionsManager implements Listener, EventsOption {
 	

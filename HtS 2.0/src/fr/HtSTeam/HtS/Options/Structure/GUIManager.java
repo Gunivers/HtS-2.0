@@ -14,7 +14,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import fr.HtSTeam.HtS.ItemStackManager;
+import fr.HtSTeam.HtS.Utils.ItemStackManager;
 
 public class GUIManager extends OptionsManager {
 	

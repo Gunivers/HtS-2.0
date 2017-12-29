@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS;
+package fr.HtSTeam.HtS.Utils;
 
 import java.util.ArrayList;
 

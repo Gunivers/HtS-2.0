@@ -6,6 +6,7 @@ import java.util.List;
 import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Options.OptionsRegister;
+import fr.HtSTeam.HtS.Options.Structure.TeamManager;
 import fr.HtSTeam.HtS.Scoreboard.Entry;
 import fr.HtSTeam.HtS.Scoreboard.EntryBuilder;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard;
@@ -36,23 +37,25 @@ public class ScoreBoard {
 	
 	private static List<Entry> getBuild() {
 		if(display == null || display.size() == 0)
-			return new EntryBuilder().next("§4SCOREBOARD").next("§4NOT").next("§4INITIALIZED").build();
+			return new EntryBuilder().next("§4Joueur:").next(getPlayerAlive()).next("§4Tuer:").next(getPlayerKilled()).next("§4Timer:").next(getTime()).next("§4Bordure:").next(OptionsRegister.borderOption.getValue() + "x" + OptionsRegister.borderOption.getValue()).build();
 		
 		EntryBuilder builder = new EntryBuilder();
 		
 		for(int i = 0; i < display.size(); i++) {
 			switch(display.get(i)) {
 				case "PlayerScoreboardOption":
-					builder.next(getPlayerAlive() + " joueurs en vie");
+					builder.next("§4Joueur:").next(getPlayerAlive());
+					if (TeamManager.teamList.size() != 0)
+						builder.next("§4Equipe:").next(Integer.toString(TeamManager.teamList.size()));
 					break;
 				case "KilledScoreboardOption":
-					builder.next(getPlayerKilled() + " joueurs tués");
+					builder.next("§4Tuer:").next(getPlayerKilled());
 					break;
 				case "TimerScoreboardOption":
-					builder.next(getTime());
+					builder.next("§4Timer:").next(getTime());
 					break;
 				case "BorderScoreboardOption":
-					builder.next(OptionsRegister.borderOption.getValue() + "x" + OptionsRegister.borderOption.getValue());
+					builder.next("§4Bordure:").next(OptionsRegister.borderOption.getValue() + "x" + OptionsRegister.borderOption.getValue());
 					break;
 				case "AddBlankScoreboardOption":
 					builder.blank();
