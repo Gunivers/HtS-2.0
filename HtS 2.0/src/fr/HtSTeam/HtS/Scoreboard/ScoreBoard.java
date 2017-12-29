@@ -40,7 +40,7 @@ public class ScoreBoard {
 	}
 	
 	private static List<Entry> getBuild() {
-		if(display == null || display.size() == 0)
+		if(display.size() == 0)
 			return new EntryBuilder().next("§4Joueur:").next(Integer.toString(Main.playerInGame.getPlayerInGame().size())).next("§4Tuer:").next(getPlayerKilled()).next("§4Timer:").next(getTime()).next("§4Bordure:").next(OptionsRegister.borderOption.getValue() + "x" + OptionsRegister.borderOption.getValue()).build();
 		
 		EntryBuilder builder = new EntryBuilder();

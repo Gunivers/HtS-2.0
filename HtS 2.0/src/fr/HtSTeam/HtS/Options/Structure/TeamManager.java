@@ -23,6 +23,7 @@ public class TeamManager {
 	private String teamName;
 	private String teamColor;
 	private byte teamByte;
+	private boolean faketeam = false;
 		
 	public TeamManager(String teamName, String teamColor) {
 		teamList.add(this);
@@ -80,7 +81,10 @@ public class TeamManager {
 	public byte getTeamByte() { return teamByte; }
 	public int getTeamSize() { return team.getSize(); }
 	
-	 private byte getWoolByte(String color) {	
+	public boolean isFakeTeam() { return faketeam; }
+	public void setFakeTeam(boolean faketeam) { this.faketeam = faketeam; }
+	
+	private byte getWoolByte(String color) {	
 	    	switch(color) {
 	    		case "white":
 	    			return 0;
