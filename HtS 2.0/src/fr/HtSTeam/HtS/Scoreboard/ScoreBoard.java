@@ -41,14 +41,14 @@ public class ScoreBoard {
 	
 	private static List<Entry> getBuild() {
 		if(display == null || display.size() == 0)
-			return new EntryBuilder().next("§4Joueur:").next(getPlayerAlive()).next("§4Tuer:").next(getPlayerKilled()).next("§4Timer:").next(getTime()).next("§4Bordure:").next(OptionsRegister.borderOption.getValue() + "x" + OptionsRegister.borderOption.getValue()).build();
+			return new EntryBuilder().next("§4Joueur:").next(Integer.toString(Main.playerInGame.getPlayerInGame().size())).next("§4Tuer:").next(getPlayerKilled()).next("§4Timer:").next(getTime()).next("§4Bordure:").next(OptionsRegister.borderOption.getValue() + "x" + OptionsRegister.borderOption.getValue()).build();
 		
 		EntryBuilder builder = new EntryBuilder();
 		
 		for(int i = 0; i < display.size(); i++) {
 			switch(display.get(i)) {
 				case "PlayerScoreboardOption":
-					builder.next("§4Joueurs:").next(getPlayerAlive());
+					builder.next("§4Joueurs:").next(Integer.toString(Main.playerInGame.getPlayerInGame().size()));
 					if (TeamManager.teamList.size() != 0)
 						builder.next("§4Equipes:").next(Integer.toString(TeamManager.teamList.size()));
 					break;
@@ -68,10 +68,6 @@ public class ScoreBoard {
 		}
 		
 		return builder.build();
-	}
-
-	private static String getPlayerAlive() {
-		return "3";
 	}
 	
 	private static String getPlayerKilled() {
