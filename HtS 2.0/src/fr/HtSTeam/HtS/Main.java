@@ -34,6 +34,7 @@ public class Main extends JavaPlugin {
 	public HashMap<Player, UUID> uuidPlayer = new HashMap<>();
 	public static Main plugin;
 	public final static String HTSNAME = "HtS XII";
+	public static PlayerInGame playerInGame = new PlayerInGame();
 	
 	public static Scoreboard b;
 	
@@ -51,6 +52,8 @@ public class Main extends JavaPlugin {
 		}
 
 		b = Bukkit.getScoreboardManager().getNewScoreboard();
+		
+		new FakeDeath();
 		
 		Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "gamerule sendCommandFeedback false");
 		EventManager.loadEvents(this);
