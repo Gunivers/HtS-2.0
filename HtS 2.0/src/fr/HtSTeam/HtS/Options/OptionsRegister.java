@@ -37,13 +37,13 @@ public class OptionsRegister {
 	
 	public static void register() {
 		
-		//atPlayer
+		// atPlayer
 		atDeath.getItemStackManager().setItem(Material.SKULL_ITEM, (short) 3);
 		main.update(atDeath);
 		new GoldenAppleOption();
 		new HeadOption();
 		
-		//UHC
+		// UHC
 		borderOption = new BorderOption();
 		new DifficultOption();
 		new NoRegenOption();
