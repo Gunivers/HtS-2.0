@@ -13,7 +13,7 @@ public class EventManager {
 
 		PluginManager pm = Bukkit.getServer().getPluginManager();
 		
-		pm.registerEvents(new DesactivateScoreboardWhenOptionMenuIsClosed(), main);
+		pm.registerEvents(new CloseOptionsEvent(), main);
 		pm.registerEvents(new PlayerInGame(), main);
 		pm.registerEvents(new WaitEvent(), main);
 		pm.registerEvents(new FakeDeath(), main);

@@ -7,7 +7,7 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Scoreboard.ScoreBoard;
 
-public class DesactivateScoreboardWhenOptionMenuIsClosedMegaLongClassNameForEvent implements Listener {
+public class CloseOptionsEvent implements Listener {
 	
 	@EventHandler
 	public void onOptionsClose(InventoryCloseEvent e) {
