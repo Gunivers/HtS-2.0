@@ -10,15 +10,28 @@ import net.minecraft.server.v1_12_R1.PacketPlayOutTitle;
 import net.minecraft.server.v1_12_R1.PacketPlayOutTitle.EnumTitleAction;
 
 public class ActionBar {
+
+	private Player p;
+	private String msg;
+	private int time;
 	
-	private static int id;
+	private int id;
 	
-	public static void send(String msg, int time) {
+	public ActionBar(String msg, int time) {
+		this.msg = msg;
+		this.time = time;
+	}
+	public ActionBar(Player p, String msg, int time) {
+		this.p = p;
+		this.msg = msg;
+		this.time = time;
+	}
+	
+	public void sendAll() {
 		PacketPlayOutTitle packet = new PacketPlayOutTitle(EnumTitleAction.ACTIONBAR,
 				ChatSerializer.a("{\"text\":\"" + msg + "\"}"));
 		id = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.plugin, new Runnable(){
 			private int counter = 0;
-
 			@Override
 			public void run(){	 
 					for(Player p : Bukkit.getOnlinePlayers())
@@ -30,7 +43,7 @@ public class ActionBar {
 		}, 0L, 20L);
 	}
 	
-	public static void send(Player p, String msg, int time) {
+	public void send() {
 		PacketPlayOutTitle packet = new PacketPlayOutTitle(EnumTitleAction.ACTIONBAR,
 				ChatSerializer.a("{\"text\":\"" + msg + "\"}"));
 		id = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.plugin, new Runnable(){
