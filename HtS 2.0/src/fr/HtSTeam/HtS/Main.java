@@ -25,6 +25,8 @@ import fr.HtSTeam.HtS.Events.EventManager;
 import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 import fr.HtSTeam.HtS.Options.Structure.Timer;
+import fr.HtSTeam.HtS.Players.DeathLoot;
+import fr.HtSTeam.HtS.Players.PlayerInGame;
 import fr.HtSTeam.HtS.Scoreboard.ScoreboardLib;
 import net.minecraft.server.v1_12_R1.IChatBaseComponent.ChatSerializer;
 import net.minecraft.server.v1_12_R1.PacketPlayOutChat;
@@ -35,6 +37,7 @@ public class Main extends JavaPlugin {
 	public static Main plugin;
 	public final static String HTSNAME = "HtS XII";
 	public static PlayerInGame playerInGame = new PlayerInGame();
+	public static DeathLoot deathLoot = new DeathLoot();
 	
 	public static Scoreboard b;
 	

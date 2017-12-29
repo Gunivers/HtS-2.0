@@ -4,7 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 
 import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.PlayerInGame;
+import fr.HtSTeam.HtS.Players.PlayerInGame;
 
 public class EventManager {
 	

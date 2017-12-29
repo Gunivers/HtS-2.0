@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS;
+package fr.HtSTeam.HtS.Players;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+
+import fr.HtSTeam.HtS.EnumState;
 
 public class PlayerInGame implements Listener {
 
