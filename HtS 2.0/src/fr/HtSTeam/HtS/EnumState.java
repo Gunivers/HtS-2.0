@@ -10,7 +10,7 @@ public enum EnumState implements Listener {
 	RUNNING,
 	FINISHING;
 	
-	private static EnumState state = EnumState.RUNNING;
+	private static EnumState state = EnumState.WAIT;
 	
 	public static void setState(EnumState state) {
 		EnumState.state = state;
