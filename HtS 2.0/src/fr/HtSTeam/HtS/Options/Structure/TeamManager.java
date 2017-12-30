@@ -24,7 +24,9 @@ public class TeamManager {
 	private String teamColor;
 	private byte teamByte;
 	private boolean faketeam = false;
-		
+	
+	private ArrayList<Player> playerList = new ArrayList<Player>();
+	
 	public TeamManager(String teamName, String teamColor) {
 		teamList.add(this);
 		
@@ -37,23 +39,38 @@ public class TeamManager {
 	}
 	
 	public void addPlayer(Player p) {
-		playerTeam.put(p, this);
-		team.addEntry(p.getName());
+		if(faketeam) {
+			playerList.add(p);
+		} else {
+			playerTeam.put(p, this);
+			team.addEntry(p.getName());
+		}
 	}
 	
 	public void removePlayer(Player p) {
-		playerTeam.remove(p, this);
-		team.removeEntry(p.getName());
-		if(getTeamSize() == 0)
-			teamList.remove(this);
+		if(faketeam) {
+			playerList.remove(p);
+			if(playerList.size() == 0)
+				teamList.remove(this);
+		} else {
+			playerTeam.remove(p, this);
+			team.removeEntry(p.getName());
+			if(getTeamSize() == 0)
+				teamList.remove(this);
+		}
 	}
 	
 	public void clearTeam() {
-		for (String entry : team.getEntries()) {
-			playerTeam.remove(Bukkit.getPlayer(entry), this);
-			team.removeEntry(entry);
+		if(faketeam) {
+			playerList.clear();
+			teamList.remove(this);
+		} else {
+			for (String entry : team.getEntries()) {
+				playerTeam.remove(Bukkit.getPlayer(entry), this);
+				team.removeEntry(entry);
+			}
+			teamList.remove(this);
 		}
-		teamList.remove(this);
 	}
 	
 	public void setTeamFriendlyFire(boolean friendlyfire) {
