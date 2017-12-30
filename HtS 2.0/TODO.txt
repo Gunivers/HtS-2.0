@@ -16,6 +16,8 @@ Pour l'HtS de base :
 	- * Craft des Elytras (et possiblement autres crafts custom)												Pris par :		
 	- * Les loot tables (Ghast...)																				Pris par :		
 
+
+
 - L'inventaire des modes de jeux																				Pris par :		
 
 - Taupe Gun																										Pris par :		
