@@ -35,12 +35,9 @@ public class TeamCommand implements CommandExecutor {
 						return true;
 					}
 					return false;
-				} else if (args[0].equalsIgnoreCase("leave") && args.length == 3) {
-					if (TeamManager.nameTeam.containsKey(args[1])) {
-						TeamManager.nameTeam.get(args[1]).removePlayer(Bukkit.getPlayer(args[2]));
-						return true;
-					}
-					return false;
+				} else if (args[0].equalsIgnoreCase("leave") && args.length == 2) {
+					TeamManager.playerTeam.get(Bukkit.getPlayer(args[1])).removePlayer(Bukkit.getPlayer(args[1]));
+					return true;
 				} else if (args[0].equalsIgnoreCase("random")) {
 					if(TeamManager.teamList.size() != 0) {
 						ArrayList<TeamManager> teamList = new ArrayList<TeamManager>();
