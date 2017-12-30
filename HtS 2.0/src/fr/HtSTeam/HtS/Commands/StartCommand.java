@@ -32,7 +32,6 @@ public class StartCommand implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
 		if (sender instanceof Player) {
-			System.out.println(EnumState.getState().equals(EnumState.WAIT));
 			Player p = (Player) sender;
 			
 			
@@ -79,13 +78,13 @@ public class StartCommand implements CommandExecutor {
 		
 		if(TeamManager.teamList.size() == 0) {
 			for(Player player : Bukkit.getOnlinePlayers()) {
-					int[] coords = Randomizer.RandCoord(-(border - 50 / 2), (border - 50) / 2, -(border - 50 / 2), (border - 50) / 2, 255, 255);
+					int[] coords = Randomizer.RandCoord(-(border - 50) / 2, (border - 50) / 2, 255, 255, -(border - 50) / 2, (border - 50) / 2);
 					player.teleport(new Location(player.getWorld(), coords[0], coords[1], coords[2]));
 				}
 		
 		} else {
 				for(TeamManager tm : TeamManager.teamList) {
-					int[] coords = Randomizer.RandCoord(-(border - 50 / 2), (border - 50) / 2, -(border - 50 / 2), (border - 50) / 2, 255, 255);
+					int[] coords = Randomizer.RandCoord(-(border - 50) / 2, (border - 50) / 2, 255, 255, -(border - 50) / 2, (border - 50) / 2);
 					for(Entry<Player, TeamManager> entry : TeamManager.playerTeam.entrySet()) {
 						if(entry.getValue() == tm)
 							entry.getKey().teleport(new Location(entry.getKey().getWorld(), coords[0], coords[1], coords[2]));

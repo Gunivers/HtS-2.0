@@ -4,6 +4,9 @@ import org.bukkit.Material;
 
 import fr.HtSTeam.HtS.Options.Options.AtDeath.GoldenAppleOption;
 import fr.HtSTeam.HtS.Options.Options.AtDeath.HeadOption;
+import fr.HtSTeam.HtS.Options.Options.Mobs.CreeperNerfOption;
+import fr.HtSTeam.HtS.Options.Options.Modifier.ModifiersGUI;
+import fr.HtSTeam.HtS.Options.Options.Modifier.ShulkerShellOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.AddBlankScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.BorderScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.KilledScoreboardOption;
@@ -32,10 +35,17 @@ public class OptionsRegister {
 	public static GUIManager scoreboard = new GUIManager("Scoreboard", 1, "Scoreboard", "Régler le scoreboard", Material.SIGN, OptionsRegister.main);
 	public static GUIManager teams = new GUIManager("Equipes", 1, "Equipes", "Régler les équipes", Material.BANNER, OptionsRegister.main);
 	public static GUIManager mob = new GUIManager("Mobs", 1, "Mobs", "Activer/Désactiver des mobs", Material.SKULL_ITEM, OptionsRegister.main);
+	public static GUIManager modifiers = new ModifiersGUI();
 	
 	public static BorderOption borderOption;
 	
 	public static void register() {
+		
+		//Mobs
+		new CreeperNerfOption();
+		
+		//Modifiers
+		new ShulkerShellOption();
 		
 		// atPlayer
 		atDeath.getItemStackManager().setItem(Material.SKULL_ITEM, (short) 3);

@@ -101,7 +101,7 @@ public class GUIManager extends OptionsManager {
 		for(Entry<ItemStackManager, OptionsManager> ism : guiContent.entrySet()) {
 			if(ism.getKey().getItemStack().equals(e.getCurrentItem())) {
 				e.setCancelled(true);
-				ism.getValue().event((Player) e.getWhoClicked());;
+				ism.getValue().event((Player) e.getWhoClicked());
 			}
 		}
 	}

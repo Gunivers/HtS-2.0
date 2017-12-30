@@ -30,5 +30,4 @@ public class GoldenAppleOption extends OptionsManager {
 		}
 		parent.update(this);		
 	}
-
 }
