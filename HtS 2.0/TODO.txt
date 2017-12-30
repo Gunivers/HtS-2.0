@@ -1,24 +1,27 @@
 Pour l'HtS de base :
 
-- Le timer
-- Le join des équipes par clic sur laine
-- Les statistiques
-- * Les nerfs (squelette, creeper sans one shot...)
-- * Loot de Golden Block (50%) ou de 2 lingots d'or (50%) par les Ghasts
-- * Les ajouts Nether (apparition de la Nether Wart, spawn des Shulker)
-- * Les changements de probabilités (drop de pommes (ne pas oublié l'event decay), de flint...)
-- * Les objets customs (Shulker Shell...) et l'inventaire associé
-- * Les modifications useless (drop de golden nuggets...)
-- * Le système de Head Shot (nerf)
-- * [1.13] Désactivation du spawn de certains mobs
-- * [1.13] La désactivation des crafts (avec système de preset), des enchantements et des potions
-- * [1.13] Le système d'extraction de Data Pack
-	- * L'algue urticante
-	- * Craft des Elytras (et possiblement autres crafts custom)
-	- * Les loot tables
-	
+- Le timer																										Pris par :		
+- Le join des équipes par clic sur laine																		Pris par :		
+- Les statistiques																								Pris par :		
+- * Les nerfs (squelette, creeper sans one shot...)																Pris par :		
+- * Les ajouts Nether (apparition de la Nether Wart, spawn des Shulker)											Pris par :		
+- * Les changements de probabilités (drop de pommes (ne pas oublié l'event decay), de flint...)					Pris par :		
+- * Les objets customs (Shulker Shell...) et l'inventaire associé												Pris par :		theogiraudet
+- * Les modifications useless (drop de golden nuggets...)														Pris par :		
+- * Le système de Head Shot (nerf)																				Pris par :		
+- * [1.13] Désactivation du spawn de certains mobs																Pris par :		
+- * [1.13] La désactivation des crafts (avec système de preset), des enchantements et des potions				Pris par :		
+- * [1.13] Le système d'extraction de Data Pack																	Pris par :		
+	- * L'algue urticante																						Pris par :		
+	- * Craft des Elytras (et possiblement autres crafts custom)												Pris par :		
+	- * Les loot tables (Ghast...)																				Pris par :		
 
-- Taupe Gun
-- Stress your Target
+- L'inventaire des modes de jeux																				Pris par :		
+
+- Taupe Gun																										Pris par :		
+- Stress your Target																							Pris par :		
+
+
 
 Les astérisques '*' signifie que la chose à faire doit être sous forme d'option.
+Mettre son nom à côté de l'option si pris.
