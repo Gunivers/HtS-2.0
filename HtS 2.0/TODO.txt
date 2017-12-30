@@ -1,20 +1,23 @@
 Pour l'HtS de base :
 
-- Le timer																										Pris puis abandonné par : Zertus		
+- Le timer																										Pris puis abandonné par :	Zertus	
 - Le join des équipes par clic sur laine																		Pris par :		
-- Les statistiques																								Pris par :	ikbrunel	
+- Les statistiques																								Pris par :		ikbrunel
 - * Les nerfs (squelette, creeper sans one shot...)																Pris par :		
-- * Les ajouts Nether (apparition de la Nether Wart, spawn des Shulker)											Pris par :	ikbrunel	
+- * Les ajouts Nether (apparition de la Nether Wart, spawn des Shulker)											Pris par :		ikbrunel
 - * Les changements de probabilités (drop de pommes (ne pas oublié l'event decay), de flint...)					Pris par :		
 - * Les objets customs (Shulker Shell...) et l'inventaire associé												Pris par :		theogiraudet
 - * Les modifications useless (drop de golden nuggets...)														Pris par :		
-- * Le système de Head Shot (nerf)																				Pris par :	ikbrunel	
+- * Le système de Head Shot (nerf)																				Pris par :		ikbrunel
+- * Le module des oeufs																							Pris par : 		ikbrunel		
 - * [1.13] Désactivation du spawn de certains mobs																Pris par :		
 - * [1.13] La désactivation des crafts (avec système de preset), des enchantements et des potions				Pris par :		
 - * [1.13] Le système d'extraction de Data Pack																	Pris par :		
 	- * L'algue urticante																						Pris par :		
 	- * Craft des Elytras (et possiblement autres crafts custom)												Pris par :		
-	- * Les loot tables (Ghast...)																				Pris par :		
+	- * Les loot tables (Ghast...)																				Pris par :		ikbrunel
+
+
 
 - L'inventaire des modes de jeux																				Pris par :		
 
