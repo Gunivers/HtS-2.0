@@ -13,9 +13,9 @@ public class VictoryDetectionEvent implements Listener {
 
 	@EventHandler
 	public void onPlayerDeath(PlayerDeathEvent e) {
-		if(TeamManager.playerTeam.size() == 1) {
+		if(TeamManager.teamList.size() == 1) {
 			EnumState.setState(EnumState.FINISHING);
-			JSON.sendAll(TeamManager.playerTeam.get(0).getTeamColor() + "La team" + TeamManager.playerTeam.get(0).getTeamName() + " a gagné !", null, 5);
+			JSON.sendAll(TeamManager.teamList.get(0).getTeamColor() + "La team" + TeamManager.teamList.get(0).getTeamName() + " a gagné !", null, 5);
 		} else if(Main.playerInGame.getPlayerInGame().size() == 1) {
 			EnumState.setState(EnumState.FINISHING);
 			JSON.sendAll(Main.playerInGame.getPlayerInGame().get(0).getName() + " §2 a gagné !", null, 5);
