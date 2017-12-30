@@ -16,6 +16,7 @@ import fr.HtSTeam.HtS.Main;
 public class TeamManager {
 		
 	public static ArrayList<TeamManager> teamList = new ArrayList<TeamManager>();
+	public static Map<String, TeamManager> nameTeam = new HashMap<String, TeamManager>();
 	public static Map<Player, TeamManager> playerTeam = new HashMap<Player, TeamManager>();
 	
 	private Team team;
@@ -29,6 +30,7 @@ public class TeamManager {
 	
 	public TeamManager(String teamName, String teamColor) {
 		teamList.add(this);
+		nameTeam.put(teamName, this);
 		
 		this.teamName = teamName;
 		this.teamColor = teamColor;

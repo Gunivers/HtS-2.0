@@ -12,3 +12,6 @@ commands:
  run:
   descrption: Force le lancement de la partie
   usage: Erreur syntaxe ! Faites /run
+ team:
+  descrption: Force le lancement de la partie
+  usage: Erreur syntaxe ! Faites /run
