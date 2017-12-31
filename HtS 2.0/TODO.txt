@@ -13,7 +13,7 @@ Pour l'HtS de base :
 - * [1.13] Désactivation du spawn de certains mobs																Pris par :		theogiraudet
 - * [1.13] La désactivation des crafts (avec système de preset), des enchantements et des potions				Pris par :		
 - * [1.13] Le système d'extraction de Data Pack																	Pris par :		
-	- * L'algue urticante																						Pris par :		
+	- * L'algue urticante																						Pris par :		ikbrunel
 	- * Craft des Elytras (et possiblement autres crafts custom)												Pris par :		
 	- * Les loot tables (Ghast...)																				Pris par :		ikbrunel
 
