@@ -41,25 +41,25 @@ public class ScoreBoard {
 	
 	private static List<Entry> getBuild() {
 		if(display.size() == 0)
-			return new EntryBuilder().next("§4Joueur:").next(Integer.toString(Main.playerInGame.getPlayerInGame().size())).next("§4Tuer:").next(getPlayerKilled()).next("§4Timer:").next(Main.timer.getTimeFormat()).next("§4Bordure:").next(OptionsRegister.borderOption.getValue() + "x" + OptionsRegister.borderOption.getValue()).build();
+			return new EntryBuilder().next("§6Joueur:").next(Integer.toString(Main.playerInGame.getPlayerInGame().size())).next("§6Tuer:").next(getPlayerKilled()).next("§6Timer:").next(Main.timer.getTimeFormat()).next("§6Bordure:").next(OptionsRegister.borderOption.getValue() + "x" + OptionsRegister.borderOption.getValue()).build();
 		
 		EntryBuilder builder = new EntryBuilder();
 		
 		for(int i = 0; i < display.size(); i++) {
 			switch(display.get(i)) {
 				case "PlayerScoreboardOption":
-					builder.next("§4Joueurs:").next(Integer.toString(Main.playerInGame.getPlayerInGame().size()));
+					builder.next("§6Joueurs:").next(Integer.toString(Main.playerInGame.getPlayerInGame().size()));
 					if (TeamManager.teamList.size() != 0)
-						builder.next("§4Equipes:").next(Integer.toString(TeamManager.teamList.size()));
+						builder.next("§6Equipes:").next(Integer.toString(TeamManager.teamList.size()));
 					break;
 				case "KilledScoreboardOption":
-					builder.next("§4Tuers:").next(getPlayerKilled());
+					builder.next("§6Tuers:").next(getPlayerKilled());
 					break;
 				case "TimerScoreboardOption":
-					builder.next("§4Timer:").next(Main.timer.getTimeFormat());
+					builder.next("§6Timer:").next(Main.timer.getTimeFormat());
 					break;
 				case "BorderScoreboardOption":
-					builder.next("§4Bordure:").next(OptionsRegister.borderOption.getValue() + "×" + OptionsRegister.borderOption.getValue());
+					builder.next("§6Bordure:").next(OptionsRegister.borderOption.getValue() + "×" + OptionsRegister.borderOption.getValue());
 					break;
 				case "AddBlankScoreboardOption":
 					builder.blank();

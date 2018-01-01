@@ -14,6 +14,7 @@ public class EventManager {
 
 		PluginManager pm = Bukkit.getServer().getPluginManager();
 		
+		pm.registerEvents(new JoinLeaveEvent(), main);
 		pm.registerEvents(new CloseOptionsEvent(), main);
 		pm.registerEvents(new PlayerInGame(), main);
 		pm.registerEvents(new WaitEvent(), main);
