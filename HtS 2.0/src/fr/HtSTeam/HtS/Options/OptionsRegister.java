@@ -17,6 +17,7 @@ import fr.HtSTeam.HtS.Options.Options.Modifier.HeadShot;
 import fr.HtSTeam.HtS.Options.Options.Modifier.ModifiersGUI;
 import fr.HtSTeam.HtS.Options.Options.Modifier.ShulkerShellOption;
 import fr.HtSTeam.HtS.Options.Options.Nether.NetherWartOption;
+import fr.HtSTeam.HtS.Options.Options.Nether.ShulkerNetherOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.AddBlankScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.BorderScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.KilledScoreboardOption;
@@ -103,7 +104,7 @@ public class OptionsRegister {
 		
 		// Nether
 		new NetherWartOption();
-		new ShulkerShellOption();
+		new ShulkerNetherOption();
 	}
 	
 }
