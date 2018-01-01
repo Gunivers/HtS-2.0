@@ -9,7 +9,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
-import fr.HtSTeam.HtS.Options.Structure.Timer;
+import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
 
 public class EnablePvPOption extends OptionsManager {
 	

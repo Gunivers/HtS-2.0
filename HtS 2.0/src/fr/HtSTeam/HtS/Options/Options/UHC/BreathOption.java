@@ -12,7 +12,8 @@ import org.bukkit.potion.PotionEffectType;
 
 import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
-import fr.HtSTeam.HtS.Options.Structure.Timer;
+import fr.HtSTeam.HtS.Options.Structure.Annotation.PRIORITY;
+import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
 import fr.HtSTeam.HtS.Utils.StartTrigger;
 
 public class BreathOption extends OptionsManager implements StartTrigger {
@@ -78,7 +79,7 @@ public class BreathOption extends OptionsManager implements StartTrigger {
 	}
 	
 	
-	@Timer
+	@Timer(PRIORITY.HIGHEST)
 	public void alert() {
 		if(getValue().equals("Désactivé") || alert) return;
 		setValue(Integer.toString(Integer.parseInt(getValue()) + 1));
@@ -86,7 +87,7 @@ public class BreathOption extends OptionsManager implements StartTrigger {
 		Bukkit.broadcastMessage("§4Les mineurs ont miné beaucoup trop profondement et ont ouvert des poches de soufre. Le soufre envahira les mines dans 1 minutes.");
 	}
 	
-	@Timer
+	@Timer(PRIORITY.LOWEST)
 	public void run() {
 		activate = true;
 		Bukkit.broadcastMessage("§4Le soufre a envahis les mines.");
