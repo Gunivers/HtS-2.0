@@ -41,7 +41,7 @@ public class ScoreBoard {
 	
 	private static List<Entry> getBuild() {
 		if(display.size() == 0)
-			return new EntryBuilder().next("§4Joueur:").next(Integer.toString(Main.playerInGame.getPlayerInGame().size())).next("§4Tuer:").next(getPlayerKilled()).next("§4Timer:").next(getTime()).next("§4Bordure:").next(OptionsRegister.borderOption.getValue() + "x" + OptionsRegister.borderOption.getValue()).build();
+			return new EntryBuilder().next("§4Joueur:").next(Integer.toString(Main.playerInGame.getPlayerInGame().size())).next("§4Tuer:").next(getPlayerKilled()).next("§4Timer:").next(Main.timer.getTimeFormat()).next("§4Bordure:").next(OptionsRegister.borderOption.getValue() + "x" + OptionsRegister.borderOption.getValue()).build();
 		
 		EntryBuilder builder = new EntryBuilder();
 		
@@ -56,7 +56,7 @@ public class ScoreBoard {
 					builder.next("§4Tuers:").next(getPlayerKilled());
 					break;
 				case "TimerScoreboardOption":
-					builder.next("§4Timer:").next(getTime());
+					builder.next("§4Timer:").next(Main.timer.getTimeFormat());
 					break;
 				case "BorderScoreboardOption":
 					builder.next("§4Bordure:").next(OptionsRegister.borderOption.getValue() + "×" + OptionsRegister.borderOption.getValue());
@@ -73,9 +73,4 @@ public class ScoreBoard {
 	private static String getPlayerKilled() {
 		return "6";
 	}
-	
-	private static String getTime() {
-		return "00:00:00";
-	}
-
 }
