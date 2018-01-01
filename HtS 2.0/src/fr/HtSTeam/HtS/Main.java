@@ -5,9 +5,9 @@ import java.lang.reflect.Method;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map.Entry;
 import java.util.Set;
 import java.util.UUID;
+import java.util.Map.Entry;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
@@ -66,8 +66,10 @@ public class Main extends JavaPlugin {
 		CommandsManager.loadCommands(this);
 		OptionsRegister.register();
 		ScoreboardLib.setPluginInstance(this);
-	}	
-    
+	}
+	
+	// Trigger Annotations
+	
 	public void executeTimer() {
 		for (Class<?> c : getClasses(getFile(), "fr.HtSTeam.Options.Options")) {
 			for (Method m : c.getMethods()) {

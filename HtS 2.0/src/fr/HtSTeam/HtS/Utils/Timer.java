@@ -31,7 +31,7 @@ public class Timer {
 				public void run() {
 					if(!pause) {
 						time += step;
-						new Main().executeTimer();
+						Main.plugin.executeTimer();
 					}
 //					System.out.println(getTimeFormat());
 					if (EnumState.getState().equals(EnumState.FINISHING) || time <= 0 || stop)
@@ -67,5 +67,4 @@ public class Timer {
 	public void stop() {
 		stop = true;
 	}
-
 }
