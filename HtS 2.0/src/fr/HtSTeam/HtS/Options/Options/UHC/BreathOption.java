@@ -20,6 +20,7 @@ public class BreathOption extends OptionsManager implements StartTrigger {
 	private boolean request = false; 
 	private Player p;
 	private boolean activate = false;
+	private boolean alert = false;
 	
 	public BreathOption() {
 		super(Material.SULPHUR, "Souffle des profondeurs", "§4Désactivé", "Désactivé", OptionsRegister.uhc);
@@ -76,17 +77,19 @@ public class BreathOption extends OptionsManager implements StartTrigger {
 		}
 	}
 	
+	
 	@Timer
 	public void alert() {
-		if(getValue().equals("Désactivé")) return;
+		if(getValue().equals("Désactivé") || alert) return;
 		setValue(Integer.toString(Integer.parseInt(getValue()) + 1));
+		alert = true;
 		Bukkit.broadcastMessage("§4Les mineurs ont miné beaucoup trop profondement et ont ouvert des poches de soufre. Le soufre envahira les mines dans 1 minutes.");
 	}
 	
 	@Timer
-	public void active() {
-			activate = true;
-			Bukkit.broadcastMessage("§4Le soufre a envahis les mines.");
+	public void run() {
+		activate = true;
+		Bukkit.broadcastMessage("§4Le soufre a envahis les mines.");
 	}
 
 	@Override
