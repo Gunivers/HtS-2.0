@@ -1,5 +1,6 @@
 package fr.HtSTeam.HtS.Options.Options.UHC;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.World.Environment;
 import org.bukkit.entity.Player;
@@ -12,8 +13,9 @@ import org.bukkit.potion.PotionEffectType;
 import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 import fr.HtSTeam.HtS.Options.Structure.Timer;
+import fr.HtSTeam.HtS.Utils.StartTrigger;
 
-public class BreathOption extends OptionsManager {
+public class BreathOption extends OptionsManager implements StartTrigger {
 	
 	private boolean request = false; 
 	private Player p;
@@ -77,5 +79,17 @@ public class BreathOption extends OptionsManager {
 	@Timer
 	private void active() {
 		activate = true;
+		Bukkit.broadcastMessage("§4Le souffre a envahis les mines.");
+	}
+	
+	@Timer
+	private void alert() {
+		setValue(Integer.toString(Integer.parseInt(getValue()) + 1));
+		Bukkit.broadcastMessage("§4Le souffre a envahis les mines.");
+	}
+
+	@Override
+	public void onPartyStart() {
+		setValue(Integer.toString(Integer.parseInt(getValue()) - 1));
 	}
 }

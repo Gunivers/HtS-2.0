@@ -25,6 +25,7 @@ public class Timer {
 
 	public void run() {
 		if (!isActivate) {
+			isActivate = true;
 			@SuppressWarnings("unused")
 			BukkitTask task = new BukkitRunnable() {
 				public void run() {
