@@ -5,7 +5,6 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.potion.PotionEffect;
@@ -14,7 +13,7 @@ import org.bukkit.potion.PotionEffectType;
 import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 
-public class HeadShot extends OptionsManager implements Listener {
+public class HeadShot extends OptionsManager {
 	
 private boolean activate = false;
 	

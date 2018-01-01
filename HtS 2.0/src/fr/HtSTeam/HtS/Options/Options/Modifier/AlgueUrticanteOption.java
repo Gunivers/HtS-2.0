@@ -3,12 +3,11 @@ package fr.HtSTeam.HtS.Options.Options.Modifier;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 
 import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 
-public class AlgueUrticanteOption extends OptionsManager implements Listener {
+public class AlgueUrticanteOption extends OptionsManager {
 	
 	private boolean activate = false;
 	
