@@ -81,7 +81,7 @@ public class Timer {
 						for (Entry<OptionsManager, Object> entry : OptionsManager.optionsList.entrySet()) {
 							if (entry.getValue().equals(om.getClass()))
 								if (time == Integer.parseInt(entry.getKey().getValue()))
-									m.invoke(null);
+									m.invoke(om);
 						}
 					}
 				} catch (Exception e) {
