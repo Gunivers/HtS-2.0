@@ -12,6 +12,8 @@ import fr.HtSTeam.HtS.Options.Options.LootTables.GhastOptions;
 import fr.HtSTeam.HtS.Options.Options.LootTables.SkeletonOptions;
 import fr.HtSTeam.HtS.Options.Options.LootTables.ZombieOptions;
 import fr.HtSTeam.HtS.Options.Options.Mobs.CreeperNerfOption;
+import fr.HtSTeam.HtS.Options.Options.Modifier.AlgueUrticanteOption;
+import fr.HtSTeam.HtS.Options.Options.Modifier.HeadShot;
 import fr.HtSTeam.HtS.Options.Options.Modifier.ModifiersGUI;
 import fr.HtSTeam.HtS.Options.Options.Modifier.ShulkerShellOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.AddBlankScoreboardOption;
@@ -50,11 +52,13 @@ public class OptionsRegister {
 	
 	public static void register() {
 		
-		//Mobs
+		// Mobs
 		new CreeperNerfOption();
 		
-		//Modifiers
+		// Modifiers
 		new ShulkerShellOption();
+		new AlgueUrticanteOption();
+		new HeadShot();
 		
 		// atPlayer
 		atDeath.getItemStackManager().setItem(Material.SKULL_ITEM, (short) 3);
