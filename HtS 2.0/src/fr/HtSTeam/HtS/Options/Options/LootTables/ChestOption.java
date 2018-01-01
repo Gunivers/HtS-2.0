@@ -12,12 +12,12 @@ import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 import fr.HtSTeam.HtS.Utils.FileExtractor;
 
-public class FishingOptions extends OptionsManager {
+public class ChestOption extends OptionsManager {
 	
 	private boolean activate = false;
 	
-	public FishingOptions() {
-		super(Material.FISHING_ROD, "fishing", "§4Désactivé", "Désactivé", OptionsRegister.loottables);
+	public ChestOption() {
+		super(Material.CHEST, "coffre", "§4Désactivé", "Désactivé", OptionsRegister.loottables);
 	}
 
 	@Override
@@ -25,17 +25,17 @@ public class FishingOptions extends OptionsManager {
 		activate =! activate;
 		if(activate) {
 			try {
-				FileExtractor.extractFile(FileExtractor.lt + "fishing.json", FileExtractor.wdir + FileExtractor.Gdir);
+				FileExtractor.extractFile(FileExtractor.lt + "coffre.json", FileExtractor.wdir + FileExtractor.Cdir);
 				setValue("Activé");
 				getItemStackManager().setLore("§2Activé");
 			} catch (IOException | URISyntaxException e) {
 				e.printStackTrace();
 			}
 		} else {
-			setValue("Désactivé");
-			getItemStackManager().setLore("§4Désactivé");
 			try {
-				Files.delete(Paths.get(FileExtractor.wdir + FileExtractor.Gdir + "fishing.json"));
+				Files.delete(Paths.get(FileExtractor.wdir + FileExtractor.Cdir + "coffre.json"));
+				setValue("Désactivé");
+				getItemStackManager().setLore("§4Désactivé");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

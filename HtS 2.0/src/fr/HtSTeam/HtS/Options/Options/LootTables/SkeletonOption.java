@@ -12,12 +12,12 @@ import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 import fr.HtSTeam.HtS.Utils.FileExtractor;
 
-public class ChestOptions extends OptionsManager {
+public class SkeletonOption extends OptionsManager {
 	
 	private boolean activate = false;
 	
-	public ChestOptions() {
-		super(Material.CHEST, "coffre", "§4Désactivé", "Désactivé", OptionsRegister.loottables);
+	public SkeletonOption() {
+		super(Material.MONSTER_EGG, "skeleton", "§4Désactivé", "Désactivé", OptionsRegister.loottables);
 	}
 
 	@Override
@@ -25,7 +25,7 @@ public class ChestOptions extends OptionsManager {
 		activate =! activate;
 		if(activate) {
 			try {
-				FileExtractor.extractFile(FileExtractor.lt + "coffre.json", FileExtractor.wdir + FileExtractor.Cdir);
+				FileExtractor.extractFile(FileExtractor.lt + "skeleton.json", FileExtractor.wdir + FileExtractor.Edir);
 				setValue("Activé");
 				getItemStackManager().setLore("§2Activé");
 			} catch (IOException | URISyntaxException e) {
@@ -33,7 +33,7 @@ public class ChestOptions extends OptionsManager {
 			}
 		} else {
 			try {
-				Files.delete(Paths.get(FileExtractor.wdir + FileExtractor.Cdir + "coffre.json"));
+				Files.delete(Paths.get(FileExtractor.wdir + FileExtractor.Edir + "skeleton.json"));
 				setValue("Désactivé");
 				getItemStackManager().setLore("§4Désactivé");
 			} catch (IOException e) {

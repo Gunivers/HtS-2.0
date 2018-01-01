@@ -12,12 +12,12 @@ import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 import fr.HtSTeam.HtS.Utils.FileExtractor;
 
-public class ZombieOptions extends OptionsManager {
+public class CrateOption extends OptionsManager {
 	
 	private boolean activate = false;
 	
-	public ZombieOptions() {
-		super(Material.MONSTER_EGG, "zombie", "§4Désactivé", "Désactivé", OptionsRegister.loottables);
+	public CrateOption() {
+		super(Material.BROWN_SHULKER_BOX, "crate", "§4Désactivé", "Désactivé", OptionsRegister.loottables);
 	}
 
 	@Override
@@ -25,7 +25,7 @@ public class ZombieOptions extends OptionsManager {
 		activate =! activate;
 		if(activate) {
 			try {
-				FileExtractor.extractFile(FileExtractor.lt + "zombie.json", FileExtractor.wdir + FileExtractor.Edir);
+				FileExtractor.extractFile(FileExtractor.lt + "crate.json", FileExtractor.wdir + FileExtractor.Cdir);
 				setValue("Activé");
 				getItemStackManager().setLore("§2Activé");
 			} catch (IOException | URISyntaxException e) {
@@ -33,7 +33,7 @@ public class ZombieOptions extends OptionsManager {
 			}
 		} else {
 			try {
-				Files.delete(Paths.get(FileExtractor.wdir + FileExtractor.Edir + "zombie.json"));
+				Files.delete(Paths.get(FileExtractor.wdir + FileExtractor.Cdir + "crate.json"));
 				setValue("Désactivé");
 				getItemStackManager().setLore("§4Désactivé");
 			} catch (IOException e) {

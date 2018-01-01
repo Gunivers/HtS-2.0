@@ -12,12 +12,12 @@ import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 import fr.HtSTeam.HtS.Utils.FileExtractor;
 
-public class CrateOptions extends OptionsManager {
+public class BatOption extends OptionsManager {
 	
 	private boolean activate = false;
 	
-	public CrateOptions() {
-		super(Material.BROWN_SHULKER_BOX, "crate", "§4Désactivé", "Désactivé", OptionsRegister.loottables);
+	public BatOption() {
+		super(Material.MONSTER_EGG, "bat", "§4Désactivé", "Désactivé", OptionsRegister.loottables);
 	}
 
 	@Override
@@ -25,7 +25,7 @@ public class CrateOptions extends OptionsManager {
 		activate =! activate;
 		if(activate) {
 			try {
-				FileExtractor.extractFile(FileExtractor.lt + "crate.json", FileExtractor.wdir + FileExtractor.Cdir);
+				FileExtractor.extractFile(FileExtractor.lt + "bat.json", FileExtractor.wdir + FileExtractor.Edir);
 				setValue("Activé");
 				getItemStackManager().setLore("§2Activé");
 			} catch (IOException | URISyntaxException e) {
@@ -33,7 +33,7 @@ public class CrateOptions extends OptionsManager {
 			}
 		} else {
 			try {
-				Files.delete(Paths.get(FileExtractor.wdir + FileExtractor.Cdir + "crate.json"));
+				Files.delete(Paths.get(FileExtractor.wdir + FileExtractor.Edir + "bat.json"));
 				setValue("Désactivé");
 				getItemStackManager().setLore("§4Désactivé");
 			} catch (IOException e) {
