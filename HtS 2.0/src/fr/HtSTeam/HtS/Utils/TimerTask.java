@@ -4,7 +4,6 @@ import java.lang.reflect.Method;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Map.Entry;
 
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
@@ -12,8 +11,9 @@ import org.bukkit.scheduler.BukkitTask;
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
+import fr.HtSTeam.HtS.Options.Structure.Timer;
 
-public class Timer {
+public class TimerTask {
 
 	private int time = 0;
 	private int step = 0;
@@ -21,7 +21,7 @@ public class Timer {
 	private boolean isActivate = false;
 	private boolean stop = false;
 	
-	public Timer(int start, int step) {
+	public TimerTask(int start, int step) {
 		time = start;
 		this.step = step; 
 	}
@@ -36,25 +36,26 @@ public class Timer {
 						time += step;
 						executeTimer();
 					}
-					if (EnumState.getState().equals(EnumState.FINISHING) || time <= 0 || stop)
+					if (EnumState.getState().equals(EnumState.FINISHING) || time < 0 || stop)
 						this.cancel();
 				}
-			}.runTaskTimer(Main.plugin, 0, 1200);
+			}.runTaskTimer(Main.plugin, 20, 20);
 		}
 	}
 
 	public int getTimerInMinute() {
-		return time;
+		System.out.println(time / 60);
+		return time / 60;
 	}
 
 	public String getTimeFormat() {
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("mm");
+		SimpleDateFormat sdf = new SimpleDateFormat("ss");
 		Date dt = null;
 
 		try {
 		    dt = sdf.parse(Integer.toString(time));
-		    sdf = new SimpleDateFormat("HH:mm");
+		    sdf = new SimpleDateFormat("HH:mm:ss");
 		} catch (ParseException e) {
 		    e.printStackTrace();
 		}
@@ -73,16 +74,14 @@ public class Timer {
 	private void executeTimer() {
 		if(this != Main.timer)
 			return;
-		
 		for (OptionsManager om : OptionsManager.optionsList.keySet()) {
 			for (Method m : om.getClass().getMethods()) {
 				try {
-					if (m.isAnnotationPresent(fr.HtSTeam.HtS.Options.Structure.Timer.class)) {
-						for (Entry<OptionsManager, Object> entry : OptionsManager.optionsList.entrySet()) {
-							if (entry.getValue().equals(om.getClass()))
-								if (this.getTimerInMinute() == Integer.parseInt(entry.getKey().getValue()))
-									m.invoke(om);
-						}
+					System.out.println(om.getName() + "    " + m.getName());
+					if (m.isAnnotationPresent(Timer.class)) {
+						System.out.println("bbbbbbb");
+						if (this.getTimerInMinute() == Integer.parseInt(om.getValue()))
+							m.invoke(om);
 					}
 				} catch (Exception e) {
 					e.printStackTrace();

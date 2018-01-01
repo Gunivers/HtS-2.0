@@ -27,7 +27,7 @@ public class Main extends JavaPlugin {
 	public final static String HTSNAME = "HtS XII";
 	public static PlayerInGame playerInGame = new PlayerInGame();
 	public static DeathLoot deathLoot = new DeathLoot();
-	public static fr.HtSTeam.HtS.Utils.Timer timer;
+	public static fr.HtSTeam.HtS.Utils.TimerTask timer;
 	
 	public static Scoreboard b;
 	
@@ -46,7 +46,7 @@ public class Main extends JavaPlugin {
 
 		b = Bukkit.getScoreboardManager().getNewScoreboard();
 		
-		timer = new fr.HtSTeam.HtS.Utils.Timer(0, 1);
+		timer = new fr.HtSTeam.HtS.Utils.TimerTask(0, 1);
 		
 		for(World w : Bukkit.getWorlds()) {if(w.getEnvironment() == Environment.NORMAL) { FileExtractor.wdir = w.getName() + "/data/loot_tables";}}
 		
