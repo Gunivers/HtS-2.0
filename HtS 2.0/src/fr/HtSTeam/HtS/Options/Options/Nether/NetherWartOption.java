@@ -1,9 +1,12 @@
 package fr.HtSTeam.HtS.Options.Options.Nether;
 
+import java.util.ArrayList;
+
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World.Environment;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.world.ChunkLoadEvent;
@@ -40,17 +43,23 @@ public class NetherWartOption extends OptionsManager {
 			Chunk c = e.getChunk();
 			int cx = c.getX() << 4;
 			int cz = c.getZ() << 4;
-			for (int i = 0; i < 102400; i++) {
-				int[] coords = Randomizer.RandCoord(cx, cx + 16, 50, 100, cz, cz + 16);
-				if (c.getBlock(coords[0], coords[1], coords[2]).getType() == Material.AIR && c.getBlock(coords[0], coords[1] + 1, coords[2]).getType() == Material.AIR && c.getBlock(coords[0], coords[1] - 1, coords[2]).getType() != Material.AIR && c.getBlock(coords[0], coords[1] - 1, coords[2]).getType() != Material.LAVA && c.getBlock(coords[0], coords[1] - 1, coords[2]).getType() != Material.NETHER_BRICK && c.getBlock(coords[0], coords[1] - 1, coords[2]).getType() != Material.NETHER_BRICK_STAIRS && c.getBlock(coords[0], coords[1] - 1, coords[2]).getType() != Material.NETHER_FENCE && c.getBlock(coords[0], coords[1] - 1, coords[2]).getType() != Material.STEP) {
-					Location lb = new Location(c.getWorld(), coords[0], coords[1] - 1, coords[2]);
-					Location lt = new Location(c.getWorld(), coords[0], coords[1], coords[2]);
-					lb.getBlock().setType(Material.SOUL_SAND);
-					lt.getBlock().setType(Material.NETHER_WARTS);
-					lt.getBlock().setData((byte) 3);
-					break;
+			ArrayList<Block> blocks = new ArrayList<Block>();
+			for (int y = 50; y < 100; y++) {
+				for (int x = cx; x < cx + 16; x++) {
+					for (int z = cz; z < cz + 16; z++) {
+						if (c.getBlock(x, y, z).getType() == Material.AIR && c.getBlock(x, y + 1, z).getType() == Material.AIR && c.getBlock(x, y - 1, z).getType() != Material.AIR && c.getBlock(x, y - 1, z).getType() != Material.LAVA && c.getBlock(x, y - 1, z).getType() != Material.NETHER_BRICK && c.getBlock(x, y - 1, z).getType() != Material.NETHER_BRICK_STAIRS && c.getBlock(x, y - 1, z).getType() != Material.NETHER_FENCE && c.getBlock(x, y - 1, z).getType() != Material.STEP)
+							blocks.add(c.getBlock(x, y, z));
+					}
 				}
 			}
+			if(blocks.size() == 0)
+				return;
+			Block b = blocks.get(Randomizer.RandI(0, blocks.size() - 1));
+			Location lb = new Location(c.getWorld(), b.getX(), b.getY() - 1, b.getZ());
+			Location lt = new Location(c.getWorld(), b.getX(), b.getY(), b.getZ());
+			lb.getBlock().setType(Material.SOUL_SAND);
+			lt.getBlock().setType(Material.NETHER_WARTS);
+			lt.getBlock().setData((byte) 3);
 		}
 	}
 }
