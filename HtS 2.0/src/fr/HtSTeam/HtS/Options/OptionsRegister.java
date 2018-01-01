@@ -46,8 +46,8 @@ public class OptionsRegister {
 	public static GUIManager teams = new GUIManager("Equipes", 1, "Equipes", "Régler les équipes", Material.BANNER, OptionsRegister.main);
 	public static GUIManager mob = new GUIManager("Mobs", 1, "Mobs", "Activer/Désactiver des mobs", Material.SKULL_ITEM, OptionsRegister.main);
 	public static GUIManager modifiers = new ModifiersGUI();
-	public static GUIManager loottables = new GUIManager("loottables", 1, "loottables", "Activer/Désactiver des loottables", Material.BOOK, OptionsRegister.main);
-	public static GUIManager nether = new GUIManager("nether", 1, "nether", "Activer/Désactiver des nether", Material.NETHERRACK, OptionsRegister.main);
+	public static GUIManager loottables = new GUIManager("Loot Tables", 1, "Loot Tables", "Activer/Désactiver des Loot Tables", Material.BOOK, OptionsRegister.main);
+	public static GUIManager nether = new GUIManager("Nether", 1, "Nether", "Activer/Désactiver des nether", Material.NETHERRACK, OptionsRegister.main);
 
 	
 	public static BorderOption borderOption;

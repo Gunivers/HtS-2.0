@@ -1,6 +1,6 @@
 Pour l'HtS de base :
 
-- Le timer																										Pris puis abandonné par :		Zertus
+- Le timer																										Pris par :		theogiraudet	DONE
 - Le join des équipes par clic sur laine																		Pris par :		
 - Les statistiques																								Pris par :		ikbrunel
 - * Les nerfs (squelette, creeper sans one shot...)																Pris par :		theogiraudet
