@@ -29,9 +29,7 @@ public class PlayerInGame implements Listener {
 	
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent e) {
-		if(EnumState.getState().equals(EnumState.WAIT) && !playerInGame.contains(e.getPlayer()))
-			playerInGame.add(e.getPlayer());
-		else if(!EnumState.getState().equals(EnumState.WAIT)) {
+	    if(!EnumState.getState().equals(EnumState.WAIT)) {
 			if(!playerInGame.contains(e.getPlayer()))
 				e.getPlayer().setGameMode(GameMode.SPECTATOR);
 		}

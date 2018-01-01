@@ -44,7 +44,6 @@ public class TimerTask {
 	}
 
 	public int getTimerInMinute() {
-		System.out.println(time / 60);
 		return time / 60;
 	}
 
@@ -77,9 +76,7 @@ public class TimerTask {
 		for (OptionsManager om : OptionsManager.optionsList.keySet()) {
 			for (Method m : om.getClass().getMethods()) {
 				try {
-					System.out.println(om.getName() + "    " + m.getName());
 					if (m.isAnnotationPresent(Timer.class)) {
-						System.out.println("bbbbbbb");
 						if (this.getTimerInMinute() == Integer.parseInt(om.getValue()))
 							m.invoke(om);
 					}
