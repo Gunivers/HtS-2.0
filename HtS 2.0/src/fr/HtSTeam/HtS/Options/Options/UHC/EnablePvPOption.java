@@ -9,6 +9,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
+import fr.HtSTeam.HtS.Options.Structure.Timer;
 
 public class EnablePvPOption extends OptionsManager {
 	
@@ -54,6 +55,11 @@ public class EnablePvPOption extends OptionsManager {
 	private void switchState(boolean b) {
 		for (World world : Bukkit.getWorlds())
 				world.setPVP(b);
+	}
+	
+	@Timer
+	public void changeState() {
+		switchState(true);
 	}
 
 }

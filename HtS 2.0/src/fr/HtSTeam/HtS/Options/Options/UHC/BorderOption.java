@@ -42,7 +42,7 @@ public class BorderOption extends OptionsManager {
 					p.sendMessage("§2Bordure à " + value + " blocs du centre." );
 					this.getItemStackManager().setLore("§d" + value * 2 + " * " + value * 2);
 					parent.update(this);
-					request = true;
+					request = false;
 					border.setSize(value * 2);
 					return;
 				}
