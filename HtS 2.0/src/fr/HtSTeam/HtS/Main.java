@@ -23,7 +23,6 @@ import fr.HtSTeam.HtS.Commands.CommandsManager;
 import fr.HtSTeam.HtS.Events.EventManager;
 import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
-import fr.HtSTeam.HtS.Options.Structure.Timer;
 import fr.HtSTeam.HtS.Players.DeathLoot;
 import fr.HtSTeam.HtS.Players.FakeDeath;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
@@ -37,6 +36,7 @@ public class Main extends JavaPlugin {
 	public final static String HTSNAME = "HtS XII";
 	public static PlayerInGame playerInGame = new PlayerInGame();
 	public static DeathLoot deathLoot = new DeathLoot();
+	public static fr.HtSTeam.HtS.Utils.Timer timer;
 	
 	public static Scoreboard b;
 	
@@ -55,6 +55,10 @@ public class Main extends JavaPlugin {
 
 		b = Bukkit.getScoreboardManager().getNewScoreboard();
 		
+		timer = new fr.HtSTeam.HtS.Utils.Timer(0, 1);
+		
+		for(World w : Bukkit.getWorlds()) {if(w.getEnvironment() == Environment.NORMAL) { FileExtractor.wdir = w.getName() + "/data/loot_tables";}}
+		
 		new FakeDeath();
 		
 		Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "gamerule sendCommandFeedback false");
@@ -62,18 +66,16 @@ public class Main extends JavaPlugin {
 		CommandsManager.loadCommands(this);
 		OptionsRegister.register();
 		ScoreboardLib.setPluginInstance(this);
-
-		for(World w : Bukkit.getWorlds()) {if(w.getEnvironment() == Environment.NORMAL) { FileExtractor.wdir = w.getName() + "/data/loot_tables";}}
 	}	
     
 	public void executeTimer() {
 		for (Class<?> c : getClasses(getFile(), "fr.HtSTeam.Options.Options")) {
 			for (Method m : c.getMethods()) {
 				try {
-					if (m.isAnnotationPresent(Timer.class)) {
+					if (m.isAnnotationPresent(fr.HtSTeam.HtS.Options.Structure.Timer.class)) {
 						for (Entry<OptionsManager, Object> entry : OptionsManager.optionsList.entrySet()) {
 							if(entry.getValue().equals(c))
-								if(entry.getKey().getValue() == "10")
+								if(timer.getTimerInMinute() == Integer.parseInt(entry.getKey().getValue()))
 									m.invoke(null);
 						}
 					}

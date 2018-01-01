@@ -28,9 +28,11 @@ public class Timer {
 			@SuppressWarnings("unused")
 			BukkitTask task = new BukkitRunnable() {
 				public void run() {
-					if(!pause)
+					if(!pause) {
 						time += step;
-					System.out.println(getTimeFormat());
+						new Main().executeTimer();
+					}
+//					System.out.println(getTimeFormat());
 					if (EnumState.getState().equals(EnumState.FINISHING) || time <= 0 || stop)
 						this.cancel();
 				}
