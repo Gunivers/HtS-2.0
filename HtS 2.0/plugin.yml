@@ -15,3 +15,6 @@ commands:
  team:
   descrption: Force le lancement de la partie
   usage: Erreur syntaxe ! Faites /run
+ gui: 
+  descrption: Ouvre l'inventaire des modifiers
+  usage: Erreur syntaxe ! Faites /gui

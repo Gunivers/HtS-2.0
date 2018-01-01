@@ -10,6 +10,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginManager;
 
 import fr.HtSTeam.HtS.Main;
@@ -43,5 +44,19 @@ public class CustomGUI implements Listener {
 			e.setCancelled(true);
 		}
 			
+	}
+	
+	public boolean contains(ItemStackManager is) {
+		for(ItemStack is2 : inv.getContents()) {
+			if(is2 != null && is2.getItemMeta() != null && is2.getItemMeta().getDisplayName().equals(is.getName()) && is2.getType().equals(is.getMaterial()))
+				return true;
+		}
+		return false;
+	}
+	
+	public void removeItem(ItemStackManager is) {
+		for(ItemStack is2 : inv.getContents())
+			if(is2 != null && is2.getItemMeta() != null && is2.getItemMeta().getDisplayName().equals(is.getName()) && is2.getType().equals(is.getMaterial()))
+				inv.remove(is2);
 	}
 }

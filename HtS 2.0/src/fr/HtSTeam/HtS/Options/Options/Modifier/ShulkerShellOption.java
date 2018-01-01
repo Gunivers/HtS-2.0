@@ -25,9 +25,10 @@ public class ShulkerShellOption extends OptionsManager {
 	
 	private HashMap<Player, Integer> shellUse = new HashMap<>();
 	private boolean activate = false;
+	private ItemStackManager ism = new ItemStackManager(Material.SHULKER_SHELL, (short) 0, 1, "§rShulker Shell", "", false);
 	
 	public ShulkerShellOption() {
-		super(Material.SHULKER_SHELL, "Shulker Shell", "§4Désactivé", "Désactivé", OptionsRegister.modifiers);
+		super(Material.SHULKER_SHELL, "Shulker Shell Modifier", "§4Désactivé", "Désactivé", OptionsRegister.modifiers);
 	}
 
 	@Override
@@ -36,11 +37,11 @@ public class ShulkerShellOption extends OptionsManager {
 		if(activate) {
 			setValue("Activé");
 			getItemStackManager().setLore("§2Activé");
-			CustomGUI.authorizedItem.add(new ItemStackManager(Material.SHULKER_SHELL, (short) 0, 1, "§rShulker Shell", "", false));
+			CustomGUI.authorizedItem.add(ism);
 		} else {
 			setValue("Désactivé");
 			getItemStackManager().setLore("§4Désactivé");
-			CustomGUI.authorizedItem.add(new ItemStackManager(Material.SHULKER_SHELL, (short) 0, 1, "§rShulker Shell", "", false));
+			CustomGUI.authorizedItem.remove(ism);
 		}
 		parent.update(this);		
 	}
@@ -48,7 +49,7 @@ public class ShulkerShellOption extends OptionsManager {
 	
 	@EventHandler
 	public void onDamage(EntityDamageByEntityEvent e) {
-		if(activate && e.getEntity() instanceof Player && ((Player) e.getEntity()).getInventory().contains(Material.SHULKER_SHELL)) {
+		if(activate && e.getEntity() instanceof Player && ((ModifiersGUI) parent).getInventory((Player) e.getEntity()).contains(ism)) {
 			Player p = (Player) e.getEntity();
 			World world = p.getWorld();
 			if(Randomizer.RandRate(63)) {
@@ -57,7 +58,7 @@ public class ShulkerShellOption extends OptionsManager {
 					if(shellUse.get(p) == 3) {
 						world.playSound(p.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 1);
 						shellUse.replace(p, 0);
-						p.getInventory().removeItem(new ItemStack(Material.SHULKER_SHELL, 1));
+						((ModifiersGUI) parent).getInventory((Player) e.getEntity()).removeItem(ism);
 					} else {
 						world.playSound(p.getLocation(), Sound.ITEM_SHIELD_BLOCK, 1, 1);
 					}
@@ -71,7 +72,7 @@ public class ShulkerShellOption extends OptionsManager {
 	}
 	
 	@EventHandler
-    public void onShulkerDeathInNether(EntityDeathEvent e){
+    public void onShulkerDeath(EntityDeathEvent e){
         if(activate && e.getEntityType() == EntityType.SHULKER){
         	ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
             e.getDrops().clear();
