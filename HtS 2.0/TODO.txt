@@ -4,7 +4,7 @@ Pour l'HtS de base :
 - Le join des équipes par clic sur laine																		Pris par :		
 - Les statistiques																								Pris par :		ikbrunel
 - * Les nerfs (squelette, creeper sans one shot...)																Pris par :		theogiraudet
-- * Les ajouts Nether (apparition de la Nether Wart, spawn des Shulker)											Pris par :		ikbrunel
+- * Les ajouts Nether (apparition de la Nether Wart, spawn des Shulker)											Pris par :		ikbrunel		DONE
 - * Les changements de probabilités (drop de pommes (ne pas oublié l'event decay), de flint...)					Pris par :		theogiraudet
 - * Les objets customs (Shulker Shell...) et l'inventaire associé												Pris par :		theogiraudet
 - * Les modifications useless (drop de golden nuggets...)														Pris par :		theogiraudet

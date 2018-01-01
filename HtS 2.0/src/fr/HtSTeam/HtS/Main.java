@@ -65,9 +65,6 @@ public class Main extends JavaPlugin {
 
 		for(World w : Bukkit.getWorlds()) {if(w.getEnvironment() == Environment.NORMAL) { FileExtractor.wdir = w.getName() + "/data/loot_tables";}}
 	}	
-	
-	
-    
     
 	public void executeTimer() {
 		for (Class<?> c : getClasses(getFile(), "fr.HtSTeam.Options.Options")) {

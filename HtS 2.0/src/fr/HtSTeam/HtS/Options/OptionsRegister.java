@@ -103,6 +103,7 @@ public class OptionsRegister {
 		
 		// Nether
 		new NetherWartOption();
+		new ShulkerShellOption();
 	}
 	
 }
