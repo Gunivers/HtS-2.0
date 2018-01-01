@@ -80,7 +80,7 @@ public class Timer {
 					if (m.isAnnotationPresent(fr.HtSTeam.HtS.Options.Structure.Timer.class)) {
 						for (Entry<OptionsManager, Object> entry : OptionsManager.optionsList.entrySet()) {
 							if (entry.getValue().equals(om.getClass()))
-								if (time == Integer.parseInt(entry.getKey().getValue()))
+								if (this.getTimerInMinute() == Integer.parseInt(entry.getKey().getValue()))
 									m.invoke(om);
 						}
 					}
