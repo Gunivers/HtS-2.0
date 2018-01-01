@@ -4,6 +4,13 @@ import org.bukkit.Material;
 
 import fr.HtSTeam.HtS.Options.Options.AtDeath.GoldenAppleOption;
 import fr.HtSTeam.HtS.Options.Options.AtDeath.HeadOption;
+import fr.HtSTeam.HtS.Options.Options.LootTables.BatOptions;
+import fr.HtSTeam.HtS.Options.Options.LootTables.ChestOptions;
+import fr.HtSTeam.HtS.Options.Options.LootTables.CrateOptions;
+import fr.HtSTeam.HtS.Options.Options.LootTables.FishingOptions;
+import fr.HtSTeam.HtS.Options.Options.LootTables.GhastOptions;
+import fr.HtSTeam.HtS.Options.Options.LootTables.SkeletonOptions;
+import fr.HtSTeam.HtS.Options.Options.LootTables.ZombieOptions;
 import fr.HtSTeam.HtS.Options.Options.Mobs.CreeperNerfOption;
 import fr.HtSTeam.HtS.Options.Options.Modifier.ModifiersGUI;
 import fr.HtSTeam.HtS.Options.Options.Modifier.ShulkerShellOption;
@@ -36,6 +43,8 @@ public class OptionsRegister {
 	public static GUIManager teams = new GUIManager("Equipes", 1, "Equipes", "Régler les équipes", Material.BANNER, OptionsRegister.main);
 	public static GUIManager mob = new GUIManager("Mobs", 1, "Mobs", "Activer/Désactiver des mobs", Material.SKULL_ITEM, OptionsRegister.main);
 	public static GUIManager modifiers = new ModifiersGUI();
+	public static GUIManager loottables = new GUIManager("loottables", 1, "loottables", "Activer/Désactiver des loottables", Material.BOOK, OptionsRegister.main);
+
 	
 	public static BorderOption borderOption;
 	
@@ -76,6 +85,15 @@ public class OptionsRegister {
 		new NameTagTeamOption();
 		new CollisionTeamOption();
 		new DeathMeassageTeamOption();
+		
+		// Loot Tables
+		new BatOptions();
+		new GhastOptions();
+		new SkeletonOptions();
+		new ZombieOptions();
+		new ChestOptions();
+		new CrateOptions();
+		new FishingOptions();
 	}
 	
 }

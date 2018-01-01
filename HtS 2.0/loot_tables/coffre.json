@@ -1,0 +1,62 @@
+{
+	"pools": [{
+			"rolls": 4,
+			"bonus_rolls": 6,
+			"entries": [{
+				"type": "item",
+				"name": "minecraft:diamond",
+				"weight": 1,
+				"quality": 1
+			}, {
+				"type": "item",
+				"name": "minecraft:apple",
+				"weight": 4
+			}, {
+				"type": "item",
+				"name": "minecraft:gold_ingot",
+				"weight": 2
+			}, {
+				"type": "item",
+				"name": "minecraft:nether_wart",
+				"weight": 1,
+				"quality": 1
+			}]
+		}, {
+			"rolls": 4,
+			"entries": [{
+				"type": "item",
+				"name": "minecraft:string"
+			}]
+		}, {
+			"rolls": 5,
+			"entries": [{
+				"type": "item",
+				"name": "minecraft:experience_bottle"
+			}]
+		}, {
+			"rolls": 2,
+			"entries": [{
+				"type": "item",
+				"name": "minecraft:dragon_breath"
+			}]
+		}, {
+			"rolls": 0,
+			"bonus_rolls": 2,
+			"entries": [{
+				"type": "item",
+				"name": "minecraft:gold_block",
+				"weight": 1
+			}]
+		},
+
+		{
+			"rolls": 0,
+			"bonus_rolls": 1,
+			"entries": [{
+				"type": "item",
+				"name": "minecraft:diamond_block",
+				"weight": 1
+			}]
+		}
+	]
+}

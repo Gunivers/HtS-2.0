@@ -28,6 +28,7 @@ import fr.HtSTeam.HtS.Players.DeathLoot;
 import fr.HtSTeam.HtS.Players.FakeDeath;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.ScoreboardLib;
+import fr.HtSTeam.HtS.Utils.FileExtractor;
 
 public class Main extends JavaPlugin {
 	
@@ -61,6 +62,8 @@ public class Main extends JavaPlugin {
 		CommandsManager.loadCommands(this);
 		OptionsRegister.register();
 		ScoreboardLib.setPluginInstance(this);
+
+		for(World w : Bukkit.getWorlds()) {if(w.getEnvironment() == Environment.NORMAL) { FileExtractor.wdir = w.getName() + "/data/loot_tables";}}
 	}	
 	
 	

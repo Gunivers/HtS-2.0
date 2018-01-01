@@ -1,0 +1,151 @@
+{
+	"pools": [{
+				"rolls": 1,
+				"entries": [
+				    {
+					"type": "item",
+					"name": "minecraft:chest",
+					"weight": 1,
+						"functions": [
+                        {
+                            "function": "minecraft:set_nbt",
+                            "tag": "{BlockEntityTag:{LootTable:\"minecraft:chests/simple_dungeon\"},display:{Name:\"§6Caisse en bois§r\"}}"
+                        }
+                    ]
+				},
+				 {
+					"type": "item",
+					"name": "minecraft:chest",
+					"weight": 1,
+						"functions": [
+                        {
+                            "function": "minecraft:set_nbt",
+                            "tag": "{BlockEntityTag:{LootTable:\"minecraft:chests/abandoned_mineshaft\"},display:{Name:\"§6Caisse en bois§r\"}}"
+                        }
+                    ]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:chest",
+					"weight": 1,
+						"functions": [
+                        {
+                            "function": "minecraft:set_nbt",
+                            "tag": "{BlockEntityTag:{LootTable:\"minecraft:chests/desert_pyramid\"},display:{Name:\"§6Caisse en bois§r\"}}"
+                        }
+                    ]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:chest",
+					"weight": 1,
+						"functions": [
+                        {
+                            "function": "minecraft:set_nbt",
+                            "tag": "{BlockEntityTag:{LootTable:\"minecraft:chests/end_city_treasure\"},display:{Name:\"§6Caisse en bois§r\"}}"
+                        }
+                    ]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:chest",
+					"weight": 1,
+						"functions": [
+                        {
+                            "function": "minecraft:set_nbt",
+                            "tag": "{BlockEntityTag:{LootTable:\"minecraft:chests/igloo_chest\"},display:{Name:\"§6Caisse en bois§r\"}}"
+                        }
+                    ]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:chest",
+					"weight": 1,
+						"functions": [
+                        {
+                            "function": "minecraft:set_nbt",
+                            "tag": "{BlockEntityTag:{LootTable:\"minecraft:chests/jungle_temple\"},display:{Name:\"§6Caisse en bois§r\"}}"
+                        }
+                    ]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:chest",
+					"weight": 1,
+						"functions": [
+                        {
+                            "function": "minecraft:set_nbt",
+                            "tag": "{BlockEntityTag:{LootTable:\"minecraft:chests/jungle_temple_dispenser\"},display:{Name:\"§6Caisse en bois§r\"}}"
+                        }
+                    ]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:chest",
+					"weight": 1,
+						"functions": [
+                        {
+                            "function": "minecraft:set_nbt",
+                            "tag": "{BlockEntityTag:{LootTable:\"minecraft:chests/nether_bridge\"},display:{Name:\"§6Caisse en bois§r\"}}"
+                        }
+                    ]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:chest",
+					"weight": 1,
+						"functions": [
+                        {
+                            "function": "minecraft:set_nbt",
+                            "tag": "{BlockEntityTag:{LootTable:\"minecraft:chests/spawn_bonus_chest\"},display:{Name:\"§6Caisse en bois§r\"}}"
+                        }
+                    ]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:chest",
+					"weight": 1,
+						"functions": [
+                        {
+                            "function": "minecraft:set_nbt",
+                            "tag": "{BlockEntityTag:{LootTable:\"minecraft:chests/stronghold_corridor\"},display:{Name:\"§6Caisse en bois§r\"}}"
+                        }
+                    ]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:chest",
+					"weight": 1,
+						"functions": [
+                        {
+                            "function": "minecraft:set_nbt",
+                            "tag": "{BlockEntityTag:{LootTable:\"minecraft:chests/stronghold_crossing\"},display:{Name:\"§6Caisse en bois§r\"}}"
+                        }
+                    ]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:chest",
+					"weight": 1,
+						"functions": [
+                        {
+                            "function": "minecraft:set_nbt",
+                            "tag": "{BlockEntityTag:{LootTable:\"minecraft:chests/stronghold_library\"},display:{Name:\"§6Caisse en bois§r\"}}"
+                        }
+                    ]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:chest",
+					"weight": 1,
+						"functions": [
+                        {
+                            "function": "minecraft:set_nbt",
+                            "tag": "{BlockEntityTag:{LootTable:\"minecraft:chests/village_blacksmith\"},display:{Name:\"§6Caisse en bois§r\"}}"
+                        }
+                    ]
+				}
+								    ]
+	}
+]
+}
