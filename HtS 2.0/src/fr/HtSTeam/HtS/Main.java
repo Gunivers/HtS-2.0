@@ -1,15 +1,7 @@
 package fr.HtSTeam.HtS;
 
-import java.io.File;
-import java.lang.reflect.Method;
-import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.UUID;
-import java.util.Map.Entry;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
@@ -22,7 +14,6 @@ import org.bukkit.scoreboard.Scoreboard;
 import fr.HtSTeam.HtS.Commands.CommandsManager;
 import fr.HtSTeam.HtS.Events.EventManager;
 import fr.HtSTeam.HtS.Options.OptionsRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 import fr.HtSTeam.HtS.Players.DeathLoot;
 import fr.HtSTeam.HtS.Players.FakeDeath;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
@@ -66,42 +57,5 @@ public class Main extends JavaPlugin {
 		CommandsManager.loadCommands(this);
 		OptionsRegister.register();
 		ScoreboardLib.setPluginInstance(this);
-	}
-	
-	// Trigger Annotations
-	
-	public void executeTimer() {
-		for (Class<?> c : getClasses(getFile(), "fr.HtSTeam.Options.Options")) {
-			for (Method m : c.getMethods()) {
-				try {
-					if (m.isAnnotationPresent(fr.HtSTeam.HtS.Options.Structure.Timer.class)) {
-						for (Entry<OptionsManager, Object> entry : OptionsManager.optionsList.entrySet()) {
-							if(entry.getValue().equals(c))
-								if(timer.getTimerInMinute() == Integer.parseInt(entry.getKey().getValue()))
-									m.invoke(null);
-						}
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	}
-	
-    private Set<Class<?>> getClasses(File jarFile, String packageName) {
-		Set<Class<?>> classes = new HashSet<Class<?>>();
-		try {
-			JarFile file = new JarFile(jarFile);
-			for (Enumeration<JarEntry> entry = file.entries(); entry.hasMoreElements();) {
-				JarEntry jarEntry = entry.nextElement();
-				String name = jarEntry.getName().replace("/", ".");
-				if (name.startsWith(packageName) && name.endsWith(".class"))
-					classes.add(Class.forName(name.substring(0, name.length() - 6)));
-			}
-			file.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return classes;
 	}
 }

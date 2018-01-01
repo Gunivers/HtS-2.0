@@ -1,14 +1,17 @@
 package fr.HtSTeam.HtS.Utils;
 
+import java.lang.reflect.Method;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map.Entry;
 
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Main;
+import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 
 public class Timer {
 
@@ -31,7 +34,7 @@ public class Timer {
 				public void run() {
 					if(!pause) {
 						time += step;
-						Main.plugin.executeTimer();
+						executeTimer();
 					}
 					if (EnumState.getState().equals(EnumState.FINISHING) || time <= 0 || stop)
 						this.cancel();
@@ -65,5 +68,26 @@ public class Timer {
 	
 	public void stop() {
 		stop = true;
+	}
+	
+	private void executeTimer() {
+		if(this != Main.timer)
+			return;
+		
+		for (OptionsManager om : OptionsManager.optionsList.keySet()) {
+			for (Method m : om.getClass().getMethods()) {
+				try {
+					if (m.isAnnotationPresent(fr.HtSTeam.HtS.Options.Structure.Timer.class)) {
+						for (Entry<OptionsManager, Object> entry : OptionsManager.optionsList.entrySet()) {
+							if (entry.getValue().equals(om.getClass()))
+								if (time == Integer.parseInt(entry.getKey().getValue()))
+									m.invoke(null);
+						}
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 }
