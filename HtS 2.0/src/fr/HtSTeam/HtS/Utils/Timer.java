@@ -33,7 +33,6 @@ public class Timer {
 						time += step;
 						Main.plugin.executeTimer();
 					}
-//					System.out.println(getTimeFormat());
 					if (EnumState.getState().equals(EnumState.FINISHING) || time <= 0 || stop)
 						this.cancel();
 				}

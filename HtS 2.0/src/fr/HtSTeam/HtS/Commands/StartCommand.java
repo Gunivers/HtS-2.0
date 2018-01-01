@@ -20,7 +20,6 @@ import fr.HtSTeam.HtS.Options.Structure.TeamManager;
 import fr.HtSTeam.HtS.Scoreboard.ScoreBoard;
 import fr.HtSTeam.HtS.Utils.JSON;
 import fr.HtSTeam.HtS.Utils.Randomizer;
-import fr.HtSTeam.HtS.Utils.Timer;
 
 public class StartCommand implements CommandExecutor {
 
@@ -45,8 +44,6 @@ public class StartCommand implements CommandExecutor {
 						p.sendMessage(key.getName() + " : §4" + value.toString());
 				}
 				JSON.sendJsonRunCommand(p, "§2[Valider]", "/run");
-				Timer timer = new Timer(10, -1);
-				timer.run();
 				return true;
 			
 			
@@ -69,7 +66,7 @@ public class StartCommand implements CommandExecutor {
 					}
 				
 				teleport();
-						
+				Main.timer.run();
 				EnumState.setState(EnumState.RUNNING);
 				return true;
 			}
