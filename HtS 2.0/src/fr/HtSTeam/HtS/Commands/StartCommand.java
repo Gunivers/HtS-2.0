@@ -17,6 +17,7 @@ import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 import fr.HtSTeam.HtS.Options.Structure.TeamManager;
+import fr.HtSTeam.HtS.Scoreboard.ScoreBoard;
 import fr.HtSTeam.HtS.Utils.JSON;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
@@ -59,6 +60,9 @@ public class StartCommand implements CommandExecutor {
 						player.getInventory().clear();
 						player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 30 * 20, 255, false, false));
 						player.setGameMode(GameMode.SURVIVAL);
+						
+						p.setScoreboard(Main.b);
+						ScoreBoard.send(p);
 					}
 				
 				teleport();
