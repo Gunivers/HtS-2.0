@@ -70,22 +70,19 @@ public class CommandsFK implements CommandExecutor, Listener {
 	@EventHandler
 	public void onRightClick(PlayerInteractEvent e) {
 		ItemStack is = e.getPlayer().getEquipment().getItemInMainHand();
-		System.out.println("a");
-		if(e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && e.getPlayer().equals(p) && inCreation && ism.getMaterial().equals(is.getType()) && ism.getName().equals(is.getItemMeta().getDisplayName())) {
+		if(inCreation && e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && e.getPlayer().equals(p) && ism.getMaterial().equals(is.getType()) && ism.getName().equals(is.getItemMeta().getDisplayName())) {
 			e.setCancelled(true);
 			Block b = e.getClickedBlock();
 			angleDo++;
-			System.out.println("1");
 			if(angleDo == 1) {
-				System.out.println("2");
 				firstAngle = b;
-				ism = new ItemStackManager(ism.getMaterial(), ism.getData(), 1, "Définir le second angle de la base " + name, "Premier angle : " + firstAngle.getX() + " " + firstAngle.getY() + " " + firstAngle.getZ(), true);
+				ism = new ItemStackManager(ism.getMaterial(), ism.getData(), 1, "Définir le second angle de la base" + name, "Premier angle : " + firstAngle.getX() + " " + firstAngle.getY() + " " + firstAngle.getZ(), true);
+				p.getEquipment().setItemInMainHand(ism.getItemStack());
 			} else if(angleDo == 2) {
-				System.out.println("3");
 				secondAngle = b;
-				p.sendMessage("§2Base " + name + " de l'équipe " + team.getTeamName() + " créée avec succès !");
+				p.sendMessage("§2Base " + name + " de l'équipe §r" + team.getTeamName() + " §2créée avec succès !");
 				p.sendMessage("§2Premier angle : §5" + firstAngle.getX() + " " + firstAngle.getY() + " " + firstAngle.getZ());
-				p.sendMessage("§Second angle : §5" + secondAngle.getX() + " " + secondAngle.getY() + " " + secondAngle.getZ());
+				p.sendMessage("§2Second angle : §5" + secondAngle.getX() + " " + secondAngle.getY() + " " + secondAngle.getZ());
 				BaseManager bm = new BaseManager(name, firstAngle, secondAngle);
 				bm.addTeam(team);
 				reset();
