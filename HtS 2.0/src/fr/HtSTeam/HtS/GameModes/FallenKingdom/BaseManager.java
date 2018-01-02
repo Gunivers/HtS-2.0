@@ -15,7 +15,8 @@ public class BaseManager {
 	public static ArrayList<BaseManager> baseList = new ArrayList<BaseManager>();
 	public static Map<String, BaseManager> nameBase = new HashMap<String, BaseManager>();
 	public static Map<Player, BaseManager> playerBase = new HashMap<Player, BaseManager>();
-
+	
+	private TeamManager team;
 	private String baseName;
 	private Block pos1, pos2;
 	
@@ -52,6 +53,7 @@ public class BaseManager {
 	}
 	
 	public void addTeam(TeamManager team) {
+		this.team = team;
 		playerList = team.getTeamPlayers();
 		for(Player p : playerList)
 			playerBase.put(p, this);
@@ -67,5 +69,9 @@ public class BaseManager {
 		pos[1][1] = pos2.getZ();
 		Arrays.sort(pos, (a, b) -> Integer.compare(a[0], b[0]));
 		return pos;
+	}
+
+	public TeamManager getTeam() {
+		return team;
 	}
 }

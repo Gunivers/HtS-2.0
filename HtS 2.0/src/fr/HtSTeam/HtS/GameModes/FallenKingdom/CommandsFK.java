@@ -70,6 +70,16 @@ public class CommandsFK implements CommandExecutor, Listener {
 					}
 					else
 						p.sendMessage("§4Base inexistante.");
+				
+				
+				} if(args.length == 1 && args[0].equalsIgnoreCase("list")) {
+					p.sendMessage("- Bases crées : ");
+					for(BaseManager bm : BaseManager.baseList) {
+						p.sendMessage(" - " + bm.getBaseName());
+						p.sendMessage("  - Team : " + bm.getTeam().getTeamColor() + bm.getTeam().getTeamName());
+						p.sendMessage("  - Premier angle : " + bm.getPos()[0][0]);
+						p.sendMessage("  - Second angle : " + bm.getPos()[1][1]);
+					}
 				}
 				
 				
