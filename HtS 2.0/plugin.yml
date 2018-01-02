@@ -21,3 +21,6 @@ commands:
  base:
   description: Définir une base
   usage: Erreur syntaxe ! Faites /setbase (nomBase) (nomEquipe)
+ test:
+  description: aaa
+  usage: aaa
