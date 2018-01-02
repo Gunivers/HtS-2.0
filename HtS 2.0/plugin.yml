@@ -24,3 +24,9 @@ commands:
  test:
   description: aaa
   usage: aaa
+ pause:
+  description: Met en pause le jeu
+  usage: Erreur syntaxe ! Faites /pause
+ play:
+  description: Relance le jeu en cours
+  usage: Erreur syntaxe ! Faites /play

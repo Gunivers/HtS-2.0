@@ -51,10 +51,4 @@ public class Main extends JavaPlugin {
 		OptionsRegister.register();
 		ScoreboardLib.setPluginInstance(this);
 	}
-	
-	/*@Override
-	public void onDisable() {
-		for(Entry<Player, fr.HtSTeam.HtS.Scoreboard.Scoreboard.Scoreboard> entry : ScoreBoard.scoreboards.entrySet())
-			entry.getValue().deactivate();
-	}*/
 }
