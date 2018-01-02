@@ -3,10 +3,12 @@ package fr.HtSTeam.HtS.Options.Options.Base;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
+import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
+import fr.HtSTeam.HtS.Utils.StartTrigger;
 
-public class FixDayOption extends OptionsManager {
+public class FixDayOption extends OptionsManager implements StartTrigger {
 	
 	int moment = 0;
 	int tick = 0;
@@ -42,5 +44,10 @@ public class FixDayOption extends OptionsManager {
 					 break;
 		}
 		parent.update(this);
+	}
+
+	@Override
+	public void onPartyStart() {
+		Main.world.setTime(tick);
 	}
 }
