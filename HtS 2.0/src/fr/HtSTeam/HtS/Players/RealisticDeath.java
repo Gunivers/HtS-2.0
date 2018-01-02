@@ -25,5 +25,6 @@ public class RealisticDeath implements Listener {
 		 am.setGravity(true);
 		 am.setInvulnerable(true);
 		 am.setItemInHand(p.getEquipment().getItemInMainHand());
+		 am.setVisible(true);
 	}
 }

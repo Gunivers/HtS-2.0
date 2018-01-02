@@ -4,6 +4,7 @@ import java.util.Map.Entry;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.Statistic;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -56,6 +57,8 @@ public class StartCommand implements CommandExecutor {
 						player.setFoodLevel(20);
 						player.getInventory().clear();
 						player.setGameMode(GameMode.SURVIVAL);
+						
+						player.setStatistic(Statistic.PLAYER_KILLS, 0);
 						
 						ScoreBoard.send(player);
 					}
