@@ -24,7 +24,8 @@ public class JSON {
 		PacketPlayOutTitle packet_subtitle = new PacketPlayOutTitle(EnumTitleAction.SUBTITLE, ChatSerializer.a("{\"text\":\"" + subtitle + "\"}"));
 		PacketPlayOutTitle length = new PacketPlayOutTitle(5, time * 20, 5);
 		((CraftPlayer) p).getHandle().playerConnection.sendPacket(packet_title);
-		((CraftPlayer) p).getHandle().playerConnection.sendPacket(packet_subtitle);
+		if (subtitle != null)
+			((CraftPlayer) p).getHandle().playerConnection.sendPacket(packet_subtitle);
 		((CraftPlayer) p).getHandle().playerConnection.sendPacket(length);
 	}
 	
@@ -34,7 +35,8 @@ public class JSON {
 		PacketPlayOutTitle length = new PacketPlayOutTitle(5, time * 20, 5);
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			((CraftPlayer) p).getHandle().playerConnection.sendPacket(packet_title);
-			((CraftPlayer) p).getHandle().playerConnection.sendPacket(packet_subtitle);
+			if (subtitle != null)
+				((CraftPlayer) p).getHandle().playerConnection.sendPacket(packet_subtitle);
 			((CraftPlayer) p).getHandle().playerConnection.sendPacket(length);
 		}
 	}
