@@ -1,5 +1,8 @@
 package fr.HtSTeam.HtS.GameModes.FallenKingdom;
 
+import java.util.UUID;
+
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
@@ -12,6 +15,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
+import fr.HtSTeam.HtS.Players.PlayerInGame;
 import fr.HtSTeam.HtS.Teams.TeamManager;
 import fr.HtSTeam.HtS.Utils.ItemStackManager;
 import net.md_5.bungee.api.ChatColor;
@@ -82,6 +86,25 @@ public class CommandsFK implements CommandExecutor, Listener {
 						p.sendMessage("  - §2Premier angle :§r " + bm.getPos()[0][0] + " " + bm.getPos()[1][0]);
 						p.sendMessage("  - §2Second angle :§r " + bm.getPos()[0][1] + " " + bm.getPos()[1][1]);
 					}
+					return true;
+				
+				
+				} if(args.length == 3 && args[0].equalsIgnoreCase("join")) {
+					for(UUID uuid : PlayerInGame.playerInGame) {
+						if(Bukkit.getPlayer(uuid).getName().equals(args[1])) {
+							for(BaseManager bm : BaseManager.baseList) {
+								if(bm.getBaseName().equals(args[1])) {
+									bm.addPlayer(Bukkit.getPlayer(uuid));
+									TeamManager.playerTeam.get(uuid).removePlayer(Bukkit.getPlayer(uuid));
+									bm.getTeam().addPlayer(Bukkit.getPlayer(uuid));
+									return true;
+								}
+							}
+							p.sendMessage("§4Base innexistante");
+						}
+							
+					}
+					p.sendMessage("§4Joueur innexistant.");
 					return true;
 				}
 				
