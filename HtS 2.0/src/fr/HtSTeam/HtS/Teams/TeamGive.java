@@ -12,7 +12,7 @@ public class TeamGive implements Listener {
 	@EventHandler
 	public void onWoolClicked(PlayerInteractEvent e) {
 		if (e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-			if (e.getItem().getType().equals(Material.WOOL) && e.getItem().getItemMeta().hasEnchants()) {
+			if (e.getItem() != null && e.getItem().getType().equals(Material.WOOL) && e.getItem().getItemMeta().hasEnchants()) {
 				e.setCancelled(true);
 				if (TeamManager.playerTeam.containsKey(e.getPlayer().getUniqueId())) {
 					if (TeamManager.playerTeam.get(e.getPlayer().getUniqueId()).getTeamSize() > 1) {
