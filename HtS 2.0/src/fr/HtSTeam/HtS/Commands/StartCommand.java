@@ -53,8 +53,6 @@ public class StartCommand implements CommandExecutor {
 						player.setFoodLevel(20);
 						player.getInventory().clear();
 						player.setGameMode(GameMode.SURVIVAL);
-						
-						ScoreBoard.send(player);
 					}
 				
 				Main.timer.run();

@@ -28,7 +28,8 @@ public class SimpleScoreboard implements Scoreboard {
     private static int TEAM_COUNTER = 0;
 
     private final Objective objective;
-
+    private final org.bukkit.scoreboard.Scoreboard scoreboard;
+    
     protected Player holder;
     protected long updateInterval = 10L;
 
@@ -41,8 +42,9 @@ public class SimpleScoreboard implements Scoreboard {
 
     public SimpleScoreboard(Player holder) {
         this.holder = holder;
-        Main.b.registerNewObjective("board", "dummy").setDisplaySlot(DisplaySlot.SIDEBAR);
-        objective = Main.b.getObjective(DisplaySlot.SIDEBAR);
+        scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
+        scoreboard.registerNewObjective("board", "dummy").setDisplaySlot(DisplaySlot.SIDEBAR);
+        objective = scoreboard.getObjective(DisplaySlot.SIDEBAR);
     }
 
     @Override
@@ -50,7 +52,7 @@ public class SimpleScoreboard implements Scoreboard {
         if (activated) return;
         if (handler == null) throw new IllegalArgumentException("Scoreboard handler not set");
         activated = true;
-        holder.setScoreboard(Main.b);
+        holder.setScoreboard(scoreboard);
         updateTask = new BukkitRunnable() {
             @Override
             public void run() {
@@ -142,7 +144,7 @@ public class SimpleScoreboard implements Scoreboard {
         for (FakePlayer fakePlayer : entryCache.keySet()) {
             if (!current.containsKey(fakePlayer)) {
                 entryCache.remove(fakePlayer);
-                Main.b.resetScores(fakePlayer.getName());
+                scoreboard.resetScores(fakePlayer.getName());
             }
         }
     }
@@ -167,7 +169,7 @@ public class SimpleScoreboard implements Scoreboard {
                 }
             }
             if (team == null) {
-                team = Main.b.registerNewTeam(TEAM_PREFIX + TEAM_COUNTER++);
+                team = scoreboard.registerNewTeam(TEAM_PREFIX + TEAM_COUNTER++);
                 team.setPrefix(prefix);
                 team.setSuffix(suffix);
                 teamCache.put(team, prefix, suffix);
@@ -198,7 +200,7 @@ public class SimpleScoreboard implements Scoreboard {
     }
 
     public org.bukkit.scoreboard.Scoreboard getScoreboard() {
-        return Main.b;
+        return scoreboard;
     }
 
     private static class FakePlayer implements OfflinePlayer {
