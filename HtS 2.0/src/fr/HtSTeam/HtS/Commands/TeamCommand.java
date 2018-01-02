@@ -39,7 +39,7 @@ public class TeamCommand implements CommandExecutor {
 						return true;
 					}
 					return false;
-				} else if (args[0].equalsIgnoreCase("leave") && args.length == 2) {
+				} else if (args[0].equalsIgnoreCase("leave") && args.length == 3) {
 					if (TeamManager.nameTeam.containsKey(args[1])) {
 						TeamManager.playerTeam.get(Bukkit.getPlayer(args[1])).removePlayer(Bukkit.getPlayer(args[1]));
 						p.sendMessage(args[2] + " a quitté l'équipe " + ChatColor.valueOf(TeamManager.nameTeam.get(args[1]).getTeamColor().toUpperCase()) + TeamManager.nameTeam.get(args[1]).getTeamName());
