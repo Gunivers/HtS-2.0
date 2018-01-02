@@ -22,5 +22,10 @@ public class FallenKingdom implements GameMode {
 		new EventManagerFK();
 	}
 
+	@Override
+	public String gamemodeTotring() {
+		return "Fallen Kingdom";
+	}
+
 
 }

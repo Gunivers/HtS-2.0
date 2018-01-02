@@ -49,4 +49,10 @@ public class UHC implements GameMode {
 		}
 	}
 
+
+	@Override
+	public String gamemodeTotring() {
+		return "UHC";
+	}
+
 }

@@ -12,7 +12,6 @@ import org.bukkit.entity.Player;
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Commands.PlayStopCommands;
 import fr.HtSTeam.HtS.Options.OptionsRegister;
-import fr.HtSTeam.HtS.Options.Options.GameMode.GameModeState;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.Entry;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.EntryBuilder;
@@ -65,7 +64,7 @@ public class ScoreBoard {
 					break;
 				case "TimerScoreboardOption":
 					builder.next("§6Timer:").next(Main.timer.getTimeFormat());
-					if (((GameModeState) Main.gamemode).getGameMode().equals("Fallen Kingdom"))
+					if (Main.gamemode.gamemodeTotring().equals("Fallen Kingdom"))
 						builder.next("§6Days:").next(Integer.toString((int) Main.timer.getTimerInMinute() / 20));
 					break;
 				case "BorderScoreboardOption":

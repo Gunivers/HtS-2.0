@@ -28,8 +28,4 @@ public class GameModeState extends OptionsManager {
 	@Override
 	public void event(Player p) {}
 	
-	public String getGameMode() {
-		return getItemStackManager().getName();
-	}
-
 }
