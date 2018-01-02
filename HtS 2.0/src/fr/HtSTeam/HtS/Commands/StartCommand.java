@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
+import fr.HtSTeam.HtS.Scoreboard.ScoreBoard;
 import fr.HtSTeam.HtS.Utils.JSON;
 
 public class StartCommand implements CommandExecutor {
@@ -52,6 +53,8 @@ public class StartCommand implements CommandExecutor {
 						player.setFoodLevel(20);
 						player.getInventory().clear();
 						player.setGameMode(GameMode.SURVIVAL);
+						
+						ScoreBoard.send(player);
 					}
 				
 				Main.timer.run();

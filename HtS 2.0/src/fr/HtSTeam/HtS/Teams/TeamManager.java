@@ -30,6 +30,8 @@ public class TeamManager {
 	private ArrayList<Player> playerList = new ArrayList<Player>();
 	
 	public TeamManager(String teamName, String teamColor) {
+		if (nameTeam.containsKey(teamName))
+			return;
 		teamList.add(this);
 		nameTeam.put(teamName, this);
 		
