@@ -35,11 +35,6 @@ import fr.HtSTeam.HtS.Options.Options.Scoreboard.KilledScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.PlayerScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.RemoveBlankScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.TimerScoreboardOption;
-import fr.HtSTeam.HtS.Options.Options.Team.CollisionTeamOption;
-import fr.HtSTeam.HtS.Options.Options.Team.DeathMessageTeamOption;
-import fr.HtSTeam.HtS.Options.Options.Team.FriendlyFireOption;
-import fr.HtSTeam.HtS.Options.Options.Team.NameTagTeamOption;
-import fr.HtSTeam.HtS.Options.Options.Team.SeeInvisibleOption;
 import fr.HtSTeam.HtS.Options.Structure.GUIManager;
 
 public class OptionsRegister {
@@ -49,7 +44,6 @@ public class OptionsRegister {
 	public static GUIManager base = new GUIManager("Option de base", 1, "Option de base", "Régler les options basiques", Material.GRASS, OptionsRegister.main);
 	public static GUIManager atDeath = new GUIManager("Mort du joueur", 1, "Mort du joueur", "Régler la mort d'un joueur", Material.SKULL_ITEM, OptionsRegister.main);
 	public static GUIManager scoreboard = new GUIManager("Scoreboard", 1, "Scoreboard", "Régler le scoreboard", Material.SIGN, OptionsRegister.main);
-	public static GUIManager teams = new GUIManager(" Équipes", 1, "Équipes", "Régler les équipes", Material.BANNER, OptionsRegister.main);
 	public static GUIManager mob = new GUIManager("Mobs", 1, "Mobs", "Désactiver des mobs", Material.SKULL_ITEM, OptionsRegister.main);
 	public static GUIManager modifiers = new ModifiersGUI();
 	public static GUIManager loottables = new GUIManager("Loot Tables", 1, "Loot Tables", "Régler les Loot Tables", Material.BOOK, OptionsRegister.main);
@@ -96,13 +90,6 @@ public class OptionsRegister {
 		new BorderScoreboardOption();		
 		new AddBlankScoreboardOption();
 		new RemoveBlankScoreboardOption();
-		
-		// Team
-		new FriendlyFireOption();
-		new SeeInvisibleOption();
-		new NameTagTeamOption();
-		new CollisionTeamOption();
-		new DeathMessageTeamOption();
 		
 		// Loot Tables
 		new BatOption();

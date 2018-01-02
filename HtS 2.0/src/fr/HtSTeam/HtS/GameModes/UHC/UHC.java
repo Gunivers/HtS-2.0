@@ -41,10 +41,9 @@ public class UHC implements GameMode {
 			for (TeamManager tm : TeamManager.teamList) {
 				int[] coords = Randomizer.RandCoord(-(border - 50) / 2, (border - 50) / 2, 255, 255, -(border - 50) / 2,
 						(border - 50) / 2);
-				for (Entry<Player, TeamManager> entry : TeamManager.playerTeam.entrySet()) {
+				for (Entry<UUID, TeamManager> entry : TeamManager.playerTeam.entrySet()) {
 					if (entry.getValue() == tm)
-						entry.getKey()
-								.teleport(new Location(entry.getKey().getWorld(), coords[0], coords[1], coords[2]));
+						Bukkit.getPlayer(entry.getKey()).teleport(new Location(Bukkit.getPlayer(entry.getKey()).getWorld(), coords[0], coords[1], coords[2]));
 				}
 			}
 		}

@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
@@ -14,13 +16,13 @@ public class BaseManager {
 	
 	public static ArrayList<BaseManager> baseList = new ArrayList<BaseManager>();
 	public static Map<String, BaseManager> nameBase = new HashMap<String, BaseManager>();
-	public static Map<Player, BaseManager> playerBase = new HashMap<Player, BaseManager>();
+	public static Map<UUID, BaseManager> playerBase = new HashMap<UUID, BaseManager>();
 	
 	private TeamManager team;
 	private String baseName;
 	private Block pos1, pos2;
 	
-	private ArrayList<Player> playerList = new ArrayList<Player>();
+	private ArrayList<UUID> playerList = new ArrayList<UUID>();
 	
 	public BaseManager(String baseName, Block pos1, Block pos2) {
 		if (nameBase.containsKey(baseName))
@@ -33,12 +35,12 @@ public class BaseManager {
 	}
 	
 	public void addPlayer(Player p) {
-		playerList.add(p);
-		playerBase.put(p, this);
+		playerList.add(p.getUniqueId());
+		playerBase.put(p.getUniqueId(), this);
 	}
 	
 	public void removePlayer(Player p) {
-		playerList.remove(p);
+		playerList.remove(p.getUniqueId());
 		playerBase.remove(p, this);
 		if (playerList.size() == 0) {
 			baseList.remove(this);
@@ -47,8 +49,8 @@ public class BaseManager {
 	}
 	
 	public void deleteBase() {
-		for(Player p : playerList)
-			playerBase.remove(p, this); 
+		for(UUID uuid : playerList)
+			playerBase.remove(Bukkit.getPlayer(uuid), this); 
 		playerList.clear();
 		baseList.remove(this);
 		nameBase.remove(baseName, this);
@@ -57,8 +59,8 @@ public class BaseManager {
 	public void addTeam(TeamManager team) {
 		this.team = team;
 		playerList = team.getTeamPlayers();
-		for(Player p : playerList)
-			playerBase.put(p, this);
+		for(UUID uuid : playerList)
+			playerBase.put(uuid, this);
 	}
 	
 	public String getBaseName() { return baseName; }

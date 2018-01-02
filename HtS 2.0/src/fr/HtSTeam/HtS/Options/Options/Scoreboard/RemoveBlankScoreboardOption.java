@@ -20,11 +20,11 @@ public class RemoveBlankScoreboardOption extends OptionsManager {
 			Collections.reverse(ScoreBoard.display);
 			ScoreBoard.display.remove("AddBlankScoreboardOption");
 			Collections.reverse(ScoreBoard.display);
-			if (!ScoreBoard.scoreboards.containsKey(p)) {
+			if (!ScoreBoard.scoreboards.containsKey(p.getUniqueId())) {
 				ScoreBoard.send(p);
 			} else {
-				ScoreBoard.scoreboards.get(p).deactivate();
-				ScoreBoard.scoreboards.remove(p);
+				ScoreBoard.scoreboards.get(p.getUniqueId()).deactivate();
+				ScoreBoard.scoreboards.remove(p.getUniqueId());
 				ScoreBoard.send(p);
 			}
 	}

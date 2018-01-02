@@ -25,11 +25,11 @@ public class PlayerScoreboardOption extends OptionsManager {
 			ScoreBoard.display.add("PlayerScoreboardOption");
 		}
 		
-		if (!ScoreBoard.scoreboards.containsKey(p)) {
+		if (!ScoreBoard.scoreboards.containsKey(p.getUniqueId())) {
 			ScoreBoard.send(p);
 		} else {
-			ScoreBoard.scoreboards.get(p).deactivate();
-			ScoreBoard.scoreboards.remove(p);
+			ScoreBoard.scoreboards.get(p.getUniqueId()).deactivate();
+			ScoreBoard.scoreboards.remove(p.getUniqueId());
 			ScoreBoard.send(p);
 		}
 	}

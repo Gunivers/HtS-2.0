@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.bukkit.entity.Player;
 
@@ -20,7 +21,7 @@ import fr.HtSTeam.HtS.Teams.TeamManager;
 public class ScoreBoard {
 	
 	public static ArrayList<String> display = new ArrayList<String>();
-	public static Map<Player, Scoreboard> scoreboards = new HashMap<Player, Scoreboard>();
+	public static Map<UUID, Scoreboard> scoreboards = new HashMap<UUID, Scoreboard>();
 	
 	public static void send(Player player) {
 
@@ -37,7 +38,7 @@ public class ScoreBoard {
 
 		}).setUpdateInterval(2l);
 		scoreboard.activate();
-		scoreboards.put(player, scoreboard);
+		scoreboards.put(player.getUniqueId(), scoreboard);
 	}
 	
 	private static List<Entry> getBuild() {
