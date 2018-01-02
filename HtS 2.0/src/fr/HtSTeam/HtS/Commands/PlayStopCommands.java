@@ -78,6 +78,7 @@ public class PlayStopCommands implements CommandExecutor, Listener {
 			
 			} else if (cmd.getName().equalsIgnoreCase("end") && sender.hasPermission("end.use")) {
 				EnumState.setState(EnumState.WAIT);
+				Main.timer.stop();
 				for(Scoreboard b : ScoreBoard.scoreboards.values())
 				    b.deactivate();
 				for(UUID uuid : PlayerInGame.playerInGame) {
