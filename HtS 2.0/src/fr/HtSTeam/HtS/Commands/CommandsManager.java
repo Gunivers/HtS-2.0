@@ -10,6 +10,9 @@ public class CommandsManager {
 		main.getCommand("run").setExecutor(new StartCommand(main));
 		main.getCommand("team").setExecutor(new TeamCommand());
 		main.getCommand("test").setExecutor(new OptionCommand(main));
+		PlayStopCommands playStop = new PlayStopCommands();
+		main.getCommand("play").setExecutor(playStop);
+		main.getCommand("pause").setExecutor(playStop);
 	}
 
 }

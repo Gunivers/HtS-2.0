@@ -18,6 +18,7 @@ public class EventManager {
 		pm.registerEvents(new PlayerInGame(), main);
 		pm.registerEvents(new WaitEvent(), main);
 		pm.registerEvents(new CustomChat(), main);
+		pm.registerEvents(new ReloadServerEvent(), main);
 	}
 
 }
