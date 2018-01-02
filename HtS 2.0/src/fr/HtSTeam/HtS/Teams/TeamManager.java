@@ -39,6 +39,8 @@ public class TeamManager {
 		} else {
 			playerList.add(p.getUniqueId());
 			playerTeam.put(p.getUniqueId(), this);
+			p.setDisplayName(ChatColor.valueOf(teamColor.toUpperCase()) + p.getName());
+			p.setPlayerListName(ChatColor.valueOf(teamColor.toUpperCase()) + p.getName());
 		}
 	}
 	
@@ -46,12 +48,13 @@ public class TeamManager {
 		p.sendMessage("Vous avez quitté l'équipe " + ChatColor.valueOf(teamColor.toUpperCase()) + teamName);
 		if(faketeam) {
 			playerList.remove(p.getUniqueId());
-			if(playerList.size() == 0) {
+			if(playerList.size() == 0)
 				teamList.remove(this);
-			}
 		} else {
 			playerList.remove(p.getUniqueId());
 			playerTeam.remove(p.getUniqueId(), this);
+			p.setDisplayName(p.getName());
+			p.setPlayerListName(p.getName());
 			if(getTeamSize() == 0) {
 				teamList.remove(this);
 				nameTeam.remove(teamName, this);
