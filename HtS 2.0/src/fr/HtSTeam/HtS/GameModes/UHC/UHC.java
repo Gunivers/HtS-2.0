@@ -21,11 +21,8 @@ public class UHC implements GameMode {
 		new EventManagerUHC();
 		for (Player p : Main.playerInGame.getPlayerInGame())
 			p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 30 * 20, 255, false, false));
-		teleport();
+		teleport();	
 	}
-
-	
-	
 	
 	
 	private void teleport() {

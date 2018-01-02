@@ -10,11 +10,14 @@ commands:
   description: Lance la partie
   usage: Erreur syntaxe ! Faites /start
  run:
-  descrption: Force le lancement de la partie
+  description: Force le lancement de la partie
   usage: Erreur syntaxe ! Faites /run
  team:
-  descrption: Force le lancement de la partie
-  usage: Erreur syntaxe ! Faites /run
+  description: Commandes relatives aux teams
+  usage: Erreur syntaxe ! Faites /team
  gui: 
-  descrption: Ouvre l'inventaire des modifiers
+  description: Ouvre l'inventaire des modifiers
   usage: Erreur syntaxe ! Faites /gui
+ setbase:
+  description: Définir une base
+  usage: Erreur syntaxe ! Faites /setbase (nomBase) (nomEquipe)
