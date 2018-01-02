@@ -19,13 +19,14 @@ import org.bukkit.scoreboard.Team;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 
+import fr.HtSTeam.HtS.Main;
+
 @SuppressWarnings("unused")
 public class SimpleScoreboard implements Scoreboard {
 
     private static final String TEAM_PREFIX = "Scoreboard_";
     private static int TEAM_COUNTER = 0;
 
-    private final org.bukkit.scoreboard.Scoreboard scoreboard;
     private final Objective objective;
 
     protected Player holder;
@@ -40,9 +41,8 @@ public class SimpleScoreboard implements Scoreboard {
 
     public SimpleScoreboard(Player holder) {
         this.holder = holder;
-        scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
-        scoreboard.registerNewObjective("board", "dummy").setDisplaySlot(DisplaySlot.SIDEBAR);
-        objective = scoreboard.getObjective(DisplaySlot.SIDEBAR);
+        Main.b.registerNewObjective("board", "dummy").setDisplaySlot(DisplaySlot.SIDEBAR);
+        objective = Main.b.getObjective(DisplaySlot.SIDEBAR);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class SimpleScoreboard implements Scoreboard {
         if (activated) return;
         if (handler == null) throw new IllegalArgumentException("Scoreboard handler not set");
         activated = true;
-        holder.setScoreboard(scoreboard);
+        holder.setScoreboard(Main.b);
         updateTask = new BukkitRunnable() {
             @Override
             public void run() {
@@ -142,7 +142,7 @@ public class SimpleScoreboard implements Scoreboard {
         for (FakePlayer fakePlayer : entryCache.keySet()) {
             if (!current.containsKey(fakePlayer)) {
                 entryCache.remove(fakePlayer);
-                scoreboard.resetScores(fakePlayer.getName());
+                Main.b.resetScores(fakePlayer.getName());
             }
         }
     }
@@ -167,7 +167,7 @@ public class SimpleScoreboard implements Scoreboard {
                 }
             }
             if (team == null) {
-                team = scoreboard.registerNewTeam(TEAM_PREFIX + TEAM_COUNTER++);
+                team = Main.b.registerNewTeam(TEAM_PREFIX + TEAM_COUNTER++);
                 team.setPrefix(prefix);
                 team.setSuffix(suffix);
                 teamCache.put(team, prefix, suffix);
@@ -198,7 +198,7 @@ public class SimpleScoreboard implements Scoreboard {
     }
 
     public org.bukkit.scoreboard.Scoreboard getScoreboard() {
-        return scoreboard;
+        return Main.b;
     }
 
     private static class FakePlayer implements OfflinePlayer {
