@@ -11,7 +11,7 @@ import org.bukkit.potion.PotionEffectType;
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.GameModes.GameMode;
 import fr.HtSTeam.HtS.Options.OptionsRegister;
-import fr.HtSTeam.HtS.Options.Structure.TeamManager;
+import fr.HtSTeam.HtS.Teams.TeamManager;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
 public class UHC implements GameMode {

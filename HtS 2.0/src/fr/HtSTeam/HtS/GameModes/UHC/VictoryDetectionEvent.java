@@ -6,7 +6,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.Options.Structure.TeamManager;
+import fr.HtSTeam.HtS.Teams.TeamManager;
 import fr.HtSTeam.HtS.Utils.JSON;
 
 public class VictoryDetectionEvent implements Listener {

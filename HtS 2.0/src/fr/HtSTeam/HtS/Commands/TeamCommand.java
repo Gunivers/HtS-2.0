@@ -8,7 +8,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import fr.HtSTeam.HtS.Options.Structure.TeamManager;
+import fr.HtSTeam.HtS.Teams.TeamManager;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
 public class TeamCommand implements CommandExecutor {

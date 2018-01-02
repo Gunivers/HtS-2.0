@@ -6,7 +6,7 @@ import org.bukkit.scoreboard.Team.OptionStatus;
 
 import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
-import fr.HtSTeam.HtS.Options.Structure.TeamManager;
+import fr.HtSTeam.HtS.Teams.TeamManager;
 
 public class CollisionTeamOption extends OptionsManager {
 	

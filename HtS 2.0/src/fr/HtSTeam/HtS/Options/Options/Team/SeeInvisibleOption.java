@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
-import fr.HtSTeam.HtS.Options.Structure.TeamManager;
+import fr.HtSTeam.HtS.Teams.TeamManager;
 
 public class SeeInvisibleOption extends OptionsManager {
 		
