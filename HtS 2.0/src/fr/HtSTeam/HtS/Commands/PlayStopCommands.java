@@ -34,7 +34,7 @@ import net.minecraft.server.v1_12_R1.NBTTagCompound;
 
 public class PlayStopCommands implements CommandExecutor, Listener {
 
-	private boolean pause = false;
+	public static boolean pause = false;
 	private String dayCycleState;
 
 	public PlayStopCommands() {

@@ -9,6 +9,7 @@ import java.util.UUID;
 import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Main;
+import fr.HtSTeam.HtS.Commands.PlayStopCommands;
 import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.Entry;
@@ -16,6 +17,8 @@ import fr.HtSTeam.HtS.Scoreboard.Scoreboard.EntryBuilder;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.Scoreboard;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.ScoreboardHandler;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.ScoreboardLib;
+import fr.HtSTeam.HtS.Scoreboard.Scoreboard.ScrollableString;
+import fr.HtSTeam.HtS.Scoreboard.Scoreboard.Strings;
 import fr.HtSTeam.HtS.Teams.TeamManager;
 
 public class ScoreBoard {
@@ -59,6 +62,8 @@ public class ScoreBoard {
 					break;
 				case "TimerScoreboardOption":
 					builder.next("§6Timer:").next(Main.timer.getTimeFormat());
+					if (Main.gamemode.toString().equals("Fallen Kingdom"))
+						builder.next("§6Days:").next(Integer.toString((int) Main.timer.getTimerInMinute() / 20));
 					break;
 				case "BorderScoreboardOption":
 					builder.next("§6Bordure:").next(OptionsRegister.borderOption.getValue() + "×" + OptionsRegister.borderOption.getValue());
@@ -68,6 +73,9 @@ public class ScoreBoard {
 					break;
 			}
 		}
+		
+		if (PlayStopCommands.pause)
+			builder.blank().blank().next("	" + new ScrollableString(Strings.format("§4JEU EN PAUSE"), 40, 0).next());
 		
 		return builder.build();
 	}
