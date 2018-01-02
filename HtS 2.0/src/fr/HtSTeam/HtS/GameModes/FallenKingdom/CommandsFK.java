@@ -8,6 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -70,7 +71,7 @@ public class CommandsFK implements CommandExecutor, Listener {
 	public void onRightClick(PlayerInteractEvent e) {
 		ItemStack is = e.getPlayer().getEquipment().getItemInMainHand();
 		System.out.println("a");
-		if(e.getPlayer().equals(p) && inCreation && ism.getMaterial().equals(is.getType()) && ism.getName().equals(is.getItemMeta().getDisplayName())) {
+		if(e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && e.getPlayer().equals(p) && inCreation && ism.getMaterial().equals(is.getType()) && ism.getName().equals(is.getItemMeta().getDisplayName())) {
 			e.setCancelled(true);
 			Block b = e.getClickedBlock();
 			angleDo++;
