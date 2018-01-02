@@ -2,10 +2,9 @@ Pour l'HtS de base :
 
 - Désactiver les biomes Océan
 - Le timer																										Pris par :		theogiraudet	DONE
-- Le join des équipes par clic sur laine																		Pris par :		
+- Le join des équipes par clic sur laine																		Pris par :		ikbrunel
 - Les statistiques																								Pris par :		ikbrunel
 - * Les nerfs (squelette, creeper sans one shot...)																Pris par :		theogiraudet
-- * Les ajouts Nether (apparition de la Nether Wart, spawn des Shulker)											Pris par :		ikbrunel		DONE
 - * Les changements de probabilités (drop de pommes (ne pas oublié l'event decay), de flint...)					Pris par :		theogiraudet
 - * Les objets customs (Shulker Shell...) et l'inventaire associé												Pris par :		theogiraudet
 - * Les modifications useless (drop de golden nuggets...)														Pris par :		theogiraudet
@@ -16,8 +15,6 @@ Pour l'HtS de base :
 - * [1.13] Le système d'extraction de Data Pack																	Pris par :		
 	- * L'algue urticante																						Pris par :		ikbrunel		DONE
 	- * Craft des Elytras (et possiblement autres crafts custom)												Pris par :		
-	- * Les loot tables (Ghast...)																				Pris par :		ikbrunel		DONE
-
 
 
 - L'inventaire des modes de jeux																				Pris par :		
