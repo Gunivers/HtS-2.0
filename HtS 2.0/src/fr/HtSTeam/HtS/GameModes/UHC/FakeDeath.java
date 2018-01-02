@@ -30,7 +30,7 @@ public class FakeDeath implements Listener {
 				isM.setDisplayName("Tête de " + p.getName());
 				is.setItemMeta(isM);
 			}
-			p.getWorld().dropItem(p.getLocation(), is);
+			//p.getWorld().dropItem(p.getLocation(), is);
 			((Player) p).setGameMode(GameMode.SPECTATOR);
 			PlayerInGame.playerInGame.remove(p.getUniqueId());
 
