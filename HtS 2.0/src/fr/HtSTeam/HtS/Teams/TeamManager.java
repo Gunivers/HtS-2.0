@@ -7,6 +7,7 @@ import java.util.Map;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 import org.bukkit.scoreboard.Team.Option;
 import org.bukkit.scoreboard.Team.OptionStatus;
@@ -53,8 +54,9 @@ public class TeamManager {
 	public void removePlayer(Player p) {
 		if(faketeam) {
 			playerList.remove(p);
-			if(playerList.size() == 0)
+			if(playerList.size() == 0) {
 				teamList.remove(this);
+			}
 		} else {
 			playerList.remove(p);
 			playerTeam.remove(p, this);
@@ -102,6 +104,8 @@ public class TeamManager {
 	public String getTeamColor() { return teamColor; }
 	public byte getTeamByte() { return teamByte; }
 	public int getTeamSize() { return team.getSize(); }
+	
+	public Scoreboard getScoreboard() { return team.getScoreboard(); }
 	
 	public ArrayList<Player> getTeamPlayers() { return playerList; }
 	
