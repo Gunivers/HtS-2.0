@@ -52,13 +52,13 @@ public class BasesEvent implements Listener {
 		} else {
 			if (!PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).equals(playerLocation.get(e.getPlayer().getUniqueId()))) {
 				
-				if(PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).equals(PlayerBase.OTHER))
+			 if(PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).equals(PlayerBase.OTHER))
 					new ActionBar(e.getPlayer(), "§4MESSAGE ENTER ENEMY BASE", 5).send();
 				
-				if(PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).equals(PlayerBase.OWN))
+			else if(PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).equals(PlayerBase.OWN))
 					new ActionBar(e.getPlayer(), "§4MESSAGE ENTER OWN BASE", 5).send();
 				
-				if(PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).equals(PlayerBase.NONE))
+			else if(PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).equals(PlayerBase.NONE))
 					new ActionBar(e.getPlayer(), "§4MESSAGE ENTER NO MANS LAND", 5).send();
 				
 				playerLocation.replace(e.getPlayer().getUniqueId(), PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()));
