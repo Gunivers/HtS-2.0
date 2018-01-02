@@ -6,8 +6,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 import fr.HtSTeam.HtS.EnumState;
+import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Scoreboard.ScoreBoard;
-import fr.HtSTeam.HtS.Teams.TeamManager;
 
 public class JoinLeaveEvent implements Listener {
 	
@@ -16,7 +16,7 @@ public class JoinLeaveEvent implements Listener {
 		Player p = e.getPlayer();
 		
 		if (EnumState.getState() == EnumState.RUNNING) {
-			p.setScoreboard(TeamManager.playerTeam.get(p).getScoreboard());
+			p.setScoreboard(Main.b);
 			ScoreBoard.send(p);
 		}
 	}
