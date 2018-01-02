@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.bukkit.Statistic;
-import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Main;

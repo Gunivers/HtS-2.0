@@ -19,8 +19,6 @@ import org.bukkit.scoreboard.Team;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 
-import fr.HtSTeam.HtS.Main;
-
 @SuppressWarnings("unused")
 public class SimpleScoreboard implements Scoreboard {
 
