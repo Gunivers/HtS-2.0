@@ -63,8 +63,10 @@ public class TeamManager {
 			playerList.remove(p);
 			playerTeam.remove(p, this);
 			team.removeEntry(p.getName());
-			if(getTeamSize() == 0)
+			if(getTeamSize() == 0) {
 				teamList.remove(this);
+				nameTeam.remove(teamName, this);
+			}
 		}
 	}
 	
@@ -79,6 +81,7 @@ public class TeamManager {
 			}
 			playerList.clear();
 			teamList.remove(this);
+			nameTeam.remove(teamName, this);
 		}
 	}
 	
