@@ -24,8 +24,14 @@ public class OptionCommand implements CommandExecutor {
 			if (cmd.getName().equalsIgnoreCase("option") && sender.hasPermission("option.use")) {
 				OptionsRegister.main.open(p);
 				return true;
-			}
 			
+			
+			
+			} if (cmd.getName().equalsIgnoreCase("test") && sender.hasPermission("option.use")) {
+				for(Player p2 : Main.playerInGame.getPlayerInGame())
+					System.out.println(p2.getName());
+				return true;
+			}
 		}
 		
 		return false;
