@@ -14,6 +14,7 @@ import org.bukkit.inventory.ItemStack;
 
 import fr.HtSTeam.HtS.Teams.TeamManager;
 import fr.HtSTeam.HtS.Utils.ItemStackManager;
+import net.md_5.bungee.api.ChatColor;
 
 public class CommandsFK implements CommandExecutor, Listener {
 	
@@ -70,16 +71,18 @@ public class CommandsFK implements CommandExecutor, Listener {
 					}
 					else
 						p.sendMessage("§4Base inexistante.");
+					return true;
 				
 				
 				} if(args.length == 1 && args[0].equalsIgnoreCase("list")) {
 					p.sendMessage("- Bases crées : ");
 					for(BaseManager bm : BaseManager.baseList) {
-						p.sendMessage(" - " + bm.getBaseName());
-						p.sendMessage("  - Team : " + bm.getTeam().getTeamColor() + bm.getTeam().getTeamName());
-						p.sendMessage("  - Premier angle : " + bm.getPos()[0][0]);
-						p.sendMessage("  - Second angle : " + bm.getPos()[1][1]);
+						p.sendMessage(" - " + ChatColor.valueOf(bm.getTeam().getTeamColor().toUpperCase()) + bm.getBaseName());
+						p.sendMessage("  - §2Team :§r " + ChatColor.valueOf(bm.getTeam().getTeamColor().toUpperCase()) + bm.getTeam().getTeamName());
+						p.sendMessage("  - §2Premier angle :§r " + bm.getPos()[0][0]);
+						p.sendMessage("  - §2Second angle :§r " + bm.getPos()[1][1]);
 					}
+					return true;
 				}
 				
 				
@@ -103,7 +106,7 @@ public class CommandsFK implements CommandExecutor, Listener {
 				p.getEquipment().setItemInMainHand(ism.getItemStack());
 			} else if(angleDo == 2) {
 				secondAngle = b;
-				p.sendMessage("§2Base " + name + " de l'équipe §r" + team.getTeamColor() + team.getTeamName() + " §2créée avec succès !");
+				p.sendMessage("§2Base " + name + " de l'équipe §r" + ChatColor.valueOf(team.getTeamColor().toUpperCase()) + team.getTeamName() + " §2créée avec succès !");
 				p.sendMessage("§2Premier angle : §5" + firstAngle.getX() + " " + firstAngle.getY() + " " + firstAngle.getZ());
 				p.sendMessage("§2Second angle : §5" + secondAngle.getX() + " " + secondAngle.getY() + " " + secondAngle.getZ());
 				BaseManager bm = new BaseManager(name, firstAngle, secondAngle);
