@@ -32,7 +32,7 @@ public class FixDayOption extends OptionsManager implements StartTrigger {
 					 getItemStackManager().setLore("§bMidi");
 					 getItemStackManager().setItem(Material.STAINED_CLAY, (short) 3);
 					 break;
-			case 2 : tick = 11615;
+			case 2 : tick = 13100;
 					 setValue("Crépuscule");
 					 getItemStackManager().setLore("§6Crépuscule");
 					 getItemStackManager().setItem(Material.STAINED_CLAY, (short) 1);
