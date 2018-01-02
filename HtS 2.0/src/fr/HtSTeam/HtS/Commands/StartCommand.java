@@ -50,7 +50,6 @@ public class StartCommand implements CommandExecutor {
 				for(Player player : Bukkit.getOnlinePlayers())
 					if(!player.getGameMode().equals(GameMode.SPECTATOR)) {
 						PlayerInGame.playerInGame.add(player.getUniqueId());
-						p.sendMessage(player.getName());
 						player.setHealth(20);
 						player.setFoodLevel(20);
 						player.getInventory().clear();
@@ -59,7 +58,6 @@ public class StartCommand implements CommandExecutor {
 						ScoreBoard.send(player);
 					}
 				
-				System.out.println(PlayerInGame.playerInGame.get(0));
 				Main.timer.run();
 				EnumState.setState(EnumState.RUNNING);
 				return true;
