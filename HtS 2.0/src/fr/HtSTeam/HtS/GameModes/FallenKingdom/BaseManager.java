@@ -23,6 +23,8 @@ public class BaseManager {
 	private ArrayList<Player> playerList = new ArrayList<Player>();
 	
 	public BaseManager(String baseName, Block pos1, Block pos2) {
+		if (nameBase.containsKey(baseName))
+			return;		
 		baseList.add(this);
 		nameBase.put(baseName, this);
 		this.baseName = baseName;
@@ -60,8 +62,17 @@ public class BaseManager {
 	}
 	
 	public String getBaseName() { return baseName; }
-
+	
 	public int[][] getPos() {
+		int pos[][] = new int[2][2];
+		pos[0][0] = pos1.getX();
+		pos[1][0] = pos1.getZ();
+		pos[0][1] = pos2.getX();
+		pos[1][1] = pos2.getZ();
+		return pos;
+	}
+	
+	public int[][] getOrderPos() {
 		int pos[][] = new int[2][2];
 		pos[0][0] = pos1.getX();
 		pos[1][0] = pos2.getX();

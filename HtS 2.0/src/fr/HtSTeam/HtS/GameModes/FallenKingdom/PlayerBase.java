@@ -10,7 +10,7 @@ public enum PlayerBase {
 	
 	public static PlayerBase isInBase(Player p, Location l) {
 		for (BaseManager b : BaseManager.baseList) {
-			int pos[][] = b.getPos();
+			int pos[][] = b.getOrderPos();
 			if (pos[0][0] < l.getBlockX() && l.getBlockX() < pos[1][0] && pos[0][1] < l.getBlockZ() && l.getBlockZ() < pos[1][1]) {
 				if(BaseManager.playerBase.get(p) == b)
 					return PlayerBase.OWN;
