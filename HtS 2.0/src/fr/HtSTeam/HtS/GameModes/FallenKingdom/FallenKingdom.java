@@ -13,7 +13,7 @@ public class FallenKingdom implements GameMode {
 		PluginManager pm = Bukkit.getServer().getPluginManager();
 		CommandsFK cfk = new CommandsFK();
 		
-		Main.plugin.getCommand("setbase").setExecutor(cfk);
+		Main.plugin.getCommand("base").setExecutor(cfk);
 		pm.registerEvents(cfk, Main.plugin);
 	}
 	

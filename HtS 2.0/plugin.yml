@@ -18,6 +18,6 @@ commands:
  gui: 
   description: Ouvre l'inventaire des modifiers
   usage: Erreur syntaxe ! Faites /gui
- setbase:
+ base:
   description: Définir une base
   usage: Erreur syntaxe ! Faites /setbase (nomBase) (nomEquipe)
