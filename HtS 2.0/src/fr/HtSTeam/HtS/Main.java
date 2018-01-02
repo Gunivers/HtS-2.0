@@ -42,6 +42,8 @@ public class Main extends JavaPlugin {
 		for(World world : Bukkit.getWorlds()) {
 			world.setDifficulty(Difficulty.HARD);
 			if(world.getEnvironment() == Environment.NORMAL) {
+				Main.world = world; 
+				FileExtractor.wdir = world.getName() + "/data/loot_tables";
 				world.setPVP(false);
 				world.setSpawnLocation(0, 205, 0);
 			}	
@@ -50,8 +52,6 @@ public class Main extends JavaPlugin {
 		b = Bukkit.getScoreboardManager().getNewScoreboard();
 		
 		timer = new fr.HtSTeam.HtS.Utils.TimerTask(0, 1);
-		
-		for(World w : Bukkit.getWorlds()) {if(w.getEnvironment() == Environment.NORMAL) { world = w; FileExtractor.wdir = w.getName() + "/data/loot_tables";}}
 		
 		
 		Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "gamerule sendCommandFeedback false");
