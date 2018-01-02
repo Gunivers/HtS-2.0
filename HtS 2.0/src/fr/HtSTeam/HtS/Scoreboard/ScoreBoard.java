@@ -64,7 +64,7 @@ public class ScoreBoard {
 				case "TimerScoreboardOption":
 					builder.next("§6Timer:").next(Main.timer.getTimeFormat());
 					if (Main.gamemode.gamemodeTotring().equals("Fallen Kingdom"))
-						builder.next("§6Days:").next(Integer.toString((int) Main.timer.getTimerInMinute() / 20));
+						builder.next("§6Jours:").next(Integer.toString((int) Main.timer.getTimerInMinute() / 20));
 					break;
 				case "BorderScoreboardOption":
 					builder.next("§6Bordure:").next(OptionsRegister.borderOption.getValue() + "×" + OptionsRegister.borderOption.getValue());
