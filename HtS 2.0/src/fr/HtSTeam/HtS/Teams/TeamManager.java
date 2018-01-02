@@ -39,7 +39,7 @@ public class TeamManager {
 		} else {
 			playerList.add(p.getUniqueId());
 			playerTeam.put(p.getUniqueId(), this);
-			p.setDisplayName(ChatColor.valueOf(teamColor.toUpperCase()) + p.getName());
+			p.setCustomName(ChatColor.valueOf(teamColor.toUpperCase()) + p.getName() + "§r");
 			p.setPlayerListName(ChatColor.valueOf(teamColor.toUpperCase()) + p.getName());
 		}
 	}
@@ -53,7 +53,7 @@ public class TeamManager {
 		} else {
 			playerList.remove(p.getUniqueId());
 			playerTeam.remove(p.getUniqueId(), this);
-			p.setDisplayName(p.getName());
+			p.setCustomName(p.getName());
 			p.setPlayerListName(p.getName());
 			if(getTeamSize() == 0) {
 				teamList.remove(this);

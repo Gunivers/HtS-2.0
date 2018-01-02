@@ -7,6 +7,8 @@ import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.EnumState;
@@ -57,6 +59,10 @@ public class StartCommand implements CommandExecutor {
 						
 						ScoreBoard.send(player);
 					}
+				
+				for (Entity e : Main.world.getEntities())
+					if(e instanceof Monster)
+						e.remove();
 				
 				Main.timer.run();
 				EnumState.setState(EnumState.RUNNING);
