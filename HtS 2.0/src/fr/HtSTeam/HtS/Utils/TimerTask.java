@@ -1,8 +1,10 @@
 package fr.HtSTeam.HtS.Utils;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.bukkit.scheduler.BukkitRunnable;
@@ -75,15 +77,19 @@ public class TimerTask {
 		if(this != Main.timer)
 			return;
 		for (OptionsManager om : OptionsManager.optionsList.keySet()) {
+			ArrayList<Method> methods = new ArrayList<Method>();
 			for (Method m : om.getClass().getMethods()) {
+				if(m.isAnnotationPresent(Timer.class))
+					methods.add(m);
+			}
+			methods.sort((o1, o2) -> o1.getAnnotation(Timer.class).value().compareTo(o2.getAnnotation(Timer.class).value()));
+			for (Method m : methods) {
 				try {
-					if (m.isAnnotationPresent(Timer.class)) {
-						if (this.getTimerInMinute() == Integer.parseInt(om.getValue()))
-							m.invoke(om);
-					}
+					if (this.getTimerInMinute() == Integer.parseInt(om.getValue()))
+						m.invoke(om);
 				} catch (NumberFormatException e) {
 					continue;
-				} catch (Exception e) {
+				} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 					e.printStackTrace();
 				}
 			}

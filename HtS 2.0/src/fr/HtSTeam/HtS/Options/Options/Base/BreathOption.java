@@ -79,7 +79,7 @@ public class BreathOption extends OptionsManager implements StartTrigger {
 	}
 	
 	
-	@Timer(PRIORITY.HIGHEST)
+	@Timer(PRIORITY.LOWEST)
 	public void alert() {
 		if(getValue().equals("Désactivé") || alert) return;
 		setValue(Integer.toString(Integer.parseInt(getValue()) + 1));
@@ -87,7 +87,7 @@ public class BreathOption extends OptionsManager implements StartTrigger {
 		Bukkit.broadcastMessage("§4Les mineurs ont miné beaucoup trop profondement et ont ouvert des poches de soufre. Le soufre envahira les mines dans 1 minutes.");
 	}
 	
-	@Timer(PRIORITY.LOWEST)
+	@Timer(PRIORITY.HIGHEST)
 	public void run() {
 		activate = true;
 		Bukkit.broadcastMessage("§4Le soufre a envahis les mines.");

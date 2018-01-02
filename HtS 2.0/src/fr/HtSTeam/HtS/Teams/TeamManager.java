@@ -44,6 +44,7 @@ public class TeamManager {
 		if(faketeam) {
 			playerList.add(p);
 		} else {
+			playerList.add(p);
 			playerTeam.put(p, this);
 			team.addEntry(p.getName());
 		}
@@ -55,6 +56,7 @@ public class TeamManager {
 			if(playerList.size() == 0)
 				teamList.remove(this);
 		} else {
+			playerList.remove(p);
 			playerTeam.remove(p, this);
 			team.removeEntry(p.getName());
 			if(getTeamSize() == 0)
@@ -71,6 +73,7 @@ public class TeamManager {
 				playerTeam.remove(Bukkit.getPlayer(entry), this);
 				team.removeEntry(entry);
 			}
+			playerList.clear();
 			teamList.remove(this);
 		}
 	}
@@ -99,6 +102,8 @@ public class TeamManager {
 	public String getTeamColor() { return teamColor; }
 	public byte getTeamByte() { return teamByte; }
 	public int getTeamSize() { return team.getSize(); }
+	
+	public ArrayList<Player> getTeamPlayers() { return playerList; }
 	
 	public boolean isFakeTeam() { return faketeam; }
 	public void setFakeTeam(boolean faketeam) { this.faketeam = faketeam; }
