@@ -111,15 +111,14 @@ public class PlayStopCommands implements CommandExecutor, Listener {
 		if (!(e.getEntity() instanceof Player))
 			return;
 		Player p = (Player) e.getEntity();
-		if (pause && p.getGameMode().equals(GameMode.ADVENTURE) || p.getGameMode().equals(GameMode.SURVIVAL)) {
+		if (pause && (p.getGameMode().equals(GameMode.ADVENTURE) || p.getGameMode().equals(GameMode.SURVIVAL))) {
 			e.setCancelled(true);
 		}
 	}
 
 	@EventHandler
 	public void interact(PlayerInteractEvent e) {
-		if (pause && e.getPlayer().getGameMode().equals(GameMode.ADVENTURE)
-				|| e.getPlayer().getGameMode().equals(GameMode.SURVIVAL)) {
+		if (pause && (e.getPlayer().getGameMode().equals(GameMode.ADVENTURE) || e.getPlayer().getGameMode().equals(GameMode.SURVIVAL))) {
 			e.setCancelled(true);
 		}
 	}
@@ -129,7 +128,7 @@ public class PlayStopCommands implements CommandExecutor, Listener {
 		if (!(e.getEntity() instanceof Player))
 			return;
 		Player p = (Player) e.getEntity();
-		if (pause && p.getGameMode().equals(GameMode.ADVENTURE) || p.getGameMode().equals(GameMode.SURVIVAL)) {
+		if (pause && (p.getGameMode().equals(GameMode.ADVENTURE) || p.getGameMode().equals(GameMode.SURVIVAL))) {
 			e.setCancelled(true);
 		}
 	}

@@ -18,7 +18,7 @@ public class EnablePvPOption extends OptionsManager {
 	private Player p;
 	
 	public EnablePvPOption() {
-		super(Material.DIAMOND_SWORD, "Activation du PvP", "20 minutes", "20", OptionsRegister.base);
+		super(Material.DIAMOND_SWORD, "Activation du PvP", "§220 minutes", "20", OptionsRegister.base);
 		switchState(false);
 	}
 
@@ -53,7 +53,7 @@ public class EnablePvPOption extends OptionsManager {
 	
 	private void switchState(boolean b) {
 		for (World world : Bukkit.getWorlds())
-				world.setPVP(b);
+			world.setPVP(b);
 	}
 	
 	@Timer
