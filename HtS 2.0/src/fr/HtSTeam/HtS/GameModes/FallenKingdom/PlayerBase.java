@@ -4,9 +4,17 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 public enum PlayerBase {
-	NONE,
-	OWN,
-	OTHER;
+	NONE("§4MESSAGE ENTER NO MANS LAND"),
+	OWN("§4MESSAGE ENTER OUR BASE"),
+	OTHER("§4MESSAGE ENTER ENEMY BASE");
+	
+	private String msg;
+
+	PlayerBase(String msg) {
+		this.msg = msg;
+	}
+	
+	public String getMessage() { return msg; }
 	
 	public static PlayerBase isInBase(Player p, Location l) {
 		for (BaseManager b : BaseManager.baseList) {

@@ -47,23 +47,11 @@ public class BasesEvent implements Listener {
 	@EventHandler
 	public void onSwitchBase(PlayerMoveEvent e) {
 		if (!playerLocation.containsKey(e.getPlayer().getUniqueId())) {
-			playerLocation.put(e.getPlayer().getUniqueId(),
-					PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()));
+			playerLocation.put(e.getPlayer().getUniqueId(), PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()));
 		} else {
-			if (!PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation())
-					.equals(playerLocation.get(e.getPlayer().getUniqueId()))) {
-
-				if (PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).equals(PlayerBase.OTHER))
-					new ActionBar(e.getPlayer(), "§4MESSAGE ENTER ENEMY BASE", 5).send();
-
-				else if (PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).equals(PlayerBase.OWN))
-					new ActionBar(e.getPlayer(), "§4MESSAGE ENTER OUR BASE", 5).send();
-
-				else if (PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).equals(PlayerBase.NONE))
-					new ActionBar(e.getPlayer(), "§4MESSAGE ENTER NO MANS LAND", 5).send();
-
-				playerLocation.replace(e.getPlayer().getUniqueId(),
-						PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()));
+			if (!PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).equals(playerLocation.get(e.getPlayer().getUniqueId()))) {
+				new ActionBar(e.getPlayer(), PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).getMessage(), 1).send();
+				playerLocation.replace(e.getPlayer().getUniqueId(), PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()));
 			}
 		}
 	}
