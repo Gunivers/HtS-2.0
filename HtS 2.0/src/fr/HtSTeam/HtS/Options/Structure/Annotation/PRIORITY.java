@@ -1,9 +1,5 @@
 package fr.HtSTeam.HtS.Options.Structure.Annotation;
 
 public enum PRIORITY {
-	LOWEST,
-	LOW,
-	NORMAL,
-	HIGH,
-	HIGHEST;
+	HIGH, HIGHEST, NORMAL, LOWEST, LOW;
 }
