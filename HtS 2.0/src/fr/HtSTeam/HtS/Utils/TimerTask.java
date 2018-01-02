@@ -31,6 +31,7 @@ public class TimerTask {
 	public void run() {
 		if (!isActivate) {
 			isActivate = true;
+			executeTimer();
 			@SuppressWarnings("unused")
 			BukkitTask task = new BukkitRunnable() {
 				public void run() {
