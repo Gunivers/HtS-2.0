@@ -24,6 +24,7 @@ import fr.HtSTeam.HtS.Utils.FileExtractor;
 public class Main extends JavaPlugin {
 	
 	public HashMap<Player, UUID> uuidPlayer = new HashMap<>();
+	public World w;
 	public static Main plugin;
 	public final static String HTSNAME = "HtS XII";
 	public static PlayerInGame playerInGame = new PlayerInGame();
@@ -50,7 +51,7 @@ public class Main extends JavaPlugin {
 		
 		timer = new fr.HtSTeam.HtS.Utils.TimerTask(0, 1);
 		
-		for(World w : Bukkit.getWorlds()) {if(w.getEnvironment() == Environment.NORMAL) { FileExtractor.wdir = w.getName() + "/data/loot_tables";}}
+		for(World w : Bukkit.getWorlds()) {if(w.getEnvironment() == Environment.NORMAL) { this.w = w; FileExtractor.wdir = w.getName() + "/data/loot_tables";}}
 		
 		
 		Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "gamerule sendCommandFeedback false");
