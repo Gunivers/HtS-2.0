@@ -15,19 +15,18 @@ import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.Entry;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.EntryBuilder;
+import fr.HtSTeam.HtS.Scoreboard.Scoreboard.HighlightedString;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.Scoreboard;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.ScoreboardHandler;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.ScoreboardLib;
-import fr.HtSTeam.HtS.Scoreboard.Scoreboard.ScrollableString;
-import fr.HtSTeam.HtS.Scoreboard.Scoreboard.Strings;
 import fr.HtSTeam.HtS.Teams.TeamManager;
 
 public class ScoreBoard {
 	
 	public static ArrayList<String> display = new ArrayList<String>();
 	public static Map<UUID, Scoreboard> scoreboards = new HashMap<UUID, Scoreboard>();
-	private final static ScrollableString scroll = new ScrollableString(Strings.format("§4JEU EN PAUSE"), 16, 5);
-		
+	private final static HighlightedString highlighted = new HighlightedString("JEU EN PAUSE", "&4", "&c");
+	
 	public static void send(Player player) {
 
 		Scoreboard scoreboard = ScoreboardLib.createScoreboard(player).setHandler(new ScoreboardHandler() {
@@ -77,7 +76,7 @@ public class ScoreBoard {
 		}
 		
 		if (PlayStopCommands.pause)
-			builder.blank().blank().next("" + scroll.next());
+			builder.blank().blank().next(highlighted.next());
 		
 		return builder.build();
 	}
