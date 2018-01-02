@@ -8,6 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 
 public class BasesEvent implements Listener {	
 	
@@ -35,6 +36,12 @@ public class BasesEvent implements Listener {
 			if(!authorizedBlock.contains(e.getBlock().getType()))
 				e.setCancelled(true);
 		
+	}
+	
+	
+	@EventHandler
+	public void onEnterInBase(PlayerMoveEvent e) {
+		//if(e)
 	}
 
 }

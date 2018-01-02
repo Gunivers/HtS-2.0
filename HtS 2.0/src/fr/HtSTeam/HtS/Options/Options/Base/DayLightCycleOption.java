@@ -13,6 +13,7 @@ public class DayLightCycleOption extends OptionsManager {
 
 	public DayLightCycleOption() {
 		super(Material.DOUBLE_PLANT, "Cycle jour/nuit", "§2Activé", "Activé", OptionsRegister.base);
+		Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "gamerule doDaylightCycle true");
 		
 	}
 
