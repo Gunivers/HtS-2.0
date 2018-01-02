@@ -1,12 +1,12 @@
 package fr.HtSTeam.HtS.Options.Options.Base;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.WorldBorder;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
+import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 
@@ -15,7 +15,7 @@ public class BorderOption extends OptionsManager {
 	
 	private boolean request = false;
 	private Player p;
-	private WorldBorder border = Bukkit.getWorld("world").getWorldBorder();
+	private WorldBorder border = Main.world.getWorldBorder();
 	
 	public BorderOption() {
 		super(Material.IRON_FENCE, "Taille de la bordure", "§d1000 * 1000", "1000", OptionsRegister.base);
