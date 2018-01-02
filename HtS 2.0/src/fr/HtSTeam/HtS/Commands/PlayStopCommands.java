@@ -1,5 +1,7 @@
 package fr.HtSTeam.HtS.Commands;
 
+import java.util.UUID;
+
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.World;
@@ -21,7 +23,11 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.PluginManager;
 
+import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Main;
+import fr.HtSTeam.HtS.Players.PlayerInGame;
+import fr.HtSTeam.HtS.Scoreboard.ScoreBoard;
+import fr.HtSTeam.HtS.Scoreboard.Scoreboard.Scoreboard;
 import net.minecraft.server.v1_12_R1.Entity;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
 
@@ -64,8 +70,20 @@ public class PlayStopCommands implements CommandExecutor, Listener {
 					pause = false;
 				}
 				return true;
+			
+			} else if (cmd.getName().equalsIgnoreCase("end") && sender.hasPermission("end.use")) {
+				EnumState.setState(EnumState.WAIT);
+				for(Scoreboard b : ScoreBoard.scoreboards.values())
+				    b.deactivate();
+				for(UUID uuid : PlayerInGame.playerInGame) {
+					Bukkit.getPlayer(uuid).setHealth(20);
+					Bukkit.getPlayer(uuid).setFoodLevel(20);
+					Bukkit.getPlayer(uuid).getInventory().clear();
+				}
+				ScoreBoard.scoreboards.clear();
+				PlayerInGame.playerInGame.clear();
+				return true;
 			}
-
 		}
 
 		return false;

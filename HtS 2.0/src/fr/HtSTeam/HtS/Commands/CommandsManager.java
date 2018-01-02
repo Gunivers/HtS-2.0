@@ -14,6 +14,7 @@ public class CommandsManager {
 		PlayStopCommands playStop = new PlayStopCommands();
 		main.getCommand("play").setExecutor(playStop);
 		main.getCommand("pause").setExecutor(playStop);
+		main.getCommand("end").setExecutor(playStop);
 	}
 
 }

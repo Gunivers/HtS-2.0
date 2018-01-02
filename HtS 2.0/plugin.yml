@@ -30,3 +30,6 @@ commands:
  play:
   description: Relance le jeu en cours
   usage: Erreur syntaxe ! Faites /play
+ end:
+  description: Stop la partie
+  usage: Erreur Syntaxe ! Faites /end
