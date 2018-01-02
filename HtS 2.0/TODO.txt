@@ -4,7 +4,6 @@ Pour l'HtS de base :
 - Les statistiques																								Pris par :		ikbrunel
 - * Les nerfs (squelette, creeper sans one shot...)																Pris par :		theogiraudet
 - * Les changements de probabilités (drop de pommes (ne pas oublié l'event decay), de flint...)					Pris par :		theogiraudet
-- * Les objets customs (Shulker Shell...) et l'inventaire associé												Pris par :		theogiraudet
 - * Les modifications useless (drop de golden nuggets...)														Pris par :		theogiraudet
 - * Le module des oeufs																							Pris par : 		ikbrunel
 - * [1.13] Désactivation du spawn de certains mobs																Pris par :		theogiraudet
