@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Events;
+package fr.HtSTeam.HtS.GameModes.UHC;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

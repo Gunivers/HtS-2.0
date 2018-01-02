@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Options.Options.UHC;
+package fr.HtSTeam.HtS.Options.Options.Base;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
@@ -14,7 +14,7 @@ public class DifficultOption extends OptionsManager {
 	private int difficult = 3;
 	
 	public DifficultOption() {
-		super(Material.SKULL_ITEM, "Difficulté", "§4Difficile", "Difficile", OptionsRegister.uhc);
+		super(Material.SKULL_ITEM, "Difficulté", "§4Difficile", "Difficile", OptionsRegister.base);
 		changeDifficult(Difficulty.HARD);
 	}
 

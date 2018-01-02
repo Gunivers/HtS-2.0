@@ -13,9 +13,10 @@ import org.bukkit.scoreboard.Scoreboard;
 
 import fr.HtSTeam.HtS.Commands.CommandsManager;
 import fr.HtSTeam.HtS.Events.EventManager;
+import fr.HtSTeam.HtS.GameModes.GameMode;
+import fr.HtSTeam.HtS.GameModes.UHC.UHC;
 import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Players.DeathLoot;
-import fr.HtSTeam.HtS.Players.FakeDeath;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.ScoreboardLib;
 import fr.HtSTeam.HtS.Utils.FileExtractor;
@@ -28,6 +29,7 @@ public class Main extends JavaPlugin {
 	public static PlayerInGame playerInGame = new PlayerInGame();
 	public static DeathLoot deathLoot = new DeathLoot();
 	public static fr.HtSTeam.HtS.Utils.TimerTask timer;
+	public static GameMode gamemode = new UHC();
 	
 	public static Scoreboard b;
 	
@@ -50,7 +52,6 @@ public class Main extends JavaPlugin {
 		
 		for(World w : Bukkit.getWorlds()) {if(w.getEnvironment() == Environment.NORMAL) { FileExtractor.wdir = w.getName() + "/data/loot_tables";}}
 		
-		new FakeDeath();
 		
 		Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "gamerule sendCommandFeedback false");
 		EventManager.loadEvents(this);
@@ -58,4 +59,10 @@ public class Main extends JavaPlugin {
 		OptionsRegister.register();
 		ScoreboardLib.setPluginInstance(this);
 	}
+	
+	/*@Override
+	public void onDisable() {
+		for(Entry<Player, fr.HtSTeam.HtS.Scoreboard.Scoreboard.Scoreboard> entry : ScoreBoard.scoreboards.entrySet())
+			entry.getValue().deactivate();
+	}*/
 }

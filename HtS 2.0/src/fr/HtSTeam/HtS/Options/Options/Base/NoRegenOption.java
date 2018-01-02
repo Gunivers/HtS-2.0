@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Options.Options.UHC;
+package fr.HtSTeam.HtS.Options.Options.Base;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
@@ -15,7 +15,7 @@ public class NoRegenOption extends OptionsManager {
 	private boolean activate = false;
 
 	public NoRegenOption() {
-		super(Material.INK_SACK, "Régération naturelle", "§4Désactivé", "Désactivé", OptionsRegister.uhc);
+		super(Material.INK_SACK, "Régération naturelle", "§4Désactivé", "Désactivé", OptionsRegister.base);
 		getItemStackManager().setItem(Material.INK_SACK, (short) 8);
 		parent.update(this);
 	}

@@ -17,7 +17,7 @@ public class ZombieOption extends OptionsManager {
 	private boolean activate = false;
 	
 	public ZombieOption() {
-		super(Material.MONSTER_EGG, "zombie", "§4Désactivé", "Désactivé", OptionsRegister.loottables);
+		super(Material.MONSTER_EGG, "Zombie", "§4Désactivé", "Désactivé", OptionsRegister.loottables);
 	}
 
 	@Override

@@ -17,7 +17,7 @@ public class CrateOption extends OptionsManager {
 	private boolean activate = false;
 	
 	public CrateOption() {
-		super(Material.BROWN_SHULKER_BOX, "crate", "§4Désactivé", "Désactivé", OptionsRegister.loottables);
+		super(Material.BROWN_SHULKER_BOX, "Crate", "§4Désactivé", "Désactivé", OptionsRegister.loottables);
 	}
 
 	@Override

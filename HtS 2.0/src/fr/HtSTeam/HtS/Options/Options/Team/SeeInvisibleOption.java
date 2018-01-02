@@ -12,7 +12,7 @@ public class SeeInvisibleOption extends OptionsManager {
 	private boolean activate = false;
 	
 	public SeeInvisibleOption() {
-		super(Material.GLASS_BOTTLE, "Invisibilité visible", "§4Désactivé", "Désactivé", OptionsRegister.teams);
+		super(Material.GLASS_BOTTLE, "Invisibilité visible par son équipe", "§4Désactivé", "Désactivé", OptionsRegister.teams);
 	}
 	
 	@Override

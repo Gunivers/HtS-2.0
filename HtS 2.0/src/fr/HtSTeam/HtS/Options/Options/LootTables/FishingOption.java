@@ -17,7 +17,7 @@ public class FishingOption extends OptionsManager {
 	private boolean activate = false;
 	
 	public FishingOption() {
-		super(Material.FISHING_ROD, "fishing", "§4Désactivé", "Désactivé", OptionsRegister.loottables);
+		super(Material.FISHING_ROD, "Pêche modifiée", "§4Désactivé", "Désactivé", OptionsRegister.loottables);
 	}
 
 	@Override

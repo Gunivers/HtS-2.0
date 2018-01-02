@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Players;
+package fr.HtSTeam.HtS.GameModes.UHC;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;

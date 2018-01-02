@@ -28,6 +28,7 @@ public enum EnumState implements Listener {
 				if(Arrays.asList(om.getKey().getClass().getInterfaces()).contains(StartTrigger.class))
 					((StartTrigger) om.getKey()).onPartyStart();
 			}
+			 Main.gamemode.initialisation();
 		}
 	}
 	

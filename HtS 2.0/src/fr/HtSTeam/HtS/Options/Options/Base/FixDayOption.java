@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Options.Options.UHC;
+package fr.HtSTeam.HtS.Options.Options.Base;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -11,7 +11,7 @@ public class FixDayOption extends OptionsManager {
 	int moment = 0;
 	int tick = 0;
 	public FixDayOption() {
-		super(Material.STAINED_CLAY, "Moment au lancement", "§dAube", "Aube", OptionsRegister.uhc);
+		super(Material.STAINED_CLAY, "Moment au lancement", "§dAube", "Aube", OptionsRegister.base);
 		getItemStackManager().setItem(Material.STAINED_CLAY, (short) 2);
 		parent.update(this);
 		}

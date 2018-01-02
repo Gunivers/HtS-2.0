@@ -17,7 +17,7 @@ public class ChestOption extends OptionsManager {
 	private boolean activate = false;
 	
 	public ChestOption() {
-		super(Material.CHEST, "coffre", "§4Désactivé", "Désactivé", OptionsRegister.loottables);
+		super(Material.CHEST, "Coffre", "§4Désactivé", "Désactivé", OptionsRegister.loottables);
 	}
 
 	@Override

@@ -17,7 +17,7 @@ public class SkeletonOption extends OptionsManager {
 	private boolean activate = false;
 	
 	public SkeletonOption() {
-		super(Material.MONSTER_EGG, "skeleton", "§4Désactivé", "Désactivé", OptionsRegister.loottables);
+		super(Material.MONSTER_EGG, "Squelette", "§4Désactivé", "Désactivé", OptionsRegister.loottables);
 	}
 
 	@Override

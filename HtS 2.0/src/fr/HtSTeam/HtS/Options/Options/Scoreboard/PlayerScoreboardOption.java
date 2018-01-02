@@ -10,7 +10,7 @@ import fr.HtSTeam.HtS.Scoreboard.ScoreBoard;
 public class PlayerScoreboardOption extends OptionsManager {
 
 	public PlayerScoreboardOption() {
-		super(Material.TOTEM, "Joueurs", "Affiche le nombre de joueurs encore en vie (et le nombre de teams)", null, OptionsRegister.scoreboard);
+		super(Material.TOTEM, "Joueurs", "Afficher le nombre de joueurs encore en vie (et le nombre de teams)", null, OptionsRegister.scoreboard);
 	}
 	
 	private boolean activated = false;

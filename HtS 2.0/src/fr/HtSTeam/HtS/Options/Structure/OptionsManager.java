@@ -48,5 +48,7 @@ public abstract class OptionsManager implements Listener, EventsOption {
 			gm.put(this);
 		}
 	
+	public GUIManager getParent() { return parent; }
+	
 
 }

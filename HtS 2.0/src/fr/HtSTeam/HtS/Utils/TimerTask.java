@@ -80,6 +80,8 @@ public class TimerTask {
 						if (this.getTimerInMinute() == Integer.parseInt(om.getValue()))
 							m.invoke(om);
 					}
+				} catch (NumberFormatException e) {
+					continue;
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

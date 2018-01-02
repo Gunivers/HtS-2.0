@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Options.Options.UHC;
+package fr.HtSTeam.HtS.Options.Options.Base;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -18,7 +18,7 @@ public class BorderOption extends OptionsManager {
 	private WorldBorder border = Bukkit.getWorld("world").getWorldBorder();
 	
 	public BorderOption() {
-		super(Material.IRON_FENCE, "Taille de la bordure", "§d1000 * 1000", "1000", OptionsRegister.uhc);
+		super(Material.IRON_FENCE, "Taille de la bordure", "§d1000 * 1000", "1000", OptionsRegister.base);
 		border.setCenter(0.0, 0.0);
 		border.setSize(1000);
 	}

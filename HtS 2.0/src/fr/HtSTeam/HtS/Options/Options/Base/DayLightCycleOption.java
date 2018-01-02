@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Options.Options.UHC;
+package fr.HtSTeam.HtS.Options.Options.Base;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -12,7 +12,7 @@ public class DayLightCycleOption extends OptionsManager {
 	private boolean activate = true;
 
 	public DayLightCycleOption() {
-		super(Material.DOUBLE_PLANT, "Cycle jour/nuit", "§2Activé", "Activé", OptionsRegister.uhc);
+		super(Material.DOUBLE_PLANT, "Cycle jour/nuit", "§2Activé", "Activé", OptionsRegister.base);
 		
 	}
 

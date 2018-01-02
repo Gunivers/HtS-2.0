@@ -17,7 +17,7 @@ public class BatOption extends OptionsManager {
 	private boolean activate = false;
 	
 	public BatOption() {
-		super(Material.MONSTER_EGG, "bat", "§4Désactivé", "Désactivé", OptionsRegister.loottables);
+		super(Material.MONSTER_EGG, "Chauve-souris", "§4Désactivé", "Désactivé", OptionsRegister.loottables);
 	}
 
 	@Override

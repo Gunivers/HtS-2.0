@@ -8,11 +8,11 @@ import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 import fr.HtSTeam.HtS.Options.Structure.TeamManager;
 
-public class DeathMeassageTeamOption extends OptionsManager {
+public class DeathMessageTeamOption extends OptionsManager {
 	
 	private int deathmsg = 0;
 	
-	public DeathMeassageTeamOption() {
+	public DeathMessageTeamOption() {
 		super(Material.SKULL_ITEM, "Message de mort", "§2Activé", "Activé", OptionsRegister.teams);
 	}
 

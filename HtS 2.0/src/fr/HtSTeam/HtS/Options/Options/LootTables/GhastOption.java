@@ -17,7 +17,7 @@ public class GhastOption extends OptionsManager {
 	private boolean activate = false;
 
 	public GhastOption() {
-		super(Material.MONSTER_EGG, "ghast", "§4Désactivé", "Désactivé", OptionsRegister.loottables);
+		super(Material.MONSTER_EGG, "Ghast", "§4Désactivé", "Désactivé", OptionsRegister.loottables);
 	}
 
 	@Override

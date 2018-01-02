@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Options.Options.UHC;
+package fr.HtSTeam.HtS.Options.Options.Base;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -19,7 +19,7 @@ public class EnablePvPOption extends OptionsManager {
 	private Player p;
 	
 	public EnablePvPOption() {
-		super(Material.DIAMOND_SWORD, "Activation du PvP", "20 minutes", "20 minutes", OptionsRegister.uhc);
+		super(Material.DIAMOND_SWORD, "Activation du PvP", "§520 minutes", "20", OptionsRegister.base);
 		switchState(false);
 	}
 
@@ -38,9 +38,9 @@ public class EnablePvPOption extends OptionsManager {
 			try {
 				int value = Integer.parseInt(e.getMessage());
 				if(value >= 0 && value <= 60) {
-					setValue(Integer.toString(value) + " minutes");
+					setValue(Integer.toString(value));
 					p.sendMessage("§2PvP activé à " + " minutes." );
-					this.getItemStackManager().setLore("§2" + value + " minutes");
+					this.getItemStackManager().setLore("§5" + value + " minutes");
 					parent.update(this);
 					request = true;
 					return;

@@ -12,7 +12,7 @@ import fr.HtSTeam.HtS.Scoreboard.ScoreBoard;
 public class RemoveBlankScoreboardOption extends OptionsManager {
 	
 	public RemoveBlankScoreboardOption() {
-		super(Material.EMPTY_MAP, "Supprime Espace", "Supprime une ligne vide", null, OptionsRegister.scoreboard);
+		super(Material.EMPTY_MAP, "Supprimer Espace", "Supprimer une ligne vide", null, OptionsRegister.scoreboard);
 	}
 		
 	@Override

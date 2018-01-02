@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Options.Options.UHC;
+package fr.HtSTeam.HtS.Options.Options.Base;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -13,7 +13,7 @@ public class WeatherOption extends OptionsManager {
 	private boolean activate = true;
 
 	public WeatherOption() {
-		super(Material.WATER_BUCKET, "Pluie", "§2Activé", "Activé", OptionsRegister.uhc);
+		super(Material.WATER_BUCKET, "Pluie", "§2Activé", "Activé", OptionsRegister.base);
 	}
 
 	@Override

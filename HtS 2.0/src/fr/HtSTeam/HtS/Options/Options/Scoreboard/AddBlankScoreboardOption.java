@@ -10,7 +10,7 @@ import fr.HtSTeam.HtS.Scoreboard.ScoreBoard;
 public class AddBlankScoreboardOption extends OptionsManager {
 	
 	public AddBlankScoreboardOption() {
-		super(Material.PAPER, "Espace", "Ajoute une ligne vide", null, OptionsRegister.scoreboard);
+		super(Material.PAPER, "Espace", "Ajouter une ligne vide", null, OptionsRegister.scoreboard);
 	}
 		
 	@Override

@@ -21,7 +21,7 @@ public class GUIManager extends OptionsManager {
 	public static ArrayList<GUIManager> guiList = new ArrayList<GUIManager>();
 	public Map<ItemStackManager, OptionsManager> guiContent = new HashMap<ItemStackManager, OptionsManager>();
 	
-	private Inventory inv;
+	protected Inventory inv;
 	
 	
 	public GUIManager(String name, int rows, String nameIcon, String description, Material material, GUIManager gui) {
@@ -37,7 +37,7 @@ public class GUIManager extends OptionsManager {
 	// Common Methods
 	
 	public void put(OptionsManager optionsManager) {
-		if (guiContent.entrySet().size() >= inv.getSize() - 1)
+		if (guiContent.entrySet().size() > inv.getSize())
 			return;
 		guiContent.put(optionsManager.getItemStackManager(), optionsManager);
 		if(parent == null)
