@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Main;
@@ -25,7 +26,7 @@ public class ScoreBoard {
 	
 	public static ArrayList<String> display = new ArrayList<String>();
 	public static Map<UUID, Scoreboard> scoreboards = new HashMap<UUID, Scoreboard>();
-	
+		
 	public static void send(Player player) {
 
 		Scoreboard scoreboard = ScoreboardLib.createScoreboard(player).setHandler(new ScoreboardHandler() {
@@ -36,7 +37,7 @@ public class ScoreBoard {
 
 			@Override
 			public List<Entry> getEntries(Player player) {			
-					return getBuild();
+					return getBuild(player);
 			}
 
 		}).setUpdateInterval(2l);
@@ -44,9 +45,9 @@ public class ScoreBoard {
 		scoreboards.put(player.getUniqueId(), scoreboard);
 	}
 	
-	private static List<Entry> getBuild() {
+	private static List<Entry> getBuild(Player p) {
 		if(display.size() == 0)
-			return new EntryBuilder().next("§6Joueur:").next(Integer.toString(PlayerInGame.playerInGame.size())).next("§6Kills:").next(getPlayerKilled()).next("§6Timer:").next(Main.timer.getTimeFormat()).next("§6Bordure:").next(OptionsRegister.borderOption.getValue() + "x" + OptionsRegister.borderOption.getValue()).build();
+			return new EntryBuilder().next("§6Joueur:").next(Integer.toString(PlayerInGame.playerInGame.size())).next("§6Kills:").next(Integer.toString(p.getStatistic(Statistic.PLAYER_KILLS))).next("§6Timer:").next(Main.timer.getTimeFormat()).next("§6Bordure:").next(OptionsRegister.borderOption.getValue() + "x" + OptionsRegister.borderOption.getValue()).build();
 		
 		EntryBuilder builder = new EntryBuilder();
 		
@@ -58,10 +59,11 @@ public class ScoreBoard {
 						builder.next("§6Equipes:").next(Integer.toString(TeamManager.teamList.size()));
 					break;
 				case "KilledScoreboardOption":
-					builder.next("§6Tuers:").next(getPlayerKilled());
+					builder.next("§6Kills:").next(Integer.toString(p.getStatistic(Statistic.PLAYER_KILLS)));
 					break;
 				case "TimerScoreboardOption":
 					builder.next("§6Timer:").next(Main.timer.getTimeFormat());
+					System.out.println(Main.gamemode.toString());
 					if (Main.gamemode.toString().equals("Fallen Kingdom"))
 						builder.next("§6Days:").next(Integer.toString((int) Main.timer.getTimerInMinute() / 20));
 					break;
@@ -78,9 +80,5 @@ public class ScoreBoard {
 			builder.blank().blank().next("	" + new ScrollableString(Strings.format("§4JEU EN PAUSE"), 40, 0).next());
 		
 		return builder.build();
-	}
-	
-	private static String getPlayerKilled() {
-		return "6";
 	}
 }
