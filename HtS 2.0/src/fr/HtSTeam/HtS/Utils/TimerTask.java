@@ -78,7 +78,6 @@ public class TimerTask {
 			for (Method m : om.getClass().getMethods()) {
 				try {
 					if (m.isAnnotationPresent(Timer.class)) {
-						System.out.println(m.getName());
 						if (this.getTimerInMinute() == Integer.parseInt(om.getValue()))
 							m.invoke(om);
 					}
