@@ -1,6 +1,7 @@
 package fr.HtSTeam.HtS.GameModes.UHC;
 
 import java.util.Map.Entry;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -8,9 +9,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.GameModes.GameMode;
 import fr.HtSTeam.HtS.Options.OptionsRegister;
+import fr.HtSTeam.HtS.Players.PlayerInGame;
 import fr.HtSTeam.HtS.Teams.TeamManager;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
@@ -19,8 +20,8 @@ public class UHC implements GameMode {
 	@Override
 	public void initialisation() {
 		new EventManagerUHC();
-		for (Player p : Main.playerInGame.getPlayerInGame())
-			p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 30 * 20, 255, false, false));
+		for (UUID p : PlayerInGame.playerInGame)
+			Bukkit.getPlayer(p).addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 30 * 20, 255, false, false));
 		teleport();	
 	}
 	

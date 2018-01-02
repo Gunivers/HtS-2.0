@@ -2,6 +2,7 @@ package fr.HtSTeam.HtS.Players;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
@@ -13,15 +14,15 @@ import fr.HtSTeam.HtS.EnumState;
 
 public class PlayerInGame implements Listener {
 
-	private List<Player> playerInGame = new ArrayList<Player>();
+	public static List<UUID> playerInGame = new ArrayList<UUID>();
 	
-	public List<Player> getPlayerInGame() { return playerInGame; }
+	public List<UUID> getPlayerInGame() { return playerInGame; }
 	
-	public void removePlayer(Player p) { playerInGame.remove(p); }
+	public void removePlayer(Player p) { playerInGame.remove(p.getUniqueId()); }
 	
 	public void addPlayer(Player p) {
-		if(!playerInGame.contains(p))
-			playerInGame.add(p);
+		if(!playerInGame.contains(p.getUniqueId()))
+			playerInGame.add(p.getUniqueId());
 	}
 	
 	public void clear() { playerInGame.clear(); }
@@ -29,8 +30,11 @@ public class PlayerInGame implements Listener {
 	
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent e) {
+		System.out.println(!playerInGame.contains(e.getPlayer().getUniqueId()));
+		System.out.println(e.getPlayer().getUniqueId());
+		System.out.println(playerInGame.get(0));
 	    if(!EnumState.getState().equals(EnumState.WAIT)) {
-			if(!playerInGame.contains(e.getPlayer()))
+			if(!playerInGame.contains(e.getPlayer().getUniqueId()))
 				e.getPlayer().setGameMode(GameMode.SPECTATOR);
 		}
 	}

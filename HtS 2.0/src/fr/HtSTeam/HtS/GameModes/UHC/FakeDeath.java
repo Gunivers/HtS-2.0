@@ -14,6 +14,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import fr.HtSTeam.HtS.Main;
+import fr.HtSTeam.HtS.Players.PlayerInGame;
 
 public class FakeDeath implements Listener {
 
@@ -31,7 +32,7 @@ public class FakeDeath implements Listener {
 			}
 			p.getWorld().dropItem(p.getLocation(), is);
 			((Player) p).setGameMode(GameMode.SPECTATOR);
-			Main.playerInGame.removePlayer(p);
+			PlayerInGame.playerInGame.remove(p.getUniqueId());
 
 			for (Player p2 : Bukkit.getOnlinePlayers())
 				p2.playSound(p2.getLocation(), Sound.ENTITY_WITHER_SPAWN, 1.0f, 1.0f);

@@ -1,5 +1,8 @@
 package fr.HtSTeam.HtS.Commands;
 
+import java.util.UUID;
+
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -7,6 +10,7 @@ import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.OptionsRegister;
+import fr.HtSTeam.HtS.Players.PlayerInGame;
 
 public class OptionCommand implements CommandExecutor {
 
@@ -27,9 +31,9 @@ public class OptionCommand implements CommandExecutor {
 			
 			
 			
-			} if (cmd.getName().equalsIgnoreCase("test") && sender.hasPermission("option.use")) {
-				for(Player p2 : Main.playerInGame.getPlayerInGame())
-					System.out.println(p2.getName());
+			} if (cmd.getName().equalsIgnoreCase("test") && sender.hasPermission("test.use")) {
+				for(UUID p2 : PlayerInGame.playerInGame)
+					System.out.println(Bukkit.getPlayer(p2).getDisplayName());
 				return true;
 			}
 		}

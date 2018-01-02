@@ -9,7 +9,7 @@ public class CommandsManager {
 		main.getCommand("start").setExecutor(new StartCommand(main));
 		main.getCommand("run").setExecutor(new StartCommand(main));
 		main.getCommand("team").setExecutor(new TeamCommand());
-		main.getCommand("test").setExecutor(new TeamCommand());
+		main.getCommand("test").setExecutor(new OptionCommand(main));
 	}
 
 }

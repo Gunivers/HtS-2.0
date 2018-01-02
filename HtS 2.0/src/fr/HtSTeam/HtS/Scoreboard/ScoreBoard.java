@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.OptionsRegister;
+import fr.HtSTeam.HtS.Players.PlayerInGame;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.Entry;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.EntryBuilder;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.Scoreboard;
@@ -41,14 +42,14 @@ public class ScoreBoard {
 	
 	private static List<Entry> getBuild() {
 		if(display.size() == 0)
-			return new EntryBuilder().next("§6Joueur:").next(Integer.toString(Main.playerInGame.getPlayerInGame().size())).next("§6Tuer:").next(getPlayerKilled()).next("§6Timer:").next(Main.timer.getTimeFormat()).next("§6Bordure:").next(OptionsRegister.borderOption.getValue() + "x" + OptionsRegister.borderOption.getValue()).build();
+			return new EntryBuilder().next("§6Joueur:").next(Integer.toString(PlayerInGame.playerInGame.size())).next("§6Tuer:").next(getPlayerKilled()).next("§6Timer:").next(Main.timer.getTimeFormat()).next("§6Bordure:").next(OptionsRegister.borderOption.getValue() + "x" + OptionsRegister.borderOption.getValue()).build();
 		
 		EntryBuilder builder = new EntryBuilder();
 		
 		for(int i = 0; i < display.size(); i++) {
 			switch(display.get(i)) {
 				case "PlayerScoreboardOption":
-					builder.next("§6Joueurs:").next(Integer.toString(Main.playerInGame.getPlayerInGame().size()));
+					builder.next("§6Joueurs:").next(Integer.toString(PlayerInGame.playerInGame.size()));
 					if (TeamManager.teamList.size() != 0)
 						builder.next("§6Equipes:").next(Integer.toString(TeamManager.teamList.size()));
 					break;

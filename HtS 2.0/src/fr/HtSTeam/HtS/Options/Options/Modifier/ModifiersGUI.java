@@ -3,7 +3,9 @@ package fr.HtSTeam.HtS.Options.Options.Modifier;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -16,6 +18,7 @@ import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Options.Structure.GUIManager;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
+import fr.HtSTeam.HtS.Players.PlayerInGame;
 import fr.HtSTeam.HtS.Utils.ItemStackManager;
 import fr.HtSTeam.HtS.Utils.StartTrigger;
 
@@ -53,8 +56,8 @@ public class ModifiersGUI extends GUIManager implements StartTrigger, CommandExe
 				continue;
 			}
 		if(!active) return;
-		for(Player p : Main.playerInGame.getPlayerInGame())
-			customInventory.put(p, new CustomGUI());
+		for(UUID p : PlayerInGame.playerInGame)
+			customInventory.put(Bukkit.getPlayer(p), new CustomGUI());
 	}
 	
 	public CustomGUI getInventory(Player p) {

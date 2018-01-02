@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
+import fr.HtSTeam.HtS.Players.PlayerInGame;
 import fr.HtSTeam.HtS.Scoreboard.ScoreBoard;
 import fr.HtSTeam.HtS.Utils.JSON;
 
@@ -48,7 +49,7 @@ public class StartCommand implements CommandExecutor {
 				
 				for(Player player : Bukkit.getOnlinePlayers())
 					if(!player.getGameMode().equals(GameMode.SPECTATOR)) {
-						Main.playerInGame.addPlayer(player);
+						PlayerInGame.playerInGame.add(player.getUniqueId());
 						p.sendMessage(player.getName());
 						player.setHealth(20);
 						player.setFoodLevel(20);
@@ -58,6 +59,7 @@ public class StartCommand implements CommandExecutor {
 						ScoreBoard.send(player);
 					}
 				
+				System.out.println(PlayerInGame.playerInGame.get(0));
 				Main.timer.run();
 				EnumState.setState(EnumState.RUNNING);
 				return true;

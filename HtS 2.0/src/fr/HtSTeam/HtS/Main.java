@@ -17,7 +17,6 @@ import fr.HtSTeam.HtS.GameModes.GameMode;
 import fr.HtSTeam.HtS.GameModes.UHC.UHC;
 import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Players.DeathLoot;
-import fr.HtSTeam.HtS.Players.PlayerInGame;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.ScoreboardLib;
 import fr.HtSTeam.HtS.Utils.FileExtractor;
 
@@ -27,7 +26,6 @@ public class Main extends JavaPlugin {
 	public static World world;
 	public static Main plugin;
 	public final static String HTSNAME = "HtS XII";
-	public static PlayerInGame playerInGame = new PlayerInGame();
 	public static DeathLoot deathLoot = new DeathLoot();
 	public static fr.HtSTeam.HtS.Utils.TimerTask timer;
 	public static GameMode gamemode = new UHC();
