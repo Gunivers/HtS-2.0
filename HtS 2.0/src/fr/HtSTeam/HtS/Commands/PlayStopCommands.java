@@ -49,6 +49,7 @@ public class PlayStopCommands implements CommandExecutor, Listener {
 			if (cmd.getName().equalsIgnoreCase("pause") && sender.hasPermission("pause.use")) {
 				if(!pause) {
 					JSON.sendAll("§aÔ temps,", "§bsuspends ton vol !", 10);
+					Main.timer.inPause(true);
 					Bukkit.broadcastMessage("§4Le jeu est en pause !");
 					pause = true;
 					dayCycleState = Main.world.getGameRuleValue("doDaylightCycle");
@@ -63,6 +64,7 @@ public class PlayStopCommands implements CommandExecutor, Listener {
 				
 			} else if (cmd.getName().equalsIgnoreCase("play") && sender.hasPermission("play.use")) {
 				if(pause) {
+					Main.timer.inPause(false);
 					Bukkit.broadcastMessage("§2Le jeu est de nouveau lancé !");
 					Main.world.setGameRuleValue("doDaylightCycle", dayCycleState);
 					for (World w : Bukkit.getWorlds())
