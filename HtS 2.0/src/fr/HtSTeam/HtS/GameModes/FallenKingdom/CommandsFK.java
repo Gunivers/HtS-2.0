@@ -79,8 +79,8 @@ public class CommandsFK implements CommandExecutor, Listener {
 					for(BaseManager bm : BaseManager.baseList) {
 						p.sendMessage(" - " + ChatColor.valueOf(bm.getTeam().getTeamColor().toUpperCase()) + bm.getBaseName());
 						p.sendMessage("  - §2Team :§r " + ChatColor.valueOf(bm.getTeam().getTeamColor().toUpperCase()) + bm.getTeam().getTeamName());
-						p.sendMessage("  - §2Premier angle :§r " + bm.getPos()[0][0]);
-						p.sendMessage("  - §2Second angle :§r " + bm.getPos()[1][1]);
+						p.sendMessage("  - §2Premier angle :§r " + bm.getPos()[0][0] + " " + bm.getPos()[1][0]);
+						p.sendMessage("  - §2Second angle :§r " + bm.getPos()[0][1] + " " + bm.getPos()[1][1]);
 					}
 					return true;
 				}
