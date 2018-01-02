@@ -1,5 +1,6 @@
 package fr.HtSTeam.HtS.GameModes.FallenKingdom;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
@@ -75,6 +76,7 @@ public class CommandsFK implements CommandExecutor, Listener {
 			Block b = e.getClickedBlock();
 			angleDo++;
 			if(angleDo == 1) {
+				Bukkit.broadcastMessage("aaaaaaa");
 				firstAngle = b;
 				ism = new ItemStackManager(ism.getMaterial(), ism.getData(), 1, "Définir le second angle de la base" + name, "Premier angle : " + firstAngle.getX() + " " + firstAngle.getY() + " " + firstAngle.getZ(), true);
 				p.getEquipment().setItemInMainHand(ism.getItemStack());
