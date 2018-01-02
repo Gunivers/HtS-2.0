@@ -79,6 +79,7 @@ public class PlayStopCommands implements CommandExecutor, Listener {
 					Bukkit.getPlayer(uuid).setHealth(20);
 					Bukkit.getPlayer(uuid).setFoodLevel(20);
 					Bukkit.getPlayer(uuid).getInventory().clear();
+					Bukkit.getPlayer(uuid).setLevel(0);
 				}
 				ScoreBoard.scoreboards.clear();
 				PlayerInGame.playerInGame.clear();
