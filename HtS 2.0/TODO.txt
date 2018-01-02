@@ -1,8 +1,6 @@
 Pour l'HtS de base :
 
 - Désactiver les biomes Océan
-- Le timer																										Pris par :		theogiraudet	DONE
-- Le join des équipes par clic sur laine																		Pris par :		ikbrunel
 - Les statistiques																								Pris par :		ikbrunel
 - * Les nerfs (squelette, creeper sans one shot...)																Pris par :		theogiraudet
 - * Les changements de probabilités (drop de pommes (ne pas oublié l'event decay), de flint...)					Pris par :		theogiraudet
