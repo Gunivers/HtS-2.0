@@ -20,7 +20,7 @@ public class TeamCommand implements CommandExecutor {
 			if (cmd.getName().equalsIgnoreCase("team") && p.hasPermission("team.use") && args.length > 0) {
 				if (args[0].equalsIgnoreCase("add") && args.length > 2) {
 					TeamManager tm = new TeamManager(args[1], args[2]);
-					if (args[3] != null)
+					if (args.length == 4)
 						tm.setFakeTeam(Boolean.valueOf(args[3]));
 					return true;
 				} else if (args[0].equalsIgnoreCase("remove") && args.length == 2) {
