@@ -1,6 +1,7 @@
 package fr.HtSTeam.HtS.Commands;
 
 import fr.HtSTeam.HtS.Main;
+import fr.HtSTeam.HtS.Teams.TeamCommand;
 
 public class CommandsManager {
 	
