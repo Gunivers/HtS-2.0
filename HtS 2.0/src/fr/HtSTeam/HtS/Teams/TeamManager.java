@@ -39,6 +39,7 @@ public class TeamManager {
 		
 		team = Main.b.registerNewTeam(teamName);
 		team.setColor(ChatColor.valueOf(teamColor.toUpperCase()));
+		team.setPrefix("[" + ChatColor.valueOf(teamColor.toUpperCase()) + teamName + "§r] ");
 	}
 	
 	public void addPlayer(Player p) {
@@ -48,6 +49,7 @@ public class TeamManager {
 			playerList.add(p);
 			playerTeam.put(p, this);
 			team.addEntry(p.getName());
+			p.setScoreboard(Main.b);
 		}
 	}
 	
