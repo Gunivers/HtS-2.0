@@ -15,6 +15,8 @@ public class CommandsManager {
 		main.getCommand("play").setExecutor(playStop);
 		main.getCommand("pause").setExecutor(playStop);
 		main.getCommand("end").setExecutor(playStop);
+		main.getCommand("heal").setExecutor(new UtilCommands());
+		main.getCommand("feed").setExecutor(new UtilCommands());
 	}
 
 }

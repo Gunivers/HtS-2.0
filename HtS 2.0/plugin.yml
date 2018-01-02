@@ -20,7 +20,7 @@ commands:
   usage: Erreur syntaxe ! Faites /gui
  base:
   description: Définir une base
-  usage: Erreur syntaxe ! Faites /setbase (nomBase) (nomEquipe)
+  usage: Erreur syntaxe ! Faites /setbase <nomBase> <nomEquipe>
  test:
   description: aaa
   usage: aaa
@@ -33,3 +33,9 @@ commands:
  end:
   description: Stop la partie
   usage: Erreur Syntaxe ! Faites /end
+ heal:
+  description: Heal le joueur
+  usage: Erreur ! Faites /heal
+ feed:
+  description: Nourris le joueur
+  usage: Erreur ! Faites /feed <joueur>
