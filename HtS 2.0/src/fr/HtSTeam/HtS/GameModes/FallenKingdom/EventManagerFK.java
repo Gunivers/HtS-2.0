@@ -12,6 +12,7 @@ public class EventManagerFK {
 		PluginManager pm = Bukkit.getServer().getPluginManager();
 		
 		pm.registerEvents(new ChargedCreeper(), Main.plugin);
+		pm.registerEvents(new BasesEvent(), Main.plugin);
 	}
 	
 }
