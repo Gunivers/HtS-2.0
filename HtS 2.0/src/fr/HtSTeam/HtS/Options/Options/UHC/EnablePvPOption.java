@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Options.Options.Base;
+package fr.HtSTeam.HtS.Options.Options.UHC;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -13,6 +13,7 @@ import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
 
 public class EnablePvPOption extends OptionsManager {
 	
+	//RELIER AU TIMER
 
 	private boolean request;
 	private Player p;

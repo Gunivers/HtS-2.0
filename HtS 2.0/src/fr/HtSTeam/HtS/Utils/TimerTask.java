@@ -11,7 +11,7 @@ import org.bukkit.scheduler.BukkitTask;
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
-import fr.HtSTeam.HtS.Options.Structure.Timer;
+import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
 
 public class TimerTask {
 
@@ -34,7 +34,8 @@ public class TimerTask {
 				public void run() {
 					if(!pause) {
 						time += step;
-						executeTimer();
+						if (time%60 == 0)
+							executeTimer();
 					}
 					if (EnumState.getState().equals(EnumState.FINISHING) || time < 0 || stop)
 						this.cancel();
@@ -77,6 +78,7 @@ public class TimerTask {
 			for (Method m : om.getClass().getMethods()) {
 				try {
 					if (m.isAnnotationPresent(Timer.class)) {
+						System.out.println(m.getName());
 						if (this.getTimerInMinute() == Integer.parseInt(om.getValue()))
 							m.invoke(om);
 					}

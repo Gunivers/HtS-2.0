@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Options.Structure;
+package fr.HtSTeam.HtS.Options.Structure.Annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,4 +7,6 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Timer { }
+public @interface Timer {
+	PRIORITY value() default PRIORITY.NORMAL; 
+}
