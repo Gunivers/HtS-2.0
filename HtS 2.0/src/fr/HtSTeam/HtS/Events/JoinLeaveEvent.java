@@ -15,7 +15,7 @@ public class JoinLeaveEvent implements Listener {
 		Player p = e.getPlayer();
 		
 		if (EnumState.getState() == EnumState.RUNNING) {
-			ScoreBoard.scoreboards.get(p).activate();
+			ScoreBoard.send(p);
 		}
 	}
 	
