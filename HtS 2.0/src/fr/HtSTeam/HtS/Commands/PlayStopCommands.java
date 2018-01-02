@@ -42,6 +42,7 @@ public class PlayStopCommands implements CommandExecutor, Listener {
 		pm.registerEvents(this, Main.plugin);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
 		if (sender instanceof Player) {
@@ -80,7 +81,7 @@ public class PlayStopCommands implements CommandExecutor, Listener {
 				for(Scoreboard b : ScoreBoard.scoreboards.values())
 				    b.deactivate();
 				for(UUID uuid : PlayerInGame.playerInGame) {
-					Bukkit.getPlayer(uuid).setHealth(20);
+					Bukkit.getPlayer(uuid).setHealth(Bukkit.getPlayer(uuid).getMaxHealth());
 					Bukkit.getPlayer(uuid).setFoodLevel(20);
 					Bukkit.getPlayer(uuid).getInventory().clear();
 					Bukkit.getPlayer(uuid).setLevel(0);

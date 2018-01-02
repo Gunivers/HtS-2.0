@@ -18,7 +18,7 @@ import fr.HtSTeam.HtS.Utils.ActionBar;
 public class BasesEvent implements Listener {	
 	
 	public List<Material> authorizedBlock = new ArrayList<Material>();
-	private Map<UUID, PlayerBase> playerLocation = new HashMap<UUID, PlayerBase>();	
+	private static Map<UUID, PlayerBase> playerLocation = new HashMap<UUID, PlayerBase>();	
 	
 	public BasesEvent() {
 		authorizedBlock.add(Material.TORCH);
@@ -61,7 +61,7 @@ public class BasesEvent implements Listener {
 				if(PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).equals(PlayerBase.NONE))
 					new ActionBar(e.getPlayer(), "§4MESSAGE ENTER NO MANS LAND", 5).send();
 				
-				playerLocation.put(e.getPlayer().getUniqueId(), PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()));
+				playerLocation.replace(e.getPlayer().getUniqueId(), PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()));
 			}
 		}
 	}

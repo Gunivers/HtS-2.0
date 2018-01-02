@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Commands.PlayStopCommands;
 import fr.HtSTeam.HtS.Options.OptionsRegister;
+import fr.HtSTeam.HtS.Options.Options.GameMode.GameModeState;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.Entry;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.EntryBuilder;
@@ -26,6 +27,7 @@ public class ScoreBoard {
 	
 	public static ArrayList<String> display = new ArrayList<String>();
 	public static Map<UUID, Scoreboard> scoreboards = new HashMap<UUID, Scoreboard>();
+	private final static ScrollableString scroll = new ScrollableString(Strings.format("§4JEU EN PAUSE"), 40, 0);
 		
 	public static void send(Player player) {
 
@@ -63,8 +65,7 @@ public class ScoreBoard {
 					break;
 				case "TimerScoreboardOption":
 					builder.next("§6Timer:").next(Main.timer.getTimeFormat());
-					System.out.println(Main.gamemode.toString());
-					if (Main.gamemode.toString().equals("Fallen Kingdom"))
+					if (((GameModeState) Main.gamemode).getGameMode().equals("Fallen Kingdom"))
 						builder.next("§6Days:").next(Integer.toString((int) Main.timer.getTimerInMinute() / 20));
 					break;
 				case "BorderScoreboardOption":
@@ -77,7 +78,7 @@ public class ScoreBoard {
 		}
 		
 		if (PlayStopCommands.pause)
-			builder.blank().blank().next("	" + new ScrollableString(Strings.format("§4JEU EN PAUSE"), 40, 0).next());
+			builder.blank().blank().next("		" + scroll.next());
 		
 		return builder.build();
 	}
