@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 public class TeamManager {
@@ -32,6 +33,7 @@ public class TeamManager {
 	}
 	
 	public void addPlayer(Player p) {
+		p.sendMessage("Vous avez rejoint l'équipe " + ChatColor.valueOf(teamColor.toUpperCase()) + teamName);
 		if(faketeam) {
 			playerList.add(p.getUniqueId());
 		} else {
@@ -41,6 +43,7 @@ public class TeamManager {
 	}
 	
 	public void removePlayer(Player p) {
+		p.sendMessage("Vous avez quitté l'équipe " + ChatColor.valueOf(teamColor.toUpperCase()) + teamName);
 		if(faketeam) {
 			playerList.remove(p.getUniqueId());
 			if(playerList.size() == 0) {
@@ -48,7 +51,7 @@ public class TeamManager {
 			}
 		} else {
 			playerList.remove(p.getUniqueId());
-			playerTeam.remove(p, this);
+			playerTeam.remove(p.getUniqueId(), this);
 			if(getTeamSize() == 0) {
 				teamList.remove(this);
 				nameTeam.remove(teamName, this);

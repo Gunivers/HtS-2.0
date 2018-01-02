@@ -1,14 +1,15 @@
-package fr.HtSTeam.HtS.Commands;
+package fr.HtSTeam.HtS.Teams;
 
 import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import fr.HtSTeam.HtS.Teams.TeamManager;
+import fr.HtSTeam.HtS.Utils.ItemStackManager;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 import net.md_5.bungee.api.ChatColor;
 
@@ -27,8 +28,8 @@ public class TeamCommand implements CommandExecutor {
 					return true;
 				} else if (args[0].equalsIgnoreCase("remove") && args.length == 2) {
 					if (TeamManager.nameTeam.containsKey(args[1])) {
-						TeamManager.nameTeam.get(args[1]).clearTeam();
 						p.sendMessage("L'équipe " + ChatColor.valueOf(TeamManager.nameTeam.get(args[1]).getTeamColor().toUpperCase()) + TeamManager.nameTeam.get(args[1]).getTeamName() + " §ra été supprimée !");
+						TeamManager.nameTeam.get(args[1]).clearTeam();
 						return true;
 					}
 					return false;
@@ -50,6 +51,13 @@ public class TeamCommand implements CommandExecutor {
 					p.sendMessage("Liste des Teams:");
 					for(TeamManager t :TeamManager.teamList)
 						p.sendMessage("- " + ChatColor.valueOf(t.getTeamColor().toUpperCase()) + t.getTeamName());
+					return true;
+				} else if (args[0].equalsIgnoreCase("give") && args.length == 1) {
+					for (Player player : Bukkit.getOnlinePlayers())
+						player.getInventory().clear();
+					for (TeamManager t : TeamManager.teamList)
+						for (Player player : Bukkit.getOnlinePlayers())
+							player.getInventory().addItem(new ItemStackManager(Material.WOOL, t.getTeamByte(), 1, ChatColor.valueOf(t.getTeamColor().toUpperCase()) + t.getTeamName(), "§fClique pour rejoindre l'équipe " + ChatColor.valueOf(t.getTeamColor().toUpperCase()) + t.getTeamName(), true).getItemStack());
 					return true;
 				} else if (args[0].equalsIgnoreCase("random")) {
 					if(TeamManager.teamList.size() != 0) {
