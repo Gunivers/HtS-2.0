@@ -55,18 +55,12 @@ public class BasesEvent implements Listener {
 
 				if (PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).equals(PlayerBase.OTHER))
 					new ActionBar(e.getPlayer(), "§4MESSAGE ENTER ENEMY BASE", 5).send();
-				if (PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).equals(PlayerBase.OTHER))
-					new ActionBar(e.getPlayer(), "§4MESSAGE ENTER ENEMY BASE", 1).send();
 
 				else if (PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).equals(PlayerBase.OWN))
+					new ActionBar(e.getPlayer(), "§4MESSAGE ENTER OUR BASE", 5).send();
 
-					if (PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).equals(PlayerBase.OWN))
-						new ActionBar(e.getPlayer(), "§4MESSAGE ENTER OWN BASE", 1).send();
-
-					else if (PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).equals(PlayerBase.NONE))
-						new ActionBar(e.getPlayer(), "§4MESSAGE ENTER NO MANS LAND", 5).send();
-				if (PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).equals(PlayerBase.NONE))
-					new ActionBar(e.getPlayer(), "§4MESSAGE ENTER NO MANS LAND", 1).send();
+				else if (PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).equals(PlayerBase.NONE))
+					new ActionBar(e.getPlayer(), "§4MESSAGE ENTER NO MANS LAND", 5).send();
 
 				playerLocation.replace(e.getPlayer().getUniqueId(),
 						PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()));
