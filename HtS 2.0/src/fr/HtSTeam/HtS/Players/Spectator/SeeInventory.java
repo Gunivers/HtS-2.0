@@ -22,9 +22,9 @@ public class SeeInventory implements Listener {
 	
 	@EventHandler
 	public void onCloseInventory(InventoryCloseEvent e) {
-		String name = e.getInventory().getTitle();
-		if(e.getPlayer().getGameMode() == GameMode.SPECTATOR && inventories.contains(name)) {
-			inventories.remove(name);
+		//String name = e.getInventory().getTitle();
+		if(e.getPlayer().getGameMode() == GameMode.SPECTATOR && inventories.contains(e.getInventory())) {
+			inventories.remove(e.getInventory());
 		}
 		
 	}
