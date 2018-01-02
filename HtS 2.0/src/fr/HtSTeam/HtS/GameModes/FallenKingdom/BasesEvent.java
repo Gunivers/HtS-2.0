@@ -15,11 +15,11 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 import fr.HtSTeam.HtS.Utils.ActionBar;
 
-public class BasesEvent implements Listener {	
-	
+public class BasesEvent implements Listener {
+
 	public List<Material> authorizedBlock = new ArrayList<Material>();
-	private static Map<UUID, PlayerBase> playerLocation = new HashMap<UUID, PlayerBase>();	
-	
+	private static Map<UUID, PlayerBase> playerLocation = new HashMap<UUID, PlayerBase>();
+
 	public BasesEvent() {
 		authorizedBlock.add(Material.TORCH);
 		authorizedBlock.add(Material.TNT);
@@ -29,39 +29,47 @@ public class BasesEvent implements Listener {
 		authorizedBlock.add(Material.LEVER);
 		authorizedBlock.add(Material.REDSTONE_TORCH_ON);
 	}
-	
+
 	@EventHandler
 	public void onBreakBlock(BlockBreakEvent e) {
-		if(PlayerBase.isInBase(e.getPlayer(), e.getBlock().getLocation()).equals(PlayerBase.OTHER))
+		if (PlayerBase.isInBase(e.getPlayer(), e.getBlock().getLocation()).equals(PlayerBase.OTHER))
 			e.setCancelled(true);
 	}
-	
+
 	@EventHandler
 	public void onPoseBlock(BlockPlaceEvent e) {
-		if(!PlayerBase.isInBase(e.getPlayer(), e.getBlock().getLocation()).equals(PlayerBase.OWN))
-			if(!authorizedBlock.contains(e.getBlock().getType()))
+		if (!PlayerBase.isInBase(e.getPlayer(), e.getBlock().getLocation()).equals(PlayerBase.OWN))
+			if (!authorizedBlock.contains(e.getBlock().getType()))
 				e.setCancelled(true);
-		
+
 	}
-	
-	
+
 	@EventHandler
 	public void onSwitchBase(PlayerMoveEvent e) {
 		if (!playerLocation.containsKey(e.getPlayer().getUniqueId())) {
-			playerLocation.put(e.getPlayer().getUniqueId(), PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()));
+			playerLocation.put(e.getPlayer().getUniqueId(),
+					PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()));
 		} else {
-			if (!PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).equals(playerLocation.get(e.getPlayer().getUniqueId()))) {
-				
-			 if(PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).equals(PlayerBase.OTHER))
+			if (!PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation())
+					.equals(playerLocation.get(e.getPlayer().getUniqueId()))) {
+
+				if (PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).equals(PlayerBase.OTHER))
 					new ActionBar(e.getPlayer(), "§4MESSAGE ENTER ENEMY BASE", 5).send();
-				
-			else if(PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).equals(PlayerBase.OWN))
-					new ActionBar(e.getPlayer(), "§4MESSAGE ENTER OWN BASE", 5).send();
-				
-			else if(PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).equals(PlayerBase.NONE))
-					new ActionBar(e.getPlayer(), "§4MESSAGE ENTER NO MANS LAND", 5).send();
-				
-				playerLocation.replace(e.getPlayer().getUniqueId(), PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()));
+				if (PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).equals(PlayerBase.OTHER))
+					new ActionBar(e.getPlayer(), "§4MESSAGE ENTER ENEMY BASE", 1).send();
+
+				else if (PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).equals(PlayerBase.OWN))
+
+					if (PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).equals(PlayerBase.OWN))
+						new ActionBar(e.getPlayer(), "§4MESSAGE ENTER OWN BASE", 1).send();
+
+					else if (PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).equals(PlayerBase.NONE))
+						new ActionBar(e.getPlayer(), "§4MESSAGE ENTER NO MANS LAND", 5).send();
+				if (PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).equals(PlayerBase.NONE))
+					new ActionBar(e.getPlayer(), "§4MESSAGE ENTER NO MANS LAND", 1).send();
+
+				playerLocation.replace(e.getPlayer().getUniqueId(),
+						PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()));
 			}
 		}
 	}
