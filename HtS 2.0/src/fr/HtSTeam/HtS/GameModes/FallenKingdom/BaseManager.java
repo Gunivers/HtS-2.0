@@ -37,8 +37,18 @@ public class BaseManager {
 	public void removePlayer(Player p) {
 		playerList.remove(p);
 		playerBase.remove(p, this);
-		if (playerList.size() == 0)
+		if (playerList.size() == 0) {
 			baseList.remove(this);
+			nameBase.remove(baseName, this);
+		}
+	}
+	
+	public void deleteBase() {
+		for(Player p : playerList)
+			playerBase.remove(p, this); 
+		playerList.clear();
+		baseList.remove(this);
+		nameBase.remove(baseName, this);
 	}
 	
 	public void addTeam(TeamManager team) {
