@@ -28,6 +28,7 @@ import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
 import fr.HtSTeam.HtS.Scoreboard.ScoreBoard;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.Scoreboard;
+import fr.HtSTeam.HtS.Utils.JSON;
 import net.minecraft.server.v1_12_R1.Entity;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
 
@@ -47,6 +48,7 @@ public class PlayStopCommands implements CommandExecutor, Listener {
 
 			if (cmd.getName().equalsIgnoreCase("pause") && sender.hasPermission("pause.use")) {
 				if(!pause) {
+					JSON.sendAll("§aÔ temps,", "§bsuspends ton vol !", 10);
 					Bukkit.broadcastMessage("§4Le jeu est en pause !");
 					pause = true;
 					dayCycleState = Main.world.getGameRuleValue("doDaylightCycle");
