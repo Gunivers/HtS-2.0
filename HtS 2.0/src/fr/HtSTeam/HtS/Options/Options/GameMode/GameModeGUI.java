@@ -27,8 +27,9 @@ public class GameModeGUI extends GUIManager {
 	@EventHandler
 	public void onClicks(InventoryClickEvent e) {
 		for (GameModeState gms : gameModeOption) {
-			if (e.getCurrentItem() != null && !e.getCurrentItem().getType().equals(Material.BARRIER)) {
+			if (e.getInventory().equals(inv) && e.getCurrentItem() != null && !e.getCurrentItem().getType().equals(Material.BARRIER)) {
 				if (gms.getItemStackManager().getItemStack().equals(e.getCurrentItem())) {
+					System.out.println("aaaa");
 					gms.setState(true);
 					e.setCancelled(true);
 				} else {
