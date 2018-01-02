@@ -26,7 +26,7 @@ public class ScoreBoard {
 	
 	public static ArrayList<String> display = new ArrayList<String>();
 	public static Map<UUID, Scoreboard> scoreboards = new HashMap<UUID, Scoreboard>();
-	private final static ScrollableString scroll = new ScrollableString(Strings.format("§4JEU EN PAUSE"), 40, 0);
+	private final static ScrollableString scroll = new ScrollableString(Strings.format("§4JEU EN PAUSE"), 20, 0);
 		
 	public static void send(Player player) {
 
@@ -77,7 +77,7 @@ public class ScoreBoard {
 		}
 		
 		if (PlayStopCommands.pause)
-			builder.blank().blank().next("		" + scroll.next());
+			builder.blank().blank().next("" + scroll.next());
 		
 		return builder.build();
 	}
