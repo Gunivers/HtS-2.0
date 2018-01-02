@@ -53,7 +53,6 @@ public class Main extends JavaPlugin {
 		
 		timer = new fr.HtSTeam.HtS.Utils.TimerTask(0, 1);
 		
-		
 		Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "gamerule sendCommandFeedback false");
 		EventManager.loadEvents(this);
 		CommandsManager.loadCommands(this);

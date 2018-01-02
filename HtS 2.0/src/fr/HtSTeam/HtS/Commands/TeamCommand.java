@@ -23,7 +23,7 @@ public class TeamCommand implements CommandExecutor {
 					TeamManager tm = new TeamManager(args[1], args[2].toLowerCase());
 					if (args.length == 4)
 						tm.setFakeTeam(Boolean.valueOf(args[3]));
-					p.sendMessage("L'équipe " + ChatColor.valueOf(tm.getTeamColor().toUpperCase()) + tm.getTeamName() + " §ra été créee !");
+					p.sendMessage("L'équipe " + ChatColor.valueOf(tm.getTeamColor().toUpperCase()) + tm.getTeamName() + " §ra été créée !");
 					return true;
 				} else if (args[0].equalsIgnoreCase("remove") && args.length == 2) {
 					if (TeamManager.nameTeam.containsKey(args[1])) {
@@ -47,7 +47,7 @@ public class TeamCommand implements CommandExecutor {
 					}
 					return false;
 				} else if (args[0].equalsIgnoreCase("list") && args.length == 1) {
-					p.sendMessage("§6Liste des Teams:");
+					p.sendMessage("Liste des Teams:");
 					for(TeamManager t :TeamManager.teamList)
 						p.sendMessage("- " + ChatColor.valueOf(t.getTeamColor().toUpperCase()) + t.getTeamName());
 					return true;
