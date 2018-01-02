@@ -4,9 +4,9 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 public enum PlayerBase {
-	NONE("§4MESSAGE ENTER NO MANS LAND"),
-	OWN("§4MESSAGE ENTER OUR BASE"),
-	OTHER("§4MESSAGE ENTER ENEMY BASE");
+	NONE("§8Vous sortez de la base"),
+	OWN("§2Vous entrez dans votre base"),
+	OTHER("§4Vous entrez dans la base ennemie");
 	
 	private String msg;
 
