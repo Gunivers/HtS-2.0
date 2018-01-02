@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Teams.TeamManager;
 import fr.HtSTeam.HtS.Utils.Randomizer;
+import net.md_5.bungee.api.ChatColor;
 
 public class TeamCommand implements CommandExecutor {
 
@@ -37,6 +38,11 @@ public class TeamCommand implements CommandExecutor {
 					return false;
 				} else if (args[0].equalsIgnoreCase("leave") && args.length == 2) {
 					TeamManager.playerTeam.get(Bukkit.getPlayer(args[1])).removePlayer(Bukkit.getPlayer(args[1]));
+					return true;
+				} else if (args[0].equalsIgnoreCase("list") && args.length == 1) {
+					p.sendMessage("§6List des Teams:");
+					for(TeamManager t :TeamManager.teamList)
+						p.sendMessage("- " + ChatColor.valueOf(t.getTeamColor()) + t.getTeamName());
 					return true;
 				} else if (args[0].equalsIgnoreCase("random")) {
 					if(TeamManager.teamList.size() != 0) {
