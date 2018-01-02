@@ -66,6 +66,7 @@ public class TeamCommand implements CommandExecutor {
 							if (teamList.size() == 0)
 								break;
 						}
+						return true;
 					}
 					return false;
 				} else {
