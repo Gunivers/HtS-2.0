@@ -13,7 +13,7 @@ import fr.HtSTeam.HtS.Utils.Randomizer;
 
 public class NuggetsOption extends OptionsManager {
 
-	private boolean activate = false;
+	private boolean activate = true;
 
 	public NuggetsOption() {
 		super(Material.GOLD_NUGGET, "Loot des pépites", "§2Activé", "Activé", OptionsRegister.other);
