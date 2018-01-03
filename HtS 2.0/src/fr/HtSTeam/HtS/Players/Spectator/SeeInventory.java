@@ -1,7 +1,9 @@
 package fr.HtSTeam.HtS.Players.Spectator;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -9,22 +11,105 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityPickupItemEvent;
+import org.bukkit.event.entity.EntityRegainHealthEvent;
+import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.event.player.PlayerLevelChangeEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
 
+import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Utils.ItemStackManager;
 
 public class SeeInventory implements Listener {
 	
-	public List<Inventory> inventories = new ArrayList<Inventory>();
+	public Map<UUID, Inventory> inventories = new HashMap<UUID, Inventory>();
+	UUID uuid = null;
+	
+	@EventHandler
+	public void onInteractWithInventory(InventoryClickEvent  e) {
+		if(e.getWhoClicked() instanceof Player) {
+			refresh((Player) e.getWhoClicked());
+		}
+	}
+	
+	@EventHandler
+	public void onDrag(InventoryDragEvent  e) {
+		if(e.getWhoClicked() instanceof Player) {
+			refresh((Player) e.getWhoClicked());
+		}
+	}
+	
+	@EventHandler
+	public void onLevelChange(PlayerLevelChangeEvent  e) {
+		refresh(e.getPlayer());
+	}
+	
+	@EventHandler
+	public void onDamage(EntityDamageEvent e) {
+		if(e.getEntity() instanceof Player)
+			refresh((Player) e.getEntity());
+	}
+	
+	@EventHandler
+	public void onFoodChange(FoodLevelChangeEvent e) {
+		if(e.getEntity() instanceof Player)
+			refresh((Player) e.getEntity());
+	}
+	
+	@EventHandler
+	public void onRegainHeal(EntityRegainHealthEvent e) {
+		if(e.getEntity() instanceof Player)
+			refresh((Player) e.getEntity());
+	}
+	
+	@EventHandler
+	public void onRegainHeal(EntityPickupItemEvent e) {
+		if(e.getEntity() instanceof Player)
+			refresh((Player) e.getEntity());
+	}
+	
+	@EventHandler
+	public void onDeath(PlayerDeathEvent e) {
+		refresh(e.getEntity());
+	}
+	
+	
+	
+	
+	public void refresh(Player p) {
+		for(Entry<UUID, Inventory> entry : inventories.entrySet()) {
+			if(entry.getValue().getName().equals(p.getName())) {
+				uuid = entry.getKey();
+			}
+		}
+		
+		new BukkitRunnable() {
+			@Override
+			public void run() {
+				if(uuid != null) {
+					inventories.remove(uuid);
+					createInventory(Bukkit.getPlayer(uuid), p);
+					uuid = null;
+				}
+			}
+		}.runTaskLater(Main.plugin, 1);
+	}
+	
+	
+	
 	
 	@EventHandler
 	public void onCloseInventory(InventoryCloseEvent e) {
-		//String name = e.getInventory().getTitle();
-		if(e.getPlayer().getGameMode() == GameMode.SPECTATOR && inventories.contains(e.getInventory())) {
-			inventories.remove(e.getInventory());
+		if(e.getPlayer().getGameMode() == GameMode.SPECTATOR && inventories.containsValue(e.getInventory())) {
+			inventories.remove(e.getPlayer().getUniqueId());
 		}
 		
 	}
@@ -74,7 +159,7 @@ public class SeeInventory implements Listener {
 		
 		clicker.openInventory(inv);
 		
-		inventories.add(inv);
+		inventories.put(clicker.getUniqueId(), inv);
 		
 	}
 

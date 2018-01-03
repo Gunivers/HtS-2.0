@@ -2,7 +2,7 @@ Pour l'HtS de base :
 
 - Désactiver les biomes Océan
 - Armor Stand à ma mort d'un joueur																				Pris par :
-- Inventaire disponible pour Gamemode Spectator																	Pris par :
+- Inventaire disponible pour Gamemode Spectator																	Pris par :		theogiraudet	DONE
 - Les statistiques																								Pris par :		ikbrunel
 - * Les nerfs (squelette, creeper sans one shot...)																Pris par :		theogiraudet
 - * Les changements de probabilités (drop de pommes (ne pas oublié l'event decay), de flint...)					Pris par :		theogiraudet
