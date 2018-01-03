@@ -8,6 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
+import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Options.OptionsRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 
@@ -37,7 +38,7 @@ public class CreeperNerfOption extends OptionsManager {
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onCreeperOneShot(EntityDamageByEntityEvent e) {
 		Entity p = e.getEntity();
-		if (!activate && ((p instanceof Player)) && e.getDamager() instanceof Creeper) {
+		if (EnumState.getState().equals(EnumState.RUNNING) && !activate && ((p instanceof Player)) && e.getDamager() instanceof Creeper) {
 			double damage = e.getDamage();
 			if (damage >= ((Player) p).getHealth()) {	
 				((Player) p).setHealth(2.0D);
