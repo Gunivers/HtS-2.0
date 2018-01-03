@@ -23,3 +23,11 @@ Les modes de jeux :
 
 Les astérisques '*' signifie que la chose à faire doit être sous forme d'option.
 Mettre son nom à côté de l'option si pris.
+
+Préciser l'état de l'option :
+  - UNSTARTED : Si pas ecore commencé
+  - WAITING : Si une chose empêche la réalisation/l'avancement de l'option (préciser la cause à la suite)
+  - TEST PERIOD : Si l'option est en phase de test
+  - DONE : Si l'option est fini
+  
+Supprimer une option en DONE que 1 ou 2 jours après la mise en place de ce tag.
