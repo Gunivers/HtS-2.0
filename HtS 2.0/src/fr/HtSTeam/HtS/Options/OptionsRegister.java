@@ -30,6 +30,7 @@ import fr.HtSTeam.HtS.Options.Options.Modifier.ModifiersGUI;
 import fr.HtSTeam.HtS.Options.Options.Modifier.ShulkerShellOption;
 import fr.HtSTeam.HtS.Options.Options.Nether.NetherWartOption;
 import fr.HtSTeam.HtS.Options.Options.Nether.ShulkerNetherOption;
+import fr.HtSTeam.HtS.Options.Options.Others.NuggetsOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.AddBlankScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.BorderScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.KilledScoreboardOption;
@@ -49,6 +50,7 @@ public class OptionsRegister {
 	public static GUIManager modifiers = new ModifiersGUI();
 	public static GUIManager loottables = new GUIManager("Loot Tables", 1, "Loot Tables", "Régler les Loot Tables", Material.BOOK, OptionsRegister.main);
 	public static GUIManager nether = new GUIManager("Nether", 1, "Nether", "Régler le Nether", Material.NETHERRACK, OptionsRegister.main);
+	public static GUIManager other = new GUIManager("Autre", 1, "Autre", "Options inclassables", Material.CHEST, OptionsRegister.main);
 	
 
 	
@@ -105,6 +107,9 @@ public class OptionsRegister {
 		// Nether
 		new NetherWartOption();
 		new ShulkerNetherOption();
+		
+		//Other
+		new NuggetsOption();
 	}
 	
 }
