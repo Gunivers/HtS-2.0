@@ -13,6 +13,7 @@ public class EventManagerFK {
 		
 		pm.registerEvents(new ChargedCreeper(), Main.plugin);
 		pm.registerEvents(new BasesEvent(), Main.plugin);
+		pm.registerEvents(new CakeFirstGame(), Main.plugin);
 		
 	}
 	

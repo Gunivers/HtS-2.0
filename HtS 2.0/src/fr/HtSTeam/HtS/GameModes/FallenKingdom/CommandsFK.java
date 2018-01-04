@@ -44,12 +44,16 @@ public class CommandsFK implements CommandExecutor, Listener {
 				
 				
 				
-				if(args.length == 3 && args[0].equalsIgnoreCase("add")) {
-					if(!TeamManager.nameTeam.containsKey(args[2])) {
-						p.sendMessage("§4La team saisie n'existe pas !");
-						return true;
+				if(args.length >= 2 && args[0].equalsIgnoreCase("add")) {
+					
+					if(args.length == 3) {
+						if(!TeamManager.nameTeam.containsKey(args[2])) {
+							p.sendMessage("§4La team saisie n'existe pas !");
+							return true;
+						}
+						team = TeamManager.nameTeam.get(args[2]);
 					}
-					team = TeamManager.nameTeam.get(args[2]);
+					
 					if(inCreation) { 
 						p.sendMessage("§4 Une base est déjà en création !");
 						return true;
@@ -106,6 +110,15 @@ public class CommandsFK implements CommandExecutor, Listener {
 					}
 					p.sendMessage("§4Joueur innexistant.");
 					return true;
+				
+				
+				} if(args.length == 2 && args[0].equalsIgnoreCase("neutral")) {
+					for(BaseManager bm : BaseManager.baseList) {
+						if(bm.getBaseName().equals(args[1])) {
+							bm.setNeutral(true);
+							return true;
+						}
+					}
 				}
 				
 				
@@ -129,11 +142,16 @@ public class CommandsFK implements CommandExecutor, Listener {
 				p.getEquipment().setItemInMainHand(ism.getItemStack());
 			} else if(angleDo == 2) {
 				secondAngle = b;
-				p.sendMessage("§2Base " + name + " de l'équipe §r" + ChatColor.valueOf(team.getTeamColor().toUpperCase()) + team.getTeamName() + " §2créée avec succès !");
+				if(team != null)
+					p.sendMessage("§2Base " + name + " de l'équipe §r" + ChatColor.valueOf(team.getTeamColor().toUpperCase()) + team.getTeamName() + " §2créée avec succès !");
+				else
+					p.sendMessage("§2Base " + name + " créée avec succès !");
+
 				p.sendMessage("§2Premier angle : §5" + firstAngle.getX() + " " + firstAngle.getY() + " " + firstAngle.getZ());
 				p.sendMessage("§2Second angle : §5" + secondAngle.getX() + " " + secondAngle.getY() + " " + secondAngle.getZ());
 				BaseManager bm = new BaseManager(name, firstAngle, secondAngle);
-				bm.addTeam(team);
+				if(team != null)
+					bm.addTeam(team);
 				reset();
 			}
 		} else if(e.getPlayer().equals(p) && inCreation) {
