@@ -92,6 +92,10 @@ public class BaseManager {
 		pos[0][1] = pos1.getZ();
 		pos[1][1] = pos2.getZ();
 		Arrays.sort(pos, (a, b) -> Integer.compare(a[0], b[0]));
+		System.out.println("pos[0][0] : " + pos[0][0]);
+		System.out.println("pos[1][0] : " + pos[1][0]);
+		System.out.println("pos[0][1] : " + pos[0][1]);
+		System.out.println("pos[1][1] : " + pos[1][1]);
 		return pos;
 	}
 

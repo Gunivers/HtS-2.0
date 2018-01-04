@@ -151,6 +151,7 @@ public class CommandsFK implements CommandExecutor, Listener {
 				p.sendMessage("§2Premier angle : §5" + firstAngle.getX() + " " + firstAngle.getY() + " " + firstAngle.getZ());
 				p.sendMessage("§2Second angle : §5" + secondAngle.getX() + " " + secondAngle.getY() + " " + secondAngle.getZ());
 				BaseManager bm = new BaseManager(name, firstAngle, secondAngle);
+				p.getEquipment().setItemInMainHand(new ItemStack(Material.AIR));
 				if(team != null)
 					bm.addTeam(team);
 				reset();
