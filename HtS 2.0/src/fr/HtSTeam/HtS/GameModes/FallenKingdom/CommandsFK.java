@@ -101,6 +101,7 @@ public class CommandsFK implements CommandExecutor, Listener {
 									bm.addPlayer(Bukkit.getPlayer(uuid));
 									TeamManager.playerTeam.get(uuid).removePlayer(Bukkit.getPlayer(uuid));
 									bm.getTeam().addPlayer(Bukkit.getPlayer(uuid));
+									p.sendMessage("§2Joueur bien ajouté !");
 									return true;
 								}
 							}

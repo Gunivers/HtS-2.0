@@ -1,6 +1,8 @@
 package fr.HtSTeam.HtS.Teams;
 
 import java.util.ArrayList;
+import java.util.Map.Entry;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -51,6 +53,20 @@ public class TeamCommand implements CommandExecutor {
 					p.sendMessage("Liste des Teams:");
 					for(TeamManager t :TeamManager.teamList)
 						p.sendMessage("- " + ChatColor.valueOf(t.getTeamColor().toUpperCase()) + t.getTeamName());
+					return true;
+				} else if (args[0].equalsIgnoreCase("list") && args.length == 2) {
+					for(TeamManager tm : TeamManager.teamList) {
+						if(tm.getTeamName().equalsIgnoreCase(args[1])) {
+							p.sendMessage("Joueurs de la team" + ChatColor.valueOf(tm.getTeamColor().toUpperCase()) + tm.getTeamName() + " : " );
+							for(Entry<UUID, TeamManager> entry : TeamManager.playerTeam.entrySet())
+								if(entry.getValue().equals(tm))
+									p.sendMessage("- " + ChatColor.valueOf(tm.getTeamColor().toUpperCase()) + Bukkit.getPlayer(entry.getKey()).getName());
+							return true;
+						}
+						p.sendMessage("§4Team innexistante !");
+						return true;
+					}
+					
 					return true;
 				} else if (args[0].equalsIgnoreCase("give") && args.length == 1) {
 					for (Player player : Bukkit.getOnlinePlayers())
