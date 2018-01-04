@@ -14,7 +14,7 @@ commands:
   usage: Erreur syntaxe ! Faites /run
  team:
   description: Commandes relatives aux teams
-  usage: Erreur syntaxe ! Faites /team
+  usage: Erreur syntaxe ! Faites /team <add|remove|join|leave|list|random> [Equipe] [couleur|Player]
  gui: 
   description: Ouvre l'inventaire des modifiers
   usage: Erreur syntaxe ! Faites /gui
