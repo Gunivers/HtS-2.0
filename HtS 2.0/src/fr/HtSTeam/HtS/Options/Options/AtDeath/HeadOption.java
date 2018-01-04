@@ -5,9 +5,10 @@ import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.OptionsRegister;
+import fr.HtSTeam.HtS.Options.Structure.Alterable;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 
-public class HeadOption extends OptionsManager {
+public class HeadOption extends OptionsManager implements Alterable {
 	
 	private boolean activate = true;
 
@@ -21,7 +22,13 @@ public class HeadOption extends OptionsManager {
 	@Override
 	public void event(Player p) {
 		activate = !activate;
-		if(activate) {
+		setState(activate);
+	}
+
+	@Override
+	public void setState(boolean value) {
+		activate = value;
+		if(value) {
 			setValue("Activé");
 			getItemStackManager().setLore("§2Activé");
 			Main.deathLoot.addItem(Material.SKULL_ITEM, (short) 3);
@@ -30,7 +37,7 @@ public class HeadOption extends OptionsManager {
 			getItemStackManager().setLore("§4Désactivé");
 			Main.deathLoot.removeItem(Material.SKULL_ITEM);
 		}
-		parent.update(this);		
+		parent.update(this);
 	}
 
 }

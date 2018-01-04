@@ -1,24 +1,31 @@
-package fr.HtSTeam.HtS.Options.Options.Modifier;
+package fr.HtSTeam.HtS.Options.Options.Others;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 
 import fr.HtSTeam.HtS.Options.OptionsRegister;
+import fr.HtSTeam.HtS.Options.Structure.Alterable;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 
-public class AlgueUrticanteOption extends OptionsManager {
+public class AlgueUrticanteOption extends OptionsManager implements Alterable {
 	
 	private boolean activate = false;
 	
 	public AlgueUrticanteOption() {
-		super(Material.VINE, "Algue Urticante", "§4Désactivé", "Désactivé", OptionsRegister.modifiers);
+		super(Material.VINE, "Algue Urticante", "§4Désactivé", "Désactivé", OptionsRegister.other);
 	}
 
 	@Override
 	public void event(Player p) {
 		activate = !activate;
-		if (activate) {
+		setState(activate);
+	}
+	
+	@Override
+	public void setState(boolean value) {
+		activate = value;
+		if (value) {
 			setValue("Activé");
 			getItemStackManager().setLore("§2Activé");
 		} else {

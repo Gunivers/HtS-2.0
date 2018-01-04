@@ -24,12 +24,12 @@ import fr.HtSTeam.HtS.Options.Options.LootTables.SkeletonOption;
 import fr.HtSTeam.HtS.Options.Options.LootTables.ZombieOption;
 import fr.HtSTeam.HtS.Options.Options.Mobs.CreeperNerfOption;
 import fr.HtSTeam.HtS.Options.Options.Mobs.SkeletonNerfOption;
-import fr.HtSTeam.HtS.Options.Options.Modifier.AlgueUrticanteOption;
-import fr.HtSTeam.HtS.Options.Options.Modifier.HeadShot;
 import fr.HtSTeam.HtS.Options.Options.Modifier.ModifiersGUI;
 import fr.HtSTeam.HtS.Options.Options.Modifier.ShulkerShellOption;
 import fr.HtSTeam.HtS.Options.Options.Nether.NetherWartOption;
 import fr.HtSTeam.HtS.Options.Options.Nether.ShulkerNetherOption;
+import fr.HtSTeam.HtS.Options.Options.Others.AlgueUrticanteOption;
+import fr.HtSTeam.HtS.Options.Options.Others.HeadShot;
 import fr.HtSTeam.HtS.Options.Options.Others.NuggetsOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.AddBlankScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.BorderScoreboardOption;
@@ -37,6 +37,7 @@ import fr.HtSTeam.HtS.Options.Options.Scoreboard.KilledScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.PlayerScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.RemoveBlankScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.TimerScoreboardOption;
+import fr.HtSTeam.HtS.Options.Structure.Alterable;
 import fr.HtSTeam.HtS.Options.Structure.GUIManager;
 
 public class OptionsRegister {
@@ -53,37 +54,64 @@ public class OptionsRegister {
 	public static GUIManager other = new GUIManager("Autre", 1, "Autre", "Options inclassables", Material.CHEST, OptionsRegister.main);
 	
 
+	//Mobs
+	public static Alterable creeperNerf = new CreeperNerfOption();
+	
+	//Modifiers
+	public static Alterable shulkerShell = new ShulkerShellOption();
+	
+	
+	//Other
+	public static Alterable alguae = new AlgueUrticanteOption();
+	public static Alterable headShot = new HeadShot();
+	
+	//AtDeath
+	public static Alterable goldenApple = new GoldenAppleOption();
+	public static Alterable head = new HeadOption();
+	
+	//Base
+	public static Alterable noRegen =  new NoRegenOption();
+	public static Alterable weather = new WeatherOption();
+	
+	// Loot Tables
+	public static Alterable batLoot = new BatOption();
+	public static Alterable ghastLoot = new GhastOption();
+	public static Alterable skeletonLoot = new SkeletonOption();
+	public static Alterable zombieLoot = new ZombieOption();
+	public static Alterable chestContent = new ChestOption();
+	public static Alterable crateContent = new CrateOption();
+	public static Alterable fishingLoot = new FishingOption();
+	
+	// Nether
+	public static Alterable netherWart = new NetherWartOption();
+	public static Alterable shulkerNether = new ShulkerNetherOption();
+	
+	//Other
+	public static Alterable nuggetBucket = new NuggetsOption();
+	
 	
 	public static BorderOption borderOption;
 	
 	public static void register() {
 		
-		//GameMode
+		// GameMode
 		new UHCOption();
 		new FallenKingdomOption();
 		
 		// Mobs
-		new CreeperNerfOption();
 		new SkeletonNerfOption();
+				
 		
-		// Modifiers
-		new ShulkerShellOption();
-		new AlgueUrticanteOption();
-		new HeadShot();
-		
-		// atPlayer
+		// AtDeath
 		atDeath.getItemStackManager().setItem(Material.SKULL_ITEM, (short) 3);
 		main.update(atDeath);
-		new GoldenAppleOption();
-		new HeadOption();
+		
 		
 		// Base
 		borderOption = new BorderOption();
 		new DifficultOption();
-		new NoRegenOption();
 		new DayLightCycleOption();
 		new FixDayOption();
-		new WeatherOption();
 		new EnablePvPOption();
 		new BreathOption();
 		
@@ -94,22 +122,6 @@ public class OptionsRegister {
 		new BorderScoreboardOption();		
 		new AddBlankScoreboardOption();
 		new RemoveBlankScoreboardOption();
-		
-		// Loot Tables
-		new BatOption();
-		new GhastOption();
-		new SkeletonOption();
-		new ZombieOption();
-		new ChestOption();
-		new CrateOption();
-		new FishingOption();
-		
-		// Nether
-		new NetherWartOption();
-		new ShulkerNetherOption();
-		
-		//Other
-		new NuggetsOption();
 	}
 	
 }

@@ -9,10 +9,11 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Options.OptionsRegister;
+import fr.HtSTeam.HtS.Options.Structure.Alterable;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 import fr.HtSTeam.HtS.Utils.FileExtractor;
 
-public class GhastOption extends OptionsManager {
+public class GhastOption extends OptionsManager implements Alterable {
 
 	private boolean activate = false;
 
@@ -23,7 +24,13 @@ public class GhastOption extends OptionsManager {
 	@Override
 	public void event(Player p) {
 		activate  =! activate;
-		if(activate) {
+		setState(activate);
+	}
+
+	@Override
+	public void setState(boolean value) {
+		activate = value;
+		if(value) {
 			try {
 				FileExtractor.extractFile(FileExtractor.lt + "ghast.json", FileExtractor.wdir + FileExtractor.Edir);
 				setValue("Activé");

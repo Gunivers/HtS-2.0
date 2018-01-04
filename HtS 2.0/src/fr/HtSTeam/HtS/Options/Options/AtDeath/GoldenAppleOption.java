@@ -5,9 +5,10 @@ import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.OptionsRegister;
+import fr.HtSTeam.HtS.Options.Structure.Alterable;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 
-public class GoldenAppleOption extends OptionsManager {
+public class GoldenAppleOption extends OptionsManager implements Alterable {
 	
 	private boolean activate = true;
 
@@ -19,7 +20,13 @@ public class GoldenAppleOption extends OptionsManager {
 	@Override
 	public void event(Player p) {
 		activate = !activate;
-		if(activate) {
+		setState(activate);	
+	}
+
+	@Override
+	public void setState(boolean value) {
+		activate = value;
+		if(value) {
 			setValue("Activé");
 			getItemStackManager().setLore("§2Activé");
 			Main.deathLoot.addItem(Material.GOLDEN_APPLE, (short) 0);

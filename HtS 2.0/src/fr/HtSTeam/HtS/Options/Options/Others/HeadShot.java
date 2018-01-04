@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Options.Options.Modifier;
+package fr.HtSTeam.HtS.Options.Options.Others;
 
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -12,20 +12,27 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import fr.HtSTeam.HtS.Options.OptionsRegister;
+import fr.HtSTeam.HtS.Options.Structure.Alterable;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 
-public class HeadShot extends OptionsManager {
+public class HeadShot extends OptionsManager implements Alterable {
 	
 private boolean activate = false;
 	
 	public HeadShot() {
-		super(Material.BOW, "HeadShot", "§4Désactivé", "Désactivé", OptionsRegister.modifiers);
+		super(Material.BOW, "HeadShot", "§4Désactivé", "Désactivé", OptionsRegister.other);
 	}
 
 	@Override
 	public void event(Player p) {
 		activate = !activate;
-		if (activate) {
+		setState(activate);
+	}
+	
+	@Override
+	public void setState(boolean value) {
+		activate = value;
+		if (value) {
 			setValue("Activé");
 			getItemStackManager().setLore("§2Activé");
 		} else {

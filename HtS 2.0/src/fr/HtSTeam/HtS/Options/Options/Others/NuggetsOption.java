@@ -8,10 +8,11 @@ import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.inventory.ItemStack;
 
 import fr.HtSTeam.HtS.Options.OptionsRegister;
+import fr.HtSTeam.HtS.Options.Structure.Alterable;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
-public class NuggetsOption extends OptionsManager {
+public class NuggetsOption extends OptionsManager implements Alterable {
 
 	private boolean activate = true;
 
@@ -22,7 +23,14 @@ public class NuggetsOption extends OptionsManager {
 	@Override
 	public void event(Player p) {
 		activate = !activate;
-		if (activate) {
+		setState(activate);
+	}
+	
+	
+	@Override
+	public void setState(boolean value) {
+		activate = value;
+		if (value) {
 			setValue("Activé");
 			getItemStackManager().setLore("§2Activé");
 		} else {
@@ -31,6 +39,7 @@ public class NuggetsOption extends OptionsManager {
 		}
 		parent.update(this);
 	}
+	
 
 	@EventHandler
 	public void onDropNuggets(PlayerBucketFillEvent e) {
@@ -45,5 +54,4 @@ public class NuggetsOption extends OptionsManager {
 			}
 		}
 	}
-
 }

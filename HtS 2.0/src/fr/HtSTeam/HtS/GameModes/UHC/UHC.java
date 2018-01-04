@@ -23,6 +23,10 @@ public class UHC implements GameMode {
 		for (UUID p : PlayerInGame.playerInGame)
 			Bukkit.getPlayer(p).addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 30 * 20, 255, false, false));
 		teleport();	
+		
+		
+		OptionsRegister.noRegen.setState(false);
+		OptionsRegister.goldenApple.setState(true);
 	}
 	
 	

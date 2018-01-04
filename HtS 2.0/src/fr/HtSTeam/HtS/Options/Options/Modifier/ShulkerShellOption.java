@@ -17,11 +17,12 @@ import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import fr.HtSTeam.HtS.Options.OptionsRegister;
+import fr.HtSTeam.HtS.Options.Structure.Alterable;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 import fr.HtSTeam.HtS.Utils.ItemStackManager;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
-public class ShulkerShellOption extends OptionsManager {
+public class ShulkerShellOption extends OptionsManager implements Alterable {
 	
 	private HashMap<Player, Integer> shellUse = new HashMap<>();
 	private boolean activate = false;
@@ -34,7 +35,13 @@ public class ShulkerShellOption extends OptionsManager {
 	@Override
 	public void event(Player p) {
 		activate = !activate;
-		if(activate) {
+		setState(activate);
+	}
+	
+	@Override
+	public void setState(boolean value) {
+		activate = value;
+		if(value) {
 			setValue("Activé");
 			getItemStackManager().setLore("§2Activé");
 			CustomGUI.authorizedItem.add(ism);
@@ -43,8 +50,9 @@ public class ShulkerShellOption extends OptionsManager {
 			getItemStackManager().setLore("§4Désactivé");
 			CustomGUI.authorizedItem.remove(ism);
 		}
-		parent.update(this);		
+		parent.update(this);	
 	}
+
 	
 	
 	@EventHandler
@@ -102,5 +110,4 @@ public class ShulkerShellOption extends OptionsManager {
             e.getDrops().addAll(drops);
         }
     }
-
 }

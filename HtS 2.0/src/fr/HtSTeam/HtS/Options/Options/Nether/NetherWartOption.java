@@ -12,10 +12,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.world.ChunkLoadEvent;
 
 import fr.HtSTeam.HtS.Options.OptionsRegister;
+import fr.HtSTeam.HtS.Options.Structure.Alterable;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
-public class NetherWartOption extends OptionsManager {
+public class NetherWartOption extends OptionsManager implements Alterable {
 	
 	private boolean activate = false;
 	
@@ -26,7 +27,14 @@ public class NetherWartOption extends OptionsManager {
 	@Override
 	public void event(Player p) {
 		activate =! activate;
-		if(activate) {
+		setState(activate);
+	}
+	
+	
+	@Override
+	public void setState(boolean value) {
+		activate = value;
+		if(value) {
 			setValue("Activé");
 			getItemStackManager().setLore("§2Activé");			
 		} else {
@@ -34,7 +42,9 @@ public class NetherWartOption extends OptionsManager {
 			getItemStackManager().setLore("§4Désactivé");
 		}		
 		parent.update(this);
+		
 	}
+	
 	
 	@SuppressWarnings("deprecation")
 	@EventHandler

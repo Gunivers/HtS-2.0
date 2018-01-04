@@ -10,9 +10,10 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Options.OptionsRegister;
+import fr.HtSTeam.HtS.Options.Structure.Alterable;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 
-public class CreeperNerfOption extends OptionsManager {
+public class CreeperNerfOption extends OptionsManager implements Alterable {
 	
 	private boolean activate = false;
 	
@@ -24,15 +25,7 @@ public class CreeperNerfOption extends OptionsManager {
 	@Override
 	public void event(Player p) {
 		activate = !activate;
-		if(activate) {
-			setValue("Activé");
-			getItemStackManager().setLore("§2Activé");
-		} else {
-			setValue("Désactivé");
-			getItemStackManager().setLore("§4Désactivé");
-		}
-		parent.update(this);		
-		
+		setState(activate);
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
@@ -45,6 +38,20 @@ public class CreeperNerfOption extends OptionsManager {
 				e.setCancelled(true);
 			}
 		}
+	}
+
+
+	@Override
+	public void setState(boolean value) {
+		activate = value;
+		if(value) {
+			setValue("Activé");
+			getItemStackManager().setLore("§2Activé");
+		} else {
+			setValue("Désactivé");
+			getItemStackManager().setLore("§4Désactivé");
+		}
+		parent.update(this);		
 	}
 
 	

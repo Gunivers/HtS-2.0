@@ -15,10 +15,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.world.ChunkLoadEvent;
 
 import fr.HtSTeam.HtS.Options.OptionsRegister;
+import fr.HtSTeam.HtS.Options.Structure.Alterable;
 import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
-public class ShulkerNetherOption extends OptionsManager {
+public class ShulkerNetherOption extends OptionsManager implements Alterable {
 
 	private boolean activate = false;
 
@@ -29,15 +30,23 @@ public class ShulkerNetherOption extends OptionsManager {
 	@Override
 	public void event(Player p) {
 		activate = !activate;
-		if (activate) {
+		setState(activate);
+	}
+	
+	
+	@Override
+	public void setState(boolean value) {
+		activate = value;
+		if (value) {
 			setValue("Activé");
 			getItemStackManager().setLore("§2Activé");
 		} else {
 			setValue("Désactivé");
 			getItemStackManager().setLore("§4Désactivé");
 		}
-		parent.update(this);
+		parent.update(this);		
 	}
+	
 
 	@EventHandler
 	public void onChunkLoad(ChunkLoadEvent e) {
