@@ -17,6 +17,7 @@ public class FallenKingdom implements GameMode {
 		Main.plugin.getCommand("base").setExecutor(cfk);
 		pm.registerEvents(cfk, Main.plugin);
 		OptionsRegister.noRegen.setState(true);
+		OptionsRegister.goldenApple.setState(false);
 	}
 	
 	@Override
