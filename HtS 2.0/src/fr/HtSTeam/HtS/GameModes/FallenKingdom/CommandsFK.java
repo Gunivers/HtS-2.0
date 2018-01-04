@@ -97,7 +97,7 @@ public class CommandsFK implements CommandExecutor, Listener {
 					for(UUID uuid : PlayerInGame.playerInGame) {
 						if(Bukkit.getPlayer(uuid).getName().equals(args[1])) {
 							for(BaseManager bm : BaseManager.baseList) {
-								if(bm.getBaseName().equals(args[1])) {
+								if(bm.getBaseName().equals(args[2])) {
 									bm.addPlayer(Bukkit.getPlayer(uuid));
 									TeamManager.playerTeam.get(uuid).removePlayer(Bukkit.getPlayer(uuid));
 									bm.getTeam().addPlayer(Bukkit.getPlayer(uuid));
@@ -105,6 +105,7 @@ public class CommandsFK implements CommandExecutor, Listener {
 								}
 							}
 							p.sendMessage("§4Base innexistante");
+							return true;
 						}
 							
 					}
