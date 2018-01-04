@@ -20,7 +20,7 @@ commands:
   usage: Erreur syntaxe ! Faites /gui
  base:
   description: Définir une base
-  usage: Erreur syntaxe ! Faites /setbase <nomBase> <nomEquipe>
+  usage: Erreur syntaxe ! Faites /base <add|join|list|remove> [nomBase] [nomEquipe]
  test:
   description: aaa
   usage: aaa
