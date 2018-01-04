@@ -6,7 +6,8 @@ import org.bukkit.entity.Player;
 public enum PlayerBase {
 	NONE("§8Vous sortez de la base"),
 	OWN("§2Vous entrez dans votre base"),
-	OTHER("§4Vous entrez dans la base ennemie");
+	OTHER("§4Vous entrez dans la base ennemie"),
+	NEUTRAL("§fVous entrez dans un endroit neutre");
 	
 	private String msg;
 
@@ -22,6 +23,8 @@ public enum PlayerBase {
 			if (pos[0][0] < l.getBlockX() && l.getBlockX() < pos[1][0] && pos[0][1] < l.getBlockZ() && l.getBlockZ() < pos[1][1]) {
 				if(BaseManager.playerBase.get(p.getUniqueId()) == b)
 					return PlayerBase.OWN;
+				else if (b.isNeutral())
+					return PlayerBase.NEUTRAL;
 				return PlayerBase.OTHER;
 			}
 		}

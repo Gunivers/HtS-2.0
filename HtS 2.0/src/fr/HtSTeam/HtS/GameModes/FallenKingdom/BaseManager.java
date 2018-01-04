@@ -21,6 +21,7 @@ public class BaseManager {
 	private TeamManager team;
 	private String baseName;
 	private Block pos1, pos2;
+	private boolean neutral = false;
 	
 	private ArrayList<UUID> playerList = new ArrayList<UUID>();
 	
@@ -35,11 +36,15 @@ public class BaseManager {
 	}
 	
 	public void addPlayer(Player p) {
+		if(neutral)
+			return;
 		playerList.add(p.getUniqueId());
 		playerBase.put(p.getUniqueId(), this);
 	}
 	
 	public void removePlayer(Player p) {
+		if(neutral)
+			return;
 		playerList.remove(p.getUniqueId());
 		playerBase.remove(p, this);
 		if (playerList.size() == 0) {
@@ -49,14 +54,18 @@ public class BaseManager {
 	}
 	
 	public void deleteBase() {
-		for(UUID uuid : playerList)
-			playerBase.remove(Bukkit.getPlayer(uuid), this); 
-		playerList.clear();
+		if(!neutral) {
+			for (UUID uuid : playerList)
+				playerBase.remove(Bukkit.getPlayer(uuid), this);
+			playerList.clear();
+		}
 		baseList.remove(this);
 		nameBase.remove(baseName, this);
 	}
 	
 	public void addTeam(TeamManager team) {
+		if(neutral)
+			return;
 		this.team = team;
 		playerList = team.getTeamPlayers();
 		for(UUID uuid : playerList)
@@ -64,6 +73,8 @@ public class BaseManager {
 	}
 	
 	public String getBaseName() { return baseName; }
+	public boolean isNeutral() { return neutral; }
+	public void setNeutral(boolean neutral) { this.neutral = neutral; }
 	
 	public int[][] getPos() {
 		int pos[][] = new int[2][2];
@@ -85,6 +96,8 @@ public class BaseManager {
 	}
 
 	public TeamManager getTeam() {
+		if(neutral)
+			return null;
 		return team;
 	}
 }

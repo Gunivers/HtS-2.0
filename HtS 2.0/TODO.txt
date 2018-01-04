@@ -1,16 +1,16 @@
 Pour l'HtS de base :
 
 - Désactiver les biomes Océan																					Pris par :
-- Armor Stand à la mort d'un joueur																				Pris par :
+- Armor Stand à la mort d'un joueur																				Pris par :		ikbrunel		IN PROGRESS
 - Inventaire disponible pour Gamemode Spectator																	Pris par :		theogiraudet	TEST PERDIOD
-- Les statistiques																								Pris par :		ikbrunel
+- Les statistiques																								Pris par :		ikbrunel		UNSTARTED
 - * Module chasse aux trésors (coffre)																			Pris pas :
 - * Les changements de probabilités (drop de pommes (ne pas oublié l'event decay), de flint...)					Pris par :		theogiraudet	UNSTARTED
 - * Les modifications useless (drop de golden nuggets...)														Pris par :		theogiraudet	DONE
 - * Le module des oeufs																							Pris par : 		ikbrunel
 - * [1.13] Désactivation du spawn de certains mobs																Pris par :		theogiraudet	WAITING 1.13
-- * [1.13] La désactivation des crafts (avec système de preset), des enchantements et des potions				Pris par :		
-- * [1.13] Le système d'extraction de Data Pack																	Pris par :		
+- * [1.13] La désactivation des crafts (avec système de preset), des enchantements et des potions				Pris par :		ikbrunel		WAITING 1.13
+- * [1.13] Le système d'extraction de Data Pack																	Pris par :		ikbrunel		WAITING 1.13
 	- * L'algue urticante																						Pris par :		ikbrunel		DONE
 	- * Craft des Elytras (et possiblement autres crafts custom)												Pris par :		
 
