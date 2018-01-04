@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -39,7 +40,7 @@ public class TeamManager {
 		} else {
 			playerList.add(p.getUniqueId());
 			playerTeam.put(p.getUniqueId(), this);
-			p.setCustomName(ChatColor.valueOf(teamColor.toUpperCase()) + p.getName() + "§r");
+			p.setDisplayName(ChatColor.valueOf(teamColor.toUpperCase()) + p.getName() + "§r");
 			p.setPlayerListName(ChatColor.valueOf(teamColor.toUpperCase()) + p.getName());
 		}
 	}
@@ -53,7 +54,7 @@ public class TeamManager {
 		} else {
 			playerList.remove(p.getUniqueId());
 			playerTeam.remove(p.getUniqueId(), this);
-			p.setCustomName(p.getName());
+			p.setDisplayName(p.getName());
 			p.setPlayerListName(p.getName());
 			if(getTeamSize() == 0) {
 				teamList.remove(this);
@@ -69,6 +70,7 @@ public class TeamManager {
 		} else {
 			for (UUID key: playerTeam.keySet()) {
 				playerTeam.remove(key, this);
+				Bukkit.getPlayer(key).setDisplayName(Bukkit.getPlayer(key).getName());
 			}
 			playerList.clear();
 			teamList.remove(this);
