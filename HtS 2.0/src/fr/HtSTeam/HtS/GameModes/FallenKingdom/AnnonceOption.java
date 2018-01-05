@@ -21,7 +21,7 @@ public class AnnonceOption extends OptionsManager {
 	@Timer(PRIORITY.HIGHEST)
 	public void firstAnnonce() {
 		Bukkit.broadcastMessage("§4Les paysans voisins commencent à devenir dangereux, prenez-leur leur drapeaux afin de leur montrer qui reste le maître !");
-		setValue("90");
+		setValue("80");
 	}
 	
 	@Timer(PRIORITY.LOWEST)
