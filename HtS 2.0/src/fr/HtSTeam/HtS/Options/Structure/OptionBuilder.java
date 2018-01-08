@@ -19,6 +19,19 @@ public abstract class OptionBuilder implements Listener, EventsOption {
 	protected GUIBuilder parent;
 	private String value;
 	
+	
+	/**
+	 * @param material
+	 * 		Item représentant l'option dans le menu 
+	 * @param name
+	 * 		Nom de l'item
+	 * @param description
+	 * 		Description de l'item
+	 * @param defaultValue
+	 * 		Valeur par défaut. Sert de comparaison à la valeur actuel pour afficher ou nom le changement au récapitulatif du /start
+	 * @param gui
+	 * 		Inventaire où sera placé l'item
+	 */
 	public OptionBuilder(Material material, String name, String description, String defaultValue, GUIBuilder gui) {
 			parent = gui;
 			if(description != null)

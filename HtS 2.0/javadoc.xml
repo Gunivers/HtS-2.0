@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="javadoc">
+    <target name="javadoc">
+        <javadoc access="public" author="true" classpath="/home/theo/Téléchargements/spigot-1.12.2.jar" destdir="doc" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" packagenames="fr.HtSTeam.HtS.Options.Options.Base,fr.HtSTeam.HtS.Options.Options.Others,fr.HtSTeam.HtS,fr.HtSTeam.HtS.Options.Options.LootTables,fr.HtSTeam.HtS.GameModes.FallenKingdom,fr.HtSTeam.HtS.Options.Options.Modifier,fr.HtSTeam.HtS.Options.Options.Scoreboard,fr.HtSTeam.HtS.Players,fr.HtSTeam.HtS.Events,fr.HtSTeam.HtS.Options.Structure.Annotation,fr.HtSTeam.HtS.Options.Options.Mobs,fr.HtSTeam.HtS.Options,fr.HtSTeam.HtS.Utils,fr.HtSTeam.HtS.GameModes.UHC,fr.HtSTeam.HtS.Options.Options.AtDeath,fr.HtSTeam.HtS.Options.Structure,fr.HtSTeam.HtS.Commands,fr.HtSTeam.HtS.Teams,fr.HtSTeam.HtS.GameModes,fr.HtSTeam.HtS.Players.Spectator,fr.HtSTeam.HtS.Scoreboard,fr.HtSTeam.HtS.Options.Options.GameMode,fr.HtSTeam.HtS.Options.Options.Nether,fr.HtSTeam.HtS.Scoreboard.Scoreboard" source="1.8" sourcepath="src" splitindex="true" use="true" version="true"/>
+    </target>
+</project>
