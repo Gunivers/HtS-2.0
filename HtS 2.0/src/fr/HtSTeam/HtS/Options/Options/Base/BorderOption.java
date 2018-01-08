@@ -7,10 +7,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.Options.OptionsRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
+import fr.HtSTeam.HtS.Options.OptionRegister;
+import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
-public class BorderOption extends OptionsManager {
+public class BorderOption extends OptionBuilder {
 	
 	
 	private boolean request = false;
@@ -18,7 +18,7 @@ public class BorderOption extends OptionsManager {
 	private WorldBorder border = Main.world.getWorldBorder();
 	
 	public BorderOption() {
-		super(Material.IRON_FENCE, "Taille de la bordure", "§d1000 * 1000", "1000", OptionsRegister.base);
+		super(Material.IRON_FENCE, "Taille de la bordure", "§d1000 * 1000", "1000", OptionRegister.base);
 		border.setCenter(0.0, 0.0);
 		border.setSize(1000);
 	}

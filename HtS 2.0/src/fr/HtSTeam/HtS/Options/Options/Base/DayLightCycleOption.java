@@ -4,15 +4,15 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.Options.OptionsRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
+import fr.HtSTeam.HtS.Options.OptionRegister;
+import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
-public class DayLightCycleOption extends OptionsManager {
+public class DayLightCycleOption extends OptionBuilder {
 	
 	private boolean activate = true;
 
 	public DayLightCycleOption() {
-		super(Material.DOUBLE_PLANT, "Cycle jour/nuit", "§2Activé", "Activé", OptionsRegister.base);
+		super(Material.DOUBLE_PLANT, "Cycle jour/nuit", "§2Activé", "Activé", OptionRegister.base);
 		Main.world.setGameRuleValue("doDaylightCycle", "true");
 		
 	}

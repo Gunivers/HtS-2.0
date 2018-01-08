@@ -9,11 +9,11 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-public class TeamManager {
+public class TeamBuilder {
 		
-	public static ArrayList<TeamManager> teamList = new ArrayList<TeamManager>();
-	public static Map<String, TeamManager> nameTeam = new HashMap<String, TeamManager>();
-	public static Map<UUID, TeamManager> playerTeam = new HashMap<UUID, TeamManager>();
+	public static ArrayList<TeamBuilder> teamList = new ArrayList<TeamBuilder>();
+	public static Map<String, TeamBuilder> nameTeam = new HashMap<String, TeamBuilder>();
+	public static Map<UUID, TeamBuilder> playerTeam = new HashMap<UUID, TeamBuilder>();
 		
 	private String teamName;
 	private String teamColor;
@@ -22,7 +22,7 @@ public class TeamManager {
 	
 	private ArrayList<UUID> playerList = new ArrayList<UUID>();
 	
-	public TeamManager(String teamName, String teamColor) {
+	public TeamBuilder(String teamName, String teamColor) {
 		if (nameTeam.containsKey(teamName))
 			return;
 		teamList.add(this);

@@ -38,20 +38,20 @@ import fr.HtSTeam.HtS.Options.Options.Scoreboard.PlayerScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.RemoveBlankScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.TimerScoreboardOption;
 import fr.HtSTeam.HtS.Options.Structure.Alterable;
-import fr.HtSTeam.HtS.Options.Structure.GUIManager;
+import fr.HtSTeam.HtS.Options.Structure.GUIBuilder;
 
-public class OptionsRegister {
+public class OptionRegister {
 	
-	public final static GUIManager main = new GUIManager("Options", 3, "Options", "Ouvre les options", Material.BARRIER, null);
-	public static GUIManager gameMode = new GameModeGUI();
-	public static GUIManager base = new GUIManager("Option de base", 1, "Option de base", "Régler les options basiques", Material.GRASS, OptionsRegister.main);
-	public static GUIManager atDeath = new GUIManager("Mort du joueur", 1, "Mort du joueur", "Régler la mort d'un joueur", Material.SKULL_ITEM, OptionsRegister.main);
-	public static GUIManager scoreboard = new GUIManager("Scoreboard", 1, "Scoreboard", "Régler le scoreboard", Material.SIGN, OptionsRegister.main);
-	public static GUIManager mob = new GUIManager("Mobs", 1, "Mobs", "Désactiver des mobs", Material.SKULL_ITEM, OptionsRegister.main);
-	public static GUIManager modifiers = new ModifiersGUI();
-	public static GUIManager loottables = new GUIManager("Loot Tables", 1, "Loot Tables", "Régler les Loot Tables", Material.BOOK, OptionsRegister.main);
-	public static GUIManager nether = new GUIManager("Nether", 1, "Nether", "Régler le Nether", Material.NETHERRACK, OptionsRegister.main);
-	public static GUIManager other = new GUIManager("Autre", 1, "Autre", "Options inclassables", Material.CHEST, OptionsRegister.main);
+	public final static GUIBuilder main = new GUIBuilder("Options", 3, "Options", "Ouvre les options", Material.BARRIER, null);
+	public static GUIBuilder gameMode = new GameModeGUI();
+	public static GUIBuilder base = new GUIBuilder("Option de base", 1, "Option de base", "Régler les options basiques", Material.GRASS, OptionRegister.main);
+	public static GUIBuilder atDeath = new GUIBuilder("Mort du joueur", 1, "Mort du joueur", "Régler la mort d'un joueur", Material.SKULL_ITEM, OptionRegister.main);
+	public static GUIBuilder scoreboard = new GUIBuilder("Scoreboard", 1, "Scoreboard", "Régler le scoreboard", Material.SIGN, OptionRegister.main);
+	public static GUIBuilder mob = new GUIBuilder("Mobs", 1, "Mobs", "Désactiver des mobs", Material.SKULL_ITEM, OptionRegister.main);
+	public static GUIBuilder modifiers = new ModifiersGUI();
+	public static GUIBuilder loottables = new GUIBuilder("Loot Tables", 1, "Loot Tables", "Régler les Loot Tables", Material.BOOK, OptionRegister.main);
+	public static GUIBuilder nether = new GUIBuilder("Nether", 1, "Nether", "Régler le Nether", Material.NETHERRACK, OptionRegister.main);
+	public static GUIBuilder other = new GUIBuilder("Autre", 1, "Autre", "Options inclassables", Material.CHEST, OptionRegister.main);
 	
 
 	//Mobs

@@ -10,9 +10,9 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import fr.HtSTeam.HtS.GameModes.GameMode;
-import fr.HtSTeam.HtS.Options.OptionsRegister;
+import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
-import fr.HtSTeam.HtS.Teams.TeamManager;
+import fr.HtSTeam.HtS.Teams.TeamBuilder;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
 public class UHC implements GameMode {
@@ -25,16 +25,16 @@ public class UHC implements GameMode {
 		teleport();	
 		
 		
-		OptionsRegister.noRegen.setState(false);
-		OptionsRegister.goldenApple.setState(true);
+		OptionRegister.noRegen.setState(false);
+		OptionRegister.goldenApple.setState(true);
 	}
 	
 	
 	private void teleport() {
 
-		int border = Integer.parseInt(OptionsRegister.borderOption.getValue());
+		int border = Integer.parseInt(OptionRegister.borderOption.getValue());
 
-		if (TeamManager.teamList.size() == 0) {
+		if (TeamBuilder.teamList.size() == 0) {
 			for (Player player : Bukkit.getOnlinePlayers()) {
 				int[] coords = Randomizer.RandCoord(-(border - 50) / 2, (border - 50) / 2, 255, 255, -(border - 50) / 2,
 						(border - 50) / 2);
@@ -42,10 +42,10 @@ public class UHC implements GameMode {
 			}
 
 		} else {
-			for (TeamManager tm : TeamManager.teamList) {
+			for (TeamBuilder tm : TeamBuilder.teamList) {
 				int[] coords = Randomizer.RandCoord(-(border - 50) / 2, (border - 50) / 2, 255, 255, -(border - 50) / 2,
 						(border - 50) / 2);
-				for (Entry<UUID, TeamManager> entry : TeamManager.playerTeam.entrySet()) {
+				for (Entry<UUID, TeamBuilder> entry : TeamBuilder.playerTeam.entrySet()) {
 					if (entry.getValue() == tm)
 						Bukkit.getPlayer(entry.getKey()).teleport(new Location(Bukkit.getPlayer(entry.getKey()).getWorld(), coords[0], coords[1], coords[2]));
 				}

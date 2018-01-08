@@ -9,16 +9,16 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 import fr.HtSTeam.HtS.EnumState;
-import fr.HtSTeam.HtS.Options.OptionsRegister;
+import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Options.Structure.Alterable;
-import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
+import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
-public class CreeperNerfOption extends OptionsManager implements Alterable {
+public class CreeperNerfOption extends OptionBuilder implements Alterable {
 	
 	private boolean activate = false;
 	
 	public CreeperNerfOption() {
-		super(Material.SULPHUR, "One shot des Creepers", "§4Désactivé", "Désactivé", OptionsRegister.mob);
+		super(Material.SULPHUR, "One shot des Creepers", "§4Désactivé", "Désactivé", OptionRegister.mob);
 	}
 	
 	

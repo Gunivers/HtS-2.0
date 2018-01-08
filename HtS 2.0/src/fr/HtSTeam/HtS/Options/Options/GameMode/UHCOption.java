@@ -5,13 +5,13 @@ import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.GameModes.UHC.UHC;
-import fr.HtSTeam.HtS.Options.OptionsRegister;
+import fr.HtSTeam.HtS.Options.OptionRegister;
 
 public class UHCOption extends GameModeState {
 
 	
 	public UHCOption() {
-		super(Material.GOLDEN_APPLE, "UHC", "§2Sélectionné", "", OptionsRegister.gameMode);
+		super(Material.GOLDEN_APPLE, "UHC", "§2Sélectionné", "", OptionRegister.gameMode);
 		this.getItemStackManager().setGlint(true);
 		parent.update(this);
 	}

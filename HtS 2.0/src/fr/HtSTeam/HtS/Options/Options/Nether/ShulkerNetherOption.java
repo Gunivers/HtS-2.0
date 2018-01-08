@@ -14,17 +14,17 @@ import org.bukkit.entity.Shulker;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.world.ChunkLoadEvent;
 
-import fr.HtSTeam.HtS.Options.OptionsRegister;
+import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Options.Structure.Alterable;
-import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
+import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
-public class ShulkerNetherOption extends OptionsManager implements Alterable {
+public class ShulkerNetherOption extends OptionBuilder implements Alterable {
 
 	private boolean activate = false;
 
 	public ShulkerNetherOption() {
-		super(Material.PURPLE_SHULKER_BOX, "Shulker", "§4Désactivé", "Désactivé", OptionsRegister.nether);
+		super(Material.PURPLE_SHULKER_BOX, "Shulker", "§4Désactivé", "Désactivé", OptionRegister.nether);
 	}
 
 	@Override

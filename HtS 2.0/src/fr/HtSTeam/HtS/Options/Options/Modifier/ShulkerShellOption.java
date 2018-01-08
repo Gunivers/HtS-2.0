@@ -16,20 +16,20 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import fr.HtSTeam.HtS.Options.OptionsRegister;
+import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Options.Structure.Alterable;
-import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
+import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Utils.ItemStackManager;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
-public class ShulkerShellOption extends OptionsManager implements Alterable {
+public class ShulkerShellOption extends OptionBuilder implements Alterable {
 	
 	private HashMap<Player, Integer> shellUse = new HashMap<>();
 	private boolean activate = false;
 	private ItemStackManager ism = new ItemStackManager(Material.SHULKER_SHELL, (short) 0, 1, "§rShulker Shell", "", false);
 	
 	public ShulkerShellOption() {
-		super(Material.SHULKER_SHELL, "Shulker Shell Modifier", "§4Désactivé", "Désactivé", OptionsRegister.modifiers);
+		super(Material.SHULKER_SHELL, "Shulker Shell Modifier", "§4Désactivé", "Désactivé", OptionRegister.modifiers);
 	}
 
 	@Override

@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Commands.PlayStopCommands;
-import fr.HtSTeam.HtS.Options.OptionsRegister;
+import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.Entry;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.EntryBuilder;
@@ -19,7 +19,7 @@ import fr.HtSTeam.HtS.Scoreboard.Scoreboard.HighlightedString;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.Scoreboard;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.ScoreboardHandler;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.ScoreboardLib;
-import fr.HtSTeam.HtS.Teams.TeamManager;
+import fr.HtSTeam.HtS.Teams.TeamBuilder;
 
 public class ScoreBoard {
 	
@@ -47,7 +47,7 @@ public class ScoreBoard {
 	
 	private static List<Entry> getBuild(Player p) {
 		if(display.size() == 0)
-			return new EntryBuilder().next("§6Joueur:").next(Integer.toString(PlayerInGame.playerInGame.size())).next("§6Kills:").next(Integer.toString(p.getStatistic(Statistic.PLAYER_KILLS))).next("§6Timer:").next(Main.timer.getTimeFormat()).next("§6Bordure:").next(OptionsRegister.borderOption.getValue() + "x" + OptionsRegister.borderOption.getValue()).build();
+			return new EntryBuilder().next("§6Joueur:").next(Integer.toString(PlayerInGame.playerInGame.size())).next("§6Kills:").next(Integer.toString(p.getStatistic(Statistic.PLAYER_KILLS))).next("§6Timer:").next(Main.timer.getTimeFormat()).next("§6Bordure:").next(OptionRegister.borderOption.getValue() + "x" + OptionRegister.borderOption.getValue()).build();
 		
 		EntryBuilder builder = new EntryBuilder();
 		
@@ -55,8 +55,8 @@ public class ScoreBoard {
 			switch(display.get(i)) {
 				case "PlayerScoreboardOption":
 					builder.next("§6Joueurs:").next(Integer.toString(PlayerInGame.playerInGame.size()));
-					if (TeamManager.teamList.size() != 0)
-						builder.next("§6Equipes:").next(Integer.toString(TeamManager.teamList.size()));
+					if (TeamBuilder.teamList.size() != 0)
+						builder.next("§6Equipes:").next(Integer.toString(TeamBuilder.teamList.size()));
 					break;
 				case "KilledScoreboardOption":
 					builder.next("§6Kills:").next(Integer.toString(p.getStatistic(Statistic.PLAYER_KILLS)));
@@ -67,7 +67,7 @@ public class ScoreBoard {
 						builder.next("§6Jours:").next(Integer.toString((int) Main.timer.getTimerInMinute() / 20));
 					break;
 				case "BorderScoreboardOption":
-					builder.next("§6Bordure:").next(OptionsRegister.borderOption.getValue() + "×" + OptionsRegister.borderOption.getValue());
+					builder.next("§6Bordure:").next(OptionRegister.borderOption.getValue() + "×" + OptionRegister.borderOption.getValue());
 					break;
 				case "AddBlankScoreboardOption":
 					builder.blank();

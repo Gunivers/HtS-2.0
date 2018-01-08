@@ -14,17 +14,17 @@ public class TeamGive implements Listener {
 		if (e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
 			if (e.getItem() != null && e.getItem().getType().equals(Material.WOOL) && e.getItem().getItemMeta().hasEnchants()) {
 				e.setCancelled(true);
-				if (TeamManager.playerTeam.containsKey(e.getPlayer().getUniqueId())) {
-					if (TeamManager.playerTeam.get(e.getPlayer().getUniqueId()).getTeamSize() > 1) {
-						TeamManager.playerTeam.get(e.getPlayer().getUniqueId()).removePlayer(e.getPlayer());
+				if (TeamBuilder.playerTeam.containsKey(e.getPlayer().getUniqueId())) {
+					if (TeamBuilder.playerTeam.get(e.getPlayer().getUniqueId()).getTeamSize() > 1) {
+						TeamBuilder.playerTeam.get(e.getPlayer().getUniqueId()).removePlayer(e.getPlayer());
 					} else {
-						e.getPlayer().sendMessage("Vous ne pouvez pas quitter l'équipe "+ ChatColor.valueOf(TeamManager.playerTeam.get(e.getPlayer().getUniqueId()).getTeamColor().toUpperCase())+ TeamManager.playerTeam.get(e.getPlayer().getUniqueId()).getTeamName());
+						e.getPlayer().sendMessage("Vous ne pouvez pas quitter l'équipe "+ ChatColor.valueOf(TeamBuilder.playerTeam.get(e.getPlayer().getUniqueId()).getTeamColor().toUpperCase())+ TeamBuilder.playerTeam.get(e.getPlayer().getUniqueId()).getTeamName());
 						return;
 					}
 				}
 
-				if (TeamManager.nameTeam.containsKey(e.getItem().getItemMeta().getDisplayName().substring(2)))
-					TeamManager.nameTeam.get(e.getItem().getItemMeta().getDisplayName().substring(2)).addPlayer(e.getPlayer());
+				if (TeamBuilder.nameTeam.containsKey(e.getItem().getItemMeta().getDisplayName().substring(2)))
+					TeamBuilder.nameTeam.get(e.getItem().getItemMeta().getDisplayName().substring(2)).addPlayer(e.getPlayer());
 			}
 		}
 	}

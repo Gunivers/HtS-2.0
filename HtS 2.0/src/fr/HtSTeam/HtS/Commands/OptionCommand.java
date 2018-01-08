@@ -9,7 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.Options.OptionsRegister;
+import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
 
 public class OptionCommand implements CommandExecutor {
@@ -26,7 +26,7 @@ public class OptionCommand implements CommandExecutor {
 		if (sender instanceof Player) {
 			Player p = (Player) sender;
 			if (cmd.getName().equalsIgnoreCase("option") && sender.hasPermission("option.use")) {
-				OptionsRegister.main.open(p);
+				OptionRegister.main.open(p);
 				return true;
 			
 			

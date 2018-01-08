@@ -3,14 +3,14 @@ package fr.HtSTeam.HtS.Options.Options.Scoreboard;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
-import fr.HtSTeam.HtS.Options.OptionsRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
+import fr.HtSTeam.HtS.Options.OptionRegister;
+import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Scoreboard.ScoreBoard;
 
-public class BorderScoreboardOption extends OptionsManager {
+public class BorderScoreboardOption extends OptionBuilder {
 	
 	public BorderScoreboardOption() {
-		super(Material.IRON_FENCE, "Taille de la bordure", "Afficher la taille de la bordure", null, OptionsRegister.scoreboard);
+		super(Material.IRON_FENCE, "Taille de la bordure", "Afficher la taille de la bordure", null, OptionRegister.scoreboard);
 	}
 	
 	private boolean activated = false;

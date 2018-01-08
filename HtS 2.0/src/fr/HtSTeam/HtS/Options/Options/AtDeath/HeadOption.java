@@ -4,16 +4,16 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.Options.OptionsRegister;
+import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Options.Structure.Alterable;
-import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
+import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
-public class HeadOption extends OptionsManager implements Alterable {
+public class HeadOption extends OptionBuilder implements Alterable {
 	
 	private boolean activate = true;
 
 	public HeadOption() {
-		super(Material.SKULL_ITEM, "Drop de tête", "§2Activé", "Activé", OptionsRegister.atDeath);
+		super(Material.SKULL_ITEM, "Drop de tête", "§2Activé", "Activé", OptionRegister.atDeath);
 		getItemStackManager().setItem(Material.SKULL_ITEM, (short) 3);
 		parent.update(this);
 		Main.deathLoot.addItem(Material.SKULL_ITEM, (short) 3);

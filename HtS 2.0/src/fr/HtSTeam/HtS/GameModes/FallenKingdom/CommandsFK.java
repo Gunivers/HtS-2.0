@@ -16,7 +16,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
 import fr.HtSTeam.HtS.Players.PlayerInGame;
-import fr.HtSTeam.HtS.Teams.TeamManager;
+import fr.HtSTeam.HtS.Teams.TeamBuilder;
 import fr.HtSTeam.HtS.Utils.ItemStackManager;
 import net.md_5.bungee.api.ChatColor;
 
@@ -29,7 +29,7 @@ public class CommandsFK implements CommandExecutor, Listener {
 	private int angleDo = 0;
 	private Block firstAngle;
 	private Block secondAngle;
-	private TeamManager team;
+	private TeamBuilder team;
 
 
 	@SuppressWarnings("deprecation")
@@ -47,11 +47,11 @@ public class CommandsFK implements CommandExecutor, Listener {
 				if(args.length >= 2 && args[0].equalsIgnoreCase("add")) {
 					
 					if(args.length == 3) {
-						if(!TeamManager.nameTeam.containsKey(args[2])) {
+						if(!TeamBuilder.nameTeam.containsKey(args[2])) {
 							p.sendMessage("§4La team saisie n'existe pas !");
 							return true;
 						}
-						team = TeamManager.nameTeam.get(args[2]);
+						team = TeamBuilder.nameTeam.get(args[2]);
 					}
 					
 					if(inCreation) { 
@@ -99,7 +99,7 @@ public class CommandsFK implements CommandExecutor, Listener {
 							for(BaseManager bm : BaseManager.baseList) {
 								if(bm.getBaseName().equals(args[2])) {
 									bm.addPlayer(Bukkit.getPlayer(uuid));
-									TeamManager.playerTeam.get(uuid).removePlayer(Bukkit.getPlayer(uuid));
+									TeamBuilder.playerTeam.get(uuid).removePlayer(Bukkit.getPlayer(uuid));
 									bm.getTeam().addPlayer(Bukkit.getPlayer(uuid));
 									p.sendMessage("§2Joueur bien ajouté !");
 									return true;

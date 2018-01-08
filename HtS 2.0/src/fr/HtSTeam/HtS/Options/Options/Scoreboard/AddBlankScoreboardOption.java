@@ -3,14 +3,14 @@ package fr.HtSTeam.HtS.Options.Options.Scoreboard;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
-import fr.HtSTeam.HtS.Options.OptionsRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
+import fr.HtSTeam.HtS.Options.OptionRegister;
+import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Scoreboard.ScoreBoard;
 
-public class AddBlankScoreboardOption extends OptionsManager {
+public class AddBlankScoreboardOption extends OptionBuilder {
 	
 	public AddBlankScoreboardOption() {
-		super(Material.PAPER, "Espace", "Ajouter une ligne vide", null, OptionsRegister.scoreboard);
+		super(Material.PAPER, "Espace", "Ajouter une ligne vide", null, OptionRegister.scoreboard);
 	}
 		
 	@Override

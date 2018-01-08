@@ -5,16 +5,16 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.weather.WeatherChangeEvent;
 
-import fr.HtSTeam.HtS.Options.OptionsRegister;
+import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Options.Structure.Alterable;
-import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
+import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
-public class WeatherOption extends OptionsManager implements Alterable {
+public class WeatherOption extends OptionBuilder implements Alterable {
 	
 	private boolean activate = true;
 
 	public WeatherOption() {
-		super(Material.WATER_BUCKET, "Pluie", "§2Activé", "Activé", OptionsRegister.base);
+		super(Material.WATER_BUCKET, "Pluie", "§2Activé", "Activé", OptionRegister.base);
 	}
 
 	@Override

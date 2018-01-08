@@ -3,13 +3,13 @@ package fr.HtSTeam.HtS.Options.Options.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
-import fr.HtSTeam.HtS.Options.Structure.GUIManager;
-import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
+import fr.HtSTeam.HtS.Options.Structure.GUIBuilder;
+import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
-public class GameModeState extends OptionsManager {
+public class GameModeState extends OptionBuilder {
 	
 
-	public GameModeState(Material material, String name, String description, String defaultValue, GUIManager gui) {
+	public GameModeState(Material material, String name, String description, String defaultValue, GUIBuilder gui) {
 		super(material, name, description, defaultValue, gui);
 		((GameModeGUI) parent).gameModeOption.add(this);
 	}

@@ -7,16 +7,16 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityRegainHealthEvent;
 import org.bukkit.event.entity.EntityRegainHealthEvent.RegainReason;
 
-import fr.HtSTeam.HtS.Options.OptionsRegister;
+import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Options.Structure.Alterable;
-import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
+import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
-public class NoRegenOption extends OptionsManager implements Alterable {
+public class NoRegenOption extends OptionBuilder implements Alterable {
 	
 	private boolean activate = false;
 
 	public NoRegenOption() {
-		super(Material.INK_SACK, "Régération naturelle", "§4Désactivé", "Désactivé", OptionsRegister.base);
+		super(Material.INK_SACK, "Régération naturelle", "§4Désactivé", "Désactivé", OptionRegister.base);
 		getItemStackManager().setItem(Material.INK_SACK, (short) 8);
 		parent.update(this);
 	}

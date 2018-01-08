@@ -10,13 +10,13 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import fr.HtSTeam.HtS.Options.OptionsRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
+import fr.HtSTeam.HtS.Options.OptionRegister;
+import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.PRIORITY;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
 import fr.HtSTeam.HtS.Utils.StartTrigger;
 
-public class BreathOption extends OptionsManager implements StartTrigger {
+public class BreathOption extends OptionBuilder implements StartTrigger {
 	
 	private boolean request = false; 
 	private Player p;
@@ -24,7 +24,7 @@ public class BreathOption extends OptionsManager implements StartTrigger {
 	private boolean alert = false;
 	
 	public BreathOption() {
-		super(Material.SULPHUR, "Souffle des profondeurs", "§4Désactivé", "Désactivé", OptionsRegister.base);
+		super(Material.SULPHUR, "Souffle des profondeurs", "§4Désactivé", "Désactivé", OptionRegister.base);
 	}
 
 	@Override

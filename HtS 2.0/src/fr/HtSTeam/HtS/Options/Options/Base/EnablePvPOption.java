@@ -7,18 +7,18 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import fr.HtSTeam.HtS.Options.OptionsRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
+import fr.HtSTeam.HtS.Options.OptionRegister;
+import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
 
-public class EnablePvPOption extends OptionsManager {
+public class EnablePvPOption extends OptionBuilder {
 	
 
 	private boolean request;
 	private Player p;
 	
 	public EnablePvPOption() {
-		super(Material.DIAMOND_SWORD, "Activation du PvP", "§220 minutes", "20", OptionsRegister.base);
+		super(Material.DIAMOND_SWORD, "Activation du PvP", "§220 minutes", "20", OptionRegister.base);
 		switchState(false);
 	}
 

@@ -5,12 +5,12 @@ import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.GameModes.FallenKingdom.FallenKingdom;
-import fr.HtSTeam.HtS.Options.OptionsRegister;
+import fr.HtSTeam.HtS.Options.OptionRegister;
 
 public class FallenKingdomOption extends GameModeState {
 
 	public FallenKingdomOption() {
-		super(Material.CHAINMAIL_CHESTPLATE, "Fallen Kingdom", "", "", OptionsRegister.gameMode);
+		super(Material.CHAINMAIL_CHESTPLATE, "Fallen Kingdom", "", "", OptionRegister.gameMode);
 	}
 	
 	@Override

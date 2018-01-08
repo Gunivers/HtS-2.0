@@ -8,17 +8,17 @@ import java.nio.file.Paths;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
-import fr.HtSTeam.HtS.Options.OptionsRegister;
+import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Options.Structure.Alterable;
-import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
+import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Utils.FileExtractor;
 
-public class FishingOption extends OptionsManager implements Alterable {
+public class FishingOption extends OptionBuilder implements Alterable {
 	
 	private boolean activate = false;
 	
 	public FishingOption() {
-		super(Material.FISHING_ROD, "Pêche modifiée", "§4Désactivé", "Désactivé", OptionsRegister.loottables);
+		super(Material.FISHING_ROD, "Pêche modifiée", "§4Désactivé", "Désactivé", OptionRegister.loottables);
 	}
 
 	@Override

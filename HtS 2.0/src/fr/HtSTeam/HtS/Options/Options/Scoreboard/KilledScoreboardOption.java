@@ -3,14 +3,14 @@ package fr.HtSTeam.HtS.Options.Options.Scoreboard;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
-import fr.HtSTeam.HtS.Options.OptionsRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
+import fr.HtSTeam.HtS.Options.OptionRegister;
+import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Scoreboard.ScoreBoard;
 
-public class KilledScoreboardOption extends OptionsManager {
+public class KilledScoreboardOption extends OptionBuilder {
 	
 	public KilledScoreboardOption() {
-		super(Material.SKULL_ITEM, "Kill", "Afficher le nombre de joueurs tués", null, OptionsRegister.scoreboard);
+		super(Material.SKULL_ITEM, "Kill", "Afficher le nombre de joueurs tués", null, OptionRegister.scoreboard);
 	}
 	
 	private boolean activated = false;

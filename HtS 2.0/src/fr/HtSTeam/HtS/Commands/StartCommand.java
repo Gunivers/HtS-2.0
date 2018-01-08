@@ -14,7 +14,7 @@ import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
+import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
 import fr.HtSTeam.HtS.Scoreboard.ScoreBoard;
 import fr.HtSTeam.HtS.Utils.JSON;
@@ -35,8 +35,8 @@ public class StartCommand implements CommandExecutor {
 			
 			
 			if (cmd.getName().equalsIgnoreCase("start") && sender.hasPermission("start.use") && EnumState.getState().equals(EnumState.WAIT)) {
-				for(Entry<OptionsManager, Object> entry : OptionsManager.optionsList.entrySet()) {
-					OptionsManager key = entry.getKey();
+				for(Entry<OptionBuilder, Object> entry : OptionBuilder.optionsList.entrySet()) {
+					OptionBuilder key = entry.getKey();
 					Object value = entry.getValue();
 					if(value != null && key.getDefaultValue() != null  && !key.getDefaultValue().equals(value))
 						p.sendMessage(key.getName() + " : §4" + value.toString());

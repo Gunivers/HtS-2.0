@@ -16,15 +16,15 @@ import org.bukkit.inventory.ItemStack;
 
 import fr.HtSTeam.HtS.Utils.ItemStackManager;
 
-public class GUIManager extends OptionsManager {
+public class GUIBuilder extends OptionBuilder {
 	
-	public static ArrayList<GUIManager> guiList = new ArrayList<GUIManager>();
-	public Map<ItemStackManager, OptionsManager> guiContent = new HashMap<ItemStackManager, OptionsManager>();
+	public static ArrayList<GUIBuilder> guiList = new ArrayList<GUIBuilder>();
+	public Map<ItemStackManager, OptionBuilder> guiContent = new HashMap<ItemStackManager, OptionBuilder>();
 	
 	protected Inventory inv;
 	
 	
-	public GUIManager(String name, int rows, String nameIcon, String description, Material material, GUIManager gui) {
+	public GUIBuilder(String name, int rows, String nameIcon, String description, Material material, GUIBuilder gui) {
 		super(material, nameIcon, description, null, gui);
 		guiList.add(this);
 		if (rows > 6)
@@ -36,7 +36,7 @@ public class GUIManager extends OptionsManager {
 	
 	// Common Methods
 	
-	public void put(OptionsManager optionsManager) {
+	public void put(OptionBuilder optionsManager) {
 		if (guiContent.entrySet().size() > inv.getSize())
 			return;
 		guiContent.put(optionsManager.getItemStackManager(), optionsManager);
@@ -59,8 +59,8 @@ public class GUIManager extends OptionsManager {
 		p.openInventory(inv);
 	}
 	
-	public void update(OptionsManager om) {
-		for(Entry<ItemStackManager, OptionsManager> is : guiContent.entrySet()) {
+	public void update(OptionBuilder om) {
+		for(Entry<ItemStackManager, OptionBuilder> is : guiContent.entrySet()) {
 			if(is.getValue() == om) {
 				for(ItemStack is2 : inv.getContents()) {
 					if(is2 != null && is2.getItemMeta().getDisplayName().equals(is.getKey().getName())) {
@@ -75,8 +75,8 @@ public class GUIManager extends OptionsManager {
 	
 	public void addReturnButton() {
 		if(!parent.equals(null)) {
-			GUIManager parent2 = parent;
-			OptionsManager om = new OptionsManager(Material.BARRIER, "Retour", null, null, null) {
+			GUIBuilder parent2 = parent;
+			OptionBuilder om = new OptionBuilder(Material.BARRIER, "Retour", null, null, null) {
 
 				@Override
 				public void event(Player p) {
@@ -98,7 +98,7 @@ public class GUIManager extends OptionsManager {
 	
 	@EventHandler
 	public void onClick(InventoryClickEvent e) {
-		for(Entry<ItemStackManager, OptionsManager> ism : guiContent.entrySet()) {
+		for(Entry<ItemStackManager, OptionBuilder> ism : guiContent.entrySet()) {
 			if(ism.getKey().getItemStack().equals(e.getCurrentItem())) {
 				e.setCancelled(true);
 				ism.getValue().event((Player) e.getWhoClicked());

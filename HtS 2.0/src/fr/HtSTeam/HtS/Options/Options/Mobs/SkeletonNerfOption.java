@@ -8,18 +8,18 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import fr.HtSTeam.HtS.Options.OptionsRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
+import fr.HtSTeam.HtS.Options.OptionRegister;
+import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
 
-public class SkeletonNerfOption extends OptionsManager {
+public class SkeletonNerfOption extends OptionBuilder {
 	
 	private boolean request = false;
 	private Player p;
 	private boolean activate = false;
 
 	public SkeletonNerfOption() {
-		super(Material.BONE, "Squelette", "§d40 minutes", "40", OptionsRegister.mob);
+		super(Material.BONE, "Squelette", "§d40 minutes", "40", OptionRegister.mob);
 	}
 
 	@Override

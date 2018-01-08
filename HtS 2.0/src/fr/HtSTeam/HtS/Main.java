@@ -14,7 +14,7 @@ import fr.HtSTeam.HtS.Commands.CommandsManager;
 import fr.HtSTeam.HtS.Events.EventManager;
 import fr.HtSTeam.HtS.GameModes.GameMode;
 import fr.HtSTeam.HtS.GameModes.UHC.UHC;
-import fr.HtSTeam.HtS.Options.OptionsRegister;
+import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Players.DeathLoot;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.ScoreboardLib;
 import fr.HtSTeam.HtS.Utils.FileExtractor;
@@ -48,7 +48,7 @@ public class Main extends JavaPlugin {
 		Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "gamerule sendCommandFeedback false");
 		EventManager.loadEvents(this);
 		CommandsManager.loadCommands(this);
-		OptionsRegister.register();
+		OptionRegister.register();
 		ScoreboardLib.setPluginInstance(this);
 	}
 }

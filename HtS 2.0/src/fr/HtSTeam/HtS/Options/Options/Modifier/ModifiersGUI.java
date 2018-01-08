@@ -15,20 +15,20 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
 import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.Options.OptionsRegister;
-import fr.HtSTeam.HtS.Options.Structure.GUIManager;
-import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
+import fr.HtSTeam.HtS.Options.OptionRegister;
+import fr.HtSTeam.HtS.Options.Structure.GUIBuilder;
+import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
 import fr.HtSTeam.HtS.Utils.ItemStackManager;
 import fr.HtSTeam.HtS.Utils.StartTrigger;
 
-public class ModifiersGUI extends GUIManager implements StartTrigger, CommandExecutor {
+public class ModifiersGUI extends GUIBuilder implements StartTrigger, CommandExecutor {
 	
 	private Map<Player, CustomGUI> customInventory = new HashMap<Player, CustomGUI>();
 	private boolean active = false;
 
 	public ModifiersGUI() {
-		super("Modifiers", 1, "Modifiers", "Activer/Désactiver des items modifiés", Material.END_CRYSTAL, OptionsRegister.main);
+		super("Modifiers", 1, "Modifiers", "Activer/Désactiver des items modifiés", Material.END_CRYSTAL, OptionRegister.main);
 		Main.plugin.getCommand("gui").setExecutor(this);
 	}
 	
@@ -40,7 +40,7 @@ public class ModifiersGUI extends GUIManager implements StartTrigger, CommandExe
 	@Override
 	@EventHandler
 	public void onClick(InventoryClickEvent e) {
-		for(Entry<ItemStackManager, OptionsManager> ism : guiContent.entrySet()) {
+		for(Entry<ItemStackManager, OptionBuilder> ism : guiContent.entrySet()) {
 			if(e.getCurrentItem() != null && !e.getCurrentItem().getType().equals(Material.BARRIER) && ism.getKey().getItemStack().equals(e.getCurrentItem())) {
 				e.setCancelled(true);
 				ism.getValue().event((Player) e.getWhoClicked());
@@ -50,7 +50,7 @@ public class ModifiersGUI extends GUIManager implements StartTrigger, CommandExe
 
 	@Override
 	public void onPartyStart() {
-		for(Entry<ItemStackManager, OptionsManager> entry : guiContent.entrySet())
+		for(Entry<ItemStackManager, OptionBuilder> entry : guiContent.entrySet())
 			if(entry.getValue().getValue() != null && entry.getValue().getValue().equals("Activé")) {
 				active = true;
 				continue;

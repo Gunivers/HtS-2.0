@@ -10,7 +10,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Scoreboard.ScoreBoard;
-import fr.HtSTeam.HtS.Teams.TeamManager;
+import fr.HtSTeam.HtS.Teams.TeamBuilder;
 
 public class JoinLeaveEvent implements Listener {
 	
@@ -20,8 +20,8 @@ public class JoinLeaveEvent implements Listener {
 		
 		if (EnumState.getState() == EnumState.RUNNING) {
 			ScoreBoard.send(p);
-			if (TeamManager.teamList.size() != 0 && p.getGameMode() != GameMode.SPECTATOR)
-				p.setDisplayName(ChatColor.valueOf(TeamManager.playerTeam.get(p.getUniqueId()).getTeamColor().toUpperCase()) + p.getName());
+			if (TeamBuilder.teamList.size() != 0 && p.getGameMode() != GameMode.SPECTATOR)
+				p.setDisplayName(ChatColor.valueOf(TeamBuilder.playerTeam.get(p.getUniqueId()).getTeamColor().toUpperCase()) + p.getName());
 		}	
 	}
 	

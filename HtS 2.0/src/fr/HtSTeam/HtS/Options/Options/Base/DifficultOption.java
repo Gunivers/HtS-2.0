@@ -6,15 +6,15 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 
-import fr.HtSTeam.HtS.Options.OptionsRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionsManager;
+import fr.HtSTeam.HtS.Options.OptionRegister;
+import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
-public class DifficultOption extends OptionsManager {
+public class DifficultOption extends OptionBuilder {
 	
 	private int difficult = 3;
 	
 	public DifficultOption() {
-		super(Material.SKULL_ITEM, "Difficulté", "§4Difficile", "Difficile", OptionsRegister.base);
+		super(Material.SKULL_ITEM, "Difficulté", "§4Difficile", "Difficile", OptionRegister.base);
 		changeDifficult(Difficulty.HARD);
 	}
 

@@ -10,7 +10,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
-import fr.HtSTeam.HtS.Teams.TeamManager;
+import fr.HtSTeam.HtS.Teams.TeamBuilder;
 
 public class BaseManager {
 	
@@ -18,7 +18,7 @@ public class BaseManager {
 	public static Map<String, BaseManager> nameBase = new HashMap<String, BaseManager>();
 	public static Map<UUID, BaseManager> playerBase = new HashMap<UUID, BaseManager>();
 	
-	private TeamManager team;
+	private TeamBuilder team;
 	private String baseName;
 	private Block pos1, pos2;
 	private boolean neutral = false;
@@ -63,7 +63,7 @@ public class BaseManager {
 		nameBase.remove(baseName, this);
 	}
 	
-	public void addTeam(TeamManager team) {
+	public void addTeam(TeamBuilder team) {
 		if(neutral)
 			return;
 		this.team = team;
@@ -96,7 +96,7 @@ public class BaseManager {
 		return pos;
 	}
 
-	public TeamManager getTeam() {
+	public TeamBuilder getTeam() {
 		if(neutral)
 			return null;
 		return team;
