@@ -4,6 +4,6 @@ public interface GameMode {
 		
 	public void initialisation();
 	
-	public String gamemodeTotring();
+	public String gamemodeToString();
 
 }

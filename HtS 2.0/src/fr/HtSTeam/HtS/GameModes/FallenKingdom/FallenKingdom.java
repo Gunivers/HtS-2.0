@@ -23,10 +23,12 @@ public class FallenKingdom implements GameMode {
 	@Override
 	public void initialisation() {
 		new EventManagerFK();
+		for(BaseBuilder bb : BaseBuilder.baseList)
+			bb.addAllPlayers();
 	}
 
 	@Override
-	public String gamemodeTotring() {
+	public String gamemodeToString() {
 		return "Fallen Kingdom";
 	}
 

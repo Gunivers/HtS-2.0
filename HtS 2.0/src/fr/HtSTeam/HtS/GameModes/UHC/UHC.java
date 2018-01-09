@@ -55,7 +55,7 @@ public class UHC implements GameMode {
 
 
 	@Override
-	public String gamemodeTotring() {
+	public String gamemodeToString() {
 		return "UHC";
 	}
 

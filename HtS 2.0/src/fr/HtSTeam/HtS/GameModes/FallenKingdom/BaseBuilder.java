@@ -12,11 +12,11 @@ import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Teams.TeamBuilder;
 
-public class BaseManager {
+public class BaseBuilder {
 	
-	public static ArrayList<BaseManager> baseList = new ArrayList<BaseManager>();
-	public static Map<String, BaseManager> nameBase = new HashMap<String, BaseManager>();
-	public static Map<UUID, BaseManager> playerBase = new HashMap<UUID, BaseManager>();
+	public static ArrayList<BaseBuilder> baseList = new ArrayList<BaseBuilder>();
+	public static Map<String, BaseBuilder> nameBase = new HashMap<String, BaseBuilder>();
+	public static Map<UUID, BaseBuilder> playerBase = new HashMap<UUID, BaseBuilder>();
 	
 	private TeamBuilder team;
 	private String baseName;
@@ -25,7 +25,7 @@ public class BaseManager {
 	
 	private ArrayList<UUID> playerList = new ArrayList<UUID>();
 	
-	public BaseManager(String baseName, Block pos1, Block pos2) {
+	public BaseBuilder(String baseName, Block pos1, Block pos2) {
 		if (nameBase.containsKey(baseName))
 			return;		
 		baseList.add(this);
@@ -68,8 +68,6 @@ public class BaseManager {
 			return;
 		this.team = team;
 		playerList = team.getTeamPlayers();
-		for(UUID uuid : playerList)
-			playerBase.put(uuid, this);
 	}
 	
 	public String getBaseName() { return baseName; }
@@ -100,5 +98,10 @@ public class BaseManager {
 		if(neutral)
 			return null;
 		return team;
+	}
+	
+	public void addAllPlayers() {
+		for(UUID uuid : playerList)
+			playerBase.put(uuid, this);
 	}
 }

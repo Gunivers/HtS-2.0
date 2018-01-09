@@ -73,8 +73,8 @@ public class CommandsFK implements CommandExecutor, Listener {
 				
 				
 				} if(args.length == 2 && args[0].equalsIgnoreCase("remove")) {
-					if(BaseManager.nameBase.containsKey(args[1])) {
-						BaseManager.nameBase.get(args[1]).deleteBase();
+					if(BaseBuilder.nameBase.containsKey(args[1])) {
+						BaseBuilder.nameBase.get(args[1]).deleteBase();
 						p.sendMessage("§2Base supprimée.");
 					}
 					else
@@ -84,7 +84,7 @@ public class CommandsFK implements CommandExecutor, Listener {
 				
 				} if(args.length == 1 && args[0].equalsIgnoreCase("list")) {
 					p.sendMessage("- Bases crées : ");
-					for(BaseManager bm : BaseManager.baseList) {
+					for(BaseBuilder bm : BaseBuilder.baseList) {
 						p.sendMessage(" - " + ChatColor.valueOf(bm.getTeam().getTeamColor().toUpperCase()) + bm.getBaseName());
 						p.sendMessage("  - §2Team :§r " + ChatColor.valueOf(bm.getTeam().getTeamColor().toUpperCase()) + bm.getTeam().getTeamName());
 						p.sendMessage("  - §2Premier angle :§r " + bm.getPos()[0][0] + " " + bm.getPos()[1][0]);
@@ -96,7 +96,7 @@ public class CommandsFK implements CommandExecutor, Listener {
 				} if(args.length == 3 && args[0].equalsIgnoreCase("join")) {
 					for(UUID uuid : PlayerInGame.playerInGame) {
 						if(Bukkit.getPlayer(uuid).getName().equals(args[1])) {
-							for(BaseManager bm : BaseManager.baseList) {
+							for(BaseBuilder bm : BaseBuilder.baseList) {
 								if(bm.getBaseName().equals(args[2])) {
 									bm.addPlayer(Bukkit.getPlayer(uuid));
 									TeamBuilder.playerTeam.get(uuid).removePlayer(Bukkit.getPlayer(uuid));
@@ -115,7 +115,7 @@ public class CommandsFK implements CommandExecutor, Listener {
 				
 				
 				} if(args.length == 2 && args[0].equalsIgnoreCase("neutral")) {
-					for(BaseManager bm : BaseManager.baseList) {
+					for(BaseBuilder bm : BaseBuilder.baseList) {
 						if(bm.getBaseName().equals(args[1])) {
 							bm.setNeutral(true);
 							return true;
@@ -151,7 +151,7 @@ public class CommandsFK implements CommandExecutor, Listener {
 
 				p.sendMessage("§2Premier angle : §5" + firstAngle.getX() + " " + firstAngle.getY() + " " + firstAngle.getZ());
 				p.sendMessage("§2Second angle : §5" + secondAngle.getX() + " " + secondAngle.getY() + " " + secondAngle.getZ());
-				BaseManager bm = new BaseManager(name, firstAngle, secondAngle);
+				BaseBuilder bm = new BaseBuilder(name, firstAngle, secondAngle);
 				p.getEquipment().setItemInMainHand(new ItemStack(Material.AIR));
 				if(team != null)
 					bm.addTeam(team);
