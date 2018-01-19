@@ -11,7 +11,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import fr.HtSTeam.HtS.Utils.ItemStackManager;
+import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 import net.md_5.bungee.api.ChatColor;
 
@@ -88,7 +88,7 @@ public class TeamCommand implements CommandExecutor {
 						for (TeamBuilder t : TeamBuilder.teamList)
 							for (Player player : Bukkit.getOnlinePlayers())
 								if (player.getGameMode().equals(GameMode.SPECTATOR))	
-									player.getInventory().addItem(new ItemStackManager(Material.WOOL, t.getTeamByte(), 1, ChatColor.valueOf(t.getTeamColor().toUpperCase()) + t.getTeamName(), "§fClique pour rejoindre l'équipe " + ChatColor.valueOf(t.getTeamColor().toUpperCase()) + t.getTeamName(), true).getItemStack());
+									player.getInventory().addItem(new ItemStackBuilder(Material.WOOL, t.getTeamByte(), 1, ChatColor.valueOf(t.getTeamColor().toUpperCase()) + t.getTeamName(), "§fClique pour rejoindre l'équipe " + ChatColor.valueOf(t.getTeamColor().toUpperCase()) + t.getTeamName()));
 						return true;
 					} catch (NullPointerException e) {
 						p.sendMessage("§4Aucunes équipes existantes !");

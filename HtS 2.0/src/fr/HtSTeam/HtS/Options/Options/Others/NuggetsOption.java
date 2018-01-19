@@ -32,10 +32,10 @@ public class NuggetsOption extends OptionBuilder implements Alterable {
 		activate = value;
 		if (value) {
 			setValue("Activé");
-			getItemStackManager().setLore("§2Activé");
+			getItemStack().setLore("§2Activé");
 		} else {
 			setValue("Désactivé");
-			getItemStackManager().setLore("§4Désactivé");
+			getItemStack().setLore("§4Désactivé");
 		}
 		parent.update(this);
 	}

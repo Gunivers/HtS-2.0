@@ -17,7 +17,7 @@ public class NoRegenOption extends OptionBuilder implements Alterable {
 
 	public NoRegenOption() {
 		super(Material.INK_SACK, "Régération naturelle", "§4Désactivé", "Désactivé", OptionRegister.base);
-		getItemStackManager().setItem(Material.INK_SACK, (short) 8);
+		getItemStack().setItem(Material.INK_SACK, (short) 8);
 		parent.update(this);
 	}
 
@@ -42,12 +42,12 @@ public class NoRegenOption extends OptionBuilder implements Alterable {
 		activate = value;
 		if(value) {
 			setValue("Activé");
-			getItemStackManager().setLore("§2Activé");
-			getItemStackManager().setItem(Material.INK_SACK, (short) 9);
+			getItemStack().setLore("§2Activé");
+			getItemStack().setItem(Material.INK_SACK, (short) 9);
 		} else {
 			setValue("Désactivé");
-			getItemStackManager().setLore("§4Désactivé");
-			getItemStackManager().setItem(Material.INK_SACK, (short) 8);
+			getItemStack().setLore("§4Désactivé");
+			getItemStack().setItem(Material.INK_SACK, (short) 8);
 		}
 		parent.update(this);
 		

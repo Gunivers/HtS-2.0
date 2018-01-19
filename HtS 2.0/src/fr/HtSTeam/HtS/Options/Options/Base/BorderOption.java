@@ -40,7 +40,7 @@ public class BorderOption extends OptionBuilder {
 				if(value >= 500 && value <= 2500) {
 					setValue(Integer.toString(value * 2));
 					p.sendMessage("§2Bordure à " + value + " blocs du centre." );
-					this.getItemStackManager().setLore("§d" + value * 2 + " * " + value * 2);
+					this.getItemStack().setLore("§d" + value * 2 + " * " + value * 2);
 					parent.update(this);
 					request = false;
 					border.setSize(value * 2);

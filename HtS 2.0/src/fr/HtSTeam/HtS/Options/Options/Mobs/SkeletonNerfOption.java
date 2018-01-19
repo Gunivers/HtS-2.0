@@ -39,7 +39,7 @@ public class SkeletonNerfOption extends OptionBuilder {
 				if(value >= 0 && value <= 60) {
 					setValue(Integer.toString(value));
 					p.sendMessage("§2Squelette activé à " + getValue() + " minutes." );
-					this.getItemStackManager().setLore("§d" + value + " minutes");
+					this.getItemStack().setLore("§d" + value + " minutes");
 					parent.update(this);
 					request = false;
 					return;

@@ -17,13 +17,13 @@ import org.bukkit.inventory.ItemStack;
 
 import fr.HtSTeam.HtS.Players.PlayerInGame;
 import fr.HtSTeam.HtS.Teams.TeamBuilder;
-import fr.HtSTeam.HtS.Utils.ItemStackManager;
+import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 import net.md_5.bungee.api.ChatColor;
 
 public class CommandsFK implements CommandExecutor, Listener {
 	
 	private boolean inCreation = false;
-	private ItemStackManager ism;
+	private ItemStackBuilder ism;
 	private Player p;
 	private String name;
 	private int angleDo = 0;
@@ -35,7 +35,7 @@ public class CommandsFK implements CommandExecutor, Listener {
 	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
-		
+	
 		if(sender instanceof Player) {
 			Player p = (Player) sender;
 			
@@ -62,8 +62,9 @@ public class CommandsFK implements CommandExecutor, Listener {
 						this.p = p;
 						name = args[1];
 						ItemStack im = p.getEquipment().getItemInMainHand();
-						ism = new ItemStackManager(im.getType(), im.getData().getData(), 1, "Définir le premier angle de la base " + name, null, true);
-						p.getEquipment().setItemInMainHand(ism.getItemStack());
+						ism = new ItemStackBuilder(im.getType(), im.getData().getData(), 1, "Définir le premier angle de la base " + name, null);
+						ism.setGlint(true);
+						p.getEquipment().setItemInMainHand(ism);
 						inCreation = true;
 					} else {
 						p.sendMessage("§4Veuillez prendre un item en main.");
@@ -131,17 +132,19 @@ public class CommandsFK implements CommandExecutor, Listener {
 	
 	
 	
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onRightClick(PlayerInteractEvent e) {
 		ItemStack is = e.getPlayer().getEquipment().getItemInMainHand();
-		if(inCreation && e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && e.getPlayer().equals(p) && ism.getMaterial().equals(is.getType()) && ism.getName().equals(is.getItemMeta().getDisplayName())) {
+		if(inCreation && e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && e.getPlayer().equals(p) && ism.getType().equals(is.getType()) && ism.getName().equals(is.getItemMeta().getDisplayName())) {
 			e.setCancelled(true);
 			Block b = e.getClickedBlock();
 			angleDo++;
 			if(angleDo == 1) {
 				firstAngle = b;
-				ism = new ItemStackManager(ism.getMaterial(), ism.getData(), 1, "Définir le second angle de la base " + name, "Premier angle : " + firstAngle.getX() + " " + firstAngle.getY() + " " + firstAngle.getZ(), true);
-				p.getEquipment().setItemInMainHand(ism.getItemStack());
+				ism = new ItemStackBuilder(ism.getType(), ism.getData().getData(), 1, "Définir le second angle de la base " + name, "Premier angle : " + firstAngle.getX() + " " + firstAngle.getY() + " " + firstAngle.getZ());
+				ism.setGlint(true);
+				p.getEquipment().setItemInMainHand(ism);
 			} else if(angleDo == 2) {
 				secondAngle = b;
 				if(team != null)
@@ -154,7 +157,7 @@ public class CommandsFK implements CommandExecutor, Listener {
 				BaseBuilder bm = new BaseBuilder(name, firstAngle, secondAngle);
 				p.getEquipment().setItemInMainHand(new ItemStack(Material.AIR));
 				if(team != null)
-					bm.addTeam(team);
+					bm.setTeam(team);
 				reset();
 			}
 		} else if(e.getPlayer().equals(p) && inCreation) {

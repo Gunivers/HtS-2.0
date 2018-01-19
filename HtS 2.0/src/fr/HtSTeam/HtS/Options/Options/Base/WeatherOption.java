@@ -34,13 +34,13 @@ public class WeatherOption extends OptionBuilder implements Alterable {
 		activate = value;
 		if(value) {
 			setValue("Activé");
-			getItemStackManager().setLore("§2Activé");
-			getItemStackManager().setItem(Material.WATER_BUCKET, (short) 0);
+			getItemStack().setLore("§2Activé");
+			getItemStack().setItem(Material.WATER_BUCKET, (short) 0);
 			
 		} else {
 			setValue("Désactivé");
-			getItemStackManager().setLore("§4Désactivé");
-			getItemStackManager().setItem(Material.BUCKET, (short) 0);
+			getItemStack().setLore("§4Désactivé");
+			getItemStack().setItem(Material.BUCKET, (short) 0);
 		}		
 		parent.update(this);		
 	}

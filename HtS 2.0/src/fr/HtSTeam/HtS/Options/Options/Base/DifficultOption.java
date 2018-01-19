@@ -24,19 +24,19 @@ public class DifficultOption extends OptionBuilder {
 		switch(difficult) {
 			case 0 : changeDifficult(Difficulty.PEACEFUL);
 					 setValue("Paisible");
-					 getItemStackManager().setLore("§2Paisible");
+					 getItemStack().setLore("§2Paisible");
 					 break;
 			case 1 : changeDifficult(Difficulty.EASY);
 					 setValue("Facile");
-					 getItemStackManager().setLore("§eFacile");
+					 getItemStack().setLore("§eFacile");
 					 break;
 			case 2 : changeDifficult(Difficulty.NORMAL);
 					 setValue("Normal");
-					 getItemStackManager().setLore("§6Normal");
+					 getItemStack().setLore("§6Normal");
 				 	 break;
 			case 3 : changeDifficult(Difficulty.HARD);
 					 setValue("Difficile");
-					 getItemStackManager().setLore("§4Difficile");
+					 getItemStack().setLore("§4Difficile");
 					 break;
 		}
 		parent.update(this);

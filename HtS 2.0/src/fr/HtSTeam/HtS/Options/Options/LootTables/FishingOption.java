@@ -34,13 +34,13 @@ public class FishingOption extends OptionBuilder implements Alterable {
 			try {
 				FileExtractor.extractFile(FileExtractor.lt + "fishing.json", FileExtractor.wdir + FileExtractor.Gdir);
 				setValue("Activé");
-				getItemStackManager().setLore("§2Activé");
+				getItemStack().setLore("§2Activé");
 			} catch (IOException | URISyntaxException e) {
 				e.printStackTrace();
 			}
 		} else {
 			setValue("Désactivé");
-			getItemStackManager().setLore("§4Désactivé");
+			getItemStack().setLore("§4Désactivé");
 			try {
 				Files.delete(Paths.get(FileExtractor.wdir + FileExtractor.Gdir + "fishing.json"));
 			} catch (IOException e) {

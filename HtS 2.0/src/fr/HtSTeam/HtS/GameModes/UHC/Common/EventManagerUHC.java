@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.GameModes.UHC;
+package fr.HtSTeam.HtS.GameModes.UHC.Common;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
@@ -11,7 +11,6 @@ public class EventManagerUHC {
 		
 		PluginManager pm = Bukkit.getServer().getPluginManager();
 		pm.registerEvents(new FakeDeath(), Main.plugin);
-		pm.registerEvents(new VictoryDetectionEvent(), Main.plugin);
 	}
 
 }

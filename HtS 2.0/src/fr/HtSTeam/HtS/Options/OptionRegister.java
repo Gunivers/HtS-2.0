@@ -14,6 +14,7 @@ import fr.HtSTeam.HtS.Options.Options.Base.NoRegenOption;
 import fr.HtSTeam.HtS.Options.Options.Base.WeatherOption;
 import fr.HtSTeam.HtS.Options.Options.GameMode.FallenKingdomOption;
 import fr.HtSTeam.HtS.Options.Options.GameMode.GameModeGUI;
+import fr.HtSTeam.HtS.Options.Options.GameMode.SyTOption;
 import fr.HtSTeam.HtS.Options.Options.GameMode.UHCOption;
 import fr.HtSTeam.HtS.Options.Options.LootTables.BatOption;
 import fr.HtSTeam.HtS.Options.Options.LootTables.ChestOption;
@@ -53,6 +54,11 @@ public class OptionRegister {
 	public static GUIBuilder nether = new GUIBuilder("Nether", 1, "Nether", "Régler le Nether", Material.NETHERRACK, OptionRegister.main);
 	public static GUIBuilder other = new GUIBuilder("Autre", 1, "Autre", "Options inclassables", Material.CHEST, OptionRegister.main);
 	
+	
+	// GameMode
+	public static GUIBuilder uhc = new UHCOption();
+	public static GUIBuilder fallenKingdom = new FallenKingdomOption();
+	public static GUIBuilder syt = new SyTOption();
 
 	//Mobs
 	public static Alterable creeperNerf = new CreeperNerfOption();
@@ -94,16 +100,14 @@ public class OptionRegister {
 	
 	public static void register() {
 		
-		// GameMode
-		new UHCOption();
-		new FallenKingdomOption();
+		
 		
 		// Mobs
 		new SkeletonNerfOption();
 				
 		
 		// AtDeath
-		atDeath.getItemStackManager().setItem(Material.SKULL_ITEM, (short) 3);
+		atDeath.getItemStack().setItem(Material.SKULL_ITEM, (short) 3);
 		main.update(atDeath);
 		
 		

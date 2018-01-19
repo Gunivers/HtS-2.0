@@ -14,7 +14,7 @@ public class FixDayOption extends OptionBuilder implements StartTrigger {
 	int tick = 0;
 	public FixDayOption() {
 		super(Material.STAINED_CLAY, "Moment au lancement", "§dAube", "Aube", OptionRegister.base);
-		getItemStackManager().setItem(Material.STAINED_CLAY, (short) 2);
+		getItemStack().setItem(Material.STAINED_CLAY, (short) 2);
 		parent.update(this);
 		}
 
@@ -24,23 +24,23 @@ public class FixDayOption extends OptionBuilder implements StartTrigger {
 		switch(moment) {
 			case 0 : tick = 0;
 					 setValue("Aube");
-					 getItemStackManager().setLore("§dAube");
-					 getItemStackManager().setItem(Material.STAINED_CLAY, (short) 2);
+					 getItemStack().setLore("§dAube");
+					 getItemStack().setItem(Material.STAINED_CLAY, (short) 2);
 					 break;
 			case 1 : tick = 6000;
 					 setValue("Journée");
-					 getItemStackManager().setLore("§bMidi");
-					 getItemStackManager().setItem(Material.STAINED_CLAY, (short) 3);
+					 getItemStack().setLore("§bMidi");
+					 getItemStack().setItem(Material.STAINED_CLAY, (short) 3);
 					 break;
 			case 2 : tick = 13100;
 					 setValue("Crépuscule");
-					 getItemStackManager().setLore("§6Crépuscule");
-					 getItemStackManager().setItem(Material.STAINED_CLAY, (short) 1);
+					 getItemStack().setLore("§6Crépuscule");
+					 getItemStack().setItem(Material.STAINED_CLAY, (short) 1);
 				 	 break;
 			case 3 : tick = 18000;
 					 setValue("Nuit");
-					 getItemStackManager().setLore("§1Nuit");
-					 getItemStackManager().setItem(Material.STAINED_CLAY, (short) 11);
+					 getItemStack().setLore("§1Nuit");
+					 getItemStack().setItem(Material.STAINED_CLAY, (short) 11);
 					 break;
 		}
 		parent.update(this);

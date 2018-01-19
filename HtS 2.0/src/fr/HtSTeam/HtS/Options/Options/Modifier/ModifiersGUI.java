@@ -19,7 +19,7 @@ import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Options.Structure.GUIBuilder;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
-import fr.HtSTeam.HtS.Utils.ItemStackManager;
+import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 import fr.HtSTeam.HtS.Utils.StartTrigger;
 
 public class ModifiersGUI extends GUIBuilder implements StartTrigger, CommandExecutor {
@@ -40,8 +40,8 @@ public class ModifiersGUI extends GUIBuilder implements StartTrigger, CommandExe
 	@Override
 	@EventHandler
 	public void onClick(InventoryClickEvent e) {
-		for(Entry<ItemStackManager, OptionBuilder> ism : guiContent.entrySet()) {
-			if(e.getCurrentItem() != null && !e.getCurrentItem().getType().equals(Material.BARRIER) && ism.getKey().getItemStack().equals(e.getCurrentItem())) {
+		for(Entry<ItemStackBuilder, OptionBuilder> ism : guiContent.entrySet()) {
+			if(e.getCurrentItem() != null && !e.getCurrentItem().getType().equals(Material.BARRIER) && ism.getKey().equals(e.getCurrentItem())) {
 				e.setCancelled(true);
 				ism.getValue().event((Player) e.getWhoClicked());
 			}
@@ -50,7 +50,7 @@ public class ModifiersGUI extends GUIBuilder implements StartTrigger, CommandExe
 
 	@Override
 	public void onPartyStart() {
-		for(Entry<ItemStackManager, OptionBuilder> entry : guiContent.entrySet())
+		for(Entry<ItemStackBuilder, OptionBuilder> entry : guiContent.entrySet())
 			if(entry.getValue().getValue() != null && entry.getValue().getValue().equals("Activé")) {
 				active = true;
 				continue;

@@ -6,7 +6,7 @@ import java.util.List;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-import fr.HtSTeam.HtS.Utils.ItemStackManager;
+import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 
 public class DeathLoot {
 
@@ -16,8 +16,8 @@ public class DeathLoot {
 	public List<ItemStack> getDeathLoot() { return deathLoot; }
 	
 	
-	public void addItem(ItemStackManager ism) {
-		deathLoot.add(ism.getItemStack());
+	public void addItem(ItemStackBuilder ism) {
+		deathLoot.add(ism);
 	}
 	
 	public void addItem(Material material, short dataValue) {

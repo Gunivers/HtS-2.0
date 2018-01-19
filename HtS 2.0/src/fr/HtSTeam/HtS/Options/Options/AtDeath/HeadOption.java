@@ -14,7 +14,7 @@ public class HeadOption extends OptionBuilder implements Alterable {
 
 	public HeadOption() {
 		super(Material.SKULL_ITEM, "Drop de tête", "§2Activé", "Activé", OptionRegister.atDeath);
-		getItemStackManager().setItem(Material.SKULL_ITEM, (short) 3);
+		getItemStack().setItem(Material.SKULL_ITEM, (short) 3);
 		parent.update(this);
 		Main.deathLoot.addItem(Material.SKULL_ITEM, (short) 3);
 	}
@@ -30,11 +30,11 @@ public class HeadOption extends OptionBuilder implements Alterable {
 		activate = value;
 		if(value) {
 			setValue("Activé");
-			getItemStackManager().setLore("§2Activé");
+			getItemStack().setLore("§2Activé");
 			Main.deathLoot.addItem(Material.SKULL_ITEM, (short) 3);
 		} else {
 			setValue("Désactivé");
-			getItemStackManager().setLore("§4Désactivé");
+			getItemStack().setLore("§4Désactivé");
 			Main.deathLoot.removeItem(Material.SKULL_ITEM);
 		}
 		parent.update(this);

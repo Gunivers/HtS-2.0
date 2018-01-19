@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.GameModes.UHC;
+package fr.HtSTeam.HtS.GameModes.UHC.Common;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -11,10 +11,17 @@ import fr.HtSTeam.HtS.Teams.TeamBuilder;
 import fr.HtSTeam.HtS.Utils.JSON;
 
 public class VictoryDetectionEvent implements Listener {
+	
+	private final boolean teamVictoryDetection;
+	
+
+	public VictoryDetectionEvent(boolean b) {
+		teamVictoryDetection = b;
+	}
 
 	@EventHandler
 	public void onPlayerDeath(PlayerDeathEvent e) {
-		if(TeamBuilder.teamList.size() == 1) {
+		if(teamVictoryDetection && TeamBuilder.teamList.size() == 1) {
 			EnumState.setState(EnumState.FINISHING);
 			JSON.sendAll(TeamBuilder.teamList.get(0).getTeamColor() + "La team" + TeamBuilder.teamList.get(0).getTeamName() + " a gagné !", null, 5);
 		} else if(PlayerInGame.playerInGame.size() == 1) {

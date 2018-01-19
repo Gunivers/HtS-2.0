@@ -22,11 +22,11 @@ public class DayLightCycleOption extends OptionBuilder {
 		activate =! activate;
 		if(activate) {
 			setValue("Activé");
-			getItemStackManager().setLore("§2Activé");
+			getItemStack().setLore("§2Activé");
 			Main.world.setGameRuleValue("doDaylightCycle", "true");
 		} else {
 			setValue("Désactivé");
-			getItemStackManager().setLore("§4Désactivé");
+			getItemStack().setLore("§4Désactivé");
 			Main.world.setGameRuleValue("doDaylightCycle", "false");
 		}		
 		parent.update(this);

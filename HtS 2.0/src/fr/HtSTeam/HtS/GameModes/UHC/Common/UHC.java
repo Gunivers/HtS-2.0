@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.GameModes.UHC;
+package fr.HtSTeam.HtS.GameModes.UHC.Common;
 
 import java.util.Map.Entry;
 import java.util.UUID;
@@ -6,9 +6,11 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.GameModes.GameMode;
 import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
@@ -16,20 +18,28 @@ import fr.HtSTeam.HtS.Teams.TeamBuilder;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
 public class UHC implements GameMode {
+	
+	private boolean teamVictoryDetection = true;;
 
 	@Override
 	public void initialisation() {
-		new EventManagerUHC();
 		for (UUID p : PlayerInGame.playerInGame)
 			Bukkit.getPlayer(p).addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 30 * 20, 255, false, false));
 		teleport();	
 		
+		PluginManager pm = Bukkit.getServer().getPluginManager();
+		pm.registerEvents(new FakeDeath(), Main.plugin);
+		pm.registerEvents(new VictoryDetectionEvent(teamVictoryDetection), Main.plugin);
 		
 		OptionRegister.noRegen.setState(false);
 		OptionRegister.goldenApple.setState(true);
 	}
-	
-	
+
+	public void setTeamVictoryDetection(boolean teamVictoryDetection) {
+		this.teamVictoryDetection = teamVictoryDetection;
+	}
+
+
 	private void teleport() {
 
 		int border = Integer.parseInt(OptionRegister.borderOption.getValue());

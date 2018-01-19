@@ -13,6 +13,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
+import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Utils.ActionBar;
 
 public class BasesEvent implements Listener {
@@ -32,13 +33,13 @@ public class BasesEvent implements Listener {
 
 	@EventHandler
 	public void onBreakBlock(BlockBreakEvent e) {
-		if (PlayerBase.isInBase(e.getPlayer(), e.getBlock().getLocation()).equals(PlayerBase.OTHER))
+		if (EnumState.getState().equals(EnumState.RUNNING) && PlayerBase.isInBase(e.getPlayer(), e.getBlock().getLocation()).equals(PlayerBase.OTHER))
 			e.setCancelled(true);
 	}
 
 	@EventHandler
 	public void onPoseBlock(BlockPlaceEvent e) {
-		if (!PlayerBase.isInBase(e.getPlayer(), e.getBlock().getLocation()).equals(PlayerBase.OWN))
+		if (EnumState.getState().equals(EnumState.RUNNING) && !PlayerBase.isInBase(e.getPlayer(), e.getBlock().getLocation()).equals(PlayerBase.OWN))
 			if (!authorizedBlock.contains(e.getBlock().getType()))
 				e.setCancelled(true);
 

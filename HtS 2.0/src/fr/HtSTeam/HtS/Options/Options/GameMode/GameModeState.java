@@ -4,28 +4,29 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Options.Structure.GUIBuilder;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
-public class GameModeState extends OptionBuilder {
+public class GameModeState extends GUIBuilder {
 	
 
-	public GameModeState(Material material, String name, String description, String defaultValue, GUIBuilder gui) {
-		super(material, name, description, defaultValue, gui);
+	public GameModeState(String nameInv, int row, String name, String description, Material material, GUIBuilder gui) {
+		super(nameInv, row, name, description, material, gui);
 		((GameModeGUI) parent).gameModeOption.add(this);
 	}
 	
 	public void setState(boolean b) {
 		if(b) {
-			this.getItemStackManager().setLore("§2Sélectionné");
-			this.getItemStackManager().setGlint(true);
+			this.getItemStack().setLore("§2Sélectionné");
+			this.getItemStack().setGlint(true);
 		} else {
-			this.getItemStackManager().setLore(null);
-			this.getItemStackManager().setGlint(false);
+			this.getItemStack().setLore(null);
+			this.getItemStack().setGlint(false);
 		}
 		parent.update(this);
 	}
 
 	@Override
-	public void event(Player p) {}
+	public void event(Player p) {
+		
+	}
 	
 }

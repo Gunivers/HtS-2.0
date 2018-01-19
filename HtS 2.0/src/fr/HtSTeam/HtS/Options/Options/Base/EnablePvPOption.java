@@ -39,7 +39,7 @@ public class EnablePvPOption extends OptionBuilder {
 				if(value >= 0 && value <= 60) {
 					setValue(Integer.toString(value));
 					p.sendMessage("§2PvP activé à " + getValue() + " minutes." );
-					this.getItemStackManager().setLore("§2" + value + " minutes");
+					this.getItemStack().setLore("§2" + value + " minutes");
 					parent.update(this);
 					request = false;
 					return;

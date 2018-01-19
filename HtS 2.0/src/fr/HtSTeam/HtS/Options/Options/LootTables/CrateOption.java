@@ -34,7 +34,7 @@ public class CrateOption extends OptionBuilder implements Alterable {
 			try {
 				FileExtractor.extractFile(FileExtractor.lt + "crate.json", FileExtractor.wdir + FileExtractor.Cdir);
 				setValue("Activé");
-				getItemStackManager().setLore("§2Activé");
+				getItemStack().setLore("§2Activé");
 			} catch (IOException | URISyntaxException e) {
 				e.printStackTrace();
 			}
@@ -42,7 +42,7 @@ public class CrateOption extends OptionBuilder implements Alterable {
 			try {
 				Files.delete(Paths.get(FileExtractor.wdir + FileExtractor.Cdir + "crate.json"));
 				setValue("Désactivé");
-				getItemStackManager().setLore("§4Désactivé");
+				getItemStack().setLore("§4Désactivé");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

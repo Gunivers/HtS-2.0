@@ -13,7 +13,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import fr.HtSTeam.HtS.Commands.CommandsManager;
 import fr.HtSTeam.HtS.Events.EventManager;
 import fr.HtSTeam.HtS.GameModes.GameMode;
-import fr.HtSTeam.HtS.GameModes.UHC.UHC;
+import fr.HtSTeam.HtS.GameModes.UHC.Common.UHC;
 import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Players.DeathLoot;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.ScoreboardLib;

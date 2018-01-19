@@ -26,7 +26,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.Utils.ItemStackManager;
+import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 
 public class SeeInventory implements Listener {
 	
@@ -150,12 +150,12 @@ public class SeeInventory implements Listener {
 		
 		inv.setItem(4, clicked.getInventory().getItemInOffHand());
 		
-		ItemStackManager xp = new ItemStackManager(Material.EXP_BOTTLE, (short) 0, clicked.getLevel(), "Niveaux", null, false);
-		ItemStackManager health = new ItemStackManager(Material.REDSTONE, (short) 0, (int) clicked.getHealth(), "Vie", null, false);
-		ItemStackManager food = new ItemStackManager(Material.COOKED_BEEF, (short) 0, clicked.getFoodLevel(), "Faim", null, false);
-		inv.setItem(6, xp.getItemStack());
-		inv.setItem(7, health.getItemStack());
-		inv.setItem(8, food.getItemStack());
+		ItemStackBuilder xp = new ItemStackBuilder(Material.EXP_BOTTLE, (short) 0, clicked.getLevel(), "Niveaux", null);
+		ItemStackBuilder health = new ItemStackBuilder(Material.REDSTONE, (short) 0, (int) clicked.getHealth(), "Vie", null);
+		ItemStackBuilder food = new ItemStackBuilder(Material.COOKED_BEEF, (short) 0, clicked.getFoodLevel(), "Faim", null);
+		inv.setItem(6, xp);
+		inv.setItem(7, health);
+		inv.setItem(8, food);
 		
 		clicker.openInventory(inv);
 		

@@ -14,12 +14,12 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import fr.HtSTeam.HtS.Utils.ItemStackManager;
+import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 
 public class GUIBuilder extends OptionBuilder {
 	
 	public static ArrayList<GUIBuilder> guiList = new ArrayList<GUIBuilder>();
-	public Map<ItemStackManager, OptionBuilder> guiContent = new HashMap<ItemStackManager, OptionBuilder>();
+	public Map<ItemStackBuilder, OptionBuilder> guiContent = new HashMap<ItemStackBuilder, OptionBuilder>();
 	
 	protected Inventory inv;
 	
@@ -39,11 +39,11 @@ public class GUIBuilder extends OptionBuilder {
 	public void put(OptionBuilder optionsManager) {
 		if (guiContent.entrySet().size() > inv.getSize())
 			return;
-		guiContent.put(optionsManager.getItemStackManager(), optionsManager);
+		guiContent.put(optionsManager.getItemStack(), optionsManager);
 		if(parent == null)
-			inv.setItem(guiContent.entrySet().size() - 1, optionsManager.getItemStackManager().getItemStack());
+			inv.setItem(guiContent.entrySet().size() - 1, optionsManager.getItemStack());
 		else
-			inv.setItem(guiContent.entrySet().size() - 2, optionsManager.getItemStackManager().getItemStack());		
+			inv.setItem(guiContent.entrySet().size() - 2, optionsManager.getItemStack());		
 	}
 	
 	public void open(Player p) {
@@ -60,11 +60,11 @@ public class GUIBuilder extends OptionBuilder {
 	}
 	
 	public void update(OptionBuilder om) {
-		for(Entry<ItemStackManager, OptionBuilder> is : guiContent.entrySet()) {
+		for(Entry<ItemStackBuilder, OptionBuilder> is : guiContent.entrySet()) {
 			if(is.getValue() == om) {
 				for(ItemStack is2 : inv.getContents()) {
 					if(is2 != null && is2.getItemMeta().getDisplayName().equals(is.getKey().getName())) {
-						inv.setItem(Arrays.asList(inv.getContents()).indexOf(is2), om.getItemStackManager().getItemStack());
+						inv.setItem(Arrays.asList(inv.getContents()).indexOf(is2), om.getItemStack());
 						return;
 					}
 				}
@@ -86,8 +86,8 @@ public class GUIBuilder extends OptionBuilder {
 				
 			};
 		
-			inv.setItem(inv.getSize() - 1, om.getItemStackManager().getItemStack());	
-			guiContent.put(om.getItemStackManager(), om);
+			inv.setItem(inv.getSize() - 1, om.getItemStack());	
+			guiContent.put(om.getItemStack(), om);
 			
 		}
 	
@@ -98,8 +98,8 @@ public class GUIBuilder extends OptionBuilder {
 	
 	@EventHandler
 	public void onClick(InventoryClickEvent e) {
-		for(Entry<ItemStackManager, OptionBuilder> ism : guiContent.entrySet()) {
-			if(ism.getKey().getItemStack().equals(e.getCurrentItem())) {
+		for(Entry<ItemStackBuilder, OptionBuilder> ism : guiContent.entrySet()) {
+			if(ism.getKey().equals(e.getCurrentItem())) {
 				e.setCancelled(true);
 				ism.getValue().event((Player) e.getWhoClicked());
 			}

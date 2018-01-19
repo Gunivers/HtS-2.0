@@ -8,13 +8,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 
 import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.Utils.ItemStackManager;
+import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 
 public abstract class OptionBuilder implements Listener, EventsOption {
 	
 	public static Map<OptionBuilder, Object> optionsList = new HashMap<OptionBuilder, Object>();
 	
-	private ItemStackManager icon;
+	private ItemStackBuilder icon;
 	private Object defaultValue;
 	protected GUIBuilder parent;
 	private String value;
@@ -36,7 +36,7 @@ public abstract class OptionBuilder implements Listener, EventsOption {
 			parent = gui;
 			if(description != null)
 				description = "§r" + description;
-			this.icon = new ItemStackManager(material, (short) 0, 1, "§r" + name, description, false);
+			this.icon = new ItemStackBuilder(material, (short) 0, 1, "§r" + name, description);
 			this.defaultValue = defaultValue;
 			this.value = defaultValue;
 			OptionBuilder.optionsList.put(this, defaultValue);
@@ -47,7 +47,7 @@ public abstract class OptionBuilder implements Listener, EventsOption {
 	
 	public String getDescription() { return icon.getLore(); }
 	public String getName() { return icon.getName(); }
-	public ItemStackManager getItemStackManager() { return icon; }
+	public ItemStackBuilder getItemStack() { return icon; }
 	public Object getDefaultValue() { return defaultValue; }
 	
 	public void setValue(String value) {

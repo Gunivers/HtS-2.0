@@ -14,13 +14,13 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginManager;
 
 import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.Utils.ItemStackManager;
+import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 
 public class CustomGUI implements Listener {
 	
 	PluginManager pm = Bukkit.getServer().getPluginManager();
 	private Inventory inv;
-	public static List<ItemStackManager> authorizedItem = new ArrayList<ItemStackManager>();
+	public static List<ItemStackBuilder> authorizedItem = new ArrayList<ItemStackBuilder>();
 	
 	{
 		inv = Bukkit.createInventory(null, 9, "Modifiers");
@@ -35,8 +35,8 @@ public class CustomGUI implements Listener {
 	public void onDrag(InventoryClickEvent e) {
 		if(e.getInventory().equals(inv)) {
 			if(e.getCurrentItem() != null) {
-				for(ItemStackManager is : authorizedItem)
-					if(e.getCurrentItem().getItemMeta() != null && is.getName().equals(e.getCurrentItem().getItemMeta().getDisplayName()) && is.getMaterial().equals(e.getCurrentItem().getType()))
+				for(ItemStackBuilder is : authorizedItem)
+					if(e.getCurrentItem().getItemMeta() != null && is.getName().equals(e.getCurrentItem().getItemMeta().getDisplayName()) && is.getType().equals(e.getCurrentItem().getType()))
 						return;
 				if(e.getCurrentItem().getType().equals(Material.AIR) && !e.getCursor().getType().equals(Material.AIR)) 
 					return;
@@ -46,17 +46,17 @@ public class CustomGUI implements Listener {
 			
 	}
 	
-	public boolean contains(ItemStackManager is) {
+	public boolean contains(ItemStackBuilder is) {
 		for(ItemStack is2 : inv.getContents()) {
-			if(is2 != null && is2.getItemMeta() != null && is2.getItemMeta().getDisplayName().equals(is.getName()) && is2.getType().equals(is.getMaterial()))
+			if(is2 != null && is2.getItemMeta() != null && is2.getItemMeta().getDisplayName().equals(is.getName()) && is2.getType().equals(is.getType()))
 				return true;
 		}
 		return false;
 	}
 	
-	public void removeItem(ItemStackManager is) {
+	public void removeItem(ItemStackBuilder is) {
 		for(ItemStack is2 : inv.getContents())
-			if(is2 != null && is2.getItemMeta() != null && is2.getItemMeta().getDisplayName().equals(is.getName()) && is2.getType().equals(is.getMaterial()))
+			if(is2 != null && is2.getItemMeta() != null && is2.getItemMeta().getDisplayName().equals(is.getName()) && is2.getType().equals(is.getType()))
 				inv.remove(is2);
 	}
 }

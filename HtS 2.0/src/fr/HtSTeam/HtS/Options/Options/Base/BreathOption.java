@@ -46,13 +46,13 @@ public class BreathOption extends OptionBuilder implements StartTrigger {
 					if(value > 0) {
 						setValue(Integer.toString(value));
 						p.sendMessage("§2Le souffle des profondeurs s'activera à " + value + " minutes." );
-						this.getItemStackManager().setLore("§d" + value + " minutes");
-						getItemStackManager().setItem(Material.GLOWSTONE_DUST, (short) 0);
+						this.getItemStack().setLore("§d" + value + " minutes");
+						getItemStack().setItem(Material.GLOWSTONE_DUST, (short) 0);
 					} else {
 						setValue("Désactivé");
 						p.sendMessage("§2Le souffle des profondeurs a été désactivé.");
-						this.getItemStackManager().setLore("§4Désactivé");
-						getItemStackManager().setItem(Material.SULPHUR, (short) 0);
+						this.getItemStack().setLore("§4Désactivé");
+						getItemStack().setItem(Material.SULPHUR, (short) 0);
 					}
 					parent.update(this);
 					request = false;
@@ -67,7 +67,7 @@ public class BreathOption extends OptionBuilder implements StartTrigger {
 	
 	@EventHandler
 	public void playerHeight(PlayerMoveEvent e) {
-		if(activate && getItemStackManager().getMaterial().equals(Material.GLOWSTONE_DUST)) {
+		if(activate && getItemStack().getType().equals(Material.GLOWSTONE_DUST)) {
 			if(e.getPlayer().getLocation().getY() <= 36 && e.getPlayer().getWorld().getEnvironment() == Environment.NORMAL) {
 				e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 10000 * 20, 0, false, false));
 				e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 10000 * 20, 0, false, false));

@@ -27,6 +27,9 @@ public class ActionBar {
 		this.time = time;
 	}
 	
+	/**
+	 * Envoie le message à tout les joueurs.
+	 */
 	public void sendAll() {
 		PacketPlayOutTitle packet = new PacketPlayOutTitle(EnumTitleAction.ACTIONBAR,
 				ChatSerializer.a("{\"text\":\"" + msg + "\"}"));
@@ -43,6 +46,9 @@ public class ActionBar {
 		}, 0L, 20L);
 	}
 	
+	/**
+	 * Envoie le message au joueur précisé dans le constructeur.
+	 */
 	public void send() {
 		PacketPlayOutTitle packet = new PacketPlayOutTitle(EnumTitleAction.ACTIONBAR,
 				ChatSerializer.a("{\"text\":\"" + msg + "\"}"));

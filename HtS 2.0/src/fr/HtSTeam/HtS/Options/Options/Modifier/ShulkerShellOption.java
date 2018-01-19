@@ -19,14 +19,14 @@ import org.bukkit.inventory.meta.ItemMeta;
 import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Options.Structure.Alterable;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
-import fr.HtSTeam.HtS.Utils.ItemStackManager;
+import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
 public class ShulkerShellOption extends OptionBuilder implements Alterable {
 	
 	private HashMap<Player, Integer> shellUse = new HashMap<>();
 	private boolean activate = false;
-	private ItemStackManager ism = new ItemStackManager(Material.SHULKER_SHELL, (short) 0, 1, "§rShulker Shell", "", false);
+	private ItemStackBuilder ism = new ItemStackBuilder(Material.SHULKER_SHELL, (short) 0, 1, "§rShulker Shell", "");
 	
 	public ShulkerShellOption() {
 		super(Material.SHULKER_SHELL, "Shulker Shell Modifier", "§4Désactivé", "Désactivé", OptionRegister.modifiers);
@@ -43,11 +43,11 @@ public class ShulkerShellOption extends OptionBuilder implements Alterable {
 		activate = value;
 		if(value) {
 			setValue("Activé");
-			getItemStackManager().setLore("§2Activé");
+			getItemStack().setLore("§2Activé");
 			CustomGUI.authorizedItem.add(ism);
 		} else {
 			setValue("Désactivé");
-			getItemStackManager().setLore("§4Désactivé");
+			getItemStack().setLore("§4Désactivé");
 			CustomGUI.authorizedItem.remove(ism);
 		}
 		parent.update(this);	
