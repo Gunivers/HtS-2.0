@@ -6,6 +6,7 @@ import java.util.List;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
 import fr.HtSTeam.HtS.Options.OptionRegister;
@@ -24,7 +25,7 @@ public class GameModeGUI extends GUIBuilder {
 		super.event(p);
 	}
 
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onClicks(InventoryClickEvent e) {
 		for (GameModeState gms : gameModeOption) {
 			if (e.getInventory().equals(inv) && e.getCurrentItem() != null && !e.getCurrentItem().getType().equals(Material.BARRIER)) {

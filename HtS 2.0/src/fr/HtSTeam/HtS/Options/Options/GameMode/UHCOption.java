@@ -2,7 +2,6 @@ package fr.HtSTeam.HtS.Options.Options.GameMode;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryClickEvent;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.GameModes.UHC.Common.UHC;
@@ -20,13 +19,7 @@ public class UHCOption extends GameModeState {
 	@Override
 	public void event(Player p) {
 		Main.gamemode = new UHC();
-	}
-	
-	@Override
-	public void onClick(InventoryClickEvent e) {
 		if(getItemStack().isGlint())
-			super.onClick(e);
-		else
-			System.out.println("aaa");
+			open(p);
 	}
 }

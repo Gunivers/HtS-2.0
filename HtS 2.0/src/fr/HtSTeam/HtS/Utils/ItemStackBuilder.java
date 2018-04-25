@@ -78,7 +78,9 @@ public class ItemStackBuilder extends ItemStack {
 	 * @param name le nom de l'item
 	 */
 	public void setName(String name) {
-		getItemMeta().setDisplayName(name);
+		ItemMeta ism = getItemMeta();
+		ism.setDisplayName(name);
+		setItemMeta(ism);
 	}
 
 	@Deprecated
@@ -93,9 +95,11 @@ public class ItemStackBuilder extends ItemStack {
 	 * @param lore description de l'item
 	 */
 	public void setLore(String lore) {
+		ItemMeta ism = getItemMeta();
 		ArrayList<String> lores = new ArrayList<String>();
 		lores.add(lore);
-		getItemMeta().setLore(lores);
+		ism.setLore(lores);
+		setItemMeta(ism);
 	}
 
 	/**
@@ -103,12 +107,14 @@ public class ItemStackBuilder extends ItemStack {
 	 */
 	public void setGlint(boolean glint) {
 		this.glint = glint;
+		ItemMeta ism = getItemMeta();
 		if (glint) {
-			getItemMeta().addEnchant(Enchantment.DURABILITY, 1, false);
-			getItemMeta().addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
+			ism.addEnchant(Enchantment.DURABILITY, 1, false);
+			ism.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ENCHANTS });
 		} else {
-			getItemMeta().removeEnchant(Enchantment.DURABILITY);
+			ism.removeEnchant(Enchantment.DURABILITY);
 		}
+		setItemMeta(ism);
 	}
 
 	/**

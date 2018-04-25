@@ -2,6 +2,8 @@ package fr.HtSTeam.HtS.Options.Options.GameMode;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.inventory.InventoryClickEvent;
 
 import fr.HtSTeam.HtS.Options.Structure.GUIBuilder;
 
@@ -27,6 +29,12 @@ public class GameModeState extends GUIBuilder {
 	@Override
 	public void event(Player p) {
 		
+	}
+	
+	@EventHandler
+	@Override
+	public void onClick(InventoryClickEvent e) {
+		super.onClick(e);
 	}
 	
 }

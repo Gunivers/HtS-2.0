@@ -56,7 +56,7 @@ public abstract class OptionBuilder implements Listener, EventsOption {
 	}
 	public String getValue() { return value; }
 
-	public void addAt(GUIBuilder gm) { 		
+	public void addAt(GUIBuilder gm) { 	
 		if(gm != null) 
 			gm.put(this);
 		}
