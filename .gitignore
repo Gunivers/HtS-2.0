@@ -1,7 +1,4 @@
 /bin/
-# JDT-specific (Eclipse Java Development Tools)     
-.classpath
-
 # Compiled class file
 *.class
 
