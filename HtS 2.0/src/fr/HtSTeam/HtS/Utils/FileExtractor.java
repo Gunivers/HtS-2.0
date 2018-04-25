@@ -12,8 +12,10 @@ public class FileExtractor {
 	
 	public static String wdir;
 	public static final String lt = "loot_tables/";
+	public static final String cr = "crafts/";
 	public static final String Edir = "/minecraft/entities/";
 	public static final String Gdir = "/minecraft/gameplay/";
+	public static final String Rdir = "/minecraft/recipes/";
 	public static final String Cdir = "/customs/";
 	
 	public static void extractFile(String name, String folderPath) throws IOException, URISyntaxException

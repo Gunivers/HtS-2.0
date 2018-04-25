@@ -12,6 +12,7 @@ import fr.HtSTeam.HtS.Options.Options.Base.EnablePvPOption;
 import fr.HtSTeam.HtS.Options.Options.Base.FixDayOption;
 import fr.HtSTeam.HtS.Options.Options.Base.NoRegenOption;
 import fr.HtSTeam.HtS.Options.Options.Base.WeatherOption;
+import fr.HtSTeam.HtS.Options.Options.Crafts.ElytraCraftOption;
 import fr.HtSTeam.HtS.Options.Options.GameMode.FallenKingdomOption;
 import fr.HtSTeam.HtS.Options.Options.GameMode.GameModeGUI;
 import fr.HtSTeam.HtS.Options.Options.GameMode.SyTOption;
@@ -52,6 +53,7 @@ public class OptionRegister {
 	public static GUIBuilder modifiers = new ModifiersGUI();
 	public static GUIBuilder loottables = new GUIBuilder("Loot Tables", 1, "Loot Tables", "Régler les Loot Tables", Material.BOOK, OptionRegister.main);
 	public static GUIBuilder nether = new GUIBuilder("Nether", 1, "Nether", "Régler le Nether", Material.NETHERRACK, OptionRegister.main);
+	public static GUIBuilder crafts = new GUIBuilder("Crafts", 1, "Crafts","Gérer les crafts customs", Material.WORKBENCH, OptionRegister.main);
 	public static GUIBuilder other = new GUIBuilder("Autre", 1, "Autre", "Options inclassables", Material.CHEST, OptionRegister.main);
 	
 	
@@ -91,6 +93,9 @@ public class OptionRegister {
 	// Nether
 	public static Alterable netherWart = new NetherWartOption();
 	public static Alterable shulkerNether = new ShulkerNetherOption();
+	
+	//Crafts
+	public static Alterable elytraCraft = new ElytraCraftOption();
 	
 	//Other
 	public static Alterable nuggetBucket = new NuggetsOption();
