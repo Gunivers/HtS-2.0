@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name="Maven: org.spigotmc:spigot-api:1.12.2-R0.1-SNAPSHOT">
+    <archive path="C:/Users/Adrien/.m2/repository/org/spigotmc/spigot-api/1.12.2-R0.1-SNAPSHOT/spigot-api-1.12.2-R0.1-20180419.220650-141.jar" />
+  </library>
+  <library name="Maven: commons-lang:commons-lang:2.6">
+    <archive path="C:/Users/Adrien/.m2/repository/commons-lang/commons-lang/2.6/commons-lang-2.6.jar" />
+  </library>
+  <library name="Maven: com.googlecode.json-simple:json-simple:1.1.1">
+    <archive path="C:/Users/Adrien/.m2/repository/com/googlecode/json-simple/json-simple/1.1.1/json-simple-1.1.1.jar" />
+  </library>
+  <library name="Maven: junit:junit:4.10">
+    <archive path="C:/Users/Adrien/.m2/repository/junit/junit/4.10/junit-4.10.jar" />
+  </library>
+  <library name="Maven: org.hamcrest:hamcrest-core:1.1">
+    <archive path="C:/Users/Adrien/.m2/repository/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar" />
+  </library>
+  <library name="Maven: com.google.guava:guava:21.0">
+    <archive path="C:/Users/Adrien/.m2/repository/com/google/guava/guava/21.0/guava-21.0.jar" />
+  </library>
+  <library name="Maven: com.google.code.gson:gson:2.8.0">
+    <archive path="C:/Users/Adrien/.m2/repository/com/google/code/gson/gson/2.8.0/gson-2.8.0.jar" />
+  </library>
+  <library name="Maven: org.yaml:snakeyaml:1.19">
+    <archive path="C:/Users/Adrien/.m2/repository/org/yaml/snakeyaml/1.19/snakeyaml-1.19.jar" />
+  </library>
+  <library name="Maven: net.md-5:bungeecord-chat:1.12-SNAPSHOT">
+    <archive path="C:/Users/Adrien/.m2/repository/net/md-5/bungeecord-chat/1.12-SNAPSHOT/bungeecord-chat-1.12-20180420.081408-78.jar" />
+  </library>
+  <library name="Maven: org.bukkit:bukkit:1.12.2-R0.1-SNAPSHOT">
+    <archive path="C:/Users/Adrien/.m2/repository/org/bukkit/bukkit/1.12.2-R0.1-SNAPSHOT/bukkit-1.12.2-R0.1-20180419.220706-140.jar" />
+  </library>
+</eclipse-userlibraries>
+
