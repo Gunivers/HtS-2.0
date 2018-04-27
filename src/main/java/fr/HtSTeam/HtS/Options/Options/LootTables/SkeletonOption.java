@@ -5,20 +5,21 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import org.bukkit.Material;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Options.Structure.Alterable;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Utils.FileExtractor;
+import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 
 public class SkeletonOption extends OptionBuilder implements Alterable {
 	
 	private boolean activate = false;
 	
 	public SkeletonOption() {
-		super(Material.MONSTER_EGG, "Squelette", "§4Désactivé", "Désactivé", OptionRegister.loottables);
+		super(new ItemStackBuilder(EntityType.SKELETON, 1, "§rSquelette", "§4Désactivé"), "Désactivé", OptionRegister.loottables);
 	}
 
 	@Override

@@ -5,20 +5,21 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import org.bukkit.Material;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Options.Structure.Alterable;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Utils.FileExtractor;
+import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 
 public class BatOption extends OptionBuilder implements Alterable {
 	
 	private boolean activate = false;
 	
 	public BatOption() {
-		super(Material.MONSTER_EGG, "Chauve-souris", "§4Désactivé", "Désactivé", OptionRegister.loottables);
+		super(new ItemStackBuilder(EntityType.BAT, 1, "§rChauve-souris", "§4Désactivé"), "Désactivé", OptionRegister.loottables);
 	}
 
 	@Override

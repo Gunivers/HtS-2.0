@@ -4,9 +4,11 @@ import java.util.ArrayList;
 
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SpawnEggMeta;
 
 public class ItemStackBuilder extends ItemStack {
 
@@ -18,7 +20,6 @@ public class ItemStackBuilder extends ItemStack {
 
 	
 	/**
-	 * 
 	 * @param item Type d'item
 	 * @param data Data de l'item
 	 * @param number Nombre
@@ -44,6 +45,36 @@ public class ItemStackBuilder extends ItemStack {
 		this.lore = lore;
 		this.glint = glint;
 	}
+	
+	/* SpawnEgg mobegg = new SpawnEgg();
+        mobegg.setSpawnedType(type);
+        ItemStack item = new ItemStack(mobegg.toItemStack(1));
+        ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName(ChatColor.DARK_GREEN + "" + ChatColor.BOLD + name);
+        ArrayList<String> lore = new ArrayList<String>();
+        lore.add(Lore1)
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+	 * 
+	 */
+	
+	
+	/**
+	 * Génère un oeuf
+	 * @param entity l'entité de l'oeuf
+	 * @param number Nombre
+	 * @param name Nom de l'item
+	 * @param lore Description de l'item
+	 */
+	public ItemStackBuilder(EntityType entity, int number, String name, String lore) {
+		super(Material.MONSTER_EGG, number, (short) 0);
+		SpawnEggMeta sem = (SpawnEggMeta) getItemMeta();
+		sem.setSpawnedType(entity);
+		setItemMeta(sem);
+		setLore(lore);
+		setName(name);
+		glint = false;
+	}	
 
 	/**
 	 * @return le nom de l'item
