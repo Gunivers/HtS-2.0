@@ -68,11 +68,6 @@ public class OptionRegister {
 	//Modifiers
 	public static Alterable shulkerShell = new ShulkerShellOption();
 	
-	
-	//Other
-	public static Alterable alguae = new AlgueUrticanteOption();
-	public static Alterable headShot = new HeadShot();
-	
 	//AtDeath
 	public static Alterable goldenApple = new GoldenAppleOption();
 	public static Alterable head = new HeadOption();
@@ -99,7 +94,8 @@ public class OptionRegister {
 	
 	//Other
 	public static Alterable nuggetBucket = new NuggetsOption();
-	
+	public static Alterable alguae = new AlgueUrticanteOption();
+	public static Alterable headShot = new HeadShot();
 	
 	public static BorderOption borderOption;
 	
