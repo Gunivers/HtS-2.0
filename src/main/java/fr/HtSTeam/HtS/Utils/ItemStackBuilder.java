@@ -1,13 +1,16 @@
 package fr.HtSTeam.HtS.Utils;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.inventory.meta.SpawnEggMeta;
 
 public class ItemStackBuilder extends ItemStack {
@@ -46,19 +49,6 @@ public class ItemStackBuilder extends ItemStack {
 		this.glint = glint;
 	}
 	
-	/* SpawnEgg mobegg = new SpawnEgg();
-        mobegg.setSpawnedType(type);
-        ItemStack item = new ItemStack(mobegg.toItemStack(1));
-        ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName(ChatColor.DARK_GREEN + "" + ChatColor.BOLD + name);
-        ArrayList<String> lore = new ArrayList<String>();
-        lore.add(Lore1)
-        meta.setLore(lore);
-        item.setItemMeta(meta);
-	 * 
-	 */
-	
-	
 	/**
 	 * Génère un oeuf
 	 * @param entity l'entité de l'oeuf
@@ -71,6 +61,23 @@ public class ItemStackBuilder extends ItemStack {
 		SpawnEggMeta sem = (SpawnEggMeta) getItemMeta();
 		sem.setSpawnedType(entity);
 		setItemMeta(sem);
+		setLore(lore);
+		setName(name);
+		glint = false;
+	}	
+	
+	/**
+	 * Génère une tête
+	 * @param entity l'entité de l'oeuf
+	 * @param number Nombre
+	 * @param name Nom de l'item
+	 * @param lore Description de l'item
+	 */
+	public ItemStackBuilder(UUID player, int number, String name, String lore) {
+		super(Material.SKULL, number, (short) 3);
+		SkullMeta sm = (SkullMeta) getItemMeta();
+		sm.setOwningPlayer(Bukkit.getOfflinePlayer(player));
+		setItemMeta(sm);
 		setLore(lore);
 		setName(name);
 		glint = false;
