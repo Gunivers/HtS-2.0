@@ -15,6 +15,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
+import fr.HtSTeam.HtS.Utils.Randomizer;
 
 public class GUIBuilder extends OptionBuilder {
 	
@@ -76,12 +77,17 @@ public class GUIBuilder extends OptionBuilder {
 	public void addReturnButton() {
 		if(!parent.equals(null)) {
 			GUIBuilder parent2 = parent;
-			OptionBuilder om = new OptionBuilder(Material.BARRIER, "Retour", null, null, null) {
+			int rand = Randomizer.Rand(1000000000);
+			String res = Integer.toString(rand);
+    		String news = "";
+    		for(int i = 0; i < res.length(); i++)
+    			news += "§" + res.charAt(i);
+    		ItemStackBuilder itemStack = new ItemStackBuilder(Material.BARRIER, (short) 0, 1, "§rRetour", news);
+			OptionBuilder om = new OptionBuilder(itemStack, null, null) {
 
 				@Override
 				public void event(Player p) {
 					parent2.refresh(p);
-					
 				}
 				
 			};

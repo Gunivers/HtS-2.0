@@ -3,6 +3,7 @@ package fr.HtSTeam.HtS.GameModes.FallenKingdom;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
@@ -18,7 +19,6 @@ import org.bukkit.inventory.ItemStack;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
 import fr.HtSTeam.HtS.Teams.TeamBuilder;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
-import net.md_5.bungee.api.ChatColor;
 
 public class CommandsFK implements CommandExecutor, Listener {
 	

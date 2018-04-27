@@ -1,6 +1,6 @@
 name: HtS-Plugin
 version: ${project.version}
-authors: [IkBrunel, theogiraudet]
+authors: [ikbrunel, theogiraudet]
 main: fr.HtSTeam.HtS.Main
 commands:
  option:

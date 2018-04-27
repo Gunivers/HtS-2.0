@@ -1,6 +1,6 @@
 name: HtS
 version: 1.0
-authors: [IkBrunel, theogiraudet]
+authors: [ikbrunel, theogiraudet]
 main: fr.HtSTeam.HtS.Main
 commands:
  option:
