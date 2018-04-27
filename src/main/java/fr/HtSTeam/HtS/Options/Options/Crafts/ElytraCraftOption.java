@@ -15,10 +15,10 @@ import fr.HtSTeam.HtS.Utils.FileExtractor;
 
 public class ElytraCraftOption extends OptionBuilder implements Alterable {
 
-	private boolean activate = true;
+	private boolean activate = false;
 	
 	public ElytraCraftOption() {
-		super(Material.ELYTRA, "Craft des Elytra", "§2Activé", "Activé", OptionRegister.crafts);
+		super(Material.ELYTRA, "Craft des Elytra", "§4Désactivé", "Désactivé", OptionRegister.crafts);
 	}
 
 	@Override
