@@ -11,8 +11,8 @@ import java.nio.file.Paths;
 public class FileExtractor {
 	
 	public static String wdir;
-	public static final String lt = "loot_tables/";
-	public static final String cr = "crafts/";
+	public static final String lt = "main/resources/loot_tables/";
+	public static final String cr = "main/resources/crafts/";
 	public static final String Edir = "/minecraft/entities/";
 	public static final String Gdir = "/minecraft/gameplay/";
 	public static final String Rdir = "/minecraft/recipes/";
