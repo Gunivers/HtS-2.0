@@ -4,13 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 
-public abstract class OptionBuilder implements Listener, EventsOption {
+public abstract class OptionBuilder implements Listener {
 	
 	public static Map<OptionBuilder, Object> optionsList = new HashMap<OptionBuilder, Object>();
 	
@@ -64,6 +65,8 @@ public abstract class OptionBuilder implements Listener, EventsOption {
 			pm.registerEvents(this, Main.plugin);
 			this.addAt(gui);
 	}
+	
+	public abstract void event(Player p);
 	
 	public String getDescription() { return icon.getLore(); }
 	public String getName() { return icon.getName(); }
