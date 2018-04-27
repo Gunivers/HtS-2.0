@@ -42,7 +42,6 @@ public class NetherWartOption extends OptionBuilder implements Alterable {
 			getItemStack().setLore("§4Désactivé");
 		}		
 		parent.update(this);
-		
 	}
 	
 	
