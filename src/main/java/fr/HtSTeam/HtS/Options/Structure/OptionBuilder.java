@@ -45,6 +45,26 @@ public abstract class OptionBuilder implements Listener, EventsOption {
 			this.addAt(gui);
 	}
 	
+	/**
+	 * @param material un ItemStackManager
+	 * @param defaultValue
+	 * 		Valeur par défaut. Sert de comparaison à la valeur actuel pour afficher ou nom le changement au récapitulatif du /start
+	 * @param gui
+	 * 		Inventaire où sera placé l'item
+	 */
+	public OptionBuilder(ItemStackBuilder material, String defaultValue, GUIBuilder gui) {
+			parent = gui;
+			if(material.getLore() != null)
+				material.setLore("§r" + material.getLore());
+			this.icon = material;
+			this.defaultValue = defaultValue;
+			this.value = defaultValue;
+			OptionBuilder.optionsList.put(this, defaultValue);
+			PluginManager pm = Main.plugin.getServer().getPluginManager();
+			pm.registerEvents(this, Main.plugin);
+			this.addAt(gui);
+	}
+	
 	public String getDescription() { return icon.getLore(); }
 	public String getName() { return icon.getName(); }
 	public ItemStackBuilder getItemStack() { return icon; }
