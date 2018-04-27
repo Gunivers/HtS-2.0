@@ -68,7 +68,7 @@ public class ItemStackBuilder extends ItemStack {
 	
 	/**
 	 * Génère une tête
-	 * @param entity l'entité de l'oeuf
+	 * @param player un UUID
 	 * @param number Nombre
 	 * @param name Nom de l'item
 	 * @param lore Description de l'item
