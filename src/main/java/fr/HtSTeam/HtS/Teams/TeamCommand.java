@@ -17,6 +17,7 @@ import net.md_5.bungee.api.ChatColor;
 
 public class TeamCommand implements CommandExecutor {
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
 		if (sender instanceof Player) {

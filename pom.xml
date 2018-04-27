@@ -78,6 +78,12 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>net.md-5</groupId>
+            <artifactId>bungeecord-chat</artifactId>
+            <version>1.12-SNAPSHOT</version>
+            <scope>compiled</scope>
+        </dependency>
+        <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>craftbukkit</artifactId>
             <version>LATEST</version>
