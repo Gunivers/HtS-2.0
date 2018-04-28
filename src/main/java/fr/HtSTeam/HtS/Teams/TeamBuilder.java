@@ -41,6 +41,7 @@ public class TeamBuilder {
 			playerList.add(p.getUniqueId());
 			playerTeam.put(p.getUniqueId(), this);
 			p.setCustomName(ChatColor.valueOf(teamColor.toUpperCase()) + p.getName());
+			p.setCustomNameVisible(true);
 			p.setDisplayName(ChatColor.valueOf(teamColor.toUpperCase()) + p.getName() + "§r");
 			p.setPlayerListName(ChatColor.valueOf(teamColor.toUpperCase()) + p.getName());
 		}
