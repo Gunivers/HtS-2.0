@@ -59,7 +59,7 @@ public class ScoreBoard {
 						builder.next("§6Equipes :").next(Integer.toString(TeamBuilder.teamList.size()));
 					break;
 				case "KilledScoreboardOption":
-					builder.next("§6Kills :").next(Integer.toString(p.getStatistic(Statistic.PLAYER_KILLS)));
+					builder.next("§6Kill :").next(Integer.toString(p.getStatistic(Statistic.PLAYER_KILLS)));
 					break;
 				case "TimerScoreboardOption":
 					builder.next("§6Timer :").next(Main.timer.getTimeFormat());
