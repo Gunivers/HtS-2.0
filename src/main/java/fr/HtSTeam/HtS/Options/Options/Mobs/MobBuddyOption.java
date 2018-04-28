@@ -51,7 +51,9 @@ public class MobBuddyOption extends OptionBuilder {
 	public void onMobTarget(EntityTargetLivingEntityEvent e){
 		if (!activate) return;
 		if (e.getTarget() instanceof Player && e.getEntity().hasMetadata("buddy")) {
-			if (e.getTarget().getUniqueId().toString() == e.getEntity().getMetadata("buddy").get(0).asString()) {
+			System.out.println(((Player)e.getTarget()).getUniqueId().toString());
+			System.out.println(e.getEntity().getMetadata("buddy").get(0).asString());
+			if (((Player)e.getTarget()).getUniqueId().toString() == e.getEntity().getMetadata("buddy").get(0).asString()) {
 				e.setCancelled(true);
 			} else if (!TeamBuilder.teamList.isEmpty()) {
 				if (TeamBuilder.playerTeam.get(UUID.fromString(e.getEntity().getMetadata("buddy").get(0).asString())).getTeamPlayers().contains(e.getTarget().getUniqueId()))
@@ -78,7 +80,7 @@ public class MobBuddyOption extends OptionBuilder {
 		if (!activate)
 			return;
 		if (!e.getEntity().hasMetadata("buddy") && (e.getEntity() instanceof Monster || e.getEntityType() == EntityType.SLIME) && e.getEntity().getKiller() instanceof Player) {
-			if (Randomizer.RandRate(10)) {
+			if (Randomizer.RandRate(50)) {
 				ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
 				drops.add(new ItemStackBuilder(e.getEntityType(), 1, ChatColor.GREEN + "Appel à un ami", "Fait apparaître un monstre qui combattra à vos côtés (il ne vous suivera pas)."));
 				e.getDrops().addAll(drops);				
