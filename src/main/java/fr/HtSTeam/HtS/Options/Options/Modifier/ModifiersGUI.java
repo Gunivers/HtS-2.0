@@ -44,7 +44,7 @@ public class ModifiersGUI extends GUIBuilder implements StartTrigger, CommandExe
 			if(e.getCurrentItem() != null && !e.getCurrentItem().getType().equals(Material.BARRIER) && ism.getKey().equals(e.getCurrentItem())) {
 				e.setCancelled(true);
 				ism.getValue().event((Player) e.getWhoClicked());
-			} else if(e.getCurrentItem().getType().equals(Material.BARRIER)) {
+			} else if(e.getCurrentItem() != null && e.getCurrentItem().getType().equals(Material.BARRIER)) {
 				e.setCancelled(true);
 				ism.getValue().event((Player) e.getWhoClicked());
 			}
