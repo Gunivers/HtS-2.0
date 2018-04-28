@@ -40,8 +40,6 @@ public class TeamBuilder {
 		} else {
 			playerList.add(p.getUniqueId());
 			playerTeam.put(p.getUniqueId(), this);
-			p.setCustomName(ChatColor.valueOf(teamColor.toUpperCase()) + p.getName());
-			p.setCustomNameVisible(true);
 			p.setDisplayName(ChatColor.valueOf(teamColor.toUpperCase()) + p.getName() + "§r");
 			p.setPlayerListName(ChatColor.valueOf(teamColor.toUpperCase()) + p.getName());
 		}
@@ -56,7 +54,6 @@ public class TeamBuilder {
 		} else {
 			playerList.remove(p.getUniqueId());
 			playerTeam.remove(p.getUniqueId(), this);
-			p.setCustomName(p.getName());
 			p.setDisplayName(p.getName());
 			p.setPlayerListName(p.getName());
 			if(getTeamSize() == 0) {

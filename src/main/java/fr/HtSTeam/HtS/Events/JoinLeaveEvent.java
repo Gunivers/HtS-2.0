@@ -21,8 +21,6 @@ public class JoinLeaveEvent implements Listener {
 		if (EnumState.getState() == EnumState.RUNNING) {
 			ScoreBoard.send(p);
 			if (TeamBuilder.teamList.size() != 0 && p.getGameMode() != GameMode.SPECTATOR) {
-				p.setCustomName(ChatColor.valueOf(TeamBuilder.playerTeam.get(p.getUniqueId()).getTeamColor().toUpperCase()) + p.getName());
-				p.setCustomNameVisible(true);
 				p.setDisplayName(ChatColor.valueOf(TeamBuilder.playerTeam.get(p.getUniqueId()).getTeamColor().toUpperCase()) + p.getName() + "§r");
 				p.setPlayerListName(ChatColor.valueOf(TeamBuilder.playerTeam.get(p.getUniqueId()).getTeamColor().toUpperCase()) + p.getName());
 			}
