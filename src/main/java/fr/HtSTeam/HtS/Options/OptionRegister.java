@@ -25,6 +25,7 @@ import fr.HtSTeam.HtS.Options.Options.LootTables.GhastOption;
 import fr.HtSTeam.HtS.Options.Options.LootTables.SkeletonOption;
 import fr.HtSTeam.HtS.Options.Options.LootTables.ZombieOption;
 import fr.HtSTeam.HtS.Options.Options.Mobs.CreeperNerfOption;
+import fr.HtSTeam.HtS.Options.Options.Mobs.MobBuddyOption;
 import fr.HtSTeam.HtS.Options.Options.Mobs.SkeletonNerfOption;
 import fr.HtSTeam.HtS.Options.Options.Modifier.ModifiersGUI;
 import fr.HtSTeam.HtS.Options.Options.Modifier.ShulkerShellOption;
@@ -105,6 +106,7 @@ public class OptionRegister {
 		
 		// Mobs
 		new SkeletonNerfOption();
+		new MobBuddyOption();
 				
 		
 		// AtDeath

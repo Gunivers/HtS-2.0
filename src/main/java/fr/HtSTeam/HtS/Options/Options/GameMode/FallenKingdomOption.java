@@ -19,4 +19,10 @@ public class FallenKingdomOption extends GameModeState {
 		if(getItemStack().isGlint())
 			open(p);
 	}
+
+	@Override
+	public void setOption() {
+		OptionRegister.noRegen.setState(true);
+		OptionRegister.goldenApple.setState(false);
+	}
 }

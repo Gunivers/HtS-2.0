@@ -5,7 +5,6 @@ import org.bukkit.plugin.PluginManager;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.GameModes.GameMode;
-import fr.HtSTeam.HtS.Options.OptionRegister;
 
 public class FallenKingdom implements GameMode {
 
@@ -16,8 +15,6 @@ public class FallenKingdom implements GameMode {
 		
 		Main.plugin.getCommand("base").setExecutor(cfk);
 		pm.registerEvents(cfk, Main.plugin);
-		OptionRegister.noRegen.setState(true);
-		OptionRegister.goldenApple.setState(false);
 	}
 	
 	@Override

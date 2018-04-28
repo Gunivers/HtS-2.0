@@ -29,14 +29,14 @@ import fr.HtSTeam.HtS.Utils.Randomizer;
 public class MobBuddyOption extends OptionBuilder {
 	
 	public MobBuddyOption() {
-		super(Material.MONSTER_EGG, "§4Désactivé", "Flemme", "Désactivé", OptionRegister.mob);
+		super(Material.MONSTER_EGG, "Mob Buddy", "§4Désactivé", "Désactivé", OptionRegister.mob);
 	}
 
 	private boolean activate = false;
 	
 	@Override
 	public void event(Player p) {
-		activate =! activate;
+		activate = !activate;
 		if(activate) {
 			setValue("Activé");
 			getItemStack().setLore("§2Activé");			
@@ -44,6 +44,7 @@ public class MobBuddyOption extends OptionBuilder {
 			setValue("Désactivé");
 			getItemStack().setLore("§4Désactivé");
 		}
+		parent.update(this);
 	}
 	
 	@EventHandler(priority = EventPriority.HIGHEST)

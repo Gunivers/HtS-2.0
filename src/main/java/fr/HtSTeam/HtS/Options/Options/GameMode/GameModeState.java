@@ -7,7 +7,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 
 import fr.HtSTeam.HtS.Options.Structure.GUIBuilder;
 
-public class GameModeState extends GUIBuilder {
+public abstract class GameModeState extends GUIBuilder {
 	
 
 	public GameModeState(String nameInv, int row, String name, String description, Material material, GUIBuilder gui) {
@@ -27,9 +27,9 @@ public class GameModeState extends GUIBuilder {
 	}
 
 	@Override
-	public void event(Player p) {
-		
-	}
+	public void event(Player p) {}
+	
+	public abstract void setOption();
 	
 	@EventHandler
 	@Override

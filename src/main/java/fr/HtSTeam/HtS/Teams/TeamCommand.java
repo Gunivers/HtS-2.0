@@ -74,7 +74,7 @@ public class TeamCommand implements CommandExecutor {
 				} else if (args[0].equalsIgnoreCase("list") && args.length == 2) {
 					try {
 						TeamBuilder t = TeamBuilder.nameTeam.get(args[1]);
-						p.sendMessage("Joueurs de la team" + ChatColor.valueOf(t.getTeamColor().toUpperCase()) + t.getTeamName() + " : " );
+						p.sendMessage("Joueurs de la team " + ChatColor.valueOf(t.getTeamColor().toUpperCase()) + t.getTeamName() + " : " );
 						for(UUID uuid : t.getTeamPlayers())
 							p.sendMessage("- " + Bukkit.getPlayer(uuid).getName());
 						return true;

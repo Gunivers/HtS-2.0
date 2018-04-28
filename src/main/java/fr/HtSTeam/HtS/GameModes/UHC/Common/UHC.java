@@ -30,9 +30,6 @@ public class UHC implements GameMode {
 		PluginManager pm = Bukkit.getServer().getPluginManager();
 		pm.registerEvents(new FakeDeath(), Main.plugin);
 		pm.registerEvents(new VictoryDetectionEvent(teamVictoryDetection), Main.plugin);
-		
-		OptionRegister.noRegen.setState(false);
-		OptionRegister.goldenApple.setState(true);
 	}
 
 	public void setTeamVictoryDetection(boolean teamVictoryDetection) {

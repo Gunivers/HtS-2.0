@@ -22,4 +22,10 @@ public class UHCOption extends GameModeState {
 		if(getItemStack().isGlint())
 			open(p);
 	}
+
+	@Override
+	public void setOption() {
+		OptionRegister.noRegen.setState(false);
+		OptionRegister.goldenApple.setState(true);	
+	}
 }

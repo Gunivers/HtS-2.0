@@ -58,7 +58,7 @@ public class EnablePvPOption extends OptionBuilder {
 	
 	@Timer
 	public void changeState() {
-		Bukkit.broadcastMessage("§4Le PvP est maintenant activée.");
+		Bukkit.broadcastMessage("§4Le PvP est maintenant activé.");
 		switchState(true);
 	}
 
