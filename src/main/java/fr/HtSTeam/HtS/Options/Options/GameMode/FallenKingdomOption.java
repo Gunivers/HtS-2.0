@@ -22,6 +22,7 @@ public class FallenKingdomOption extends GameModeState {
 
 	@Override
 	public void setOption() {
+		System.out.println("Test");
 		OptionRegister.noRegen.setState(true);
 		OptionRegister.goldenApple.setState(false);
 	}

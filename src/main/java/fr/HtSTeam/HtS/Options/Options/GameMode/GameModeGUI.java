@@ -31,6 +31,7 @@ public class GameModeGUI extends GUIBuilder {
 			if (e.getInventory().equals(inv) && e.getCurrentItem() != null && !e.getCurrentItem().getType().equals(Material.BARRIER)) {
 				if (gms.getItemStack().equals(e.getCurrentItem())) {
 					gms.setState(true);
+					gms.setOption();
 					e.setCancelled(true);
 				} else {
 					gms.setState(false);
