@@ -2,7 +2,7 @@ Pour l'HtS de base :
 
 - Désactiver les biomes Océan																					Pris par :
 - Armor Stand à la mort d'un joueur																				Pris par :		ikbrunel		SLEEPING
-- Inventaire disponible pour Gamemode Spectator																	Pris par :		theogiraudet	TEST PERDIOD
+- Inventaire disponible pour Gamemode Spectator																	Pris par :		theogiraudet	DONE
 - Les statistiques																								Pris par :		ikbrunel		UNSTARTED
 - * Module chasse aux trésors (coffre)																			Pris pas :
 - * Les changements de probabilités (drop de pommes (ne pas oublié l'event decay), de flint...)					Pris par :		theogiraudet	UNSTARTED

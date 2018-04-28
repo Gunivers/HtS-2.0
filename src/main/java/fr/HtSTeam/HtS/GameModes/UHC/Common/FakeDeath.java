@@ -32,7 +32,7 @@ public class FakeDeath implements Listener {
 			}
 			//p.getWorld().dropItem(p.getLocation(), is);
 			((Player) p).setGameMode(GameMode.SPECTATOR);
-			PlayerInGame.playerInGame.remove(p.getUniqueId());
+			PlayerInGame.removeFromGame(p);
 
 			for (Player p2 : Bukkit.getOnlinePlayers())
 				p2.playSound(p2.getLocation(), Sound.ENTITY_WITHER_SPAWN, 1.0f, 1.0f);
