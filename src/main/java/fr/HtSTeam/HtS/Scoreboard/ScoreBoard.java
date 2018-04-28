@@ -47,27 +47,27 @@ public class ScoreBoard {
 	
 	private static List<Entry> getBuild(Player p) {
 		if(display.size() == 0)
-			return new EntryBuilder().next("§6Joueur:").next(Integer.toString(PlayerInGame.playerInGame.size())).next("§6Kills:").next(Integer.toString(p.getStatistic(Statistic.PLAYER_KILLS))).next("§6Timer:").next(Main.timer.getTimeFormat()).next("§6Bordure:").next(OptionRegister.borderOption.getValue() + "x" + OptionRegister.borderOption.getValue()).build();
+			return new EntryBuilder().next("§6Joueur :").next(Integer.toString(PlayerInGame.playerInGame.size())).next("§6Kills :").next(Integer.toString(p.getStatistic(Statistic.PLAYER_KILLS))).next("§6Timer :").next(Main.timer.getTimeFormat()).next("§6Bordure :").next(OptionRegister.borderOption.getValue() + "x" + OptionRegister.borderOption.getValue()).build();
 		
 		EntryBuilder builder = new EntryBuilder();
 		
 		for(int i = 0; i < display.size(); i++) {
 			switch(display.get(i)) {
 				case "PlayerScoreboardOption":
-					builder.next("§6Joueurs:").next(Integer.toString(PlayerInGame.playerInGame.size()));
+					builder.next("§6Joueurs :").next(Integer.toString(PlayerInGame.playerInGame.size()));
 					if (TeamBuilder.teamList.size() != 0)
-						builder.next("§6Equipes:").next(Integer.toString(TeamBuilder.teamList.size()));
+						builder.next("§6Equipes :").next(Integer.toString(TeamBuilder.teamList.size()));
 					break;
 				case "KilledScoreboardOption":
-					builder.next("§6Kills:").next(Integer.toString(p.getStatistic(Statistic.PLAYER_KILLS)));
+					builder.next("§6Kills :").next(Integer.toString(p.getStatistic(Statistic.PLAYER_KILLS)));
 					break;
 				case "TimerScoreboardOption":
-					builder.next("§6Timer:").next(Main.timer.getTimeFormat());
+					builder.next("§6Timer :").next(Main.timer.getTimeFormat());
 					if (Main.gamemode.gamemodeToString().equals("Fallen Kingdom"))
-						builder.next("§6Jours:").next(Integer.toString((int) Main.timer.getTimerInMinute() / 20));
+						builder.next("§6Jours :").next(Integer.toString((int) Main.timer.getTimerInMinute() / 20));
 					break;
 				case "BorderScoreboardOption":
-					builder.next("§6Bordure:").next(OptionRegister.borderOption.getValue() + "×" + OptionRegister.borderOption.getValue());
+					builder.next("§6Bordure :").next(OptionRegister.borderOption.getValue() + "×" + OptionRegister.borderOption.getValue());
 					break;
 				case "AddBlankScoreboardOption":
 					builder.blank();

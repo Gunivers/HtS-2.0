@@ -5,7 +5,6 @@ import java.util.Random;
 public class Randomizer {
 
 	private static Random random = new Random();
-	private static int coords[] = new int[3];
 	
 	public Randomizer() { }
 	
@@ -46,6 +45,7 @@ public class Randomizer {
 	 * @return Une location (X, Y, Z) aléatoire en fonction des paramètres entrés
 	 */
 	public static int[] RandCoord(int mx, int Mx, int my, int My, int mz, int Mz) {
+		int coords[] = new int[3];
 		coords[0] = RandI(mx, Mx);
 		coords[1] = RandI(my, My);
 		coords[2] = RandI(mz, Mz);
