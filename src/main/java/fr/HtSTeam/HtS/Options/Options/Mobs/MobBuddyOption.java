@@ -51,8 +51,6 @@ public class MobBuddyOption extends OptionBuilder {
 	public void onMobTarget(EntityTargetLivingEntityEvent e){
 		if (!activate) return;
 		if (e.getTarget() instanceof Player && e.getEntity().hasMetadata("buddy")) {
-			System.out.println(((Player)e.getTarget()).getUniqueId().toString());
-			System.out.println(e.getEntity().getMetadata("buddy").get(0).asString());
 			if (((Player)e.getTarget()).getUniqueId().toString().equalsIgnoreCase(e.getEntity().getMetadata("buddy").get(0).asString())) {
 				e.setCancelled(true);
 			} else if (!TeamBuilder.teamList.isEmpty()) {
