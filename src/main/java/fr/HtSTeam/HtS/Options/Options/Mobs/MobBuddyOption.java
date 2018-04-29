@@ -66,9 +66,9 @@ public class MobBuddyOption extends OptionBuilder {
 	
 	@EventHandler
 	public void onMobSpawn(PlayerInteractEvent e) {
-		if (!activate || e.getItem() != null)
+		if (!activate || e.getItem() == null)
 			return;
-		if (e.getItem().getType() == Material.MONSTER_EGG && e.getItem().hasItemMeta() && e.getAction() == Action.RIGHT_CLICK_BLOCK) {
+		if (e.getItem().getType() == Material.MONSTER_EGG && e.getItem().hasItemMeta() && (e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.RIGHT_CLICK_AIR)) {
 			e.setCancelled(true);
 			e.getItem().setAmount(e.getItem().getAmount() - 1);
 			Entity mob = e.getPlayer().getWorld().spawnEntity(e.getPlayer().getEyeLocation(), ((SpawnEggMeta) e.getItem().getItemMeta()).getSpawnedType());
