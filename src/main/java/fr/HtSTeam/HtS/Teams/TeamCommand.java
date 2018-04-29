@@ -89,8 +89,11 @@ public class TeamCommand implements CommandExecutor {
 							player.getInventory().clear();
 						for (TeamBuilder t : TeamBuilder.teamList)
 							for (Player player : Bukkit.getOnlinePlayers())
-								if (!player.getGameMode().equals(GameMode.SPECTATOR))	
-									player.getInventory().addItem(new ItemStackBuilder(Material.WOOL, t.getTeamByte(), 1, ChatColor.valueOf(t.getTeamColor().toUpperCase()) + t.getTeamName(), "§fClique pour rejoindre l'équipe " + ChatColor.valueOf(t.getTeamColor().toUpperCase()) + t.getTeamName()));
+								if (!player.getGameMode().equals(GameMode.SPECTATOR)) {
+									ItemStackBuilder a = new ItemStackBuilder(Material.WOOL, t.getTeamByte(), 1, ChatColor.valueOf(t.getTeamColor().toUpperCase()) + t.getTeamName(), "§fClique pour rejoindre l'équipe " + ChatColor.valueOf(t.getTeamColor().toUpperCase()) + t.getTeamName());
+									a.setGlint(true);
+									player.getInventory().addItem(a);
+								}
 						return true;
 					} catch (NullPointerException e) {
 						p.sendMessage("§4Aucunes équipes existantes !");

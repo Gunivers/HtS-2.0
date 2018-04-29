@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Skeleton;
+import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.Action;
@@ -16,6 +19,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.SpawnEggMeta;
 import org.bukkit.metadata.FixedMetadataValue;
 
@@ -67,10 +71,65 @@ public class MobBuddyOption extends OptionBuilder {
 			return;
 		if (e.getPlayer().getItemInHand().getType() == Material.MONSTER_EGG && e.getItem().getItemMeta().hasDisplayName() && e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 			e.setCancelled(true);
+			e.getPlayer().getItemInHand().setAmount(e.getPlayer().getItemInHand().getAmount() - 1);
 			Entity mob = e.getPlayer().getWorld().spawnEntity(e.getPlayer().getLocation(), ((SpawnEggMeta) e.getPlayer().getItemInHand().getItemMeta()).getSpawnedType());
 			mob.setMetadata("buddy", new FixedMetadataValue(Main.plugin, e.getPlayer().getUniqueId().toString()));
-			e.getPlayer().getItemInHand().setAmount(e.getPlayer().getItemInHand().getAmount() - 1);
+			if (mob instanceof Zombie) {
+				Zombie m = (Zombie) mob;
+				ItemStack helmet = new ItemStack(Material.LEATHER_HELMET);
+				if (TeamBuilder.teamList.size() != 0) {
+					LeatherArmorMeta meta = (LeatherArmorMeta) helmet.getItemMeta();
+					meta.setColor(getColor(e.getPlayer().getUniqueId()));
+					helmet.setItemMeta(meta);
+				}
+				m.getEquipment().setHelmet(helmet);
+			} else if (mob instanceof Skeleton) {
+				Skeleton m = (Skeleton) mob;
+				ItemStack helmet = new ItemStack(Material.LEATHER_HELMET);
+				if (TeamBuilder.teamList.size() != 0) {
+					LeatherArmorMeta meta = (LeatherArmorMeta) helmet.getItemMeta();
+					meta.setColor(getColor(e.getPlayer().getUniqueId()));
+					helmet.setItemMeta(meta);
+				}
+				m.getEquipment().setHelmet(helmet);
+			}
 		}
+	}
+
+	private Color getColor(UUID uniqueId) {
+		switch (TeamBuilder.playerTeam.get(uniqueId).getTeamColor()) {
+			case "white":
+				return Color.WHITE;
+			case "gold":
+				return Color.ORANGE;
+			case "dark_red":
+				return Color.MAROON;
+			case "aqua":
+				return Color.AQUA;
+			case "yellow":
+				return Color.YELLOW;
+			case "green":
+				return Color.LIME;
+			case "light_purple":
+				return Color.FUCHSIA;
+			case "dark_gray":
+				return Color.GRAY;
+			case "gray":
+				return Color.SILVER;
+			case "dark_aqua":
+				return Color.TEAL;
+			case "dark_purple":
+				return Color.PURPLE;
+			case "dark_blue":
+				return Color.NAVY;
+			case "dark_green":
+				return Color.OLIVE;
+			case "red":
+				return Color.RED;
+			case "black":
+				return Color.BLACK;
+		}
+		return null;
 	}
 
 	@EventHandler
