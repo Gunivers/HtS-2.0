@@ -28,7 +28,6 @@ import fr.HtSTeam.HtS.Options.Options.Mobs.CreeperNerfOption;
 import fr.HtSTeam.HtS.Options.Options.Mobs.MobBuddyOption;
 import fr.HtSTeam.HtS.Options.Options.Mobs.SkeletonNerfOption;
 import fr.HtSTeam.HtS.Options.Options.Modifier.ModifiersGUI;
-import fr.HtSTeam.HtS.Options.Options.Modifier.ShulkerShellOption;
 import fr.HtSTeam.HtS.Options.Options.Nether.NetherWartOption;
 import fr.HtSTeam.HtS.Options.Options.Nether.ShulkerNetherOption;
 import fr.HtSTeam.HtS.Options.Options.Others.AlgueUrticanteOption;
@@ -67,7 +66,7 @@ public class OptionRegister {
 	public static Alterable creeperNerf = new CreeperNerfOption();
 	
 	//Modifiers
-	public static Alterable shulkerShell = new ShulkerShellOption();
+	//public static Alterable shulkerShell = new ShulkerShellOption();
 	
 	//AtDeath
 	public static Alterable goldenApple = new GoldenAppleOption();

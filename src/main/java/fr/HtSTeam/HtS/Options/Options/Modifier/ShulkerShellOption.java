@@ -16,6 +16,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Options.Structure.Alterable;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
@@ -57,7 +58,7 @@ public class ShulkerShellOption extends OptionBuilder implements Alterable {
 	
 	@EventHandler
 	public void onDamage(EntityDamageByEntityEvent e) {
-		if(activate && e.getEntity() instanceof Player && ((ModifiersGUI) parent).getInventory((Player) e.getEntity()).contains(ism)) {
+		if(EnumState.getState().equals(EnumState.RUNNING) && activate && e.getEntity() instanceof Player && ((ModifiersGUI) parent).getInventory((Player) e.getEntity()).contains(ism)) {
 			Player p = (Player) e.getEntity();
 			World world = p.getWorld();
 			if(Randomizer.RandRate(63)) {
