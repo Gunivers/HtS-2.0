@@ -83,7 +83,7 @@ public class TeamCommand implements CommandExecutor {
 						p.sendMessage("§4Equipe inexistante !");
 						return false;
 					}
-				} else if (args[0].equalsIgnoreCase("give") && args.length == 1) {
+				} else if (args[0].equalsIgnoreCase("give")) {
 					try {
 						for (Player player : Bukkit.getOnlinePlayers())
 							player.getInventory().clear();
