@@ -72,7 +72,7 @@ public abstract class OptionBuilder implements Listener {
 	public String getName() { return icon.getName(); }
 	public ItemStackBuilder getItemStack() { return icon; }
 	public Object getDefaultValue() { return defaultValue; }
-	
+		
 	public void setValue(String value) {
 		this.value = value;
 		OptionBuilder.optionsList.replace(this, value);

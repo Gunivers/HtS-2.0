@@ -162,6 +162,8 @@ public class ItemStackBuilder extends ItemStack {
 	public void setItem(Material material, short data) {
 		this.item = material;
 		this.data = data;
+		this.setType(material);
+		this.setDataValue(data);
 	}
 
 	/**
