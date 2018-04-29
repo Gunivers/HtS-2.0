@@ -64,15 +64,14 @@ public class MobBuddyOption extends OptionBuilder {
 		}
 	}
 	
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onMobSpawn(PlayerInteractEvent e) {
-		if (!activate)
+		if (!activate || e.getItem() != null)
 			return;
-		if (e.getPlayer().getItemInHand().getType() == Material.MONSTER_EGG && e.getItem().getItemMeta().hasDisplayName() && e.getAction() == Action.RIGHT_CLICK_BLOCK) {
+		if (e.getItem().getType() == Material.MONSTER_EGG && e.getItem().hasItemMeta() && e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 			e.setCancelled(true);
-			e.getPlayer().getItemInHand().setAmount(e.getPlayer().getItemInHand().getAmount() - 1);
-			Entity mob = e.getPlayer().getWorld().spawnEntity(e.getPlayer().getLocation(), ((SpawnEggMeta) e.getPlayer().getItemInHand().getItemMeta()).getSpawnedType());
+			e.getItem().setAmount(e.getItem().getAmount() - 1);
+			Entity mob = e.getPlayer().getWorld().spawnEntity(e.getPlayer().getEyeLocation(), ((SpawnEggMeta) e.getItem().getItemMeta()).getSpawnedType());
 			mob.setMetadata("buddy", new FixedMetadataValue(Main.plugin, e.getPlayer().getUniqueId().toString()));
 			if (mob instanceof Zombie) {
 				Zombie m = (Zombie) mob;
