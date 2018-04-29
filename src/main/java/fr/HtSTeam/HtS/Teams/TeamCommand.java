@@ -1,6 +1,7 @@
 package fr.HtSTeam.HtS.Teams;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -96,17 +97,22 @@ public class TeamCommand implements CommandExecutor {
 						return false;
 					}
 				} else if (args[0].equalsIgnoreCase("random")) {
+					List<Player> onlinePlayer = new ArrayList<Player>();
 					if(TeamBuilder.teamList.size() != 0) {
+						for (Player co : Bukkit.getOnlinePlayers())
+							if (co.getGameMode() != GameMode.SPECTATOR)
+								onlinePlayer.add(co);
+								
 						ArrayList<TeamBuilder> teamList = new ArrayList<TeamBuilder>();
 						for (TeamBuilder t : TeamBuilder.teamList) {	
 							if(!t.isFakeTeam())
 								teamList.add(t);
 						}
 						int nbTeam = teamList.size();
-						for (Player player : Bukkit.getOnlinePlayers()) {
-							TeamBuilder team = teamList.get(Randomizer.RandI(0, nbTeam - 1));
+						for (Player player : onlinePlayer) {
+							TeamBuilder team = teamList.get(Randomizer.RandI(0, teamList.size() - 1));
 							team.addPlayer(player);
-							if (team.getTeamSize() == (int) (Bukkit.getOnlinePlayers().size()/nbTeam))
+							if (team.getTeamSize() == (int) (onlinePlayer.size()/nbTeam))
 								teamList.remove(team);
 							if (teamList.size() == 0)
 								break;
