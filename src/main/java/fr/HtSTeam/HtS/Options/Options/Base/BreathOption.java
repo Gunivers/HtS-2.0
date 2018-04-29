@@ -48,13 +48,14 @@ public class BreathOption extends OptionBuilder implements StartTrigger {
 						p.sendMessage("§2Le souffle des profondeurs s'activera à " + value + " minutes." );
 						this.getItemStack().setLore("§d" + value + " minutes");
 						getItemStack().setItem(Material.GLOWSTONE_DUST, (short) 0);
+						parent.update(this);
 					} else {
 						setValue("Désactivé");
 						p.sendMessage("§2Le souffle des profondeurs a été désactivé.");
 						this.getItemStack().setLore("§4Désactivé");
 						getItemStack().setItem(Material.SULPHUR, (short) 0);
+						parent.update(this);
 					}
-					parent.update(this);
 					request = false;
 					return;
 				}
@@ -90,7 +91,7 @@ public class BreathOption extends OptionBuilder implements StartTrigger {
 	@Timer(PRIORITY.LOWEST)
 	public void run() {
 		activate = true;
-		Bukkit.broadcastMessage("§4Le soufre a envahis les mines.");
+		Bukkit.broadcastMessage("§4Le soufre a envahi les mines.");
 	}
 
 	@Override
