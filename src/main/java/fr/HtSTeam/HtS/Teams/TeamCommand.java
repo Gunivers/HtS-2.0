@@ -102,10 +102,11 @@ public class TeamCommand implements CommandExecutor {
 							if(!t.isFakeTeam())
 								teamList.add(t);
 						}
+						int nbTeam = teamList.size();
 						for (Player player : Bukkit.getOnlinePlayers()) {
-							TeamBuilder team = teamList.get(Randomizer.RandI(0, teamList.size() - 1));
+							TeamBuilder team = teamList.get(Randomizer.RandI(0, nbTeam - 1));
 							team.addPlayer(player);
-							if (team.getTeamSize() == (int) (Bukkit.getOnlinePlayers().size()/teamList.size()))
+							if (team.getTeamSize() == (int) (Bukkit.getOnlinePlayers().size()/nbTeam))
 								teamList.remove(team);
 							if (teamList.size() == 0)
 								break;
