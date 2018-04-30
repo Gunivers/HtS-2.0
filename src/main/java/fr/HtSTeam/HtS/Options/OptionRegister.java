@@ -39,6 +39,7 @@ import fr.HtSTeam.HtS.Options.Options.Scoreboard.KilledScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.PlayerScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.RemoveBlankScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.TimerScoreboardOption;
+import fr.HtSTeam.HtS.Options.Options.StartingStuff.StartingStuffGUI;
 import fr.HtSTeam.HtS.Options.Structure.Alterable;
 import fr.HtSTeam.HtS.Options.Structure.GUIBuilder;
 
@@ -55,6 +56,7 @@ public class OptionRegister {
 	public static GUIBuilder nether = new GUIBuilder("Nether", 1, "Nether", "Régler le Nether", Material.NETHERRACK, OptionRegister.main);
 	public static GUIBuilder crafts = new GUIBuilder("Crafts", 1, "Crafts","Gérer les crafts customs", Material.WORKBENCH, OptionRegister.main);
 	public static GUIBuilder other = new GUIBuilder("Autre", 1, "Autre", "Options inclassables", Material.CHEST, OptionRegister.main);
+	public static StartingStuffGUI startingStuff = new StartingStuffGUI();
 	
 	
 	// GameMode

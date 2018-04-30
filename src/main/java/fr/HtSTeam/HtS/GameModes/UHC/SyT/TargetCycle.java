@@ -1,8 +1,8 @@
 package fr.HtSTeam.HtS.GameModes.UHC.SyT;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -16,6 +16,7 @@ import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
 import fr.HtSTeam.HtS.Teams.TeamBuilder;
+import fr.HtSTeam.HtS.Utils.Randomizer;
 
 public class TargetCycle extends OptionBuilder {
 
@@ -55,23 +56,38 @@ public class TargetCycle extends OptionBuilder {
 			}
 		}
 	}
-	
-	
+		
 	@Timer
 	public void definedTarget() {
-		List<UUID> players = new ArrayList<UUID>();
-		players.addAll(PlayerInGame.playerInGame);
-		while(players.size() > 0) {
-			Random r = new Random();
-			int rand = r.nextInt(players.size());
-			if(targetCycle.size() == 0) {
-				targetCycle.add(players.get(rand));
-				players.remove(rand);
-			} else {	
-				if(TeamBuilder.playerTeam.get(players.get(rand)).equals(TeamBuilder.playerTeam.get(players.get(rand - 1))))
-				targetCycle.add(players.get(rand));
-				players.remove(rand);
+		List<UUID> cycle = new ArrayList<UUID>();
+		HashMap<TeamBuilder, ArrayList<UUID>> teamPlayers = new HashMap<TeamBuilder, ArrayList<UUID>>();
+		for(TeamBuilder tb : TeamBuilder.teamList)
+			teamPlayers.put(tb, new ArrayList<UUID>(tb.getTeamPlayers()));
+		int j = 0;
+		TeamBuilder firstPlayerTeam = null;
+		while(teamPlayers.size() > 0) {
+			List<TeamBuilder> teams = new ArrayList<TeamBuilder>();
+			teams.addAll(TeamBuilder.teamList);
+			TeamBuilder lastPastTeam = null;
+			int i = 0;
+			while(teams.size() > 0) {
+				TeamBuilder randTeam = teams.get(Randomizer.Rand(4));
+				if((i == 0 && !randTeam.equals(lastPastTeam)) || (i > 0)) {
+					if(i == teamPlayers.size() - 1 && randTeam.equals(firstPlayerTeam)) {
+						UUID lastPlayer = cycle.remove(cycle.size() - 1);
+						cycle.add(teamPlayers.get(randTeam).remove(Randomizer.Rand(teamPlayers.get(randTeam).size())));
+						cycle.add(lastPlayer);
+					} else
+						cycle.add(teamPlayers.get(randTeam).remove(Randomizer.Rand(teamPlayers.get(randTeam).size())));
+					if(j == 0 && i == 0)
+						firstPlayerTeam = randTeam;
+					i++;
+					if(teamPlayers.get(randTeam).size() == 0) teamPlayers.remove(randTeam);
+					teams.remove(randTeam);				
+				} else continue;
+				j++;
 			}
+			
 		}
 	}
 	

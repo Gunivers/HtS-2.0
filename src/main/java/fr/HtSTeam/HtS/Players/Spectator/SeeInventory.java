@@ -36,49 +36,65 @@ public class SeeInventory implements Listener {
 	@EventHandler
 	public void onInteractWithInventory(InventoryClickEvent  e) {
 		if(e.getWhoClicked() instanceof Player) {
-			refresh((Player) e.getWhoClicked());
+			Main.plugin.getServer().getScheduler().runTaskLater(Main.plugin, () -> {
+				refresh((Player) e.getWhoClicked());
+			}, 1);	
 		}
 	}
 	
 	@EventHandler
 	public void onDrag(InventoryDragEvent  e) {
 		if(e.getWhoClicked() instanceof Player) {
-			refresh((Player) e.getWhoClicked());
+			Main.plugin.getServer().getScheduler().runTaskLater(Main.plugin, () -> {
+				refresh((Player) e.getWhoClicked());
+			}, 1);
 		}
 	}
 	
 	@EventHandler
 	public void onLevelChange(PlayerLevelChangeEvent  e) {
-		refresh(e.getPlayer());
+		Main.plugin.getServer().getScheduler().runTaskLater(Main.plugin, () -> {
+			refresh(e.getPlayer());
+		}, 1);
 	}
 	
 	@EventHandler
 	public void onDamage(EntityDamageEvent e) {
 		if(e.getEntity() instanceof Player)
-			refresh((Player) e.getEntity());
+			Main.plugin.getServer().getScheduler().runTaskLater(Main.plugin, () -> {
+				refresh((Player) e.getEntity());
+			}, 1);
 	}
 	
 	@EventHandler
 	public void onFoodChange(FoodLevelChangeEvent e) {
 		if(e.getEntity() instanceof Player)
-			refresh((Player) e.getEntity());
+			Main.plugin.getServer().getScheduler().runTaskLater(Main.plugin, () -> {
+				refresh((Player) e.getEntity());
+			}, 1);
 	}
 	
 	@EventHandler
 	public void onRegainHeal(EntityRegainHealthEvent e) {
 		if(e.getEntity() instanceof Player)
-			refresh((Player) e.getEntity());
+			Main.plugin.getServer().getScheduler().runTaskLater(Main.plugin, () -> {
+				refresh((Player) e.getEntity());
+			}, 1);
 	}
 	
 	@EventHandler
-	public void onRegainHeal(EntityPickupItemEvent e) {
+	public void onPickUp(EntityPickupItemEvent e) {
 		if(e.getEntity() instanceof Player)
-			refresh((Player) e.getEntity());
+			Main.plugin.getServer().getScheduler().runTaskLater(Main.plugin, () -> {
+				refresh((Player) e.getEntity());
+			}, 1);
 	}
 	
 	@EventHandler
 	public void onDeath(PlayerDeathEvent e) {
-		refresh(e.getEntity());
+		Main.plugin.getServer().getScheduler().runTaskLater(Main.plugin, () -> {
+			refresh((Player) e.getEntity());
+		}, 1);
 	}
 	
 	
