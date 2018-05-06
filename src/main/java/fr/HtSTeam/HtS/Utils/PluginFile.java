@@ -27,23 +27,18 @@ public class PluginFile extends YamlConfiguration {
 	}
 
 	public void reload() {
-
 		if (!file.exists()) {
-
 			try {
 				file.getParentFile().mkdirs();
 				file.createNewFile();
-
 			} catch (IOException exception) {
 				exception.printStackTrace();
 				plugin.getLogger().severe("Error while creating file " + file.getName());
 			}
-
 		}
 
 		try {
 			load(file);
-
 			if (defaults != null) {
 				InputStreamReader reader = new InputStreamReader(plugin.getResource(defaults));
 				FileConfiguration defaultsConfig = YamlConfiguration.loadConfiguration(reader);
@@ -54,21 +49,16 @@ public class PluginFile extends YamlConfiguration {
 				reader.close();
 				save();
 			}
-
 		} catch (IOException exception) {
 			exception.printStackTrace();
 			plugin.getLogger().severe("Error while loading file " + file.getName());
-
 		} catch (InvalidConfigurationException exception) {
 			exception.printStackTrace();
 			plugin.getLogger().severe("Error while loading file " + file.getName());
-
 		}
-
 	}
 
 	public void save() {
-
 		try {
 			options().indent(2);
 			save(file);
