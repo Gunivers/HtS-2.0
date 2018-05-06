@@ -63,7 +63,11 @@ public class XmlFile {
 	public String getAttributeValue(final Node node, final String attribute) {
 		return ((Element) node).getAttribute(attribute);
 	}
-
+	
+	public String getValue(final Node node) {
+		return ((Element) node).getNodeValue();
+	}
+	
 	public void set(final String node_name, final Map<String, String> attributes, final String node_value) {
 		Element root = doc.createElement(node_name);
 		doc.appendChild(root);
