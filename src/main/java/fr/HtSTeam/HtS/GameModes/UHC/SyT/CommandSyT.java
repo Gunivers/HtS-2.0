@@ -26,7 +26,9 @@ public class CommandSyT implements CommandExecutor {
 				return true;
 			
 			} else if(cmd.getName().equalsIgnoreCase("target") && SyT.targetCycleOption.targetCycle.contains(((Player) sender).getUniqueId())) {
-				SyT.targetCycleOption.getTarget((Player) sender);
+				sender.sendMessage("Votre cible est : &l&c" + SyT.targetCycleOption.getTarget((Player) sender));
+				
+				
 				return true;
 			}
 		}
