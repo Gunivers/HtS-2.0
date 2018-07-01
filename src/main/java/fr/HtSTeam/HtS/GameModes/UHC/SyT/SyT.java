@@ -17,7 +17,7 @@ public class SyT extends UHC {
 
 	@Override
 	public String gamemodeToString() {
-		return "SYT";
+		return "SyT";
 	}
 
 }

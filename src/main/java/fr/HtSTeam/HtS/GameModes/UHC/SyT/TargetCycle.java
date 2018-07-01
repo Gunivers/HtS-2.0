@@ -71,7 +71,7 @@ public class TargetCycle extends OptionBuilder {
 			TeamBuilder lastPastTeam = null;
 			int i = 0;
 			while(teams.size() > 0) {
-				TeamBuilder randTeam = teams.get(Randomizer.Rand(4));
+				TeamBuilder randTeam = teams.get(Randomizer.Rand(teams.size()));
 				if((i == 0 && !randTeam.equals(lastPastTeam)) || (i > 0)) {
 					if(i == teamPlayers.size() - 1 && randTeam.equals(firstPlayerTeam)) {
 						UUID lastPlayer = cycle.remove(cycle.size() - 1);
