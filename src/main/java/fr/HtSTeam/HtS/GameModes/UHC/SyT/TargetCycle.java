@@ -66,30 +66,24 @@ public class TargetCycle extends OptionBuilder {
 		int j = 0;
 		TeamBuilder firstPlayerTeam = null;
 		while(teamPlayers.size() > 0) {
-			System.out.println("1");
 			List<TeamBuilder> teams = new ArrayList<TeamBuilder>();
 			teams.addAll(TeamBuilder.teamList);
 			TeamBuilder lastPastTeam = null;
 			int i = 0;
 			while(teams.size() > 0) {
-				System.out.println("2");
 				TeamBuilder randTeam = teams.get(Randomizer.Rand(teams.size()));
 				if((i == 0 && !randTeam.equals(lastPastTeam)) || (i > 0)) {
-					System.out.println("3");
 					if(i == teamPlayers.size() - 1 && randTeam.equals(firstPlayerTeam)) {
 						UUID lastPlayer = cycle.remove(cycle.size() - 1);
 						cycle.add(teamPlayers.get(randTeam).remove(Randomizer.Rand(teamPlayers.get(randTeam).size())));
 						cycle.add(lastPlayer);
-						System.out.println("4");
 					} else
-						System.out.println("5");
 						cycle.add(teamPlayers.get(randTeam).remove(Randomizer.Rand(teamPlayers.get(randTeam).size())));
 					if(j == 0 && i == 0) {
 						firstPlayerTeam = randTeam;
-						System.out.println("6");
 					}
 					i++;
-					if(teamPlayers.get(randTeam).size() == 0) {System.out.println("7"); teamPlayers.remove(randTeam); }
+					if(teamPlayers.get(randTeam).size() == 0) teamPlayers.remove(randTeam);
 					teams.remove(randTeam);				
 				} else continue;
 				j++;
@@ -97,21 +91,18 @@ public class TargetCycle extends OptionBuilder {
 			
 		}
 		targetCycle = cycle;
-		System.out.println(targetCycle.size());
 		displayTarget();
-	}
-	
-	@Timer
-	public void definedTarget2() {
-		ArrayList<UUID> used = new ArrayList<UUID>();
+		for(UUID uuid : targetCycle) {
+			System.out.println(Bukkit.getPlayer(uuid).getName() + " : " + Bukkit.getPlayer(getTarget(Bukkit.getPlayer(uuid))).getName());
+		}
 	}
 	
 	public void displayTarget() {
 		for(int i = 0; i < targetCycle.size(); i++) {
 			if(i != targetCycle.size() - 1) {
-				Bukkit.getPlayer(targetCycle.get(i)).sendMessage("§4Votre cible est " + Bukkit.getPlayer(targetCycle.get(i + 1)));
+				Bukkit.getPlayer(targetCycle.get(i)).sendMessage("§4Votre cible est " + Bukkit.getPlayer(targetCycle.get(i + 1)).getName());
 			} else {
-				Bukkit.getPlayer(targetCycle.get(i)).sendMessage("§4Votre cible est " + Bukkit.getPlayer(targetCycle.get(0)));
+				Bukkit.getPlayer(targetCycle.get(i)).sendMessage("§4Votre cible est " + Bukkit.getPlayer(targetCycle.get(0)).getName());
 			}
 		}
 	}

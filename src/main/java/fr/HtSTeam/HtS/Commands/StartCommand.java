@@ -9,6 +9,7 @@ import fr.HtSTeam.HtS.Utils.JSON;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Statistic;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -53,6 +54,7 @@ public class StartCommand implements CommandExecutor {
 				for(Player player : Bukkit.getOnlinePlayers())
 					if(!player.getGameMode().equals(GameMode.SPECTATOR)) {
 						PlayerInGame.playerInGame.add(player.getUniqueId());
+						player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(20);
 						player.setHealth(20);
 						player.setFoodLevel(20);
 						player.getInventory().clear();

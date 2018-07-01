@@ -5,10 +5,12 @@ import fr.HtSTeam.HtS.GameModes.UHC.Common.UHC;
 public class SyT extends UHC {
 
 	static TargetCycle targetCycleOption = new TargetCycle();
+	static RadarFrequencyOption radarF = new RadarFrequencyOption();
+	static RadarOption radar = new RadarOption();
 	
 	public SyT() {
 		setTeamVictoryDetection(false);
-		new SyTOptionRegister();
+		//new SyTOptionRegister();
 		new SyTEventManager();
 	}
 

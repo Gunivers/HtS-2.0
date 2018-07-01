@@ -14,6 +14,7 @@ public class SyTDeathEvent implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onKillSomeone(PlayerDeathEvent e) {
+		e.setDeathMessage(null);
 		Player victim = e.getEntity();
 		if (e.getEntity().getKiller() instanceof Player) {
 			Player killer = e.getEntity().getKiller();
@@ -28,10 +29,10 @@ public class SyTDeathEvent implements Listener {
 							.setBaseValue(killer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() + 2);
 					killer.setHealth(killer.getHealth() + 2);
 				}
+				SyT.targetCycleOption.targetCycle.remove(victim.getUniqueId());
 				Bukkit.broadcastMessage(victim.getName() + " a été tué par son chasseur.");
 				killer.sendMessage("§2Cible éliminée. Nouvelle cible : "
 						+ Bukkit.getPlayer(SyT.targetCycleOption.getTarget(killer)).getName());
-				SyT.targetCycleOption.targetCycle.remove(victim.getUniqueId());
 
 				// Kill hunter
 			} else if (SyT.targetCycleOption.getHunter(killer).equals(victim.getUniqueId())) {
@@ -42,11 +43,11 @@ public class SyTDeathEvent implements Listener {
 					killer.setHealth(killer.getHealth() + 4);
 				}
 				Bukkit.broadcastMessage(victim.getName() + " a été tué par sa cible.");
+				SyT.targetCycleOption.targetCycle.remove(victim.getUniqueId());
 				killer.sendMessage("§2Cible éliminée. Nouvelle cible : "
 						+ Bukkit.getPlayer(SyT.targetCycleOption.getHunter(killer)).getName());
 				killer.sendMessage(
 						"§6Celui-ci semblait vous vouloir du mal, il est fort probable qu'il cherchait à vous éliminer.");
-				SyT.targetCycleOption.targetCycle.remove(victim.getUniqueId());
 
 				// Kill other people
 			} else {
@@ -59,19 +60,19 @@ public class SyTDeathEvent implements Listener {
 				}
 
 				Bukkit.broadcastMessage(victim.getName() + " est mort.");
+				SyT.targetCycleOption.targetCycle.remove(victim.getUniqueId());
 				Bukkit.getPlayer(SyT.targetCycleOption.getHunter(victim))
 						.sendMessage("§2Votre cible a été tuée, une nouvelle cible vous est attribuée : "
 								+ Bukkit.getPlayer(SyT.targetCycleOption.getTarget(victim)).getName());
 				killer.sendMessage("§4Que faites-vous ?! Ce n'était pas la cible qui vous était attribuée !");
 				killer.sendMessage("§7§oVous avez du remord...");
-				SyT.targetCycleOption.targetCycle.remove(victim.getUniqueId());
 			}
 		} else {
 			Bukkit.broadcastMessage(victim.getName() + " est mort.");
+			SyT.targetCycleOption.targetCycle.remove(victim.getUniqueId());
 			Bukkit.getPlayer(SyT.targetCycleOption.getHunter(victim))
 					.sendMessage("§2Votre cible a été tuée, une nouvelle cible vous est attribuée : "
 							+ Bukkit.getPlayer(SyT.targetCycleOption.getTarget(victim)).getName());
-			SyT.targetCycleOption.targetCycle.remove(victim.getUniqueId());
 		}
 	}
 

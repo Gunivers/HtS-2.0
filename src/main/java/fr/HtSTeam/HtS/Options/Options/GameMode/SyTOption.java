@@ -15,9 +15,10 @@ public class SyTOption extends GameModeState {
 	
 	@Override
 	public void event(Player p) {
-		Main.gamemode = new SyT();
-		if(getItemStack().isGlint())
+		if(getItemStack().isGlint()) {
+			Main.gamemode = new SyT();
 			open(p);
+		}
 	}
 
 	@Override
