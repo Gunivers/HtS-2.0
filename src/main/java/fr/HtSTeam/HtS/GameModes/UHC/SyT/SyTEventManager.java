@@ -10,6 +10,7 @@ public class SyTEventManager {
 	public SyTEventManager() {
 		PluginManager pm = Bukkit.getServer().getPluginManager();
 		pm.registerEvents(new SyTDeathEvent(), Main.plugin);
+		pm.registerEvents(new TakeDamageEvent(), Main.plugin);
 	}
 
 }

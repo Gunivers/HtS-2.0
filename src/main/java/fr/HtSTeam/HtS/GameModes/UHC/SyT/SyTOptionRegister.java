@@ -2,7 +2,8 @@ package fr.HtSTeam.HtS.GameModes.UHC.SyT;
 
 public class SyTOptionRegister {
 
-	static RadarFrequencyOption radar = new RadarFrequencyOption();
+	static RadarFrequencyOption radarF = new RadarFrequencyOption();
+	static RadarOption radar = new RadarOption();
 	
 	
 }
