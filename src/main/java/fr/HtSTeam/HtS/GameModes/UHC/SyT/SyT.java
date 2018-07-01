@@ -19,5 +19,4 @@ public class SyT extends UHC {
 	public String gamemodeToString() {
 		return "SyT";
 	}
-
 }
