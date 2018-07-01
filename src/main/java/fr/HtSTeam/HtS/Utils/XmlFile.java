@@ -21,13 +21,15 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import fr.HtSTeam.HtS.Main;
+
 public class XmlFile {
 
 	private File file;
 	private Document doc;
 
 	public XmlFile(String fileName) {
-		file = new File("C:\\Users\\user\\Downloads", fileName + ".xml");
+		file = new File(Main.plugin.getDataFolder(), fileName + ".xml");
 		if (file.exists()) {
 			try {
 				doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(file);
