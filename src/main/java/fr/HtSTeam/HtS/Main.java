@@ -25,7 +25,7 @@ public class Main extends JavaPlugin {
 	public HashMap<Player, UUID> uuidPlayer = new HashMap<>();
 	public static World world;
 	public static Main plugin;
-	public final static String HTSNAME = "HtS I";
+	public final static String HTSNAME = "HtS II";
 	public static DeathLoot deathLoot = new DeathLoot();
 	public static TimerTask timer;
 	public static GameMode gamemode = new UHC();
