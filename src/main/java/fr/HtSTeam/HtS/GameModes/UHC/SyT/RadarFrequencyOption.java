@@ -41,7 +41,7 @@ public class RadarFrequencyOption extends OptionBuilder implements StartTrigger 
 				int value = Integer.parseInt(e.getMessage());
 				if (value >= 0 && value <= 60) {
 					setValue(Integer.toString(value));
-					p.sendMessage("§Radar toutes les " + getValue() + " minutes.");
+					p.sendMessage("§2Radar toutes les " + getValue() + " minutes.");
 					this.getItemStack().setLore("§2" + value + " minutes");
 					parent.update(this);
 					request = false;

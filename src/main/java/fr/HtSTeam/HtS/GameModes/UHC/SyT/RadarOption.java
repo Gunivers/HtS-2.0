@@ -33,7 +33,7 @@ public class RadarOption extends OptionBuilder {
 				int value = Integer.parseInt(e.getMessage());
 				if (value >= 0 && value <= 60) {
 					setValue(Integer.toString(value));
-					p.sendMessage("§Radar à " + getValue() + " minutes.");
+					p.sendMessage("§2Radar à " + getValue() + " minutes.");
 					this.getItemStack().setLore("§2" + value + " minutes");
 					parent.update(this);
 					request = false;
