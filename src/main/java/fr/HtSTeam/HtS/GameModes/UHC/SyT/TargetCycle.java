@@ -59,6 +59,7 @@ public class TargetCycle extends OptionBuilder {
 		
 	@Timer
 	public void definedTarget() {
+		System.out.println("aa");
 		List<UUID> cycle = new ArrayList<UUID>();
 		HashMap<TeamBuilder, ArrayList<UUID>> teamPlayers = new HashMap<TeamBuilder, ArrayList<UUID>>();
 		for(TeamBuilder tb : TeamBuilder.teamList)
@@ -88,6 +89,17 @@ public class TargetCycle extends OptionBuilder {
 				j++;
 			}
 			
+		}
+		displayTarget();
+	}
+	
+	public void displayTarget() {
+		for(int i = 0; i < targetCycle.size(); i++) {
+			if(i != targetCycle.size() - 1) {
+				Bukkit.getPlayer(targetCycle.get(i)).sendMessage("§4Votre cible est " + Bukkit.getPlayer(targetCycle.get(i + 1)));
+			} else {
+				Bukkit.getPlayer(targetCycle.get(i)).sendMessage("§4Votre cible est " + Bukkit.getPlayer(targetCycle.get(0)));
+			}
 		}
 	}
 	

@@ -8,6 +8,7 @@ public class SyT extends UHC {
 	
 	public SyT() {
 		setTeamVictoryDetection(false);
+		new SyTOptionRegister();
 	}
 
 	@Override
