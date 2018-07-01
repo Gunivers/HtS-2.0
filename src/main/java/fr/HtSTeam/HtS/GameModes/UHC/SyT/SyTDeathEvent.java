@@ -10,6 +10,8 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import fr.HtSTeam.HtS.EnumState;
+
 public class SyTDeathEvent implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
@@ -31,8 +33,8 @@ public class SyTDeathEvent implements Listener {
 				}
 				SyT.targetCycleOption.targetCycle.remove(victim.getUniqueId());
 				Bukkit.broadcastMessage(victim.getName() + " a été tué par son chasseur.");
-				killer.sendMessage("§2Cible éliminée. Nouvelle cible : "
-						+ Bukkit.getPlayer(SyT.targetCycleOption.getTarget(killer)).getName());
+				if (EnumState.getState().equals(EnumState.RUNNING))
+					killer.sendMessage("§2Cible éliminée. Nouvelle cible : "+ Bukkit.getPlayer(SyT.targetCycleOption.getTarget(killer)).getName());
 
 				// Kill hunter
 			} else if (SyT.targetCycleOption.getHunter(killer).equals(victim.getUniqueId())) {
@@ -44,11 +46,10 @@ public class SyTDeathEvent implements Listener {
 				}
 				Bukkit.broadcastMessage(victim.getName() + " a été tué par sa cible.");
 				SyT.targetCycleOption.targetCycle.remove(victim.getUniqueId());
-				killer.sendMessage("§2Cible éliminée. Nouvelle cible : "
-						+ Bukkit.getPlayer(SyT.targetCycleOption.getHunter(killer)).getName());
-				killer.sendMessage(
-						"§6Celui-ci semblait vous vouloir du mal, il est fort probable qu'il cherchait à vous éliminer.");
-
+				if (EnumState.getState().equals(EnumState.RUNNING)) {
+					killer.sendMessage("§2Cible éliminée. Nouvelle cible : "+ Bukkit.getPlayer(SyT.targetCycleOption.getHunter(killer)).getName());
+					killer.sendMessage("§6Celui-ci semblait vous vouloir du mal, il est fort probable qu'il cherchait à vous éliminer.");
+				}
 				// Kill other people
 			} else {
 				killer.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 600, 0));
@@ -61,11 +62,11 @@ public class SyTDeathEvent implements Listener {
 
 				Bukkit.broadcastMessage(victim.getName() + " est mort.");
 				SyT.targetCycleOption.targetCycle.remove(victim.getUniqueId());
-				Bukkit.getPlayer(SyT.targetCycleOption.getHunter(victim))
-						.sendMessage("§2Votre cible a été tuée, une nouvelle cible vous est attribuée : "
-								+ Bukkit.getPlayer(SyT.targetCycleOption.getTarget(victim)).getName());
-				killer.sendMessage("§4Que faites-vous ?! Ce n'était pas la cible qui vous était attribuée !");
-				killer.sendMessage("§7§oVous avez du remord...");
+				if (EnumState.getState().equals(EnumState.RUNNING)) {
+					Bukkit.getPlayer(SyT.targetCycleOption.getHunter(victim)).sendMessage("§2Votre cible a été tuée, une nouvelle cible vous est attribuée : "+ Bukkit.getPlayer(SyT.targetCycleOption.getTarget(victim)).getName());
+					killer.sendMessage("§4Que faites-vous ?! Ce n'était pas la cible qui vous était attribuée !");
+					killer.sendMessage("§7§oVous avez du remord...");
+				}
 			}
 		} else {
 			Bukkit.broadcastMessage(victim.getName() + " est mort.");

@@ -15,7 +15,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.PluginManager;
 
+import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
 import fr.HtSTeam.HtS.Teams.TeamBuilder;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
@@ -31,7 +33,12 @@ public class CommandsFK implements CommandExecutor, Listener {
 	private Block secondAngle;
 	private TeamBuilder team;
 
-
+	
+	public CommandsFK() {
+		PluginManager pm = Bukkit.getServer().getPluginManager();
+		pm.registerEvents(this, Main.plugin);
+	}
+	
 	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {

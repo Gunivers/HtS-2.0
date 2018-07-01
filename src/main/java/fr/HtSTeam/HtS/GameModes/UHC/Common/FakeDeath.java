@@ -17,13 +17,12 @@ import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
 
 public class FakeDeath implements Listener {
-
+	
 	@SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void onPlayerDeath(PlayerDeathEvent e) {
 		Player p = e.getEntity();
 		p.setHealth(p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
-		System.out.print(Main.deathLoot.getDeathLoot());
 		for (ItemStack is : Main.deathLoot.getDeathLoot()) {
 			if (is.getData().getData() == 3 && is.getType() == Material.SKULL_ITEM) {
 				SkullMeta isM = (SkullMeta) is.getItemMeta();

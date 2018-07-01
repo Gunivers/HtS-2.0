@@ -35,7 +35,13 @@ commands:
   usage: Erreur Syntaxe ! Faites /end
  heal:
   description: Heal le joueur
-  usage: Erreur ! Faites /heal
+  usage: Erreur ! Faites /heal  <joueur>
  feed:
   description: Nourris le joueur
   usage: Erreur ! Faites /feed <joueur>
+ radar:
+  description: Radar
+  usage: Erreur Syntaxe ! Faites /radar <exemple>
+ target:
+  description: Target
+  usage: Erreur Syntaxe ! Faites /target

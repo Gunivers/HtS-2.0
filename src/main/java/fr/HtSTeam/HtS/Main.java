@@ -3,11 +3,6 @@ package fr.HtSTeam.HtS;
 import java.util.HashMap;
 import java.util.UUID;
 
-import fr.HtSTeam.HtS.Events.EventManager;
-import fr.HtSTeam.HtS.GameModes.GameMode;
-import fr.HtSTeam.HtS.Scoreboard.Scoreboard.ScoreboardLib;
-import fr.HtSTeam.HtS.Utils.FileExtractor;
-import fr.HtSTeam.HtS.Utils.TimerTask;
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
 import org.bukkit.World;
@@ -16,9 +11,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.HtSTeam.HtS.Commands.CommandsManager;
+import fr.HtSTeam.HtS.Events.EventManager;
+import fr.HtSTeam.HtS.GameModes.GameMode;
 import fr.HtSTeam.HtS.GameModes.UHC.Common.UHC;
 import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Players.DeathLoot;
+import fr.HtSTeam.HtS.Scoreboard.Scoreboard.ScoreboardLib;
+import fr.HtSTeam.HtS.Utils.FileExtractor;
+import fr.HtSTeam.HtS.Utils.TimerTask;
 
 public class Main extends JavaPlugin {
 	
@@ -52,4 +52,13 @@ public class Main extends JavaPlugin {
 		OptionRegister.register();
 		ScoreboardLib.setPluginInstance(this);
 	}
+	
+//	private void tmp() {
+//		getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
+//            @Override
+//            public void run() {
+//            	System.out.println(deathLoot.getDeathLoot().toString());
+//            }
+//        }, 0L, 20L);
+//	}
 }

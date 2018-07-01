@@ -12,8 +12,6 @@ public class CommandSyT implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
 		if(sender instanceof Player) {
-			
-			
 			if(cmd.getName().equalsIgnoreCase("radar") && sender.hasPermission("radar.use")) {
 				if(args.length == 1) {
 					if(args[0].equals("1"))

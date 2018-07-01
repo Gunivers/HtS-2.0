@@ -1,14 +1,15 @@
 package fr.HtSTeam.HtS;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Map.Entry;
+import java.util.List;
 
-import fr.HtSTeam.HtS.Utils.StartTrigger;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.event.Listener;
 
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Utils.StartTrigger;
 
 public enum EnumState implements Listener {
 	
@@ -24,10 +25,10 @@ public enum EnumState implements Listener {
 			for (World world : Bukkit.getWorlds())
 				world.setPVP(false);
 		} else if(state.equals(EnumState.RUNNING)) {
-			for(Entry<OptionBuilder, Object> om : OptionBuilder.optionsList.entrySet()) {
-				if(Arrays.asList(om.getKey().getClass().getInterfaces()).contains(StartTrigger.class))
-					((StartTrigger) om.getKey()).onPartyStart();
-			}
+			List<OptionBuilder> keyset = new ArrayList<OptionBuilder>(OptionBuilder.optionsList.keySet());
+			for(int i = 0; i < keyset.size(); i++)
+				if(Arrays.asList(keyset.get(i).getClass().getInterfaces()).contains(StartTrigger.class))
+					((StartTrigger) keyset.get(i)).onPartyStart();
 			 Main.gamemode.initialisation();
 		}
 	}

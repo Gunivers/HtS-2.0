@@ -58,45 +58,41 @@ public class TargetCycle extends OptionBuilder {
 	}
 		
 	@Timer
-	public void definedTarget() {
+	public void defineTargets() {
 		List<UUID> cycle = new ArrayList<UUID>();
 		HashMap<TeamBuilder, ArrayList<UUID>> teamPlayers = new HashMap<TeamBuilder, ArrayList<UUID>>();
 		for(TeamBuilder tb : TeamBuilder.teamList)
 			teamPlayers.put(tb, new ArrayList<UUID>(tb.getTeamPlayers()));
-		int j = 0;
 		TeamBuilder firstPlayerTeam = null;
-		while(teamPlayers.size() > 0) {
+		while (teamPlayers.size() > 0) {
 			List<TeamBuilder> teams = new ArrayList<TeamBuilder>();
 			teams.addAll(TeamBuilder.teamList);
-			TeamBuilder lastPastTeam = null;
 			int i = 0;
-			while(teams.size() > 0) {
+			while (teams.size() > 0) {
 				TeamBuilder randTeam = teams.get(Randomizer.Rand(teams.size()));
-				if((i == 0 && !randTeam.equals(lastPastTeam)) || (i > 0)) {
-					if(i == teamPlayers.size() - 1 && randTeam.equals(firstPlayerTeam)) {
-						UUID lastPlayer = cycle.remove(cycle.size() - 1);
-						cycle.add(teamPlayers.get(randTeam).remove(Randomizer.Rand(teamPlayers.get(randTeam).size())));
-						cycle.add(lastPlayer);
-					} else
-						cycle.add(teamPlayers.get(randTeam).remove(Randomizer.Rand(teamPlayers.get(randTeam).size())));
-					if(j == 0 && i == 0) {
-						firstPlayerTeam = randTeam;
-					}
-					i++;
-					if(teamPlayers.get(randTeam).size() == 0) teamPlayers.remove(randTeam);
-					teams.remove(randTeam);				
-				} else continue;
-				j++;
+				if (i == teamPlayers.size() - 1 && randTeam.equals(firstPlayerTeam)) {
+					UUID lastPlayer = cycle.remove(cycle.size() - 1);
+					cycle.add(teamPlayers.get(randTeam).remove(Randomizer.Rand(teamPlayers.get(randTeam).size())));
+					cycle.add(lastPlayer);
+				} else
+					cycle.add(teamPlayers.get(randTeam).remove(Randomizer.Rand(teamPlayers.get(randTeam).size())));
+				if (firstPlayerTeam == null && i == 0) {
+					firstPlayerTeam = randTeam;
+				}
+				i++;
+				if (teamPlayers.get(randTeam).size() == 0)
+					teamPlayers.remove(randTeam);
+				teams.remove(randTeam);
 			}
-			
 		}
 		targetCycle = cycle;
 		displayTarget();
-		for(UUID uuid : targetCycle) {
-			System.out.println(Bukkit.getPlayer(uuid).getName() + " : " + Bukkit.getPlayer(getTarget(Bukkit.getPlayer(uuid))).getName());
+		for (UUID uuid : targetCycle) {
+			System.out.println(Bukkit.getPlayer(uuid).getName() + " : "
+					+ Bukkit.getPlayer(getTarget(Bukkit.getPlayer(uuid))).getName());
 		}
 	}
-	
+
 	public void displayTarget() {
 		for(int i = 0; i < targetCycle.size(); i++) {
 			if(i != targetCycle.size() - 1) {
