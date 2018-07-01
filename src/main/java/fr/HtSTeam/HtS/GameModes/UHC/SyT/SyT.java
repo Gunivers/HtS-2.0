@@ -12,6 +12,7 @@ public class SyT extends UHC {
 		setTeamVictoryDetection(false);
 		//new SyTOptionRegister();
 		new SyTEventManager();
+		new CommandSyT();
 	}
 
 	@Override
