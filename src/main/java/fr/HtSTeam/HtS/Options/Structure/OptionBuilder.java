@@ -11,9 +11,9 @@ import org.bukkit.plugin.PluginManager;
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 
-public abstract class OptionBuilder implements Listener {
+public abstract class OptionBuilder<A> implements Listener {
 	
-	public static Map<OptionBuilder, Object> optionsList = new HashMap<OptionBuilder, Object>();
+	public static Map<OptionBuilder<?>, Object> optionsList = new HashMap<OptionBuilder<?>, Object>();
 	
 	private ItemStackBuilder icon;
 	private Object defaultValue;
