@@ -13,53 +13,40 @@ import fr.HtSTeam.HtS.Options.Structure.Alterable;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Utils.FileExtractor;
 
-public class ElytraCraftOption extends OptionBuilder implements Alterable {
-
-	private boolean activate = false;
+public class ElytraCraftOption extends OptionBuilder<Boolean> implements Alterable {
 	
 	public ElytraCraftOption() {
-		super(Material.ELYTRA, "Craft des Elytra", "§4Désactivé", "Désactivé", OptionRegister.crafts);
+		super(Material.ELYTRA, "Craft des Elytra", "§4Désactivé", false, OptionRegister.crafts);
 	}
 
 	@Override
 	public void event(Player p) {
-		activate = !activate;
-		setState(activate);
+		setState(!getValue());
 	}
 
 	@Override
 	public void setState(boolean value) {
-		activate = value;
-		if(value) {
-			try {
-				FileExtractor.extractFile(FileExtractor.cr + "elytra.json", FileExtractor.wdir + FileExtractor.Rdir);
-				setValue("Activé");
-				getItemStack().setLore("§2Activé");
-				
-			} catch (IOException | URISyntaxException e) {
-				activate = false;
-				e.printStackTrace();
-			}
-			
-		} else {
+		if(value && !getValue()) {
+				try {
+					FileExtractor.extractFile(FileExtractor.cr + "elytra.json", FileExtractor.wdir + FileExtractor.Rdir);
+					setValue(true);
+					getItemStack().setLore("§2Activé");
+					
+				} catch (IOException | URISyntaxException e) {
+					setValue(false);
+					e.printStackTrace();
+				}
+		} else if(!value && getValue()) {
 			try {
 				Files.delete(Paths.get(FileExtractor.wdir + FileExtractor.Rdir + "elytra.json"));
-				setValue("Désactivé");
+				setValue(false);
 				getItemStack().setLore("§4Désactivé");
 				
 			} catch (IOException e) {
-				activate = true;
+				setValue(false);
 				e.printStackTrace();
 			}
 		}
-		
 		parent.update(this);
-	}
-	
-	public boolean isActivated() {
-		if (getValue().equals("Activé"))
-			return true;
-		else
-			return false;
 	}
 }

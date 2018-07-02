@@ -13,47 +13,35 @@ import fr.HtSTeam.HtS.Options.Structure.Alterable;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Utils.FileExtractor;
 
-public class ChestOption extends OptionBuilder implements Alterable {
-	
-	private boolean activate = false;
-	
+public class ChestOption extends OptionBuilder<Boolean> implements Alterable {
+		
 	public ChestOption() {
-		super(Material.CHEST, "Coffre", "§4Désactivé", "Désactivé", OptionRegister.loottables);
+		super(Material.CHEST, "Coffre", "§4Désactivé", false, OptionRegister.loottables);
 	}
 
 	@Override
 	public void event(Player p) {
-		activate =! activate;
-		setState(activate);
+		setState(!getValue());
 	}
 
 	@Override
 	public void setState(boolean value) {
-		activate = value;
-		if(value) {
+		if(value && !getValue()) {
 			try {
 				FileExtractor.extractFile(FileExtractor.lt + "coffre.json", FileExtractor.wdir + FileExtractor.Cdir);
-				setValue("Activé");
 				getItemStack().setLore("§2Activé");
 			} catch (IOException | URISyntaxException e) {
 				e.printStackTrace();
 			}
-		} else {
+		} else if(!value && getValue()){
 			try {
 				Files.delete(Paths.get(FileExtractor.wdir + FileExtractor.Cdir + "coffre.json"));
-				setValue("Désactivé");
 				getItemStack().setLore("§4Désactivé");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
+		setValue(value);
 		parent.update(this);
-	}
-	
-	public boolean isActivated() {
-		if (getValue().equals("Activé"))
-			return true;
-		else
-			return false;
 	}
 }

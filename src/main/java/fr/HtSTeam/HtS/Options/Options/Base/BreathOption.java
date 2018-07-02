@@ -16,7 +16,7 @@ import fr.HtSTeam.HtS.Options.Structure.Annotation.PRIORITY;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
 import fr.HtSTeam.HtS.Utils.StartTrigger;
 
-public class BreathOption extends OptionBuilder implements StartTrigger {
+public class BreathOption extends OptionBuilder<Integer> implements StartTrigger {
 	
 	private boolean request = false; 
 	private Player p;
@@ -24,7 +24,7 @@ public class BreathOption extends OptionBuilder implements StartTrigger {
 	private boolean alert = false;
 	
 	public BreathOption() {
-		super(Material.SULPHUR, "Souffle des profondeurs", "§4Désactivé", "Désactivé", OptionRegister.base);
+		super(Material.SULPHUR, "Souffle des profondeurs", "§4Désactivé", -1, OptionRegister.base);
 	}
 
 	@Override
@@ -44,12 +44,12 @@ public class BreathOption extends OptionBuilder implements StartTrigger {
 				int value = Integer.parseInt(e.getMessage());
 				if(value >= 0 && value <= 120) {
 					if(value > 0) {
-						setValue(Integer.toString(value));
+						setValue(value);
 						p.sendMessage("§2Le souffle des profondeurs s'activera à " + value + " minutes." );
 						getItemStack().setItem(Material.GLOWSTONE_DUST, (short) 0);
 						getItemStack().setLore("§d" + value + " minutes");
 					} else {
-						setValue("Désactivé");
+						setValue(-1);
 						p.sendMessage("§2Le souffle des profondeurs a été désactivé.");
 						getItemStack().setItem(Material.SULPHUR, (short) 0);
 						getItemStack().setLore("§4Désactivé");
@@ -81,8 +81,8 @@ public class BreathOption extends OptionBuilder implements StartTrigger {
 	
 	@Timer(PRIORITY.HIGHEST)
 	public void alert() {
-		if(getValue().equals("Désactivé") || alert) return;
-		setValue(Integer.toString(Integer.parseInt(getValue()) + 1));
+		if(getValue().equals(-1) || alert) return;
+		setValue(getValue() + 1);
 		alert = true;
 		Bukkit.broadcastMessage("§4Les mineurs ont miné beaucoup trop profondement et ont ouvert des poches de soufre. Le soufre envahira les mines dans 1 minutes.");
 	}
@@ -95,7 +95,7 @@ public class BreathOption extends OptionBuilder implements StartTrigger {
 
 	@Override
 	public void onPartyStart() {
-		if(getValue().equals("Désactivé")) return;
-		setValue(Integer.toString(Integer.parseInt(getValue()) - 1));
+		if(getValue().equals(-1)) return;
+		setValue(getValue() - 1);
 	}
 }

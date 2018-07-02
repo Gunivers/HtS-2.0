@@ -32,7 +32,6 @@ public class UHCOption extends GameModeState {
 	@Override
 	public void setOption() {
 		OptionRegister.noRegen.setState(false);
-		if (!OptionRegister.goldenApple.isActivated())
-			OptionRegister.goldenApple.setState(true);	
+		OptionRegister.goldenApple.setState(true);	
 	}
 }

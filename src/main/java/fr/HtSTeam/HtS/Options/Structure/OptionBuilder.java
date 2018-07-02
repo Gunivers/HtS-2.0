@@ -16,9 +16,9 @@ public abstract class OptionBuilder<A> implements Listener {
 	public static Map<OptionBuilder<?>, Object> optionsList = new HashMap<OptionBuilder<?>, Object>();
 	
 	private ItemStackBuilder icon;
-	private Object defaultValue;
+	private A defaultValue;
 	protected GUIBuilder parent;
-	private String value;
+	private A value;
 	
 	
 	/**
@@ -33,7 +33,7 @@ public abstract class OptionBuilder<A> implements Listener {
 	 * @param gui
 	 * 		Inventaire où sera placé l'item
 	 */
-	public OptionBuilder(Material material, String name, String description, String defaultValue, GUIBuilder gui) {
+	public OptionBuilder(Material material, String name, String description, A defaultValue, GUIBuilder gui) {
 			parent = gui;
 			if(description != null)
 				description = "§r" + description;
@@ -53,7 +53,7 @@ public abstract class OptionBuilder<A> implements Listener {
 	 * @param gui
 	 * 		Inventaire où sera placé l'item
 	 */
-	public OptionBuilder(ItemStackBuilder material, String defaultValue, GUIBuilder gui) {
+	public OptionBuilder(ItemStackBuilder material, A defaultValue, GUIBuilder gui) {
 			parent = gui;
 			if(material.getLore() != null)
 				material.setLore("§r" + material.getLore());
@@ -73,11 +73,11 @@ public abstract class OptionBuilder<A> implements Listener {
 	public ItemStackBuilder getItemStack() { return icon; }
 	public Object getDefaultValue() { return defaultValue; }
 		
-	public void setValue(String value) {
+	public void setValue(A value) {
 		this.value = value;
 		OptionBuilder.optionsList.replace(this, value);
 	}
-	public String getValue() { return value; }
+	public A getValue() { return value; }
 
 	public void addAt(GUIBuilder gm) { 	
 		if(gm != null) 

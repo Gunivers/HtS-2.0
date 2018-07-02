@@ -11,14 +11,14 @@ import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
 
-public class EnablePvPOption extends OptionBuilder {
+public class EnablePvPOption extends OptionBuilder<Integer> {
 	
 
 	private boolean request;
 	private Player p;
 	
 	public EnablePvPOption() {
-		super(Material.DIAMOND_SWORD, "Activation du PvP", "§220 minutes", "20", OptionRegister.base);
+		super(Material.DIAMOND_SWORD, "Activation du PvP", "§220 minutes", 20, OptionRegister.base);
 		switchState(false);
 	}
 
@@ -37,7 +37,7 @@ public class EnablePvPOption extends OptionBuilder {
 			try {
 				int value = Integer.parseInt(e.getMessage());
 				if(value >= 0 && value <= 60) {
-					setValue(Integer.toString(value));
+					setValue(value);
 					p.sendMessage("§2PvP activé à " + getValue() + " minutes." );
 					this.getItemStack().setLore("§2" + value + " minutes");
 					parent.update(this);

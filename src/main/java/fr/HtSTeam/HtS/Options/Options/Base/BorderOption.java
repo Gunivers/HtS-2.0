@@ -10,7 +10,7 @@ import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
-public class BorderOption extends OptionBuilder {
+public class BorderOption extends OptionBuilder<Integer> {
 	
 	
 	private boolean request = false;
@@ -18,7 +18,7 @@ public class BorderOption extends OptionBuilder {
 	private WorldBorder border = Main.world.getWorldBorder();
 	
 	public BorderOption() {
-		super(Material.IRON_FENCE, "Taille de la bordure", "§d1000 * 1000", "1000", OptionRegister.base);
+		super(Material.IRON_FENCE, "Taille de la bordure", "§d1000 * 1000", 1000, OptionRegister.base);
 		border.setCenter(0.0, 0.0);
 		border.setSize(1000);
 	}
@@ -38,7 +38,7 @@ public class BorderOption extends OptionBuilder {
 			try {
 				int value = Integer.parseInt(e.getMessage());
 				if(value >= 500 && value <= 2500) {
-					setValue(Integer.toString(value * 2));
+					setValue(value * 2);
 					p.sendMessage("§2Bordure à " + value + " blocs du centre." );
 					this.getItemStack().setLore("§d" + value * 2 + " * " + value * 2);
 					parent.update(this);

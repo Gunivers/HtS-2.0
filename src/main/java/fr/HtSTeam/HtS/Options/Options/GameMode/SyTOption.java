@@ -12,7 +12,7 @@ import fr.HtSTeam.HtS.Options.OptionRegister;
 public class SyTOption extends GameModeState {
 
 	public SyTOption() {
-		super("Stress your Target", 1, "Stress your Target", "", Material.BOW, OptionRegister.gameMode);
+		super("Stress your Target", 1, "Stress your Target", null, Material.BOW, OptionRegister.gameMode);
 	}
 	
 	@Override
@@ -29,7 +29,6 @@ public class SyTOption extends GameModeState {
 	@Override
 	public void setOption() {
 		OptionRegister.noRegen.setState(false);
-		if (!OptionRegister.goldenApple.isActivated())
-			OptionRegister.goldenApple.setState(true);		
+		OptionRegister.goldenApple.setState(true);		
 	}
 }

@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
-public class DifficultOption extends OptionBuilder {
+public class DifficultOption extends OptionBuilder<String> {
 	
 	private int difficult = 3;
 	

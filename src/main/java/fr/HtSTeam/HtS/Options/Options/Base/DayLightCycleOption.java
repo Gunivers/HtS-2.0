@@ -7,28 +7,22 @@ import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
-public class DayLightCycleOption extends OptionBuilder {
+public class DayLightCycleOption extends OptionBuilder<Boolean> {
 	
-	private boolean activate = true;
-
 	public DayLightCycleOption() {
-		super(Material.DOUBLE_PLANT, "Cycle jour/nuit", "§2Activé", "Activé", OptionRegister.base);
+		super(Material.DOUBLE_PLANT, "Cycle jour/nuit", "§2Activé", true, OptionRegister.base);
 		Main.world.setGameRuleValue("doDaylightCycle", "true");
 		
 	}
 
 	@Override
 	public void event(Player p) {
-		activate =! activate;
-		if(activate) {
-			setValue("Activé");
+		setValue(!getValue());
+		if(getValue())
 			getItemStack().setLore("§2Activé");
-			Main.world.setGameRuleValue("doDaylightCycle", "true");
-		} else {
-			setValue("Désactivé");
-			getItemStack().setLore("§4Désactivé");
-			Main.world.setGameRuleValue("doDaylightCycle", "false");
-		}		
+		 else 
+			getItemStack().setLore("§4Désactivé");	
+		Main.world.setGameRuleValue("doDaylightCycle", Boolean.toString(getValue()));
 		parent.update(this);
 	}
 }

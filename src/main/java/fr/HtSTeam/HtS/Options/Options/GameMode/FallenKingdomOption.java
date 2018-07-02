@@ -12,7 +12,7 @@ import fr.HtSTeam.HtS.Options.OptionRegister;
 public class FallenKingdomOption extends GameModeState {
 
 	public FallenKingdomOption() {
-		super("Fallen Kingdom", 1, "Fallen Kingdom", "", Material.CHAINMAIL_CHESTPLATE, OptionRegister.gameMode);
+		super("Fallen Kingdom", 1, "Fallen Kingdom", null, Material.CHAINMAIL_CHESTPLATE, OptionRegister.gameMode);
 	}
 	
 	@Override

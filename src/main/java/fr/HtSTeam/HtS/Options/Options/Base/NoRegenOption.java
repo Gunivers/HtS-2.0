@@ -11,25 +11,22 @@ import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Options.Structure.Alterable;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
-public class NoRegenOption extends OptionBuilder implements Alterable {
+public class NoRegenOption extends OptionBuilder<Boolean> implements Alterable {
 	
-	private boolean activate = false;
-
 	public NoRegenOption() {
-		super(Material.INK_SACK, "Régération naturelle", "§4Désactivé", "Désactivé", OptionRegister.base);
+		super(Material.INK_SACK, "Régération naturelle", "§4Désactivé", false, OptionRegister.base);
 		getItemStack().setItem(Material.INK_SACK, (short) 8);
 		parent.update(this);
 	}
 
 	@Override
 	public void event(Player p) {
-		activate = !activate;
-		setState(activate);
+		setState(!getValue());
 	}
 	
 	@EventHandler
 	public void onFoodHealEvent(EntityRegainHealthEvent e) {
-		if(!activate) {
+		if(!getValue()) {
 			Entity p = e.getEntity();
 			if(p instanceof Player && e.getRegainReason() == RegainReason.SATIATED)
 				e.setCancelled(true);
@@ -38,27 +35,15 @@ public class NoRegenOption extends OptionBuilder implements Alterable {
 
 	@Override
 	public void setState(boolean value) {
-		
-		activate = value;
 		if(value) {
-			setValue("Activé");
 			getItemStack().setLore("§2Activé");
 			getItemStack().setItem(Material.INK_SACK, (short) 9);
 		} else {
-			setValue("Désactivé");
 			getItemStack().setLore("§4Désactivé");
 			getItemStack().setItem(Material.INK_SACK, (short) 8);
 		}
-		parent.update(this);
-		
-		
-	}
-	
-	public boolean isActivated() {
-		if (getValue().equals("Activé"))
-			return true;
-		else
-			return false;
+		setValue(value);
+		parent.update(this);		
 	}
 }
 

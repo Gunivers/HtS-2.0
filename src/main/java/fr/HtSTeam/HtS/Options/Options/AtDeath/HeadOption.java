@@ -8,12 +8,10 @@ import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Options.Structure.Alterable;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
-public class HeadOption extends OptionBuilder implements Alterable {
+public class HeadOption extends OptionBuilder<Boolean> implements Alterable {
 	
-	private boolean activate = true;
-
 	public HeadOption() {
-		super(Material.SKULL_ITEM, "Drop de tête", "§2Activé", "Activé", OptionRegister.atDeath);
+		super(Material.SKULL_ITEM, "Drop de tête", "§2Activé", true, OptionRegister.atDeath);
 		getItemStack().setItem(Material.SKULL_ITEM, (short) 3);
 		parent.update(this);
 		Main.deathLoot.addItem(Material.SKULL_ITEM, (short) 3);
@@ -21,29 +19,21 @@ public class HeadOption extends OptionBuilder implements Alterable {
 
 	@Override
 	public void event(Player p) {
-		activate = !activate;
-		setState(activate);
+		setState(!getValue());
 	}
 
 	@Override
 	public void setState(boolean value) {
-		activate = value;
-		if(value) {
-			setValue("Activé");
-			getItemStack().setLore("§2Activé");
-			Main.deathLoot.addItem(Material.SKULL_ITEM, (short) 3);
-		} else {
-			setValue("Désactivé");
+		if(value && !getValue()) {
+			if(getValue().equals(true)) {
+				getItemStack().setLore("§2Activé");
+				Main.deathLoot.addItem(Material.SKULL_ITEM, (short) 3);
+			}
+		} else if(!value && getValue()) {
 			getItemStack().setLore("§4Désactivé");
 			Main.deathLoot.removeItem(Material.SKULL_ITEM);
 		}
+		setValue(value);
 		parent.update(this);
-	}
-	
-	public boolean isActivated() {
-		if (getValue().equals("Activé"))
-			return true;
-		else
-			return false;
 	}
 }
