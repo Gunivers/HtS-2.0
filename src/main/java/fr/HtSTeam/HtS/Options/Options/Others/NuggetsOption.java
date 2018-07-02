@@ -54,4 +54,11 @@ public class NuggetsOption extends OptionBuilder implements Alterable {
 			}
 		}
 	}
+	
+	public boolean isActivated() {
+		if (getValue().equals("Activé"))
+			return true;
+		else
+			return false;
+	}
 }

@@ -71,4 +71,11 @@ public class NetherWartOption extends OptionBuilder implements Alterable {
 			lt.getBlock().setData((byte) 3);
 		}
 	}
+	
+	public boolean isActivated() {
+		if (getValue().equals("Activé"))
+			return true;
+		else
+			return false;
+	}
 }

@@ -20,7 +20,7 @@ public class GoldenAppleOption extends OptionBuilder implements Alterable {
 	@Override
 	public void event(Player p) {
 		activate = !activate;
-		setState(activate);	
+		setState(activate);
 	}
 
 	@Override
@@ -29,6 +29,7 @@ public class GoldenAppleOption extends OptionBuilder implements Alterable {
 		if(value) {
 			setValue("Activé");
 			getItemStack().setLore("§2Activé");
+			System.out.println("§aGoldenApple instantiated!");
 			Main.deathLoot.addItem(Material.GOLDEN_APPLE, (short) 0);
 		} else {
 			setValue("Désactivé");
@@ -36,5 +37,12 @@ public class GoldenAppleOption extends OptionBuilder implements Alterable {
 			Main.deathLoot.removeItem(Material.GOLDEN_APPLE);
 		}
 		parent.update(this);		
+	}
+	
+	public boolean isActivated() {
+		if (getValue().equals("Activé"))
+			return true;
+		else
+			return false;
 	}
 }

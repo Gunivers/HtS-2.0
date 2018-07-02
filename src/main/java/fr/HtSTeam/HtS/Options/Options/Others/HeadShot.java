@@ -66,4 +66,11 @@ private boolean activate = false;
 			}
 		}
 	}
+	
+	public boolean isActivated() {
+		if (getValue().equals("Activé"))
+			return true;
+		else
+			return false;
+	}
 }

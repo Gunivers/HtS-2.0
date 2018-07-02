@@ -44,4 +44,11 @@ public class AlgueUrticanteOption extends OptionBuilder implements Alterable {
 			e.getItem().remove();
 		}
 	}
+	
+	public boolean isActivated() {
+		if (getValue().equals("Activé"))
+			return true;
+		else
+			return false;
+	}
 }

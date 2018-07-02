@@ -111,4 +111,11 @@ public class ShulkerShellOption extends OptionBuilder implements Alterable {
             e.getDrops().addAll(drops);
         }
     }
+	
+	public boolean isActivated() {
+		if (getValue().equals("Activé"))
+			return true;
+		else
+			return false;
+	}
 }

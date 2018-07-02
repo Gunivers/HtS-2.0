@@ -29,6 +29,7 @@ public class SyTOption extends GameModeState {
 	@Override
 	public void setOption() {
 		OptionRegister.noRegen.setState(false);
-		OptionRegister.goldenApple.setState(true);		
+		if (!OptionRegister.goldenApple.isActivated())
+			OptionRegister.goldenApple.setState(true);		
 	}
 }

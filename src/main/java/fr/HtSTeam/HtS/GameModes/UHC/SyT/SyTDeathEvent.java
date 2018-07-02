@@ -18,7 +18,7 @@ public class SyTDeathEvent implements Listener {
 	public void onKillSomeone(PlayerDeathEvent e) {
 		e.setDeathMessage(null);
 		Player victim = e.getEntity();
-		if (e.getEntity().getKiller() instanceof Player) {
+		if (e.getEntity().getKiller() instanceof Player && !SyT.targetCycleOption.targetCycle.isEmpty()) {
 			Player killer = e.getEntity().getKiller();
 
 			// Kill victim

@@ -70,4 +70,11 @@ public class ShulkerNetherOption extends OptionBuilder implements Alterable {
 			sh.setColor(DyeColor.RED);
 		}
 	}
+	
+	public boolean isActivated() {
+		if (getValue().equals("Activé"))
+			return true;
+		else
+			return false;
+	}
 }

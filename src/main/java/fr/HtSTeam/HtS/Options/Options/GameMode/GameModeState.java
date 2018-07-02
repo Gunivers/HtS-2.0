@@ -36,5 +36,4 @@ public abstract class GameModeState extends GUIBuilder {
 	public void onClick(InventoryClickEvent e) {
 		super.onClick(e);
 	}
-	
 }

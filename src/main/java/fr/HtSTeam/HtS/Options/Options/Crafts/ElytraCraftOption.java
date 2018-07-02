@@ -55,4 +55,11 @@ public class ElytraCraftOption extends OptionBuilder implements Alterable {
 		
 		parent.update(this);
 	}
+	
+	public boolean isActivated() {
+		if (getValue().equals("Activé"))
+			return true;
+		else
+			return false;
+	}
 }
