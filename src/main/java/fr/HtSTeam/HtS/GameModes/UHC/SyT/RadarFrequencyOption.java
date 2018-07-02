@@ -19,7 +19,7 @@ public class RadarFrequencyOption extends OptionBuilder implements StartTrigger 
 
 	private boolean request = false;
 	private Player p;
-	private int frequency;
+	private int frequency = 20;
 
 	public RadarFrequencyOption() {
 		super(Material.COMPASS, "Fréquence du Radar", "§220 minutes", "20", OptionRegister.syt);
@@ -40,6 +40,7 @@ public class RadarFrequencyOption extends OptionBuilder implements StartTrigger 
 			try {
 				int value = Integer.parseInt(e.getMessage());
 				if (value >= 0 && value <= 60) {
+					frequency = value;
 					setValue(Integer.toString(value));
 					p.sendMessage("§2Radar toutes les " + getValue() + " minutes.");
 					this.getItemStack().setLore("§2" + value + " minutes");
@@ -56,11 +57,10 @@ public class RadarFrequencyOption extends OptionBuilder implements StartTrigger 
 
 	@Timer
 	public void radar() {
+		setValue(Integer.toString(Integer.parseInt(getValue()) + frequency));
 		for (UUID uuid : SyT.targetCycleOption.targetCycle) {
-			setValue(Integer.toString(Integer.parseInt(getValue()) + frequency));
 			Player player = Bukkit.getPlayer(uuid);
 			Player victim = Bukkit.getPlayer(SyT.targetCycleOption.getTarget(player));
-
 			if (victim.getLocation().getBlockY() >= 36
 					&& victim.getLocation().getWorld().getEnvironment() == Environment.NORMAL) {
 				ActionBar msg = new ActionBar(player, "§4§lCible repérée : " + victim.getLocation().getBlockX() + " " + victim.getLocation().getBlockY() + " " + victim.getLocation().getBlockZ(), 30);
@@ -79,7 +79,6 @@ public class RadarFrequencyOption extends OptionBuilder implements StartTrigger 
 
 	@Override
 	public void onPartyStart() {
-		frequency = Integer.parseInt(getValue());
-		setValue(SyTOptionRegister.radar.getValue());
+		setValue(SyT.radar.getValue());
 	}
 }
