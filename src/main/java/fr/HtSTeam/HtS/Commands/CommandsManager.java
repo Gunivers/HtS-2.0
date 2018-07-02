@@ -20,7 +20,8 @@ public class CommandsManager {
 		main.getCommand("pause").setExecutor(playStop);
 		main.getCommand("end").setExecutor(playStop);
 		main.getCommand("heal").setExecutor(new UtilCommands());
-		main.getCommand("feed").setExecutor(new UtilCommands());		
+		main.getCommand("feed").setExecutor(new UtilCommands());
+		main.getCommand("test").setExecutor(new UtilCommands());
 		main.getCommand("radar").setExecutor(csyt);
 		main.getCommand("target").setExecutor(csyt);
 		main.getCommand("base").setExecutor(new CommandsFK());

@@ -45,3 +45,6 @@ commands:
  target:
   description: Target
   usage: Erreur Syntaxe ! Faites /target
+ test:
+  description: test
+  usage: /test

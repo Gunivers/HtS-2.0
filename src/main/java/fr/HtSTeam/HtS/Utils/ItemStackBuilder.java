@@ -13,6 +13,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.inventory.meta.SpawnEggMeta;
 
+import fr.HtSTeam.HtS.Options.Options.Mobs.MobBuddyOption;
+
 public class ItemStackBuilder extends ItemStack {
 
 	private Material item;
@@ -31,8 +33,8 @@ public class ItemStackBuilder extends ItemStack {
 	 */
 	public ItemStackBuilder(Material item, short data, int number, String name, String lore) {
 		super(item, number, data);
-		setLore(lore);
 		setName(name);
+		setLore(lore);
 		glint = false;
 	}
 

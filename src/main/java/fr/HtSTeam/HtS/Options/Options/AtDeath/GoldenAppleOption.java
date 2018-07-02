@@ -27,10 +27,12 @@ public class GoldenAppleOption extends OptionBuilder implements Alterable {
 	public void setState(boolean value) {
 		activate = value;
 		if(value) {
-			setValue("Activé");
-			getItemStack().setLore("§2Activé");
-			System.out.println("§aGoldenApple instantiated!");
-			Main.deathLoot.addItem(Material.GOLDEN_APPLE, (short) 0);
+			if(!getValue().equals("Activé")) {
+				setValue("Activé");
+				getItemStack().setLore("§2Activé");
+				System.out.println("§aGoldenApple instantiated!");
+				Main.deathLoot.addItem(Material.GOLDEN_APPLE, (short) 0);
+			}
 		} else {
 			setValue("Désactivé");
 			getItemStack().setLore("§4Désactivé");
