@@ -53,6 +53,7 @@ public class UtilCommands implements CommandExecutor {
 						ByteArrayInputStream stream = new ByteArrayInputStream(Base64.getDecoder().decode(s));
 				        BukkitObjectInputStream data2 = new BukkitObjectInputStream(stream);
 				        System.out.println(((ItemStack)data2.readObject()).getItemMeta().getDisplayName());
+				        data2.close();
 				} catch (IOException | ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

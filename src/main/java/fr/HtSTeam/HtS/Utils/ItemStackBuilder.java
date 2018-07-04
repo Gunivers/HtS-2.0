@@ -13,8 +13,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.inventory.meta.SpawnEggMeta;
 
-import fr.HtSTeam.HtS.Options.Options.Mobs.MobBuddyOption;
-
 public class ItemStackBuilder extends ItemStack {
 
 	private Material item;
