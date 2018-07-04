@@ -52,13 +52,4 @@ public class Main extends JavaPlugin {
 		OptionRegister.register();
 		ScoreboardLib.setPluginInstance(this);
 	}
-	
-//	private void tmp() {
-//		getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
-//            @Override
-//            public void run() {
-//            	System.out.println(deathLoot.getDeathLoot().toString());
-//            }
-//        }, 0L, 20L);
-//	}
 }
