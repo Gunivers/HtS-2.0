@@ -40,7 +40,7 @@ public class UHC implements GameMode {
 
 	private void teleport() {
 
-		int border = Integer.parseInt(OptionRegister.borderOption.getValue());
+		int border = OptionRegister.borderOption.getValue();
 
 		if (TeamBuilder.teamList.size() == 0) {
 			for (Player player : Bukkit.getOnlinePlayers()) {

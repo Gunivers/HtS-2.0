@@ -77,7 +77,8 @@ public class TimerTask {
 	private void executeTimer() {
 		if(this != Main.timer)
 			return;
-		for (OptionBuilder om : OptionBuilder.optionsList.keySet()) {
+		for (OptionBuilder<?> om : OptionBuilder.optionsList.keySet()) {
+			if(!(om.getValue() instanceof Integer)) return;
 			ArrayList<Method> methods = new ArrayList<Method>();
 			for (Method m : om.getClass().getMethods()) {
 				if(m.isAnnotationPresent(Timer.class))
@@ -86,7 +87,7 @@ public class TimerTask {
 			methods.sort((o1, o2) -> o1.getAnnotation(Timer.class).value().compareTo(o2.getAnnotation(Timer.class).value()));
 			for (Method m : methods) {
 				try {
-					if (this.getTimerInMinute() == Integer.parseInt(om.getValue()))
+					if (this.getTimerInMinute() == (Integer)om.getValue())
 						m.invoke(om);
 				} catch (NumberFormatException e) {
 					continue;

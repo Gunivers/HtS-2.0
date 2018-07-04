@@ -14,47 +14,36 @@ import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Utils.FileExtractor;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 
-public class ZombieOption extends OptionBuilder implements Alterable {
+public class ZombieOption extends OptionBuilder<Boolean> implements Alterable {
 	
-	private boolean activate = false;
 	
 	public ZombieOption() {
-		super(new ItemStackBuilder(EntityType.ZOMBIE, 1, "§rZombie", "§4Désactivé"), "Désactivé", OptionRegister.loottables);
+		super(new ItemStackBuilder(EntityType.ZOMBIE, 1, "§rZombie", "§4Désactivé"), false, OptionRegister.loottables);
 	}
 
 	@Override
 	public void event(Player p) {
-		activate =! activate;
-		setState(activate);
+		setState(!getValue());
 	}
 
 	@Override
 	public void setState(boolean value) {
-		activate = value;
-		if(value) {
+		if(value && !getValue()) {
 			try {
 				FileExtractor.extractFile(FileExtractor.lt + "zombie.json", FileExtractor.wdir + FileExtractor.Edir);
-				setValue("Activé");
 				getItemStack().setLore("§2Activé");
 			} catch (IOException | URISyntaxException e) {
 				e.printStackTrace();
 			}
-		} else {
+		} else if(!value && getValue()) {
 			try {
 				Files.delete(Paths.get(FileExtractor.wdir + FileExtractor.Edir + "zombie.json"));
-				setValue("Désactivé");
 				getItemStack().setLore("§4Désactivé");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
+		setValue(value);
 		parent.update(this);
-	}
-	
-	public boolean isActivated() {
-		if (getValue().equals("Activé"))
-			return true;
-		else
-			return false;
 	}
 }

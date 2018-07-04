@@ -12,38 +12,32 @@ import fr.HtSTeam.HtS.Options.Structure.Alterable;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
-public class NuggetsOption extends OptionBuilder implements Alterable {
-
-	private boolean activate = true;
+public class NuggetsOption extends OptionBuilder<Boolean> implements Alterable {
 
 	public NuggetsOption() {
-		super(Material.GOLD_NUGGET, "Loot des pépites", "§2Activé", "Activé", OptionRegister.other);
+		super(Material.GOLD_NUGGET, "Loot des pépites", "§2Activé", true, OptionRegister.other);
 	}
 
 	@Override
 	public void event(Player p) {
-		activate = !activate;
-		setState(activate);
+		setState(getValue());
 	}
 	
 	
 	@Override
 	public void setState(boolean value) {
-		activate = value;
-		if (value) {
-			setValue("Activé");
+		if (value)
 			getItemStack().setLore("§2Activé");
-		} else {
-			setValue("Désactivé");
+		else
 			getItemStack().setLore("§4Désactivé");
-		}
+		setValue(value);
 		parent.update(this);
 	}
 	
 
 	@EventHandler
 	public void onDropNuggets(PlayerBucketFillEvent e) {
-		if (activate) {
+		if (getValue()) {
 			Player p = e.getPlayer();
 			Block b = e.getBlockClicked();
 			if (b.getType() == Material.STATIONARY_WATER) {
@@ -53,12 +47,5 @@ public class NuggetsOption extends OptionBuilder implements Alterable {
 					p.getInventory().addItem(new ItemStack(Material.IRON_NUGGET, 1));
 			}
 		}
-	}
-	
-	public boolean isActivated() {
-		if (getValue().equals("Activé"))
-			return true;
-		else
-			return false;
 	}
 }

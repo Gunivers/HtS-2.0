@@ -12,25 +12,22 @@ import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Options.Structure.Alterable;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
-public class CreeperNerfOption extends OptionBuilder implements Alterable {
-	
-	private boolean activate = false;
-	
+public class CreeperNerfOption extends OptionBuilder<Boolean> implements Alterable {
+		
 	public CreeperNerfOption() {
-		super(Material.SULPHUR, "One shot des Creepers", "§4Désactivé", "Désactivé", OptionRegister.mob);
+		super(Material.SULPHUR, "One shot des Creepers", "§4Désactivé", false, OptionRegister.mob);
 	}
 	
 	
 	@Override
 	public void event(Player p) {
-		activate = !activate;
-		setState(activate);
+		setState(!getValue());
 	}
 
 	@EventHandler()
 	public void onCreeperOneShot(EntityDamageByEntityEvent e) {
 		Entity p = e.getEntity();
-		if (EnumState.getState().equals(EnumState.RUNNING) && !activate && ((p instanceof Player)) && e.getDamager() instanceof Creeper) {
+		if (EnumState.getState().equals(EnumState.RUNNING) && !getValue() && ((p instanceof Player)) && e.getDamager() instanceof Creeper) {
 			double damage = e.getFinalDamage();
 			if (damage >= ((Player) p).getHealth()) {	
 				((Player) p).setHealth(2.0D);
@@ -42,21 +39,11 @@ public class CreeperNerfOption extends OptionBuilder implements Alterable {
 
 	@Override
 	public void setState(boolean value) {
-		activate = value;
-		if(value) {
-			setValue("Activé");
+		if(value) 
 			getItemStack().setLore("§2Activé");
-		} else {
-			setValue("Désactivé");
+		else 
 			getItemStack().setLore("§4Désactivé");
-		}
+		setValue(value);
 		parent.update(this);		
-	}
-
-	public boolean isActivated() {
-		if (getValue().equals("Activé"))
-			return true;
-		else
-			return false;
 	}
 }

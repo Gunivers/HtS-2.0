@@ -12,14 +12,14 @@ import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
 
-public class SkeletonNerfOption extends OptionBuilder {
+public class SkeletonNerfOption extends OptionBuilder<Integer> {
 	
 	private boolean request = false;
 	private Player p;
 	private boolean activate = false;
 
 	public SkeletonNerfOption() {
-		super(Material.BONE, "Squelette", "§d40 minutes", "40", OptionRegister.mob);
+		super(Material.BONE, "Squelette", "§d40 minutes", 40, OptionRegister.mob);
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class SkeletonNerfOption extends OptionBuilder {
 			try {
 				int value = Integer.parseInt(e.getMessage());
 				if(value >= 0 && value <= 60) {
-					setValue(Integer.toString(value));
+					setValue(value);
 					p.sendMessage("§2Squelette activé à " + getValue() + " minutes." );
 					this.getItemStack().setLore("§d" + value + " minutes");
 					parent.update(this);
@@ -54,7 +54,7 @@ public class SkeletonNerfOption extends OptionBuilder {
 	@Timer
 	public void activateSkeleton() {
 		activate = true;
-		if(!getValue().equals("0"))
+		if(getValue() != 0)
 			Bukkit.broadcastMessage("§4Les squelettes sont activés !");
 	}
 	

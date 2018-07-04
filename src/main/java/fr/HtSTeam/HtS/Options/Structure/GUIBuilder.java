@@ -38,7 +38,7 @@ public class GUIBuilder extends OptionBuilder<Null> {
 	
 	// Common Methods
 	
-	public void put(OptionBuilder<Null> optionsManager) {
+	public void put(OptionBuilder<?> optionsManager) {
 		if (guiContent.entrySet().size() > inv.getSize())
 			return;
 		guiContent.put(optionsManager.getItemStack(), optionsManager);

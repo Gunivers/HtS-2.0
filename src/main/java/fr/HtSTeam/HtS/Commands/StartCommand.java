@@ -36,8 +36,8 @@ public class StartCommand implements CommandExecutor {
 			
 			
 			if (cmd.getName().equalsIgnoreCase("start") && sender.hasPermission("start.use") && EnumState.getState().equals(EnumState.WAIT)) {
-				for(Entry<OptionBuilder, Object> entry : OptionBuilder.optionsList.entrySet()) {
-					OptionBuilder key = entry.getKey();
+				for(Entry<OptionBuilder<?>, Object> entry : OptionBuilder.optionsList.entrySet()) {
+					OptionBuilder<?> key = entry.getKey();
 					Object value = entry.getValue();
 					if(value != null && key.getDefaultValue() != null  && !key.getDefaultValue().equals(value))
 						p.sendMessage(key.getName() + " : §4" + value.toString());

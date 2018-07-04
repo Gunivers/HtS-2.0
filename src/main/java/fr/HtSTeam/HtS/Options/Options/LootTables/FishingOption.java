@@ -13,33 +13,27 @@ import fr.HtSTeam.HtS.Options.Structure.Alterable;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Utils.FileExtractor;
 
-public class FishingOption extends OptionBuilder implements Alterable {
-	
-	private boolean activate = false;
-	
+public class FishingOption extends OptionBuilder<Boolean> implements Alterable {
+		
 	public FishingOption() {
-		super(Material.FISHING_ROD, "Pêche modifiée", "§4Désactivé", "Désactivé", OptionRegister.loottables);
+		super(Material.FISHING_ROD, "Pêche modifiée", "§4Désactivé", false, OptionRegister.loottables);
 	}
 
 	@Override
 	public void event(Player p) {
-		activate =! activate;
-		setState(activate);
+		setState(!getValue());
 	}
 
 	@Override
 	public void setState(boolean value) {
-		activate = value;
-		if(value) {
+		if(value && !getValue()) {
 			try {
 				FileExtractor.extractFile(FileExtractor.lt + "fishing.json", FileExtractor.wdir + FileExtractor.Gdir);
-				setValue("Activé");
 				getItemStack().setLore("§2Activé");
 			} catch (IOException | URISyntaxException e) {
 				e.printStackTrace();
 			}
-		} else {
-			setValue("Désactivé");
+		} else if(!value && getValue()){
 			getItemStack().setLore("§4Désactivé");
 			try {
 				Files.delete(Paths.get(FileExtractor.wdir + FileExtractor.Gdir + "fishing.json"));
@@ -47,13 +41,7 @@ public class FishingOption extends OptionBuilder implements Alterable {
 				e.printStackTrace();
 			}
 		}
+		setValue(value);
 		parent.update(this);
-	}
-	
-	public boolean isActivated() {
-		if (getValue().equals("Activé"))
-			return true;
-		else
-			return false;
 	}
 }

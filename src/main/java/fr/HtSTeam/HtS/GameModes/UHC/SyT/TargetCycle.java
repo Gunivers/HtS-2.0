@@ -18,14 +18,14 @@ import fr.HtSTeam.HtS.Players.PlayerInGame;
 import fr.HtSTeam.HtS.Teams.TeamBuilder;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
-public class TargetCycle extends OptionBuilder {
+public class TargetCycle extends OptionBuilder<Integer> {
 
 	private boolean request = false;
 	private Player p;
 	public List<UUID> targetCycle = new ArrayList<UUID>();
 	
 	public TargetCycle() {
-		super(Material.WATCH, "Annonce des cibles", "20 minutes", "20", OptionRegister.syt);
+		super(Material.WATCH, "Annonce des cibles", "20 minutes", 20, OptionRegister.syt);
 	}
 
 	@Override
@@ -43,7 +43,7 @@ public class TargetCycle extends OptionBuilder {
 			try {
 				int value = Integer.parseInt(e.getMessage());
 				if(value >= 0 && value <= 60) {
-					setValue(Integer.toString(value));
+					setValue(value);
 					p.sendMessage("§2Annonce à " + getValue() + " minutes." );
 					this.getItemStack().setLore("§2" + value + " minutes");
 					parent.update(this);

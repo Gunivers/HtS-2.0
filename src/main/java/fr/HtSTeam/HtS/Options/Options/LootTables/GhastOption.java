@@ -14,33 +14,27 @@ import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Utils.FileExtractor;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 
-public class GhastOption extends OptionBuilder implements Alterable {
-
-	private boolean activate = false;
+public class GhastOption extends OptionBuilder<Boolean> implements Alterable {
 
 	public GhastOption() {
-		super(new ItemStackBuilder(EntityType.GHAST, 1, "§rGhast", "§4Désactivé"), "Désactivé", OptionRegister.loottables);
+		super(new ItemStackBuilder(EntityType.GHAST, 1, "§rGhast", "§4Désactivé"), false, OptionRegister.loottables);
 	}
 
 	@Override
 	public void event(Player p) {
-		activate  =! activate;
-		setState(activate);
+		setState(!getValue());
 	}
 
 	@Override
 	public void setState(boolean value) {
-		activate = value;
-		if(value) {
+		if(value && !getValue()) {
 			try {
 				FileExtractor.extractFile(FileExtractor.lt + "ghast.json", FileExtractor.wdir + FileExtractor.Edir);
-				setValue("Activé");
 				getItemStack().setLore("§2Activé");
 			} catch (IOException | URISyntaxException e) {
 				e.printStackTrace();
 			}
-		} else {
-			setValue("Désactivé");
+		} else if(!value && getValue()){
 			getItemStack().setLore("§4Désactivé");
 			try {
 				Files.delete(Paths.get(FileExtractor.wdir + FileExtractor.Edir + "ghast.json"));
@@ -48,13 +42,7 @@ public class GhastOption extends OptionBuilder implements Alterable {
 				e.printStackTrace();
 			}
 		}
+		setValue(value);
 		parent.update(this);
-	}
-	
-	public boolean isActivated() {
-		if (getValue().equals("Activé"))
-			return true;
-		else
-			return false;
-	}
+	}	
 }

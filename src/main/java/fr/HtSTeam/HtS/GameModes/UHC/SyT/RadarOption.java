@@ -8,13 +8,13 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
-public class RadarOption extends OptionBuilder {
+public class RadarOption extends OptionBuilder<Integer> {
 	
 	private boolean request = false;
 	private Player p;
 
 	public RadarOption() {
-		super(Material.WATCH, "Lancement du Radar", "20 minutes", "20", OptionRegister.syt);
+		super(Material.WATCH, "Lancement du Radar", "20 minutes", 20, OptionRegister.syt);
 	}
 
 	@Override
@@ -32,7 +32,7 @@ public class RadarOption extends OptionBuilder {
 			try {
 				int value = Integer.parseInt(e.getMessage());
 				if (value >= 0 && value <= 60) {
-					setValue(Integer.toString(value));
+					setValue(value);
 					p.sendMessage("§2Radar à " + getValue() + " minutes.");
 					this.getItemStack().setLore("§2" + value + " minutes");
 					parent.update(this);

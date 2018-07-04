@@ -23,34 +23,30 @@ import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
-public class ShulkerShellOption extends OptionBuilder implements Alterable {
+public class ShulkerShellOption extends OptionBuilder<Boolean> implements Alterable {
 	
 	private HashMap<Player, Integer> shellUse = new HashMap<>();
-	private boolean activate = false;
 	private ItemStackBuilder ism = new ItemStackBuilder(Material.SHULKER_SHELL, (short) 0, 1, "§rShulker Shell", "");
 	
 	public ShulkerShellOption() {
-		super(Material.SHULKER_SHELL, "Shulker Shell Modifier", "§4Désactivé", "Désactivé", OptionRegister.modifiers);
+		super(Material.SHULKER_SHELL, "Shulker Shell Modifier", "§4Désactivé", false, OptionRegister.modifiers);
 	}
 
 	@Override
 	public void event(Player p) {
-		activate = !activate;
-		setState(activate);
+		setState(!getValue());
 	}
 	
 	@Override
 	public void setState(boolean value) {
-		activate = value;
 		if(value) {
-			setValue("Activé");
 			getItemStack().setLore("§2Activé");
 			CustomGUI.authorizedItem.add(ism);
 		} else {
-			setValue("Désactivé");
 			getItemStack().setLore("§4Désactivé");
 			CustomGUI.authorizedItem.remove(ism);
 		}
+		setValue(value);
 		parent.update(this);	
 	}
 
@@ -58,7 +54,7 @@ public class ShulkerShellOption extends OptionBuilder implements Alterable {
 	
 	@EventHandler
 	public void onDamage(EntityDamageByEntityEvent e) {
-		if(EnumState.getState().equals(EnumState.RUNNING) && activate && e.getEntity() instanceof Player && ((ModifiersGUI) parent).getInventory((Player) e.getEntity()).contains(ism)) {
+		if(EnumState.getState().equals(EnumState.RUNNING) && getValue() && e.getEntity() instanceof Player && ((ModifiersGUI) parent).getInventory((Player) e.getEntity()).contains(ism)) {
 			Player p = (Player) e.getEntity();
 			World world = p.getWorld();
 			if(Randomizer.RandRate(63)) {
@@ -82,7 +78,7 @@ public class ShulkerShellOption extends OptionBuilder implements Alterable {
 	
 	@EventHandler
     public void onShulkerDeath(EntityDeathEvent e){
-        if(activate && e.getEntityType() == EntityType.SHULKER){
+        if(getValue() && e.getEntityType() == EntityType.SHULKER){
         	ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
             e.getDrops().clear();
             if(Randomizer.RandRate(7)){
@@ -111,11 +107,4 @@ public class ShulkerShellOption extends OptionBuilder implements Alterable {
             e.getDrops().addAll(drops);
         }
     }
-	
-	public boolean isActivated() {
-		if (getValue().equals("Activé"))
-			return true;
-		else
-			return false;
-	}
 }

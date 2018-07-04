@@ -25,7 +25,7 @@ public enum EnumState implements Listener {
 			for (World world : Bukkit.getWorlds())
 				world.setPVP(false);
 		} else if(state.equals(EnumState.RUNNING)) {
-			List<OptionBuilder> keyset = new ArrayList<OptionBuilder>(OptionBuilder.optionsList.keySet());
+			List<OptionBuilder<?>> keyset = new ArrayList<OptionBuilder<?>>(OptionBuilder.optionsList.keySet());
 			for(int i = 0; i < keyset.size(); i++)
 				if(Arrays.asList(keyset.get(i).getClass().getInterfaces()).contains(StartTrigger.class))
 					((StartTrigger) keyset.get(i)).onPartyStart();

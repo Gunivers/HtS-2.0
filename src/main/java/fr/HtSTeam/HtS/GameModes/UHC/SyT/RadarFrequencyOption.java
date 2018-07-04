@@ -15,14 +15,14 @@ import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
 import fr.HtSTeam.HtS.Utils.ActionBar;
 import fr.HtSTeam.HtS.Utils.StartTrigger;
 
-public class RadarFrequencyOption extends OptionBuilder implements StartTrigger {
+public class RadarFrequencyOption extends OptionBuilder<Integer> implements StartTrigger {
 
 	private boolean request = false;
 	private Player p;
 	private int frequency = 20;
 
 	public RadarFrequencyOption() {
-		super(Material.COMPASS, "Fréquence du Radar", "§220 minutes", "20", OptionRegister.syt);
+		super(Material.COMPASS, "Fréquence du Radar", "§220 minutes", 20, OptionRegister.syt);
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class RadarFrequencyOption extends OptionBuilder implements StartTrigger 
 				int value = Integer.parseInt(e.getMessage());
 				if (value >= 0 && value <= 60) {
 					frequency = value;
-					setValue(Integer.toString(value));
+					setValue(value);
 					p.sendMessage("§2Radar toutes les " + getValue() + " minutes.");
 					this.getItemStack().setLore("§2" + value + " minutes");
 					parent.update(this);
@@ -57,7 +57,7 @@ public class RadarFrequencyOption extends OptionBuilder implements StartTrigger 
 
 	@Timer
 	public void radar() {
-		setValue(Integer.toString(Integer.parseInt(getValue()) + frequency));
+		setValue(getValue() + frequency);
 		for (UUID uuid : SyT.targetCycleOption.targetCycle) {
 			Player player = Bukkit.getPlayer(uuid);
 			Player victim = Bukkit.getPlayer(SyT.targetCycleOption.getTarget(player));
