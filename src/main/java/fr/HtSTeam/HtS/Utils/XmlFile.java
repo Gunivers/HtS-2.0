@@ -1,5 +1,7 @@
 package fr.HtSTeam.HtS.Utils;
 
+
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
@@ -28,8 +30,8 @@ public class XmlFile {
 	private File file;
 	private Document doc;
 
-	public XmlFile(String fileName) {
-		file = new File(Main.plugin.getDataFolder(), fileName + ".xml");
+	public XmlFile(String parent, String fileName) {
+		file = new File(Main.plugin.getDataFolder() + "/" + parent + "/", fileName + ".xml");
 		if (file.exists()) {
 			try {
 				doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(file);
@@ -75,7 +77,9 @@ public class XmlFile {
 		return ((Element) node).getTextContent();
 	}
 	
-	public void set(final String node_name, final Map<String, String> attributes, final String node_value) {
+	public void root(final String node_name, final Map<String, String> attributes, final String node_value) {
+		if(doc.getFirstChild() != null)
+			return;
 		Element root = doc.createElement(node_name);
 		doc.appendChild(root);
 		if (node_value != null)
@@ -87,7 +91,23 @@ public class XmlFile {
 				root.setAttributeNode(attr);
 			}
 	}
-
+	
+	public void sub(final String node_name, final Map<String, String> attributes, final String node_value) {
+		Node parent = doc.getFirstChild();
+		while (parent.getLastChild() != null)
+			parent = parent.getLastChild();
+		Element child = doc.createElement(node_name);
+		if (node_value != null)
+			child.appendChild(doc.createTextNode(node_value));
+		if (attributes != null)	
+			for (String atrr_name : attributes.keySet()) {
+				Attr attr = doc.createAttribute(atrr_name);
+				attr.setValue(attributes.get(atrr_name));
+				child.setAttributeNode(attr);
+			}
+		parent.appendChild(child);
+	}
+	
 	public void set(final String node_name, final Map<String, String> attributes, final String node_value,
 			final String parent_name, final String parent_attr, final String parent_attrvalue) {
 		if (doc.getDocumentElement().getNodeName() == null || parent_name == null)

@@ -33,6 +33,7 @@ import fr.HtSTeam.HtS.Options.Options.Nether.ShulkerNetherOption;
 import fr.HtSTeam.HtS.Options.Options.Others.AlgueUrticanteOption;
 import fr.HtSTeam.HtS.Options.Options.Others.HeadShot;
 import fr.HtSTeam.HtS.Options.Options.Others.NuggetsOption;
+import fr.HtSTeam.HtS.Options.Options.Presets.SavePreset;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.AddBlankScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.BorderScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.KilledScoreboardOption;
@@ -56,8 +57,10 @@ public class OptionRegister {
 	public static GUIBuilder nether = new GUIBuilder("Nether", 1, "Nether", "Régler le Nether", Material.NETHERRACK, OptionRegister.main);
 	public static GUIBuilder crafts = new GUIBuilder("Crafts", 1, "Crafts","Gérer les crafts customs", Material.WORKBENCH, OptionRegister.main);
 	public static GUIBuilder other = new GUIBuilder("Autre", 1, "Autre", "Options inclassables", Material.CHEST, OptionRegister.main);
-	public static GUIBuilder disableMob = new GUIBuilder("Désactivation Mobs", 5, "Désaction Mobs", "Désactiver le spawn de certains mobs", Material.MONSTER_EGGS, OptionRegister.mob);
+	public static GUIBuilder disableMob = new GUIBuilder("Désactivation Mobs", 5, "Désactivation Mobs", "Désactiver le spawn de certains mobs", Material.MONSTER_EGGS, OptionRegister.mob);
 	public static StartingStuffGUI startingStuff = new StartingStuffGUI();
+
+	public static GUIBuilder presets = new GUIBuilder("Presets", 1, "Presets", "Permet de définir une configuration enregistrée", Material.RECORD_5, OptionRegister.main);
 	
 	
 	// GameMode
@@ -104,7 +107,7 @@ public class OptionRegister {
 	
 	public static void register() {
 		
-		
+		new SavePreset();
 		
 		// Mobs
 		new SkeletonNerfOption();
