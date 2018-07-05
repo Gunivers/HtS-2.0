@@ -23,10 +23,10 @@ public class SavePreset extends OptionBuilder<Null> {
 	@Override
 	public void event(Player p) {
 		getParent().close(p);
-		 XmlFile f = new XmlFile("Presets", "test");
-		 f.root("preset", null, null);
+		XmlFile f = new XmlFile("Presets", "test");
+		f.root("preset", null, null);
 		for(Entry<OptionBuilder<?>, Object> ob : OptionBuilder.optionsList.entrySet()) {
-			if(ob.getKey().getValue() != null && !ob.getKey().getValue().equals(ob.getValue())) {
+			if(ob.getKey().getValue() != null && !ob.getKey().getValue().equals(ob.getValue())) { // Erreur dans la condition
 				HashMap<String, String> attr = new HashMap<String, String>();
 				attr.put("name", ob.getKey().getName());
 				if(!(ob.getKey().getValue() instanceof ArrayList<?>)) {

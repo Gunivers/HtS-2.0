@@ -1,7 +1,5 @@
 package fr.HtSTeam.HtS.Utils;
 
-
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
@@ -64,17 +62,21 @@ public class XmlFile {
 			e.printStackTrace();
 		}
 	}
-
-	public NodeList getNodeList(final String tagname) {
-		return doc.getElementsByTagName(tagname);
-	}
-
-	public String getAttributeValue(final Node node, final String attribute) {
-		return ((Element) node).getAttribute(attribute);
+	
+	public Object getOptionValue(final String option_name) {
+		NodeList node_list = getNodeList(option_name);
+		for (int i = 0; i < node_list.getLength(); i++)
+			if (getAttributeValue(node_list.item(i), "name").equalsIgnoreCase(option_name))
+				return getValue(node_list.item(i));
+		return null;
 	}
 	
-	public String getValue(final Node node) {
-		return ((Element) node).getTextContent();
+	public String getOptionType(final String option_name) {
+		NodeList node_list = getNodeList(option_name);
+		for (int i = 0; i < node_list.getLength(); i++)
+			if (getAttributeValue(node_list.item(i), "name").equalsIgnoreCase(option_name))
+				return getAttributeValue(node_list.item(i), "type");
+		return null;
 	}
 	
 	public void root(final String node_name, final Map<String, String> attributes, final String node_value) {
@@ -127,5 +129,17 @@ public class XmlFile {
 			if (parents.item(i).getNodeType() == Node.ELEMENT_NODE)
 				if (((Element) parents.item(i)).getAttribute(parent_attr) == parent_attrvalue || (parent_attr == null && parent_attrvalue == null))
 					((Element) parents.item(i)).appendChild(node);
+	}
+	
+	private NodeList getNodeList(final String tagname) {
+		return doc.getElementsByTagName(tagname);
+	}
+
+	private String getAttributeValue(final Node node, final String attribute) {
+		return ((Element) node).getAttribute(attribute);
+	}
+	
+	private String getValue(final Node node) {
+		return ((Element) node).getTextContent();
 	}
 }
