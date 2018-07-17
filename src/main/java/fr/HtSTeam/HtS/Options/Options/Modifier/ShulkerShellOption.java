@@ -17,19 +17,18 @@ import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import fr.HtSTeam.HtS.EnumState;
-import fr.HtSTeam.HtS.Options.OptionRegister;
-import fr.HtSTeam.HtS.Options.Structure.Alterable;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
-public class ShulkerShellOption extends OptionBuilder<Boolean> implements Alterable {
+public class ShulkerShellOption extends OptionBuilder<Boolean> {
 	
 	private HashMap<Player, Integer> shellUse = new HashMap<>();
 	private ItemStackBuilder ism = new ItemStackBuilder(Material.SHULKER_SHELL, (short) 0, 1, "§rShulker Shell", "");
 	
 	public ShulkerShellOption() {
-		super(Material.SHULKER_SHELL, "Shulker Shell Modifier", "§4Désactivé", false, OptionRegister.modifiers);
+		super(Material.SHULKER_SHELL, "Shulker Shell Modifier", "§4Désactivé", false, GUIRegister.modifiers);
 	}
 
 	@Override
@@ -38,7 +37,7 @@ public class ShulkerShellOption extends OptionBuilder<Boolean> implements Altera
 	}
 	
 	@Override
-	public void setState(boolean value) {
+	public void setState(Boolean value) {
 		if(value) {
 			getItemStack().setLore("§2Activé");
 			CustomGUI.authorizedItem.add(ism);

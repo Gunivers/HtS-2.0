@@ -11,15 +11,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.world.ChunkLoadEvent;
 
-import fr.HtSTeam.HtS.Options.OptionRegister;
-import fr.HtSTeam.HtS.Options.Structure.Alterable;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
-public class NetherWartOption extends OptionBuilder<Boolean> implements Alterable {
+public class NetherWartOption extends OptionBuilder<Boolean>{
 		
 	public NetherWartOption() {
-		super(Material.NETHER_WART_BLOCK, "Nether Warts", "§4Désactivé", false, OptionRegister.nether);
+		super(Material.NETHER_WART_BLOCK, "Nether Warts", "§4Désactivé", false, GUIRegister.nether);
 	}
 
 	@Override
@@ -29,7 +28,7 @@ public class NetherWartOption extends OptionBuilder<Boolean> implements Alterabl
 	
 	
 	@Override
-	public void setState(boolean value) {
+	public void setState(Boolean value) {
 		if(value)
 			getItemStack().setLore("§2Activé");			
 		else

@@ -11,15 +11,14 @@ import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import fr.HtSTeam.HtS.Options.OptionRegister;
-import fr.HtSTeam.HtS.Options.Structure.Alterable;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
-public class HeadShot extends OptionBuilder<Boolean> implements Alterable {
+public class HeadShot extends OptionBuilder<Boolean>{
 	
 	
 	public HeadShot() {
-		super(Material.BOW, "HeadShot", "§4Désactivé", false, OptionRegister.other);
+		super(Material.BOW, "HeadShot", "§4Désactivé", false, GUIRegister.other);
 	}
 
 	@Override
@@ -28,7 +27,7 @@ public class HeadShot extends OptionBuilder<Boolean> implements Alterable {
 	}
 	
 	@Override
-	public void setState(boolean value) {
+	public void setState(Boolean value) {
 		if (value)
 			getItemStack().setLore("§2Activé");
 		else

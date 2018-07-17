@@ -36,6 +36,16 @@ public class GUIBuilder extends OptionBuilder<Null> {
 			addReturnButton();
 	}
 	
+	public GUIBuilder(String name, int rows, ItemStackBuilder its, GUIBuilder gui) {
+		super(its, null, gui);
+		guiList.add(this);
+		if (rows > 6)
+			return;
+		inv = Bukkit.createInventory(null, rows * 9, name);		
+		if(gui != null)
+			addReturnButton();
+	}
+	
 	// Common Methods
 	
 	public void put(OptionBuilder<?> optionsManager) {
@@ -90,6 +100,9 @@ public class GUIBuilder extends OptionBuilder<Null> {
 				public void event(Player p) {
 					parent2.refresh(p);
 				}
+
+				@Override
+				public void setState(Null value) {}
 				
 			};
 		
@@ -117,4 +130,7 @@ public class GUIBuilder extends OptionBuilder<Null> {
 	public void event(Player p) {
 		refresh(p);
 	}
+
+	@Override
+	public void setState(Null value) {}
 }

@@ -8,15 +8,14 @@ import java.nio.file.Paths;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
-import fr.HtSTeam.HtS.Options.OptionRegister;
-import fr.HtSTeam.HtS.Options.Structure.Alterable;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Utils.FileExtractor;
 
-public class ElytraCraftOption extends OptionBuilder<Boolean> implements Alterable {
+public class ElytraCraftOption extends OptionBuilder<Boolean> {
 	
 	public ElytraCraftOption() {
-		super(Material.ELYTRA, "Craft des Elytra", "§4Désactivé", false, OptionRegister.crafts);
+		super(Material.ELYTRA, "Craft des Elytra", "§4Désactivé", false, GUIRegister.crafts);
 	}
 
 	@Override
@@ -25,7 +24,7 @@ public class ElytraCraftOption extends OptionBuilder<Boolean> implements Alterab
 	}
 
 	@Override
-	public void setState(boolean value) {
+	public void setState(Boolean value) {
 		if(value && !getValue()) {
 				try {
 					FileExtractor.extractFile(FileExtractor.cr + "elytra.json", FileExtractor.wdir + FileExtractor.Rdir);

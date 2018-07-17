@@ -28,4 +28,7 @@ public class AnnonceOption extends OptionBuilder<Integer> {
 		Bukkit.broadcastMessage("§4Maintenant, tout les coups sont permis, trouvez leur salle des coffres afin de les décribiliser auprès du Roi !");
 	}
 
+	@Override
+	public void setState(Integer value) {}
+
 }

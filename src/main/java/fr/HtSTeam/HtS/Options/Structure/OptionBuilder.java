@@ -11,7 +11,7 @@ import org.bukkit.plugin.PluginManager;
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 
-public abstract class OptionBuilder<A> implements Listener {
+public abstract class OptionBuilder<A extends Object> implements Listener {
 	
 	public static Map<OptionBuilder<?>, Object> optionsList = new HashMap<OptionBuilder<?>, Object>();
 	
@@ -67,6 +67,7 @@ public abstract class OptionBuilder<A> implements Listener {
 	}
 	
 	public abstract void event(Player p);
+	public abstract void setState(A value);
 	
 	public String getDescription() { return icon.getLore(); }
 	public String getName() { return icon.getName(); }
@@ -85,8 +86,4 @@ public abstract class OptionBuilder<A> implements Listener {
 		}
 	
 	public GUIBuilder getParent() { return parent; }
-	
-	
-	
-
 }

@@ -8,7 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import fr.HtSTeam.HtS.Options.OptionRegister;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
 
@@ -19,7 +19,7 @@ public class SkeletonNerfOption extends OptionBuilder<Integer> {
 	private boolean activate = false;
 
 	public SkeletonNerfOption() {
-		super(Material.BONE, "Squelette", "§d40 minutes", 40, OptionRegister.mob);
+		super(Material.BONE, "Squelette", "§d40 minutes", 40, GUIRegister.mob);
 	}
 
 	@Override
@@ -37,9 +37,8 @@ public class SkeletonNerfOption extends OptionBuilder<Integer> {
 			try {
 				int value = Integer.parseInt(e.getMessage());
 				if(value >= 0 && value <= 60) {
-					setValue(value);
+					setState(value);
 					p.sendMessage("§2Squelette activé à " + getValue() + " minutes." );
-					this.getItemStack().setLore("§d" + value + " minutes");
 					parent.update(this);
 					request = false;
 					return;
@@ -64,6 +63,12 @@ public class SkeletonNerfOption extends OptionBuilder<Integer> {
 		if(!activate && e.getTarget() instanceof Player && e.getEntityType().equals(EntityType.SKELETON)) {
 			e.setCancelled(true);
 		}
+	}
+
+	@Override
+	public void setState(Integer value) {
+		setValue(value);	
+		this.getItemStack().setLore("§d" + value + " minutes");
 	}
 	
 	

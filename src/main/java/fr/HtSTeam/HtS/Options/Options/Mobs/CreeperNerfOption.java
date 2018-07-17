@@ -8,14 +8,13 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 import fr.HtSTeam.HtS.EnumState;
-import fr.HtSTeam.HtS.Options.OptionRegister;
-import fr.HtSTeam.HtS.Options.Structure.Alterable;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
-public class CreeperNerfOption extends OptionBuilder<Boolean> implements Alterable {
+public class CreeperNerfOption extends OptionBuilder<Boolean>{
 		
 	public CreeperNerfOption() {
-		super(Material.SULPHUR, "One shot des Creepers", "§4Désactivé", false, OptionRegister.mob);
+		super(Material.SULPHUR, "One shot des Creepers", "§4Désactivé", false, GUIRegister.mob);
 	}
 	
 	
@@ -38,7 +37,7 @@ public class CreeperNerfOption extends OptionBuilder<Boolean> implements Alterab
 
 
 	@Override
-	public void setState(boolean value) {
+	public void setState(Boolean value) {
 		if(value) 
 			getItemStack().setLore("§2Activé");
 		else 

@@ -14,15 +14,14 @@ import org.bukkit.entity.Shulker;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.world.ChunkLoadEvent;
 
-import fr.HtSTeam.HtS.Options.OptionRegister;
-import fr.HtSTeam.HtS.Options.Structure.Alterable;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
-public class ShulkerNetherOption extends OptionBuilder<Boolean> implements Alterable {
+public class ShulkerNetherOption extends OptionBuilder<Boolean> {
 
 	public ShulkerNetherOption() {
-		super(Material.PURPLE_SHULKER_BOX, "Shulker", "§4Désactivé", false, OptionRegister.nether);
+		super(Material.PURPLE_SHULKER_BOX, "Shulker", "§4Désactivé", false, GUIRegister.nether);
 	}
 
 	@Override
@@ -32,7 +31,7 @@ public class ShulkerNetherOption extends OptionBuilder<Boolean> implements Alter
 	
 	
 	@Override
-	public void setState(boolean value) {
+	public void setState(Boolean value) {
 		if (value)
 			getItemStack().setLore("§2Activé");
 		else

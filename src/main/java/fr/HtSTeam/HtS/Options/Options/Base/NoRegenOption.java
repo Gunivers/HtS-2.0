@@ -7,14 +7,13 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityRegainHealthEvent;
 import org.bukkit.event.entity.EntityRegainHealthEvent.RegainReason;
 
-import fr.HtSTeam.HtS.Options.OptionRegister;
-import fr.HtSTeam.HtS.Options.Structure.Alterable;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
-public class NoRegenOption extends OptionBuilder<Boolean> implements Alterable {
+public class NoRegenOption extends OptionBuilder<Boolean> {
 	
 	public NoRegenOption() {
-		super(Material.INK_SACK, "Régération naturelle", "§4Désactivé", false, OptionRegister.base);
+		super(Material.INK_SACK, "Régération naturelle", "§4Désactivé", false, GUIRegister.base);
 		getItemStack().setItem(Material.INK_SACK, (short) 8);
 		parent.update(this);
 	}
@@ -34,7 +33,7 @@ public class NoRegenOption extends OptionBuilder<Boolean> implements Alterable {
 	}
 
 	@Override
-	public void setState(boolean value) {
+	public void setState(Boolean value) {
 		if(value) {
 			getItemStack().setLore("§2Activé");
 			getItemStack().setItem(Material.INK_SACK, (short) 9);

@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import fr.HtSTeam.HtS.Options.OptionRegister;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
 import fr.HtSTeam.HtS.Utils.ActionBar;
@@ -22,7 +22,7 @@ public class RadarFrequencyOption extends OptionBuilder<Integer> implements Star
 	private int frequency = 20;
 
 	public RadarFrequencyOption() {
-		super(Material.COMPASS, "Fréquence du Radar", "§220 minutes", 20, OptionRegister.syt);
+		super(Material.COMPASS, "Fréquence du Radar", "§220 minutes", 20, GUIRegister.syt);
 	}
 
 	@Override
@@ -41,9 +41,8 @@ public class RadarFrequencyOption extends OptionBuilder<Integer> implements Star
 				int value = Integer.parseInt(e.getMessage());
 				if (value >= 0 && value <= 60) {
 					frequency = value;
-					setValue(value);
+					setState(value);
 					p.sendMessage("§2Radar toutes les " + getValue() + " minutes.");
-					this.getItemStack().setLore("§2" + value + " minutes");
 					parent.update(this);
 					request = false;
 					return;
@@ -80,5 +79,11 @@ public class RadarFrequencyOption extends OptionBuilder<Integer> implements Star
 	@Override
 	public void onPartyStart() {
 		setValue(SyT.radar.getValue());
+	}
+
+	@Override
+	public void setState(Integer value) {
+		setValue(value);
+		this.getItemStack().setLore("§2" + value + " minutes");
 	}
 }

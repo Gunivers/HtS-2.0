@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import fr.HtSTeam.HtS.Options.OptionRegister;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
@@ -25,7 +25,7 @@ public class TargetCycle extends OptionBuilder<Integer> {
 	public List<UUID> targetCycle = new ArrayList<UUID>();
 	
 	public TargetCycle() {
-		super(Material.WATCH, "Annonce des cibles", "20 minutes", 20, OptionRegister.syt);
+		super(Material.WATCH, "Annonce des cibles", "20 minutes", 20, GUIRegister.syt);
 	}
 
 	@Override
@@ -43,9 +43,8 @@ public class TargetCycle extends OptionBuilder<Integer> {
 			try {
 				int value = Integer.parseInt(e.getMessage());
 				if(value >= 0 && value <= 60) {
-					setValue(value);
+					setState(value);
 					p.sendMessage("§2Annonce à " + getValue() + " minutes." );
-					this.getItemStack().setLore("§2" + value + " minutes");
 					parent.update(this);
 					request = false;
 					return;
@@ -55,6 +54,12 @@ public class TargetCycle extends OptionBuilder<Integer> {
 				p.sendMessage("§4Valeur invalide.");
 			}
 		}
+	}
+	
+	@Override
+	public void setState(Integer value) {
+		setValue(value);
+		this.getItemStack().setLore("§2" + value + " minutes");
 	}
 		
 	@Timer
@@ -123,5 +128,4 @@ public class TargetCycle extends OptionBuilder<Integer> {
 		for(UUID uuid : PlayerInGame.playerInGame)
 			SyT.targetCycleOption.getTarget(Bukkit.getPlayer(uuid));
 	}
-
 }

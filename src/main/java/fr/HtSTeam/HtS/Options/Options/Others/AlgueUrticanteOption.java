@@ -4,14 +4,13 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 
-import fr.HtSTeam.HtS.Options.OptionRegister;
-import fr.HtSTeam.HtS.Options.Structure.Alterable;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
-public class AlgueUrticanteOption extends OptionBuilder<Boolean> implements Alterable {
+public class AlgueUrticanteOption extends OptionBuilder<Boolean> {
 		
 	public AlgueUrticanteOption() {
-		super(Material.VINE, "Algue Urticante", "§4Désactivé", false, OptionRegister.other);
+		super(Material.VINE, "Algue Urticante", "§4Désactivé", false, GUIRegister.other);
 	}
 
 	@Override
@@ -20,7 +19,7 @@ public class AlgueUrticanteOption extends OptionBuilder<Boolean> implements Alte
 	}
 	
 	@Override
-	public void setState(boolean value) {
+	public void setState(Boolean value) {
 		if (value)
 			getItemStack().setLore("§2Activé");
 		else

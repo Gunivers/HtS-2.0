@@ -4,14 +4,13 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.Options.OptionRegister;
-import fr.HtSTeam.HtS.Options.Structure.Alterable;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
-public class GoldenAppleOption extends OptionBuilder<Boolean> implements Alterable {
+public class GoldenAppleOption extends OptionBuilder<Boolean> {
 	
 	public GoldenAppleOption() {
-		super(Material.GOLDEN_APPLE, "Drop de pomme d'or", "§2Activé", true, OptionRegister.atDeath);
+		super(Material.GOLDEN_APPLE, "Drop de pomme d'or", "§2Activé", true, GUIRegister.atDeath);
 		Main.deathLoot.addItem(Material.GOLDEN_APPLE, (short) 0);
 	}
 
@@ -21,7 +20,7 @@ public class GoldenAppleOption extends OptionBuilder<Boolean> implements Alterab
 	}
 
 	@Override
-	public void setState(boolean value) {
+	public void setState(Boolean value) {
 		if(value && !getValue()) {
 				getItemStack().setLore("§2Activé");
 				Main.deathLoot.addItem(Material.GOLDEN_APPLE, (short) 0);

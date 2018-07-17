@@ -7,15 +7,14 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.inventory.ItemStack;
 
-import fr.HtSTeam.HtS.Options.OptionRegister;
-import fr.HtSTeam.HtS.Options.Structure.Alterable;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
-public class NuggetsOption extends OptionBuilder<Boolean> implements Alterable {
+public class NuggetsOption extends OptionBuilder<Boolean>{
 
 	public NuggetsOption() {
-		super(Material.GOLD_NUGGET, "Loot des pépites", "§2Activé", true, OptionRegister.other);
+		super(Material.GOLD_NUGGET, "Loot des pépites", "§2Activé", true, GUIRegister.other);
 	}
 
 	@Override
@@ -25,7 +24,7 @@ public class NuggetsOption extends OptionBuilder<Boolean> implements Alterable {
 	
 	
 	@Override
-	public void setState(boolean value) {
+	public void setState(Boolean value) {
 		if (value)
 			getItemStack().setLore("§2Activé");
 		else

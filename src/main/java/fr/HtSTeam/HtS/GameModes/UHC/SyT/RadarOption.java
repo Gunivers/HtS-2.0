@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import fr.HtSTeam.HtS.Options.OptionRegister;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
 public class RadarOption extends OptionBuilder<Integer> {
@@ -14,7 +14,7 @@ public class RadarOption extends OptionBuilder<Integer> {
 	private Player p;
 
 	public RadarOption() {
-		super(Material.WATCH, "Lancement du Radar", "20 minutes", 20, OptionRegister.syt);
+		super(Material.WATCH, "Lancement du Radar", "20 minutes", 20, GUIRegister.syt);
 	}
 
 	@Override
@@ -25,6 +25,13 @@ public class RadarOption extends OptionBuilder<Integer> {
 		p.sendMessage("§2Veuillez saisir le délais d'activation du Radar.");		
 	}
 	
+	@Override
+	public void setState(Integer value) {
+		setValue(value);
+		this.getItemStack().setLore("§2" + value + " minutes");
+		
+	}
+	
 	@EventHandler
 	public void onPlayerChat(AsyncPlayerChatEvent e) {
 		if (request && e.getPlayer().equals(p)) {
@@ -32,9 +39,8 @@ public class RadarOption extends OptionBuilder<Integer> {
 			try {
 				int value = Integer.parseInt(e.getMessage());
 				if (value >= 0 && value <= 60) {
-					setValue(value);
 					p.sendMessage("§2Radar à " + getValue() + " minutes.");
-					this.getItemStack().setLore("§2" + value + " minutes");
+					setState(value);
 					parent.update(this);
 					request = false;
 					return;
@@ -45,4 +51,5 @@ public class RadarOption extends OptionBuilder<Integer> {
 			}
 		}
 	}
+
 }

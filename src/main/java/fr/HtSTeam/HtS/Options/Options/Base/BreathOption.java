@@ -10,7 +10,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import fr.HtSTeam.HtS.Options.OptionRegister;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.PRIORITY;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
@@ -24,7 +24,7 @@ public class BreathOption extends OptionBuilder<Integer> implements StartTrigger
 	private boolean alert = false;
 	
 	public BreathOption() {
-		super(Material.SULPHUR, "Souffle des profondeurs", "§4Désactivé", -1, OptionRegister.base);
+		super(Material.SULPHUR, "Souffle des profondeurs", "§4Désactivé", -1, GUIRegister.base);
 	}
 
 	@Override
@@ -44,15 +44,12 @@ public class BreathOption extends OptionBuilder<Integer> implements StartTrigger
 				int value = Integer.parseInt(e.getMessage());
 				if(value >= 0 && value <= 120) {
 					if(value > 0) {
-						setValue(value);
+						setState(value);
 						p.sendMessage("§2Le souffle des profondeurs s'activera à " + value + " minutes." );
-						getItemStack().setItem(Material.GLOWSTONE_DUST, (short) 0);
-						getItemStack().setLore("§d" + value + " minutes");
+						
 					} else {
-						setValue(-1);
-						p.sendMessage("§2Le souffle des profondeurs a été désactivé.");
-						getItemStack().setItem(Material.SULPHUR, (short) 0);
-						getItemStack().setLore("§4Désactivé");
+						setState(-1);
+						p.sendMessage("§2Le souffle des profondeurs a été désactivé.");	
 					}
 					parent.update(this);
 					request = false;
@@ -62,6 +59,18 @@ public class BreathOption extends OptionBuilder<Integer> implements StartTrigger
 			} catch(NumberFormatException e2) {
 				p.sendMessage("§4Valeur invalide.");
 			}
+		}
+	}
+	
+	@Override
+	public void setState(Integer value) {
+		if(value != -1) {
+			setValue(value);
+			getItemStack().setItem(Material.GLOWSTONE_DUST, (short) 0);
+			getItemStack().setLore("§d" + value + " minutes");
+		} else {
+			getItemStack().setItem(Material.SULPHUR, (short) 0);
+			getItemStack().setLore("§4Désactivé");
 		}
 	}
 	

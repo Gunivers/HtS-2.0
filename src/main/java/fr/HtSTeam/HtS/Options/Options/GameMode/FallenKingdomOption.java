@@ -7,12 +7,13 @@ import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.GameModes.FallenKingdom.FallenKingdom;
 import fr.HtSTeam.HtS.GameModes.UHC.Common.UHC;
 import fr.HtSTeam.HtS.GameModes.UHC.SyT.SyT;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.OptionRegister;
 
 public class FallenKingdomOption extends GameModeState {
 
 	public FallenKingdomOption() {
-		super("Fallen Kingdom", 1, "Fallen Kingdom", null, Material.CHAINMAIL_CHESTPLATE, OptionRegister.gameMode);
+		super("Fallen Kingdom", 1, "Fallen Kingdom", null, Material.CHAINMAIL_CHESTPLATE, GUIRegister.gameMode);
 	}
 	
 	@Override

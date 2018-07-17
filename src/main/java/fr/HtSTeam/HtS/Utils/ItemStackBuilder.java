@@ -83,6 +83,20 @@ public class ItemStackBuilder extends ItemStack {
 		setName(name);
 		glint = false;
 	}	
+	
+	/**
+	 * Génère une tête
+	 * @param player un UUID
+	 * @param number Nombre
+	 * @param name Nom de l'item
+	 * @param lore Description de l'item
+	 */
+	public ItemStackBuilder(short id, int number, String name, String lore) {
+		super(Material.SKULL, number, (short) id);
+		setLore(lore);
+		setName(name);
+		glint = false;
+	}	
 
 	/**
 	 * @return le nom de l'item

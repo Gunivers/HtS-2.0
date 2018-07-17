@@ -10,7 +10,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
 import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.Options.OptionRegister;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.GUIBuilder;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
 import fr.HtSTeam.HtS.Utils.StartTrigger;
@@ -20,7 +20,7 @@ public class StartingStuffGUI extends GUIBuilder implements StartTrigger {
 	ItemStack[] items = new ItemStack[0];
 
 	public StartingStuffGUI() {
-		super("Stuff de départ", 3, "Stuff de départ", "Définir le stuff de départ des joueurs", Material.WOOD_SWORD, OptionRegister.main);
+		super("Stuff de départ", 3, "Stuff de départ", "Définir le stuff de départ des joueurs", Material.WOOD_SWORD, GUIRegister.main);
 	}
 
 	@Override

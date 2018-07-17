@@ -24,7 +24,7 @@ import org.bukkit.inventory.meta.SpawnEggMeta;
 import org.bukkit.metadata.FixedMetadataValue;
 
 import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.Options.OptionRegister;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Teams.TeamBuilder;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
@@ -33,16 +33,12 @@ import fr.HtSTeam.HtS.Utils.Randomizer;
 public class MobBuddyOption extends OptionBuilder<Boolean> {
 	
 	public MobBuddyOption() {
-		super(Material.MONSTER_EGG, "Mob Buddy", "§4Désactivé", false, OptionRegister.mob);
+		super(Material.MONSTER_EGG, "Mob Buddy", "§4Désactivé", false, GUIRegister.mob);
 	}
 	
 	@Override
 	public void event(Player p) {
-		if(getValue())
-			getItemStack().setLore("§2Activé");			
-		else
-			getItemStack().setLore("§4Désactivé");
-		parent.update(this);
+		setState(!getValue());
 	}
 	
 	@EventHandler(priority = EventPriority.HIGHEST)
@@ -136,5 +132,15 @@ public class MobBuddyOption extends OptionBuilder<Boolean> {
 				e.getDrops().addAll(drops);				
 			}
 		}
+	}
+
+	@Override
+	public void setState(Boolean value) {
+		if(value)
+			getItemStack().setLore("§2Activé");			
+		else
+			getItemStack().setLore("§4Désactivé");
+		setValue(value);
+		parent.update(this);		
 	}
 }

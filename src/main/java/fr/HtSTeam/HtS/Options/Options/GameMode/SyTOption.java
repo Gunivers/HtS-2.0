@@ -7,12 +7,13 @@ import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.GameModes.FallenKingdom.FallenKingdom;
 import fr.HtSTeam.HtS.GameModes.UHC.Common.UHC;
 import fr.HtSTeam.HtS.GameModes.UHC.SyT.SyT;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.OptionRegister;
 
 public class SyTOption extends GameModeState {
 
 	public SyTOption() {
-		super("Stress your Target", 1, "Stress your Target", null, Material.BOW, OptionRegister.gameMode);
+		super("Stress your Target", 1, "Stress your Target", null, Material.BOW, GUIRegister.gameMode);
 	}
 	
 	@Override

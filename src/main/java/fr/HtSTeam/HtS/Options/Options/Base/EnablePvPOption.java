@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import fr.HtSTeam.HtS.Options.OptionRegister;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
 
@@ -18,7 +18,7 @@ public class EnablePvPOption extends OptionBuilder<Integer> {
 	private Player p;
 	
 	public EnablePvPOption() {
-		super(Material.DIAMOND_SWORD, "Activation du PvP", "§220 minutes", 20, OptionRegister.base);
+		super(Material.DIAMOND_SWORD, "Activation du PvP", "§220 minutes", 20, GUIRegister.base);
 		switchState(false);
 	}
 
@@ -37,9 +37,8 @@ public class EnablePvPOption extends OptionBuilder<Integer> {
 			try {
 				int value = Integer.parseInt(e.getMessage());
 				if(value >= 0 && value <= 60) {
-					setValue(value);
+					setState(value);
 					p.sendMessage("§2PvP activé à " + getValue() + " minutes." );
-					this.getItemStack().setLore("§2" + value + " minutes");
 					parent.update(this);
 					request = false;
 					return;
@@ -60,6 +59,12 @@ public class EnablePvPOption extends OptionBuilder<Integer> {
 	public void changeState() {
 		Bukkit.broadcastMessage("§4Le PvP est maintenant activé.");
 		switchState(true);
+	}
+
+	@Override
+	public void setState(Integer value) {
+		setValue(value);
+		this.getItemStack().setLore("§2" + value + " minutes");
 	}
 
 }

@@ -8,16 +8,15 @@ import java.nio.file.Paths;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
-import fr.HtSTeam.HtS.Options.OptionRegister;
-import fr.HtSTeam.HtS.Options.Structure.Alterable;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Utils.FileExtractor;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 
-public class BatOption extends OptionBuilder<Boolean> implements Alterable {
+public class BatOption extends OptionBuilder<Boolean> {
 		
 	public BatOption() {
-		super(new ItemStackBuilder(EntityType.BAT, 1, "§rChauve-souris", "§4Désactivé"), false, OptionRegister.loottables);
+		super(new ItemStackBuilder(EntityType.BAT, 1, "§rChauve-souris", "§4Désactivé"), false, GUIRegister.loottables);
 	}
 
 	@Override
@@ -26,7 +25,7 @@ public class BatOption extends OptionBuilder<Boolean> implements Alterable {
 	}
 
 	@Override
-	public void setState(boolean value) {
+	public void setState(Boolean value) {
 		if(value && !getValue()) {
 			try {
 				FileExtractor.extractFile(FileExtractor.lt + "bat.json", FileExtractor.wdir + FileExtractor.Edir);

@@ -7,7 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.Options.OptionRegister;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
 public class BorderOption extends OptionBuilder<Integer> {
@@ -18,7 +18,7 @@ public class BorderOption extends OptionBuilder<Integer> {
 	private WorldBorder border = Main.world.getWorldBorder();
 	
 	public BorderOption() {
-		super(Material.IRON_FENCE, "Taille de la bordure", "§d1000 * 1000", 1000, OptionRegister.base);
+		super(Material.IRON_FENCE, "Taille de la bordure", "§d1000 * 1000", 1000, GUIRegister.base);
 		border.setCenter(0.0, 0.0);
 		border.setSize(1000);
 	}
@@ -38,12 +38,11 @@ public class BorderOption extends OptionBuilder<Integer> {
 			try {
 				int value = Integer.parseInt(e.getMessage());
 				if(value >= 500 && value <= 2500) {
-					setValue(value * 2);
-					p.sendMessage("§2Bordure à " + value + " blocs du centre." );
-					this.getItemStack().setLore("§d" + value * 2 + " * " + value * 2);
+					setState(value);
+					p.sendMessage("§2Bordure à " + value + " blocs du centre." );				
 					parent.update(this);
 					request = false;
-					border.setSize(value * 2);
+					
 					return;
 				}
 				p.sendMessage("§4Valeur non comprise entre 500 et 2500.");
@@ -51,6 +50,13 @@ public class BorderOption extends OptionBuilder<Integer> {
 				p.sendMessage("§4Valeur invalide.");
 			}
 		}
+	}
+
+	@Override
+	public void setState(Integer value) {
+		setValue(value * 2);	
+		this.getItemStack().setLore("§d" + value * 2 + " * " + value * 2);
+		border.setSize(value * 2);
 	}
 	
 

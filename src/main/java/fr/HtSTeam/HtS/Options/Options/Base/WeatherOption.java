@@ -5,15 +5,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.weather.WeatherChangeEvent;
 
-import fr.HtSTeam.HtS.Options.OptionRegister;
-import fr.HtSTeam.HtS.Options.Structure.Alterable;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
-public class WeatherOption extends OptionBuilder<Boolean> implements Alterable {
+public class WeatherOption extends OptionBuilder<Boolean> {
 	
 
 	public WeatherOption() {
-		super(Material.WATER_BUCKET, "Pluie", "§2Activé", true, OptionRegister.base);
+		super(Material.WATER_BUCKET, "Pluie", "§2Activé", true, GUIRegister.base);
 	}
 
 	@Override
@@ -28,7 +27,7 @@ public class WeatherOption extends OptionBuilder<Boolean> implements Alterable {
 	}
 
 	@Override
-	public void setState(boolean value) {
+	public void setState(Boolean value) {
 		if(value) {
 			getItemStack().setLore("§2Activé");
 			getItemStack().setItem(Material.WATER_BUCKET, (short) 0);

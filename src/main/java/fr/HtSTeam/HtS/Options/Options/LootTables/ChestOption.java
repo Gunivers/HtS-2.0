@@ -8,15 +8,14 @@ import java.nio.file.Paths;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
-import fr.HtSTeam.HtS.Options.OptionRegister;
-import fr.HtSTeam.HtS.Options.Structure.Alterable;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Utils.FileExtractor;
 
-public class ChestOption extends OptionBuilder<Boolean> implements Alterable {
+public class ChestOption extends OptionBuilder<Boolean> {
 		
 	public ChestOption() {
-		super(Material.CHEST, "Coffre", "§4Désactivé", false, OptionRegister.loottables);
+		super(Material.CHEST, "Coffre", "§4Désactivé", false, GUIRegister.loottables);
 	}
 
 	@Override
@@ -25,7 +24,7 @@ public class ChestOption extends OptionBuilder<Boolean> implements Alterable {
 	}
 
 	@Override
-	public void setState(boolean value) {
+	public void setState(Boolean value) {
 		if(value && !getValue()) {
 			try {
 				FileExtractor.extractFile(FileExtractor.lt + "coffre.json", FileExtractor.wdir + FileExtractor.Cdir);

@@ -15,7 +15,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
 import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.Options.OptionRegister;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.GUIBuilder;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
@@ -28,7 +28,7 @@ public class ModifiersGUI extends GUIBuilder implements StartTrigger, CommandExe
 	private boolean active = false;
 
 	public ModifiersGUI() {
-		super("Modifiers", 1, "Modifiers", "Activer/Désactiver des items modifiés", Material.END_CRYSTAL, OptionRegister.main);
+		super("Modifiers", 1, "Modifiers", "Activer/Désactiver des items modifiés", Material.END_CRYSTAL, GUIRegister.main);
 		Main.plugin.getCommand("gui").setExecutor(this);
 	}
 	

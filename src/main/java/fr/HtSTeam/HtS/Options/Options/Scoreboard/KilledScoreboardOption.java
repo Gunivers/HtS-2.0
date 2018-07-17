@@ -4,14 +4,14 @@ import org.apache.commons.lang.ObjectUtils.Null;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
-import fr.HtSTeam.HtS.Options.OptionRegister;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Scoreboard.ScoreBoard;
 
 public class KilledScoreboardOption extends OptionBuilder<Null> {
 	
 	public KilledScoreboardOption() {
-		super(Material.SKULL_ITEM, "Kill", "Afficher le nombre de joueurs tués", null, OptionRegister.scoreboard);
+		super(Material.SKULL_ITEM, "Kill", "Afficher le nombre de joueurs tués", null, GUIRegister.scoreboard);
 	}
 	
 	private boolean activated = false;
