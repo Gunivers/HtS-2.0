@@ -67,4 +67,9 @@ public class EnablePvPOption extends OptionBuilder<Integer> {
 		this.getItemStack().setLore("§2" + value + " minutes");
 	}
 
+	@Override
+	public String description() {
+		return "§2[Aide]§r Le PvP s'activer au bout de " + getValue() + " minutes.";
+	}
+
 }

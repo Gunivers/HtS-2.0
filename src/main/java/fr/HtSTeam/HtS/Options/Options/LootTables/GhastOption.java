@@ -16,7 +16,7 @@ import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 public class GhastOption extends OptionBuilder<Boolean>{
 
 	public GhastOption() {
-		super(new ItemStackBuilder(EntityType.GHAST, 1, "§rGhast", "§4Désactivé"), false, GUIRegister.loottables);
+		super(new ItemStackBuilder(EntityType.GHAST, 1, "§rGhast", "§4Désactivé"), false, GUIRegister.loottables, false);
 	}
 
 	@Override
@@ -43,5 +43,10 @@ public class GhastOption extends OptionBuilder<Boolean>{
 		}
 		setValue(value);
 		parent.update(this);
+	}
+
+	@Override
+	public String description() {
+		return null;
 	}	
 }

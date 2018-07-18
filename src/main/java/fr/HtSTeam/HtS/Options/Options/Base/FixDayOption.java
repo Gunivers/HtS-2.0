@@ -21,7 +21,7 @@ public class FixDayOption extends OptionBuilder<DayPhase> implements StartTrigge
 	int moment = 0;
 	int tick = 0;
 	public FixDayOption() {
-		super(Material.STAINED_CLAY, "Moment au lancement", "§dAube", DayPhase.AUBE, GUIRegister.base);
+		super(Material.STAINED_CLAY, "Moment au lancement", "§dAube", DayPhase.AUBE, GUIRegister.base, false);
 		getItemStack().setItem(Material.STAINED_CLAY, (short) 2);
 		parent.update(this);
 		}
@@ -76,5 +76,10 @@ public class FixDayOption extends OptionBuilder<DayPhase> implements StartTrigge
 	public void setState(DayPhase value) {
 		setLore(value);
 		setValue(value);
+	}
+
+	@Override
+	public String description() {
+		return null;
 	}
 }

@@ -63,4 +63,9 @@ public class ShulkerNetherOption extends OptionBuilder<Boolean> {
 			sh.setColor(DyeColor.RED);
 		}
 	}
+
+	@Override
+	public String description() {
+		return "§2[Aide]§r Les Shulkers peuvent spawn naturellement dans le Nether.";
+	}
 }

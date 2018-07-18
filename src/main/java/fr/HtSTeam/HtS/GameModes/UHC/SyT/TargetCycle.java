@@ -128,4 +128,9 @@ public class TargetCycle extends OptionBuilder<Integer> {
 		for(UUID uuid : PlayerInGame.playerInGame)
 			SyT.targetCycleOption.getTarget(Bukkit.getPlayer(uuid));
 	}
+
+	@Override
+	public String description() {
+		return "§2[Aide]§r L'annonce des cibles se fera au bout de " + getValue() + " minutes de jeu.";
+	}
 }

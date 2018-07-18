@@ -52,4 +52,9 @@ public class RadarOption extends OptionBuilder<Integer> {
 		}
 	}
 
+	@Override
+	public String description() {
+		return "§2[Aide]§r Le radar indique la position de la cible si celle-ci est à portée au-dessus de la couche 36 de l'overworld).\rCe dernier s'excute à " + getValue() + "minutes.";
+	}
+
 }

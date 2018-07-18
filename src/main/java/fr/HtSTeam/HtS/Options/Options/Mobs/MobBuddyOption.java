@@ -143,4 +143,9 @@ public class MobBuddyOption extends OptionBuilder<Boolean> {
 		setValue(value);
 		parent.update(this);		
 	}
+
+	@Override
+	public String description() {
+		return "§2[Aide]§r À leur mort, les mobs hostiles ont 17% de chances de drop un oeuf.\r Ce dernier une fois invoqué combattra à vos côtés.";
+	}
 }

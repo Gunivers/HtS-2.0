@@ -64,4 +64,9 @@ public class NetherWartOption extends OptionBuilder<Boolean>{
 			lt.getBlock().setData((byte) 3);
 		}
 	}
+
+	@Override
+	public String description() {
+		return "§2[Aide]§r La nether wart peut naturellement apparaître dans le Nether.";
+	}
 }

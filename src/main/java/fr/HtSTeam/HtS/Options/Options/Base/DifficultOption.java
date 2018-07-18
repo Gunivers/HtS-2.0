@@ -24,11 +24,11 @@ public class DifficultOption extends OptionBuilder<Difficulty> {
 		switch(difficult) {
 		case 0 : setState(Difficulty.EASY);
 				 break;
-		case 1 : setState(Difficulty.EASY);
+		case 1 : setState(Difficulty.NORMAL);
 				break;
-		case 2 : setState(Difficulty.EASY);
+		case 2 : setState(Difficulty.HARD);
 				break;
-		case 3: setState(Difficulty.EASY);
+		case 3: setState(Difficulty.PEACEFUL);
 				break;
 		}
 		parent.update(this);
@@ -59,6 +59,11 @@ public class DifficultOption extends OptionBuilder<Difficulty> {
 		changeDifficult(value);
 		setValue(value);
 		
+	}
+
+	@Override
+	public String description() {
+		return "§2[Aide]§r La difficulté est en " + getItemStack().getLore().substring(2).toLowerCase() + ".";
 	}
 
 }

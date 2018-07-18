@@ -35,4 +35,9 @@ public class HeadOption extends OptionBuilder<Boolean> {
 		setValue(value);
 		parent.update(this);
 	}
+
+	@Override
+	public String description() {
+		return "§2[Aide]§r À la mort du joueur, ce dernier droppera sa tête (simple objet décoratif).";
+	}
 }

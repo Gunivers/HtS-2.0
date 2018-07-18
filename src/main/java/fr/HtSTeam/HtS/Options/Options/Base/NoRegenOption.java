@@ -44,5 +44,10 @@ public class NoRegenOption extends OptionBuilder<Boolean> {
 		setValue(value);
 		parent.update(this);		
 	}
+
+	@Override
+	public String description() {
+		return "§2[Aide]§r La régénération naturelle est activée.";
+	}
 }
 

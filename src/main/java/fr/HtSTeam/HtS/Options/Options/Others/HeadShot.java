@@ -60,4 +60,9 @@ public class HeadShot extends OptionBuilder<Boolean>{
 			}
 		}
 	}
+
+	@Override
+	public String description() {
+		return "§2[Aide]§r Possibilité de faire un head shot sur les joueurs adverses";
+	}
 }

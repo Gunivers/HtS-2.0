@@ -58,6 +58,11 @@ public class BorderOption extends OptionBuilder<Integer> {
 		this.getItemStack().setLore("§d" + value * 2 + " * " + value * 2);
 		border.setSize(value * 2);
 	}
+
+	@Override
+	public String description() {
+		return "§2[Aide]§r La bordure se trouve à " + getValue() + " blocs du centre de la map.";
+	}
 	
 
 

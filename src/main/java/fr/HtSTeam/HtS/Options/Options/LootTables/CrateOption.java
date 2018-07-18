@@ -15,7 +15,7 @@ import fr.HtSTeam.HtS.Utils.FileExtractor;
 public class CrateOption extends OptionBuilder<Boolean>{
 		
 	public CrateOption() {
-		super(Material.BROWN_SHULKER_BOX, "Crate", "§4Désactivé", false, GUIRegister.loottables);
+		super(Material.BROWN_SHULKER_BOX, "Crate", "§4Désactivé", false, GUIRegister.loottables, false);
 	}
 
 	@Override
@@ -42,5 +42,10 @@ public class CrateOption extends OptionBuilder<Boolean>{
 		}
 		setValue(value);
 		parent.update(this);
+	}
+
+	@Override
+	public String description() {
+		return null;
 	}
 }

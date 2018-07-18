@@ -40,4 +40,9 @@ public class WeatherOption extends OptionBuilder<Boolean> {
 		parent.update(this);		
 	}
 
+	@Override
+	public String description() {
+		return "§2[Aide]§r La pluie est désactivée.";
+	}
+
 }

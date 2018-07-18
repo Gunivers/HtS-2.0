@@ -16,7 +16,7 @@ import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 public class BatOption extends OptionBuilder<Boolean> {
 		
 	public BatOption() {
-		super(new ItemStackBuilder(EntityType.BAT, 1, "§rChauve-souris", "§4Désactivé"), false, GUIRegister.loottables);
+		super(new ItemStackBuilder(EntityType.BAT, 1, "§rChauve-souris", "§4Désactivé"), false, GUIRegister.loottables, false);
 	}
 
 	@Override
@@ -44,5 +44,10 @@ public class BatOption extends OptionBuilder<Boolean> {
 			}
 		}
 		parent.update(this);		
+	}
+
+	@Override
+	public String description() {
+		return null;
 	}
 }

@@ -86,4 +86,9 @@ public class RadarFrequencyOption extends OptionBuilder<Integer> implements Star
 		setValue(value);
 		this.getItemStack().setLore("§2" + value + " minutes");
 	}
+
+	@Override
+	public String description() {
+		return "§2[Aide]§r Le radar s'éxécutera, après ça première activation, toutes les " + getValue() + "minutes.";
+	}
 }

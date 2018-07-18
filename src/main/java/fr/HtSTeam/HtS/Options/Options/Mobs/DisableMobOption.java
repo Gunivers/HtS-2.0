@@ -25,4 +25,10 @@ public class DisableMobOption extends OptionBuilder<String> {
 		
 	}
 
+	@Override
+	public String description() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

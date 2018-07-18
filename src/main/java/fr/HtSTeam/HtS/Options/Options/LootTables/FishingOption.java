@@ -15,7 +15,7 @@ import fr.HtSTeam.HtS.Utils.FileExtractor;
 public class FishingOption extends OptionBuilder<Boolean> {
 		
 	public FishingOption() {
-		super(Material.FISHING_ROD, "Pêche modifiée", "§4Désactivé", false, GUIRegister.loottables);
+		super(Material.FISHING_ROD, "Pêche modifiée", "§4Désactivé", false, GUIRegister.loottables, false);
 	}
 
 	@Override
@@ -42,5 +42,10 @@ public class FishingOption extends OptionBuilder<Boolean> {
 		}
 		setValue(value);
 		parent.update(this);
+	}
+
+	@Override
+	public String description() {
+		return null;
 	}
 }

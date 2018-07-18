@@ -31,4 +31,9 @@ public class GoldenAppleOption extends OptionBuilder<Boolean> {
 		setValue(value);
 		parent.update(this);		
 	}
+
+	@Override
+	public String description() {
+		return "§2[Aide]§r À la mort d'un joueur, ce dernier droppera une pomme d'or.";
+	}
 }

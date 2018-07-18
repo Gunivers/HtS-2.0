@@ -31,4 +31,10 @@ public class AnnonceOption extends OptionBuilder<Integer> {
 	@Override
 	public void setState(Integer value) {}
 
+	@Override
+	public String description() {
+		return "CTF";
+		
+	}
+
 }

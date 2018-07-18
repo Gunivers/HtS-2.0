@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.GUIRegister;
+import fr.HtSTeam.HtS.Options.Structure.IconBuilder;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Utils.XmlFile;
 
@@ -25,7 +26,7 @@ public class SavePreset extends OptionBuilder<Null> {
 		getParent().close(p);
 		XmlFile f = new XmlFile("Presets", "test");
 		f.root("preset", null, null);
-		for(Entry<OptionBuilder<?>, Object> ob : OptionBuilder.optionsList.entrySet()) {
+		for(Entry<IconBuilder<?>, Object> ob : IconBuilder.optionsList.entrySet()) {
 			if(ob.getKey().getValue() != null && !ob.getKey().getValue().equals(ob.getKey().getDefaultValue())) { // Erreur dans la condition
 				HashMap<String, String> attr = new HashMap<String, String>();
 				attr.put("name", ob.getKey().getName());
@@ -45,5 +46,11 @@ public class SavePreset extends OptionBuilder<Null> {
 
 	@Override
 	public void setState(Null value) {}
+
+	@Override
+	public String description() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

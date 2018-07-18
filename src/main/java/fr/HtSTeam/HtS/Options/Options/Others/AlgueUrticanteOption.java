@@ -10,7 +10,7 @@ import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 public class AlgueUrticanteOption extends OptionBuilder<Boolean> {
 		
 	public AlgueUrticanteOption() {
-		super(Material.VINE, "Algue Urticante", "§4Désactivé", false, GUIRegister.other);
+		super(Material.VINE, "Algue Urticante", "§4Désactivé", false, GUIRegister.other, false);
 	}
 
 	@Override
@@ -43,5 +43,10 @@ public class AlgueUrticanteOption extends OptionBuilder<Boolean> {
 			return true;
 		else
 			return false;
+	}
+
+	@Override
+	public String description() {
+		return null;
 	}
 }

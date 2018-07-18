@@ -47,4 +47,9 @@ public class NuggetsOption extends OptionBuilder<Boolean>{
 			}
 		}
 	}
+
+	@Override
+	public String description() {
+		return "§2[Aide]§r Lors du remplissage d'un sceau d'eau, il y a 2% de chances que celui-ci loot une nugget d'or ou de fer.";
+	}
 }

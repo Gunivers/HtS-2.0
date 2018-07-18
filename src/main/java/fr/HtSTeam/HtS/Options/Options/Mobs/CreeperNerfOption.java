@@ -45,4 +45,10 @@ public class CreeperNerfOption extends OptionBuilder<Boolean>{
 		setValue(value);
 		parent.update(this);		
 	}
+
+
+	@Override
+	public String description() {
+		return "§2[Aide]§r Les creepers ne peuvent pas porter le coup final au joueur, le laissant à 2 points de vie.";
+	}
 }

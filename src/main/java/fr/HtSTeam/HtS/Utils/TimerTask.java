@@ -12,7 +12,7 @@ import org.bukkit.scheduler.BukkitTask;
 
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.IconBuilder;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
 
 public class TimerTask {
@@ -77,7 +77,7 @@ public class TimerTask {
 	private void executeTimer() {
 		if(this != Main.timer)
 			return;
-		for (OptionBuilder<?> om : OptionBuilder.optionsList.keySet()) {
+		for (IconBuilder<?> om : IconBuilder.optionsList.keySet()) {
 			if(!(om.getValue() instanceof Integer)) return;
 			ArrayList<Method> methods = new ArrayList<Method>();
 			for (Method m : om.getClass().getMethods()) {

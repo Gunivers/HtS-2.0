@@ -31,4 +31,9 @@ public class DayLightCycleOption extends OptionBuilder<Boolean> {
 			getItemStack().setLore("§4Désactivé");
 		
 	}
+
+	@Override
+	public String description() {
+		return "§2[Aide]§r Le cycle jour/nuit est désactivé.";
+	}
 }

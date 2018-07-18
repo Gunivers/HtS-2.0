@@ -19,7 +19,8 @@ public class SkeletonNerfOption extends OptionBuilder<Integer> {
 	private boolean activate = false;
 
 	public SkeletonNerfOption() {
-		super(Material.BONE, "Squelette", "§d40 minutes", 40, GUIRegister.mob);
+		super(Material.BONE, "Squelette", "§d40 minutes", 0, GUIRegister.mob);
+		setValue(40);
 	}
 
 	@Override
@@ -69,6 +70,11 @@ public class SkeletonNerfOption extends OptionBuilder<Integer> {
 	public void setState(Integer value) {
 		setValue(value);	
 		this.getItemStack().setLore("§d" + value + " minutes");
+	}
+
+	@Override
+	public String description() {
+		return "§2[Aide]§r Les squelettes ne pourront vous tirer dessus pendant les " + getValue() + " minutes de jeu.";
 	}
 	
 	

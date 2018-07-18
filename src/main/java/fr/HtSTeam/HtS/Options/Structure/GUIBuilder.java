@@ -18,10 +18,10 @@ import org.bukkit.inventory.ItemStack;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
-public class GUIBuilder extends OptionBuilder<Null> {
+public class GUIBuilder extends IconBuilder<Null> {
 	
 	public static ArrayList<GUIBuilder> guiList = new ArrayList<GUIBuilder>();
-	public Map<ItemStackBuilder, OptionBuilder<?>> guiContent = new HashMap<ItemStackBuilder, OptionBuilder<?>>();
+	public Map<ItemStackBuilder, IconBuilder<?>> guiContent = new HashMap<ItemStackBuilder, IconBuilder<?>>();
 	
 	protected Inventory inv;
 	
@@ -48,7 +48,7 @@ public class GUIBuilder extends OptionBuilder<Null> {
 	
 	// Common Methods
 	
-	public void put(OptionBuilder<?> optionsManager) {
+	public void put(IconBuilder<?> optionsManager) {
 		if (guiContent.entrySet().size() > inv.getSize())
 			return;
 		guiContent.put(optionsManager.getItemStack(), optionsManager);
@@ -71,8 +71,8 @@ public class GUIBuilder extends OptionBuilder<Null> {
 		p.openInventory(inv);
 	}
 	
-	public void update(OptionBuilder<?> om) {
-		for(Entry<ItemStackBuilder, OptionBuilder<?>> is : guiContent.entrySet()) {
+	public void update(IconBuilder<?> om) {
+		for(Entry<ItemStackBuilder, IconBuilder<?>> is : guiContent.entrySet()) {
 			if(is.getValue() == om) {
 				for(ItemStack is2 : inv.getContents()) {
 					if(is2 != null && is2.getItemMeta().getDisplayName().equals(is.getKey().getName())) {
@@ -94,16 +94,12 @@ public class GUIBuilder extends OptionBuilder<Null> {
     		for(int i = 0; i < res.length(); i++)
     			news += "§" + res.charAt(i);
     		ItemStackBuilder itemStack = new ItemStackBuilder(Material.BARRIER, (short) 0, 1, "§rRetour", news);
-			OptionBuilder<Null> om = new OptionBuilder<Null>(itemStack, null, null) {
+			IconBuilder<Null> om = new IconBuilder<Null>(itemStack, null, null) {
 
 				@Override
 				public void event(Player p) {
 					parent2.refresh(p);
-				}
-
-				@Override
-				public void setState(Null value) {}
-				
+				}		
 			};
 		
 			inv.setItem(inv.getSize() - 1, om.getItemStack());	
@@ -118,7 +114,7 @@ public class GUIBuilder extends OptionBuilder<Null> {
 	
 	@EventHandler
 	public void onClick(InventoryClickEvent e) {
-		for(Entry<ItemStackBuilder, OptionBuilder<?>> ism : guiContent.entrySet()) {
+		for(Entry<ItemStackBuilder, IconBuilder<?>> ism : guiContent.entrySet()) {
 			if(ism.getKey().equals(e.getCurrentItem())) {
 				e.setCancelled(true);
 				ism.getValue().event((Player) e.getWhoClicked());
@@ -130,7 +126,4 @@ public class GUIBuilder extends OptionBuilder<Null> {
 	public void event(Player p) {
 		refresh(p);
 	}
-
-	@Override
-	public void setState(Null value) {}
 }

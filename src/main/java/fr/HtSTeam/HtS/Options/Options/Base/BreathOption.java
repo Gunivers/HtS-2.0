@@ -107,4 +107,9 @@ public class BreathOption extends OptionBuilder<Integer> implements StartTrigger
 		if(getValue().equals(-1)) return;
 		setValue(getValue() - 1);
 	}
+
+	@Override
+	public String description() {
+		return "§2[Aide]§r Le souffle de profondeurs donnent des effets négatifs aux joueurs se trouvant sous la couche 36 de l'overworld limitant ainsi le temps de minage.\r Ce dernier s'active à " + getValue() + " minutes.";
+	}
 }
