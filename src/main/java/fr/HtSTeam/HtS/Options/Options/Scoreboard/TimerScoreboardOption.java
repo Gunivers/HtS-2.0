@@ -35,4 +35,9 @@ public class TimerScoreboardOption extends OptionBuilder<Null> {
 		}
 	}
 	
+	@Override
+	public void setState(Null value) {}
+
+	@Override
+	public String description() {return null;}
 }

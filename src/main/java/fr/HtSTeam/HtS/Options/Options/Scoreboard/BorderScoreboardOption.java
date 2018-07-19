@@ -34,4 +34,10 @@ public class BorderScoreboardOption extends OptionBuilder<Null> {
 			ScoreBoard.send(p);
 		}
 	}
+	
+	@Override
+	public void setState(Null value) {}
+
+	@Override
+	public String description() {return null;}
 }
