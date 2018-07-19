@@ -82,4 +82,13 @@ public class FixDayOption extends OptionBuilder<DayPhase> implements StartTrigge
 	public String description() {
 		return null;
 	}
+	
+	@Override
+	public void load(Object o) {
+		try {
+			setValue(DayPhase.valueOf(o.toString()));
+		} catch(IllegalArgumentException e) {
+			return;
+		}
+	}
 }

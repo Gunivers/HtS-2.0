@@ -65,5 +65,14 @@ public class DifficultOption extends OptionBuilder<Difficulty> {
 	public String description() {
 		return "§2[Aide]§r La difficulté est en " + getItemStack().getLore().substring(2).toLowerCase() + ".";
 	}
+	
+	@Override
+	public void load(Object o) {
+		try {
+			setValue(Difficulty.valueOf(o.toString()));
+		} catch(IllegalArgumentException e) {
+			return;
+		}
+	}
 
 }

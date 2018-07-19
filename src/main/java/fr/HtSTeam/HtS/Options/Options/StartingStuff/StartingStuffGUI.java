@@ -47,6 +47,5 @@ public class StartingStuffGUI extends GUIBuilder implements StartTrigger {
 		this.inv.setContents(items);
 		addReturnButton();
 		super.refresh(p);
-	}
-
+	}	
 }
