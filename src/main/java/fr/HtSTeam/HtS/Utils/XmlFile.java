@@ -64,22 +64,13 @@ public class XmlFile {
 		}
 	}
 	
-	public Object getOptionValue(final String option_name) {
+	public String getOptionValue(final String option_name) {
 		NodeList node_list = getNodeList(option_name);
 		for (int i = 0; i < node_list.getLength(); i++)
 			if (getAttributeValue(node_list.item(i), "name").equalsIgnoreCase(option_name))
 				return getValue(node_list.item(i));
 		return null;
 	}
-	
-	public String getOptionType(final String option_name) {
-		NodeList node_list = getNodeList(option_name);
-		for (int i = 0; i < node_list.getLength(); i++)
-			if (getAttributeValue(node_list.item(i), "name").equalsIgnoreCase(option_name))
-				return getAttributeValue(node_list.item(i), "type");
-		return null;
-	}
-	
 	public void root(final String node_name, final Map<String, String> attributes, final String node_value) {
 		if(doc.getFirstChild() != null)
 			return;
