@@ -20,7 +20,6 @@ public class SkeletonNerfOption extends OptionBuilder<Integer> {
 
 	public SkeletonNerfOption() {
 		super(Material.BONE, "Squelette", "§d40 minutes", 0, GUIRegister.mob);
-		setValue(40);
 	}
 
 	@Override

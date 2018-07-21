@@ -26,6 +26,7 @@ import fr.HtSTeam.HtS.Options.Options.Nether.ShulkerNetherOption;
 import fr.HtSTeam.HtS.Options.Options.Others.AlgueUrticanteOption;
 import fr.HtSTeam.HtS.Options.Options.Others.HeadShot;
 import fr.HtSTeam.HtS.Options.Options.Others.NuggetsOption;
+import fr.HtSTeam.HtS.Options.Options.Presets.LoadPreset;
 import fr.HtSTeam.HtS.Options.Options.Presets.SavePreset;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.AddBlankScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.BorderScoreboardOption;
@@ -73,6 +74,7 @@ public class OptionRegister {
 		
 		public static BorderOption borderOption;
 		public static SavePreset savePreset = new SavePreset();
+		public static LoadPreset loadPreset = new LoadPreset();
 		
 		public static void register() {
 			
