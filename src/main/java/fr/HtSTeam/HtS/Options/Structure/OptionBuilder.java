@@ -1,7 +1,7 @@
 package fr.HtSTeam.HtS.Options.Structure;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -16,21 +16,25 @@ public abstract class OptionBuilder<A> extends IconBuilder<A> implements OptionI
 	public OptionBuilder(ItemStackBuilder material, A defaultValue, GUIBuilder gui) {
 		super(material, defaultValue, gui);
 		disp = true;
+		this.addToList();
 	}
 	
 	public OptionBuilder(Material material, String name, String description, A defaultValue, GUIBuilder gui) {
 		super(material, name, description, defaultValue, gui);
 		disp = true;
+		this.addToList();
 }
 	
 	public OptionBuilder(ItemStackBuilder material, A defaultValue, GUIBuilder gui, boolean dispInDescGUI) {
 		super(material, defaultValue, gui);
 		disp = dispInDescGUI;
+		this.addToList();
 	}
 	
 	public OptionBuilder(Material material, String name, String description, A defaultValue, GUIBuilder gui, boolean dispInDescGUI) {
 		super(material, name, description, defaultValue, gui);
 		disp = dispInDescGUI;
+		this.addToList();
 }
 
 	@Override
@@ -46,8 +50,13 @@ public abstract class OptionBuilder<A> extends IconBuilder<A> implements OptionI
 	}
 	
 	@Override
-	public List<String> save() {
-		return Arrays.asList(getValue().toString());
+	public ArrayList<String> save() {
+		return (getValue() != null && !getValue().equals(getDefaultValue())) ? new ArrayList<String>(Arrays.asList(getValue().toString())) : null;
+	}
+	
+	@Override
+	public String getId() {
+		return getName().substring(2);
 	}
 	
 	public boolean disp() {
