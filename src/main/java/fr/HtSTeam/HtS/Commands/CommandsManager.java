@@ -3,6 +3,7 @@ package fr.HtSTeam.HtS.Commands;
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.GameModes.FallenKingdom.CommandsFK;
 import fr.HtSTeam.HtS.GameModes.UHC.SyT.CommandSyT;
+import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Teams.TeamCommand;
 
 public class CommandsManager {
@@ -25,5 +26,6 @@ public class CommandsManager {
 		main.getCommand("radar").setExecutor(csyt);
 		main.getCommand("target").setExecutor(csyt);
 		main.getCommand("base").setExecutor(new CommandsFK());
+		main.getCommand("option").setExecutor(OptionRegister.loadPreset);
 	}
 }

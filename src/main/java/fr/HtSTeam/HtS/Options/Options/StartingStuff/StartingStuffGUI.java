@@ -1,5 +1,6 @@
 package fr.HtSTeam.HtS.Options.Options.StartingStuff;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.io.BukkitObjectInputStream;
 import org.bukkit.util.io.BukkitObjectOutputStream;
 
 import fr.HtSTeam.HtS.Main;
@@ -27,6 +29,7 @@ public class StartingStuffGUI extends GUIBuilder implements StartTrigger, Option
 
 	public StartingStuffGUI() {
 		super("Stuff de départ", 3, "Stuff de départ", "Définir le stuff de départ des joueurs", Material.WOOD_SWORD, GUIRegister.main);
+		addToList();
 	}
 
 	@Override
@@ -57,12 +60,26 @@ public class StartingStuffGUI extends GUIBuilder implements StartTrigger, Option
 
 	@Override
 	public void load(Object o) {
-		// TODO Auto-generated method stub
+		try {
+			ByteArrayInputStream stream = new ByteArrayInputStream(Base64.getDecoder().decode((String) o));
+	        BukkitObjectInputStream data2;
+			data2 = new BukkitObjectInputStream(stream);
+			ItemStack is;
+			ArrayList<ItemStack> list = new ArrayList<ItemStack>();
+			while((is = (ItemStack)data2.readObject()) != null)
+				list.add(is);
+			data2.close();
+			items = list.toArray(new ItemStack[list.size()]);
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
 	public ArrayList<String> save() {
+		if(items.length == 0)
+			return null;
 		try {
 			 ByteArrayOutputStream str = new ByteArrayOutputStream();	
 				BukkitObjectOutputStream data = new BukkitObjectOutputStream(str);
@@ -72,7 +89,6 @@ public class StartingStuffGUI extends GUIBuilder implements StartTrigger, Option
 				ArrayList<String> elements = new ArrayList<String>();
 				elements.add(Base64.getEncoder().encodeToString(str.toByteArray()));
 				return elements;
-				
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
@@ -81,6 +97,6 @@ public class StartingStuffGUI extends GUIBuilder implements StartTrigger, Option
 
 	@Override
 	public String getId() {
-		return "StartingStuff";
+		return getName();
 	}	
 }
