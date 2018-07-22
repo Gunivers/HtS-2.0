@@ -2,6 +2,7 @@ package fr.HtSTeam.HtS.Utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -64,13 +65,14 @@ public class XmlFile {
 		}
 	}
 	
-	public String getOptionValue(final String option_name) {
-		NodeList node_list = getNodeList(option_name);
+	public HashMap<String,String> thanksToThisMarvellousMethodYouCanRetriveTheOptionDataInTheConvenientFormOfAHashMapWithTheOptionNameAsKeysAndTheOptionValuesAsvalues() {
+		HashMap<String,String> options = new HashMap<String,String>();
+		NodeList node_list = getNodeList("option");
 		for (int i = 0; i < node_list.getLength(); i++)
-			if (getAttributeValue(node_list.item(i), "name").equalsIgnoreCase(option_name))
-				return getValue(node_list.item(i));
-		return null;
+			options.put(getAttributeValue(node_list.item(i), "name"), getValue(node_list.item(i)));
+		return options;
 	}
+	
 	public void root(final String node_name, final Map<String, String> attributes, final String node_value) {
 		if(doc.getFirstChild() != null)
 			return;
