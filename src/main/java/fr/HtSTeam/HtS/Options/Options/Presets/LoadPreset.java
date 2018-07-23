@@ -1,7 +1,9 @@
 package fr.HtSTeam.HtS.Options.Options.Presets;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map.Entry;
 
 import org.apache.commons.lang.ObjectUtils.Null;
 import org.bukkit.Material;
@@ -14,6 +16,7 @@ import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Utils.JSON;
+import fr.HtSTeam.HtS.Utils.OptionIO;
 import fr.HtSTeam.HtS.Utils.XmlFile;
 
 public class LoadPreset extends OptionBuilder<Null> implements CommandExecutor {
@@ -57,6 +60,13 @@ public class LoadPreset extends OptionBuilder<Null> implements CommandExecutor {
 	
 	public void load(File f) {
 		XmlFile xml = new XmlFile("Presets", f.getName());
+		HashMap<String, String> contents = xml.getTags();
+		for(Entry<String, String> content : contents.entrySet()) {
+			for(OptionIO oio : OptionIO.optionIOClass) {
+				if(content.getKey().equals(oio.getId()))
+					oio.load(contents);
+			}
+		}
 	}
 	
 	@Override

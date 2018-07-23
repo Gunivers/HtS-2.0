@@ -41,7 +41,6 @@ public class JSON {
 					msg = msg + ",{\"text\":\"" + set.getKey() + "\"}";
 			}
 		msg += ']';
-		System.out.println(msg);
 		((CraftPlayer) p).getHandle().playerConnection.sendPacket(new PacketPlayOutChat(ChatSerializer.a(msg)));
 	}
 

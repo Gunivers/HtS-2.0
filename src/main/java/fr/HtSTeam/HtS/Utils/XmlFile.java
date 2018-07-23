@@ -65,7 +65,7 @@ public class XmlFile {
 		}
 	}
 	
-	public HashMap<String,String> thanksToThisMarvellousMethodYouCanRetriveTheOptionDataInTheConvenientFormOfAHashMapWithTheOptionNameAsKeysAndTheOptionValuesAsvalues() {
+	public HashMap<String,String> getTags() {
 		HashMap<String,String> options = new HashMap<String,String>();
 		NodeList node_list = getNodeList("option");
 		for (int i = 0; i < node_list.getLength(); i++)
