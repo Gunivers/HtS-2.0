@@ -2,7 +2,9 @@ package fr.HtSTeam.HtS.Utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -65,11 +67,28 @@ public class XmlFile {
 		}
 	}
 	
-	public HashMap<String,String> getTags() {
+	public HashMap<String,String> getOptions() {
 		HashMap<String,String> options = new HashMap<String,String>();
 		NodeList node_list = getNodeList("option");
 		for (int i = 0; i < node_list.getLength(); i++)
-			options.put(getAttributeValue(node_list.item(i), "name"), getValue(node_list.item(i)));
+			if (!node_list.item(i).hasChildNodes())
+				options.put(getAttributeValue(node_list.item(i), "name"), getValue(node_list.item(i)));
+		return options;
+	}
+	
+	public HashMap<String, List<String>> getOption() {
+		HashMap<String, List<String>> options = new HashMap<String, List<String>>();
+		NodeList node_list = getNodeList("option");
+		for (int i = 0; i < node_list.getLength(); i++)
+			if (node_list.item(i).hasChildNodes()) {
+				List<String> option_elements = new ArrayList<String>();
+				NodeList node_child = node_list.item(i).getChildNodes();
+				for (int y = 0; y < node_child.getLength(); y++)
+					if (node_child.item(y).getNodeName().equals("element"))
+						option_elements.add(getValue(node_child.item(y)));
+				options.put(getAttributeValue(node_list.item(i), "name"), option_elements);
+			}
+				
 		return options;
 	}
 	

@@ -60,7 +60,7 @@ public class LoadPreset extends OptionBuilder<Null> implements CommandExecutor {
 	
 	public void load(File f) {
 		XmlFile xml = new XmlFile("Presets", f.getName());
-		HashMap<String, String> contents = xml.getTags();
+		HashMap<String, String> contents = xml.getOptions();
 		for(Entry<String, String> content : contents.entrySet()) {
 			for(OptionIO oio : OptionIO.optionIOClass) {
 				if(content.getKey().equals(oio.getId()))
