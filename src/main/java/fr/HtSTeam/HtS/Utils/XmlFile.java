@@ -67,6 +67,25 @@ public class XmlFile {
 		}
 	}
 	
+	@SuppressWarnings("serial")
+	public HashMap<String, List<String>> getOptions() {
+		HashMap<String, List<String>> options = new HashMap<String, List<String>>();
+		NodeList node_list = getNodeList("option");
+		for (int i = 0; i < node_list.getLength(); i++)
+			if (!node_list.item(i).hasChildNodes()) {
+				final int f = i;
+				options.put(getAttributeValue(node_list.item(i), "name"), new ArrayList<String>() {{ add(getValue(node_list.item(f))); }});
+			} else if (node_list.item(i).hasChildNodes()) {
+				List<String> option_elements = new ArrayList<String>();
+				NodeList node_child = node_list.item(i).getChildNodes();
+				for (int y = 0; y < node_child.getLength(); y++)
+					if (node_child.item(y).getNodeName().equals("element"))
+						option_elements.add(getValue(node_child.item(y)));
+				options.put(getAttributeValue(node_list.item(i), "name"), option_elements);
+			}
+		return options;
+	}
+	
 	public void root(final String node_name, final Map<String, String> attributes, final String node_value) {
 		if(doc.getFirstChild() != null)
 			return;
