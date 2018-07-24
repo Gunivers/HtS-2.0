@@ -67,23 +67,6 @@ public class XmlFile {
 		}
 	}
 	
-	public HashMap<String, Object> getOptions() {
-		HashMap<String, Object> options = new HashMap<String, Object>();
-		NodeList node_list = getNodeList("option");
-		for (int i = 0; i < node_list.getLength(); i++)
-			if (!node_list.item(i).hasChildNodes())
-				options.put(getAttributeValue(node_list.item(i), "name"), getValue(node_list.item(i)));
-			else if (node_list.item(i).hasChildNodes()) {
-				List<String> option_elements = new ArrayList<String>();
-				NodeList node_child = node_list.item(i).getChildNodes();
-				for (int y = 0; y < node_child.getLength(); y++)
-					if (node_child.item(y).getNodeName().equals("element"))
-						option_elements.add(getValue(node_child.item(y)));
-				options.put(getAttributeValue(node_list.item(i), "name"), option_elements);
-			}
-		return options;
-	}
-	
 	public void root(final String node_name, final Map<String, String> attributes, final String node_value) {
 		if(doc.getFirstChild() != null)
 			return;
@@ -136,15 +119,15 @@ public class XmlFile {
 					((Element) parents.item(i)).appendChild(node);
 	}
 	
-	private NodeList getNodeList(final String tagname) {
+	public NodeList getNodeList(final String tagname) {
 		return doc.getElementsByTagName(tagname);
 	}
 
-	private String getAttributeValue(final Node node, final String attribute) {
+	public String getAttributeValue(final Node node, final String attribute) {
 		return ((Element) node).getAttribute(attribute);
 	}
 	
-	private String getValue(final Node node) {
+	public String getValue(final Node node) {
 		return ((Element) node).getTextContent();
 	}
 }
