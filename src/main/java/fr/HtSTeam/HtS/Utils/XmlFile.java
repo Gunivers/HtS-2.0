@@ -76,7 +76,7 @@ public class XmlFile {
 		return options;
 	}
 	
-	public HashMap<String, List<String>> getOption() {
+	public HashMap<String, List<String>> getListOptions() {
 		HashMap<String, List<String>> options = new HashMap<String, List<String>>();
 		NodeList node_list = getNodeList("option");
 		for (int i = 0; i < node_list.getLength(); i++)
@@ -87,8 +87,7 @@ public class XmlFile {
 					if (node_child.item(y).getNodeName().equals("element"))
 						option_elements.add(getValue(node_child.item(y)));
 				options.put(getAttributeValue(node_list.item(i), "name"), option_elements);
-			}
-				
+			}		
 		return options;
 	}
 	
