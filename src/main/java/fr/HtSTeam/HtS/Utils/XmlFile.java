@@ -70,10 +70,10 @@ public class XmlFile {
 		HashMap<String, ArrayList<String>> options = new HashMap<String, ArrayList<String>>();
 		NodeList node_list = getNodeList("option");
 		for (int i = 0; i < node_list.getLength(); i++) {
-			if (!node_list.item(i).hasChildNodes()) {
+			if (node_list.item(i).getChildNodes().getLength() == 1) {
 				final int f = i;
 				options.put(getAttributeValue(node_list.item(i), "name"), new ArrayList<String>() {{ add(getValue(node_list.item(f))); }});
-			} else if (node_list.item(i).hasChildNodes()) {
+			} else if (node_list.item(i).getChildNodes().getLength() <= 1) {
 				ArrayList<String> option_elements = new ArrayList<String>();
 				NodeList node_child = node_list.item(i).getChildNodes();
 				for (int y = 0; y < node_child.getLength(); y++)
