@@ -72,6 +72,7 @@ public class BreathOption extends OptionBuilder<Integer> implements StartTrigger
 			getItemStack().setItem(Material.SULPHUR, (short) 0);
 			getItemStack().setLore("§4Désactivé");
 		}
+		parent.update(this);
 	}
 	
 	@EventHandler

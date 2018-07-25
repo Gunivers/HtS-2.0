@@ -69,7 +69,8 @@ public class FixDayOption extends OptionBuilder<DayPhase> implements StartTrigge
 				 getItemStack().setLore("§1Nuit");
 				 getItemStack().setItem(Material.STAINED_CLAY, (short) 11);
 				 break;
-	}
+		}
+		parent.update(this);
 	}
 
 	@Override
@@ -86,7 +87,7 @@ public class FixDayOption extends OptionBuilder<DayPhase> implements StartTrigge
 	@Override
 	public void load(Object o) {
 		try {
-			setValue(DayPhase.valueOf(o.toString()));
+			setState(DayPhase.valueOf(o.toString()));
 		} catch(IllegalArgumentException e) {
 			return;
 		}
