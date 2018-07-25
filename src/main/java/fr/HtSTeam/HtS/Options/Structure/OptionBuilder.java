@@ -45,8 +45,7 @@ public abstract class OptionBuilder<A> extends IconBuilder<A> implements OptionI
 	@SuppressWarnings("unchecked")
 	@Override
 	public void load(Object o) {
-		if(this.getValue().getClass().isInstance(o.getClass()))
-			setValue((A) o);
+		setState((A) o);
 	}
 	
 	@Override
