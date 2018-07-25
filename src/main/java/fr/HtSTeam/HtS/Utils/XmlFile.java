@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -68,15 +67,15 @@ public class XmlFile {
 	}
 	
 	@SuppressWarnings("serial")
-	public HashMap<String, List<String>> getOptions() {
-		HashMap<String, List<String>> options = new HashMap<String, List<String>>();
+	public HashMap<String, ArrayList<String>> getOptions() {
+		HashMap<String, ArrayList<String>> options = new HashMap<String, ArrayList<String>>();
 		NodeList node_list = getNodeList("option");
 		for (int i = 0; i < node_list.getLength(); i++)
 			if (!node_list.item(i).hasChildNodes()) {
 				final int f = i;
 				options.put(getAttributeValue(node_list.item(i), "name"), new ArrayList<String>() {{ add(getValue(node_list.item(f))); }});
 			} else if (node_list.item(i).hasChildNodes()) {
-				List<String> option_elements = new ArrayList<String>();
+				ArrayList<String> option_elements = new ArrayList<String>();
 				NodeList node_child = node_list.item(i).getChildNodes();
 				for (int y = 0; y < node_child.getLength(); y++)
 					if (node_child.item(y).getNodeName().equals("element"))

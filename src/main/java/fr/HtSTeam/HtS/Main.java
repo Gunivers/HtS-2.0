@@ -49,7 +49,7 @@ public class Main extends JavaPlugin {
 		ScoreboardLib.setPluginInstance(this);
 		Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "gamerule sendCommandFeedback false");
 		EventManager.loadEvents(this);
-		CommandsManager.loadCommands(this);
 		OptionRegister.register();
+		CommandsManager.loadCommands(this);
 	}
 }
