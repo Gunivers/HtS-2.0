@@ -7,7 +7,7 @@ import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Options.Base.FixDayOption.DayPhase;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
-import fr.HtSTeam.HtS.Utils.StartTrigger;
+import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
 
 public class FixDayOption extends OptionBuilder<DayPhase> implements StartTrigger {
 	

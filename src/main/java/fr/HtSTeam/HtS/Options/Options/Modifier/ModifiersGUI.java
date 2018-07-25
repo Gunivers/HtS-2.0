@@ -18,9 +18,9 @@ import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.GUIBuilder;
 import fr.HtSTeam.HtS.Options.Structure.IconBuilder;
+import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
-import fr.HtSTeam.HtS.Utils.StartTrigger;
 
 public class ModifiersGUI extends GUIBuilder implements StartTrigger, CommandExecutor {
 	

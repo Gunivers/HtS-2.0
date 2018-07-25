@@ -30,5 +30,4 @@ public class VictoryDetectionEvent implements Listener {
 			JSON.sendAll(Bukkit.getPlayer(PlayerInGame.playerInGame.get(0)).getName() + "§2 a gagné !", null, 5);
 		}
 	}
-	
 }

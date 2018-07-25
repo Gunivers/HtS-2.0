@@ -11,9 +11,9 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
 import fr.HtSTeam.HtS.Utils.ActionBar;
-import fr.HtSTeam.HtS.Utils.StartTrigger;
 
 public class RadarFrequencyOption extends OptionBuilder<Integer> implements StartTrigger {
 

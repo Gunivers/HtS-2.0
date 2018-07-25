@@ -138,15 +138,15 @@ public class XmlFile {
 					((Element) parents.item(i)).appendChild(node);
 	}
 	
-	public NodeList getNodeList(final String tagname) {
+	private NodeList getNodeList(final String tagname) {
 		return doc.getElementsByTagName(tagname);
 	}
 
-	public String getAttributeValue(final Node node, final String attribute) {
+	private String getAttributeValue(final Node node, final String attribute) {
 		return ((Element) node).getAttribute(attribute);
 	}
 	
-	public String getValue(final Node node) {
+	private String getValue(final Node node) {
 		return ((Element) node).getTextContent();
 	}
 }

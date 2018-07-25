@@ -8,8 +8,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.event.Listener;
 
+import fr.HtSTeam.HtS.Options.Structure.EndTrigger;
 import fr.HtSTeam.HtS.Options.Structure.IconBuilder;
-import fr.HtSTeam.HtS.Utils.StartTrigger;
+import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
 
 public enum EnumState implements Listener {
 	
@@ -30,6 +31,11 @@ public enum EnumState implements Listener {
 				if(Arrays.asList(keyset.get(i).getClass().getInterfaces()).contains(StartTrigger.class))
 					((StartTrigger) keyset.get(i)).onPartyStart();
 			 Main.gamemode.initialisation();
+		} else if (state.equals(EnumState.FINISHING)) {
+			List<IconBuilder<?>> keyset = new ArrayList<IconBuilder<?>>(IconBuilder.optionsList.keySet());
+			for(int i = 0; i < keyset.size(); i++)
+				if(Arrays.asList(keyset.get(i).getClass().getInterfaces()).contains(EndTrigger.class))
+					((EndTrigger) keyset.get(i)).onPartyEnd();
 		}
 	}
 	
