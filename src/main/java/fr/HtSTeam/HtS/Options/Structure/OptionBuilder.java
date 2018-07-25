@@ -45,7 +45,11 @@ public abstract class OptionBuilder<A> extends IconBuilder<A> implements OptionI
 	@SuppressWarnings("unchecked")
 	@Override
 	public void load(Object o) {
-		setState((A) o);
+		if(o.equals("true") || o.equals("false"))
+			setState((A) Boolean.valueOf(o.toString()));
+		else if(o.toString().matches("[0-9]+"))
+			setState((A) Integer.valueOf(o.toString()));
+		else setState((A) o);
 	}
 	
 	@Override

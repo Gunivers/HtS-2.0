@@ -63,8 +63,10 @@ public class EnablePvPOption extends OptionBuilder<Integer> {
 
 	@Override
 	public void setState(Integer value) {
+		System.out.println(value.getClass().getName());
 		setValue(value);
 		this.getItemStack().setLore("§2" + value + " minutes");
+		parent.update(this);
 	}
 
 	@Override
