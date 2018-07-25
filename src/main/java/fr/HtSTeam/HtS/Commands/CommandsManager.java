@@ -26,6 +26,6 @@ public class CommandsManager {
 		main.getCommand("radar").setExecutor(csyt);
 		main.getCommand("target").setExecutor(csyt);
 		main.getCommand("base").setExecutor(new CommandsFK());
-		main.getCommand("option").setExecutor(OptionRegister.loadPreset);
+		main.getCommand("load").setExecutor(OptionRegister.loadPreset);
 	}
 }

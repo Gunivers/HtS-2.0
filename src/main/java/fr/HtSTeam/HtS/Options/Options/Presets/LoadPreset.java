@@ -1,6 +1,7 @@
 package fr.HtSTeam.HtS.Options.Options.Presets;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
@@ -60,11 +61,16 @@ public class LoadPreset extends OptionBuilder<Null> implements CommandExecutor {
 	
 	public void load(File f) {
 		XmlFile xml = new XmlFile("Presets", f.getName());
-		HashMap<String, String> contents = xml.getOptions();
-		for(Entry<String, String> content : contents.entrySet()) {
+		HashMap<String, ArrayList<String>> contents = xml.getOptions();
+		for(Entry<String, ArrayList<String>> content : contents.entrySet()) {
 			for(OptionIO oio : OptionIO.optionIOClass) {
-				if(content.getKey().equals(oio.getId()))
-					oio.load(contents);
+				if(content.getKey().equals(oio.getId())) {
+					if(content.getValue().size() == 1)
+						oio.load(content.getValue().get(0));
+					else
+						oio.load(content);
+				}
+					
 			}
 		}
 	}
