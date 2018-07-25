@@ -54,7 +54,6 @@ public class XmlFile {
 			Transformer tf = TransformerFactory.newInstance().newTransformer();
 			tf.setOutputProperty(OutputKeys.INDENT, "yes");
 			tf.setOutputProperty(OutputKeys.METHOD, "xml");
-			tf.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
 			tf.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
 			
 			DOMSource source = new DOMSource(doc);
@@ -70,7 +69,7 @@ public class XmlFile {
 	public HashMap<String, ArrayList<String>> getOptions() {
 		HashMap<String, ArrayList<String>> options = new HashMap<String, ArrayList<String>>();
 		NodeList node_list = getNodeList("option");
-		for (int i = 0; i < node_list.getLength(); i++)
+		for (int i = 0; i < node_list.getLength(); i++) {
 			if (!node_list.item(i).hasChildNodes()) {
 				final int f = i;
 				options.put(getAttributeValue(node_list.item(i), "name"), new ArrayList<String>() {{ add(getValue(node_list.item(f))); }});
@@ -82,6 +81,7 @@ public class XmlFile {
 						option_elements.add(getValue(node_child.item(y)));
 				options.put(getAttributeValue(node_list.item(i), "name"), option_elements);
 			}
+		}
 		return options;
 	}
 	

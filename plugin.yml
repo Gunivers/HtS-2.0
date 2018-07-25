@@ -19,11 +19,11 @@ commands:
   description: Ouvre l'inventaire des modifiers
   usage: Erreur syntaxe ! Faites /gui
  base:
-  description: Définir une base
+  description: Défini une base
   usage: Erreur syntaxe ! Faites /base <add|join|list|remove> [nomBase] [nomEquipe]
- test:
-  description: aaa
-  usage: aaa
+ load:
+  description: Charge un preset
+  usage: Erreur syntaxe ! Faites /load (preset)
  pause:
   description: Met en pause le jeu
   usage: Erreur syntaxe ! Faites /pause

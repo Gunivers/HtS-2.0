@@ -22,7 +22,7 @@ import fr.HtSTeam.HtS.Utils.XmlFile;
 
 public class LoadPreset extends OptionBuilder<Null> implements CommandExecutor {
 
-	File file = new File(Main.plugin.getDataFolder() + "/" + "Presets");
+	File file;
 	
 	public LoadPreset() {
 		super(Material.ENDER_CHEST, "Charger", "Charge une configuration préalablement sauvegardée", null, GUIRegister.presets, false);
@@ -30,6 +30,8 @@ public class LoadPreset extends OptionBuilder<Null> implements CommandExecutor {
 
 	@Override
 	public void event(Player p) {
+		p.closeInventory();
+		file = new File(Main.plugin.getDataFolder() + "/" + "Presets");
 		p.sendMessage("§a===================");
 		for(File f : file.listFiles((dir, name) -> name.endsWith(".xml"))) {
 			LinkedHashMap<String, String> line = new LinkedHashMap<String, String>();
@@ -46,12 +48,12 @@ public class LoadPreset extends OptionBuilder<Null> implements CommandExecutor {
 			if(args.length == 1) {
 				for(File f : file.listFiles((dir, name) -> name.endsWith(".xml"))) {
 					if(f.getName().replaceAll(".xml", "").equals(args[0])) {
-						load(f);
+						load(f, (Player)sender);
 						return true;
 					}
-					sender.sendMessage("§4Fichier introuvable.");
-					return true;
 				}
+				sender.sendMessage("§4Fichier introuvable.");
+				return true;
 			}
 			sender.sendMessage("§4Le nombre d'argument requis est de 1.");
 			return true;
@@ -59,9 +61,11 @@ public class LoadPreset extends OptionBuilder<Null> implements CommandExecutor {
 		return false;
 	}
 	
-	public void load(File f) {
+	public void load(File f, Player p) {
 		XmlFile xml = new XmlFile("Presets", f.getName());
+		System.out.println(f.getName());
 		HashMap<String, ArrayList<String>> contents = xml.getOptions();
+		System.out.println(contents.size());
 		for(Entry<String, ArrayList<String>> content : contents.entrySet()) {
 			for(OptionIO oio : OptionIO.optionIOClass) {
 				if(content.getKey().equals(oio.getId())) {
@@ -73,6 +77,7 @@ public class LoadPreset extends OptionBuilder<Null> implements CommandExecutor {
 					
 			}
 		}
+		p.sendMessage("§2Import réussi.");
 	}
 	
 	@Override
