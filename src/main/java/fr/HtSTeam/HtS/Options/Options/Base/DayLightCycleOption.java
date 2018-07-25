@@ -29,7 +29,6 @@ public class DayLightCycleOption extends OptionBuilder<Boolean> {
 			getItemStack().setLore("§2Activé");
 		 else 
 			getItemStack().setLore("§4Désactivé");
-		
 	}
 
 	@Override
