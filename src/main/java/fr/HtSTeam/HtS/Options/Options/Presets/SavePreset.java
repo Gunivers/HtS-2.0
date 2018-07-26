@@ -15,6 +15,7 @@ import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Utils.OptionIO;
+import fr.HtSTeam.HtS.Utils.Tag;
 import fr.HtSTeam.HtS.Utils.XmlFile;
 
 public class SavePreset extends OptionBuilder<Null> {
@@ -35,20 +36,20 @@ public class SavePreset extends OptionBuilder<Null> {
 		p.sendMessage("§4Veuillez choisir le nom du fichier :");
 	}
 	
+	@SuppressWarnings("serial")
 	public void save(String name) {
 		XmlFile f = new XmlFile("Presets", name);
-		f.root("preset", null, null);
 		for(OptionIO ob : OptionIO.optionIOClass) {
 			if(ob.save() != null) {
-				HashMap<String, String> attr = new HashMap<String, String>();
-				attr.put("name", ob.getId());
+				HashMap<String, String> attr = new HashMap<String, String>() {{ put("name", ob.getId()); }};
 				ArrayList<String> elements = ob.save();
 				if(elements.size() == 1) {
-					f.set("option", attr, Objects.toString(elements.get(0)), "preset", null, null);
+					f.add(new Tag("option", attr, new ArrayList<Tag>(){{ add(new Tag(Objects.toString(elements.get(0)), null, null)); }}));
 				} else {
-					f.set("option", attr, null, "preset", null, null);
-					for(String s : elements)
-						f.sub("element", null, s);
+					ArrayList<Tag> elmnts = new ArrayList<Tag>();
+					for(String e : elements)
+						elmnts.add(new Tag(e, null, null));
+					f.add(new Tag("option", attr, elmnts));
 				}
 			}
 		}

@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -19,6 +19,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -65,87 +66,77 @@ public class XmlFile {
 		}
 	}
 	
-	@SuppressWarnings("serial")
-	public HashMap<String, ArrayList<String>> getOptions() {
-		HashMap<String, ArrayList<String>> options = new HashMap<String, ArrayList<String>>();
-		NodeList node_list = getNodeList("option");
-		for (int i = 0; i < node_list.getLength(); i++) {
-			if (node_list.item(i).getChildNodes().getLength() == 1) {
-				final int f = i;
-				options.put(getAttributeValue(node_list.item(i), "name"), new ArrayList<String>() {{ add(getValue(node_list.item(f))); }});
-			} else if (node_list.item(i).getChildNodes().getLength() <= 1) {
-				ArrayList<String> option_elements = new ArrayList<String>();
-				NodeList node_child = node_list.item(i).getChildNodes();
-				for (int y = 0; y < node_child.getLength(); y++)
-					if (node_child.item(y).getNodeName().equals("element"))
-						option_elements.add(getValue(node_child.item(y)));
-				options.put(getAttributeValue(node_list.item(i), "name"), option_elements);
-			}
-		}
-		return options;
-	}
+	public void add(Tag t) { add(t, false); }
 	
-	public void root(final String node_name, final Map<String, String> attributes, final String node_value) {
-		if(doc.getFirstChild() != null)
+	private void add(Tag t, boolean child) {
+		if (t.name.isEmpty())
 			return;
-		Element root = doc.createElement(node_name);
-		doc.appendChild(root);
-		if (node_value != null)
-			root.appendChild(doc.createTextNode(node_value));
-		if (attributes != null)	
-			for (String atrr_name : attributes.keySet()) {
-				Attr attr = doc.createAttribute(atrr_name);
-				attr.setValue(attributes.get(atrr_name));
-				root.setAttributeNode(attr);
-			}
-	}
-	
-	public void sub(final String node_name, final Map<String, String> attributes, final String node_value) {
 		Node parent = doc.getFirstChild();
-		while (parent.getLastChild() != null)
+		if (parent == null) {
+			parent = doc.createElement("root");
+			doc.appendChild(parent);
+		}
+		while (parent.getLastChild() != null && child)
 			parent = parent.getLastChild();
-		Element child = doc.createElement(node_name);
-		if (node_value != null)
-			child.appendChild(doc.createTextNode(node_value));
-		if (attributes != null)	
-			for (String atrr_name : attributes.keySet()) {
-				Attr attr = doc.createAttribute(atrr_name);
-				attr.setValue(attributes.get(atrr_name));
-				child.setAttributeNode(attr);
+		if (t.values != null && !t.values.isEmpty()) {
+			Element node = doc.createElement(t.name);
+			if (t.attributes != null && !t.attributes.isEmpty()) {
+				for(Entry<String, String> attributes : t.attributes.entrySet()) {
+					Attr attr = doc.createAttribute(attributes.getKey());
+					attr.setValue(attributes.getValue());
+					node.setAttributeNode(attr);
+				}
 			}
-		parent.appendChild(child);
-	}
-	
-	public void set(final String node_name, final Map<String, String> attributes, final String node_value,
-			final String parent_name, final String parent_attr, final String parent_attrvalue) {
-		if (doc.getDocumentElement().getNodeName() == null || parent_name == null)
+			parent.appendChild(node);
+			for (Tag tag : t.values)
+				add(tag, true);
 			return;
-
-		Element node = doc.createElement(node_name);
-		if (node_value != null)
-			node.appendChild(doc.createTextNode(node_value));
-		if(attributes != null)
-			for (String atrr_name : attributes.keySet()) {
-				Attr attr = doc.createAttribute(atrr_name);
-				attr.setValue(attributes.get(atrr_name));
-				node.setAttributeNode(attr);
+		}
+		parent.appendChild(doc.createTextNode(t.name));
+	}
+	
+	public ArrayList<Tag> get() {
+		Node root = doc.getFirstChild();
+		if (root == null)
+			return null;
+		if (!root.hasChildNodes())
+			return null;
+		ArrayList<Tag> tags = new ArrayList<Tag>();
+		NodeList nodes = root.getChildNodes();
+		for (int i = 0; i < nodes.getLength(); i++) {
+			Node node = nodes.item(i);
+			if (!node.hasChildNodes())
+				continue;
+			String name = node.getNodeName();
+			HashMap<String,String> attributes = new HashMap<String,String>();
+			NamedNodeMap attrs = node.getAttributes();
+			if (attrs != null && attrs.getLength() != 0)
+				for (int y = 0; y < attrs.getLength(); y++)
+					attributes.put(attrs.item(y).getNodeName(), attrs.item(y).getNodeValue());
+			ArrayList<Tag> values = get(node);
+			tags.add(new Tag(name, attributes, values));
+		}
+		return tags;
+	}
+	
+	private ArrayList<Tag> get(Node parent) {
+		ArrayList<Tag> tags = new ArrayList<Tag>();
+		NodeList nodes = parent.getChildNodes();
+		for (int i = 0; i < nodes.getLength(); i++) {
+			Node node = nodes.item(i);
+			if (!node.hasChildNodes()) {
+				tags.add(new Tag(node.getTextContent(), null, null));
+				continue;
 			}
-		NodeList parents = doc.getElementsByTagName(parent_name);
-		for (int i = 0; i < parents.getLength(); i++)
-			if (parents.item(i).getNodeType() == Node.ELEMENT_NODE)
-				if (((Element) parents.item(i)).getAttribute(parent_attr) == parent_attrvalue || (parent_attr == null && parent_attrvalue == null))
-					((Element) parents.item(i)).appendChild(node);
-	}
-	
-	private NodeList getNodeList(final String tagname) {
-		return doc.getElementsByTagName(tagname);
-	}
-
-	private String getAttributeValue(final Node node, final String attribute) {
-		return ((Element) node).getAttribute(attribute);
-	}
-	
-	private String getValue(final Node node) {
-		return ((Element) node).getTextContent();
+			String name = node.getNodeName();
+			HashMap<String,String> attributes = new HashMap<String,String>();
+			NamedNodeMap attrs = node.getAttributes();
+			if (attrs != null && attrs.getLength() != 0)
+				for (int y = 0; y < attrs.getLength(); y++)
+					attributes.put(attrs.item(y).getNodeName(), attrs.item(y).getNodeValue());
+			ArrayList<Tag> values = get(node);
+			tags.add(new Tag(name, attributes, values));
+		}
+		return tags;
 	}
 }

@@ -2,9 +2,7 @@ package fr.HtSTeam.HtS.Options.Options.Presets;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.Map.Entry;
 
 import org.apache.commons.lang.ObjectUtils.Null;
 import org.bukkit.Material;
@@ -18,6 +16,7 @@ import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Utils.JSON;
 import fr.HtSTeam.HtS.Utils.OptionIO;
+import fr.HtSTeam.HtS.Utils.Tag;
 import fr.HtSTeam.HtS.Utils.XmlFile;
 
 public class LoadPreset extends OptionBuilder<Null> implements CommandExecutor {
@@ -63,12 +62,12 @@ public class LoadPreset extends OptionBuilder<Null> implements CommandExecutor {
 	
 	public void load(File f, Player p) {
 		XmlFile xml = new XmlFile("Presets", f.getName().replaceAll(".xml", ""));
-		HashMap<String, ArrayList<String>> contents = xml.getOptions();
-		for(Entry<String, ArrayList<String>> content : contents.entrySet()) {
+		ArrayList<Tag> contents = xml.get();
+		for(Tag content : contents) {
 			for(OptionIO oio : OptionIO.optionIOClass) {
-				if(content.getKey().equals(oio.getId())) {
-					if(content.getValue().size() == 1)
-						oio.load(content.getValue().get(0));
+				if(content.attributes.get("name").equals(oio.getId())) {
+					if(content.values.size() == 1)
+						oio.load(content.values.get(0).name);
 					else
 						oio.load(content);
 				}
