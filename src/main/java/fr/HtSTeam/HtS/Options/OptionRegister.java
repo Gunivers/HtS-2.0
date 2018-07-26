@@ -76,6 +76,10 @@ public class OptionRegister {
 		public static SavePreset savePreset = new SavePreset();
 		public static LoadPreset loadPreset = new LoadPreset();
 		
+		// Statistics
+		
+		
+		
 		public static void register() {
 			
 			
