@@ -31,8 +31,8 @@ public class GUIRegister {
 	public static GUIBuilder stats = new GUIBuilder("Statistiques", 1, "Statistiques", "Permet de définir les statistiques trackées", Material.BOOK_AND_QUILL, main);
 	
 	// GameMode
+	public static GUIBuilder hts = new UHCOption();
 	public static GUIBuilder fallenKingdom = new FallenKingdomOption();
 	public static GUIBuilder syt = new SyTOption();
-	public static GUIBuilder hts = new UHCOption();
 	
 }

@@ -12,7 +12,7 @@ public abstract class GameModeState extends GUIBuilder {
 
 	public GameModeState(String nameInv, int row, String name, String description, Material material, GUIBuilder gui) {
 		super(nameInv, row, name, description, material, gui);
-		((GameModeGUI) parent).gameModeOption.add(this);
+		GameModeGUI.gameModeOption.add(this);
 	}
 	
 	public void setState(boolean b) {
