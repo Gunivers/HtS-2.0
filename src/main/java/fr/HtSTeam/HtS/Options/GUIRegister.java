@@ -5,6 +5,7 @@ import org.bukkit.Material;
 import fr.HtSTeam.HtS.Options.Options.GameMode.FallenKingdomOption;
 import fr.HtSTeam.HtS.Options.Options.GameMode.GameModeGUI;
 import fr.HtSTeam.HtS.Options.Options.GameMode.SyTOption;
+import fr.HtSTeam.HtS.Options.Options.GameMode.UHCOption;
 import fr.HtSTeam.HtS.Options.Options.Modifier.ModifiersGUI;
 import fr.HtSTeam.HtS.Options.Options.StartingStuff.StartingStuffGUI;
 import fr.HtSTeam.HtS.Options.Structure.GUIBuilder;
@@ -32,5 +33,6 @@ public class GUIRegister {
 	// GameMode
 	public static GUIBuilder fallenKingdom = new FallenKingdomOption();
 	public static GUIBuilder syt = new SyTOption();
+	public static GUIBuilder hts = new UHCOption();
 	
 }
