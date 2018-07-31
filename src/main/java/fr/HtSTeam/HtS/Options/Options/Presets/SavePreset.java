@@ -48,7 +48,7 @@ public class SavePreset extends OptionBuilder<Null> {
 				} else {
 					ArrayList<Tag> elmnts = new ArrayList<Tag>();
 					for(String e : elements)
-						elmnts.add(new Tag(e, null, null));
+						elmnts.add(new Tag("element", null, new ArrayList<Tag>() {{ add(new Tag(e, null, null)); }}));			
 					f.add(new Tag("option", attr, elmnts));
 				}
 			}

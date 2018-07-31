@@ -56,18 +56,20 @@ public class XmlFile {
 			tf.setOutputProperty(OutputKeys.INDENT, "yes");
 			tf.setOutputProperty(OutputKeys.METHOD, "xml");
 			tf.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
-			
+
 			DOMSource source = new DOMSource(doc);
 			StreamResult result = new StreamResult(file);
-			
+
 			tf.transform(source, result);
 		} catch (TransformerFactoryConfigurationError | TransformerException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public void add(Tag t) { add(t, false); }
-	
+
+	public void add(Tag t) {
+		add(t, false);
+	}
+
 	private void add(Tag t, boolean child) {
 		if (t.name.isEmpty())
 			return;
@@ -76,12 +78,14 @@ public class XmlFile {
 			parent = doc.createElement("root");
 			doc.appendChild(parent);
 		}
-		while (parent.getLastChild() != null && child)
+		while (parent.getLastChild() != null && parent.getLastChild().getNodeType() != Node.TEXT_NODE
+				&& !parent.getLastChild().getNodeName().equals(t.name) && child) {
 			parent = parent.getLastChild();
+		}
 		if (t.values != null && !t.values.isEmpty()) {
 			Element node = doc.createElement(t.name);
 			if (t.attributes != null && !t.attributes.isEmpty()) {
-				for(Entry<String, String> attributes : t.attributes.entrySet()) {
+				for (Entry<String, String> attributes : t.attributes.entrySet()) {
 					Attr attr = doc.createAttribute(attributes.getKey());
 					attr.setValue(attributes.getValue());
 					node.setAttributeNode(attr);
@@ -94,7 +98,7 @@ public class XmlFile {
 		}
 		parent.appendChild(doc.createTextNode(t.name));
 	}
-	
+
 	public ArrayList<Tag> get() {
 		Node root = doc.getFirstChild();
 		if (root == null)
@@ -105,10 +109,12 @@ public class XmlFile {
 		NodeList nodes = root.getChildNodes();
 		for (int i = 0; i < nodes.getLength(); i++) {
 			Node node = nodes.item(i);
+			if (node.getNodeType() != Node.ELEMENT_NODE)
+				continue;
 			if (!node.hasChildNodes())
 				continue;
 			String name = node.getNodeName();
-			HashMap<String,String> attributes = new HashMap<String,String>();
+			HashMap<String, String> attributes = new HashMap<String, String>();
 			NamedNodeMap attrs = node.getAttributes();
 			if (attrs != null && attrs.getLength() != 0)
 				for (int y = 0; y < attrs.getLength(); y++)
@@ -118,24 +124,26 @@ public class XmlFile {
 		}
 		return tags;
 	}
-	
+
 	private ArrayList<Tag> get(Node parent) {
 		ArrayList<Tag> tags = new ArrayList<Tag>();
 		NodeList nodes = parent.getChildNodes();
 		for (int i = 0; i < nodes.getLength(); i++) {
 			Node node = nodes.item(i);
-			if (!node.hasChildNodes()) {
+			if (node.getNodeType() == Node.TEXT_NODE && !node.getTextContent().contains("\r") && !node.getTextContent().contains("\n")) {
 				tags.add(new Tag(node.getTextContent(), null, null));
 				continue;
 			}
-			String name = node.getNodeName();
-			HashMap<String,String> attributes = new HashMap<String,String>();
-			NamedNodeMap attrs = node.getAttributes();
-			if (attrs != null && attrs.getLength() != 0)
-				for (int y = 0; y < attrs.getLength(); y++)
-					attributes.put(attrs.item(y).getNodeName(), attrs.item(y).getNodeValue());
-			ArrayList<Tag> values = get(node);
-			tags.add(new Tag(name, attributes, values));
+			if (node.getNodeType() == Node.ELEMENT_NODE) {
+				String name = node.getNodeName();
+				HashMap<String, String> attributes = new HashMap<String, String>();
+				NamedNodeMap attrs = node.getAttributes();
+				if (attrs != null && attrs.getLength() != 0)
+					for (int y = 0; y < attrs.getLength(); y++)
+						attributes.put(attrs.item(y).getNodeName(), attrs.item(y).getNodeValue());
+				ArrayList<Tag> values = get(node);
+				tags.add(new Tag(name, attributes, values));
+			}
 		}
 		return tags;
 	}
