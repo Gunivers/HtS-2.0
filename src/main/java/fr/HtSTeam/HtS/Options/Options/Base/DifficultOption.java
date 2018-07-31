@@ -30,9 +30,7 @@ public class DifficultOption extends OptionBuilder<Difficulty> {
 				break;
 		case 3: setState(Difficulty.PEACEFUL);
 				break;
-		}
-		parent.update(this);
-		
+		}		
 	}
 	
 	private void setLore(Difficulty d) {
@@ -46,6 +44,7 @@ public class DifficultOption extends OptionBuilder<Difficulty> {
 		case HARD : getItemStack().setLore("§4Difficile");
 				break;
 		}
+		parent.update(this);
 	}
 	
 	private void changeDifficult(Difficulty d) {

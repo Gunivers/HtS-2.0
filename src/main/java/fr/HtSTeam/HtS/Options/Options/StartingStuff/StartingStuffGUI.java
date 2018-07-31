@@ -2,6 +2,7 @@ package fr.HtSTeam.HtS.Options.Options.StartingStuff;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.EOFException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -66,9 +67,15 @@ public class StartingStuffGUI extends GUIBuilder implements StartTrigger, Option
 			data2 = new BukkitObjectInputStream(stream);
 			ItemStack is;
 			ArrayList<ItemStack> list = new ArrayList<ItemStack>();
-			while((is = (ItemStack)data2.readObject()) != null)
-				list.add(is);
-			data2.close();
+			try {
+				while(true) {
+					is = (ItemStack)data2.readObject();
+					list.add(is);
+				}
+			} catch(EOFException e) {}
+			finally {
+				data2.close();
+			}
 			items = list.toArray(new ItemStack[list.size()]);
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();

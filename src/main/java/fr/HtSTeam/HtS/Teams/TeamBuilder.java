@@ -9,7 +9,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-public class TeamBuilder {
+import fr.HtSTeam.HtS.Utils.OptionIO;
+
+public class TeamBuilder implements OptionIO {
 		
 	public static ArrayList<TeamBuilder> teamList = new ArrayList<TeamBuilder>();
 	public static Map<String, TeamBuilder> nameTeam = new HashMap<String, TeamBuilder>();
@@ -125,4 +127,22 @@ public class TeamBuilder {
 	    	}
 	    	return 0;	
 	    }
+
+	@Override
+	public void load(Object o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<String> save() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
