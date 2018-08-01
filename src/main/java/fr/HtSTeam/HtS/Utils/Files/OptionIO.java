@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Utils;
+package fr.HtSTeam.HtS.Utils.Files;
 
 import java.util.ArrayList;
 import java.util.HashSet;

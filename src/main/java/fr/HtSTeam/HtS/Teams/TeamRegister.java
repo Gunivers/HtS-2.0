@@ -2,8 +2,8 @@ package fr.HtSTeam.HtS.Teams;
 
 import java.util.ArrayList;
 
-import fr.HtSTeam.HtS.Utils.OptionIO;
 import fr.HtSTeam.HtS.Utils.Tag;
+import fr.HtSTeam.HtS.Utils.Files.OptionIO;
 
 public class TeamRegister implements OptionIO {
 	

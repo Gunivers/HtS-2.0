@@ -34,6 +34,24 @@ import fr.HtSTeam.HtS.Options.Options.Scoreboard.KilledScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.PlayerScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.RemoveBlankScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.TimerScoreboardOption;
+import fr.HtSTeam.HtS.Options.Options.Statistics.AccuracyStatOption;
+import fr.HtSTeam.HtS.Options.Options.Statistics.ArrowHitStatOption;
+import fr.HtSTeam.HtS.Options.Options.Statistics.ArrowShotStatOption;
+import fr.HtSTeam.HtS.Options.Options.Statistics.DamageGivenStatOption;
+import fr.HtSTeam.HtS.Options.Options.Statistics.DisconnectionStatOption;
+import fr.HtSTeam.HtS.Options.Options.Statistics.EnchantmentsDoneStatOption;
+import fr.HtSTeam.HtS.Options.Options.Statistics.ItemsPickedUpStatOption;
+import fr.HtSTeam.HtS.Options.Options.Statistics.KillsMonsterStatOption;
+import fr.HtSTeam.HtS.Options.Options.Statistics.KillsPassiveStatOption;
+import fr.HtSTeam.HtS.Options.Options.Statistics.KillsPlayerStatOption;
+import fr.HtSTeam.HtS.Options.Options.Statistics.MinedDiamondsStatOption;
+import fr.HtSTeam.HtS.Options.Options.Statistics.MinedGoldOresStatOption;
+import fr.HtSTeam.HtS.Options.Options.Statistics.PortalsCrossedStatOption;
+import fr.HtSTeam.HtS.Options.Options.Statistics.PotionDrunkStatOption;
+import fr.HtSTeam.HtS.Options.Options.Statistics.PotionThrownStatOption;
+import fr.HtSTeam.HtS.Options.Options.Statistics.TimePlayedStatOption;
+import fr.HtSTeam.HtS.Options.Options.Statistics.TimeSneakedStatOption;
+import fr.HtSTeam.HtS.Options.Options.Statistics.TimeSprintedStatOption;
 
 public class OptionRegister {
 	
@@ -78,7 +96,25 @@ public class OptionRegister {
 		
 		// Statistics
 		
-		
+		public static TimePlayedStatOption stats1 = new TimePlayedStatOption();
+		public static PortalsCrossedStatOption stats2 = new PortalsCrossedStatOption();
+		public static TimeSprintedStatOption stats3 = new TimeSprintedStatOption();
+		public static TimeSneakedStatOption stats4 = new TimeSneakedStatOption();
+		public static DisconnectionStatOption stats5 = new DisconnectionStatOption();
+		public static MinedDiamondsStatOption stats6 = new MinedDiamondsStatOption();
+		public static MinedGoldOresStatOption stats7 = new MinedGoldOresStatOption();
+		public static ItemsPickedUpStatOption stats8 = new ItemsPickedUpStatOption();
+		public static EnchantmentsDoneStatOption stats9 = new EnchantmentsDoneStatOption();
+		public static GoldenAppleOption stats10 = new GoldenAppleOption();
+		public static PotionDrunkStatOption stats11 = new PotionDrunkStatOption();
+		public static PotionThrownStatOption stats12 = new PotionThrownStatOption();
+		public static KillsPlayerStatOption stats13 = new KillsPlayerStatOption();
+		public static KillsMonsterStatOption stats14 = new KillsMonsterStatOption();
+		public static KillsPassiveStatOption stats15 = new KillsPassiveStatOption();
+		public static DamageGivenStatOption stats16 = new DamageGivenStatOption();
+		public static ArrowShotStatOption stats17 = new ArrowShotStatOption();
+		public static ArrowHitStatOption stats18 = new ArrowHitStatOption();
+		public static AccuracyStatOption stats19 = new AccuracyStatOption();
 		
 		public static void register() {
 			

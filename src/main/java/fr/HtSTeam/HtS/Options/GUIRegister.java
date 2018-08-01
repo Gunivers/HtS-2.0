@@ -28,7 +28,7 @@ public class GUIRegister {
 
 	public static GUIBuilder presets = new GUIBuilder("Presets", 1, "Presets", "Permet de définir une configuration enregistrée", Material.RECORD_5, main);
 	
-	public static GUIBuilder stats = new GUIBuilder("Statistiques", 1, "Statistiques", "Permet de définir les statistiques trackées", Material.BOOK_AND_QUILL, main);
+	public static GUIBuilder stats = new GUIBuilder("Statistiques", 3, "Statistiques", "Permet de définir les statistiques trackées", Material.BOOK_AND_QUILL, main);
 	
 	// GameMode
 	public static GUIBuilder hts = new UHCOption();

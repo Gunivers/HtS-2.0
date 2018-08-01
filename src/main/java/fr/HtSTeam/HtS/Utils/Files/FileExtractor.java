@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Utils;
+package fr.HtSTeam.HtS.Utils.Files;
 
 import java.io.File;
 import java.io.FileOutputStream;

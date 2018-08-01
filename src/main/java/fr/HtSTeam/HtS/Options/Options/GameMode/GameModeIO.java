@@ -2,7 +2,7 @@ package fr.HtSTeam.HtS.Options.Options.GameMode;
 
 import java.util.ArrayList;
 
-import fr.HtSTeam.HtS.Utils.OptionIO;
+import fr.HtSTeam.HtS.Utils.Files.OptionIO;
 
 public class GameModeIO implements OptionIO {
 	

@@ -1,5 +1,7 @@
 package fr.HtSTeam.HtS.Options.Options.Statistics;
 
+import fr.HtSTeam.HtS.EnumState;
+
 public enum EnumStats {
 
 	TIME_PLAYED (true),
@@ -23,6 +25,15 @@ public enum EnumStats {
 	ARROW_HIT (true),
 	ACCURACY (true);
 	
-	private EnumStats(Boolean b) {
+	private boolean b = false;
+	
+	private EnumStats(Boolean b) { 
+		if (EnumState.getState().equals(EnumState.RUNNING) && b)
+			return;
+		this.b = b;
+		StatisticHandler.updateTrackedStats();
 	}
+	
+	public void setTracked(boolean b) { this.b = b; }
+	public boolean isTracked() { return b; }
 }

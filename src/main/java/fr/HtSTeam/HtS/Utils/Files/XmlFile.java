@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Utils;
+package fr.HtSTeam.HtS.Utils.Files;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,6 +25,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import fr.HtSTeam.HtS.Main;
+import fr.HtSTeam.HtS.Utils.Tag;
 
 public class XmlFile {
 

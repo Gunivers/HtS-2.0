@@ -14,9 +14,9 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
-import fr.HtSTeam.HtS.Utils.OptionIO;
 import fr.HtSTeam.HtS.Utils.Tag;
-import fr.HtSTeam.HtS.Utils.XmlFile;
+import fr.HtSTeam.HtS.Utils.Files.OptionIO;
+import fr.HtSTeam.HtS.Utils.Files.XmlFile;
 
 public class SavePreset extends OptionBuilder<Null> {
 

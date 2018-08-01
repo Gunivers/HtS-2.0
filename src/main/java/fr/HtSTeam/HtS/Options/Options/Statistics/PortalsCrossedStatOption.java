@@ -2,17 +2,16 @@ package fr.HtSTeam.HtS.Options.Options.Statistics;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
-public class DisconnectionStatOption extends OptionBuilder<Boolean> {
+public class PortalsCrossedStatOption extends OptionBuilder<Boolean> {
 	
-	public DisconnectionStatOption() {
-		super(Material.RED_ROSE, "Déconnexion", "§2Activé", true, GUIRegister.stats);		
+	public PortalsCrossedStatOption() {
+		super(Material.PORTAL, "Portals Crossed", "§2Activé", true, GUIRegister.stats);		
 	}
 
 	@Override
@@ -25,10 +24,10 @@ public class DisconnectionStatOption extends OptionBuilder<Boolean> {
 	public void setState(Boolean value) {
 		setValue(value);
 		if(getValue()) {
-			EnumStats.DISCONNECTIONS.setTracked(true);
+			EnumStats.PORTALS_CROSSED.setTracked(true);
 			getItemStack().setLore("§2Activé");
 		} else {
-			EnumStats.DISCONNECTIONS.setTracked(false);
+			EnumStats.PORTALS_CROSSED.setTracked(false);
 			getItemStack().setLore("§4Désactivé");
 		}
 	}
@@ -38,7 +37,7 @@ public class DisconnectionStatOption extends OptionBuilder<Boolean> {
 		return null;
 	}
 	
-	@EventHandler
+//	@EventHandler
 	public void onLogOut(PlayerQuitEvent e) {
 		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.DISCONNECTIONS.isTracked())
 			StatisticHandler.update(e.getPlayer(), EnumStats.DISCONNECTIONS);

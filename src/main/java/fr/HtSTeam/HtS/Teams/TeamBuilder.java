@@ -9,7 +9,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-import fr.HtSTeam.HtS.Utils.OptionIO;
+import fr.HtSTeam.HtS.Utils.Files.OptionIO;
 
 public class TeamBuilder implements OptionIO {
 		

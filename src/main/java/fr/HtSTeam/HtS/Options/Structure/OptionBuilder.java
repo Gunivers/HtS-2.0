@@ -7,7 +7,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
-import fr.HtSTeam.HtS.Utils.OptionIO;
+import fr.HtSTeam.HtS.Utils.Files.OptionIO;
 
 public abstract class OptionBuilder<A> extends IconBuilder<A> implements OptionIO {
 	

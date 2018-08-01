@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
-import fr.HtSTeam.HtS.Utils.FileExtractor;
+import fr.HtSTeam.HtS.Utils.Files.FileExtractor;
 
 public class ChestOption extends OptionBuilder<Boolean> {
 		
