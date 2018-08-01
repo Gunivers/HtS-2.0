@@ -38,6 +38,7 @@ import fr.HtSTeam.HtS.Options.Options.Statistics.AccuracyStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.ArrowHitStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.ArrowShotStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.DamageGivenStatOption;
+import fr.HtSTeam.HtS.Options.Options.Statistics.DamageReceivedStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.DisconnectionStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.EnchantmentsDoneStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.ItemsPickedUpStatOption;
@@ -97,10 +98,10 @@ public class OptionRegister {
 		// Statistics
 		
 		public static TimePlayedStatOption stats1 = new TimePlayedStatOption();
-		public static PortalsCrossedStatOption stats2 = new PortalsCrossedStatOption();
+		public static DisconnectionStatOption stats2 = new DisconnectionStatOption();
 		public static TimeSprintedStatOption stats3 = new TimeSprintedStatOption();
 		public static TimeSneakedStatOption stats4 = new TimeSneakedStatOption();
-		public static DisconnectionStatOption stats5 = new DisconnectionStatOption();
+		public static PortalsCrossedStatOption stats5 = new PortalsCrossedStatOption();
 		public static MinedDiamondsStatOption stats6 = new MinedDiamondsStatOption();
 		public static MinedGoldOresStatOption stats7 = new MinedGoldOresStatOption();
 		public static ItemsPickedUpStatOption stats8 = new ItemsPickedUpStatOption();
@@ -112,9 +113,10 @@ public class OptionRegister {
 		public static KillsMonsterStatOption stats14 = new KillsMonsterStatOption();
 		public static KillsPassiveStatOption stats15 = new KillsPassiveStatOption();
 		public static DamageGivenStatOption stats16 = new DamageGivenStatOption();
-		public static ArrowShotStatOption stats17 = new ArrowShotStatOption();
-		public static ArrowHitStatOption stats18 = new ArrowHitStatOption();
-		public static AccuracyStatOption stats19 = new AccuracyStatOption();
+		public static DamageReceivedStatOption stats17 = new DamageReceivedStatOption();
+		public static ArrowShotStatOption stats18 = new ArrowShotStatOption();
+		public static ArrowHitStatOption stats19 = new ArrowHitStatOption();
+		public static AccuracyStatOption stats20 = new AccuracyStatOption();
 		
 		public static void register() {
 			

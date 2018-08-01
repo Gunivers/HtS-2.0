@@ -11,7 +11,7 @@ import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 public class PortalsCrossedStatOption extends OptionBuilder<Boolean> {
 	
 	public PortalsCrossedStatOption() {
-		super(Material.PORTAL, "Portals Crossed", "§2Activé", true, GUIRegister.stats);		
+		super(Material.ENDER_PORTAL_FRAME, "Portals Crossed", "§2Activé", true, GUIRegister.stats);		
 	}
 
 	@Override

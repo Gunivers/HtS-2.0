@@ -11,7 +11,7 @@ import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 public class DamageGivenStatOption extends OptionBuilder<Boolean> {
 	
 	public DamageGivenStatOption() {
-		super(Material.PORTAL, "Damage Given", "§2Activé", true, GUIRegister.stats);		
+		super(Material.GOLD_SWORD, "Damage Given", "§2Activé", true, GUIRegister.stats);		
 	}
 
 	@Override
