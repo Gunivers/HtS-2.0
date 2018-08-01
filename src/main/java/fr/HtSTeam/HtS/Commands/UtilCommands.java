@@ -9,6 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Players.PlayerInGame;
+import fr.HtSTeam.HtS.Utils.Files.OptionIO;
 
 public class UtilCommands implements CommandExecutor {
 
@@ -36,7 +37,8 @@ public class UtilCommands implements CommandExecutor {
 				}
 				return false;
 			} if (cmd.getName().equalsIgnoreCase("test") && sender.hasPermission("test.use")) {
-				 
+				 for(OptionIO oio : OptionIO.optionIOClass)
+					 System.out.println(oio.getId());
 			}
 
 		}

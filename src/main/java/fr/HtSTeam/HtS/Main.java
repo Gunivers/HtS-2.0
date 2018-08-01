@@ -18,15 +18,15 @@ import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Players.DeathLoot;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.ScoreboardLib;
 import fr.HtSTeam.HtS.Teams.TeamRegister;
-import fr.HtSTeam.HtS.Utils.TimerTask;
 import fr.HtSTeam.HtS.Utils.Files.FileExtractor;
+import fr.HtSTeam.HtS.Utils.TimerTask;
 
 public class Main extends JavaPlugin {
 	
 	public HashMap<Player, UUID> uuidPlayer = new HashMap<>();
 	public static World world;
 	public static Main plugin;
-	public final static String HTSNAME = "HtS I";
+	public static String HTSNAME = "HtS I";
 	public static DeathLoot deathLoot = new DeathLoot();
 	public static TimerTask timer;
 	public static GameMode gamemode = new UHC();

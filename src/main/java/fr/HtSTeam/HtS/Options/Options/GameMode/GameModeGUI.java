@@ -36,17 +36,22 @@ public class GameModeGUI extends GUIBuilder {
 					b = true;
 			if (!b)
 				return;
-			for (GameModeState gms : gameModeOption) {
+			for (GameModeState gms : gameModeOption)
 				if (gms.getItemStack().equals(e.getCurrentItem())) {
-					gms.setState(true);
-					gms.setOption();
-					e.setCancelled(true);
-				} else {
-					gms.setState(false);
-					e.setCancelled(true);
+					setGameMode(gms);
 				}
-			}
+			e.setCancelled(true);
 		}
 	}
 
+	public void setGameMode(GameModeState gms) {
+		gms.setState(true);
+		gms.setOption();
+		for (GameModeState gms2 : gameModeOption) {
+			if (gms != gms2) {
+				gms2.setState(false);
+			}
+		}
+	}
+	
 }

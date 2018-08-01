@@ -13,7 +13,14 @@ import fr.HtSTeam.HtS.Options.Structure.GUIBuilder;
 public class GUIRegister {
 
 	public final static GUIBuilder main = new GUIBuilder("Options", 3, "Options", "Ouvre les options", Material.BARRIER, null);
+	
+	
 	public static GUIBuilder gameMode = new GameModeGUI();
+	// GameMode
+	public static GUIBuilder hts = new UHCOption();
+	public static GUIBuilder fallenKingdom = new FallenKingdomOption();
+	public static GUIBuilder syt = new SyTOption();
+	
 	public static GUIBuilder base = new GUIBuilder("Option de base", 1, "Option de base", "Régler les options basiques", Material.GRASS, main);
 	public static GUIBuilder atDeath = new GUIBuilder("Mort du joueur", 1, "Mort du joueur", "Régler la mort d'un joueur", Material.SKULL_ITEM,main);
 	public static GUIBuilder scoreboard = new GUIBuilder("Scoreboard", 1, "Scoreboard", "Régler le scoreboard", Material.SIGN, main);
@@ -30,9 +37,5 @@ public class GUIRegister {
 	
 	public static GUIBuilder stats = new GUIBuilder("Statistiques", 3, "Statistiques", "Permet de définir les statistiques trackées", Material.BOOK_AND_QUILL, main);
 	
-	// GameMode
-	public static GUIBuilder hts = new UHCOption();
-	public static GUIBuilder fallenKingdom = new FallenKingdomOption();
-	public static GUIBuilder syt = new SyTOption();
 	
 }

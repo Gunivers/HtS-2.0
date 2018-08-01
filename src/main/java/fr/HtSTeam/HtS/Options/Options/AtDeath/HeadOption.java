@@ -24,10 +24,8 @@ public class HeadOption extends OptionBuilder<Boolean> {
 	@Override
 	public void setState(Boolean value) {
 		if(value && !getValue()) {
-			if(getValue().equals(true)) {
-				getItemStack().setLore("§2Activé");
-				Main.deathLoot.addItem(Material.SKULL_ITEM, (short) 3);
-			}
+			getItemStack().setLore("§2Activé");
+			Main.deathLoot.addItem(Material.SKULL_ITEM, (short) 3);
 		} else if(!value && getValue()) {
 			getItemStack().setLore("§4Désactivé");
 			Main.deathLoot.removeItem(Material.SKULL_ITEM);

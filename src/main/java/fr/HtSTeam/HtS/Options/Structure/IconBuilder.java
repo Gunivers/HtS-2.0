@@ -60,7 +60,7 @@ public abstract class IconBuilder<A extends Object> implements Listener {
 			this.icon = material;
 			this.defaultValue = defaultValue;
 			this.value = defaultValue;
-			OptionBuilder.optionsList.put(this, defaultValue);
+			IconBuilder.optionsList.put(this, defaultValue);
 			PluginManager pm = Main.plugin.getServer().getPluginManager();
 			pm.registerEvents(this, Main.plugin);
 			this.addAt(gui);
@@ -75,7 +75,7 @@ public abstract class IconBuilder<A extends Object> implements Listener {
 		
 	public void setValue(A value) {
 		this.value = value;
-		OptionBuilder.optionsList.replace(this, value);
+		IconBuilder.optionsList.replace(this, value);
 	}
 	public A getValue() { return value; }
 

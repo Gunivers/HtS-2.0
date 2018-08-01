@@ -78,7 +78,9 @@ public class TimerTask {
 		if(this != Main.timer)
 			return;
 		for (IconBuilder<?> om : IconBuilder.optionsList.keySet()) {
+			System.out.println("1 : " + om.getName());
 			if(!(om.getValue() instanceof Integer)) return;
+			System.out.println(om.getName());
 			ArrayList<Method> methods = new ArrayList<Method>();
 			for (Method m : om.getClass().getMethods()) {
 				if(m.isAnnotationPresent(Timer.class))
@@ -90,6 +92,7 @@ public class TimerTask {
 					if (this.getTimerInMinute() == (Integer)om.getValue())
 						m.invoke(om);
 				} catch (NumberFormatException e) {
+					e.printStackTrace();
 					continue;
 				} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 					e.printStackTrace();
