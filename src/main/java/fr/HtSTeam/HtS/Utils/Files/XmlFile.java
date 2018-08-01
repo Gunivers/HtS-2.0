@@ -99,7 +99,18 @@ public class XmlFile {
 		}
 		parent.appendChild(doc.createTextNode(t.name));
 	}
-
+	
+	public ArrayList<Tag> get(String attr_name, String attr_value) {
+		ArrayList<Tag> tags = get();		
+		if (attr_name != null && attr_value != null) {
+			tags.forEach(t -> { if (!t.attributes.containsKey(attr_name) && !t.attributes.containsValue(attr_value)) tags.remove(t);});
+			return tags;
+		} else {
+			tags.forEach(t -> { if (t.attributes != null) tags.remove(t);});
+			return tags;
+		}
+	}
+	
 	public ArrayList<Tag> get() {
 		Node root = doc.getFirstChild();
 		if (root == null)
