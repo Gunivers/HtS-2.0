@@ -24,15 +24,16 @@ public class GoldenAppleEatenStatOption extends OptionBuilder<Boolean> {
 
 	@Override
 	public void setState(Boolean value) {
+		if (EnumState.getState().equals(EnumState.RUNNING))
+			return;
 		setValue(value);
-		if(getValue() && !EnumState.getState().equals(EnumState.RUNNING)) {
+		if(getValue()) {
 			EnumStats.GOLDEN_APLLE_EATEN.setTracked(true);
 			getItemStack().setLore("§2Activé");
 		} else {
 			EnumStats.GOLDEN_APLLE_EATEN.setTracked(false);
 			getItemStack().setLore("§4Désactivé");
 		}
-		StatisticHandler.updateTrackedStats();
 		parent.update(this);
 	}
 

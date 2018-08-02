@@ -25,15 +25,16 @@ public class ArrowHitStatOption extends OptionBuilder<Boolean> {
 
 	@Override
 	public void setState(Boolean value) {
+		if (EnumState.getState().equals(EnumState.RUNNING))
+			return;
 		setValue(value);
-		if(getValue() && !EnumState.getState().equals(EnumState.RUNNING)) {
+		if(getValue()) {
 			EnumStats.ARROW_HIT.setTracked(true);
 			getItemStack().setLore("§2Activé");
 		} else {
 			EnumStats.ARROW_HIT.setTracked(false);
 			getItemStack().setLore("§4Désactivé");
 		}
-		StatisticHandler.updateTrackedStats();
 		parent.update(this);
 	}
 

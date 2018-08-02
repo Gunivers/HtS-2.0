@@ -3,9 +3,9 @@ package fr.HtSTeam.HtS.Options.Options.Statistics.Structure;
 public enum EnumStats {
 
 	TIME_PLAYED (true, -1),
-	DISCONNECTIONS (true, 0),
 	TIME_SPRINTED (true, -1),
 	TIME_SNEAKED (true, -1),
+	DISCONNECTIONS (true, 0),
 	PORTALS_CROSSED (true, 0),
 	MINED_DIAMONDS (true, 0),
 	MINED_GOLDORES (true, 0),

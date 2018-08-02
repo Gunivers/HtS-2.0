@@ -24,15 +24,16 @@ public class AccuracyStatOption extends OptionBuilder<Boolean> implements EndTri
 
 	@Override
 	public void setState(Boolean value) {
+		if (EnumState.getState().equals(EnumState.RUNNING))
+			return;
 		setValue(value);
-		if(getValue() && !EnumState.getState().equals(EnumState.RUNNING)) {
+		if(getValue()) {
 			EnumStats.ACCURACY.setTracked(true);
 			getItemStack().setLore("§2Activé");
 		} else {
 			EnumStats.ACCURACY.setTracked(false);
 			getItemStack().setLore("§4Désactivé");
 		}
-		StatisticHandler.updateTrackedStats();
 		parent.update(this);
 	}
 

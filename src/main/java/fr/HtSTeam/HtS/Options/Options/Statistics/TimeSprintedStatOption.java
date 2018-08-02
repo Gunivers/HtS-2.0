@@ -28,15 +28,16 @@ public class TimeSprintedStatOption extends OptionBuilder<Boolean> implements St
 
 	@Override
 	public void setState(Boolean value) {
+		if (EnumState.getState().equals(EnumState.RUNNING))
+			return;
 		setValue(value);
-		if(getValue() && !EnumState.getState().equals(EnumState.RUNNING)) {
+		if(getValue()) {
 			EnumStats.TIME_SPRINTED.setTracked(true);
 			getItemStack().setLore("§2Activé");
 		} else {
 			EnumStats.TIME_SPRINTED.setTracked(false);
 			getItemStack().setLore("§4Désactivé");
 		}
-		StatisticHandler.updateTrackedStats();
 		parent.update(this);
 	}
 

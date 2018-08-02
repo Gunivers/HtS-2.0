@@ -26,15 +26,16 @@ public class TimeSneakedStatOption extends OptionBuilder<Boolean> implements Sta
 
 	@Override
 	public void setState(Boolean value) {
+		if (EnumState.getState().equals(EnumState.RUNNING))
+			return;
 		setValue(value);
-		if(getValue() && !EnumState.getState().equals(EnumState.RUNNING)) {
+		if(getValue()) {
 			EnumStats.TIME_SNEAKED.setTracked(true);
 			getItemStack().setLore("§2Activé");
 		} else {
 			EnumStats.TIME_SNEAKED.setTracked(false);
 			getItemStack().setLore("§4Désactivé");
 		}
-		StatisticHandler.updateTrackedStats();
 		parent.update(this);
 	}
 

@@ -24,15 +24,16 @@ public class EnchantmentsDoneStatOption extends OptionBuilder<Boolean> {
 
 	@Override
 	public void setState(Boolean value) {
+		if (EnumState.getState().equals(EnumState.RUNNING))
+			return;
 		setValue(value);
-		if(getValue() && !EnumState.getState().equals(EnumState.RUNNING)) {
+		if(getValue()) {
 			EnumStats.ENCHANTMENTS_DONE.setTracked(true);
 			getItemStack().setLore("§2Activé");
 		} else {
 			EnumStats.ENCHANTMENTS_DONE.setTracked(false);
 			getItemStack().setLore("§4Désactivé");
 		}
-		StatisticHandler.updateTrackedStats();
 		parent.update(this);
 	}
 

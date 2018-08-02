@@ -48,8 +48,4 @@ public class StatisticHandler {
 			return playerStats.get(p.getUniqueId()).get(s);
 		return null;
 	}
-	
-	public static void updateTrackedStats() {
-		playerStats.forEach((uuid, stats) -> { stats.forEach((stat, value) -> { if (!stat.isTracked()) stats.remove(stat); }); });
-	}
 }
