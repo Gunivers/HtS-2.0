@@ -11,7 +11,7 @@ public enum EnumStats {
 	MINED_GOLDORES (true, 0),
 	ITEMS_PICKED_UP (true, 0),
 	ENCHANTMENTS_DONE (true, 0),
-	GOLDEN_APLLE_EATEN (true, 0),
+	GOLDEN_APPLE_EATEN (true, 0),
 	POTION_DRUNK (true, 0),
 	POTION_THROWN (true, 0),
 	KILLS_PLAYER (true, 0),

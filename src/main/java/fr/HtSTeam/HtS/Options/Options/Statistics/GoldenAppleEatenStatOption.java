@@ -28,10 +28,10 @@ public class GoldenAppleEatenStatOption extends OptionBuilder<Boolean> {
 			return;
 		setValue(value);
 		if(getValue()) {
-			EnumStats.GOLDEN_APLLE_EATEN.setTracked(true);
+			EnumStats.GOLDEN_APPLE_EATEN.setTracked(true);
 			getItemStack().setLore("§2Activé");
 		} else {
-			EnumStats.GOLDEN_APLLE_EATEN.setTracked(false);
+			EnumStats.GOLDEN_APPLE_EATEN.setTracked(false);
 			getItemStack().setLore("§4Désactivé");
 		}
 		parent.update(this);
@@ -44,7 +44,7 @@ public class GoldenAppleEatenStatOption extends OptionBuilder<Boolean> {
 	
 	@EventHandler
 	public void on(PlayerItemConsumeEvent e) {
-		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.GOLDEN_APLLE_EATEN.isTracked() && e.getItem().getType() == Material.GOLDEN_APPLE)
-			StatisticHandler.update(e.getPlayer(), EnumStats.GOLDEN_APLLE_EATEN);
+		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.GOLDEN_APPLE_EATEN.isTracked() && e.getItem().getType() == Material.GOLDEN_APPLE)
+			StatisticHandler.update(e.getPlayer(), EnumStats.GOLDEN_APPLE_EATEN);
 	}
 }
