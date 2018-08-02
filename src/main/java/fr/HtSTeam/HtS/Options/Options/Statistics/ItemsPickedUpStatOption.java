@@ -7,6 +7,8 @@ import org.bukkit.event.player.PlayerPickupItemEvent;
 
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Options.GUIRegister;
+import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.EnumStats;
+import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.StatisticHandler;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
 @SuppressWarnings("deprecation")
@@ -25,13 +27,14 @@ public class ItemsPickedUpStatOption extends OptionBuilder<Boolean> {
 	@Override
 	public void setState(Boolean value) {
 		setValue(value);
-		if(getValue()) {
+		if(getValue() && !EnumState.getState().equals(EnumState.RUNNING)) {
 			EnumStats.ITEMS_PICKED_UP.setTracked(true);
 			getItemStack().setLore("§2Activé");
 		} else {
 			EnumStats.ITEMS_PICKED_UP.setTracked(false);
 			getItemStack().setLore("§4Désactivé");
 		}
+		StatisticHandler.updateTrackedStats();
 	}
 
 	@Override

@@ -7,6 +7,8 @@ import org.bukkit.event.player.PlayerItemConsumeEvent;
 
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Options.GUIRegister;
+import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.EnumStats;
+import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.StatisticHandler;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
 public class GoldenAppleEatenStatOption extends OptionBuilder<Boolean> {
@@ -24,13 +26,14 @@ public class GoldenAppleEatenStatOption extends OptionBuilder<Boolean> {
 	@Override
 	public void setState(Boolean value) {
 		setValue(value);
-		if(getValue()) {
+		if(getValue() && !EnumState.getState().equals(EnumState.RUNNING)) {
 			EnumStats.GOLDEN_APLLE_EATEN.setTracked(true);
 			getItemStack().setLore("§2Activé");
 		} else {
 			EnumStats.GOLDEN_APLLE_EATEN.setTracked(false);
 			getItemStack().setLore("§4Désactivé");
 		}
+		StatisticHandler.updateTrackedStats();
 	}
 
 	@Override

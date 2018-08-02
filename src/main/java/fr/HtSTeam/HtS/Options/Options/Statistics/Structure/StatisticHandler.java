@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Options.Options.Statistics;
+package fr.HtSTeam.HtS.Options.Options.Statistics.Structure;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -17,10 +17,9 @@ public class StatisticHandler {
 			HashMap<EnumStats, Object> stats = new HashMap<EnumStats, Object>();
 			for (EnumStats s : EnumStats.values())
 				if (s.isTracked())
-					stats.put(s, 0);
+					stats.put(s, s.getDefaultValue());
 			playerStats.put(uuid, stats);
-		}
-					
+		}	
 	}
 	
 	public static void update(Player p, EnumStats s) {

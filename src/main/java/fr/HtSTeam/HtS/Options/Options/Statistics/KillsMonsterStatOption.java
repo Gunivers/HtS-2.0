@@ -9,6 +9,8 @@ import org.bukkit.event.entity.EntityDeathEvent;
 
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Options.GUIRegister;
+import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.EnumStats;
+import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.StatisticHandler;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
 public class KillsMonsterStatOption extends OptionBuilder<Boolean> {
@@ -26,13 +28,14 @@ public class KillsMonsterStatOption extends OptionBuilder<Boolean> {
 	@Override
 	public void setState(Boolean value) {
 		setValue(value);
-		if(getValue()) {
+		if(getValue() && !EnumState.getState().equals(EnumState.RUNNING)) {
 			EnumStats.KILLS_MONSTER.setTracked(true);
 			getItemStack().setLore("§2Activé");
 		} else {
 			EnumStats.KILLS_MONSTER.setTracked(false);
 			getItemStack().setLore("§4Désactivé");
 		}
+		StatisticHandler.updateTrackedStats();
 	}
 
 	@Override
