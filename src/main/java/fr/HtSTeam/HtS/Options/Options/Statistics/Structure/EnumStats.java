@@ -2,10 +2,10 @@ package fr.HtSTeam.HtS.Options.Options.Statistics.Structure;
 
 public enum EnumStats {
 
-	TIME_PLAYED (true, 0),
+	TIME_PLAYED (true, -1),
 	DISCONNECTIONS (true, 0),
-	TIME_SPRINTED (true, 0),
-	TIME_SNEAKED (true, 0),
+	TIME_SPRINTED (true, -1),
+	TIME_SNEAKED (true, -1),
 	PORTALS_CROSSED (true, 0),
 	MINED_DIAMONDS (true, 0),
 	MINED_GOLDORES (true, 0),
@@ -21,7 +21,7 @@ public enum EnumStats {
 	DAMAGE_RECEIVED (true, 0),
 	ARROW_SHOT (true, 0),
 	ARROW_HIT (true, 0),
-	ACCURACY (true, 0);
+	ACCURACY (true, -1);
 	
 	private boolean b;
 	private Object o;

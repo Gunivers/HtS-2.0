@@ -23,7 +23,7 @@ public class StatisticHandler {
 	}
 	
 	public static void update(Player p, EnumStats s) {
-		if (!EnumState.getState().equals(EnumState.RUNNING) && !s.isTracked())
+		if (!EnumState.getState().equals(EnumState.RUNNING) && !s.isTracked() && !playerStats.containsKey(p.getUniqueId()))
 			return;
 		HashMap<EnumStats, Object> stats = playerStats.get(p.getUniqueId());
 		stats.put(s, (int)stats.get(s) + 1);
@@ -31,11 +31,15 @@ public class StatisticHandler {
 	}
 	
 	public static void update(Player p, EnumStats s, int value) {
-		if (!EnumState.getState().equals(EnumState.RUNNING) && !s.isTracked())
+		if (!EnumState.getState().equals(EnumState.RUNNING) && !s.isTracked() && !playerStats.containsKey(p.getUniqueId()))
 			return;
 		HashMap<EnumStats, Object> stats = playerStats.get(p.getUniqueId());
 		stats.put(s, (int)stats.get(s) + value);
 		playerStats.put(p.getUniqueId(), stats);
+	}
+	
+	public static Object get(Player p, EnumStats s) {
+		return playerStats.get(p.getUniqueId()).get(s);
 	}
 	
 	public static void updateTrackedStats() {
