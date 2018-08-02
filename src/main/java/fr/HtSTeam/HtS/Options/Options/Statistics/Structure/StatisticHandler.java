@@ -3,6 +3,7 @@ package fr.HtSTeam.HtS.Options.Options.Statistics.Structure;
 import java.util.HashMap;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.EnumState;
@@ -22,6 +23,10 @@ public class StatisticHandler {
 		}	
 	}
 	
+	public static void display() {
+		playerStats.forEach((uuid, stats) -> { stats.forEach((stat, value) -> { Bukkit.getPlayer(uuid).sendMessage(stat.toString() + ":   " + value); }); });
+	}
+	
 	public static void update(Player p, EnumStats s) {
 		if (!EnumState.getState().equals(EnumState.RUNNING) && !s.isTracked() && !playerStats.containsKey(p.getUniqueId()))
 			return;
@@ -39,7 +44,9 @@ public class StatisticHandler {
 	}
 	
 	public static Object get(Player p, EnumStats s) {
-		return playerStats.get(p.getUniqueId()).get(s);
+		if (playerStats.containsKey(p.getUniqueId()))
+			return playerStats.get(p.getUniqueId()).get(s);
+		return null;
 	}
 	
 	public static void updateTrackedStats() {
