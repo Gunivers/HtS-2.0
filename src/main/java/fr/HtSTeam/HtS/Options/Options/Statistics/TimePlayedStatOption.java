@@ -23,7 +23,6 @@ public class TimePlayedStatOption extends OptionBuilder<Boolean> implements EndT
 	@Override
 	public void event(Player p) {
 		setState(!getValue());
-		parent.update(this);
 	}
 
 	@Override

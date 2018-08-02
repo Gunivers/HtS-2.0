@@ -24,7 +24,6 @@ public class TimeSprintedStatOption extends OptionBuilder<Boolean> implements St
 	@Override
 	public void event(Player p) {
 		setState(!getValue());
-		parent.update(this);
 	}
 
 	@Override

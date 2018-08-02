@@ -21,7 +21,6 @@ public class KillsPlayerStatOption extends OptionBuilder<Boolean> implements Sta
 	@Override
 	public void event(Player p) {
 		setState(!getValue());
-		parent.update(this);
 	}
 
 	@Override

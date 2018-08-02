@@ -20,7 +20,6 @@ public class MinedGoldOresStatOption extends OptionBuilder<Boolean> {
 	@Override
 	public void event(Player p) {
 		setState(!getValue());
-		parent.update(this);
 	}
 
 	@Override
