@@ -52,6 +52,6 @@ public class TimeSneakedStatOption extends OptionBuilder<Boolean> implements Sta
 	@Override
 	public void onPartyEnd() {
 		if (EnumStats.TIME_SNEAKED.isTracked())
-			Bukkit.getOnlinePlayers().forEach(player -> { StatisticHandler.update(player, EnumStats.TIME_SNEAKED, player.getStatistic(Statistic.SNEAK_TIME)); });
+			Bukkit.getOnlinePlayers().forEach(player -> { StatisticHandler.update(player, EnumStats.TIME_SNEAKED, (int)(player.getStatistic(Statistic.SNEAK_TIME) / 22)); });
 	}
 }
