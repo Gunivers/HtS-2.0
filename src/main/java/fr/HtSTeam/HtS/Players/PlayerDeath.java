@@ -12,7 +12,7 @@ import fr.HtSTeam.HtS.Options.Structure.IconBuilder;
 
 public class PlayerDeath implements Listener {
 	
-	@EventHandler(priority = EventPriority.LOWEST)
+	@EventHandler(priority = EventPriority.NORMAL)
 	public void onDeath(PlayerDeathEvent e) {
 		IconBuilder.optionsList.keySet().forEach(key -> { if(Arrays.asList(key.getClass().getInterfaces()).contains(DeathTrigger.class)) ((DeathTrigger) key).onDeath(e.getEntity()); });
 	}
