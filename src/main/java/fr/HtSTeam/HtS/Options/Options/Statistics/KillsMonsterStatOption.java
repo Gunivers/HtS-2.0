@@ -46,7 +46,7 @@ public class KillsMonsterStatOption extends OptionBuilder<Boolean> {
 	
 	@EventHandler
 	public void on(EntityDeathEvent e) {
-		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.KILLS_MONSTER.isTracked() && (e.getEntity() instanceof Monster || e.getEntityType() == EntityType.SLIME))
+		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.KILLS_MONSTER.isTracked() && (e.getEntity() instanceof Monster || e.getEntityType() == EntityType.SLIME) && e.getEntity().getKiller() instanceof Player)
 			StatisticHandler.update(e.getEntity().getKiller(), EnumStats.KILLS_MONSTER);
 	}
 }
