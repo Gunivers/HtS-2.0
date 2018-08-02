@@ -99,9 +99,9 @@ public class OptionRegister {
 		// Statistics
 		
 		public static TimePlayedStatOption stats1 = new TimePlayedStatOption();
-		public static DisconnectionStatOption stats2 = new DisconnectionStatOption();
-		public static TimeSprintedStatOption stats3 = new TimeSprintedStatOption();
-		public static TimeSneakedStatOption stats4 = new TimeSneakedStatOption();
+		public static TimeSprintedStatOption stats2 = new TimeSprintedStatOption();
+		public static TimeSneakedStatOption stats3 = new TimeSneakedStatOption();
+		public static DisconnectionStatOption stats4 = new DisconnectionStatOption();
 		public static PortalsCrossedStatOption stats5 = new PortalsCrossedStatOption();
 		public static MinedDiamondsStatOption stats6 = new MinedDiamondsStatOption();
 		public static MinedGoldOresStatOption stats7 = new MinedGoldOresStatOption();
