@@ -45,6 +45,6 @@ public class AccuracyStatOption extends OptionBuilder<Boolean> implements EndTri
 	@Override
 	public void onPartyEnd() {
 		if (EnumStats.ACCURACY.isTracked() && EnumStats.ARROW_HIT.isTracked() && EnumStats.ARROW_SHOT.isTracked())
-			Bukkit.getOnlinePlayers().forEach(player -> { StatisticHandler.update(player, EnumStats.ACCURACY, (int)((int)StatisticHandler.get(player, EnumStats.ARROW_HIT) * 100 / (int)StatisticHandler.get(player, EnumStats.ARROW_SHOT))); });
+			Bukkit.getOnlinePlayers().forEach(player -> { if ((int)StatisticHandler.get(player, EnumStats.ARROW_SHOT) != 0) StatisticHandler.update(player, EnumStats.ACCURACY, (int)((int)StatisticHandler.get(player, EnumStats.ARROW_HIT) * 100 / (int)StatisticHandler.get(player, EnumStats.ARROW_SHOT))); });
 	}
 }
