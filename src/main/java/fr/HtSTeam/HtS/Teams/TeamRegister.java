@@ -20,6 +20,8 @@ public class TeamRegister implements OptionIO {
 
 	@Override
 	public ArrayList<String> save() {
+		if (TeamBuilder.teamList.isEmpty())
+			return null;
 		ArrayList<String> teams = new ArrayList<String>();
 		for(TeamBuilder team : TeamBuilder.teamList)
 			teams.add(team.getTeamName() + "#/#" + team.getTeamColor());
