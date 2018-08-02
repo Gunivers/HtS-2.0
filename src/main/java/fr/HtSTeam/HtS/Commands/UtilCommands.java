@@ -8,9 +8,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import fr.HtSTeam.HtS.Options.Options.AtDeath.GoldenAppleOption;
-import fr.HtSTeam.HtS.Options.Structure.IconBuilder;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
+import fr.HtSTeam.HtS.Utils.Files.OptionIO;
 
 public class UtilCommands implements CommandExecutor {
 
@@ -42,10 +41,12 @@ public class UtilCommands implements CommandExecutor {
 					for(int j = 0; j < OptionIO.optionIOClass.size(); j++)
 						if(i != j && OptionIO.optionIOClass.get(i).getId().equals(OptionIO.optionIOClass.get(j).getId()))
 						System.out.println(OptionIO.optionIOClass.get(i));*/
-				for(IconBuilder<?> es : IconBuilder.optionsList.keySet()) {
+				/*for(IconBuilder<?> es : IconBuilder.optionsList.keySet()) {
 					if(es instanceof GoldenAppleOption)
 						System.out.println(es);
-				}
+				}*/
+				for(OptionIO oio : OptionIO.optionIOClass)
+					System.out.println(oio.getId());
 			}
 
 		}

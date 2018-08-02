@@ -3,7 +3,6 @@ package fr.HtSTeam.HtS.Options.Options.Presets;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 
 import org.apache.commons.lang.ObjectUtils.Null;
 import org.bukkit.Material;
@@ -44,7 +43,7 @@ public class SavePreset extends OptionBuilder<Null> {
 				HashMap<String, String> attr = new HashMap<String, String>() {{ put("name", ob.getId()); }};
 				ArrayList<String> elements = ob.save();
 				if(elements.size() == 1) {
-					f.add(new Tag("option", attr, new ArrayList<Tag>(){{ add(new Tag(Objects.toString(elements.get(0)), null, null)); }}));
+					f.add(new Tag("option", attr, new ArrayList<Tag>(){{ add(new Tag(elements.get(0), null, null)); }}));
 				} else {
 					ArrayList<Tag> elmnts = new ArrayList<Tag>();
 					for(String e : elements)

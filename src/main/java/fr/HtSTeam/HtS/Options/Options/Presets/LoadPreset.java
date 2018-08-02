@@ -12,7 +12,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.GameModes.UHC.SyT.RadarOption;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Utils.JSON;
@@ -64,14 +63,13 @@ public class LoadPreset extends OptionBuilder<Null> implements CommandExecutor {
 	public void load(File f, Player p) {
 		XmlFile xml = new XmlFile("Presets", f.getName().replaceAll(".xml", ""));
 		ArrayList<Tag> contents = xml.get();
-		ArrayList<Tag> notInstanciated = new ArrayList<Tag>();
 		loop:
 		for(Tag content : contents) {
 			for(OptionIO oio : OptionIO.optionIOClass) {
-				System.out.println(oio instanceof RadarOption);
+				/*System.out.println(oio instanceof RadarOption);*/
 				if(content.attributes.get("name").equals(oio.getId())) {
-					System.out.println(oio.getId());
-					System.out.println(oio);
+					/*System.out.println(oio.getId());
+					System.out.println(oio);*/
 					if(content.values.size() == 1)
 						oio.load(content.values.get(0).name);
 					else
@@ -79,11 +77,7 @@ public class LoadPreset extends OptionBuilder<Null> implements CommandExecutor {
 					continue loop;
 				}
 			}
-			System.out.println(content.attributes.get("name"));
-			notInstanciated.add(content);
 		}
-		
-		System.out.println("1 fini");
 		p.sendMessage("§2Import réussi.");
 	}
 		
