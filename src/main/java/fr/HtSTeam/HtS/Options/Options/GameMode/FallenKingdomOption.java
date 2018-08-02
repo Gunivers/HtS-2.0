@@ -23,7 +23,7 @@ public class FallenKingdomOption extends GameModeState {
 			UHC.instance = false;
 			SyT.instance = false;
 		}
-		if(getItemStack().isGlint())
+		if(p != null && getItemStack().isGlint())
 			open(p);
 	}
 

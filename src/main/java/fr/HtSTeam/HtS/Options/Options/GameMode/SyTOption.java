@@ -20,10 +20,11 @@ public class SyTOption extends GameModeState {
 	public void event(Player p) {	
 		if (!SyT.instance) {
 			Main.gamemode = new SyT();
+			System.out.println("Instanciation");
 			UHC.instance = false;
 			FallenKingdom.instance = false;
 		}
-		if(getItemStack().isGlint())
+		if(p != null && getItemStack().isGlint())
 			open(p);
 	}
 

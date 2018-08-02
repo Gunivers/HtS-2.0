@@ -60,6 +60,7 @@ public class TargetCycle extends OptionBuilder<Integer> {
 	public void setState(Integer value) {
 		setValue(value);
 		this.getItemStack().setLore("§2" + value + " minutes");
+		parent.update(this);
 	}
 		
 	@Timer

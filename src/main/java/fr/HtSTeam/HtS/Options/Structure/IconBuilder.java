@@ -11,7 +11,7 @@ import org.bukkit.plugin.PluginManager;
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 
-public abstract class IconBuilder<A extends Object> implements Listener {
+public abstract class IconBuilder<A> implements Listener {
 	
 	public static Map<IconBuilder<?>, Object> optionsList = new HashMap<IconBuilder<?>, Object>();
 	

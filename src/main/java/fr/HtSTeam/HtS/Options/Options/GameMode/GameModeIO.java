@@ -13,8 +13,10 @@ public class GameModeIO implements OptionIO {
 	@Override
 	public void load(Object o) {
 		for(GameModeState gms : GameModeGUI.gameModeOption)
-			if(o.toString().equals(gms.getName().substring(2)))
-				gms.setState(true);
+			if(o.toString().equals(gms.getName().substring(2))) {
+				GameModeGUI.setGameMode(gms);
+				gms.event(null);
+			}
 	}
 
 	@Override

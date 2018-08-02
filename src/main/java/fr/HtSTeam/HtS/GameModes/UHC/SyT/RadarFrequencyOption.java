@@ -85,6 +85,7 @@ public class RadarFrequencyOption extends OptionBuilder<Integer> implements Star
 	public void setState(Integer value) {
 		setValue(value);
 		this.getItemStack().setLore("§2" + value + " minutes");
+		parent.update(this);
 	}
 
 	@Override

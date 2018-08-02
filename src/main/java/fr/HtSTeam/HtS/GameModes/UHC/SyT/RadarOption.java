@@ -14,7 +14,7 @@ public class RadarOption extends OptionBuilder<Integer> {
 	private Player p;
 
 	public RadarOption() {
-		super(Material.WATCH, "Lancement du Radar", "20 minutes", 20, GUIRegister.syt);
+		super(Material.EYE_OF_ENDER, "Lancement du Radar", "20 minutes", 20, GUIRegister.syt);
 	}
 
 	@Override
@@ -29,6 +29,7 @@ public class RadarOption extends OptionBuilder<Integer> {
 	public void setState(Integer value) {
 		setValue(value);
 		this.getItemStack().setLore("§2" + value + " minutes");
+		parent.update(this);
 		
 	}
 	
@@ -39,7 +40,7 @@ public class RadarOption extends OptionBuilder<Integer> {
 			try {
 				int value = Integer.parseInt(e.getMessage());
 				if (value >= 0 && value <= 60) {
-					p.sendMessage("§2Radar à " + getValue() + " minutes.");
+					p.sendMessage("§2Radar à " + value + " minutes.");
 					setState(value);
 					parent.update(this);
 					request = false;
@@ -54,7 +55,6 @@ public class RadarOption extends OptionBuilder<Integer> {
 
 	@Override
 	public String description() {
-		return "§2[Aide]§r Le radar indique la position de la cible si celle-ci est à portée au-dessus de la couche 36 de l'overworld).\rCe dernier s'excute à " + getValue() + "minutes.";
+		return "§2[Aide]§r Le radar indique la position de la cible si celle-ci est à portée au-dessus de la couche 36 de l'overworld).\nCe dernier s'excute à " + getValue() + "minutes.";
 	}
-
 }

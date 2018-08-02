@@ -26,7 +26,7 @@ public class UHCOption extends GameModeState {
 			SyT.instance = false;
 			FallenKingdom.instance = false;
 		}
-		if(getItemStack().isGlint())
+		if(p != null && getItemStack().isGlint())
 			open(p);
 	}
 

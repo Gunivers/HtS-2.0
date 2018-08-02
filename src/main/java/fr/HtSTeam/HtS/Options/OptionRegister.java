@@ -41,6 +41,7 @@ import fr.HtSTeam.HtS.Options.Options.Statistics.DamageGivenStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.DamageReceivedStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.DisconnectionStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.EnchantmentsDoneStatOption;
+import fr.HtSTeam.HtS.Options.Options.Statistics.GoldenAppleEatenStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.ItemsPickedUpStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.KillsMonsterStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.KillsPassiveStatOption;
@@ -106,7 +107,7 @@ public class OptionRegister {
 		public static MinedGoldOresStatOption stats7 = new MinedGoldOresStatOption();
 		public static ItemsPickedUpStatOption stats8 = new ItemsPickedUpStatOption();
 		public static EnchantmentsDoneStatOption stats9 = new EnchantmentsDoneStatOption();
-		public static GoldenAppleOption stats10 = new GoldenAppleOption();
+		public static GoldenAppleEatenStatOption stats10 = new GoldenAppleEatenStatOption();
 		public static PotionDrunkStatOption stats11 = new PotionDrunkStatOption();
 		public static PotionThrownStatOption stats12 = new PotionThrownStatOption();
 		public static KillsPlayerStatOption stats13 = new KillsPlayerStatOption();

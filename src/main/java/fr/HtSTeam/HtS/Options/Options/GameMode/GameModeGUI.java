@@ -44,7 +44,7 @@ public class GameModeGUI extends GUIBuilder {
 		}
 	}
 
-	public void setGameMode(GameModeState gms) {
+	public static void setGameMode(GameModeState gms) {
 		gms.setState(true);
 		gms.setOption();
 		for (GameModeState gms2 : gameModeOption) {
