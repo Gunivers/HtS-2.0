@@ -13,9 +13,13 @@ public class TeamRegister implements OptionIO {
 	
 	@Override
 	public void load(Object o) {
-		Tag option_tag = (Tag) o;
-		for (Tag t : option_tag.values)
-			new TeamBuilder(t.values.get(0).name.split("#/#")[0], t.values.get(0).name.split("#/#")[1]);
+		if (o instanceof String) {
+			new TeamBuilder(((String) o).split("#/#")[0], ((String) o).split("#/#")[1]);
+		} else {
+			Tag option_tag = (Tag) o;
+			for (Tag t : option_tag.values)
+				new TeamBuilder(t.values.get(0).name.split("#/#")[0], t.values.get(0).name.split("#/#")[1]);
+		}
 	}
 
 	@Override
