@@ -64,10 +64,14 @@ public class TeamCommand implements CommandExecutor {
 					}
 				} else if (args[0].equalsIgnoreCase("list") && args.length == 1) {
 					try {
-						p.sendMessage("Liste des Teams:");
-						for(TeamBuilder t :TeamBuilder.teamList)
-							p.sendMessage("- " + ChatColor.valueOf(t.getTeamColor().toUpperCase()) + t.getTeamName());
-						return true;
+							if (TeamBuilder.teamList.size() == 0) {
+								p.sendMessage("Aucunz Team n'a été créé !");
+							} else {
+								p.sendMessage("Liste des Teams (" + TeamBuilder.teamList.size() + ") :");
+								for(TeamBuilder t :TeamBuilder.teamList)
+									p.sendMessage("- " + ChatColor.valueOf(t.getTeamColor().toUpperCase()) + t.getTeamName());
+								return true;
+							}
 					} catch (NullPointerException e) {
 						p.sendMessage("§4Aucunes équipes existantes !");
 						return false;

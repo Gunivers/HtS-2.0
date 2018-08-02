@@ -34,6 +34,7 @@ public class MinedGoldOresStatOption extends OptionBuilder<Boolean> {
 			getItemStack().setLore("§4Désactivé");
 		}
 		StatisticHandler.updateTrackedStats();
+		parent.update(this);
 	}
 
 	@Override

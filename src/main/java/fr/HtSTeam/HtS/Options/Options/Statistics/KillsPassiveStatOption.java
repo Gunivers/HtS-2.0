@@ -35,6 +35,7 @@ public class KillsPassiveStatOption extends OptionBuilder<Boolean> {
 			getItemStack().setLore("§4Désactivé");
 		}
 		StatisticHandler.updateTrackedStats();
+		parent.update(this);
 	}
 
 	@Override

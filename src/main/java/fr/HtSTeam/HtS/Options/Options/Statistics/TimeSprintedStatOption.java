@@ -38,6 +38,7 @@ public class TimeSprintedStatOption extends OptionBuilder<Boolean> implements St
 			getItemStack().setLore("§4Désactivé");
 		}
 		StatisticHandler.updateTrackedStats();
+		parent.update(this);
 	}
 
 	@Override
