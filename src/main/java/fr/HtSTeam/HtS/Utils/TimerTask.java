@@ -46,7 +46,11 @@ public class TimerTask {
 			}.runTaskTimer(Main.plugin, 20, 20);
 		}
 	}
-
+	
+	public int getTimerinSeconds() {
+		return time;
+	}
+	
 	public int getTimerInMinute() {
 		return time / 60;
 	}
