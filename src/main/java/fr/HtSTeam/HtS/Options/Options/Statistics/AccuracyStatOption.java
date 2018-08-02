@@ -20,7 +20,6 @@ public class AccuracyStatOption extends OptionBuilder<Boolean> implements EndTri
 	@Override
 	public void event(Player p) {
 		setState(!getValue());
-		parent.update(this);
 	}
 
 	@Override
@@ -34,6 +33,7 @@ public class AccuracyStatOption extends OptionBuilder<Boolean> implements EndTri
 			getItemStack().setLore("§4Désactivé");
 		}
 		StatisticHandler.updateTrackedStats();
+		parent.update(this);
 	}
 
 	@Override

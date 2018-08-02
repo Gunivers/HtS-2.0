@@ -37,6 +37,7 @@ public class TimePlayedStatOption extends OptionBuilder<Boolean> implements EndT
 			getItemStack().setLore("§4Désactivé");
 		}
 		StatisticHandler.updateTrackedStats();
+		parent.update(this);
 	}
 
 	@Override

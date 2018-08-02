@@ -35,6 +35,7 @@ public class KillsPlayerStatOption extends OptionBuilder<Boolean> implements Sta
 			getItemStack().setLore("§4Désactivé");
 		}
 		StatisticHandler.updateTrackedStats();
+		parent.update(this);
 	}
 
 	@Override
