@@ -20,8 +20,7 @@ public enum EnumStats {
 	DAMAGE_GIVEN (true, 0),
 	DAMAGE_RECEIVED (true, 0),
 	ARROW_SHOT (true, 0),
-	ARROW_HIT (true, 0),
-	ACCURACY (true, -1);
+	ARROW_HIT (true, 0);
 	
 	private boolean b;
 	private Object o;

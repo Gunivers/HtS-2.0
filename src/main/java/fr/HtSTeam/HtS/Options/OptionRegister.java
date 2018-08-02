@@ -34,7 +34,6 @@ import fr.HtSTeam.HtS.Options.Options.Scoreboard.KilledScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.PlayerScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.RemoveBlankScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Scoreboard.TimerScoreboardOption;
-import fr.HtSTeam.HtS.Options.Options.Statistics.AccuracyStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.ArrowHitStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.ArrowShotStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.DamageGivenStatOption;
@@ -117,7 +116,6 @@ public class OptionRegister {
 		public static DamageReceivedStatOption stats17 = new DamageReceivedStatOption();
 		public static ArrowShotStatOption stats18 = new ArrowShotStatOption();
 		public static ArrowHitStatOption stats19 = new ArrowHitStatOption();
-		public static AccuracyStatOption stats20 = new AccuracyStatOption();
 		
 		public static void register() {
 			
