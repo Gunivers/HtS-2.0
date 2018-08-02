@@ -66,10 +66,7 @@ public class LoadPreset extends OptionBuilder<Null> implements CommandExecutor {
 		loop:
 		for(Tag content : contents) {
 			for(OptionIO oio : OptionIO.optionIOClass) {
-				/*System.out.println(oio instanceof RadarOption);*/
 				if(content.attributes.get("name").equals(oio.getId())) {
-					/*System.out.println(oio.getId());
-					System.out.println(oio);*/
 					if(content.values.size() == 1)
 						oio.load(content.values.get(0).name);
 					else
