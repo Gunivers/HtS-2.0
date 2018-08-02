@@ -2,7 +2,8 @@ package fr.HtSTeam.HtS.Options.Options.Statistics;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.block.BlockBreakEvent;
 
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Options.GUIRegister;
@@ -37,9 +38,9 @@ public class MinedGoldOresStatOption extends OptionBuilder<Boolean> {
 		return null;
 	}
 	
-//	@EventHandler
-	public void onLogOut(PlayerQuitEvent e) {
-		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.DISCONNECTIONS.isTracked())
-			StatisticHandler.update(e.getPlayer(), EnumStats.DISCONNECTIONS);
+	@EventHandler
+	public void on(BlockBreakEvent e) {
+		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.MINED_GOLDORES.isTracked() && e.getBlock().getType() == Material.GOLD_ORE)
+			StatisticHandler.update(e.getPlayer(), EnumStats.MINED_GOLDORES);
 	}
 }

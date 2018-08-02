@@ -2,7 +2,8 @@ package fr.HtSTeam.HtS.Options.Options.Statistics;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Options.GUIRegister;
@@ -37,9 +38,9 @@ public class DamageReceivedStatOption extends OptionBuilder<Boolean> {
 		return null;
 	}
 	
-//	@EventHandler
-	public void onLogOut(PlayerQuitEvent e) {
-		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.DISCONNECTIONS.isTracked())
-			StatisticHandler.update(e.getPlayer(), EnumStats.DISCONNECTIONS);
+	@EventHandler
+	public void on(EntityDamageByEntityEvent e) {
+		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.DAMAGE_RECEIVED.isTracked() && e.getEntity() instanceof Player)
+			StatisticHandler.update((Player) e.getEntity(), EnumStats.DAMAGE_RECEIVED, (int)e.getDamage());
 	}
 }

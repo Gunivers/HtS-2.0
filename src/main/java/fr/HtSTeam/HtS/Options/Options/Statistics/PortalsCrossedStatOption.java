@@ -2,7 +2,8 @@ package fr.HtSTeam.HtS.Options.Options.Statistics;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.player.PlayerPortalEvent;
 
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Options.GUIRegister;
@@ -37,9 +38,9 @@ public class PortalsCrossedStatOption extends OptionBuilder<Boolean> {
 		return null;
 	}
 	
-//	@EventHandler
-	public void onLogOut(PlayerQuitEvent e) {
-		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.DISCONNECTIONS.isTracked())
-			StatisticHandler.update(e.getPlayer(), EnumStats.DISCONNECTIONS);
+	@EventHandler
+	public void on(PlayerPortalEvent e) {
+		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.PORTALS_CROSSED.isTracked())
+			StatisticHandler.update(e.getPlayer(), EnumStats.PORTALS_CROSSED);
 	}
 }

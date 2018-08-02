@@ -1,8 +1,10 @@
 package fr.HtSTeam.HtS.Options.Options.Statistics;
 
 import org.bukkit.Material;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.entity.ProjectileHitEvent;
 
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Options.GUIRegister;
@@ -37,9 +39,9 @@ public class ArrowHitStatOption extends OptionBuilder<Boolean> {
 		return null;
 	}
 	
-//	@EventHandler
-	public void onLogOut(PlayerQuitEvent e) {
-		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.DISCONNECTIONS.isTracked())
-			StatisticHandler.update(e.getPlayer(), EnumStats.DISCONNECTIONS);
+	@EventHandler
+	public void on(ProjectileHitEvent e) {
+		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.ARROW_HIT.isTracked() && e.getEntityType() == EntityType.ARROW && e.getEntity().getShooter() instanceof Player && e.getHitEntity() != null)
+			StatisticHandler.update((Player) e.getEntity().getShooter(), EnumStats.ARROW_HIT);
 	}
 }

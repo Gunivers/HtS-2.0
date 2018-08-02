@@ -1,8 +1,10 @@
 package fr.HtSTeam.HtS.Options.Options.Statistics;
 
 import org.bukkit.Material;
+import org.bukkit.entity.Animals;
 import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.entity.EntityDeathEvent;
 
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Options.GUIRegister;
@@ -37,9 +39,9 @@ public class KillsPassiveStatOption extends OptionBuilder<Boolean> {
 		return null;
 	}
 	
-//	@EventHandler
-	public void onLogOut(PlayerQuitEvent e) {
-		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.DISCONNECTIONS.isTracked())
-			StatisticHandler.update(e.getPlayer(), EnumStats.DISCONNECTIONS);
+	@EventHandler
+	public void on(EntityDeathEvent e) {
+		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.KILLS_PASSIVE.isTracked() && e.getEntity() instanceof Animals)
+			StatisticHandler.update(e.getEntity().getKiller(), EnumStats.KILLS_PASSIVE);
 	}
 }

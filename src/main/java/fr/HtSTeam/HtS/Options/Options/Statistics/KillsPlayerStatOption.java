@@ -2,9 +2,7 @@ package fr.HtSTeam.HtS.Options.Options.Statistics;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerQuitEvent;
 
-import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
@@ -35,11 +33,5 @@ public class KillsPlayerStatOption extends OptionBuilder<Boolean> {
 	@Override
 	public String description() {
 		return null;
-	}
-	
-//	@EventHandler
-	public void onLogOut(PlayerQuitEvent e) {
-		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.DISCONNECTIONS.isTracked())
-			StatisticHandler.update(e.getPlayer(), EnumStats.DISCONNECTIONS);
 	}
 }

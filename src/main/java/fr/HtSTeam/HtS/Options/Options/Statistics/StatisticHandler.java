@@ -10,11 +10,11 @@ import fr.HtSTeam.HtS.Players.PlayerInGame;
 
 public class StatisticHandler {
 	
-	private static HashMap<UUID, HashMap<EnumStats, Integer>> playerStats = new HashMap<UUID, HashMap<EnumStats, Integer>>();
+	private static HashMap<UUID, HashMap<EnumStats, Object>> playerStats = new HashMap<UUID, HashMap<EnumStats, Object>>();
 	
 	public static void init() {
 		for (UUID uuid : PlayerInGame.playerInGame) {
-			HashMap<EnumStats, Integer> stats = new HashMap<EnumStats, Integer>();
+			HashMap<EnumStats, Object> stats = new HashMap<EnumStats, Object>();
 			for (EnumStats s : EnumStats.values())
 				if (s.isTracked())
 					stats.put(s, 0);
@@ -26,11 +26,19 @@ public class StatisticHandler {
 	public static void update(Player p, EnumStats s) {
 		if (!EnumState.getState().equals(EnumState.RUNNING) && !s.isTracked())
 			return;
-		HashMap<EnumStats, Integer> stats = playerStats.get(p.getUniqueId());
-		stats.put(s, stats.get(s) + 1);
+		HashMap<EnumStats, Object> stats = playerStats.get(p.getUniqueId());
+		stats.put(s, (int)stats.get(s) + 1);
 		playerStats.put(p.getUniqueId(), stats);
 	}
-
+	
+	public static void update(Player p, EnumStats s, int value) {
+		if (!EnumState.getState().equals(EnumState.RUNNING) && !s.isTracked())
+			return;
+		HashMap<EnumStats, Object> stats = playerStats.get(p.getUniqueId());
+		stats.put(s, (int)stats.get(s) + value);
+		playerStats.put(p.getUniqueId(), stats);
+	}
+	
 	public static void updateTrackedStats() {
 		playerStats.forEach((uuid, stats) -> { stats.forEach((stat, value) -> { if (!stat.isTracked()) stats.remove(stat); }); });
 	}
