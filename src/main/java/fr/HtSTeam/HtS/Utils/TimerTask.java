@@ -47,7 +47,7 @@ public class TimerTask {
 		}
 	}
 	
-	public int getTimerinSeconds() {
+	public int getTimerInSeconds() {
 		return time;
 	}
 	

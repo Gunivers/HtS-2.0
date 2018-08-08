@@ -1,5 +1,7 @@
 package fr.HtSTeam.HtS.Options.Options.Statistics.Structure;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -20,7 +22,12 @@ public class StatisticHandler {
 				if (s.isTracked())
 					stats.put(s, s.getDefaultValue());
 			playerStats.put(uuid, stats);
-		}	
+		}
+	}
+	
+	public static void save() throws SQLException {
+		JDBCHandler.createTable();
+		JDBCHandler.insert();
 	}
 	
 	public static void display() {
@@ -43,9 +50,19 @@ public class StatisticHandler {
 		playerStats.put(p.getUniqueId(), stats);
 	}
 	
+	public static HashMap<UUID, HashMap<EnumStats, Object>> get() { return playerStats; }
+	
 	public static Object get(Player p, EnumStats s) {
 		if (playerStats.containsKey(p.getUniqueId()))
 			return playerStats.get(p.getUniqueId()).get(s);
 		return null;
+	}
+
+	protected static String getInsertValues() {
+		ArrayList<String> rows = new ArrayList<String>();
+		playerStats.forEach((uuid, stats) -> { ArrayList<String> values = new ArrayList<String>(); values.add(uuid.toString()); values.add(Bukkit.getPlayer(uuid).getName()); for(int i = 0; i < EnumStats.values().length; i++) values.add(stats.get(EnumStats.values()[i]).toString()); rows.add("(" + String.join(",", values) + ")"); });
+		if(rows.isEmpty())
+			return null;
+		return String.join(",", rows);
 	}
 }

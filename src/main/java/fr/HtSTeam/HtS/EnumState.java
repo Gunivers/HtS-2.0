@@ -1,5 +1,6 @@
 package fr.HtSTeam.HtS;
 
+import java.sql.SQLException;
 import java.util.Arrays;
 
 import org.bukkit.Bukkit;
@@ -31,6 +32,9 @@ public enum EnumState implements Listener {
 		} else if (state.equals(EnumState.FINISHING)) {
 			IconBuilder.optionsList.keySet().forEach(key -> { if(Arrays.asList(key.getClass().getInterfaces()).contains(EndTrigger.class)) ((EndTrigger) key).onPartyEnd(); });
 			StatisticHandler.display();
+			try {
+				StatisticHandler.save();
+			} catch (SQLException e) { e.printStackTrace();	}
 		}
 	}
 	
