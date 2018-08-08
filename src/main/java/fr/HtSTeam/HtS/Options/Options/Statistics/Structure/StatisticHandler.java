@@ -28,6 +28,7 @@ public class StatisticHandler {
 	public static void save() throws SQLException {
 		JDBCHandler.createTable();
 		JDBCHandler.insert();
+		JDBCHandler.update();
 	}
 	
 	public static void display() {

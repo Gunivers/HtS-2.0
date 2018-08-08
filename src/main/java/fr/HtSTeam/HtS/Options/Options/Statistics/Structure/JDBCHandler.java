@@ -19,19 +19,15 @@ public class JDBCHandler {
 		db = (String) f.get("database.name");
 		pwd = (String) f.get("database.password");
 		tableName = "STATS_" + Main.HTSNAME.replace(" ", "_");
-		try {
-			conn = DriverManager.getConnection(url, db, pwd);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	protected static void createTable() throws SQLException {
+		conn = DriverManager.getConnection(url, db, pwd);
 		comment = "gamemode=" + Main.gamemode.gamemodeToString() + ",duration=" + Main.timer.getTimerInSeconds();		
 		String strTable = "CREATE TABLE `" + db + "`.`" + tableName +  "` ( " + EnumStats.getSQLTableStatsTracked() +" ) comment='" + comment + "' ENGINE = InnoDB";
 	
 		Statement stmt = conn.createStatement();
-		stmt.execute(strTable);
+		stmt.executeUpdate(strTable);
 	}
 	
 	protected static void insert() throws SQLException {
@@ -40,7 +36,7 @@ public class JDBCHandler {
 		System.out.println(strInsert);
 		
 		Statement stmt = conn.createStatement();
-		stmt.execute(strInsert);
+		stmt.executeUpdate(strInsert);
 	}
 	
 	protected static void update() throws SQLException {
@@ -48,5 +44,6 @@ public class JDBCHandler {
 //		Statement stmt = conn.createStatement();
 //		ResultSet rset = stmt.executeQuery(strSelect);
 //		rset.beforeFirst();
+		conn.close();
 	}
 }
