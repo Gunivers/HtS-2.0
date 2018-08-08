@@ -18,6 +18,7 @@ public class SyTDeathEvent implements Listener {
 	public void onKillSomeone(PlayerDeathEvent e) {
 		e.setDeathMessage(null);
 		Player victim = e.getEntity();
+		String broadcast;
 		if (e.getEntity().getKiller() instanceof Player && !SyT.targetCycleOption.targetCycle.isEmpty()) {
 			Player killer = e.getEntity().getKiller();
 
@@ -32,7 +33,7 @@ public class SyTDeathEvent implements Listener {
 					killer.setHealth(killer.getHealth() + 2);
 				}
 				SyT.targetCycleOption.targetCycle.remove(victim.getUniqueId());
-				Bukkit.broadcastMessage(victim.getName() + " a été tué par son chasseur.");
+				broadcast = victim.getName() + " a été tué par son chasseur.";
 				if (EnumState.getState().equals(EnumState.RUNNING))
 					killer.sendMessage("§2Cible éliminée. Nouvelle cible : "+ Bukkit.getPlayer(SyT.targetCycleOption.getTarget(killer)).getName());
 
@@ -44,10 +45,10 @@ public class SyTDeathEvent implements Listener {
 				} else {
 					killer.setHealth(killer.getHealth() + 4);
 				}
-				Bukkit.broadcastMessage(victim.getName() + " a été tué par sa cible.");
+				broadcast = victim.getName() + " a été tué par sa cible.";
 				SyT.targetCycleOption.targetCycle.remove(victim.getUniqueId());
 				if (EnumState.getState().equals(EnumState.RUNNING)) {
-					killer.sendMessage("§2Cible éliminée. Nouvelle cible : "+ Bukkit.getPlayer(SyT.targetCycleOption.getHunter(killer)).getName());
+					Bukkit.getPlayer(SyT.targetCycleOption.getHunter(killer)).sendMessage("§2Cible éliminée. Nouvelle cible : "+ Bukkit.getPlayer(SyT.targetCycleOption.getHunter(killer)).getName());
 					killer.sendMessage("§6Celui-ci semblait vous vouloir du mal, il est fort probable qu'il cherchait à vous éliminer.");
 				}
 				// Kill other people
@@ -60,7 +61,7 @@ public class SyTDeathEvent implements Listener {
 							.setBaseValue(killer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() - 2);
 				}
 
-				Bukkit.broadcastMessage(victim.getName() + " est mort.");
+				broadcast = victim.getName() + " est mort.";
 				SyT.targetCycleOption.targetCycle.remove(victim.getUniqueId());
 				if (EnumState.getState().equals(EnumState.RUNNING)) {
 					Bukkit.getPlayer(SyT.targetCycleOption.getHunter(victim)).sendMessage("§2Votre cible a été tuée, une nouvelle cible vous est attribuée : "+ Bukkit.getPlayer(SyT.targetCycleOption.getTarget(victim)).getName());
@@ -69,12 +70,13 @@ public class SyTDeathEvent implements Listener {
 				}
 			}
 		} else {
-			Bukkit.broadcastMessage(victim.getName() + " est mort.");
+			broadcast = victim.getName() + " est mort.";
 			SyT.targetCycleOption.targetCycle.remove(victim.getUniqueId());
 			Bukkit.getPlayer(SyT.targetCycleOption.getHunter(victim))
 					.sendMessage("§2Votre cible a été tuée, une nouvelle cible vous est attribuée : "
 							+ Bukkit.getPlayer(SyT.targetCycleOption.getTarget(victim)).getName());
 		}
+		Bukkit.broadcastMessage(broadcast);
 	}
 
 }
