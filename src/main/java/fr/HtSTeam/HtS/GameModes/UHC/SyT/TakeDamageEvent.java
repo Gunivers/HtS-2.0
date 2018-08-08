@@ -13,7 +13,7 @@ public class TakeDamageEvent implements Listener {
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void onTakeDamage(EntityDamageEvent e) {
 		if(e.getEntity() instanceof Player) {
-			if(((Player) e.getEntity()).getHealth() <= 10f && Main.timer.getTimerInMinute() < 20) {
+			if(((Player) e.getEntity()).getHealth() <= 10f && Main.timer.getTimerInMinute() < SyT.targetCycleOption.getValue()) {
 				e.setCancelled(true);
 				((Player) e.getEntity()).setHealth(10f);
 			}
