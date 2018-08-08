@@ -116,7 +116,7 @@ public class TeamCommand implements CommandExecutor {
 								teamList.add(t);
 						
 						while (!onlinePlayer.isEmpty())
-							teamList.forEach(team -> { final Player ran_p = onlinePlayer.get(Randomizer.RandI(0, onlinePlayer.size() - 1)); team.addPlayer(p); onlinePlayer.remove(ran_p); });
+							teamList.forEach(team -> { if(onlinePlayer.isEmpty()) return; Player ran_p = onlinePlayer.get(Randomizer.RandI(0, onlinePlayer.size() - 1)); team.addPlayer(p); onlinePlayer.remove(ran_p); });
 						
 						return true;
 					}
