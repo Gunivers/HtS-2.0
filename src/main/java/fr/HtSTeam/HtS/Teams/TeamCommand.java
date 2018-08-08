@@ -65,7 +65,7 @@ public class TeamCommand implements CommandExecutor {
 				} else if (args[0].equalsIgnoreCase("list") && args.length == 1) {
 					try {
 							if (TeamBuilder.teamList.size() == 0) {
-								p.sendMessage("Aucunz Team n'a été créé !");
+								p.sendMessage("Aucune Team n'a été créé !");
 							} else {
 								p.sendMessage("Liste des Teams (" + TeamBuilder.teamList.size() + ") :");
 								for(TeamBuilder t :TeamBuilder.teamList)
@@ -111,19 +111,13 @@ public class TeamCommand implements CommandExecutor {
 								onlinePlayer.add(co);
 								
 						ArrayList<TeamBuilder> teamList = new ArrayList<TeamBuilder>();
-						for (TeamBuilder t : TeamBuilder.teamList) {	
+						for (TeamBuilder t : TeamBuilder.teamList)
 							if(!t.isFakeTeam())
 								teamList.add(t);
-						}
-						int nbTeam = teamList.size();
-						for (Player player : onlinePlayer) {
-							TeamBuilder team = teamList.get(Randomizer.RandI(0, teamList.size() - 1));
-							team.addPlayer(player);
-							if (team.getTeamSize() == (int) (onlinePlayer.size()/nbTeam))
-								teamList.remove(team);
-							if (teamList.size() == 0)
-								break;
-						}
+						
+						while (!onlinePlayer.isEmpty())
+							teamList.forEach(team -> { final Player ran_p = onlinePlayer.get(Randomizer.RandI(0, onlinePlayer.size() - 1)); team.addPlayer(p); onlinePlayer.remove(ran_p); });
+						
 						return true;
 					}
 					p.sendMessage("§4Aucunes équipes existantes !");

@@ -9,9 +9,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-import fr.HtSTeam.HtS.Utils.Files.OptionIO;
+import fr.HtSTeam.HtS.EnumState;
+import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
 
-public class TeamBuilder implements OptionIO {
+public class TeamBuilder implements StartTrigger {
 		
 	public static ArrayList<TeamBuilder> teamList = new ArrayList<TeamBuilder>();
 	public static Map<String, TeamBuilder> nameTeam = new HashMap<String, TeamBuilder>();
@@ -22,6 +23,7 @@ public class TeamBuilder implements OptionIO {
 	private byte teamByte;
 	private boolean faketeam = false;
 	
+	private ArrayList<UUID> allPlayers = new ArrayList<UUID>();
 	private ArrayList<UUID> playerList = new ArrayList<UUID>();
 	
 	public TeamBuilder(String teamName, String teamColor) {
@@ -48,7 +50,8 @@ public class TeamBuilder implements OptionIO {
 	}
 	
 	public void removePlayer(Player p) {
-		p.sendMessage("Vous avez quitté l'équipe " + ChatColor.valueOf(teamColor.toUpperCase()) + teamName);
+		if (!EnumState.getState().equals(EnumState.RUNNING))
+			p.sendMessage("Vous avez quitté l'équipe " + ChatColor.valueOf(teamColor.toUpperCase()) + teamName);
 		if(faketeam) {
 			playerList.remove(p.getUniqueId());
 			if(playerList.size() == 0)
@@ -129,20 +132,7 @@ public class TeamBuilder implements OptionIO {
 	    }
 
 	@Override
-	public void load(Object o) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public ArrayList<String> save() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getId() {
-		// TODO Auto-generated method stub
-		return null;
+	public void onPartyStart() {
+		allPlayers.addAll(playerList);
 	}
 }
