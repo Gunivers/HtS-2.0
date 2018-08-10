@@ -111,10 +111,10 @@ public class TeamCommand implements CommandExecutor {
 								onlinePlayer.add(co);
 								
 						ArrayList<TeamBuilder> teamList = new ArrayList<TeamBuilder>();
-						for (TeamBuilder t : TeamBuilder.teamList)
-							if(!t.isFakeTeam()) {
-								t.clearTeam();
-								teamList.add(t);
+						for (int i = 0; i < TeamBuilder.teamList.size(); i++)
+							if(!TeamBuilder.teamList.get(i).isFakeTeam()) {
+								TeamBuilder.teamList.get(i).clearTeam();
+								teamList.add(TeamBuilder.teamList.get(i));
 							}
 						
 						while (!onlinePlayer.isEmpty())
