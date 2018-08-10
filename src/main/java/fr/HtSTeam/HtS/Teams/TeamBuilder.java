@@ -71,6 +71,18 @@ public class TeamBuilder implements StartTrigger {
 	public void clearTeam() {
 		if(faketeam) {
 			playerList.clear();
+		} else {
+			for (UUID key: playerTeam.keySet()) {
+				playerTeam.remove(key, this);
+				Bukkit.getPlayer(key).setDisplayName(Bukkit.getPlayer(key).getName());
+			}
+			playerList.clear();
+		}
+	}
+	
+	public void removeTeam() {
+		if(faketeam) {
+			playerList.clear();
 			teamList.remove(this);
 		} else {
 			for (UUID key: playerTeam.keySet()) {

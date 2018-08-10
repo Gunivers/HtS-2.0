@@ -38,7 +38,7 @@ public class TeamCommand implements CommandExecutor {
 				} else if (args[0].equalsIgnoreCase("remove") && args.length == 2) {
 					try {
 						p.sendMessage("L'équipe " + ChatColor.valueOf(TeamBuilder.nameTeam.get(args[1]).getTeamColor().toUpperCase()) + TeamBuilder.nameTeam.get(args[1]).getTeamName() + " §ra été supprimée !");
-						TeamBuilder.nameTeam.get(args[1]).clearTeam();
+						TeamBuilder.nameTeam.get(args[1]).removeTeam();
 						return true;
 					} catch (NullPointerException e) {
 						p.sendMessage("§4Equipe non valide !");
@@ -112,8 +112,10 @@ public class TeamCommand implements CommandExecutor {
 								
 						ArrayList<TeamBuilder> teamList = new ArrayList<TeamBuilder>();
 						for (TeamBuilder t : TeamBuilder.teamList)
-							if(!t.isFakeTeam())
+							if(!t.isFakeTeam()) {
+								t.clearTeam();
 								teamList.add(t);
+							}
 						
 						while (!onlinePlayer.isEmpty())
 							for(TeamBuilder team : teamList) {
