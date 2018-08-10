@@ -119,7 +119,7 @@ public class TeamCommand implements CommandExecutor {
 							for(TeamBuilder team : teamList) {
 								if(onlinePlayer.isEmpty()) break; 
 								Player ran_p = onlinePlayer.get(Randomizer.RandI(0, onlinePlayer.size() - 1)); 
-								team.addPlayer(p); 
+								team.addPlayer(ran_p); 
 								onlinePlayer.remove(ran_p); 
 							}
 						

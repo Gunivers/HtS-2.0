@@ -48,7 +48,7 @@ public class SyTDeathEvent implements Listener {
 				broadcast = victim.getName() + " a été tué par sa cible.";
 				SyT.targetCycleOption.targetCycle.remove(victim.getUniqueId());
 				if (EnumState.getState().equals(EnumState.RUNNING)) {
-					Bukkit.getPlayer(SyT.targetCycleOption.getHunter(killer)).sendMessage("§2Cible éliminée. Nouvelle cible : "+ Bukkit.getPlayer(SyT.targetCycleOption.getHunter(killer)).getName());
+					Bukkit.getPlayer(SyT.targetCycleOption.getHunter(killer)).sendMessage("§2Cible éliminée. Nouvelle cible : "+ Bukkit.getPlayer(SyT.targetCycleOption.getTarget(killer)).getName());
 					killer.sendMessage("§6Celui-ci semblait vous vouloir du mal, il est fort probable qu'il cherchait à vous éliminer.");
 				}
 				// Kill other people

@@ -1,12 +1,12 @@
-name: HtS-Plugin
-version: ${project.version}
+name: HtS
+version: 1.0
 authors: [ikbrunel, theogiraudet]
 main: fr.HtSTeam.HtS.Main
 commands:
  option:
   description: Ouvre le menu des options
   usage: Erreur syntaxe ! Faites /option
- start:
+ start: 
   description: Lance la partie
   usage: Erreur syntaxe ! Faites /start
  run:
@@ -15,15 +15,15 @@ commands:
  team:
   description: Commandes relatives aux teams
   usage: Erreur syntaxe ! Faites /team <add|remove|join|leave|list|random> [Equipe] [couleur|Player]
- gui:
+ gui: 
   description: Ouvre l'inventaire des modifiers
   usage: Erreur syntaxe ! Faites /gui
  base:
-  description: Définir une base
+  description: Défini une base
   usage: Erreur syntaxe ! Faites /base <add|join|list|remove> [nomBase] [nomEquipe]
- test:
-  description: aaa
-  usage: aaa
+ load:
+  description: Charge un preset
+  usage: Erreur syntaxe ! Faites /load (preset)
  pause:
   description: Met en pause le jeu
   usage: Erreur syntaxe ! Faites /pause
@@ -35,7 +35,16 @@ commands:
   usage: Erreur Syntaxe ! Faites /end
  heal:
   description: Heal le joueur
-  usage: Erreur ! Faites /heal
+  usage: Erreur ! Faites /heal  <joueur>
  feed:
   description: Nourris le joueur
   usage: Erreur ! Faites /feed <joueur>
+ radar:
+  description: Radar
+  usage: Erreur Syntaxe ! Faites /radar <exemple>
+ target:
+  description: Target
+  usage: Erreur Syntaxe ! Faites /target
+ test:
+  description: test
+  usage: /test

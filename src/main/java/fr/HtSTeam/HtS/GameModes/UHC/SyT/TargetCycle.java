@@ -74,14 +74,17 @@ public class TargetCycle extends OptionBuilder<Integer> {
 			List<TeamBuilder> teams = new ArrayList<TeamBuilder>();
 			teams.addAll(TeamBuilder.teamList);
 			int i = 0;
+			TeamBuilder lastTeamPreviousCycle = null;
 			while (teams.size() > 0) {
 				TeamBuilder randTeam = teams.get(Randomizer.Rand(teams.size()));
-				if (i == teamPlayers.size() - 1 && randTeam.equals(firstPlayerTeam)) {
+				if ((i == teamPlayers.size() - 1 && randTeam.equals(firstPlayerTeam)) || (lastTeamPreviousCycle.equals(randTeam) && i == 0)) {
 					UUID lastPlayer = cycle.remove(cycle.size() - 1);
 					cycle.add(teamPlayers.get(randTeam).remove(Randomizer.Rand(teamPlayers.get(randTeam).size())));
 					cycle.add(lastPlayer);
 				} else
 					cycle.add(teamPlayers.get(randTeam).remove(Randomizer.Rand(teamPlayers.get(randTeam).size())));
+				if(i == 0)
+					lastTeamPreviousCycle = randTeam;
 				if (firstPlayerTeam == null && i == 0) {
 					firstPlayerTeam = randTeam;
 				}
