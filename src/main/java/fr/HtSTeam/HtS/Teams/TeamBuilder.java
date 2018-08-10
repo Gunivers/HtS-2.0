@@ -73,7 +73,6 @@ public class TeamBuilder implements StartTrigger {
 			playerList.clear();
 		} else {
 			for (UUID key: playerTeam.keySet()) {
-				playerTeam.remove(key, this);
 				Bukkit.getPlayer(key).setDisplayName(Bukkit.getPlayer(key).getName());
 			}
 			playerList.clear();
