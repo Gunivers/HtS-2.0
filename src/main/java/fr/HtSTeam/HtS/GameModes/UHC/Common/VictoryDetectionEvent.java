@@ -6,8 +6,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.HtSTeam.HtS.EnumState;
+import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
 import fr.HtSTeam.HtS.Teams.TeamBuilder;
 import fr.HtSTeam.HtS.Utils.JSON;
@@ -22,12 +24,16 @@ public class VictoryDetectionEvent implements Listener {
 
 	@EventHandler(priority = EventPriority.LOW)
 	public void onPlayerDeath(PlayerDeathEvent e) {
-		if(EnumState.getState() != EnumState.FINISHING && teamVictoryDetection && TeamBuilder.teamList.size() == 1) {
-			EnumState.setState(EnumState.FINISHING);
+		if(EnumState.getState() != EnumState.FINISHING && teamVictoryDetection && TeamBuilder.teamList.size() == 1)
 			JSON.sendAll(ChatColor.valueOf(TeamBuilder.teamList.get(0).getTeamColor().toUpperCase()) + "La team " + TeamBuilder.teamList.get(0).getTeamName() + " a gagné !", null, 5);
-		} else if(EnumState.getState() != EnumState.FINISHING && PlayerInGame.playerInGame.size() == 1) {
-			EnumState.setState(EnumState.FINISHING);
+		else if(EnumState.getState() != EnumState.FINISHING && PlayerInGame.playerInGame.size() == 1) {
 			JSON.sendAll(Bukkit.getPlayer(PlayerInGame.playerInGame.get(0)).getName() + "§2 a gagné !", null, 5);
 		}
+		new BukkitRunnable() {
+			@Override
+			public void run() {
+				EnumState.setState(EnumState.FINISHING);
+			}
+		}.runTaskLater(Main.plugin, 1);
 	}
 }

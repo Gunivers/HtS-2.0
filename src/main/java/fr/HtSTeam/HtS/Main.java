@@ -5,7 +5,6 @@ import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
-import org.bukkit.Statistic;
 import org.bukkit.World;
 import org.bukkit.World.Environment;
 import org.bukkit.entity.Player;
@@ -20,8 +19,8 @@ import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.JDBCHandler;
 import fr.HtSTeam.HtS.Players.DeathLoot;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.ScoreboardLib;
 import fr.HtSTeam.HtS.Teams.TeamRegister;
-import fr.HtSTeam.HtS.Utils.Files.FileExtractor;
 import fr.HtSTeam.HtS.Utils.TimerTask;
+import fr.HtSTeam.HtS.Utils.Files.FileExtractor;
 
 public class Main extends JavaPlugin {
 	
@@ -57,10 +56,10 @@ public class Main extends JavaPlugin {
 		new TeamRegister();
 		new JDBCHandler();
 		
-		run();
+		//run();
 	}
 	
-	public static void run() {
+	/*public static void run() {
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {	
 			@Override
 			public void run() {
@@ -69,5 +68,5 @@ public class Main extends JavaPlugin {
 				System.out.println("=======================================");
 			}
 		}, 0L, 1L);
-	}
+	}*/
 }
