@@ -77,11 +77,13 @@ public class TargetCycle extends OptionBuilder<Integer> {
 			TeamBuilder lastTeamPreviousCycle = null;
 			while (teams.size() > 0) {
 				TeamBuilder randTeam = teams.get(Randomizer.Rand(teams.size()));
-				if ((i == teamPlayers.size() - 1 && randTeam.equals(firstPlayerTeam)) || (lastTeamPreviousCycle != null && lastTeamPreviousCycle.equals(randTeam) && i == 0)) {
+				if (i == teamPlayers.size() - 1 && randTeam.equals(firstPlayerTeam)) {
 					UUID lastPlayer = cycle.remove(cycle.size() - 1);
 					cycle.add(teamPlayers.get(randTeam).remove(Randomizer.Rand(teamPlayers.get(randTeam).size())));
 					cycle.add(lastPlayer);
-				} else
+				} else if(lastTeamPreviousCycle != null && lastTeamPreviousCycle.equals(randTeam) && i == 0)
+					continue;
+				else
 					cycle.add(teamPlayers.get(randTeam).remove(Randomizer.Rand(teamPlayers.get(randTeam).size())));
 				if(i == 0)
 					lastTeamPreviousCycle = randTeam;
@@ -96,10 +98,11 @@ public class TargetCycle extends OptionBuilder<Integer> {
 		}
 		targetCycle = cycle;
 		displayTarget();
+		String cycleT = "";
 		for (UUID uuid : targetCycle) {
-			System.out.println(Bukkit.getPlayer(uuid).getName() + " : "
-					+ Bukkit.getPlayer(getTarget(Bukkit.getPlayer(uuid))).getName());
+			cycleT += "->" + Bukkit.getPlayer(uuid).getName();
 		}
+		System.out.println(cycleT);
 	}
 
 	public void displayTarget() {

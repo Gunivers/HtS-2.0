@@ -22,17 +22,17 @@ public class VictoryDetectionEvent implements Listener {
 
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onPlayerDeath(PlayerDeathEvent e) {
-		EnumState.setState(EnumState.FINISHING);
-		if(EnumState.getState() == EnumState.FINISHING && teamVictoryDetection && TeamBuilder.teamList.size() == 1)
+		if(EnumState.getState() != EnumState.FINISHING && teamVictoryDetection && TeamBuilder.teamList.size() == 1) {
 			JSON.sendAll(ChatColor.valueOf(TeamBuilder.teamList.get(0).getTeamColor().toUpperCase()) + "La team " + TeamBuilder.teamList.get(0).getTeamName() + " a gagné !", null, 5);
-		else if(EnumState.getState() == EnumState.FINISHING && PlayerInGame.playerInGame.size() == 1) {
+			EnumState.setState(EnumState.FINISHING);					
+		} else if(EnumState.getState() != EnumState.FINISHING && PlayerInGame.playerInGame.size() == 1) {
 			JSON.sendAll(Bukkit.getPlayer(PlayerInGame.playerInGame.get(0)).getName() + "§2 a gagné !", null, 5);
+			EnumState.setState(EnumState.FINISHING);
 		}
-//		new BukkitRunnable() {
-//			@Override
-//			public void run() {
-//				
-//			}
-//		}.runTaskLater(Main.plugin, 1);
+		/*new BukkitRunnable() {
+			@Override
+			public void run() {
+			}
+		}.runTaskLater(Main.plugin, 1);*/
 	}
 }
