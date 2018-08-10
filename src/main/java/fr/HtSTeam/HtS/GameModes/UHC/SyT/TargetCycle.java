@@ -1,6 +1,7 @@
 package fr.HtSTeam.HtS.GameModes.UHC.SyT;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -67,35 +68,17 @@ public class TargetCycle extends OptionBuilder<Integer> {
 	public void defineTargets() {
 		List<UUID> cycle = new ArrayList<UUID>();
 		HashMap<TeamBuilder, ArrayList<UUID>> teamPlayers = new HashMap<TeamBuilder, ArrayList<UUID>>();
-		for(TeamBuilder tb : TeamBuilder.teamList)
+		for (TeamBuilder tb : TeamBuilder.teamList)
 			teamPlayers.put(tb, new ArrayList<UUID>(tb.getTeamPlayers()));
-		TeamBuilder firstPlayerTeam = null;
-		while (teamPlayers.size() > 0) {
-			List<TeamBuilder> teams = new ArrayList<TeamBuilder>();
-			teams.addAll(TeamBuilder.teamList);
-			int i = 0;
-			TeamBuilder lastTeamPreviousCycle = null;
-			while (teams.size() > 0) {
-				TeamBuilder randTeam = teams.get(Randomizer.Rand(teams.size()));
-				if (i == teamPlayers.size() - 1 && randTeam.equals(firstPlayerTeam)) {
-					UUID lastPlayer = cycle.remove(cycle.size() - 1);
-					cycle.add(teamPlayers.get(randTeam).remove(Randomizer.Rand(teamPlayers.get(randTeam).size())));
-					cycle.add(lastPlayer);
-				} else if(lastTeamPreviousCycle != null && lastTeamPreviousCycle.equals(randTeam) && i == 0)
-					continue;
-				else
-					cycle.add(teamPlayers.get(randTeam).remove(Randomizer.Rand(teamPlayers.get(randTeam).size())));
-				if(i == 0)
-					lastTeamPreviousCycle = randTeam;
-				if (firstPlayerTeam == null && i == 0) {
-					firstPlayerTeam = randTeam;
-				}
-				i++;
-				if (teamPlayers.get(randTeam).size() == 0)
-					teamPlayers.remove(randTeam);
-				teams.remove(randTeam);
-			}
+		
+		while(!teamPlayers.isEmpty()) {
+			ArrayList<UUID> sub_cycle = new ArrayList<UUID>();
+			teamPlayers.forEach((tb, players) -> { UUID uuid = players.get(Randomizer.RandI(0, players.size() - 1)); sub_cycle.add(uuid); players.remove(uuid); if (players.isEmpty()) teamPlayers.remove(tb); });
+			while(sub_cycle.get(sub_cycle.size() - 1).equals(cycle.get(cycle.size() - 1)))
+				Collections.shuffle(sub_cycle);
+			cycle.addAll(sub_cycle);
 		}
+		
 		targetCycle = cycle;
 		displayTarget();
 		String cycleT = "";
