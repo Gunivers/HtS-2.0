@@ -28,7 +28,7 @@ public class JDBCHandler {
 		String strTable = "CREATE TABLE `" + db + "`.`" + tableName +  "` ( " + EnumStats.getSQLTableStatsTracked() +" ) comment='" + comment + "' ENGINE = InnoDB";
 	
 		Statement stmt = conn.createStatement();
-		ResultSet rset = stmt.executeQuery("SELECT * FROM `" + tableName + "`");
+		ResultSet rset = conn.getMetaData().getTables(null, null, tableName, null);
 		if (rset.next())
 			return;
 		stmt.executeUpdate(strTable);
