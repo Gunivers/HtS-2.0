@@ -2,6 +2,7 @@ package fr.HtSTeam.HtS.Options.Options.Statistics.Structure;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -27,6 +28,9 @@ public class JDBCHandler {
 		String strTable = "CREATE TABLE `" + db + "`.`" + tableName +  "` ( " + EnumStats.getSQLTableStatsTracked() +" ) comment='" + comment + "' ENGINE = InnoDB";
 	
 		Statement stmt = conn.createStatement();
+		ResultSet rset = stmt.executeQuery("SELECT * FROM `" + tableName + "`");
+		if (rset.next())
+			return;
 		stmt.executeUpdate(strTable);
 	}
 	
