@@ -51,6 +51,7 @@ public class KillsPlayerStatOption extends OptionBuilder<Boolean> implements Sta
 
 	@Override
 	public void onPartyEnd() {
+		System.out.println("PartyEnd Kill player running...");
 		if (EnumStats.KILLS_PLAYER.isTracked())
 			Bukkit.getOnlinePlayers().forEach(player -> { StatisticHandler.update(player, EnumStats.KILLS_PLAYER, player.getStatistic(Statistic.PLAYER_KILLS)); });
 	}

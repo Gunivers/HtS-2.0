@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
+import org.bukkit.Statistic;
 import org.bukkit.World;
 import org.bukkit.World.Environment;
 import org.bukkit.entity.Player;
@@ -55,5 +56,18 @@ public class Main extends JavaPlugin {
 		CommandsManager.loadCommands(this);
 		new TeamRegister();
 		new JDBCHandler();
+		
+		run();
+	}
+	
+	public static void run() {
+		Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {	
+			@Override
+			public void run() {
+				System.out.println("=======================================");
+				Bukkit.getOnlinePlayers().forEach(p -> { System.out.println(p.getName() + "    " + p.getStatistic(Statistic.PLAYER_KILLS)); });
+				System.out.println("=======================================");
+			}
+		}, 0L, 1L);
 	}
 }

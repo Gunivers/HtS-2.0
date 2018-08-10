@@ -44,7 +44,7 @@ public class DamageGivenStatOption extends OptionBuilder<Boolean> {
 	
 	@EventHandler
 	public void on(EntityDamageByEntityEvent e) {
-		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.DAMAGE_GIVEN.isTracked() && e.getDamager() instanceof Player)
+		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.DAMAGE_GIVEN.isTracked() && e.getDamager() instanceof Player && e.getEntity() instanceof Player)
 			StatisticHandler.update((Player) e.getDamager(), EnumStats.DAMAGE_GIVEN, (int)e.getDamage());
 	}
 }
