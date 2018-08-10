@@ -44,7 +44,7 @@ public class StatisticHandler {
 	}
 	
 	public static void update(Player p, EnumStats s, int value) {
-		if (!EnumState.getState().equals(EnumState.RUNNING) && !s.isTracked() && !playerStats.containsKey(p.getUniqueId()))
+		if (!s.isTracked() && !playerStats.containsKey(p.getUniqueId()))
 			return;
 		HashMap<EnumStats, Object> stats = playerStats.get(p.getUniqueId());
 		stats.put(s, (int)stats.get(s) + value);
@@ -61,7 +61,7 @@ public class StatisticHandler {
 
 	protected static String getInsertValues() {
 		ArrayList<String> rows = new ArrayList<String>();
-		playerStats.forEach((uuid, stats) -> { ArrayList<String> values = new ArrayList<String>(); values.add(uuid.toString()); values.add(Bukkit.getPlayer(uuid).getName()); for(int i = 0; i < EnumStats.values().length; i++) values.add(stats.get(EnumStats.values()[i]).toString()); rows.add("(" + String.join(",", values) + ")"); });
+		playerStats.forEach((uuid, stats) -> { ArrayList<String> values = new ArrayList<String>(); values.add("\"" + uuid.toString() + "\""); values.add("\"" + Bukkit.getPlayer(uuid).getName() + "\""); for(int i = 0; i < EnumStats.values().length; i++) values.add("\"" + stats.get(EnumStats.values()[i]).toString() + "\""); rows.add("(" + String.join(",", values) + ")"); });
 		if(rows.isEmpty())
 			return null;
 		return String.join(",", rows);
