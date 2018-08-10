@@ -74,7 +74,7 @@ public class TargetCycle extends OptionBuilder<Integer> {
 		while(!teamPlayers.isEmpty()) {
 			ArrayList<UUID> sub_cycle = new ArrayList<UUID>();
 			teamPlayers.forEach((tb, players) -> { UUID uuid = players.get(Randomizer.RandI(0, players.size() - 1)); sub_cycle.add(uuid); players.remove(uuid); if (players.isEmpty()) teamPlayers.remove(tb); });
-			while(TeamBuilder.playerTeam.get(sub_cycle.get(sub_cycle.size() - 1)).equals(TeamBuilder.playerTeam.get(cycle.get(cycle.size() - 1))))
+			while(TeamBuilder.playerTeam.get(sub_cycle.get(sub_cycle.size() - 1)) == TeamBuilder.playerTeam.get(cycle.get(cycle.size() - 1)))
 				Collections.shuffle(sub_cycle);
 			cycle.addAll(sub_cycle);
 		}
