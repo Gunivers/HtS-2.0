@@ -7,8 +7,13 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.reflections.Reflections;
+import org.reflections.scanners.MethodAnnotationsScanner;
+import org.reflections.util.ClasspathHelper;
+import org.reflections.util.ConfigurationBuilder;
 
 import fr.HtSTeam.HtS.Main;
+import fr.HtSTeam.HtS.Options.Structure.Annotation.RemovePlayer;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
 
 public class RemoveCommand implements CommandExecutor {
@@ -35,7 +40,9 @@ public class RemoveCommand implements CommandExecutor {
 						}
 					}
 					if (uuid != null) {
-						// TODO
+						final UUID final_uuid = uuid;
+						final String final_name = name;		
+						new Reflections(new ConfigurationBuilder().setUrls(ClasspathHelper.forJavaClassPath()).setScanners(new MethodAnnotationsScanner())).getMethodsAnnotatedWith(RemovePlayer.class).forEach(m -> { try { m.invoke(null, final_uuid, final_name); } catch (IllegalAccessException | IllegalArgumentException | java.lang.reflect.InvocationTargetException e) { e.printStackTrace();	} });
 					} else
 						p.sendMessage("§4Ce joueur n'existe pas !");
 					return true;
