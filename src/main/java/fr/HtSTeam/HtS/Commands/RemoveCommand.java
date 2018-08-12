@@ -11,12 +11,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.reflections.Reflections;
-import org.reflections.scanners.MethodAnnotationsScanner;
-import org.reflections.util.ClasspathHelper;
-import org.reflections.util.ConfigurationBuilder;
 
 import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.Options.Structure.Annotation.RemovePlayer;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
 
 public class RemoveCommand implements CommandExecutor {
