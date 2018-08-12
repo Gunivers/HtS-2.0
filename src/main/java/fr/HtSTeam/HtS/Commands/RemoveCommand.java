@@ -3,12 +3,14 @@ package fr.HtSTeam.HtS.Commands;
 import java.util.Map.Entry;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Main;
+import fr.HtSTeam.HtS.Players.PlayerInGame;
 
 public class RemoveCommand implements CommandExecutor {
 
@@ -26,9 +28,9 @@ public class RemoveCommand implements CommandExecutor {
 				if (args.length == 1) {
 					UUID uuid = null;
 					String name = null;
-					for (Entry<Player, UUID> players : main.uuidPlayer.entrySet()) {
-						if (players.getKey().getName().equals(args[0])) {
-							uuid = players.getValue();
+					for (UUID uuid2: PlayerInGame.playerInGame) {
+						if (Bukkit.getOfflinePlayer(uuid2).getName().equals(args[0]) || Bukkit.getPlayer(uuid2).getName().equals(args[0])) {
+							uuid = uuid2;
 							name = args[0];
 							break;
 						}
