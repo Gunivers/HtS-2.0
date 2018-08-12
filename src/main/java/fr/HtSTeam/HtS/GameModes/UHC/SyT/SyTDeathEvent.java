@@ -1,5 +1,7 @@
 package fr.HtSTeam.HtS.GameModes.UHC.SyT;
 
+import java.util.UUID;
+
 import org.bukkit.Bukkit;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
@@ -11,14 +13,16 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import fr.HtSTeam.HtS.EnumState;
+import fr.HtSTeam.HtS.Options.Structure.Annotation.RemovePlayer;
 
 public class SyTDeathEvent implements Listener {
+	
+	private String broadcast;
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onKillSomeone(PlayerDeathEvent e) {
 		e.setDeathMessage(null);
 		Player victim = e.getEntity();
-		String broadcast;
 		if (e.getEntity().getKiller() instanceof Player && !SyT.targetCycleOption.targetCycle.isEmpty()) {
 			Player killer = e.getEntity().getKiller();
 
@@ -61,20 +65,27 @@ public class SyTDeathEvent implements Listener {
 
 				broadcast = victim.getName() + " est mort.";
 				if (EnumState.getState().equals(EnumState.RUNNING)) {
-					System.out.println(Bukkit.getPlayer(SyT.targetCycleOption.getHunter(victim)).getName());
 					Bukkit.getPlayer(SyT.targetCycleOption.getHunter(victim)).sendMessage("§2Votre cible a été tuée, une nouvelle cible vous est attribuée : "+ Bukkit.getPlayer(SyT.targetCycleOption.getTarget(victim)).getName());
 					killer.sendMessage("§4Que faites-vous ?! Ce n'était pas la cible qui vous était attribuée !");
 					killer.sendMessage("§7§oVous avez du remord...");
 				}
 			}
-		} else {
-			broadcast = victim.getName() + " est mort.";
 			SyT.targetCycleOption.targetCycle.remove(victim.getUniqueId());
-			Bukkit.getPlayer(SyT.targetCycleOption.getHunter(victim))
-					.sendMessage("§2Votre cible a été tuée, une nouvelle cible vous est attribuée : "
-							+ Bukkit.getPlayer(SyT.targetCycleOption.getTarget(victim)).getName());
+			Bukkit.broadcastMessage(broadcast);
+		} else {
+			death(victim.getUniqueId());
 		}
-		SyT.targetCycleOption.targetCycle.remove(victim.getUniqueId());
+	}
+	
+	@RemovePlayer
+	public void death(UUID uuid) {
+		String name = Bukkit.getOfflinePlayer(uuid).getName();
+		broadcast = name + " est mort.";
+		SyT.targetCycleOption.targetCycle.remove(uuid);
+		Bukkit.getPlayer(SyT.targetCycleOption.getHunter(uuid))
+				.sendMessage("§2Votre cible a été tuée, une nouvelle cible vous est attribuée : "
+						+ Bukkit.getPlayer(SyT.targetCycleOption.getTarget(uuid)).getName());
+		SyT.targetCycleOption.targetCycle.remove(uuid);
 		Bukkit.broadcastMessage(broadcast);
 	}
 
