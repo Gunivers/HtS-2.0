@@ -26,8 +26,12 @@ public class PlayerInGame implements Listener {
 	}
 	
 	public static void removeFromGame(Player p) {
-		playerInGame.remove(p.getUniqueId());
-		if (TeamBuilder.playerTeam.get(p.getUniqueId()) != null)
-			TeamBuilder.playerTeam.get(p.getUniqueId()).removePlayer(p);
+		removeFromGame(p.getUniqueId());
+	}
+	
+	public static void removeFromGame(UUID uuid) {
+		playerInGame.remove(uuid);
+		if (TeamBuilder.playerTeam.get(uuid) != null)
+			TeamBuilder.playerTeam.get(uuid).removePlayer(uuid);
 	}
 }

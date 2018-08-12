@@ -73,19 +73,18 @@ public class SyTDeathEvent implements Listener {
 			SyT.targetCycleOption.targetCycle.remove(victim.getUniqueId());
 			Bukkit.broadcastMessage(broadcast);
 		} else {
+			broadcast = victim.getName() + " est mort.";
 			death(victim.getUniqueId(), victim.getName());
 		}
+		Bukkit.broadcastMessage(broadcast);
 	}
 	
 	@RemovePlayer
-	public void death(UUID uuid, String name) {
-		broadcast = name + " est mort.";
-		SyT.targetCycleOption.targetCycle.remove(uuid);
+	public void death(UUID uuid, String name) {	
 		Bukkit.getPlayer(SyT.targetCycleOption.getHunter(uuid))
 				.sendMessage("§2Votre cible a été tuée, une nouvelle cible vous est attribuée : "
 						+ Bukkit.getPlayer(SyT.targetCycleOption.getTarget(uuid)).getName());
-		SyT.targetCycleOption.targetCycle.remove(uuid);
-		Bukkit.broadcastMessage(broadcast);
+		SyT.targetCycleOption.targetCycle.remove(uuid);	
 	}
 
 }
