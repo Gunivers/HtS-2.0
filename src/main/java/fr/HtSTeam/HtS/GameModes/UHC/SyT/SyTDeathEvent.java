@@ -73,13 +73,12 @@ public class SyTDeathEvent implements Listener {
 			SyT.targetCycleOption.targetCycle.remove(victim.getUniqueId());
 			Bukkit.broadcastMessage(broadcast);
 		} else {
-			death(victim.getUniqueId());
+			death(victim.getUniqueId(), victim.getName());
 		}
 	}
 	
 	@RemovePlayer
-	public void death(UUID uuid) {
-		String name = Bukkit.getOfflinePlayer(uuid).getName();
+	public void death(UUID uuid, String name) {
 		broadcast = name + " est mort.";
 		SyT.targetCycleOption.targetCycle.remove(uuid);
 		Bukkit.getPlayer(SyT.targetCycleOption.getHunter(uuid))

@@ -25,9 +25,11 @@ public class RemoveCommand implements CommandExecutor {
 			if (cmd.getName().equalsIgnoreCase("remove") && sender.hasPermission("remove.use")) {
 				if (args.length == 1) {
 					UUID uuid = null;
+					String name = null;
 					for (Entry<Player, UUID> players : main.uuidPlayer.entrySet()) {
 						if (players.getKey().getName().equals(args[0])) {
 							uuid = players.getValue();
+							name = args[0];
 							break;
 						}
 					}
