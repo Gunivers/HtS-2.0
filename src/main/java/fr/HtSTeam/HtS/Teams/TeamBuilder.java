@@ -67,6 +67,21 @@ public class TeamBuilder implements StartTrigger {
 			}
 		}
 	}
+
+	public void removePlayer(UUID uuid) {
+		if (faketeam) {
+			playerList.remove(uuid);
+			if (playerList.size() == 0)
+				teamList.remove(this);
+		} else {
+			playerList.remove(uuid);
+			playerTeam.remove(uuid, this);
+			if (getTeamSize() == 0) {
+				teamList.remove(this);
+				nameTeam.remove(teamName, this);
+			}
+		}
+	}
 	
 	public void clearTeam() {
 		if(faketeam) {
