@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 import org.apache.commons.lang.ObjectUtils.Null;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -75,7 +76,9 @@ public class LoadPreset extends OptionBuilder<Null> implements CommandExecutor {
 				}
 			}
 		}
-		p.sendMessage("§2Import réussi.");
+		for(Player p2 : Bukkit.getOnlinePlayers())
+			if(p2.isOp()) 
+				p2.sendMessage("§2Import de " + f.getName().replaceAll(".xml", "") + " réussi.");
 	}
 		
 	@Override

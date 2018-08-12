@@ -100,7 +100,11 @@ public class TargetCycle extends OptionBuilder<Integer> {
 	}
 	
 	public UUID getTarget(Player p) {
-		int index = targetCycle.indexOf(p.getUniqueId());
+		return getTarget(p.getUniqueId());
+	}
+	
+	public UUID getTarget(UUID uuid) {
+		int index = targetCycle.indexOf(uuid);
 		if(index < targetCycle.size() - 1)
 			return targetCycle.get(index + 1);
 		else 
@@ -108,7 +112,11 @@ public class TargetCycle extends OptionBuilder<Integer> {
 	}
 	
 	public UUID getHunter(Player p) {
-		int index = targetCycle.indexOf(p.getUniqueId());
+		return getHunter(p.getUniqueId());
+	}
+	
+	public UUID getHunter(UUID uuid) {
+		int index = targetCycle.indexOf(uuid);
 		if(index > 0)
 			return targetCycle.get(index - 1);
 		else 

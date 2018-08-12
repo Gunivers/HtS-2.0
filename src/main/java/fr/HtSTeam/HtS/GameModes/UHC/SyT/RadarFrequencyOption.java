@@ -20,6 +20,7 @@ public class RadarFrequencyOption extends OptionBuilder<Integer> implements Star
 	private boolean request = false;
 	private Player p;
 	private int frequency = 20;
+	private int duration = 15;
 
 	public RadarFrequencyOption() {
 		super(Material.COMPASS, "Fréquence du Radar", "§220 minutes", 20, GUIRegister.syt);
@@ -40,7 +41,6 @@ public class RadarFrequencyOption extends OptionBuilder<Integer> implements Star
 			try {
 				int value = Integer.parseInt(e.getMessage());
 				if (value >= 0 && value <= 60) {
-					frequency = value;
 					setState(value);
 					p.sendMessage("§2Radar toutes les " + getValue() + " minutes.");
 					parent.update(this);
@@ -62,15 +62,15 @@ public class RadarFrequencyOption extends OptionBuilder<Integer> implements Star
 			Player victim = Bukkit.getPlayer(SyT.targetCycleOption.getTarget(player));
 			if (victim.getLocation().getBlockY() >= 36
 					&& victim.getLocation().getWorld().getEnvironment() == Environment.NORMAL) {
-				ActionBar msg = new ActionBar(player, "§4§lCible repérée : " + victim.getLocation().getBlockX() + " " + victim.getLocation().getBlockY() + " " + victim.getLocation().getBlockZ(), 30);
+				ActionBar msg = new ActionBar(player, "§4§lCible repérée : " + victim.getLocation().getBlockX() + " " + victim.getLocation().getBlockY() + " " + victim.getLocation().getBlockZ(), duration);
 				msg.send();
 			} else if (victim.getLocation().getBlockY() < 36
 					&& victim.getLocation().getWorld().getEnvironment() == Environment.NORMAL) {
-				ActionBar msg = new ActionBar(player, "§4§lTrop faible signal détecté : impossible de localiser la cible.", 30);
+				ActionBar msg = new ActionBar(player, "§4§lTrop faible signal détecté : impossible de localiser la cible.", duration);
 				msg.send();
 			} else if (victim.getLocation().getWorld().getEnvironment() == Environment.NETHER
 					|| player.getLocation().getWorld().getEnvironment() == Environment.NETHER) {
-				ActionBar msg = new ActionBar(player, "§4§lAucun signal détecté : impossible de localiser la cible.", 30);
+				ActionBar msg = new ActionBar(player, "§4§lAucun signal détecté : impossible de localiser la cible.", duration);
 				msg.send();
 			}
 		}
@@ -84,6 +84,7 @@ public class RadarFrequencyOption extends OptionBuilder<Integer> implements Star
 	@Override
 	public void setState(Integer value) {
 		setValue(value);
+		frequency = value;
 		this.getItemStack().setLore("§2" + value + " minutes");
 		parent.update(this);
 	}
