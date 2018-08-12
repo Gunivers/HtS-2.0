@@ -47,6 +47,14 @@ public enum EnumStats {
 			return String.join(" , ", cols);
 		return null; 
 	}
+	
+	public static String getSQLTableAddStats(ArrayList<String> columns) {	
+		ArrayList<String> cols = new ArrayList<String>();
+		columns.forEach(col -> { cols.add(valueOf(col).getSQLTableCol()); });
+		if (!cols.isEmpty())
+			return String.join(", ADD COLUMN ", cols);
+		return null; 
+	}
 
 	public static String getSQLInsertStatsTracked() { 
 		@SuppressWarnings("serial")

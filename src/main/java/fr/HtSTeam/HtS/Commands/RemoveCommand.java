@@ -1,6 +1,5 @@
 package fr.HtSTeam.HtS.Commands;
 
-import java.util.Map.Entry;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
