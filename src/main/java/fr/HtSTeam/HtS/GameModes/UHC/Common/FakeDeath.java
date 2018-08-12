@@ -40,7 +40,7 @@ public class FakeDeath implements Listener {
 	}
 	
 	@RemovePlayer
-	public void deletePlayer(UUID uuid, String name) {
+	public static void deletePlayer(UUID uuid, String name) {
 		PlayerInGame.removeFromGame(uuid);
 		boolean isOffline = true;
 		for (Player p2 : Bukkit.getOnlinePlayers()) {

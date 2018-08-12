@@ -80,7 +80,7 @@ public class SyTDeathEvent implements Listener {
 	}
 	
 	@RemovePlayer
-	public void death(UUID uuid, String name) {	
+	public static void death(UUID uuid, String name) {	
 		Bukkit.getPlayer(SyT.targetCycleOption.getHunter(uuid))
 				.sendMessage("§2Votre cible a été tuée, une nouvelle cible vous est attribuée : "
 						+ Bukkit.getPlayer(SyT.targetCycleOption.getTarget(uuid)).getName());
