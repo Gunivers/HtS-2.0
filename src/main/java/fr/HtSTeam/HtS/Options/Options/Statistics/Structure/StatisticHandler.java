@@ -19,7 +19,11 @@ public class StatisticHandler {
 		for (UUID uuid : PlayerInGame.playerInGame) {
 			HashMap<EnumStats, Object> stats = new HashMap<EnumStats, Object>();
 			for (EnumStats s : EnumStats.values())
-				if (s.isTracked())
+				if (EnumStats.PLAYER_UUID == s)
+					stats.put(s, uuid);
+				else if (EnumStats.PLAYER_NAME == s)
+					stats.put(s, Bukkit.getOfflinePlayer(uuid).getName());
+				else if (s.isTracked())
 					stats.put(s, s.getDefaultValue());
 			playerStats.put(uuid, stats);
 		}
@@ -28,6 +32,7 @@ public class StatisticHandler {
 	public static void save() throws SQLException {
 		JDBCHandler.createTable();
 		JDBCHandler.insert();
+		JDBCHandler.alter();
 		JDBCHandler.update();
 	}
 	
@@ -61,7 +66,7 @@ public class StatisticHandler {
 
 	protected static String getInsertValues() {
 		ArrayList<String> rows = new ArrayList<String>();
-		playerStats.forEach((uuid, stats) -> { ArrayList<String> values = new ArrayList<String>(); values.add("\"" + uuid.toString() + "\""); values.add("\"" + Bukkit.getPlayer(uuid).getName() + "\""); for(int i = 0; i < EnumStats.values().length; i++) values.add("\"" + stats.get(EnumStats.values()[i]).toString() + "\""); rows.add("(" + String.join(",", values) + ")"); });
+		playerStats.forEach((uuid, stats) -> { ArrayList<String> values = new ArrayList<String>(); for(int i = 0; i < EnumStats.values().length; i++) values.add("\"" + stats.get(EnumStats.values()[i]).toString() + "\""); rows.add("(" + String.join(",", values) + ")"); });
 		if(rows.isEmpty())
 			return null;
 		return String.join(",", rows);

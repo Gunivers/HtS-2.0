@@ -3,7 +3,9 @@ package fr.HtSTeam.HtS.Options.Options.Statistics.Structure;
 import java.util.ArrayList;
 
 public enum EnumStats {
-
+	
+	PLAYER_UUID (true, new ArrayList<String>(), "`PLAYER_UUID` TEXT NOT NULL"),
+	PLAYER_NAME (true, new ArrayList<String>(), "`PLAYER_NAME` TEXT NOT NULL"),
 	TIME_PLAYED (true, 0, "`TIME_PLAYED` INT NOT NULL"),
 	TIME_SPRINTED (true, 0, "`TIME_SPRINTED` INT NOT NULL"),
 	TIME_SNEAKED (true, 0, "`TIME_SNEAKED` INT NOT NULL"),
@@ -38,8 +40,7 @@ public enum EnumStats {
 	public boolean isTracked() { return b; }
 	
 	public static String getSQLTableStatsTracked() { 
-		@SuppressWarnings("serial")
-		ArrayList<String> cols = new ArrayList<String>() {{ add("`PLAYER_UUID` TEXT NOT NULL"); add("`PLAYER_NAME` TEXT NOT NULL"); }};
+		ArrayList<String> cols = new ArrayList<String>();
 		for (int i = 0; i < values().length; i++)
 			if (values()[i].isTracked())
 				cols.add(values()[i].getSQLTableCol());
@@ -57,8 +58,7 @@ public enum EnumStats {
 	}
 
 	public static String getSQLInsertStatsTracked() { 
-		@SuppressWarnings("serial")
-		ArrayList<String> cols = new ArrayList<String>() {{ add("`PLAYER_UUID`"); add("`PLAYER_NAME`"); }};
+		ArrayList<String> cols = new ArrayList<String>();
 		for (int i = 0; i < values().length; i++)
 			if (values()[i].isTracked())
 				cols.add("`" + values()[i].toString() + "`");
@@ -68,8 +68,7 @@ public enum EnumStats {
 	}
 	
 	public static ArrayList<String> getSQLUpdateStatsTracked() { 
-		@SuppressWarnings("serial")
-		ArrayList<String> cols = new ArrayList<String>() {{ add("PLAYER_NAME"); }};
+		ArrayList<String> cols = new ArrayList<String>();
 		for (int i = 0; i < values().length; i++)
 			if (values()[i].isTracked())
 				cols.add(values()[i].toString());
