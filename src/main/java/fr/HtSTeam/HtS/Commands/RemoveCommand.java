@@ -1,18 +1,15 @@
 package fr.HtSTeam.HtS.Commands;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.UUID;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
-import org.reflections.Reflections;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
+import fr.HtSTeam.HtS.Utils.PlayerRemove;
 
 public class RemoveCommand implements CommandExecutor {
 
@@ -40,7 +37,8 @@ public class RemoveCommand implements CommandExecutor {
 					if (uuid != null) {
 						final UUID final_uuid = uuid;
 						final String final_name = name;		
-						new Reflections("fr.HtSTeam.HtS").getSubTypesOf(Listener.class).forEach(clazz -> { for (Method m : clazz.getMethods()) try { m.invoke(null, final_uuid, final_name); } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) { e.printStackTrace(); } });
+						for(PlayerRemove pr : PlayerRemove.remove)
+							pr.removePlayer(final_uuid, final_name);
 					} else
 						p.sendMessage("§4Ce joueur n'existe pas !");
 					return true;

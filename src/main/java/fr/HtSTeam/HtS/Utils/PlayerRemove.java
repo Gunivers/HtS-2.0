@@ -6,7 +6,7 @@ import java.util.UUID;
 public interface PlayerRemove {
 	
 	public static ArrayList<PlayerRemove> remove = new ArrayList<PlayerRemove>();
-	public static PlayerRemove last = null;
+	public static ArrayList<PlayerRemove> last = new ArrayList<PlayerRemove>();
 
 	public void removePlayer(UUID uuid, String name);
 	
@@ -15,7 +15,11 @@ public interface PlayerRemove {
 	}
 	
 	public default void hasLast() {
-		//last = this;
+		last.add(this);
+	}
+	
+	public static void addLast() { //Appelé dans EnumState
+		remove.addAll(last); 
 	}
 	
 }

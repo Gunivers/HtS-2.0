@@ -11,6 +11,7 @@ import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.StatisticHandler;
 import fr.HtSTeam.HtS.Options.Structure.EndTrigger;
 import fr.HtSTeam.HtS.Options.Structure.IconBuilder;
 import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
+import fr.HtSTeam.HtS.Utils.PlayerRemove;
 
 public enum EnumState implements Listener {
 	
@@ -27,6 +28,7 @@ public enum EnumState implements Listener {
 				world.setPVP(false);
 		} else if(state.equals(EnumState.RUNNING)) {
 			IconBuilder.optionsList.keySet().forEach(key -> { if(Arrays.asList(key.getClass().getInterfaces()).contains(StartTrigger.class)) ((StartTrigger) key).onPartyStart(); });
+			PlayerRemove.addLast();
 			Main.gamemode.initialisation();
 			StatisticHandler.init();
 		} else if (state.equals(EnumState.FINISHING)) {
