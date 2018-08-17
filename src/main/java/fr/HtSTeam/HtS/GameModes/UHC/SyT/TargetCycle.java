@@ -14,8 +14,11 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Annotation.AwaitingPlayer;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
+import fr.HtSTeam.HtS.Players.PlayerManager;
+import fr.HtSTeam.HtS.Players.PlayerReconnection;
 import fr.HtSTeam.HtS.Teams.TeamBuilder;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
@@ -82,20 +85,27 @@ public class TargetCycle extends OptionBuilder<Integer> {
 		
 		targetCycle = cycle;
 		displayTarget();
+		
+		
 		String cycleT = "";
-		for (UUID uuid : targetCycle) {
+		for (UUID uuid : targetCycle)
 			cycleT += "->" + PlayerInGame.uuidToName.get(uuid);
-		}
 		System.out.println(cycleT);
 	}
-
+	
 	public void displayTarget() {
-		for(int i = 0; i < targetCycle.size(); i++) {
-			if(i != targetCycle.size() - 1)
-				Bukkit.getPlayer(targetCycle.get(i)).sendMessage("§4Votre cible est " + Bukkit.getPlayer(targetCycle.get(i + 1)).getName());
-			else
-				Bukkit.getPlayer(targetCycle.get(i)).sendMessage("§4Votre cible est " + Bukkit.getPlayer(targetCycle.get(0)).getName());
-		}
+		targetCycle.forEach(uuid -> { if (PlayerManager.isConnected(uuid)) displayTarget(uuid); else PlayerReconnection.add(uuid, this); });
+	}
+	
+	@AwaitingPlayer	
+	public void displayTarget(UUID uuid) {
+		if (targetCycle.indexOf(uuid) == targetCycle.size() - 1)
+			Bukkit.getPlayer(uuid)
+			.sendMessage("§4Votre cible est " + PlayerInGame.uuidToName.get(targetCycle.get(0)));
+		else
+			Bukkit.getPlayer(uuid)
+			.sendMessage("§4Votre cible est " + PlayerInGame.uuidToName.get(targetCycle.get(targetCycle.indexOf(uuid) + 1)));
+			
 	}
 	
 	public UUID getTarget(Player p) {
