@@ -9,6 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Players.PlayerInGame;
+import fr.HtSTeam.HtS.Players.PlayerManager;
 import fr.HtSTeam.HtS.Utils.Files.OptionIO;
 
 public class UtilCommands implements CommandExecutor {
@@ -18,7 +19,7 @@ public class UtilCommands implements CommandExecutor {
 			if (cmd.getName().equalsIgnoreCase("heal") && sender.hasPermission("heal.use")) {
 				if (args.length == 1) {
 					for (UUID uuid : PlayerInGame.playerInGame)
-						if (PlayerInGame.uuidToName.get(uuid).equals(args[0])) {
+						if (PlayerInGame.uuidToName.get(uuid).equals(args[0]) && PlayerManager.isConnected(uuid)) {
 							Bukkit.getPlayer(uuid).setHealth(20);
 							return true;
 						}
@@ -29,7 +30,7 @@ public class UtilCommands implements CommandExecutor {
 			if (cmd.getName().equalsIgnoreCase("feed") && sender.hasPermission("feed.use")) {
 				if (args.length == 1) {
 					for (UUID uuid : PlayerInGame.playerInGame)
-						if (PlayerInGame.uuidToName.get(uuid).equals(args[0])) {
+						if (PlayerInGame.uuidToName.get(uuid).equals(args[0]) && PlayerManager.isConnected(uuid)) {
 							Bukkit.getPlayer(uuid).setFoodLevel(20);
 							return true;
 						}

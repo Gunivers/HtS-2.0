@@ -26,6 +26,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.HtSTeam.HtS.Main;
+import fr.HtSTeam.HtS.Players.PlayerManager;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 
 public class SeeInventory implements Listener {
@@ -102,7 +103,7 @@ public class SeeInventory implements Listener {
 	
 	public void refresh(Player p) {
 		for(Entry<UUID, Inventory> entry : inventories.entrySet()) {
-			if(entry.getValue().getName().equals(p.getName())) {
+			if(entry.getValue().getName().equals(p.getName()) && PlayerManager.isConnected(p.getUniqueId())) {
 				uuid = entry.getKey();
 			}
 		}
