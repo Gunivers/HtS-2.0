@@ -27,58 +27,63 @@ public class SyTDeathEvent implements Listener, PlayerRemove {
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onKillSomeone(PlayerDeathEvent e) {
 		e.setDeathMessage(null);
-		Player victim = e.getEntity();
+		Player eventVictim = e.getEntity();
 		if (e.getEntity().getKiller() instanceof Player && !SyT.targetCycleOption.targetCycle.isEmpty()) {
-			Player killer = e.getEntity().getKiller();
-
+			Player eventKiller = e.getEntity().getKiller();
+			UUID killerHunter = SyT.targetCycleOption.getHunter(eventKiller);
+			UUID killerTarget = SyT.targetCycleOption.getTarget(eventKiller);
+			UUID victimHunter = SyT.targetCycleOption.getTarget(eventVictim);
+			UUID victimTarget = SyT.targetCycleOption.getTarget(eventVictim);
+			
+			
 			// Kill victim
-			if (SyT.targetCycleOption.getTarget(killer).equals(victim.getUniqueId())) {
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 600, 0));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 6000, 0));
+			if (killerTarget.equals(eventVictim.getUniqueId())) {
+				eventKiller.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 600, 0));
+				eventKiller.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 6000, 0));
 
-				if (killer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() < 24) {
-					killer.getAttribute(Attribute.GENERIC_MAX_HEALTH)
-							.setBaseValue(killer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() + 2);
-					killer.setHealth(killer.getHealth() + 2);
+				if (eventKiller.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() < 24) {
+					eventKiller.getAttribute(Attribute.GENERIC_MAX_HEALTH)
+							.setBaseValue(eventKiller.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() + 2);
+					eventKiller.setHealth(eventKiller.getHealth() + 2);
 				}
-				broadcast = victim.getName() + " a été tué par son chasseur.";
+				broadcast = eventVictim.getName() + " a été tué par son chasseur.";
 				if (EnumState.getState().equals(EnumState.RUNNING))
-					killer.sendMessage("§2Cible éliminée. Nouvelle cible : "+ PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(killer)));
+					eventKiller.sendMessage("§2Cible éliminée. Nouvelle cible : "+ PlayerInGame.uuidToName.get(killerTarget));
 
 				// Kill hunter
-			} else if (SyT.targetCycleOption.getHunter(killer).equals(victim.getUniqueId())) {
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 600, 0));
-				if (killer.getHealth() >= killer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() - 4) {
-					killer.setHealth(killer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
+			} else if (killerHunter.equals(eventVictim.getUniqueId())) {
+				eventKiller.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 600, 0));
+				if (eventKiller.getHealth() >= eventKiller.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() - 4) {
+					eventKiller.setHealth(eventKiller.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
 				} else {
-					killer.setHealth(killer.getHealth() + 4);
+					eventKiller.setHealth(eventKiller.getHealth() + 4);
 				}
-				broadcast = victim.getName() + " a été tué par sa cible.";
+				broadcast = eventVictim.getName() + " a été tué par sa cible.";
 				if (EnumState.getState().equals(EnumState.RUNNING)) {
-					Bukkit.getPlayer(SyT.targetCycleOption.getHunter(killer)).sendMessage("§2Cible éliminée. Nouvelle cible : "+ killer.getName());
-					killer.sendMessage("§6Celui-ci semblait vous vouloir du mal, il est fort probable qu'il cherchait à vous éliminer.");
+					Bukkit.getPlayer(killerHunter).sendMessage("§2Cible éliminée. Nouvelle cible : "+ eventKiller.getName());
+					eventKiller.sendMessage("§6Celui-ci semblait vous vouloir du mal, il est fort probable qu'il cherchait à vous éliminer.");
 				}
 				// Kill other people
 			} else {
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 600, 0));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 6000, 0));
+				eventKiller.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 600, 0));
+				eventKiller.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 6000, 0));
 
-				if (killer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() > 16) {
-					killer.getAttribute(Attribute.GENERIC_MAX_HEALTH)
-							.setBaseValue(killer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() - 2);
+				if (eventKiller.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() > 16) {
+					eventKiller.getAttribute(Attribute.GENERIC_MAX_HEALTH)
+							.setBaseValue(eventKiller.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() - 2);
 				}
 
-				broadcast = victim.getName() + " est mort.";
+				broadcast = eventVictim.getName() + " est mort.";
 				if (EnumState.getState().equals(EnumState.RUNNING)) {
-					Bukkit.getPlayer(SyT.targetCycleOption.getHunter(victim)).sendMessage("§2Votre cible a été tuée, une nouvelle cible vous est attribuée : "+ PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(victim)));
-					killer.sendMessage("§4Que faites-vous ?! Ce n'était pas la cible qui vous était attribuée !");
-					killer.sendMessage("§7§oVous avez du remord...");
+					Bukkit.getPlayer(victimHunter).sendMessage("§2Votre cible a été tuée, une nouvelle cible vous est attribuée : "+ PlayerInGame.uuidToName.get(victimTarget));
+					eventKiller.sendMessage("§4Que faites-vous ?! Ce n'était pas la cible qui vous était attribuée !");
+					eventKiller.sendMessage("§7§oVous avez du remord...");
 				}
 			}
-			SyT.targetCycleOption.targetCycle.remove(victim.getUniqueId());
+			SyT.targetCycleOption.targetCycle.remove(eventVictim.getUniqueId());
 		} else {
-			broadcast = victim.getName() + " est mort.";
-			removePlayer(victim.getUniqueId(), victim.getName());
+			broadcast = eventVictim.getName() + " est mort.";
+			removePlayer(eventVictim.getUniqueId(), eventVictim.getName());
 		}
 		Bukkit.broadcastMessage(broadcast);
 	}
