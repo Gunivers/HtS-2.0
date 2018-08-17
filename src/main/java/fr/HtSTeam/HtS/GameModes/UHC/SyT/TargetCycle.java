@@ -84,7 +84,7 @@ public class TargetCycle extends OptionBuilder<Integer> {
 		displayTarget();
 		String cycleT = "";
 		for (UUID uuid : targetCycle) {
-			cycleT += "->" + Bukkit.getPlayer(uuid).getName();
+			cycleT += "->" + PlayerInGame.uuidToName.get(uuid);
 		}
 		System.out.println(cycleT);
 	}

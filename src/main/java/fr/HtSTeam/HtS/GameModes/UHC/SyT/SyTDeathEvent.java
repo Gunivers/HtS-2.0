@@ -13,6 +13,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import fr.HtSTeam.HtS.EnumState;
+import fr.HtSTeam.HtS.Players.PlayerInGame;
 import fr.HtSTeam.HtS.Utils.PlayerRemove;
 
 public class SyTDeathEvent implements Listener, PlayerRemove {
@@ -42,7 +43,7 @@ public class SyTDeathEvent implements Listener, PlayerRemove {
 				}
 				broadcast = victim.getName() + " a été tué par son chasseur.";
 				if (EnumState.getState().equals(EnumState.RUNNING))
-					killer.sendMessage("§2Cible éliminée. Nouvelle cible : "+ Bukkit.getPlayer(SyT.targetCycleOption.getTarget(killer)).getName());
+					killer.sendMessage("§2Cible éliminée. Nouvelle cible : "+ PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(killer)));
 
 				// Kill hunter
 			} else if (SyT.targetCycleOption.getHunter(killer).equals(victim.getUniqueId())) {
@@ -69,7 +70,7 @@ public class SyTDeathEvent implements Listener, PlayerRemove {
 
 				broadcast = victim.getName() + " est mort.";
 				if (EnumState.getState().equals(EnumState.RUNNING)) {
-					Bukkit.getPlayer(SyT.targetCycleOption.getHunter(victim)).sendMessage("§2Votre cible a été tuée, une nouvelle cible vous est attribuée : "+ Bukkit.getPlayer(SyT.targetCycleOption.getTarget(victim)).getName());
+					Bukkit.getPlayer(SyT.targetCycleOption.getHunter(victim)).sendMessage("§2Votre cible a été tuée, une nouvelle cible vous est attribuée : "+ PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(victim)));
 					killer.sendMessage("§4Que faites-vous ?! Ce n'était pas la cible qui vous était attribuée !");
 					killer.sendMessage("§7§oVous avez du remord...");
 				}
@@ -86,7 +87,7 @@ public class SyTDeathEvent implements Listener, PlayerRemove {
 	public void removePlayer(UUID uuid, String name) {	
 		Bukkit.getPlayer(SyT.targetCycleOption.getHunter(uuid))
 				.sendMessage("§2Votre cible a été tuée, une nouvelle cible vous est attribuée : "
-						+ Bukkit.getPlayer(SyT.targetCycleOption.getTarget(uuid)).getName());
+						+ PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(uuid)));
 		SyT.targetCycleOption.targetCycle.remove(uuid);	
 	}
 

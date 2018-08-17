@@ -1,7 +1,5 @@
 package fr.HtSTeam.HtS;
 
-import java.util.UUID;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
 import org.bukkit.World;
@@ -52,9 +50,7 @@ public class Main extends JavaPlugin {
 		CommandsManager.loadCommands(this);
 		new TeamRegister();
 		new JDBCHandler();
-		
-		Bukkit.getPlayer(UUID.randomUUID());
-		
+				
 		//run();
 	}
 	
