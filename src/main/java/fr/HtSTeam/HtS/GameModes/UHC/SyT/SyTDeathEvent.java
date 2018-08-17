@@ -80,8 +80,8 @@ public class SyTDeathEvent implements Listener, PlayerRemove {
 		} else {
 			broadcast = victim.getName() + " est mort.";
 			removePlayer(victim.getUniqueId(), victim.getName());
+			Bukkit.broadcastMessage(broadcast);
 		}
-		Bukkit.broadcastMessage(broadcast);
 	}
 	
 	public void removePlayer(UUID uuid, String name) {	
