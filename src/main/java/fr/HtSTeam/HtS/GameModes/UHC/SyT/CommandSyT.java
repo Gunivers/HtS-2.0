@@ -25,7 +25,7 @@ public class CommandSyT implements CommandExecutor {
 				return true;
 			
 			} else if(cmd.getName().equalsIgnoreCase("target") && SyT.targetCycleOption.targetCycle.contains(((Player) sender).getUniqueId())) {
-				sender.sendMessage("Votre cible est : &l&c" + PlayerInGame.playerInGame.get(SyT.targetCycleOption.getTarget((Player) sender)));
+				sender.sendMessage("Votre cible est : &l&c" + PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget((Player) sender)));
 				
 				
 				return true;
