@@ -19,7 +19,7 @@ public class SkeletonNerfOption extends OptionBuilder<Integer> {
 	private boolean activate = false;
 
 	public SkeletonNerfOption() {
-		super(Material.BONE, "Squelette", "§d40 minutes", 0, GUIRegister.mob);
+		super(Material.BONE, "Squelette", "§d40 minutes", 40, GUIRegister.mob);
 	}
 
 	@Override

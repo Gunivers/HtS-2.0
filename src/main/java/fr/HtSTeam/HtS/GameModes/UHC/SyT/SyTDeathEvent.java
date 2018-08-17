@@ -13,12 +13,8 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import fr.HtSTeam.HtS.EnumState;
-<<<<<<< HEAD
 import fr.HtSTeam.HtS.Players.PlayerRemove;
-=======
 import fr.HtSTeam.HtS.Players.PlayerInGame;
-import fr.HtSTeam.HtS.Utils.PlayerRemove;
->>>>>>> branch 'Structure_modification' of https://github.com/Gunivers/HtS-2.0.git
 
 public class SyTDeathEvent implements Listener, PlayerRemove {
 	
