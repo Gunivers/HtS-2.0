@@ -18,7 +18,7 @@ public class UtilCommands implements CommandExecutor {
 			if (cmd.getName().equalsIgnoreCase("heal") && sender.hasPermission("heal.use")) {
 				if (args.length == 1) {
 					for (UUID uuid : PlayerInGame.playerInGame)
-						if (Bukkit.getPlayer(uuid).getName().equals(args[0])) {
+						if (PlayerInGame.uuidToName.get(uuid).equals(args[0])) {
 							Bukkit.getPlayer(uuid).setHealth(20);
 							return true;
 						}
@@ -29,7 +29,7 @@ public class UtilCommands implements CommandExecutor {
 			if (cmd.getName().equalsIgnoreCase("feed") && sender.hasPermission("feed.use")) {
 				if (args.length == 1) {
 					for (UUID uuid : PlayerInGame.playerInGame)
-						if (Bukkit.getPlayer(uuid).getName().equals(args[0])) {
+						if (PlayerInGame.uuidToName.get(uuid).equals(args[0])) {
 							Bukkit.getPlayer(uuid).setFoodLevel(20);
 							return true;
 						}

@@ -22,7 +22,7 @@ public class StatisticHandler {
 				if (EnumStats.PLAYER_UUID == s)
 					stats.put(s, uuid);
 				else if (EnumStats.PLAYER_NAME == s)
-					stats.put(s, Bukkit.getOfflinePlayer(uuid).getName());
+					stats.put(s, PlayerInGame.uuidToName.get(uuid));
 				else if (s.isTracked())
 					stats.put(s, s.getDefaultValue());
 			playerStats.put(uuid, stats);

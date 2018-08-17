@@ -89,6 +89,7 @@ public class PlayStopCommands implements CommandExecutor, Listener {
 				}
 				ScoreBoard.scoreboards.clear();
 				PlayerInGame.playerInGame.clear();
+				PlayerInGame.uuidToName.clear();
 				return true;
 			}
 		}

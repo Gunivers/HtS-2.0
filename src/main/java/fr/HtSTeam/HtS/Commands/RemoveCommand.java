@@ -4,7 +4,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.UUID;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -32,7 +31,7 @@ public class RemoveCommand implements CommandExecutor {
 					UUID uuid = null;
 					String name = null;
 					for (UUID uuid2: PlayerInGame.playerInGame) {
-						if (Bukkit.getOfflinePlayer(uuid2).getName().equals(args[0]) || Bukkit.getPlayer(uuid2).getName().equals(args[0])) {
+						if (PlayerInGame.uuidToName.get(uuid2).equals(args[0])) {
 							uuid = uuid2;
 							name = args[0];
 							break;

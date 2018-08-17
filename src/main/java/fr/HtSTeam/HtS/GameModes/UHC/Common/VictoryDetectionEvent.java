@@ -1,6 +1,5 @@
 package fr.HtSTeam.HtS.GameModes.UHC.Common;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -33,7 +32,7 @@ public class VictoryDetectionEvent implements Listener {
 					+ TeamBuilder.teamList.get(0).getTeamName() + " a gagné !", null, 5);
 			EnumState.setState(EnumState.FINISHING);
 		} else if (EnumState.getState() != EnumState.FINISHING && PlayerInGame.playerInGame.size() == 1) {
-			JSON.sendAll(Bukkit.getPlayer(PlayerInGame.playerInGame.get(0)).getName() + "§2 a gagné !", null, 5);
+			JSON.sendAll(PlayerInGame.uuidToName.get(PlayerInGame.playerInGame.get(0))+ "§2 a gagné !", null, 5);
 			EnumState.setState(EnumState.FINISHING);
 		}
 	}
