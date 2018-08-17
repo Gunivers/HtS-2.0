@@ -14,7 +14,7 @@ import fr.HtSTeam.HtS.Options.Structure.Annotation.AwaitingPlayer;
 
 public class PlayerReconnection implements Listener {
 
-	private HashMap<UUID, ArrayList<Object>> waitingList = new HashMap<UUID, ArrayList<Object>>();
+	private static HashMap<UUID, ArrayList<Object>> waitingList = new HashMap<UUID, ArrayList<Object>>();
 	
 	@EventHandler
 	public void onPlayerReconnect(PlayerJoinEvent e) {
@@ -27,5 +27,19 @@ public class PlayerReconnection implements Listener {
 						m.invoke(o, e.getPlayer().getUniqueId());
 					} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) { ex.printStackTrace(); }
 		}
+	}
+	
+	@SuppressWarnings("serial")
+	public static void add(UUID uuid, Object o) {
+		if (waitingList.containsKey(uuid)) {
+			ArrayList<Object> array = waitingList.get(uuid);
+			array.add(o);
+			waitingList.put(uuid, array);
+		} else
+			waitingList.put(uuid, new ArrayList<Object>() {{ add(o); }});
+	}
+	
+	public static void remove(UUID uuid) {
+		waitingList.remove(uuid);
 	}
 }
