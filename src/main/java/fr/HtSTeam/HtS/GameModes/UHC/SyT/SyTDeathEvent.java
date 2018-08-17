@@ -46,7 +46,7 @@ public class SyTDeathEvent implements Listener, PlayerRemove {
 							.setBaseValue(eventKiller.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() + 2);
 					eventKiller.setHealth(eventKiller.getHealth() + 2);
 				}
-				broadcast = eventVictim.getName() + " a été tué par son chasseur.";
+				broadcast = eventVictim.getName() + " a été assassiné.";
 				if (EnumState.getState().equals(EnumState.RUNNING))
 					eventKiller.sendMessage("§2Cible éliminée. Nouvelle cible : "+ PlayerInGame.uuidToName.get(killerTarget));
 
@@ -58,7 +58,7 @@ public class SyTDeathEvent implements Listener, PlayerRemove {
 				} else {
 					eventKiller.setHealth(eventKiller.getHealth() + 4);
 				}
-				broadcast = eventVictim.getName() + " a été tué par sa cible.";
+				broadcast = eventVictim.getName() + " a échoué dans sa mission.";
 				if (EnumState.getState().equals(EnumState.RUNNING)) {
 					Bukkit.getPlayer(killerHunter).sendMessage("§2Cible éliminée. Nouvelle cible : "+ eventKiller.getName());
 					eventKiller.sendMessage("§6Celui-ci semblait vous vouloir du mal, il est fort probable qu'il cherchait à vous éliminer.");
