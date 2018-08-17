@@ -13,11 +13,15 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import fr.HtSTeam.HtS.EnumState;
-import fr.HtSTeam.HtS.Options.Structure.Annotation.RemovePlayer;
+import fr.HtSTeam.HtS.Utils.PlayerRemove;
 
-public class SyTDeathEvent implements Listener {
+public class SyTDeathEvent implements Listener, PlayerRemove {
 	
 	private String broadcast;
+	
+	{
+		addToList();
+	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onKillSomeone(PlayerDeathEvent e) {
@@ -74,13 +78,12 @@ public class SyTDeathEvent implements Listener {
 			Bukkit.broadcastMessage(broadcast);
 		} else {
 			broadcast = victim.getName() + " est mort.";
-			death(victim.getUniqueId(), victim.getName());
+			removePlayer(victim.getUniqueId(), victim.getName());
 		}
 		Bukkit.broadcastMessage(broadcast);
 	}
 	
-	@RemovePlayer
-	public static void death(UUID uuid, String name) {	
+	public void removePlayer(UUID uuid, String name) {	
 		Bukkit.getPlayer(SyT.targetCycleOption.getHunter(uuid))
 				.sendMessage("§2Votre cible a été tuée, une nouvelle cible vous est attribuée : "
 						+ Bukkit.getPlayer(SyT.targetCycleOption.getTarget(uuid)).getName());

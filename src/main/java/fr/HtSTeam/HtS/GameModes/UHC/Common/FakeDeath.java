@@ -16,10 +16,14 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.Options.Structure.Annotation.RemovePlayer;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
+import fr.HtSTeam.HtS.Utils.PlayerRemove;
 
-public class FakeDeath implements Listener {
+public class FakeDeath implements Listener, PlayerRemove {
+	
+	{
+		addToList();
+	}
 	
 	@SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.LOWEST)
@@ -36,11 +40,10 @@ public class FakeDeath implements Listener {
 			p.getWorld().dropItem(p.getLocation(), is);
 		}
 		((Player) p).setGameMode(GameMode.SPECTATOR);
-		deletePlayer(p.getUniqueId(), p.getName());
+		removePlayer(p.getUniqueId(), p.getName());
 	}
 	
-	@RemovePlayer
-	public static void deletePlayer(UUID uuid, String name) {
+	public void removePlayer(UUID uuid, String name) {
 		PlayerInGame.removeFromGame(uuid);
 		boolean isOffline = true;
 		for (Player p2 : Bukkit.getOnlinePlayers()) {
