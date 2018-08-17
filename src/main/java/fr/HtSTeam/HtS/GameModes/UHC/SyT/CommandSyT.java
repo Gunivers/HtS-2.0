@@ -5,6 +5,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import fr.HtSTeam.HtS.Players.PlayerInGame;
 import fr.HtSTeam.HtS.Utils.ActionBar;
 
 public class CommandSyT implements CommandExecutor {
@@ -24,7 +25,7 @@ public class CommandSyT implements CommandExecutor {
 				return true;
 			
 			} else if(cmd.getName().equalsIgnoreCase("target") && SyT.targetCycleOption.targetCycle.contains(((Player) sender).getUniqueId())) {
-				sender.sendMessage("Votre cible est : &l&c" + SyT.targetCycleOption.getTarget((Player) sender));
+				sender.sendMessage("Votre cible est : &l&c" + PlayerInGame.playerInGame.get(SyT.targetCycleOption.getTarget((Player) sender)));
 				
 				
 				return true;
