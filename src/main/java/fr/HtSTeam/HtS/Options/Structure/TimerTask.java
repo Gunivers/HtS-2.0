@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Utils;
+package fr.HtSTeam.HtS.Options.Structure;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -12,7 +12,6 @@ import org.bukkit.scheduler.BukkitTask;
 
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.Options.Structure.IconBuilder;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
 
 public class TimerTask {

@@ -15,7 +15,6 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
-import fr.HtSTeam.HtS.Players.PlayerInGame;
 import fr.HtSTeam.HtS.Teams.TeamBuilder;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
@@ -91,11 +90,10 @@ public class TargetCycle extends OptionBuilder<Integer> {
 
 	public void displayTarget() {
 		for(int i = 0; i < targetCycle.size(); i++) {
-			if(i != targetCycle.size() - 1) {
+			if(i != targetCycle.size() - 1)
 				Bukkit.getPlayer(targetCycle.get(i)).sendMessage("§4Votre cible est " + Bukkit.getPlayer(targetCycle.get(i + 1)).getName());
-			} else {
+			else
 				Bukkit.getPlayer(targetCycle.get(i)).sendMessage("§4Votre cible est " + Bukkit.getPlayer(targetCycle.get(0)).getName());
-			}
 		}
 	}
 	
@@ -121,11 +119,6 @@ public class TargetCycle extends OptionBuilder<Integer> {
 			return targetCycle.get(index - 1);
 		else 
 			return targetCycle.get(targetCycle.size() - 1);
-	}
-	
-	public void giveTarget() {
-		for(UUID uuid : PlayerInGame.playerInGame)
-			SyT.targetCycleOption.getTarget(Bukkit.getPlayer(uuid));
 	}
 
 	@Override

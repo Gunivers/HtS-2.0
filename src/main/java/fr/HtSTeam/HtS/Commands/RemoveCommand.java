@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
-import fr.HtSTeam.HtS.Utils.PlayerRemove;
+import fr.HtSTeam.HtS.Players.PlayerRemove;
 
 public class RemoveCommand implements CommandExecutor {
 

@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Utils;
+package fr.HtSTeam.HtS.Players;
 
 import java.util.ArrayList;
 import java.util.UUID;

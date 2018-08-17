@@ -14,10 +14,10 @@ import fr.HtSTeam.HtS.GameModes.GameMode;
 import fr.HtSTeam.HtS.GameModes.UHC.Common.UHC;
 import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.JDBCHandler;
+import fr.HtSTeam.HtS.Options.Structure.TimerTask;
 import fr.HtSTeam.HtS.Players.DeathLoot;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.ScoreboardLib;
 import fr.HtSTeam.HtS.Teams.TeamRegister;
-import fr.HtSTeam.HtS.Utils.TimerTask;
 import fr.HtSTeam.HtS.Utils.Files.FileExtractor;
 
 public class Main extends JavaPlugin {

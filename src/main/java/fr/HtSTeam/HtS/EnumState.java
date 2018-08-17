@@ -11,7 +11,7 @@ import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.StatisticHandler;
 import fr.HtSTeam.HtS.Options.Structure.EndTrigger;
 import fr.HtSTeam.HtS.Options.Structure.IconBuilder;
 import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
-import fr.HtSTeam.HtS.Utils.PlayerRemove;
+import fr.HtSTeam.HtS.Players.PlayerRemove;
 
 public enum EnumState implements Listener {
 	
