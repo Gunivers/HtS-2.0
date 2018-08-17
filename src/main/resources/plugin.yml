@@ -45,6 +45,7 @@ commands:
  target:
   description: Target
   usage: Erreur Syntaxe ! Faites /target
+  aliases: [cible]
  test:
   description: test
   usage: /test
