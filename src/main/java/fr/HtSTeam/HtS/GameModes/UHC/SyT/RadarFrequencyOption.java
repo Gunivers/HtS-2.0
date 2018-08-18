@@ -14,8 +14,10 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
+import fr.HtSTeam.HtS.Options.Structure.Annotation.AwaitingPlayer;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
 import fr.HtSTeam.HtS.Players.PlayerManager;
+import fr.HtSTeam.HtS.Players.PlayerReconnection;
 import fr.HtSTeam.HtS.Utils.ActionBar;
 
 public class RadarFrequencyOption extends OptionBuilder<Integer> implements StartTrigger {
@@ -63,25 +65,33 @@ public class RadarFrequencyOption extends OptionBuilder<Integer> implements Star
 	public void radar() {
 		setValue(getValue() + frequency);
 		for (UUID uuid : SyT.targetCycleOption.targetCycle) {
-			Player player = Bukkit.getPlayer(uuid);
-			Player target = Bukkit.getPlayer(SyT.targetCycleOption.getTarget(player));
-			if (!PlayerManager.isConnected(target.getUniqueId())) {
-				Location loc = offlineLocation.get(target.getUniqueId());
-				ActionBar msg = new ActionBar(player, "§4§lCible repérée dans " + loc.getWorld().getEnvironment().toString() + ": " + loc.getBlockX() + " " + loc.getBlockY() + " " + loc.getBlockZ(), duration);
-				msg.send();
-			} else if (target.getLocation().getBlockY() >= 36
-					&& target.getLocation().getWorld().getEnvironment() == Environment.NORMAL) {
-				ActionBar msg = new ActionBar(player, "§4§lCible repérée : " + target.getLocation().getBlockX() + " " + target.getLocation().getBlockY() + " " + target.getLocation().getBlockZ(), duration);
-				msg.send();
-			} else if (target.getLocation().getBlockY() < 36
-					&& target.getLocation().getWorld().getEnvironment() == Environment.NORMAL) {
-				ActionBar msg = new ActionBar(player, "§4§lTrop faible signal détecté : impossible de localiser la cible.", duration);
-				msg.send();
-			} else if (target.getLocation().getWorld().getEnvironment() == Environment.NETHER
-					|| player.getLocation().getWorld().getEnvironment() == Environment.NETHER) {
-				ActionBar msg = new ActionBar(player, "§4§lAucun signal détecté : impossible de localiser la cible.", duration);
-				msg.send();
-			}
+			if (PlayerManager.isConnected(uuid))
+				radar(uuid);
+			else
+				PlayerReconnection.add(uuid, this);
+		}
+	}
+	
+	@AwaitingPlayer
+	public void radar(UUID uuid) {
+		Player player = Bukkit.getPlayer(uuid);
+		Player target = Bukkit.getPlayer(SyT.targetCycleOption.getTarget(player));
+		if (!PlayerManager.isConnected(target.getUniqueId())) {
+			Location loc = offlineLocation.get(target.getUniqueId());
+			ActionBar msg = new ActionBar(player, "§4§lCible repérée dans " + loc.getWorld().getEnvironment().toString() + ": " + loc.getBlockX() + " " + loc.getBlockY() + " " + loc.getBlockZ(), duration);
+			msg.send();
+		} else if (target.getLocation().getBlockY() >= 36
+				&& target.getLocation().getWorld().getEnvironment() == Environment.NORMAL) {
+			ActionBar msg = new ActionBar(player, "§4§lCible repérée : " + target.getLocation().getBlockX() + " " + target.getLocation().getBlockY() + " " + target.getLocation().getBlockZ(), duration);
+			msg.send();
+		} else if (target.getLocation().getBlockY() < 36
+				&& target.getLocation().getWorld().getEnvironment() == Environment.NORMAL) {
+			ActionBar msg = new ActionBar(player, "§4§lTrop faible signal détecté : impossible de localiser la cible.", duration);
+			msg.send();
+		} else if (target.getLocation().getWorld().getEnvironment() == Environment.NETHER
+				|| player.getLocation().getWorld().getEnvironment() == Environment.NETHER) {
+			ActionBar msg = new ActionBar(player, "§4§lAucun signal détecté : impossible de localiser la cible.", duration);
+			msg.send();
 		}
 	}
 
