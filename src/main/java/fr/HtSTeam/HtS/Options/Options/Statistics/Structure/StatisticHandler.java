@@ -15,14 +15,15 @@ public class StatisticHandler {
 	
 	private static HashMap<UUID, HashMap<EnumStats, Object>> playerStats = new HashMap<UUID, HashMap<EnumStats, Object>>();
 	
+	@SuppressWarnings("serial")
 	public static void init() {
 		for (UUID uuid : PlayerInGame.playerInGame) {
 			HashMap<EnumStats, Object> stats = new HashMap<EnumStats, Object>();
 			for (EnumStats s : EnumStats.values()) {
 				if (EnumStats.PLAYER_UUID == s)
-					stats.put(s, uuid);
+					stats.put(s, new ArrayList<String>() {{ add(uuid.toString()); }});
 				else if (EnumStats.PLAYER_NAME == s)
-					stats.put(s, PlayerInGame.uuidToName.get(uuid));
+					stats.put(s, new ArrayList<String>() {{ add(PlayerInGame.uuidToName.get(uuid)); }});
 				else if (s.isTracked())
 					stats.put(s, s.getDefaultValue());
 			}
@@ -65,9 +66,21 @@ public class StatisticHandler {
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	protected static String getInsertValues() {
 		ArrayList<String> rows = new ArrayList<String>();
-		playerStats.forEach((uuid, stats) -> { ArrayList<String> values = new ArrayList<String>(); for(int i = 0; i < EnumStats.values().length; i++) if(EnumStats.values()[i].isTracked()) values.add("\"" + stats.get(EnumStats.values()[i]).toString() + "\""); rows.add("(" + String.join(",", values) + ")"); });
+		playerStats.forEach((uuid, stats) -> {
+			ArrayList<String> values = new ArrayList<String>();
+			for (int i = 0; i < EnumStats.values().length; i++) {
+				EnumStats stat = EnumStats.values()[i];
+				if (stat.isTracked())
+					if (stat.getDefaultValue() instanceof ArrayList)
+						values.add("\"" + String.join(",", (ArrayList<String>) stats.get(stat)) + "\"");
+					else
+						values.add("\"" + stats.get(stat).toString() + "\"");
+			}
+			rows.add("(" + String.join(",", values) + ")");
+		});
 		if(rows.isEmpty())
 			return null;
 		return String.join(",", rows);
