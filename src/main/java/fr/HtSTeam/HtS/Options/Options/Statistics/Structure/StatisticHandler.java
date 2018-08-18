@@ -10,8 +10,10 @@ import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
+import fr.HtSTeam.HtS.Players.PlayerManager;
+import fr.HtSTeam.HtS.Players.PlayerRemove;
 
-public class StatisticHandler {
+public class StatisticHandler implements PlayerRemove{
 	
 	private static HashMap<UUID, HashMap<EnumStats, Object>> playerStats = new HashMap<UUID, HashMap<EnumStats, Object>>();
 	
@@ -31,6 +33,11 @@ public class StatisticHandler {
 		}
 	}
 	
+	@Override
+	public void removePlayer(UUID uuid, String name) {
+		playerStats.remove(uuid);		
+	}
+	
 	public static void save() throws SQLException {
 		JDBCHandler.createTable();
 		JDBCHandler.insert();
@@ -39,7 +46,7 @@ public class StatisticHandler {
 	}
 	
 	public static void display() {
-		playerStats.forEach((uuid, stats) -> { stats.forEach((stat, value) -> { Bukkit.getPlayer(uuid).sendMessage(stat.toString() + ":   " + value); }); });
+		playerStats.forEach((uuid, stats) -> { stats.forEach((stat, value) -> { if(PlayerManager.isConnected(uuid)) Bukkit.getPlayer(uuid).sendMessage(stat.toString() + ":   " + value); }); });
 	}
 	
 	public static void update(Player p, EnumStats s) {
