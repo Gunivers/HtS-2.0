@@ -21,7 +21,7 @@ public class JoinLeaveEvent implements Listener {
 	public void onJoin(PlayerJoinEvent e) {
 		Player p = e.getPlayer();
 		
-		if (TeamBuilder.teamList.size() != 0 && p.getGameMode() != GameMode.SPECTATOR && !TeamBuilder.teamList.isEmpty()) {
+		if (TeamBuilder.teamList.size() != 0 && p.getGameMode() != GameMode.SPECTATOR && TeamBuilder.playerTeam.containsKey(p.getUniqueId())) {
 			p.setDisplayName(ChatColor.valueOf(TeamBuilder.playerTeam.get(p.getUniqueId()).getTeamColor().toUpperCase()) + p.getName() + "§r");
 			p.setPlayerListName(ChatColor.valueOf(TeamBuilder.playerTeam.get(p.getUniqueId()).getTeamColor().toUpperCase()) + p.getName());
 		}
