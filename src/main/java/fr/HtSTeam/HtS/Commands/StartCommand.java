@@ -57,6 +57,7 @@ public class StartCommand implements CommandExecutor {
 						player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(20);
 						player.setHealth(20);
 						player.setFoodLevel(20);
+						player.setSaturation(20);
 						player.getInventory().clear();
 						player.setGameMode(GameMode.SURVIVAL);
 						
