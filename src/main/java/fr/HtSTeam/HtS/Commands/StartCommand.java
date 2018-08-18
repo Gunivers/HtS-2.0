@@ -53,7 +53,7 @@ public class StartCommand implements CommandExecutor {
 				for(Player player : Bukkit.getOnlinePlayers())
 					if(!player.getGameMode().equals(GameMode.SPECTATOR)) {
 						PlayerInGame.playerInGame.add(player.getUniqueId());
-						PlayerInGame.uuidToName.put(p.getUniqueId(), p.getName());
+						PlayerInGame.uuidToName.put(player.getUniqueId(), player.getName());
 						player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(20);
 						player.setHealth(20);
 						player.setFoodLevel(20);

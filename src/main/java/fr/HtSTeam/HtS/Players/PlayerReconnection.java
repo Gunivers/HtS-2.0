@@ -18,6 +18,7 @@ public class PlayerReconnection implements Listener {
 	
 	@EventHandler
 	public void onPlayerReconnect(PlayerJoinEvent e) {
+		if(waitingList.get(e.getPlayer().getUniqueId()) == null) return;
 		for (Object o : waitingList.get(e.getPlayer().getUniqueId())) {
 			if (!(o instanceof Class))
 				continue;
