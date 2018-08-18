@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -18,6 +19,8 @@ public class PlayerReconnection implements Listener {
 	
 	@EventHandler
 	public void onPlayerReconnect(PlayerJoinEvent e) {
+		Bukkit.broadcastMessage(e.getJoinMessage());
+		e.setJoinMessage(null);
 		if(waitingList.get(e.getPlayer().getUniqueId()) == null) return;
 		for (Object o : waitingList.get(e.getPlayer().getUniqueId())) {
 			for (Method m : o.getClass().getMethods())
