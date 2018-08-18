@@ -1,5 +1,7 @@
 package fr.HtSTeam.HtS;
 
+import java.sql.SQLException;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
 import org.bukkit.World;
@@ -22,7 +24,7 @@ public class Main extends JavaPlugin {
 	
 	public static World world;
 	public static Main plugin;
-	public static String HTSNAME = "HtS I";
+	public static String HTSNAME = "HtS ";
 	public static DeathLoot deathLoot = new DeathLoot();
 	public static TimerTask timer;
 	public static GameMode gamemode = new UHC();
@@ -50,8 +52,10 @@ public class Main extends JavaPlugin {
 		CommandsManager.loadCommands(this);
 		new TeamRegister();
 		new JDBCHandler();
-				
-		//run();
+		
+		try {
+			HTSNAME += JDBCHandler.getHtsNumber();
+		} catch (SQLException e) { e.printStackTrace(); }		
 	}
 	
 	/*public static void run() {

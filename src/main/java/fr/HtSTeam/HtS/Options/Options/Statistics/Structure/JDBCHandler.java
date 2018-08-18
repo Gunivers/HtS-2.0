@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 import fr.HtSTeam.HtS.Main;
+import fr.HtSTeam.HtS.Utils.RomanNumber;
 import fr.HtSTeam.HtS.Utils.Files.PluginFile;
 
 public class JDBCHandler {
@@ -21,6 +22,20 @@ public class JDBCHandler {
 		tableName = "STATS_" + Main.HTSNAME.replace(" ", "_");
 	}
 	
+	public static String getHtsNumber() throws SQLException {
+		conn = DriverManager.getConnection(url, db, pwd);
+		
+		ResultSet rs = conn.getMetaData().getTables(null, null, "STATS_HtS_", null);
+		
+		int i = 1;
+		while (rs.next())
+			i++;
+				
+		conn.close();
+		return RomanNumber.toRoman(i);
+	}
+	
+	// EndOfTheGame
 	protected static void createTable() throws SQLException {
 		conn = DriverManager.getConnection(url, db, pwd);
 		comment = "gamemode=" + Main.gamemode.gamemodeToString() + ",duration=" + Main.timer.getTimerInSeconds();		
