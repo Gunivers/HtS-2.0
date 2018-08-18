@@ -19,13 +19,12 @@ public class JDBCHandler {
 		url = (String) f.get("database.url");
 		db = (String) f.get("database.name");
 		pwd = (String) f.get("database.password");
-		tableName = "STATS_" + Main.HTSNAME.replace(" ", "_");
 	}
 	
 	public static String getHtsNumber() throws SQLException {
 		conn = DriverManager.getConnection(url, db, pwd);
 		
-		ResultSet rs = conn.getMetaData().getTables(null, null, "STATS_HtS_", null);
+		ResultSet rs = conn.getMetaData().getTables(null, null, "STATS_HtS_%", null);
 		
 		int i = 1;
 		while (rs.next())
@@ -37,6 +36,7 @@ public class JDBCHandler {
 	
 	// EndOfTheGame
 	protected static void createTable() throws SQLException {
+		tableName = "STATS_" + Main.HTSNAME.replace(" ", "_");
 		conn = DriverManager.getConnection(url, db, pwd);
 		comment = "gamemode=" + Main.gamemode.gamemodeToString() + ",duration=" + Main.timer.getTimerInSeconds();		
 		String strTable = "CREATE TABLE `" + db + "`.`" + tableName +  "` ( " + EnumStats.getSQLTableStatsTracked() +" ) comment='" + comment + "' ENGINE = InnoDB";
