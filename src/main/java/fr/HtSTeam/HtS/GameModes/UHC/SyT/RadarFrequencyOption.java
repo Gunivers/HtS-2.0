@@ -75,20 +75,21 @@ public class RadarFrequencyOption extends OptionBuilder<Integer> implements Star
 	@AwaitingPlayer
 	public void radar(UUID uuid) {
 		Player player = Bukkit.getPlayer(uuid);
-		Player target = Bukkit.getPlayer(SyT.targetCycleOption.getTarget(player));
-		if (!PlayerManager.isConnected(target.getUniqueId())) {
-			Location loc = offlineLocation.get(target.getUniqueId());
-			ActionBar msg = new ActionBar(player, "§4§lCible repérée dans " + loc.getWorld().getEnvironment().toString() + ": " + loc.getBlockX() + " " + loc.getBlockY() + " " + loc.getBlockZ(), duration);
+		UUID targetUUID = SyT.targetCycleOption.getTarget(player);
+		Location loc;	
+		if (!PlayerManager.isConnected(targetUUID))
+			loc = offlineLocation.get(targetUUID);
+		else
+			loc = Bukkit.getPlayer(targetUUID).getLocation();
+		if (loc.getBlockY() >= 36
+				&& loc.getWorld().getEnvironment() == Environment.NORMAL) {
+			ActionBar msg = new ActionBar(player, "§4§lCible repérée : " + loc.getBlockX() + " " + loc.getBlockY() + " " +loc.getBlockZ(), duration);
 			msg.send();
-		} else if (target.getLocation().getBlockY() >= 36
-				&& target.getLocation().getWorld().getEnvironment() == Environment.NORMAL) {
-			ActionBar msg = new ActionBar(player, "§4§lCible repérée : " + target.getLocation().getBlockX() + " " + target.getLocation().getBlockY() + " " + target.getLocation().getBlockZ(), duration);
-			msg.send();
-		} else if (target.getLocation().getBlockY() < 36
-				&& target.getLocation().getWorld().getEnvironment() == Environment.NORMAL) {
+		} else if (loc.getBlockY() < 36
+				&& loc.getWorld().getEnvironment() == Environment.NORMAL) {
 			ActionBar msg = new ActionBar(player, "§4§lTrop faible signal détecté : impossible de localiser la cible.", duration);
 			msg.send();
-		} else if (target.getLocation().getWorld().getEnvironment() == Environment.NETHER
+		} else if (loc.getWorld().getEnvironment() == Environment.NETHER
 				|| player.getLocation().getWorld().getEnvironment() == Environment.NETHER) {
 			ActionBar msg = new ActionBar(player, "§4§lAucun signal détecté : impossible de localiser la cible.", duration);
 			msg.send();

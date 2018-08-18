@@ -6,6 +6,7 @@ import org.bukkit.plugin.PluginManager;
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Players.PlayerDeath;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
+import fr.HtSTeam.HtS.Players.PlayerReconnection;
 import fr.HtSTeam.HtS.Players.Spectator.CustomChat;
 import fr.HtSTeam.HtS.Players.Spectator.SeeInventory;
 import fr.HtSTeam.HtS.Teams.TeamGive;
@@ -25,6 +26,7 @@ public class EventManager {
 		pm.registerEvents(new CustomChat(), main);
 		pm.registerEvents(new ReloadServerEvent(), main);
 		pm.registerEvents(new SeeInventory(), main);
+		pm.registerEvents(new PlayerReconnection(), main);
 	}
 
 }
