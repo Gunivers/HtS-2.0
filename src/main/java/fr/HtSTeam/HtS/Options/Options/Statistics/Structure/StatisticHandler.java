@@ -13,9 +13,13 @@ import fr.HtSTeam.HtS.Players.PlayerInGame;
 import fr.HtSTeam.HtS.Players.PlayerManager;
 import fr.HtSTeam.HtS.Players.PlayerRemove;
 
-public class StatisticHandler implements PlayerRemove{
+public class StatisticHandler implements PlayerRemove {
 	
 	private static HashMap<UUID, HashMap<EnumStats, Object>> playerStats = new HashMap<UUID, HashMap<EnumStats, Object>>();
+	
+	{
+		addToList();
+	}
 	
 	@SuppressWarnings("serial")
 	public static void init() {
