@@ -20,7 +20,7 @@ public class VictoryDetectionEvent implements Listener, PlayerRemove {
 
 	public VictoryDetectionEvent(boolean b) {
 		teamVictoryDetection = b;
-		last.add(this);
+		hasLast();
 	}
 
 	@EventHandler(priority = EventPriority.MONITOR)
@@ -28,6 +28,7 @@ public class VictoryDetectionEvent implements Listener, PlayerRemove {
 		removePlayer(null, null);
 	}
 
+	@Override
 	public void removePlayer(UUID uuid, String name) {
 		if (EnumState.getState() != EnumState.FINISHING && teamVictoryDetection && TeamBuilder.teamList.size() == 1) {
 			JSON.sendAll(ChatColor.valueOf(TeamBuilder.teamList.get(0).getTeamColor().toUpperCase()) + "La team "
