@@ -44,12 +44,14 @@ import fr.HtSTeam.HtS.Options.Options.Statistics.GoldenAppleEatenStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.ItemsPickedUpStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.KillsMonsterStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.KillsPassiveStatOption;
+import fr.HtSTeam.HtS.Options.Options.Statistics.KillsPlayerNameStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.KillsPlayerStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.MinedDiamondsStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.MinedGoldOresStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.PortalsCrossedStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.PotionDrunkStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.PotionThrownStatOption;
+import fr.HtSTeam.HtS.Options.Options.Statistics.TargetsStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.TimePlayedStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.TimeSneakedStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.TimeSprintedStatOption;
@@ -116,6 +118,8 @@ public class OptionRegister {
 		public static DamageReceivedStatOption stats17 = new DamageReceivedStatOption();
 		public static ArrowShotStatOption stats18 = new ArrowShotStatOption();
 		public static ArrowHitStatOption stats19 = new ArrowHitStatOption();
+		public static TargetsStatOption stats20 = new TargetsStatOption();
+		public static KillsPlayerNameStatOption stats21 = new KillsPlayerNameStatOption();
 		
 		public static void register() {
 			

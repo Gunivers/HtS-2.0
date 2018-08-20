@@ -45,6 +45,6 @@ public class PotionDrunkStatOption extends OptionBuilder<Boolean> {
 	@EventHandler
 	public void on(PlayerItemConsumeEvent e) {
 		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.POTION_DRUNK.isTracked() && e.getItem().getType() == Material.POTION)
-			StatisticHandler.update(e.getPlayer(), EnumStats.POTION_DRUNK);
+			StatisticHandler.update(e.getPlayer().getUniqueId(), EnumStats.POTION_DRUNK);
 	}
 }

@@ -1,6 +1,7 @@
 package fr.HtSTeam.HtS.Options.Options.Statistics;
 
 import org.bukkit.Material;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -46,6 +47,6 @@ public class ArrowHitStatOption extends OptionBuilder<Boolean> {
 	@EventHandler
 	public void on(ProjectileHitEvent e) {
 		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.ARROW_HIT.isTracked() && e.getEntityType() == EntityType.ARROW && e.getEntity().getShooter() instanceof Player && e.getHitEntity() != null)
-			StatisticHandler.update((Player) e.getEntity().getShooter(), EnumStats.ARROW_HIT);
+			StatisticHandler.update(((Entity) e.getEntity().getShooter()).getUniqueId(), EnumStats.ARROW_HIT);
 	}
 }

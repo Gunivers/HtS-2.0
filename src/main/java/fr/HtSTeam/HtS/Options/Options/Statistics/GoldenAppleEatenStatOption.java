@@ -45,6 +45,6 @@ public class GoldenAppleEatenStatOption extends OptionBuilder<Boolean> {
 	@EventHandler
 	public void on(PlayerItemConsumeEvent e) {
 		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.GOLDEN_APPLE_EATEN.isTracked() && e.getItem().getType() == Material.GOLDEN_APPLE)
-			StatisticHandler.update(e.getPlayer(), EnumStats.GOLDEN_APPLE_EATEN);
+			StatisticHandler.update(e.getPlayer().getUniqueId(), EnumStats.GOLDEN_APPLE_EATEN);
 	}
 }

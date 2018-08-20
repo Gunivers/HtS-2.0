@@ -45,6 +45,6 @@ public class MinedGoldOresStatOption extends OptionBuilder<Boolean> {
 	@EventHandler
 	public void on(BlockBreakEvent e) {
 		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.MINED_GOLDORES.isTracked() && e.getBlock().getType() == Material.GOLD_ORE)
-			StatisticHandler.update(e.getPlayer(), EnumStats.MINED_GOLDORES);
+			StatisticHandler.update(e.getPlayer().getUniqueId(), EnumStats.MINED_GOLDORES);
 	}
 }

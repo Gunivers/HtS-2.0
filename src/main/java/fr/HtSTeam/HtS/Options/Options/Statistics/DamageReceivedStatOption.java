@@ -45,6 +45,6 @@ public class DamageReceivedStatOption extends OptionBuilder<Boolean> {
 	@EventHandler
 	public void on(EntityDamageByEntityEvent e) {
 		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.DAMAGE_RECEIVED.isTracked() && e.getEntity() instanceof Player)
-			StatisticHandler.update((Player) e.getEntity(), EnumStats.DAMAGE_RECEIVED, (int)e.getDamage());
+			StatisticHandler.update(e.getEntity().getUniqueId(), EnumStats.DAMAGE_RECEIVED, (int)e.getDamage());
 	}
 }

@@ -46,6 +46,6 @@ public class ItemsPickedUpStatOption extends OptionBuilder<Boolean> {
 	@EventHandler
 	public void on(PlayerPickupItemEvent e) {
 		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.ITEMS_PICKED_UP.isTracked())
-			StatisticHandler.update(e.getPlayer(), EnumStats.ITEMS_PICKED_UP);
+			StatisticHandler.update(e.getPlayer().getUniqueId(), EnumStats.ITEMS_PICKED_UP);
 	}
 }

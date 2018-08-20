@@ -6,7 +6,7 @@ public class SyT extends UHC {
 	
 	public static Boolean instance = false;
 	
-	static TargetCycle targetCycleOption;
+	public static TargetCycle targetCycleOption;
 	static RadarFrequencyOption radarF;
 	static RadarOption radar;
 	

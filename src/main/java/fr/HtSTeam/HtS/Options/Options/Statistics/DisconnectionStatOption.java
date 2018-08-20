@@ -45,6 +45,6 @@ public class DisconnectionStatOption extends OptionBuilder<Boolean> {
 	@EventHandler
 	public void on(PlayerQuitEvent e) {
 		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.DISCONNECTIONS.isTracked())
-			StatisticHandler.update(e.getPlayer(), EnumStats.DISCONNECTIONS);
+			StatisticHandler.update(e.getPlayer().getUniqueId(), EnumStats.DISCONNECTIONS);
 	}
 }

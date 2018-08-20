@@ -3,10 +3,10 @@ package fr.HtSTeam.HtS.Options.Options.Statistics.Structure;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
@@ -53,27 +53,38 @@ public class StatisticHandler implements PlayerRemove {
 		playerStats.forEach((uuid, stats) -> { stats.forEach((stat, value) -> { if(PlayerManager.isConnected(uuid)) Bukkit.getPlayer(uuid).sendMessage(stat.toString() + ":   " + value); }); });
 	}
 	
-	public static void update(Player p, EnumStats s) {
-		if (!EnumState.getState().equals(EnumState.RUNNING) && !s.isTracked() && !playerStats.containsKey(p.getUniqueId()))
+	public static void update(UUID uuid, EnumStats s) {
+		if (!EnumState.getState().equals(EnumState.RUNNING) && !s.isTracked() && !playerStats.containsKey(uuid))
 			return;
-		HashMap<EnumStats, Object> stats = playerStats.get(p.getUniqueId());
+		HashMap<EnumStats, Object> stats = playerStats.get(uuid);
 		stats.put(s, (int)stats.get(s) + 1);
-		playerStats.put(p.getUniqueId(), stats);
+		playerStats.put(uuid, stats);
 	}
 	
-	public static void update(Player p, EnumStats s, int value) {
-		if (!s.isTracked() && !playerStats.containsKey(p.getUniqueId()))
+	public static void update(UUID uuid, EnumStats s, int value) {
+		if (!s.isTracked() && !playerStats.containsKey(uuid))
 			return;
-		HashMap<EnumStats, Object> stats = playerStats.get(p.getUniqueId());
+		HashMap<EnumStats, Object> stats = playerStats.get(uuid);
 		stats.put(s, (int)stats.get(s) + value);
-		playerStats.put(p.getUniqueId(), stats);
+		playerStats.put(uuid, stats);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static void update(UUID uuid, EnumStats s, String value) {
+		if (!s.isTracked() && !playerStats.containsKey(uuid))
+			return;
+		HashMap<EnumStats, Object> stats = playerStats.get(uuid);
+		HashSet<String> set = new HashSet<String>((ArrayList<String>) stats.get(s));
+		set.add(value);
+		stats.put(s, set);
+		playerStats.put(uuid, stats);
 	}
 	
 	public static HashMap<UUID, HashMap<EnumStats, Object>> get() { return playerStats; }
 	
-	public static Object get(Player p, EnumStats s) {
-		if (playerStats.containsKey(p.getUniqueId()))
-			return playerStats.get(p.getUniqueId()).get(s);
+	public static Object get(UUID uuid, EnumStats s) {
+		if (playerStats.containsKey(uuid))
+			return playerStats.get(uuid).get(s);
 		return null;
 	}
 

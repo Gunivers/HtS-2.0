@@ -6,17 +6,20 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
 import fr.HtSTeam.HtS.EnumState;
+import fr.HtSTeam.HtS.Main;
+import fr.HtSTeam.HtS.GameModes.UHC.SyT.SyT;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.EnumStats;
 import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.StatisticHandler;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Players.PlayerInGame;
 
-public class KillsPlayerStatOption extends OptionBuilder<Boolean> {
+public class TargetsStatOption extends OptionBuilder<Boolean> {
 	
-	public KillsPlayerStatOption() {
-		super(Material.SKULL_ITEM, "Kills Player", "§2Activé", true, GUIRegister.stats);		
+	public TargetsStatOption() {
+		super(Material.SKULL_ITEM, "TARGETS", "§2Activé", true, GUIRegister.stats);		
 	}
-
+	
 	@Override
 	public void event(Player p) {
 		setState(!getValue());
@@ -28,10 +31,10 @@ public class KillsPlayerStatOption extends OptionBuilder<Boolean> {
 			return;
 		setValue(value);
 		if(getValue()) {
-			EnumStats.KILLS_PLAYER.setTracked(true);
+			EnumStats.TARGETS.setTracked(true);
 			getItemStack().setLore("§2Activé");
 		} else {
-			EnumStats.KILLS_PLAYER.setTracked(false);
+			EnumStats.TARGETS.setTracked(false);
 			getItemStack().setLore("§4Désactivé");
 		}
 		parent.update(this);
@@ -42,9 +45,13 @@ public class KillsPlayerStatOption extends OptionBuilder<Boolean> {
 		return null;
 	}
 	
+	public void init() {
+		PlayerInGame.playerInGame.forEach(uuid -> { StatisticHandler.update(uuid, EnumStats.TARGETS, PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(uuid))); });
+	}
+	
 	@EventHandler
 	public void on(PlayerDeathEvent e) {
-		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.KILLS_PLAYER.isTracked() && e.getEntity().getKiller() instanceof Player)
-			StatisticHandler.update(e.getEntity().getKiller().getUniqueId(), EnumStats.KILLS_PLAYER);
+		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.TARGETS.isTracked() && Main.gamemode.gamemodeToString().equals("SyT"))
+			PlayerInGame.playerInGame.forEach(uuid -> { StatisticHandler.update(uuid, EnumStats.TARGETS, PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(uuid))); });
 	}
 }

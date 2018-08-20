@@ -45,6 +45,6 @@ public class PortalsCrossedStatOption extends OptionBuilder<Boolean> {
 	@EventHandler
 	public void on(PlayerPortalEvent e) {
 		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.PORTALS_CROSSED.isTracked())
-			StatisticHandler.update(e.getPlayer(), EnumStats.PORTALS_CROSSED);
+			StatisticHandler.update(e.getPlayer().getUniqueId(), EnumStats.PORTALS_CROSSED);
 	}
 }

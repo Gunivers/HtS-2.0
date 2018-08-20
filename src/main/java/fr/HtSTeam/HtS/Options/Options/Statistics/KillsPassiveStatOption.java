@@ -46,6 +46,6 @@ public class KillsPassiveStatOption extends OptionBuilder<Boolean> {
 	@EventHandler
 	public void on(EntityDeathEvent e) {
 		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.KILLS_PASSIVE.isTracked() && e.getEntity() instanceof Animals && e.getEntity().getKiller() instanceof Player)
-			StatisticHandler.update(e.getEntity().getKiller(), EnumStats.KILLS_PASSIVE);
+			StatisticHandler.update(e.getEntity().getKiller().getUniqueId(), EnumStats.KILLS_PASSIVE);
 	}
 }

@@ -55,6 +55,6 @@ public class TimeSprintedStatOption extends OptionBuilder<Boolean> implements St
 	@Override
 	public void onPartyEnd() {
 		if (EnumStats.TIME_SPRINTED.isTracked())	
-			Bukkit.getOnlinePlayers().forEach(player -> { StatisticHandler.update(player, EnumStats.TIME_SPRINTED, (int)(player.getStatistic(Statistic.SPRINT_ONE_CM) / player_velocity)); });
+			Bukkit.getOnlinePlayers().forEach(player -> { StatisticHandler.update(player.getUniqueId(), EnumStats.TIME_SPRINTED, (int)(player.getStatistic(Statistic.SPRINT_ONE_CM) / player_velocity)); });
 	}
 }
