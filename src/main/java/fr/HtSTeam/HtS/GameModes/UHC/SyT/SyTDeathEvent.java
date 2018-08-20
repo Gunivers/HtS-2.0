@@ -60,7 +60,7 @@ public class SyTDeathEvent implements Listener, PlayerRemove {
 				}
 				broadcast = eventVictim.getName() + " a échoué dans sa mission.";
 				if (EnumState.getState().equals(EnumState.RUNNING)) {
-					Bukkit.getPlayer(killerHunter).sendMessage("§2Cible éliminée. Nouvelle cible : "+ eventKiller.getName());
+					Bukkit.getPlayer(killerHunter).sendMessage("§2Cible éliminée. Nouvelle cible : "+ PlayerInGame.uuidToName.get(eventKiller.getUniqueId()));
 					eventKiller.sendMessage("§6Celui-ci semblait vous vouloir du mal, il est fort probable qu'il cherchait à vous éliminer.");
 				}
 				// Kill other people

@@ -1,18 +1,17 @@
 package fr.HtSTeam.HtS.Options.Options.Statistics;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Material;import org.bukkit.Statistic;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.entity.PlayerDeathEvent;
 
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.EnumStats;
 import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.StatisticHandler;
-import fr.HtSTeam.HtS.Options.Structure.EndTrigger;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
-import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
 
-public class KillsPlayerStatOption extends OptionBuilder<Boolean> implements StartTrigger, EndTrigger {
+public class KillsPlayerStatOption extends OptionBuilder<Boolean> {
 	
 	public KillsPlayerStatOption() {
 		super(Material.SKULL_ITEM, "Kills Player", "§2Activé", true, GUIRegister.stats);		
@@ -43,16 +42,9 @@ public class KillsPlayerStatOption extends OptionBuilder<Boolean> implements Sta
 		return null;
 	}
 	
-	@Override
-	public void onPartyStart() {
-		if (EnumStats.KILLS_PLAYER.isTracked())
-			Bukkit.getOnlinePlayers().forEach(player -> { player.setStatistic(Statistic.PLAYER_KILLS, 0); });
-	}
-
-	@Override
-	public void onPartyEnd() {
-		System.out.println("PartyEnd Kill player running...");
-		if (EnumStats.KILLS_PLAYER.isTracked())
-			Bukkit.getOnlinePlayers().forEach(player -> { StatisticHandler.update(player, EnumStats.KILLS_PLAYER, player.getStatistic(Statistic.PLAYER_KILLS)); });
+	@EventHandler
+	public void on(PlayerDeathEvent e) {
+		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.ITEMS_PICKED_UP.isTracked() && e.getEntity().getKiller() instanceof Player)
+			StatisticHandler.update(e.getEntity().getKiller(), EnumStats.ITEMS_PICKED_UP);
 	}
 }

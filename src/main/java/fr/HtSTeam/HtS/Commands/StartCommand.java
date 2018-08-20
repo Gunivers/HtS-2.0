@@ -4,6 +4,7 @@ import java.util.Map.Entry;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.Statistic;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -54,6 +55,7 @@ public class StartCommand implements CommandExecutor {
 					if(!player.getGameMode().equals(GameMode.SPECTATOR)) {
 						PlayerInGame.playerInGame.add(player.getUniqueId());
 						PlayerInGame.uuidToName.put(player.getUniqueId(), player.getName());
+						player.setStatistic(Statistic.PLAYER_KILLS, 0);
 						player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(20);
 						player.setHealth(20);
 						player.setFoodLevel(20);
