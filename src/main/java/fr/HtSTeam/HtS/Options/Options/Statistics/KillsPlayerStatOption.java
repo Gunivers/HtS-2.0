@@ -44,7 +44,7 @@ public class KillsPlayerStatOption extends OptionBuilder<Boolean> {
 	
 	@EventHandler
 	public void on(PlayerDeathEvent e) {
-		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.ITEMS_PICKED_UP.isTracked() && e.getEntity().getKiller() instanceof Player)
-			StatisticHandler.update(e.getEntity().getKiller(), EnumStats.ITEMS_PICKED_UP);
+		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.KILLS_PLAYER.isTracked() && e.getEntity().getKiller() instanceof Player)
+			StatisticHandler.update(e.getEntity().getKiller(), EnumStats.KILLS_PLAYER);
 	}
 }
