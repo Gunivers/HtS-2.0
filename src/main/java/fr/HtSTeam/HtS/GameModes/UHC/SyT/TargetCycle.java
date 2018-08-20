@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -73,11 +74,25 @@ public class TargetCycle extends OptionBuilder<Integer> {
 		HashMap<TeamBuilder, ArrayList<UUID>> teamPlayers = new HashMap<TeamBuilder, ArrayList<UUID>>();
 		for (TeamBuilder tb : TeamBuilder.teamList)
 			teamPlayers.put(tb, new ArrayList<UUID>(tb.getTeamPlayers()));
-		
+
+		TeamBuilder previousTeam = null;
 		while(!teamPlayers.isEmpty()) {
+			ArrayList<TeamBuilder> tbs = new ArrayList<TeamBuilder>(teamPlayers.keySet());
+			while (tbs.get(0) == previousTeam)
+				Collections.shuffle(tbs);
+			previousTeam = tbs.get(0);
+			
 			ArrayList<UUID> sub_cycle = new ArrayList<UUID>();
-			teamPlayers.forEach((tb, players) -> { UUID uuid = players.get(Randomizer.RandI(0, players.size() - 1)); sub_cycle.add(uuid); players.remove(uuid); });
-			teamPlayers.entrySet().removeIf(entry -> entry.getValue().isEmpty());
+			for (TeamBuilder tb : tbs) {
+				ArrayList<UUID> players = teamPlayers.get(tb);
+				UUID uuid = players.get(Randomizer.RandI(0, players.size() - 1)); 
+				sub_cycle.add(uuid); 
+				players.remove(uuid);
+				teamPlayers.put(tb, players);
+				if (players.isEmpty())
+					teamPlayers.remove(tb);
+			}
+			
 			while(!cycle.isEmpty() && TeamBuilder.playerTeam.get(sub_cycle.get(0)) == TeamBuilder.playerTeam.get(cycle.get(cycle.size() - 1)))
 				Collections.shuffle(sub_cycle);
 			cycle.addAll(sub_cycle);
