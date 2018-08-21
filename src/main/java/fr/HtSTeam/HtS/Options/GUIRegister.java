@@ -21,7 +21,7 @@ public class GUIRegister {
 	public static GUIBuilder fallenKingdom = new FallenKingdomOption();
 	public static GUIBuilder syt = new SyTOption();
 	
-	public static GUIBuilder base = new GUIBuilder("Option de base", 1, "Option de base", "Régler les options basiques", Material.GRASS, main);
+	public static GUIBuilder base = new GUIBuilder("Option de base", 2, "Option de base", "Régler les options basiques", Material.GRASS, main);
 	public static GUIBuilder atDeath = new GUIBuilder("Mort du joueur", 1, "Mort du joueur", "Régler la mort d'un joueur", Material.SKULL_ITEM,main);
 	public static GUIBuilder scoreboard = new GUIBuilder("Scoreboard", 1, "Scoreboard", "Régler le scoreboard", Material.SIGN, main);
 	public static GUIBuilder mob = new GUIBuilder("Mobs", 1, "Mobs", "Désactiver des mobs", Material.SKULL_ITEM, main);

@@ -8,6 +8,7 @@ import fr.HtSTeam.HtS.Options.Options.Base.DayLightCycleOption;
 import fr.HtSTeam.HtS.Options.Options.Base.DifficultOption;
 import fr.HtSTeam.HtS.Options.Options.Base.EnablePvPOption;
 import fr.HtSTeam.HtS.Options.Options.Base.FixDayOption;
+import fr.HtSTeam.HtS.Options.Options.Base.NoDamageOption;
 import fr.HtSTeam.HtS.Options.Options.Base.NoRegenOption;
 import fr.HtSTeam.HtS.Options.Options.Base.WeatherOption;
 import fr.HtSTeam.HtS.Options.Options.Crafts.ElytraCraftOption;
@@ -71,6 +72,7 @@ public class OptionRegister {
 		//Base
 		public static NoRegenOption noRegen =  new NoRegenOption();
 		public static WeatherOption weather = new WeatherOption();
+		public static NoDamageOption noDamage = new NoDamageOption();
 		
 		// Loot Tables
 		public static BatOption batLoot = new BatOption();
