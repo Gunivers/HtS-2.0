@@ -34,7 +34,6 @@ public enum EnumState implements Listener {
 		} else if (state.equals(EnumState.FINISHING)) {
 			IconBuilder.optionsList.keySet().forEach(key -> { if(Arrays.asList(key.getClass().getInterfaces()).contains(EndTrigger.class)) ((EndTrigger) key).onPartyEnd(); });
 			try {
-				StatisticHandler.display();
 				StatisticHandler.save();
 			} catch (SQLException e) { e.printStackTrace();	}
 		}

@@ -9,9 +9,11 @@ import java.util.UUID;
 import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
 
+import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Commands.PlayStopCommands;
 import fr.HtSTeam.HtS.Options.OptionRegister;
+import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.StatisticHandler;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.Entry;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.EntryBuilder;
@@ -46,6 +48,8 @@ public class ScoreBoard {
 	}
 	
 	private static List<Entry> getBuild(Player p) {
+		if (EnumState.getState() == EnumState.FINISHING)
+			return StatisticHandler.getDisplay(p.getUniqueId());;
 		if(display.size() == 0)
 			return new EntryBuilder().next("§6Joueur :").next(Integer.toString(PlayerInGame.playerInGame.size())).next("§6Kills :").next(Integer.toString(p.getStatistic(Statistic.PLAYER_KILLS))).next("§6Timer :").next(Main.timer.getTimeFormat()).next("§6Bordure :").next(OptionRegister.borderOption.getValue() + "x" + OptionRegister.borderOption.getValue()).build();
 		

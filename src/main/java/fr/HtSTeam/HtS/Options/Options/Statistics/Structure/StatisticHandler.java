@@ -4,14 +4,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map.Entry;
 import java.util.UUID;
-
-import org.bukkit.Bukkit;
 
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
-import fr.HtSTeam.HtS.Players.PlayerManager;
 import fr.HtSTeam.HtS.Players.PlayerRemove;
+import fr.HtSTeam.HtS.Scoreboard.Scoreboard.EntryBuilder;
 
 public class StatisticHandler implements PlayerRemove {
 	
@@ -49,8 +49,12 @@ public class StatisticHandler implements PlayerRemove {
 		JDBCHandler.update();
 	}
 	
-	public static void display() {
-		playerStats.forEach((uuid, stats) -> { stats.forEach((stat, value) -> { if(PlayerManager.isConnected(uuid)) Bukkit.getPlayer(uuid).sendMessage(stat.toString() + ":   " + value); }); });
+	public static List<fr.HtSTeam.HtS.Scoreboard.Scoreboard.Entry> getDisplay(UUID uuid) {
+		EntryBuilder builder = new EntryBuilder();
+		for (Entry<EnumStats, Object> set : playerStats.get(uuid).entrySet())
+			if (set.getKey().getDisplayName() != null)
+				builder.next(set.getKey().getDisplayName() + " " + set.getValue());
+		return builder.build();
 	}
 	
 	public static void update(UUID uuid, EnumStats s) {
