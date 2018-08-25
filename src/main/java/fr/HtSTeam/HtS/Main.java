@@ -16,6 +16,7 @@ import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.JDBCHandler;
 import fr.HtSTeam.HtS.Options.Structure.TimerTask;
 import fr.HtSTeam.HtS.Players.DeathLoot;
+import fr.HtSTeam.HtS.Scoreboard.ScoreBoard;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.ScoreboardLib;
 import fr.HtSTeam.HtS.Teams.TeamRegister;
 import fr.HtSTeam.HtS.Utils.Files.FileExtractor;
@@ -55,6 +56,7 @@ public class Main extends JavaPlugin {
 		
 		try {
 			HTSNAME += JDBCHandler.getHtsNumber();
+			ScoreBoard.sb_name = HTSNAME;
 		} catch (SQLException e) { e.printStackTrace(); }		
 	}
 	

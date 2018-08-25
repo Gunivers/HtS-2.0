@@ -12,6 +12,7 @@ import fr.HtSTeam.HtS.Options.Structure.EndTrigger;
 import fr.HtSTeam.HtS.Options.Structure.IconBuilder;
 import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
 import fr.HtSTeam.HtS.Players.PlayerRemove;
+import fr.HtSTeam.HtS.Scoreboard.ScoreBoard;
 
 public enum EnumState implements Listener {
 	
@@ -33,6 +34,8 @@ public enum EnumState implements Listener {
 			StatisticHandler.init();
 		} else if (state.equals(EnumState.FINISHING)) {
 			IconBuilder.optionsList.keySet().forEach(key -> { if(Arrays.asList(key.getClass().getInterfaces()).contains(EndTrigger.class)) ((EndTrigger) key).onPartyEnd(); });
+			ScoreBoard.refresh_rate = 20L * 5L;
+			StatisticHandler.display();
 			try {
 				StatisticHandler.save();
 			} catch (SQLException e) { e.printStackTrace();	}

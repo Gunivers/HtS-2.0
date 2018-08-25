@@ -2,20 +2,30 @@ package fr.HtSTeam.HtS.Options.Options.Statistics.Structure;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map.Entry;
 import java.util.UUID;
+
+import org.apache.commons.collections4.Equator;
+import org.apache.commons.collections4.IterableUtils;
+import org.bukkit.Bukkit;
 
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
+import fr.HtSTeam.HtS.Players.PlayerManager;
 import fr.HtSTeam.HtS.Players.PlayerRemove;
+import fr.HtSTeam.HtS.Scoreboard.ScoreBoard;
+import fr.HtSTeam.HtS.Scoreboard.Scoreboard.Entry;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.EntryBuilder;
 
 public class StatisticHandler implements PlayerRemove {
 	
 	private static HashMap<UUID, HashMap<EnumStats, Object>> playerStats = new HashMap<UUID, HashMap<EnumStats, Object>>();
+	private static HashMap<EnumStats, ArrayList<String>> mvpStats = new HashMap<EnumStats, ArrayList<String>>();
+	private static ArrayList<EnumStats> stats = new ArrayList<EnumStats>();
+	private static int itr = 0;
 	
 	{
 		addToList();
@@ -39,7 +49,7 @@ public class StatisticHandler implements PlayerRemove {
 	
 	@Override
 	public void removePlayer(UUID uuid, String name) {
-		playerStats.remove(uuid);		
+		playerStats.remove(uuid);
 	}
 	
 	public static void save() throws SQLException {
@@ -49,12 +59,45 @@ public class StatisticHandler implements PlayerRemove {
 		JDBCHandler.update();
 	}
 	
-	public static List<fr.HtSTeam.HtS.Scoreboard.Scoreboard.Entry> getDisplay(UUID uuid) {
-		EntryBuilder builder = new EntryBuilder();
-		for (Entry<EnumStats, Object> set : playerStats.get(uuid).entrySet())
-			if (set.getKey().getDisplayName() != null)
-				builder.next(set.getKey().getDisplayName() + " " + set.getValue());
-		return builder.build();
+	public static void display() {
+		playerStats.forEach((uuid, stats) -> { if(!PlayerManager.isConnected(uuid)) return;  Bukkit.getPlayer(uuid).sendMessage("=====Vos Statisques====="); stats.forEach((stat, value) -> { Bukkit.getPlayer(uuid).sendMessage(stat.getDisplayName() + ":   " + value); }); });
+	}
+	
+	private static void mvps() {
+		for (int i = 0; i < EnumStats.values().length; i++) {
+			if (!EnumStats.values()[i].isTracked() && !(EnumStats.values()[i].getDefaultValue() instanceof Number))
+				continue;
+			EnumStats stat = EnumStats.values()[i];
+			stats.add(stat);
+			ArrayList<Integer> values = new ArrayList<Integer>();
+			playerStats.forEach((uuid, stats) -> { values.add((Integer) stats.get(stat)); });
+			Collections.sort(values, Collections.reverseOrder());
+			ArrayList<String> mvps = new ArrayList<String>();
+			for (int j = 0; j < 5; j++) {
+				final int final_j = j;
+				playerStats.forEach((uuid, stats) -> { if (values.get(final_j) == stats.get(stat) && !IterableUtils.contains(mvps, PlayerInGame.uuidToName.get(uuid), new Equator<String>() {
+					@Override
+					public boolean equate(String o1, String o2) {
+						return o2.contains(o1);
+					}
+
+					@Override
+					public int hash(String o) {
+						return o.hashCode();
+					}
+				})) mvps.add(PlayerInGame.uuidToName.get(uuid) + " - " + stats.get(stat)); }); }
+			mvpStats.put(stat, mvps);
+		}
+	}
+	
+	public static List<Entry> getDisplayStatMvp() {
+		if (mvpStats.isEmpty())
+			mvps();
+		ScoreBoard.sb_name = stats.get(itr).getDisplayName();
+		EntryBuilder entry = new EntryBuilder();
+		mvpStats.get(stats.get(itr)).forEach(str -> { entry.next(str); });
+		itr++;
+		return entry.build();
 	}
 	
 	public static void update(UUID uuid, EnumStats s) {
