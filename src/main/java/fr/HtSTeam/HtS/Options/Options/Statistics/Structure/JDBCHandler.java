@@ -99,7 +99,7 @@ public class JDBCHandler {
 				for (String col : cols) {
 					if (EnumStats.valueOf(col).getDefaultValue() instanceof Number) {
 						rs.updateInt(col, rs.getInt(col) + hts.getInt(col));
-					} else if (EnumStats.valueOf(col).getDefaultValue() instanceof ArrayList) {
+					} else if (EnumStats.valueOf(col).getDefaultValue() instanceof HashSet) {
 						HashSet<String> set = new HashSet<String>(Arrays.asList(rs.getString(col).split("\\s*,\\s*")));
 						set.addAll(Arrays.asList(hts.getString(col).split("\\s*,\\s*")));
 						rs.updateString(col, String.join(",", set));
@@ -111,7 +111,7 @@ public class JDBCHandler {
 				for (String col : cols)
 					if (EnumStats.valueOf(col).getDefaultValue() instanceof Number)
 						rs.updateInt(col, hts.getInt(col));
-					else if (EnumStats.valueOf(col).getDefaultValue() instanceof ArrayList)
+					else if (EnumStats.valueOf(col).getDefaultValue() instanceof HashSet)
 						rs.updateString(col, hts.getString(col));
 				rs.insertRow();
 				rs.moveToCurrentRow();

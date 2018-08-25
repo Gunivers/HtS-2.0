@@ -1,11 +1,12 @@
 package fr.HtSTeam.HtS.Options.Options.Statistics.Structure;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public enum EnumStats {
 	
-	PLAYER_UUID (true, new ArrayList<String>(), "`PLAYER_UUID` TEXT NOT NULL", null),
-	PLAYER_NAME (true, new ArrayList<String>(), "`PLAYER_NAME` TEXT NOT NULL", null),
+	PLAYER_UUID (true, new HashSet<String>(), "`PLAYER_UUID` TEXT NOT NULL", null),
+	PLAYER_NAME (true, new HashSet<String>(), "`PLAYER_NAME` TEXT NOT NULL", null),
 	TIME_PLAYED (true, 0, "`TIME_PLAYED` INT NOT NULL", "Temps joué (s) :"),
 	TIME_SPRINTED (true, 0, "`TIME_SPRINTED` INT NOT NULL", "Temps couru (s) :"),
 	TIME_SNEAKED (true, 0, "`TIME_SNEAKED` INT NOT NULL", "Temps accroupi (s) :"),
@@ -19,14 +20,14 @@ public enum EnumStats {
 	POTION_DRUNK (true, 0, "`POTION_DRUNK` INT NOT NULL", "Potions bues :"),
 	POTION_THROWN (true, 0, "`POTION_THROWN` INT NOT NULL", "Potions lancées :"),
 	KILLS_PLAYER (true, 0, "`KILLS_PLAYER` INT NOT NULL", "Kills :"),
-	KILLS_PLAYER_NAME (true, new ArrayList<String>(), "`KILLS_PLAYER_NAME` TEXT NOT NULL", null),
+	KILLS_PLAYER_NAME (true, new HashSet<String>(), "`KILLS_PLAYER_NAME` TEXT NOT NULL", null),
 	KILLS_MONSTER (true, 0, "`KILLS_MONSTER` INT NOT NULL", "Kills (monstres):"),
 	KILLS_PASSIVE (true, 0, "`KILLS_PASSIVE` INT NOT NULL", "Kills (animaux):"),
 	DAMAGE_GIVEN (true, 0, "`DAMAGE_GIVEN` INT NOT NULL", "Dégâts donnés :"),
 	DAMAGE_RECEIVED (true, 0, "`DAMAGE_RECEIVED` INT NOT NULL", "Dégâts recus :"),
 	ARROW_SHOT (true, 0, "`ARROW_SHOT` INT NOT NULL", "Fléches tirées :"),
 	ARROW_HIT (true, 0, "`ARROW_HIT` INT NOT NULL", "Fléches touchées :"),
-	TARGETS (true, new ArrayList<String>(), "`TARGETS` TEXT NOT NULL", null);
+	TARGETS (true, new HashSet<String>(), "`TARGETS` TEXT NOT NULL", null);
 	
 	private boolean b;
 	private Object o;

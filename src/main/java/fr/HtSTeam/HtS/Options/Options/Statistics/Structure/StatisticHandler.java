@@ -27,9 +27,9 @@ public class StatisticHandler implements PlayerRemove {
 			HashMap<EnumStats, Object> stats = new HashMap<EnumStats, Object>();
 			for (EnumStats s : EnumStats.values()) {
 				if (EnumStats.PLAYER_UUID == s)
-					stats.put(s, new ArrayList<String>() {{ add(uuid.toString()); }});
+					stats.put(s, new HashSet<String>() {{ add(uuid.toString()); }});
 				else if (EnumStats.PLAYER_NAME == s)
-					stats.put(s, new ArrayList<String>() {{ add(PlayerInGame.uuidToName.get(uuid)); }});
+					stats.put(s, new HashSet<String>() {{ add(PlayerInGame.uuidToName.get(uuid)); }});
 				else if (s.isTracked())
 					stats.put(s, s.getDefaultValue());
 			}
@@ -78,7 +78,7 @@ public class StatisticHandler implements PlayerRemove {
 		if (!s.isTracked() && !playerStats.containsKey(uuid))
 			return;
 		HashMap<EnumStats, Object> stats = playerStats.get(uuid);
-		HashSet<String> set = new HashSet<String>((ArrayList<String>) stats.get(s));
+		HashSet<String> set = (HashSet<String>) stats.get(s);
 		set.add(value);
 		stats.put(s, set);
 		playerStats.put(uuid, stats);
@@ -100,8 +100,8 @@ public class StatisticHandler implements PlayerRemove {
 			for (int i = 0; i < EnumStats.values().length; i++) {
 				EnumStats stat = EnumStats.values()[i];
 				if (stat.isTracked())
-					if (stat.getDefaultValue() instanceof ArrayList)
-						values.add("\"" + String.join(",", (ArrayList<String>) stats.get(stat)) + "\"");
+					if (stat.getDefaultValue() instanceof HashSet)
+						values.add("\"" + String.join(",", (HashSet<String>) stats.get(stat)) + "\"");
 					else
 						values.add("\"" + stats.get(stat).toString() + "\"");
 			}
