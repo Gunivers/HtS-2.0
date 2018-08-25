@@ -28,8 +28,8 @@ public enum EnumState implements Listener {
 				world.setPVP(false);
 		} else if(state.equals(EnumState.RUNNING)) {
 			IconBuilder.optionsList.keySet().forEach(key -> { if(Arrays.asList(key.getClass().getInterfaces()).contains(StartTrigger.class)) ((StartTrigger) key).onPartyStart(); });
-			PlayerRemove.addLast();
 			Main.gamemode.initialisation();
+			PlayerRemove.addLast();
 			StatisticHandler.init();
 		} else if (state.equals(EnumState.FINISHING)) {
 			IconBuilder.optionsList.keySet().forEach(key -> { if(Arrays.asList(key.getClass().getInterfaces()).contains(EndTrigger.class)) ((EndTrigger) key).onPartyEnd(); });
@@ -42,4 +42,3 @@ public enum EnumState implements Listener {
 	public static EnumState getState() { return state; }
 	
 }
-

@@ -34,12 +34,10 @@ public class RemoveCommand implements CommandExecutor {
 							break;
 						}
 					}
-					if (uuid != null) {
-						final UUID final_uuid = uuid;
-						final String final_name = name;		
-						for(PlayerRemove pr : PlayerRemove.remove)
-							pr.removePlayer(final_uuid, final_name);
-					} else
+					if (uuid != null)	
+						for(PlayerRemove pr : PlayerRemove.remove) {
+							pr.removePlayer(uuid, name);
+						} else
 						p.sendMessage("§4Ce joueur n'existe pas !");
 					return true;
 				}
