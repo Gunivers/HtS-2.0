@@ -3,22 +3,21 @@ package fr.HtSTeam.HtS.Events;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Main;
+import fr.HtSTeam.HtS.Events.Strutcture.EventHandler;
 import fr.HtSTeam.HtS.GameModes.UHC.SyT.RadarFrequencyOption;
 import fr.HtSTeam.HtS.GameModes.UHC.SyT.SyT;
 import fr.HtSTeam.HtS.Scoreboard.ScoreBoard;
 import fr.HtSTeam.HtS.Teams.TeamBuilder;
 
-public class JoinLeaveEvent implements Listener {
+public class JoinLeaveEvent {
 	
 	@EventHandler
-	public void onJoin(PlayerJoinEvent e) {
+	public static void onJoin(PlayerJoinEvent e) {
 		Player p = e.getPlayer();
 		
 		if (TeamBuilder.teamList.size() != 0 && p.getGameMode() != GameMode.SPECTATOR && TeamBuilder.playerTeam.containsKey(p.getUniqueId())) {
@@ -30,7 +29,7 @@ public class JoinLeaveEvent implements Listener {
 	}
 	
 	@EventHandler
-	public void onLeave(PlayerQuitEvent e) {
+	public static void onLeave(PlayerQuitEvent e) {
 		if(EnumState.getState() == EnumState.RUNNING) {
 			ScoreBoard.scoreboards.remove(e.getPlayer().getUniqueId());
 			if (Main.gamemode instanceof SyT)

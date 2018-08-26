@@ -4,12 +4,13 @@ import java.sql.SQLException;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
+import org.bukkit.GameRule;
 import org.bukkit.World;
 import org.bukkit.World.Environment;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.HtSTeam.HtS.Commands.CommandsManager;
-import fr.HtSTeam.HtS.Events.EventManager;
+import fr.HtSTeam.HtS.Events.Strutcture.Event;
 import fr.HtSTeam.HtS.GameModes.GameMode;
 import fr.HtSTeam.HtS.GameModes.UHC.Common.UHC;
 import fr.HtSTeam.HtS.Options.OptionRegister;
@@ -43,14 +44,15 @@ public class Main extends JavaPlugin {
 				world.setPVP(false);
 				world.setSpawnLocation(0, 205, 0);
 			}	
-		}		
+		}
+		world.setGameRule(GameRule.SEND_COMMAND_FEEDBACK, false);
 		timer = new TimerTask(0, 1);
 		
-		ScoreboardLib.setPluginInstance(this);
-		Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "gamerule sendCommandFeedback false");
-		EventManager.loadEvents(this);
+		getServer().getPluginManager().registerEvents(new Event(), plugin);
+		
+		ScoreboardLib.setPluginInstance(plugin);
 		OptionRegister.register();
-		CommandsManager.loadCommands(this);
+		CommandsManager.loadCommands(plugin);
 		new TeamRegister();
 		new JDBCHandler();
 		

@@ -5,8 +5,8 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
-import fr.HtSTeam.HtS.Options.Structure.Annotation.PRIORITY;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
+import fr.HtSTeam.HtS.Utils.PRIORITY;
 
 public class AnnonceOption extends OptionBuilder<Integer> {
 

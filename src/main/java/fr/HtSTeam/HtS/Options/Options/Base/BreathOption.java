@@ -13,8 +13,8 @@ import org.bukkit.potion.PotionEffectType;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
-import fr.HtSTeam.HtS.Options.Structure.Annotation.PRIORITY;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
+import fr.HtSTeam.HtS.Utils.PRIORITY;
 
 public class BreathOption extends OptionBuilder<Integer> implements StartTrigger {
 	

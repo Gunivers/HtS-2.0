@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Options.Structure.Annotation;
+package fr.HtSTeam.HtS.Utils;
 
 public enum PRIORITY {
 	HIGH, HIGHEST, NORMAL, LOWEST, LOW;

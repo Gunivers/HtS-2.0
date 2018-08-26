@@ -88,8 +88,7 @@ public class TimerTask {
 				if (m.isAnnotationPresent(Timer.class))
 					methods.add(m);
 			}
-			methods.sort(
-					(o1, o2) -> o1.getAnnotation(Timer.class).value().compareTo(o2.getAnnotation(Timer.class).value()));
+			methods.sort((o1, o2) -> o1.getAnnotation(Timer.class).value().compareTo(o2.getAnnotation(Timer.class).value()));
 			for (Method m : methods) {
 				try {
 					if (this.getTimerInMinute() == (Integer) om.getValue())
