@@ -25,7 +25,7 @@ public class StatisticHandler implements PlayerRemove {
 	private static HashMap<UUID, HashMap<EnumStats, Object>> playerStats = new HashMap<UUID, HashMap<EnumStats, Object>>();
 	private static HashMap<EnumStats, ArrayList<String>> mvpStats = new HashMap<EnumStats, ArrayList<String>>();
 	private static ArrayList<EnumStats> stats = new ArrayList<EnumStats>();
-	private static int itr = 0;
+	private static HashMap<UUID, Integer> itr = new HashMap<UUID, Integer>();
 	
 	{
 		addToList();
@@ -64,7 +64,7 @@ public class StatisticHandler implements PlayerRemove {
 		playerStats.forEach((uuid, stats) -> {
 			if (!PlayerManager.isConnected(uuid))
 				return;
-			Bukkit.getPlayer(uuid).sendMessage("===== Vos Statisques =====");
+			Bukkit.getPlayer(uuid).sendMessage("===== Vos Statistiques =====");
 			stats.forEach((stat, value) -> {
 				if (stat.getDisplayName() != null && value != null && value instanceof Number)
 					Bukkit.getPlayer(uuid).sendMessage(stat.getDisplayName() + " : " + value);
@@ -75,7 +75,7 @@ public class StatisticHandler implements PlayerRemove {
 		mvps();
 		ScoreBoard.sb_name = "MVP";
 		ScoreBoard.refresh_rate = 20L * 5L;
-		Bukkit.getOnlinePlayers().forEach(player -> { ScoreBoard.send(player); });
+		Bukkit.getOnlinePlayers().forEach(player -> { itr.put(player.getUniqueId(), 0); ScoreBoard.send(player); });
 	}
 	
 	private static void mvps() {
@@ -106,13 +106,13 @@ public class StatisticHandler implements PlayerRemove {
 		}
 	}
 	
-	public static List<Entry> getDisplayStatMvp() {
+	public static List<Entry> getDisplayStatMvp(UUID uuid) {
 		EntryBuilder entry = new EntryBuilder();
-		entry.next("  " + stats.get(itr).getDisplayName() + " ").blank();
-		mvpStats.get(stats.get(itr)).forEach(str -> { entry.next(str); });
-		itr++;
-		if (itr == mvpStats.size())
-			itr = 0;
+		entry.next("  " + stats.get(itr.get(uuid)).getDisplayName() + " ").blank();
+		mvpStats.get(stats.get(itr.get(uuid))).forEach(str -> { entry.next(str); });
+		itr.put(uuid, itr.get(uuid) + 1);
+		if (itr.get(uuid) == mvpStats.size())
+			itr.put(uuid, 0);
 		return entry.build();
 	}
 	
