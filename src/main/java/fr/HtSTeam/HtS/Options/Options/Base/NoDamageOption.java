@@ -6,6 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
+import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
@@ -50,7 +51,7 @@ public class NoDamageOption extends OptionBuilder<Integer> {
 	}
 	
 	private void switchState(boolean b) {
-		damageOn = false;
+		damageOn = b;
 	}
 	
 	@Timer
@@ -72,7 +73,7 @@ public class NoDamageOption extends OptionBuilder<Integer> {
 	
 	@EventHandler
 	public void onDamage(EntityDamageEvent e) {
-		if (!damageOn && e.getEntity() instanceof Player)
+		if (EnumState.getState() == EnumState.RUNNING && !damageOn && e.getEntity() instanceof Player)
 			e.setCancelled(true);
 	}
 }
