@@ -4,41 +4,34 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 
-import fr.HtSTeam.HtS.Options.OptionRegister;
-import fr.HtSTeam.HtS.Options.Structure.Alterable;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
-public class AlgueUrticanteOption extends OptionBuilder implements Alterable {
-	
-	private boolean activate = false;
-	
+public class AlgueUrticanteOption extends OptionBuilder<Boolean> {
+		
 	public AlgueUrticanteOption() {
-		super(Material.VINE, "Algue Urticante", "§4Désactivé", "Désactivé", OptionRegister.other);
+		super(Material.VINE, "Algue Urticante", "§4Désactivé", false, GUIRegister.other, false);
 	}
 
 	@Override
 	public void event(Player p) {
-		activate = !activate;
-		setState(activate);
+		setState(!getValue());
 	}
 	
 	@Override
-	public void setState(boolean value) {
-		activate = value;
-		if (value) {
-			setValue("Activé");
+	public void setState(Boolean value) {
+		if (value)
 			getItemStack().setLore("§2Activé");
-		} else {
-			setValue("Désactivé");
+		else
 			getItemStack().setLore("§4Désactivé");
-		}
+		setValue(value);
 		parent.update(this);
 	}
 	
 	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onAlgaeCatch(org.bukkit.event.player.PlayerPickupItemEvent e) {
-		if(e.getItem().getItemStack().getType() == Material.DOUBLE_PLANT && activate) {
+		if(e.getItem().getItemStack().getType() == Material.DOUBLE_PLANT && getValue()) {
 			e.setCancelled(true);
 			e.getPlayer().setHealth(e.getPlayer().getHealth()-1);
 			e.getItem().remove();
@@ -46,9 +39,14 @@ public class AlgueUrticanteOption extends OptionBuilder implements Alterable {
 	}
 	
 	public boolean isActivated() {
-		if (getValue().equals("Activé"))
+		if (getValue() == true)
 			return true;
 		else
 			return false;
+	}
+
+	@Override
+	public String description() {
+		return null;
 	}
 }

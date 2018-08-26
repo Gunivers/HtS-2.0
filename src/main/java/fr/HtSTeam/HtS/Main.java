@@ -1,13 +1,11 @@
 package fr.HtSTeam.HtS;
 
-import java.util.HashMap;
-import java.util.UUID;
+import java.sql.SQLException;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
 import org.bukkit.World;
 import org.bukkit.World.Environment;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.HtSTeam.HtS.Commands.CommandsManager;
@@ -15,17 +13,19 @@ import fr.HtSTeam.HtS.Events.EventManager;
 import fr.HtSTeam.HtS.GameModes.GameMode;
 import fr.HtSTeam.HtS.GameModes.UHC.Common.UHC;
 import fr.HtSTeam.HtS.Options.OptionRegister;
+import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.JDBCHandler;
+import fr.HtSTeam.HtS.Options.Structure.TimerTask;
 import fr.HtSTeam.HtS.Players.DeathLoot;
+import fr.HtSTeam.HtS.Scoreboard.ScoreBoard;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.ScoreboardLib;
-import fr.HtSTeam.HtS.Utils.FileExtractor;
-import fr.HtSTeam.HtS.Utils.TimerTask;
+import fr.HtSTeam.HtS.Teams.TeamRegister;
+import fr.HtSTeam.HtS.Utils.Files.FileExtractor;
 
 public class Main extends JavaPlugin {
 	
-	public HashMap<Player, UUID> uuidPlayer = new HashMap<>();
 	public static World world;
 	public static Main plugin;
-	public final static String HTSNAME = "HtS II";
+	public static String HTSNAME = "HtS ";
 	public static DeathLoot deathLoot = new DeathLoot();
 	public static TimerTask timer;
 	public static GameMode gamemode = new UHC();
@@ -46,19 +46,28 @@ public class Main extends JavaPlugin {
 		}		
 		timer = new TimerTask(0, 1);
 		
+		ScoreboardLib.setPluginInstance(this);
 		Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "gamerule sendCommandFeedback false");
 		EventManager.loadEvents(this);
-		CommandsManager.loadCommands(this);
 		OptionRegister.register();
-		ScoreboardLib.setPluginInstance(this);
+		CommandsManager.loadCommands(this);
+		new TeamRegister();
+		new JDBCHandler();
+		
+		try {
+			HTSNAME += JDBCHandler.getHtsNumber();
+			ScoreBoard.sb_name = HTSNAME;
+		} catch (SQLException e) { e.printStackTrace(); }		
 	}
 	
-//	private void tmp() {
-//		getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
-//            @Override
-//            public void run() {
-//            	System.out.println(deathLoot.getDeathLoot().toString());
-//            }
-//        }, 0L, 20L);
-//	}
+	/*public static void run() {
+		Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {	
+			@Override
+			public void run() {
+				System.out.println("=======================================");
+				Bukkit.getOnlinePlayers().forEach(p -> { System.out.println(p.getName() + "    " + p.getStatistic(Statistic.PLAYER_KILLS)); });
+				System.out.println("=======================================");
+			}
+		}, 0L, 1L);
+	}*/
 }

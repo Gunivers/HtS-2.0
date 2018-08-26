@@ -14,43 +14,36 @@ import org.bukkit.entity.Shulker;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.world.ChunkLoadEvent;
 
-import fr.HtSTeam.HtS.Options.OptionRegister;
-import fr.HtSTeam.HtS.Options.Structure.Alterable;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
-public class ShulkerNetherOption extends OptionBuilder implements Alterable {
-
-	private boolean activate = false;
+public class ShulkerNetherOption extends OptionBuilder<Boolean> {
 
 	public ShulkerNetherOption() {
-		super(Material.PURPLE_SHULKER_BOX, "Shulker", "§4Désactivé", "Désactivé", OptionRegister.nether);
+		super(Material.PURPLE_SHULKER_BOX, "Shulker", "§4Désactivé", false, GUIRegister.nether);
 	}
 
 	@Override
 	public void event(Player p) {
-		activate = !activate;
-		setState(activate);
+		setState(!getValue());
 	}
 	
 	
 	@Override
-	public void setState(boolean value) {
-		activate = value;
-		if (value) {
-			setValue("Activé");
+	public void setState(Boolean value) {
+		if (value)
 			getItemStack().setLore("§2Activé");
-		} else {
-			setValue("Désactivé");
+		else
 			getItemStack().setLore("§4Désactivé");
-		}
+		setValue(value);
 		parent.update(this);		
 	}
 	
 
 	@EventHandler
 	public void onChunkLoad(ChunkLoadEvent e) {
-		if (activate && e.getWorld().getEnvironment().equals(Environment.NETHER) && Randomizer.RandRate(10)) {
+		if (getValue() && e.getWorld().getEnvironment().equals(Environment.NETHER) && Randomizer.RandRate(10)) {
 			Chunk c = e.getChunk();
 			int cx = c.getX() << 4;
 			int cz = c.getZ() << 4;
@@ -70,11 +63,9 @@ public class ShulkerNetherOption extends OptionBuilder implements Alterable {
 			sh.setColor(DyeColor.RED);
 		}
 	}
-	
-	public boolean isActivated() {
-		if (getValue().equals("Activé"))
-			return true;
-		else
-			return false;
+
+	@Override
+	public String description() {
+		return "§2[Aide]§r Les Shulkers peuvent spawn naturellement dans le Nether.";
 	}
 }

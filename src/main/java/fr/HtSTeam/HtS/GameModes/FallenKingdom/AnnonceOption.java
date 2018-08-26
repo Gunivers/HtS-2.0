@@ -8,11 +8,10 @@ import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.PRIORITY;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
 
-public class AnnonceOption extends OptionBuilder {
+public class AnnonceOption extends OptionBuilder<Integer> {
 
 	public AnnonceOption() {
-		super(Material.PAPER, "Annonce", "", "20", null);
-		setValue("60");
+		super(Material.PAPER, "Annonce", "", 60, null);
 	}
 
 	@Override
@@ -21,12 +20,21 @@ public class AnnonceOption extends OptionBuilder {
 	@Timer(PRIORITY.HIGHEST)
 	public void firstAnnonce() {
 		Bukkit.broadcastMessage("§4Les paysans voisins commencent à devenir dangereux, prenez-leur leur drapeaux afin de leur montrer qui reste le maître !");
-		setValue("80");
+		setValue(80);
 	}
 	
 	@Timer(PRIORITY.LOWEST)
 	public void secondAnnonce() {
 		Bukkit.broadcastMessage("§4Maintenant, tout les coups sont permis, trouvez leur salle des coffres afin de les décribiliser auprès du Roi !");
+	}
+
+	@Override
+	public void setState(Integer value) {}
+
+	@Override
+	public String description() {
+		return "CTF";
+		
 	}
 
 }

@@ -61,7 +61,7 @@ public class BaseBuilder {
 		if(neutral)
 			return;
 		playerList.remove(p.getUniqueId());
-		playerBase.remove(p, this);
+		playerBase.remove(p.getUniqueId(), this);
 		if (playerList.size() == 0) {
 			baseList.remove(this);
 			nameBase.remove(baseName, this);

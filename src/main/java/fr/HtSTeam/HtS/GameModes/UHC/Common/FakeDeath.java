@@ -1,5 +1,7 @@
 package fr.HtSTeam.HtS.GameModes.UHC.Common;
 
+import java.util.UUID;
+
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -15,8 +17,13 @@ import org.bukkit.inventory.meta.SkullMeta;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
+import fr.HtSTeam.HtS.Players.PlayerRemove;
 
-public class FakeDeath implements Listener {
+public class FakeDeath implements Listener, PlayerRemove {
+	
+	{
+		addToList();
+	}
 	
 	@SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.LOWEST)
@@ -31,11 +38,18 @@ public class FakeDeath implements Listener {
 				is.setItemMeta(isM);
 			}
 			p.getWorld().dropItem(p.getLocation(), is);
-			((Player) p).setGameMode(GameMode.SPECTATOR);
-			PlayerInGame.removeFromGame(p);
-
-			for (Player p2 : Bukkit.getOnlinePlayers())
-				p2.playSound(p2.getLocation(), Sound.ENTITY_WITHER_SPAWN, 1.0f, 1.0f);
 		}
+		((Player) p).setGameMode(GameMode.SPECTATOR);
+		removePlayer(p.getUniqueId(), p.getName());
+	}
+	
+	public void removePlayer(UUID uuid, String name) {
+		PlayerInGame.removeFromGame(uuid);
+		boolean isOffline = true;
+		for (Player p2 : Bukkit.getOnlinePlayers()) {
+			p2.playSound(p2.getLocation(), Sound.ENTITY_WITHER_SPAWN, 1.0f, 1.0f);
+			if(p2.getUniqueId().equals(uuid)) isOffline = false;
+		}
+		if(isOffline) Bukkit.broadcastMessage(name + " est mort.");
 	}
 }

@@ -38,7 +38,7 @@ public class TeamCommand implements CommandExecutor {
 				} else if (args[0].equalsIgnoreCase("remove") && args.length == 2) {
 					try {
 						p.sendMessage("L'équipe " + ChatColor.valueOf(TeamBuilder.nameTeam.get(args[1]).getTeamColor().toUpperCase()) + TeamBuilder.nameTeam.get(args[1]).getTeamName() + " §ra été supprimée !");
-						TeamBuilder.nameTeam.get(args[1]).clearTeam();
+						TeamBuilder.nameTeam.get(args[1]).removeTeam();
 						return true;
 					} catch (NullPointerException e) {
 						p.sendMessage("§4Equipe non valide !");
@@ -64,10 +64,14 @@ public class TeamCommand implements CommandExecutor {
 					}
 				} else if (args[0].equalsIgnoreCase("list") && args.length == 1) {
 					try {
-						p.sendMessage("Liste des Teams:");
-						for(TeamBuilder t :TeamBuilder.teamList)
-							p.sendMessage("- " + ChatColor.valueOf(t.getTeamColor().toUpperCase()) + t.getTeamName());
-						return true;
+							if (TeamBuilder.teamList.size() == 0) {
+								p.sendMessage("Aucune Team n'a été créé !");
+							} else {
+								p.sendMessage("Liste des Teams (" + TeamBuilder.teamList.size() + ") :");
+								for(TeamBuilder t :TeamBuilder.teamList)
+									p.sendMessage("- " + ChatColor.valueOf(t.getTeamColor().toUpperCase()) + t.getTeamName());
+								return true;
+							}
 					} catch (NullPointerException e) {
 						p.sendMessage("§4Aucunes équipes existantes !");
 						return false;
@@ -107,19 +111,21 @@ public class TeamCommand implements CommandExecutor {
 								onlinePlayer.add(co);
 								
 						ArrayList<TeamBuilder> teamList = new ArrayList<TeamBuilder>();
-						for (TeamBuilder t : TeamBuilder.teamList) {	
-							if(!t.isFakeTeam())
-								teamList.add(t);
-						}
-						int nbTeam = teamList.size();
-						for (Player player : onlinePlayer) {
-							TeamBuilder team = teamList.get(Randomizer.RandI(0, teamList.size() - 1));
-							team.addPlayer(player);
-							if (team.getTeamSize() == (int) (onlinePlayer.size()/nbTeam))
-								teamList.remove(team);
-							if (teamList.size() == 0)
-								break;
-						}
+						int size = TeamBuilder.teamList.size();
+						for (int i = 0; i < size; i++)
+							if(!TeamBuilder.teamList.get(i).isFakeTeam()) {
+								TeamBuilder.teamList.get(i).clearTeam();
+								teamList.add(TeamBuilder.teamList.get(i));
+							}
+						
+						while (!onlinePlayer.isEmpty())
+							for(TeamBuilder team : teamList) {
+								if(onlinePlayer.isEmpty()) break; 
+								Player ran_p = onlinePlayer.get(Randomizer.RandI(0, onlinePlayer.size() - 1)); 
+								team.addPlayer(ran_p); 
+								onlinePlayer.remove(ran_p); 
+							}
+						
 						return true;
 					}
 					p.sendMessage("§4Aucunes équipes existantes !");

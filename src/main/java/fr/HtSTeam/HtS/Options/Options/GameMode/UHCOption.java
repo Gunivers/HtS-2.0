@@ -7,13 +7,14 @@ import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.GameModes.FallenKingdom.FallenKingdom;
 import fr.HtSTeam.HtS.GameModes.UHC.Common.UHC;
 import fr.HtSTeam.HtS.GameModes.UHC.SyT.SyT;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.OptionRegister;
 
 public class UHCOption extends GameModeState {
 
 	
 	public UHCOption() {
-		super("UHC", 1, "UHC", "§2Sélectionné", Material.GOLDEN_APPLE, OptionRegister.gameMode);
+		super("UHC", 1, "UHC", "§2Sélectionné", Material.GOLDEN_APPLE, GUIRegister.gameMode);
 		this.getItemStack().setGlint(true);
 		parent.update(this);
 	}
@@ -25,14 +26,13 @@ public class UHCOption extends GameModeState {
 			SyT.instance = false;
 			FallenKingdom.instance = false;
 		}
-		if(getItemStack().isGlint())
+		if(p != null && getItemStack().isGlint())
 			open(p);
 	}
 
 	@Override
 	public void setOption() {
 		OptionRegister.noRegen.setState(false);
-		if (!OptionRegister.goldenApple.isActivated())
-			OptionRegister.goldenApple.setState(true);	
+		OptionRegister.goldenApple.setState(true);	
 	}
 }

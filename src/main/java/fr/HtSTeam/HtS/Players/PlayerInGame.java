@@ -1,6 +1,7 @@
 package fr.HtSTeam.HtS.Players;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,6 +17,7 @@ import fr.HtSTeam.HtS.Teams.TeamBuilder;
 public class PlayerInGame implements Listener {
 
 	public static List<UUID> playerInGame = new ArrayList<UUID>();
+	public static HashMap<UUID,String> uuidToName = new HashMap<UUID,String>();
 	
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent e) {
@@ -26,8 +28,12 @@ public class PlayerInGame implements Listener {
 	}
 	
 	public static void removeFromGame(Player p) {
-		playerInGame.remove(p.getUniqueId());
-		if (TeamBuilder.playerTeam.get(p.getUniqueId()) != null)
-			TeamBuilder.playerTeam.get(p.getUniqueId()).removePlayer(p);
+		removeFromGame(p.getUniqueId());
+	}
+	
+	public static void removeFromGame(UUID uuid) {
+		playerInGame.remove(uuid);
+		if (TeamBuilder.playerTeam.get(uuid) != null)
+			TeamBuilder.playerTeam.get(uuid).removePlayer(uuid);
 	}
 }

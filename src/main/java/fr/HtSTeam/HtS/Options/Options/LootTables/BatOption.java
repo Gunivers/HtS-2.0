@@ -8,41 +8,36 @@ import java.nio.file.Paths;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
-import fr.HtSTeam.HtS.Options.OptionRegister;
-import fr.HtSTeam.HtS.Options.Structure.Alterable;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
-import fr.HtSTeam.HtS.Utils.FileExtractor;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
+import fr.HtSTeam.HtS.Utils.Files.FileExtractor;
 
-public class BatOption extends OptionBuilder implements Alterable {
-	
-	private boolean activate = false;
-	
+public class BatOption extends OptionBuilder<Boolean> {
+		
 	public BatOption() {
-		super(new ItemStackBuilder(EntityType.BAT, 1, "§rChauve-souris", "§4Désactivé"), "Désactivé", OptionRegister.loottables);
+		super(new ItemStackBuilder(EntityType.BAT, 1, "§rChauve-souris", "§4Désactivé"), false, GUIRegister.loottables, false);
 	}
 
 	@Override
 	public void event(Player p) {
-		activate =! activate;
-		setState(activate);
+		setState(!getValue());
 	}
 
 	@Override
-	public void setState(boolean value) {
-		activate = value;
-		if(value) {
+	public void setState(Boolean value) {
+		if(value && !getValue()) {
 			try {
 				FileExtractor.extractFile(FileExtractor.lt + "bat.json", FileExtractor.wdir + FileExtractor.Edir);
-				setValue("Activé");
+				setValue(true);
 				getItemStack().setLore("§2Activé");
 			} catch (IOException | URISyntaxException e) {
 				e.printStackTrace();
 			}
-		} else {
+		} else if(!value && getValue()){
 			try {
 				Files.delete(Paths.get(FileExtractor.wdir + FileExtractor.Edir + "bat.json"));
-				setValue("Désactivé");
+				setValue(false);
 				getItemStack().setLore("§4Désactivé");
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -50,11 +45,9 @@ public class BatOption extends OptionBuilder implements Alterable {
 		}
 		parent.update(this);		
 	}
-	
-	public boolean isActivated() {
-		if (getValue().equals("Activé"))
-			return true;
-		else
-			return false;
+
+	@Override
+	public String description() {
+		return null;
 	}
 }

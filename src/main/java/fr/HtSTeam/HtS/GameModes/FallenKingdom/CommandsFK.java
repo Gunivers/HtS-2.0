@@ -103,7 +103,7 @@ public class CommandsFK implements CommandExecutor, Listener {
 				
 				} if(args.length == 3 && args[0].equalsIgnoreCase("join")) {
 					for(UUID uuid : PlayerInGame.playerInGame) {
-						if(Bukkit.getPlayer(uuid).getName().equals(args[1])) {
+						if(PlayerInGame.uuidToName.get(uuid).equals(args[1])) {
 							for(BaseBuilder bm : BaseBuilder.baseList) {
 								if(bm.getBaseName().equals(args[2])) {
 									bm.addPlayer(Bukkit.getPlayer(uuid));

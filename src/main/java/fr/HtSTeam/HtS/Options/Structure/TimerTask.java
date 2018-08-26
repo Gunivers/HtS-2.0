@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Utils;
+package fr.HtSTeam.HtS.Options.Structure;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -12,7 +12,6 @@ import org.bukkit.scheduler.BukkitTask;
 
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
 
 public class TimerTask {
@@ -46,7 +45,11 @@ public class TimerTask {
 			}.runTaskTimer(Main.plugin, 20, 20);
 		}
 	}
-
+	
+	public int getTimerInSeconds() {
+		return time;
+	}
+	
 	public int getTimerInMinute() {
 		return time / 60;
 	}
@@ -73,22 +76,26 @@ public class TimerTask {
 	public void stop() {
 		stop = true;
 	}
-	
+
 	private void executeTimer() {
-		if(this != Main.timer)
+		if (this != Main.timer)
 			return;
-		for (OptionBuilder om : OptionBuilder.optionsList.keySet()) {
+		for (IconBuilder<?> om : IconBuilder.optionsList.keySet()) {
+			if (!(om.getValue() instanceof Integer))
+				continue;
 			ArrayList<Method> methods = new ArrayList<Method>();
 			for (Method m : om.getClass().getMethods()) {
-				if(m.isAnnotationPresent(Timer.class))
+				if (m.isAnnotationPresent(Timer.class))
 					methods.add(m);
 			}
-			methods.sort((o1, o2) -> o1.getAnnotation(Timer.class).value().compareTo(o2.getAnnotation(Timer.class).value()));
+			methods.sort(
+					(o1, o2) -> o1.getAnnotation(Timer.class).value().compareTo(o2.getAnnotation(Timer.class).value()));
 			for (Method m : methods) {
 				try {
-					if (this.getTimerInMinute() == Integer.parseInt(om.getValue()))
+					if (this.getTimerInMinute() == (Integer) om.getValue())
 						m.invoke(om);
 				} catch (NumberFormatException e) {
+					e.printStackTrace();
 					continue;
 				} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 					e.printStackTrace();

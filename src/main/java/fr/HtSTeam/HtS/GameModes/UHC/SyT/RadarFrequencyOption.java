@@ -1,28 +1,36 @@
 package fr.HtSTeam.HtS.GameModes.UHC.SyT;
 
+import java.util.HashMap;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World.Environment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import fr.HtSTeam.HtS.Options.OptionRegister;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
+import fr.HtSTeam.HtS.Options.Structure.Annotation.AwaitingPlayer;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
+import fr.HtSTeam.HtS.Players.PlayerManager;
+import fr.HtSTeam.HtS.Players.PlayerReconnection;
 import fr.HtSTeam.HtS.Utils.ActionBar;
-import fr.HtSTeam.HtS.Utils.StartTrigger;
 
-public class RadarFrequencyOption extends OptionBuilder implements StartTrigger {
+public class RadarFrequencyOption extends OptionBuilder<Integer> implements StartTrigger {
 
 	private boolean request = false;
 	private Player p;
 	private int frequency = 20;
-
+	private int duration = 15;
+	
+	public static HashMap<UUID, Location> offlineLocation = new HashMap<UUID, Location>();
+	
 	public RadarFrequencyOption() {
-		super(Material.COMPASS, "Fréquence du Radar", "§220 minutes", "20", OptionRegister.syt);
+		super(Material.COMPASS, "Fréquence du Radar", "§220 minutes", 20, GUIRegister.syt);
 	}
 
 	@Override
@@ -40,10 +48,8 @@ public class RadarFrequencyOption extends OptionBuilder implements StartTrigger 
 			try {
 				int value = Integer.parseInt(e.getMessage());
 				if (value >= 0 && value <= 60) {
-					frequency = value;
-					setValue(Integer.toString(value));
+					setState(value);
 					p.sendMessage("§2Radar toutes les " + getValue() + " minutes.");
-					this.getItemStack().setLore("§2" + value + " minutes");
 					parent.update(this);
 					request = false;
 					return;
@@ -57,28 +63,54 @@ public class RadarFrequencyOption extends OptionBuilder implements StartTrigger 
 
 	@Timer
 	public void radar() {
-		setValue(Integer.toString(Integer.parseInt(getValue()) + frequency));
+		setValue(getValue() + frequency);
 		for (UUID uuid : SyT.targetCycleOption.targetCycle) {
-			Player player = Bukkit.getPlayer(uuid);
-			Player victim = Bukkit.getPlayer(SyT.targetCycleOption.getTarget(player));
-			if (victim.getLocation().getBlockY() >= 36
-					&& victim.getLocation().getWorld().getEnvironment() == Environment.NORMAL) {
-				ActionBar msg = new ActionBar(player, "§4§lCible repérée : " + victim.getLocation().getBlockX() + " " + victim.getLocation().getBlockY() + " " + victim.getLocation().getBlockZ(), 30);
-				msg.send();
-			} else if (victim.getLocation().getBlockY() < 36
-					&& victim.getLocation().getWorld().getEnvironment() == Environment.NORMAL) {
-				ActionBar msg = new ActionBar(player, "§4§lTrop faible signal détecté : impossible de localiser la cible.", 30);
-				msg.send();
-			} else if (victim.getLocation().getWorld().getEnvironment() == Environment.NETHER
-					|| player.getLocation().getWorld().getEnvironment() == Environment.NETHER) {
-				ActionBar msg = new ActionBar(player, "§4§lAucun signal détecté : impossible de localiser la cible.", 30);
-				msg.send();
-			}
+			if (PlayerManager.isConnected(uuid))
+				radar(uuid);
+			else
+				PlayerReconnection.add(uuid, this);
+		}
+	}
+	
+	@AwaitingPlayer
+	public void radar(UUID uuid) {
+		Player player = Bukkit.getPlayer(uuid);
+		UUID targetUUID = SyT.targetCycleOption.getTarget(player);
+		Location loc;	
+		if (!PlayerManager.isConnected(targetUUID))
+			loc = offlineLocation.get(targetUUID);
+		else
+			loc = Bukkit.getPlayer(targetUUID).getLocation();
+		if (loc.getBlockY() >= 36
+				&& loc.getWorld().getEnvironment() == Environment.NORMAL) {
+			ActionBar msg = new ActionBar(player, "§4§lCible repérée : " + loc.getBlockX() + " " + loc.getBlockY() + " " +loc.getBlockZ(), duration);
+			msg.send();
+		} else if (loc.getBlockY() < 36
+				&& loc.getWorld().getEnvironment() == Environment.NORMAL) {
+			ActionBar msg = new ActionBar(player, "§4§lTrop faible signal détecté : impossible de localiser la cible.", duration);
+			msg.send();
+		} else if (loc.getWorld().getEnvironment() == Environment.NETHER
+				|| player.getLocation().getWorld().getEnvironment() == Environment.NETHER) {
+			ActionBar msg = new ActionBar(player, "§4§lAucun signal détecté : impossible de localiser la cible.", duration);
+			msg.send();
 		}
 	}
 
 	@Override
 	public void onPartyStart() {
 		setValue(SyT.radar.getValue());
+	}
+
+	@Override
+	public void setState(Integer value) {
+		setValue(value);
+		frequency = value;
+		this.getItemStack().setLore("§2" + value + " minutes");
+		parent.update(this);
+	}
+
+	@Override
+	public String description() {
+		return "§2[Aide]§r Le radar s'éxécutera, après ça première activation, toutes les " + getValue() + "minutes.";
 	}
 }

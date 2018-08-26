@@ -9,9 +9,11 @@ import java.util.UUID;
 import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
 
+import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Commands.PlayStopCommands;
 import fr.HtSTeam.HtS.Options.OptionRegister;
+import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.StatisticHandler;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.Entry;
 import fr.HtSTeam.HtS.Scoreboard.Scoreboard.EntryBuilder;
@@ -25,14 +27,15 @@ public class ScoreBoard {
 	
 	public static ArrayList<String> display = new ArrayList<String>();
 	public static Map<UUID, Scoreboard> scoreboards = new HashMap<UUID, Scoreboard>();
+	public static String sb_name;
+	public static Long refresh_rate = 2L;
 	private final static HighlightedString highlighted = new HighlightedString("JEU EN PAUSE", "&4", "&c");
 	
 	public static void send(Player player) {
-
 		Scoreboard scoreboard = ScoreboardLib.createScoreboard(player).setHandler(new ScoreboardHandler() {
 			@Override
 			public String getTitle(Player player) {
-				return Main.HTSNAME;
+				return sb_name;
 			}
 
 			@Override
@@ -40,12 +43,14 @@ public class ScoreBoard {
 					return getBuild(player);
 			}
 
-		}).setUpdateInterval(2l);
+		}).setUpdateInterval(refresh_rate);
 		scoreboard.activate();
 		scoreboards.put(player.getUniqueId(), scoreboard);
 	}
 	
 	private static List<Entry> getBuild(Player p) {
+		if (EnumState.getState() == EnumState.FINISHING)
+			return StatisticHandler.getDisplayStatMvp(p.getUniqueId());
 		if(display.size() == 0)
 			return new EntryBuilder().next("§6Joueur :").next(Integer.toString(PlayerInGame.playerInGame.size())).next("§6Kills :").next(Integer.toString(p.getStatistic(Statistic.PLAYER_KILLS))).next("§6Timer :").next(Main.timer.getTimeFormat()).next("§6Bordure :").next(OptionRegister.borderOption.getValue() + "x" + OptionRegister.borderOption.getValue()).build();
 		

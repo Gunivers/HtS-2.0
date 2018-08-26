@@ -8,18 +8,20 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.ItemStack;
 
-import fr.HtSTeam.HtS.Options.OptionRegister;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.GUIBuilder;
 
 public class GameModeGUI extends GUIBuilder {
-	
-	public List<GameModeState> gameModeOption = new ArrayList<GameModeState>();
 
-	public GameModeGUI() {
-		super("Mode de jeux", 1, "Mode de jeux", "Choisir le mode de jeu", Material.COMMAND, OptionRegister.main);
-	}
+	public static List<GameModeState> gameModeOption = new ArrayList<GameModeState>();
 	
+	public GameModeGUI() {
+		super("Mode de jeux", 1, "Mode de jeux", "Choisir le mode de jeu", Material.COMMAND, GUIRegister.main);
+		new GameModeIO();
+	}
+
 	@Override
 	public void event(Player p) {
 		super.event(p);
@@ -27,18 +29,29 @@ public class GameModeGUI extends GUIBuilder {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onClicks(InventoryClickEvent e) {
-		for (GameModeState gms : gameModeOption) {
-			if (e.getInventory().equals(inv) && e.getCurrentItem() != null && !e.getCurrentItem().getType().equals(Material.BARRIER)) {
+		if (e.getInventory().equals(inv) && e.getCurrentItem() != null && !e.getCurrentItem().getType().equals(Material.BARRIER)) {
+			boolean b = false;
+			for (ItemStack is : e.getInventory().getContents())
+				if (is != null && is.equals(e.getCurrentItem()))
+					b = true;
+			if (!b)
+				return;
+			for (GameModeState gms : gameModeOption)
 				if (gms.getItemStack().equals(e.getCurrentItem())) {
-					gms.setState(true);
-					gms.setOption();
-					e.setCancelled(true);
-				} else {
-					gms.setState(false);
-					e.setCancelled(true);
+					setGameMode(gms);
 				}
-			}
+			e.setCancelled(true);
 		}
 	}
 
+	public static void setGameMode(GameModeState gms) {
+		gms.setState(true);
+		gms.setOption();
+		for (GameModeState gms2 : gameModeOption) {
+			if (gms != gms2) {
+				gms2.setState(false);
+			}
+		}
+	}
+	
 }

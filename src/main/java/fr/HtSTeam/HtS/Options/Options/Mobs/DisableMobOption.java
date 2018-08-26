@@ -6,7 +6,7 @@ import fr.HtSTeam.HtS.Options.Structure.GUIBuilder;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 
-public class DisableMobOption extends OptionBuilder {
+public class DisableMobOption extends OptionBuilder<String> {
 
 	public DisableMobOption(ItemStackBuilder material, String defaultValue, GUIBuilder gui) {
 		super(material, defaultValue, gui);
@@ -17,6 +17,18 @@ public class DisableMobOption extends OptionBuilder {
 	public void event(Player p) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void setState(String value) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String description() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

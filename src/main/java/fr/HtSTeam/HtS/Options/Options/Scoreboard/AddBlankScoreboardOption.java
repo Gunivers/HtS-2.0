@@ -1,16 +1,17 @@
 package fr.HtSTeam.HtS.Options.Options.Scoreboard;
 
+import org.apache.commons.lang.ObjectUtils.Null;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
-import fr.HtSTeam.HtS.Options.OptionRegister;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Scoreboard.ScoreBoard;
 
-public class AddBlankScoreboardOption extends OptionBuilder {
+public class AddBlankScoreboardOption extends OptionBuilder<Null> {
 	
 	public AddBlankScoreboardOption() {
-		super(Material.PAPER, "Espace", "Ajouter une ligne vide", null, OptionRegister.scoreboard);
+		super(Material.PAPER, "Espace", "Ajouter une ligne vide", null, GUIRegister.scoreboard);
 	}
 		
 	@Override
@@ -24,4 +25,10 @@ public class AddBlankScoreboardOption extends OptionBuilder {
 				ScoreBoard.send(p);
 			}
 	}
+
+	@Override
+	public void setState(Null value) {}
+
+	@Override
+	public String description() {return null;}
 }

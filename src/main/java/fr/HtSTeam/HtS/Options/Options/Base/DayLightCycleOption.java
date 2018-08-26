@@ -4,31 +4,35 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.Options.OptionRegister;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
-public class DayLightCycleOption extends OptionBuilder {
+public class DayLightCycleOption extends OptionBuilder<Boolean> {
 	
-	private boolean activate = true;
-
 	public DayLightCycleOption() {
-		super(Material.DOUBLE_PLANT, "Cycle jour/nuit", "§2Activé", "Activé", OptionRegister.base);
+		super(Material.DOUBLE_PLANT, "Cycle jour/nuit", "§2Activé", true, GUIRegister.base);
 		Main.world.setGameRuleValue("doDaylightCycle", "true");
 		
 	}
 
 	@Override
 	public void event(Player p) {
-		activate =! activate;
-		if(activate) {
-			setValue("Activé");
+		setState(!getValue());	
+	}
+
+	@Override
+	public void setState(Boolean value) {
+		setValue(value);
+		Main.world.setGameRuleValue("doDaylightCycle", Boolean.toString(getValue()));
+		if(getValue())
 			getItemStack().setLore("§2Activé");
-			Main.world.setGameRuleValue("doDaylightCycle", "true");
-		} else {
-			setValue("Désactivé");
+		else 
 			getItemStack().setLore("§4Désactivé");
-			Main.world.setGameRuleValue("doDaylightCycle", "false");
-		}		
 		parent.update(this);
+	}
+
+	@Override
+	public String description() {
+		return "§2[Aide]§r Le cycle jour/nuit est désactivé.";
 	}
 }

@@ -9,7 +9,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-public class TeamBuilder {
+import fr.HtSTeam.HtS.EnumState;
+import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
+
+public class TeamBuilder implements StartTrigger {
 		
 	public static ArrayList<TeamBuilder> teamList = new ArrayList<TeamBuilder>();
 	public static Map<String, TeamBuilder> nameTeam = new HashMap<String, TeamBuilder>();
@@ -20,6 +23,7 @@ public class TeamBuilder {
 	private byte teamByte;
 	private boolean faketeam = false;
 	
+	private ArrayList<UUID> allPlayers = new ArrayList<UUID>();
 	private ArrayList<UUID> playerList = new ArrayList<UUID>();
 	
 	public TeamBuilder(String teamName, String teamColor) {
@@ -46,7 +50,8 @@ public class TeamBuilder {
 	}
 	
 	public void removePlayer(Player p) {
-		p.sendMessage("Vous avez quitté l'équipe " + ChatColor.valueOf(teamColor.toUpperCase()) + teamName);
+		if (!EnumState.getState().equals(EnumState.RUNNING))
+			p.sendMessage("Vous avez quitté l'équipe " + ChatColor.valueOf(teamColor.toUpperCase()) + teamName);
 		if(faketeam) {
 			playerList.remove(p.getUniqueId());
 			if(playerList.size() == 0)
@@ -62,8 +67,34 @@ public class TeamBuilder {
 			}
 		}
 	}
+
+	public void removePlayer(UUID uuid) {
+		if (faketeam) {
+			playerList.remove(uuid);
+			if (playerList.size() == 0)
+				teamList.remove(this);
+		} else {
+			playerList.remove(uuid);
+			playerTeam.remove(uuid, this);
+			if (getTeamSize() == 0) {
+				teamList.remove(this);
+				nameTeam.remove(teamName, this);
+			}
+		}
+	}
 	
 	public void clearTeam() {
+		if(faketeam) {
+			playerList.clear();
+		} else {
+			for (UUID key: playerTeam.keySet()) {
+				Bukkit.getPlayer(key).setDisplayName(Bukkit.getPlayer(key).getName());
+			}
+			playerList.clear();
+		}
+	}
+	
+	public void removeTeam() {
 		if(faketeam) {
 			playerList.clear();
 			teamList.remove(this);
@@ -125,4 +156,9 @@ public class TeamBuilder {
 	    	}
 	    	return 0;	
 	    }
+
+	@Override
+	public void onPartyStart() {
+		allPlayers.addAll(playerList);
+	}
 }

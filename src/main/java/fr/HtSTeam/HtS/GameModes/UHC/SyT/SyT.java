@@ -6,13 +6,15 @@ public class SyT extends UHC {
 	
 	public static Boolean instance = false;
 	
-	static TargetCycle targetCycleOption = new TargetCycle();
-	static RadarFrequencyOption radarF = new RadarFrequencyOption();
-	static RadarOption radar = new RadarOption();
+	public static TargetCycle targetCycleOption;
+	static RadarFrequencyOption radarF;
+	static RadarOption radar;
 	
 	public SyT() {
 		instance = true;
-		
+		targetCycleOption = new TargetCycle();
+		radarF = new RadarFrequencyOption();
+		radar = new RadarOption();
 		setTeamVictoryDetection(false);
 				
 		new SyTEventManager();

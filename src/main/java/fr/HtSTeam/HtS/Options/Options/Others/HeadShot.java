@@ -11,34 +11,28 @@ import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import fr.HtSTeam.HtS.Options.OptionRegister;
-import fr.HtSTeam.HtS.Options.Structure.Alterable;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
-public class HeadShot extends OptionBuilder implements Alterable {
+public class HeadShot extends OptionBuilder<Boolean>{
 	
-private boolean activate = false;
 	
 	public HeadShot() {
-		super(Material.BOW, "HeadShot", "§4Désactivé", "Désactivé", OptionRegister.other);
+		super(Material.BOW, "HeadShot", "§4Désactivé", false, GUIRegister.other);
 	}
 
 	@Override
 	public void event(Player p) {
-		activate = !activate;
-		setState(activate);
+		setState(!getValue());
 	}
 	
 	@Override
-	public void setState(boolean value) {
-		activate = value;
-		if (value) {
-			setValue("Activé");
+	public void setState(Boolean value) {
+		if (value)
 			getItemStack().setLore("§2Activé");
-		} else {
-			setValue("Désactivé");
+		else
 			getItemStack().setLore("§4Désactivé");
-		}
+		setValue(value);
 		parent.update(this);
 	}
 	
@@ -54,7 +48,7 @@ private boolean activate = false;
 				boolean headshot = Y - shotY > 1.35d;
 
 				if (headshot) {
-					if (activate) {
+					if (getValue()) {
 						Player p = (Player) e.getEntity();
 						((Player) proj.getShooter()).playSound(p.getLocation(), Sound.ENTITY_SLIME_SQUISH, 10, 10);
 						p.playSound(p.getLocation(), Sound.BLOCK_ANVIL_LAND, 10, 10);
@@ -66,11 +60,9 @@ private boolean activate = false;
 			}
 		}
 	}
-	
-	public boolean isActivated() {
-		if (getValue().equals("Activé"))
-			return true;
-		else
-			return false;
+
+	@Override
+	public String description() {
+		return "§2[Aide]§r Possibilité de faire un head shot sur les joueurs adverses";
 	}
 }

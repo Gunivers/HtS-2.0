@@ -2,10 +2,6 @@ package fr.HtSTeam.HtS.Commands;
 
 import java.util.Map.Entry;
 
-import fr.HtSTeam.HtS.EnumState;
-import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.Scoreboard.ScoreBoard;
-import fr.HtSTeam.HtS.Utils.JSON;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Statistic;
@@ -17,8 +13,12 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.EnumState;
+import fr.HtSTeam.HtS.Main;
+import fr.HtSTeam.HtS.Options.Structure.IconBuilder;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
+import fr.HtSTeam.HtS.Scoreboard.ScoreBoard;
+import fr.HtSTeam.HtS.Utils.JSON;
 
 public class StartCommand implements CommandExecutor {
 
@@ -36,8 +36,8 @@ public class StartCommand implements CommandExecutor {
 			
 			
 			if (cmd.getName().equalsIgnoreCase("start") && sender.hasPermission("start.use") && EnumState.getState().equals(EnumState.WAIT)) {
-				for(Entry<OptionBuilder, Object> entry : OptionBuilder.optionsList.entrySet()) {
-					OptionBuilder key = entry.getKey();
+				for(Entry<IconBuilder<?>, Object> entry : IconBuilder.optionsList.entrySet()) {
+					IconBuilder<?> key = entry.getKey();
 					Object value = entry.getValue();
 					if(value != null && key.getDefaultValue() != null  && !key.getDefaultValue().equals(value))
 						p.sendMessage(key.getName() + " : §4" + value.toString());
@@ -54,13 +54,14 @@ public class StartCommand implements CommandExecutor {
 				for(Player player : Bukkit.getOnlinePlayers())
 					if(!player.getGameMode().equals(GameMode.SPECTATOR)) {
 						PlayerInGame.playerInGame.add(player.getUniqueId());
+						PlayerInGame.uuidToName.put(player.getUniqueId(), player.getName());
+						player.setStatistic(Statistic.PLAYER_KILLS, 0);
 						player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(20);
 						player.setHealth(20);
 						player.setFoodLevel(20);
+						player.setSaturation(20);
 						player.getInventory().clear();
 						player.setGameMode(GameMode.SURVIVAL);
-						
-						player.setStatistic(Statistic.PLAYER_KILLS, 0);
 						
 						ScoreBoard.send(player);
 					}

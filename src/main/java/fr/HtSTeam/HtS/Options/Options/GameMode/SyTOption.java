@@ -7,12 +7,13 @@ import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.GameModes.FallenKingdom.FallenKingdom;
 import fr.HtSTeam.HtS.GameModes.UHC.Common.UHC;
 import fr.HtSTeam.HtS.GameModes.UHC.SyT.SyT;
+import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.OptionRegister;
 
 public class SyTOption extends GameModeState {
 
 	public SyTOption() {
-		super("Stress your Target", 1, "Stress your Target", "", Material.BOW, OptionRegister.gameMode);
+		super("Stress your Target", 1, "Stress your Target", null, Material.BOW, GUIRegister.gameMode);
 	}
 	
 	@Override
@@ -22,14 +23,13 @@ public class SyTOption extends GameModeState {
 			UHC.instance = false;
 			FallenKingdom.instance = false;
 		}
-		if(getItemStack().isGlint())
+		if(p != null && getItemStack().isGlint())
 			open(p);
 	}
 
 	@Override
 	public void setOption() {
 		OptionRegister.noRegen.setState(false);
-		if (!OptionRegister.goldenApple.isActivated())
-			OptionRegister.goldenApple.setState(true);		
+		OptionRegister.goldenApple.setState(true);		
 	}
 }
