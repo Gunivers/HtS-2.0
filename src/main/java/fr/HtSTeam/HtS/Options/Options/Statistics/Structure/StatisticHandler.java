@@ -25,7 +25,7 @@ public class StatisticHandler implements PlayerRemove {
 	private static HashMap<UUID, HashMap<EnumStats, Object>> playerStats = new HashMap<UUID, HashMap<EnumStats, Object>>();
 	private static HashMap<EnumStats, ArrayList<String>> mvpStats = new HashMap<EnumStats, ArrayList<String>>();
 	private static ArrayList<EnumStats> stats = new ArrayList<EnumStats>();
-	private static HashMap<UUID, Integer> itr = new HashMap<UUID, Integer>();
+	private static HashMap<UUID, Integer> itrs = new HashMap<UUID, Integer>();
 	
 	{
 		addToList();
@@ -75,7 +75,7 @@ public class StatisticHandler implements PlayerRemove {
 		mvps();
 		ScoreBoard.sb_name = "MVP";
 		ScoreBoard.refresh_rate = 20L * 5L;
-		Bukkit.getOnlinePlayers().forEach(player -> { itr.put(player.getUniqueId(), 0); ScoreBoard.send(player); });
+		Bukkit.getOnlinePlayers().forEach(player -> { itrs.put(player.getUniqueId(), 0); ScoreBoard.send(player); });
 	}
 	
 	private static void mvps() {
@@ -108,11 +108,13 @@ public class StatisticHandler implements PlayerRemove {
 	
 	public static List<Entry> getDisplayStatMvp(UUID uuid) {
 		EntryBuilder entry = new EntryBuilder();
-		entry.next("  " + stats.get(itr.get(uuid)).getDisplayName() + " ").blank();
-		mvpStats.get(stats.get(itr.get(uuid))).forEach(str -> { entry.next(str); });
-		itr.put(uuid, itr.get(uuid) + 1);
-		if (itr.get(uuid) == mvpStats.size())
-			itr.put(uuid, 0);
+		int itr = itrs.get(uuid);
+		entry.next(stats.get(itr).getDisplayName()).blank();
+		mvpStats.get(stats.get(itr)).forEach(str -> { entry.next(str); });
+		itr++;
+		itrs.put(uuid, itr);
+		if (itrs.get(uuid) == mvpStats.size())
+			itrs.put(uuid, 0);
 		return entry.build();
 	}
 	
