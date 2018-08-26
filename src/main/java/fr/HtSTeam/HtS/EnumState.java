@@ -34,7 +34,7 @@ public enum EnumState implements Listener {
 			StatisticHandler.init();
 		} else if (state.equals(EnumState.FINISHING)) {
 			IconBuilder.optionsList.keySet().forEach(key -> { if(Arrays.asList(key.getClass().getInterfaces()).contains(EndTrigger.class)) ((EndTrigger) key).onPartyEnd(); });
-			ScoreBoard.refresh_rate = 20L * 5L;
+			ScoreBoard.scoreboards.forEach((uuid, sb) -> { sb.deactivate(); });
 			StatisticHandler.display();
 			try {
 				StatisticHandler.save();

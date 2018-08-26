@@ -13,6 +13,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
+import fr.HtSTeam.HtS.Options.Options.Statistics.TargetsStatOption;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.AwaitingPlayer;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
@@ -98,8 +99,9 @@ public class TargetCycle extends OptionBuilder<Integer> {
 		}
 		
 		targetCycle = cycle;
-		displayTarget();
 		
+		displayTarget();
+		TargetsStatOption.init();
 		
 		String cycleT = "";
 		for (UUID uuid : targetCycle)

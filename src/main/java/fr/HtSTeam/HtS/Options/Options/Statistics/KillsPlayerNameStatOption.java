@@ -14,7 +14,7 @@ import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 public class KillsPlayerNameStatOption extends OptionBuilder<Boolean> {
 	
 	public KillsPlayerNameStatOption() {
-		super(Material.SKULL_ITEM, "KILLS_PLAYER_NAME", "§2Activé", true, GUIRegister.stats);		
+		super(Material.SKULL_ITEM, "KILLS_PLAYER_NAME", "§2Activé", true, GUIRegister.stats);	
 	}
 	
 	@Override
@@ -45,6 +45,6 @@ public class KillsPlayerNameStatOption extends OptionBuilder<Boolean> {
 	@EventHandler
 	public void on(PlayerDeathEvent e) {
 		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.KILLS_PLAYER_NAME.isTracked() && e.getEntity().getKiller() instanceof Player)
-			StatisticHandler.update(e.getEntity().getKiller().getUniqueId(), EnumStats.KILLS_PLAYER, e.getEntity().getName());
+			StatisticHandler.update(e.getEntity().getKiller().getUniqueId(), EnumStats.KILLS_PLAYER_NAME, e.getEntity().getName());
 	}
 }

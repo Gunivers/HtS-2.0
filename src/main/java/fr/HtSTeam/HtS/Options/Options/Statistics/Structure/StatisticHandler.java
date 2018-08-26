@@ -59,21 +59,37 @@ public class StatisticHandler implements PlayerRemove {
 		JDBCHandler.update();
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static void display() {
-		playerStats.forEach((uuid, stats) -> { if(!PlayerManager.isConnected(uuid)) return;  Bukkit.getPlayer(uuid).sendMessage("=====Vos Statisques====="); stats.forEach((stat, value) -> { Bukkit.getPlayer(uuid).sendMessage(stat.getDisplayName() + ":   " + value); }); });
+		playerStats.forEach((uuid, stats) -> {
+			if (!PlayerManager.isConnected(uuid))
+				return;
+			Bukkit.getPlayer(uuid).sendMessage("===== Vos Statisques =====");
+			stats.forEach((stat, value) -> {
+				if (stat.getDisplayName() != null && value != null && value instanceof Number)
+					Bukkit.getPlayer(uuid).sendMessage(stat.getDisplayName() + " : " + value);
+				else if (stat.getDisplayName() != null  && value instanceof HashSet && !((HashSet<String>) value).isEmpty())
+					Bukkit.getPlayer(uuid).sendMessage(stat.getDisplayName() + " : " + String.join(", ", (HashSet<String>) value));
+			});
+		});
+		mvps();
+		ScoreBoard.sb_name = "MVP";
+		ScoreBoard.refresh_rate = 20L * 5L;
+		Bukkit.getOnlinePlayers().forEach(player -> { ScoreBoard.send(player); });
 	}
 	
 	private static void mvps() {
 		for (int i = 0; i < EnumStats.values().length; i++) {
-			if (!EnumStats.values()[i].isTracked() && !(EnumStats.values()[i].getDefaultValue() instanceof Number))
-				continue;
 			EnumStats stat = EnumStats.values()[i];
+			if (!stat.isTracked() || stat.getDisplayName() == null || !(stat.getDefaultValue() instanceof Number))
+				continue;
 			stats.add(stat);
 			ArrayList<Integer> values = new ArrayList<Integer>();
-			playerStats.forEach((uuid, stats) -> { values.add((Integer) stats.get(stat)); });
+			playerStats.forEach((uuid, stats) -> { values.add((int) stats.get(stat)); });
 			Collections.sort(values, Collections.reverseOrder());
 			ArrayList<String> mvps = new ArrayList<String>();
-			for (int j = 0; j < 5; j++) {
+			int size = (values.size() > 5) ? 5 : values.size();
+			for (int j = 0; j < size; j++) {
 				final int final_j = j;
 				playerStats.forEach((uuid, stats) -> { if (values.get(final_j) == stats.get(stat) && !IterableUtils.contains(mvps, PlayerInGame.uuidToName.get(uuid), new Equator<String>() {
 					@Override
@@ -91,12 +107,12 @@ public class StatisticHandler implements PlayerRemove {
 	}
 	
 	public static List<Entry> getDisplayStatMvp() {
-		if (mvpStats.isEmpty())
-			mvps();
-		ScoreBoard.sb_name = stats.get(itr).getDisplayName();
 		EntryBuilder entry = new EntryBuilder();
+		entry.next("  " + stats.get(itr).getDisplayName() + " ").blank();
 		mvpStats.get(stats.get(itr)).forEach(str -> { entry.next(str); });
 		itr++;
+		if (itr == mvpStats.size())
+			itr = 0;
 		return entry.build();
 	}
 	

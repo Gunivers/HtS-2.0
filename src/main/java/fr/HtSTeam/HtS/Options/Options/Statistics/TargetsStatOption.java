@@ -1,5 +1,7 @@
 package fr.HtSTeam.HtS.Options.Options.Statistics;
 
+import java.util.UUID;
+
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,13 +15,15 @@ import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.EnumStats;
 import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.StatisticHandler;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
+import fr.HtSTeam.HtS.Players.PlayerRemove;
 
-public class TargetsStatOption extends OptionBuilder<Boolean> {
+public class TargetsStatOption extends OptionBuilder<Boolean> implements PlayerRemove {
 	
 	public TargetsStatOption() {
-		super(Material.SKULL_ITEM, "TARGETS", "§2Activé", true, GUIRegister.stats);		
+		super(Material.SKULL_ITEM, "TARGETS", "§2Activé", true, GUIRegister.stats);
+		addToList();
 	}
-	
+
 	@Override
 	public void event(Player p) {
 		setState(!getValue());
@@ -45,7 +49,7 @@ public class TargetsStatOption extends OptionBuilder<Boolean> {
 		return null;
 	}
 	
-	public void init() {
+	public static void init() {
 		PlayerInGame.playerInGame.forEach(uuid -> { StatisticHandler.update(uuid, EnumStats.TARGETS, PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(uuid))); });
 	}
 	
@@ -53,5 +57,15 @@ public class TargetsStatOption extends OptionBuilder<Boolean> {
 	public void on(PlayerDeathEvent e) {
 		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.TARGETS.isTracked() && Main.gamemode.gamemodeToString().equals("SyT"))
 			PlayerInGame.playerInGame.forEach(uuid -> { StatisticHandler.update(uuid, EnumStats.TARGETS, PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(uuid))); });
+	}
+
+	@Override
+	public void removePlayer(UUID a, String b) {
+		PlayerInGame.playerInGame.forEach(uuid -> { StatisticHandler.update(uuid, EnumStats.TARGETS, PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(uuid))); });		
+	}
+
+	@Override
+	public void addToList() {
+		PlayerRemove.super.addToList();
 	}
 }
