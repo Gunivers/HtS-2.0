@@ -38,6 +38,7 @@ public class UtilCommands implements CommandExecutor {
 				}
 				return false;
 			} if (cmd.getName().equalsIgnoreCase("test") && sender.hasPermission("test.use")) {
+<<<<<<< HEAD
 				/*for(int i = 0; i < OptionIO.optionIOClass.size(); i++)
 					for(int j = 0; j < OptionIO.optionIOClass.size(); j++)
 						if(i != j && OptionIO.optionIOClass.get(i).getId().equals(OptionIO.optionIOClass.get(j).getId()))
@@ -48,6 +49,23 @@ public class UtilCommands implements CommandExecutor {
 				}*/
 				for(OptionIO oio : OptionIO.optionIOClass)
 					System.out.println(oio.getId());
+=======
+				 try {
+					 ByteArrayOutputStream str = new ByteArrayOutputStream();	
+						BukkitObjectOutputStream data = new BukkitObjectOutputStream(str);
+						data.writeObject(((Player) sender).getInventory().getItemInMainHand());
+						data.close();
+						String s = Base64.getEncoder().encodeToString(str.toByteArray());
+						System.out.println(s);
+						ByteArrayInputStream stream = new ByteArrayInputStream(Base64.getDecoder().decode(s));
+				        BukkitObjectInputStream data2 = new BukkitObjectInputStream(stream);
+				        System.out.println(((ItemStack)data2.readObject()).getItemMeta().getDisplayName());
+				        data2.close();
+				} catch (IOException | ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}		
+>>>>>>> refs/remotes/origin/master
 			}
 
 		}
