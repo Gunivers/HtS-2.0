@@ -127,6 +127,7 @@ public class TargetCycle extends OptionBuilder<Integer> {
 	}
 	
 	public UUID getTarget(UUID uuid) {
+		if(targetCycle.size() == 1) return null;
 		int index = targetCycle.indexOf(uuid);
 		if(index < targetCycle.size() - 1)
 			return targetCycle.get(index + 1);
@@ -139,6 +140,7 @@ public class TargetCycle extends OptionBuilder<Integer> {
 	}
 	
 	public UUID getHunter(UUID uuid) {
+		if(targetCycle.size() == 1) return null;
 		int index = targetCycle.indexOf(uuid);
 		if(index > 0)
 			return targetCycle.get(index - 1);
