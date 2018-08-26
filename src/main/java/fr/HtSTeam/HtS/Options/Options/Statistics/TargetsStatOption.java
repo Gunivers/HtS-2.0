@@ -50,18 +50,18 @@ public class TargetsStatOption extends OptionBuilder<Boolean> implements PlayerR
 	}
 	
 	public static void init() {
-		PlayerInGame.playerInGame.forEach(uuid -> { StatisticHandler.update(uuid, EnumStats.TARGETS, PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(uuid))); });
+		PlayerInGame.playerInGame.forEach(uuid -> { if (PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(uuid)) != null) StatisticHandler.update(uuid, EnumStats.TARGETS, PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(uuid))); });
 	}
 	
 	@EventHandler
 	public void on(PlayerDeathEvent e) {
 		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.TARGETS.isTracked() && Main.gamemode.gamemodeToString().equals("SyT"))
-			PlayerInGame.playerInGame.forEach(uuid -> { StatisticHandler.update(uuid, EnumStats.TARGETS, PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(uuid))); });
+			PlayerInGame.playerInGame.forEach(uuid -> { if (PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(uuid)) != null) StatisticHandler.update(uuid, EnumStats.TARGETS, PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(uuid))); });
 	}
 
 	@Override
 	public void removePlayer(UUID a, String b) {
-		PlayerInGame.playerInGame.forEach(uuid -> { StatisticHandler.update(uuid, EnumStats.TARGETS, PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(uuid))); });		
+		PlayerInGame.playerInGame.forEach(uuid -> { if (PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(uuid)) != null) StatisticHandler.update(uuid, EnumStats.TARGETS, PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(uuid))); });		
 	}
 
 	@Override
