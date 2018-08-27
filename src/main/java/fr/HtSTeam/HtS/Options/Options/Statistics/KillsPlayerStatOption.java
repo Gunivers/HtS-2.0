@@ -14,7 +14,7 @@ import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 public class KillsPlayerStatOption extends OptionBuilder<Boolean> {
 	
 	public KillsPlayerStatOption() {
-		super(Material.SKULL_ITEM, "Kills Player", "§2Activé", true, GUIRegister.stats);		
+		super(Material.PLAYER_HEAD, "Kills Player", "§2Activé", true, GUIRegister.stats);		
 	}
 
 	@Override

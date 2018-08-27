@@ -37,7 +37,7 @@ public abstract class IconBuilder<A> implements Listener {
 			parent = gui;
 			if(description != null)
 				description = "§r" + description;
-			this.icon = new ItemStackBuilder(material, (short) 0, 1, "§r" + name, description);
+			this.icon = new ItemStackBuilder(material, 1, "§r" + name, description);
 			this.defaultValue = defaultValue;
 			this.value = defaultValue;
 			IconBuilder.optionsList.put(this, defaultValue);

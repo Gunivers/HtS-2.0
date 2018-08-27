@@ -1,5 +1,6 @@
 package fr.HtSTeam.HtS.Options.Options.Base;
 
+import org.bukkit.GameRule;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
@@ -10,8 +11,8 @@ import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 public class DayLightCycleOption extends OptionBuilder<Boolean> {
 	
 	public DayLightCycleOption() {
-		super(Material.DOUBLE_PLANT, "Cycle jour/nuit", "§2Activé", true, GUIRegister.base);
-		Main.world.setGameRuleValue("doDaylightCycle", "true");
+		super(Material.TALL_GRASS, "Cycle jour/nuit", "§2Activé", true, GUIRegister.base);
+		Main.world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, true);
 		
 	}
 
@@ -23,7 +24,7 @@ public class DayLightCycleOption extends OptionBuilder<Boolean> {
 	@Override
 	public void setState(Boolean value) {
 		setValue(value);
-		Main.world.setGameRuleValue("doDaylightCycle", Boolean.toString(getValue()));
+		Main.world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE,getValue());
 		if(getValue())
 			getItemStack().setLore("§2Activé");
 		else 

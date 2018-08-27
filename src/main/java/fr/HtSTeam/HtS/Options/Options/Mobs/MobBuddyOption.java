@@ -33,7 +33,7 @@ import fr.HtSTeam.HtS.Utils.Randomizer;
 public class MobBuddyOption extends OptionBuilder<Boolean> {
 	
 	public MobBuddyOption() {
-		super(Material.MONSTER_EGG, "Mob Buddy", "§4Désactivé", false, GUIRegister.mob);
+		super(Material.ZOMBIE_SPAWN_EGG, "Mob Buddy", "§4Désactivé", false, GUIRegister.mob);
 	}
 	
 	@Override
@@ -58,7 +58,7 @@ public class MobBuddyOption extends OptionBuilder<Boolean> {
 	public void onMobSpawn(PlayerInteractEvent e) {
 		if (!getValue() || e.getItem() == null)
 			return;
-		if (e.getItem().getType() == Material.MONSTER_EGG && e.getItem().hasItemMeta() && (e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.RIGHT_CLICK_AIR)) {
+		if (e.getItem().getType() == Material.ZOMBIE_SPAWN_EGG && e.getItem().hasItemMeta() && (e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.RIGHT_CLICK_AIR)) {
 			e.setCancelled(true);
 			e.getItem().setAmount(e.getItem().getAmount() - 1);
 			Entity mob = e.getPlayer().getWorld().spawnEntity(e.getPlayer().getEyeLocation(), ((SpawnEggMeta) e.getItem().getItemMeta()).getSpawnedType());

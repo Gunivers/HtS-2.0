@@ -18,7 +18,7 @@ public class BorderOption extends OptionBuilder<Integer> {
 	private WorldBorder border = Main.world.getWorldBorder();
 	
 	public BorderOption() {
-		super(Material.IRON_FENCE, "Taille de la bordure", "§d1000 * 1000", 1000, GUIRegister.base);
+		super(Material.IRON_BARS, "Taille de la bordure", "§d1000 * 1000", 1000, GUIRegister.base);
 		border.setCenter(0.0, 0.0);
 		border.setSize(1000);
 	}

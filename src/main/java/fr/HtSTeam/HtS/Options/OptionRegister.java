@@ -29,12 +29,6 @@ import fr.HtSTeam.HtS.Options.Options.Others.HeadShot;
 import fr.HtSTeam.HtS.Options.Options.Others.NuggetsOption;
 import fr.HtSTeam.HtS.Options.Options.Presets.LoadPreset;
 import fr.HtSTeam.HtS.Options.Options.Presets.SavePreset;
-import fr.HtSTeam.HtS.Options.Options.Scoreboard.AddBlankScoreboardOption;
-import fr.HtSTeam.HtS.Options.Options.Scoreboard.BorderScoreboardOption;
-import fr.HtSTeam.HtS.Options.Options.Scoreboard.KilledScoreboardOption;
-import fr.HtSTeam.HtS.Options.Options.Scoreboard.PlayerScoreboardOption;
-import fr.HtSTeam.HtS.Options.Options.Scoreboard.RemoveBlankScoreboardOption;
-import fr.HtSTeam.HtS.Options.Options.Scoreboard.TimerScoreboardOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.ArrowHitStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.ArrowShotStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.DamageGivenStatOption;
@@ -138,13 +132,5 @@ public class OptionRegister {
 			new FixDayOption();
 			new EnablePvPOption();
 			new BreathOption();
-			
-			// Scoreboard
-			new PlayerScoreboardOption();
-			new KilledScoreboardOption();
-			new TimerScoreboardOption();
-			new BorderScoreboardOption();		
-			new AddBlankScoreboardOption();
-			new RemoveBlankScoreboardOption();
 		}
 }

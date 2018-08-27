@@ -14,7 +14,7 @@ public class RadarOption extends OptionBuilder<Integer> {
 	private Player p;
 
 	public RadarOption() {
-		super(Material.EYE_OF_ENDER, "Lancement du Radar", "20 minutes", 20, GUIRegister.syt);
+		super(Material.ENDER_EYE, "Lancement du Radar", "20 minutes", 20, GUIRegister.syt);
 	}
 
 	@Override

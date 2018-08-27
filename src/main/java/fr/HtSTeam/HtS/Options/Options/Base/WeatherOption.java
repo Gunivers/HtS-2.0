@@ -30,11 +30,11 @@ public class WeatherOption extends OptionBuilder<Boolean> {
 	public void setState(Boolean value) {
 		if(value) {
 			getItemStack().setLore("§2Activé");
-			getItemStack().setItem(Material.WATER_BUCKET, (short) 0);
+			getItemStack().setItem(Material.WATER_BUCKET);
 			
 		} else {
 			getItemStack().setLore("§4Désactivé");
-			getItemStack().setItem(Material.BUCKET, (short) 0);
+			getItemStack().setItem(Material.BUCKET);
 		}	
 		setValue(value);
 		parent.update(this);		

@@ -25,13 +25,12 @@ public class FakeDeath implements Listener, PlayerRemove {
 		addToList();
 	}
 	
-	@SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void onPlayerDeath(PlayerDeathEvent e) {
 		Player p = e.getEntity();
 		p.setHealth(p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
 		for (ItemStack is : Main.deathLoot.getDeathLoot()) {
-			if (is.getData().getData() == 3 && is.getType() == Material.SKULL_ITEM) {
+			if (is.getType() == Material.PLAYER_HEAD) {
 				SkullMeta isM = (SkullMeta) is.getItemMeta();
 				isM.setOwner(p.getName());
 				isM.setDisplayName("Tête de " + p.getName());

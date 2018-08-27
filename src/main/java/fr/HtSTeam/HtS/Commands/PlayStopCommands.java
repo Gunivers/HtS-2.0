@@ -2,18 +2,15 @@ package fr.HtSTeam.HtS.Commands;
 
 import java.util.UUID;
 
-import fr.HtSTeam.HtS.EnumState;
-import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.Scoreboard.ScoreBoard;
-import fr.HtSTeam.HtS.Scoreboard.Scoreboard.Scoreboard;
-import fr.HtSTeam.HtS.Utils.JSON;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.GameRule;
 import org.bukkit.World;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.v1_12_R1.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_13_R2.entity.CraftEntity;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -28,21 +25,25 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.PluginManager;
 
+import fr.HtSTeam.HtS.EnumState;
+import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
-import net.minecraft.server.v1_12_R1.Entity;
-import net.minecraft.server.v1_12_R1.NBTTagCompound;
+import fr.HtSTeam.HtS.Scoreboard.ScoreBoard;
+import fr.HtSTeam.HtS.Scoreboard.Scoreboard.Scoreboard;
+import fr.HtSTeam.HtS.Utils.JSON;
+import net.minecraft.server.v1_13_R2.Entity;
+import net.minecraft.server.v1_13_R2.NBTTagCompound;
 
 public class PlayStopCommands implements CommandExecutor, Listener {
 
 	public static boolean pause = false;
-	private String dayCycleState;
+	private boolean dayCycleState;
 
 	public PlayStopCommands() {
 		PluginManager pm = Bukkit.getServer().getPluginManager();
 		pm.registerEvents(this, Main.plugin);
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
 		if (sender instanceof Player) {
@@ -53,8 +54,8 @@ public class PlayStopCommands implements CommandExecutor, Listener {
 					Main.timer.inPause(true);
 					Bukkit.broadcastMessage("§4Le jeu est en pause !");
 					pause = true;
-					dayCycleState = Main.world.getGameRuleValue("doDaylightCycle");
-					Main.world.setGameRuleValue("doDaylightCycle", "false");
+					dayCycleState = Main.world.getGameRuleValue(GameRule.DO_DAYLIGHT_CYCLE);
+					Main.world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
 	
 					for (World w : Bukkit.getWorlds())
 						for (org.bukkit.entity.Entity en : w.getEntities())
@@ -67,7 +68,7 @@ public class PlayStopCommands implements CommandExecutor, Listener {
 				if(pause) {
 					Main.timer.inPause(false);
 					Bukkit.broadcastMessage("§2Le jeu est de nouveau lancé !");
-					Main.world.setGameRuleValue("doDaylightCycle", dayCycleState);
+					Main.world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, dayCycleState);
 					for (World w : Bukkit.getWorlds())
 						for (org.bukkit.entity.Entity en : w.getEntities())
 							if (en instanceof Creature && !(en instanceof Player))
@@ -82,7 +83,7 @@ public class PlayStopCommands implements CommandExecutor, Listener {
 				for(Scoreboard b : ScoreBoard.scoreboards.values())
 				    b.deactivate();
 				for(UUID uuid : PlayerInGame.playerInGame) {
-					Bukkit.getPlayer(uuid).setHealth(Bukkit.getPlayer(uuid).getMaxHealth());
+					Bukkit.getPlayer(uuid).setHealth(Bukkit.getPlayer(uuid).getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
 					Bukkit.getPlayer(uuid).setFoodLevel(20);
 					Bukkit.getPlayer(uuid).getInventory().clear();
 					Bukkit.getPlayer(uuid).setLevel(0);

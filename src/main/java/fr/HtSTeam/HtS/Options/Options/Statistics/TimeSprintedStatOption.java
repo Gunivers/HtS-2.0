@@ -18,7 +18,7 @@ public class TimeSprintedStatOption extends OptionBuilder<Boolean> implements St
 	private final double player_velocity = 5.612 * 100; // cm.s^-1
 	
 	public TimeSprintedStatOption() {
-		super(Material.WATCH, "Time Sprinted", "§2Activé", true, GUIRegister.stats);		
+		super(Material.CLOCK, "Time Sprinted", "§2Activé", true, GUIRegister.stats);		
 	}
 
 	@Override

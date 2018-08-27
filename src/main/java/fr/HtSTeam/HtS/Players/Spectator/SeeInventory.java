@@ -157,7 +157,7 @@ public class SeeInventory implements Listener {
 			j++;
 		}
 		for(j = 9; j <= 17; j++) {
-			inv.setItem(j, new ItemStack(Material.STAINED_GLASS_PANE, 1, (short)15));
+			inv.setItem(j, new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1));
 		}
 		
 		inv.setItem(0, clicked.getInventory().getHelmet());
@@ -167,9 +167,9 @@ public class SeeInventory implements Listener {
 		
 		inv.setItem(4, clicked.getInventory().getItemInOffHand());
 		
-		ItemStackBuilder xp = new ItemStackBuilder(Material.EXP_BOTTLE, (short) 0, clicked.getLevel(), "Niveaux", null);
-		ItemStackBuilder health = new ItemStackBuilder(Material.REDSTONE, (short) 0, (int) clicked.getHealth(), "Vie", null);
-		ItemStackBuilder food = new ItemStackBuilder(Material.COOKED_BEEF, (short) 0, clicked.getFoodLevel(), "Faim", null);
+		ItemStackBuilder xp = new ItemStackBuilder(Material.EXPERIENCE_BOTTLE, clicked.getLevel(), "Niveaux", null);
+		ItemStackBuilder health = new ItemStackBuilder(Material.REDSTONE, (int) clicked.getHealth(), "Vie", null);
+		ItemStackBuilder food = new ItemStackBuilder(Material.COOKED_BEEF, clicked.getFoodLevel(), "Faim", null);
 		inv.setItem(6, xp);
 		inv.setItem(7, health);
 		inv.setItem(8, food);

@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.EnumState;
@@ -20,7 +21,7 @@ public class TeamBuilder implements StartTrigger {
 		
 	private String teamName;
 	private String teamColor;
-	private byte teamByte;
+	private Material teamWool;
 	private boolean faketeam = false;
 	
 	private ArrayList<UUID> allPlayers = new ArrayList<UUID>();
@@ -34,7 +35,7 @@ public class TeamBuilder implements StartTrigger {
 		
 		this.teamName = teamName;
 		this.teamColor = teamColor;
-		teamByte = getWoolByte(teamColor);
+		teamWool = getWool(teamColor);
 	}
 	
 	public void addPlayer(Player p) {
@@ -111,7 +112,7 @@ public class TeamBuilder implements StartTrigger {
 	
 	public String getTeamName() { return teamName; }
 	public String getTeamColor() { return teamColor; }
-	public byte getTeamByte() { return teamByte; }
+	public Material getTeamWool() { return teamWool; }
 	public int getTeamSize() { return playerList.size(); }
 		
 	public ArrayList<UUID> getTeamPlayers() { return playerList; }
@@ -119,42 +120,42 @@ public class TeamBuilder implements StartTrigger {
 	public boolean isFakeTeam() { return faketeam; }
 	public void setFakeTeam(boolean faketeam) { this.faketeam = faketeam; }
 	
-	private byte getWoolByte(String color) {	
+	private Material getWool(String color) {	
 	    	switch(color) {
 	    		case "white":
-	    			return 0;
+	    			return Material.WHITE_WOOL;
 	    		case "gold":
-	    			return 1;
+	    			return Material.ORANGE_WOOL;
 	    		case "dark_red":
-	    			return 2;
+	    			return Material.MAGENTA_WOOL;
 	    		case "aqua":
-	    			return 3;
+	    			return Material.LIGHT_BLUE_WOOL;
 	    		case "yellow":
-	    			return 4;
+	    			return Material.YELLOW_WOOL;
 	    		case "green":
-	    			return 5;
+	    			return Material.LIME_WOOL;
 	    		case "light_purple":
-	    			return 6;
+	    			return Material.PINK_WOOL;
 	    		case "dark_gray":
-	    			return 7;
+	    			return Material.GRAY_WOOL;
 	    		case "gray":
-	    			return 8;
+	    			return Material.LIGHT_GRAY_WOOL;
 	    		case "dark_aqua":
-	    			return 9;
+	    			return Material.CYAN_WOOL;
 	    		case "dark_purple":
-	    			return 10;
+	    			return Material.PURPLE_WOOL;
 	    		case "dark_blue":
-	    			return 11;
+	    			return Material.BLUE_WOOL;
 	    		case "brown":
-	    			return 12;
+	    			return Material.BROWN_WOOL;
 	    		case "dark_green":
-	    			return 13;
+	    			return Material.GREEN_WOOL;
 	    		case "red":
-	    			return 14;
+	    			return Material.RED_WOOL;
 	    		case "black":
-	    			return 15;
+	    			return Material.BLACK_WOOL;
 	    	}
-	    	return 0;	
+	    	return Material.WHITE_WOOL;	
 	    }
 
 	@Override

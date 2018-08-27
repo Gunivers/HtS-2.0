@@ -14,7 +14,7 @@ import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 public class CreeperNerfOption extends OptionBuilder<Boolean> {
 		
 	public CreeperNerfOption() {
-		super(Material.SULPHUR, "One shot des Creepers", "§4Désactivé", false, GUIRegister.mob);
+		super(Material.GUNPOWDER, "One shot des Creepers", "§4Désactivé", false, GUIRegister.mob);
 	}
 	
 	

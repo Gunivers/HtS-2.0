@@ -14,7 +14,7 @@ public class DifficultOption extends OptionBuilder<Difficulty> {
 	private int difficult = 3;
 	
 	public DifficultOption() {
-		super(Material.SKULL_ITEM, "Difficulté", "§4Difficile", Difficulty.HARD, GUIRegister.base);
+		super(Material.SKELETON_SKULL, "Difficulté", "§4Difficile", Difficulty.HARD, GUIRegister.base);
 		changeDifficult(Difficulty.HARD);
 	}
 

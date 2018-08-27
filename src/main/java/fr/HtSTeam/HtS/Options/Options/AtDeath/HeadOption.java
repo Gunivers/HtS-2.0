@@ -10,10 +10,9 @@ import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 public class HeadOption extends OptionBuilder<Boolean> {
 	
 	public HeadOption() {
-		super(Material.SKULL_ITEM, "Drop de tête", "§2Activé", true, GUIRegister.atDeath);
-		getItemStack().setItem(Material.SKULL_ITEM, (short) 3);
+		super(Material.PLAYER_HEAD, "Drop de tête", "§2Activé", true, GUIRegister.atDeath);
 		parent.update(this);
-		Main.deathLoot.addItem(Material.SKULL_ITEM, (short) 3);
+		Main.deathLoot.addItem(Material.PLAYER_HEAD);
 	}
 
 	@Override
@@ -25,10 +24,10 @@ public class HeadOption extends OptionBuilder<Boolean> {
 	public void setState(Boolean value) {
 		if(value && !getValue()) {
 			getItemStack().setLore("§2Activé");
-			Main.deathLoot.addItem(Material.SKULL_ITEM, (short) 3);
+			Main.deathLoot.addItem(Material.PLAYER_HEAD);
 		} else if(!value && getValue()) {
 			getItemStack().setLore("§4Désactivé");
-			Main.deathLoot.removeItem(Material.SKULL_ITEM);
+			Main.deathLoot.removeItem(Material.PLAYER_HEAD);
 		}
 		setValue(value);
 		parent.update(this);

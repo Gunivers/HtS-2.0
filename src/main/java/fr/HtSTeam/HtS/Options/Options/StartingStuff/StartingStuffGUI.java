@@ -29,7 +29,7 @@ public class StartingStuffGUI extends GUIBuilder implements StartTrigger, Option
 	ItemStack[] items = new ItemStack[0];
 
 	public StartingStuffGUI() {
-		super("Stuff de départ", 3, "Stuff de départ", "Définir le stuff de départ des joueurs", Material.WOOD_SWORD, GUIRegister.main);
+		super("Stuff de départ", 3, "Stuff de départ", "Définir le stuff de départ des joueurs", Material.WOODEN_SWORD, GUIRegister.main);
 		addToList();
 	}
 

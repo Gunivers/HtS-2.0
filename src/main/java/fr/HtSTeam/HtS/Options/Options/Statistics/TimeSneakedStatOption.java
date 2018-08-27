@@ -16,7 +16,7 @@ import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
 public class TimeSneakedStatOption extends OptionBuilder<Boolean> implements StartTrigger, EndTrigger {
 	
 	public TimeSneakedStatOption() {
-		super(Material.WATCH, "Time Sneaked", "§2Activé", true, GUIRegister.stats);		
+		super(Material.CLOCK, "Time Sneaked", "§2Activé", true, GUIRegister.stats);		
 	}
 
 	@Override

@@ -21,8 +21,8 @@ public class FixDayOption extends OptionBuilder<DayPhase> implements StartTrigge
 	int moment = 0;
 	int tick = 0;
 	public FixDayOption() {
-		super(Material.STAINED_CLAY, "Moment au lancement", "§dAube", DayPhase.AUBE, GUIRegister.base, false);
-		getItemStack().setItem(Material.STAINED_CLAY, (short) 2);
+		super(Material.TERRACOTTA, "Moment au lancement", "§dAube", DayPhase.AUBE, GUIRegister.base, false);
+		getItemStack().setItem(Material.MAGENTA_TERRACOTTA);
 		parent.update(this);
 		}
 
@@ -55,19 +55,19 @@ public class FixDayOption extends OptionBuilder<DayPhase> implements StartTrigge
 		switch(value) {
 		case AUBE : tick = 0;
 				 getItemStack().setLore("§dAube");
-				 getItemStack().setItem(Material.STAINED_CLAY, (short) 2);
+				 getItemStack().setItem(Material.MAGENTA_TERRACOTTA);
 				 break;
 		case JOURNEE : tick = 6000;
 				 getItemStack().setLore("§bMidi");
-				 getItemStack().setItem(Material.STAINED_CLAY, (short) 3);
+				 getItemStack().setItem(Material.LIGHT_BLUE_TERRACOTTA);
 				 break;
 		case CREPUSCULE : tick = 13100;
 				 getItemStack().setLore("§6Crépuscule");
-				 getItemStack().setItem(Material.STAINED_CLAY, (short) 1);
+				 getItemStack().setItem(Material.ORANGE_TERRACOTTA);
 			 	 break;
 		case NUIT : tick = 18000;
 				 getItemStack().setLore("§1Nuit");
-				 getItemStack().setItem(Material.STAINED_CLAY, (short) 11);
+				 getItemStack().setItem(Material.BLUE_TERRACOTTA);
 				 break;
 		}
 		parent.update(this);

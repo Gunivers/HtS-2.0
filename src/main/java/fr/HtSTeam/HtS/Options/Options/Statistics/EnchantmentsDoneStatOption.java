@@ -14,7 +14,7 @@ import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 public class EnchantmentsDoneStatOption extends OptionBuilder<Boolean> {
 	
 	public EnchantmentsDoneStatOption() {
-		super(Material.ENCHANTMENT_TABLE, "Enchantments Done", "§2Activé", true, GUIRegister.stats);		
+		super(Material.ENCHANTING_TABLE, "Enchantments Done", "§2Activé", true, GUIRegister.stats);		
 	}
 
 	@Override

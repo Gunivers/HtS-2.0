@@ -31,7 +31,7 @@ public class AlgueUrticanteOption extends OptionBuilder<Boolean> {
 	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onAlgaeCatch(org.bukkit.event.player.PlayerPickupItemEvent e) {
-		if(e.getItem().getItemStack().getType() == Material.DOUBLE_PLANT && getValue()) {
+		if(e.getItem().getItemStack().getType() == Material.TALL_GRASS && getValue()) {
 			e.setCancelled(true);
 			e.getPlayer().setHealth(e.getPlayer().getHealth()-1);
 			e.getItem().remove();

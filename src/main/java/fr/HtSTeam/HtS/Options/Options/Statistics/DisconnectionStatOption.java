@@ -14,7 +14,7 @@ import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 public class DisconnectionStatOption extends OptionBuilder<Boolean> {
 	
 	public DisconnectionStatOption() {
-		super(Material.RED_ROSE, "Déconnexion", "§2Activé", true, GUIRegister.stats);		
+		super(Material.RED_TULIP, "Déconnexion", "§2Activé", true, GUIRegister.stats);		
 	}
 
 	@Override

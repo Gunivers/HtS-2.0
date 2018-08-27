@@ -16,7 +16,7 @@ import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 public class KillsMonsterStatOption extends OptionBuilder<Boolean> {
 	
 	public KillsMonsterStatOption() {
-		super(Material.SKULL_ITEM, "Kills Monster", "§2Activé", true, GUIRegister.stats);		
+		super(Material.ZOMBIE_HEAD, "Kills Monster", "§2Activé", true, GUIRegister.stats);		
 	}
 
 	@Override

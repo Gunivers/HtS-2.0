@@ -11,7 +11,7 @@ public class GoldenAppleOption extends OptionBuilder<Boolean> {
 	
 	public GoldenAppleOption() {
 		super(Material.GOLDEN_APPLE, "Drop de pomme d'or", "§2Activé", true, GUIRegister.atDeath);
-		Main.deathLoot.addItem(Material.GOLDEN_APPLE, (short) 0);
+		Main.deathLoot.addItem(Material.GOLDEN_APPLE);
 	}
 
 	@Override
@@ -23,7 +23,7 @@ public class GoldenAppleOption extends OptionBuilder<Boolean> {
 	public void setState(Boolean value) {
 		if(value && !getValue()) {
 				getItemStack().setLore("§2Activé");
-				Main.deathLoot.addItem(Material.GOLDEN_APPLE, (short) 0);
+				Main.deathLoot.addItem(Material.GOLDEN_APPLE);
 		} else if(!value && getValue()){
 			getItemStack().setLore("§4Désactivé");
 			Main.deathLoot.removeItem(Material.GOLDEN_APPLE);

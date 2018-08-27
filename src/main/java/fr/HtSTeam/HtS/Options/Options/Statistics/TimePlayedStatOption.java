@@ -16,7 +16,7 @@ import fr.HtSTeam.HtS.Players.PlayerInGame;
 public class TimePlayedStatOption extends OptionBuilder<Boolean> implements EndTrigger, DeathTrigger {
 	
 	public TimePlayedStatOption() {
-		super(Material.WATCH, "Time Played", "§2Activé", true, GUIRegister.stats);		
+		super(Material.CLOCK, "Time Played", "§2Activé", true, GUIRegister.stats);		
 	}
 
 	@Override

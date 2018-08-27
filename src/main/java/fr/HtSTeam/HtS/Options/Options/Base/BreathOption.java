@@ -24,7 +24,7 @@ public class BreathOption extends OptionBuilder<Integer> implements StartTrigger
 	private boolean alert = false;
 	
 	public BreathOption() {
-		super(Material.SULPHUR, "Souffle des profondeurs", "§4Désactivé", -1, GUIRegister.base);
+		super(Material.GUNPOWDER, "Souffle des profondeurs", "§4Désactivé", -1, GUIRegister.base);
 	}
 
 	@Override
@@ -66,10 +66,10 @@ public class BreathOption extends OptionBuilder<Integer> implements StartTrigger
 	public void setState(Integer value) {
 		if(value != -1) {
 			setValue(value);
-			getItemStack().setItem(Material.GLOWSTONE_DUST, (short) 0);
+			getItemStack().setItem(Material.GLOWSTONE_DUST);
 			getItemStack().setLore("§d" + value + " minutes");
 		} else {
-			getItemStack().setItem(Material.SULPHUR, (short) 0);
+			getItemStack().setItem(Material.GUNPOWDER);
 			getItemStack().setLore("§4Désactivé");
 		}
 		parent.update(this);

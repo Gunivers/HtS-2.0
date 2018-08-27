@@ -39,7 +39,7 @@ public class NuggetsOption extends OptionBuilder<Boolean>{
 		if (getValue()) {
 			Player p = e.getPlayer();
 			Block b = e.getBlockClicked();
-			if (b.getType() == Material.STATIONARY_WATER) {
+			if (b.getType() == Material.WATER) {
 				if (Randomizer.RandRate(4))
 					p.getInventory().addItem(new ItemStack(Material.GOLD_NUGGET, 1));
 				else if (Randomizer.RandRate(6))

@@ -18,7 +18,7 @@ public class GameModeGUI extends GUIBuilder {
 	public static List<GameModeState> gameModeOption = new ArrayList<GameModeState>();
 	
 	public GameModeGUI() {
-		super("Mode de jeux", 1, "Mode de jeux", "Choisir le mode de jeu", Material.COMMAND, GUIRegister.main);
+		super("Mode de jeux", 1, "Mode de jeux", "Choisir le mode de jeu", Material.COMMAND_BLOCK, GUIRegister.main);
 		new GameModeIO();
 	}
 

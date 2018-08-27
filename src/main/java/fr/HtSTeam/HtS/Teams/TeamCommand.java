@@ -7,7 +7,6 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -18,7 +17,6 @@ import fr.HtSTeam.HtS.Utils.Randomizer;
 
 public class TeamCommand implements CommandExecutor {
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
 		if (sender instanceof Player) {
@@ -94,7 +92,7 @@ public class TeamCommand implements CommandExecutor {
 						for (TeamBuilder t : TeamBuilder.teamList)
 							for (Player player : Bukkit.getOnlinePlayers())
 								if (!player.getGameMode().equals(GameMode.SPECTATOR)) {
-									ItemStackBuilder a = new ItemStackBuilder(Material.WOOL, t.getTeamByte(), 1, ChatColor.valueOf(t.getTeamColor().toUpperCase()) + t.getTeamName(), "§fClique pour rejoindre l'équipe " + ChatColor.valueOf(t.getTeamColor().toUpperCase()) + t.getTeamName());
+									ItemStackBuilder a = new ItemStackBuilder(t.getTeamWool(), 1, ChatColor.valueOf(t.getTeamColor().toUpperCase()) + t.getTeamName(), "§fClique pour rejoindre l'équipe " + ChatColor.valueOf(t.getTeamColor().toUpperCase()) + t.getTeamName());
 									a.setGlint(true);
 									player.getInventory().addItem(a);
 								}

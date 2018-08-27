@@ -13,8 +13,8 @@ import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 public class NoRegenOption extends OptionBuilder<Boolean> {
 	
 	public NoRegenOption() {
-		super(Material.INK_SACK, "Régération naturelle", "§4Désactivé", false, GUIRegister.base);
-		getItemStack().setItem(Material.INK_SACK, (short) 8);
+		super(Material.INK_SAC, "Régération naturelle", "§4Désactivé", false, GUIRegister.base);
+		getItemStack().setItem(Material.GRAY_DYE);
 		parent.update(this);
 	}
 
@@ -36,10 +36,10 @@ public class NoRegenOption extends OptionBuilder<Boolean> {
 	public void setState(Boolean value) {
 		if(value) {
 			getItemStack().setLore("§2Activé");
-			getItemStack().setItem(Material.INK_SACK, (short) 9);
+			getItemStack().setItem(Material.PINK_DYE);
 		} else {
 			getItemStack().setLore("§4Désactivé");
-			getItemStack().setItem(Material.INK_SACK, (short) 8);
+			getItemStack().setItem(Material.GRAY_DYE);
 		}
 		setValue(value);
 		parent.update(this);		

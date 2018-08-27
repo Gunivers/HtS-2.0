@@ -20,7 +20,7 @@ import fr.HtSTeam.HtS.Players.PlayerRemove;
 public class TargetsStatOption extends OptionBuilder<Boolean> implements PlayerRemove {
 	
 	public TargetsStatOption() {
-		super(Material.SKULL_ITEM, "TARGETS", "§2Activé", true, GUIRegister.stats);
+		super(Material.PLAYER_HEAD, "TARGETS", "§2Activé", true, GUIRegister.stats);
 		addToList();
 	}
 

@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.NetherWartsState;
 import org.bukkit.World.Environment;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.world.ChunkLoadEvent;
+import org.bukkit.material.MaterialData;
+import org.bukkit.material.NetherWarts;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
@@ -38,7 +41,6 @@ public class NetherWartOption extends OptionBuilder<Boolean>{
 	}
 	
 	
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onChunkLoad(ChunkLoadEvent e) {
 		if (getValue() && e.getWorld().getEnvironment().equals(Environment.NETHER) && Randomizer.RandRate(10)) {
@@ -49,7 +51,7 @@ public class NetherWartOption extends OptionBuilder<Boolean>{
 			for (int y = 50; y < 100; y++) {
 				for (int x = cx; x < cx + 16; x++) {
 					for (int z = cz; z < cz + 16; z++) {
-						if (c.getBlock(x, y, z).getType() == Material.AIR && c.getBlock(x, y + 1, z).getType() == Material.AIR && c.getBlock(x, y - 1, z).getType() != Material.AIR && c.getBlock(x, y - 1, z).getType() != Material.LAVA && c.getBlock(x, y - 1, z).getType() != Material.NETHER_BRICK && c.getBlock(x, y - 1, z).getType() != Material.NETHER_BRICK_STAIRS && c.getBlock(x, y - 1, z).getType() != Material.NETHER_FENCE && c.getBlock(x, y - 1, z).getType() != Material.STEP)
+						if (c.getBlock(x, y, z).getType() == Material.AIR && c.getBlock(x, y + 1, z).getType() == Material.AIR && c.getBlock(x, y - 1, z).getType() != Material.AIR && c.getBlock(x, y - 1, z).getType() != Material.LAVA && c.getBlock(x, y - 1, z).getType() != Material.NETHER_BRICK && c.getBlock(x, y - 1, z).getType() != Material.NETHER_BRICK_STAIRS && c.getBlock(x, y - 1, z).getType() != Material.NETHER_BRICK_FENCE && c.getBlock(x, y - 1, z).getType() != Material.NETHER_BRICK_SLAB)
 							blocks.add(c.getBlock(x, y, z));
 					}
 				}
@@ -60,8 +62,9 @@ public class NetherWartOption extends OptionBuilder<Boolean>{
 			Location lb = new Location(c.getWorld(), b.getX(), b.getY() - 1, b.getZ());
 			Location lt = new Location(c.getWorld(), b.getX(), b.getY(), b.getZ());
 			lb.getBlock().setType(Material.SOUL_SAND);
-			lt.getBlock().setType(Material.NETHER_WARTS);
-			lt.getBlock().setData((byte) 3);
+			NetherWarts m = new NetherWarts();
+			m.setState(NetherWartsState.STAGE_TWO);
+			lt.getBlock().getState().setData(m);
 		}
 	}
 

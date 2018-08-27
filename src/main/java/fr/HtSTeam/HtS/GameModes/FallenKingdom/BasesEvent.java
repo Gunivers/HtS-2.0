@@ -25,10 +25,10 @@ public class BasesEvent implements Listener {
 		authorizedBlock.add(Material.TORCH);
 		authorizedBlock.add(Material.TNT);
 		authorizedBlock.add(Material.WALL_SIGN);
-		authorizedBlock.add(Material.SIGN_POST);
+		authorizedBlock.add(Material.SIGN);
 		authorizedBlock.add(Material.FIRE);
 		authorizedBlock.add(Material.LEVER);
-		authorizedBlock.add(Material.REDSTONE_TORCH_ON);
+		authorizedBlock.add(Material.REDSTONE_TORCH);
 	}
 
 	@EventHandler

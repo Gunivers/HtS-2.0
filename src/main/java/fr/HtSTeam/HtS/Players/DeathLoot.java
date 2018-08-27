@@ -20,8 +20,8 @@ public class DeathLoot {
 		deathLoot.add(ism);
 	}
 	
-	public void addItem(Material material, short dataValue) {
-		deathLoot.add(new ItemStack(material, 1, dataValue));
+	public void addItem(Material material) {
+		deathLoot.add(new ItemStack(material, 1));
 	}
 	
 	public void removeItem(Material material) {

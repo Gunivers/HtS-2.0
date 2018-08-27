@@ -39,7 +39,6 @@ public class CommandsFK implements CommandExecutor, Listener {
 		pm.registerEvents(this, Main.plugin);
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
 	
@@ -69,7 +68,7 @@ public class CommandsFK implements CommandExecutor, Listener {
 						this.p = p;
 						name = args[1];
 						ItemStack im = p.getEquipment().getItemInMainHand();
-						ism = new ItemStackBuilder(im.getType(), im.getData().getData(), 1, "Définir le premier angle de la base " + name, null);
+						ism = new ItemStackBuilder(im.getType(), 1, "Définir le premier angle de la base " + name, null);
 						ism.setGlint(true);
 						p.getEquipment().setItemInMainHand(ism);
 						inCreation = true;
@@ -139,7 +138,6 @@ public class CommandsFK implements CommandExecutor, Listener {
 	
 	
 	
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onRightClick(PlayerInteractEvent e) {
 		ItemStack is = e.getPlayer().getEquipment().getItemInMainHand();
@@ -149,7 +147,7 @@ public class CommandsFK implements CommandExecutor, Listener {
 			angleDo++;
 			if(angleDo == 1) {
 				firstAngle = b;
-				ism = new ItemStackBuilder(ism.getType(), ism.getData().getData(), 1, "Définir le second angle de la base " + name, "Premier angle : " + firstAngle.getX() + " " + firstAngle.getY() + " " + firstAngle.getZ());
+				ism = new ItemStackBuilder(ism.getType(), 1, "Définir le second angle de la base " + name, "Premier angle : " + firstAngle.getX() + " " + firstAngle.getY() + " " + firstAngle.getZ());
 				ism.setGlint(true);
 				p.getEquipment().setItemInMainHand(ism);
 			} else if(angleDo == 2) {

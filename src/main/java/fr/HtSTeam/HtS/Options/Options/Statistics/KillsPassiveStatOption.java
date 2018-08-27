@@ -15,7 +15,7 @@ import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 public class KillsPassiveStatOption extends OptionBuilder<Boolean> {
 	
 	public KillsPassiveStatOption() {
-		super(Material.SKULL_ITEM, "Kills Passive", "§2Activé", true, GUIRegister.stats);		
+		super(Material.PLAYER_HEAD, "Kills Passive", "§2Activé", true, GUIRegister.stats);		
 	}
 
 	@Override

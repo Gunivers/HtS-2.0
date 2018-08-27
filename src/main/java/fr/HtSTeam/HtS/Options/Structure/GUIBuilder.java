@@ -93,7 +93,7 @@ public class GUIBuilder extends IconBuilder<Null> {
     		String news = "";
     		for(int i = 0; i < res.length(); i++)
     			news += "§" + res.charAt(i);
-    		ItemStackBuilder itemStack = new ItemStackBuilder(Material.BARRIER, (short) 0, 1, "§rRetour", news);
+    		ItemStackBuilder itemStack = new ItemStackBuilder(Material.BARRIER, 1, "§rRetour", news);
 			IconBuilder<Null> om = new IconBuilder<Null>(itemStack, null, null) {
 
 				@Override

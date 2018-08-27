@@ -25,7 +25,7 @@ import fr.HtSTeam.HtS.Utils.Randomizer;
 public class ShulkerShellOption extends OptionBuilder<Boolean> {
 	
 	private HashMap<Player, Integer> shellUse = new HashMap<>();
-	private ItemStackBuilder ism = new ItemStackBuilder(Material.SHULKER_SHELL, (short) 0, 1, "§rShulker Shell", "");
+	private ItemStackBuilder ism = new ItemStackBuilder(Material.SHULKER_SHELL, 1, "§rShulker Shell", "");
 	
 	public ShulkerShellOption() {
 		super(Material.SHULKER_SHELL, "Shulker Shell Modifier", "§4Désactivé", false, GUIRegister.modifiers, false);

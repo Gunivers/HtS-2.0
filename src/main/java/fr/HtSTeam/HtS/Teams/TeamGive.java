@@ -1,7 +1,7 @@
 package fr.HtSTeam.HtS.Teams;
 
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
+import org.bukkit.Tag;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -12,7 +12,7 @@ public class TeamGive implements Listener {
 	@EventHandler
 	public void onWoolClicked(PlayerInteractEvent e) {
 		if (e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-			if (e.getItem() != null && e.getItem().getType().equals(Material.WOOL) && e.getItem().getItemMeta().hasEnchants()) {
+			if (e.getItem() != null && Tag.WOOL.isTagged(e.getItem().getType()) && e.getItem().getItemMeta().hasEnchants()) {
 				e.setCancelled(true);
 				if (TeamBuilder.playerTeam.containsKey(e.getPlayer().getUniqueId())) {
 					if (TeamBuilder.playerTeam.get(e.getPlayer().getUniqueId()).getTeamSize() > 1) {

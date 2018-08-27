@@ -30,7 +30,7 @@ public class TargetCycle extends OptionBuilder<Integer> {
 	public List<UUID> targetCycle = new ArrayList<UUID>();
 	
 	public TargetCycle() {
-		super(Material.WATCH, "Annonce des cibles", "20 minutes", 20, GUIRegister.syt);
+		super(Material.CLOCK, "Annonce des cibles", "20 minutes", 20, GUIRegister.syt);
 	}
 
 	@Override
