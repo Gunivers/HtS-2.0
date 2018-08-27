@@ -2,6 +2,7 @@ name: HtS
 version: 1.0
 authors: [ikbrunel, theogiraudet]
 main: fr.HtSTeam.HtS.Main
+api-version: 1.13
 commands:
  option:
   description: Ouvre le menu des options
