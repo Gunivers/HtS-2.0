@@ -100,7 +100,6 @@ public class AppleDropOption extends OptionBuilder<Double>{
 	}
 	
 	public void dropApple(Location loc, Block block){
-		new Randomizer();
 		int randomValue = Randomizer.rand(100);
 
 		if(randomValue <= getValue()){
