@@ -10,11 +10,12 @@ public class CommandsManager {
 	
 	public static PlayStopCommands playStop = new PlayStopCommands();
 	public static CommandSyT csyt = new CommandSyT();
+	public static StartCommand sc = new StartCommand();
 	
 	public static void loadCommands(Main main) {
-		main.getCommand("option").setExecutor(new OptionCommand(main));
-		main.getCommand("start").setExecutor(new StartCommand(main));
-		main.getCommand("run").setExecutor(new StartCommand(main));
+		main.getCommand("option").setExecutor(new OptionCommand());
+		main.getCommand("start").setExecutor(sc);
+		main.getCommand("run").setExecutor(sc);
 		main.getCommand("team").setExecutor(new TeamCommand());
 		main.getCommand("play").setExecutor(playStop);
 		main.getCommand("pause").setExecutor(playStop);

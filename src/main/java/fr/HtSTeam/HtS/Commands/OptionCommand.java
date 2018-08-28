@@ -8,16 +8,13 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
 
 public class OptionCommand implements CommandExecutor {
 
-	private Main main;
 
-	public OptionCommand(Main main) {
-		this.main = main;
+	public OptionCommand() {
 	}
 
 	@Override

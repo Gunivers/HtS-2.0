@@ -20,7 +20,7 @@ public abstract class GameModeState extends GUIBuilder {
 			this.getItemStack().setLore("§2Sélectionné");
 			this.getItemStack().setGlint(true);
 		} else {
-			this.getItemStack().setLore(null);
+			this.getItemStack().setLore("");
 			this.getItemStack().setGlint(false);
 		}
 		parent.update(this);

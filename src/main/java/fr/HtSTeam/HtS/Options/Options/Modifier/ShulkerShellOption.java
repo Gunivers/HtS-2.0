@@ -88,7 +88,7 @@ public class ShulkerShellOption extends OptionBuilder<Boolean> {
                 drops.add(book);
             }
             if(Randomizer.RandRate(15)) {
-            	ItemStack is = new ItemStack(Material.SHULKER_SHELL, 1, (short) 0);
+            	ItemStack is = new ItemStack(Material.SHULKER_SHELL, 1);
         		ItemMeta isM = is.getItemMeta();
         		ArrayList<String> lore = new ArrayList<String>();
         		int rand = Randomizer.Rand(1000000000);

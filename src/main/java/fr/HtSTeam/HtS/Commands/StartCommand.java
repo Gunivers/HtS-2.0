@@ -22,10 +22,8 @@ import fr.HtSTeam.HtS.Utils.JSON;
 
 public class StartCommand implements CommandExecutor {
 
-	private Main main;
 	
-	public StartCommand(Main main) {
-		this.main = main;
+	public StartCommand() {
 	}
 
 	@Override

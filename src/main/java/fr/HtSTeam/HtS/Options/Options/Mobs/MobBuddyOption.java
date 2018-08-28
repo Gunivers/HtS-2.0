@@ -20,7 +20,6 @@ import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
-import org.bukkit.inventory.meta.SpawnEggMeta;
 import org.bukkit.metadata.FixedMetadataValue;
 
 import fr.HtSTeam.HtS.Main;
@@ -28,6 +27,7 @@ import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Teams.TeamBuilder;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
+import fr.HtSTeam.HtS.Utils.MobManager;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
 public class MobBuddyOption extends OptionBuilder<Boolean> {
@@ -61,7 +61,7 @@ public class MobBuddyOption extends OptionBuilder<Boolean> {
 		if (e.getItem().getType() == Material.ZOMBIE_SPAWN_EGG && e.getItem().hasItemMeta() && (e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.RIGHT_CLICK_AIR)) {
 			e.setCancelled(true);
 			e.getItem().setAmount(e.getItem().getAmount() - 1);
-			Entity mob = e.getPlayer().getWorld().spawnEntity(e.getPlayer().getEyeLocation(), ((SpawnEggMeta) e.getItem().getItemMeta()).getSpawnedType());
+			Entity mob = e.getPlayer().getWorld().spawnEntity(e.getPlayer().getEyeLocation(), MobManager.eggToMob(e.getItem().getType()));
 			mob.setMetadata("buddy", new FixedMetadataValue(Main.plugin, e.getPlayer().getUniqueId().toString()));
 			if (mob instanceof Zombie) {
 				Zombie m = (Zombie) mob;

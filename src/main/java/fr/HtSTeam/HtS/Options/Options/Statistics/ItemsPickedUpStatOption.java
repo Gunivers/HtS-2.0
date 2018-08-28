@@ -3,7 +3,7 @@ package fr.HtSTeam.HtS.Options.Options.Statistics;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.player.PlayerPickupItemEvent;
+import org.bukkit.event.entity.EntityPickupItemEvent;
 
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Options.GUIRegister;
@@ -43,8 +43,8 @@ public class ItemsPickedUpStatOption extends OptionBuilder<Boolean> {
 	}
 	
 	@EventHandler
-	public void on(PlayerPickupItemEvent e) {
-		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.ITEMS_PICKED_UP.isTracked())
-			StatisticHandler.update(e.getPlayer().getUniqueId(), EnumStats.ITEMS_PICKED_UP);
+	public void on(EntityPickupItemEvent e) {
+		if(e.getEntity() instanceof Player && EnumState.getState().equals(EnumState.RUNNING) && EnumStats.ITEMS_PICKED_UP.isTracked())
+			StatisticHandler.update(e.getEntity().getUniqueId(), EnumStats.ITEMS_PICKED_UP);
 	}
 }

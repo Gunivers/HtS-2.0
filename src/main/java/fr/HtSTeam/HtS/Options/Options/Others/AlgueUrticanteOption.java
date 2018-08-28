@@ -3,6 +3,7 @@ package fr.HtSTeam.HtS.Options.Options.Others;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.entity.EntityPickupItemEvent;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
@@ -29,10 +30,10 @@ public class AlgueUrticanteOption extends OptionBuilder<Boolean> {
 	}
 	
 	@EventHandler
-	public void onAlgaeCatch(org.bukkit.event.player.PlayerPickupItemEvent e) {
-		if(e.getItem().getItemStack().getType() == Material.TALL_GRASS && getValue()) {
+	public void onAlgaeCatch(EntityPickupItemEvent e) {
+		if(e.getEntity() instanceof Player && e.getItem().getItemStack().getType() == Material.TALL_GRASS && getValue()) {
 			e.setCancelled(true);
-			e.getPlayer().setHealth(e.getPlayer().getHealth()-1);
+			e.getEntity().setHealth(e.getEntity().getHealth()-1);
 			e.getItem().remove();
 		}
 	}

@@ -32,7 +32,7 @@ public class FakeDeath implements Listener, PlayerRemove {
 		for (ItemStack is : Main.deathLoot.getDeathLoot()) {
 			if (is.getType() == Material.PLAYER_HEAD) {
 				SkullMeta isM = (SkullMeta) is.getItemMeta();
-				isM.setOwner(p.getName());
+				isM.setOwningPlayer(Bukkit.getPlayer(p.getUniqueId()));
 				isM.setDisplayName("Tête de " + p.getName());
 				is.setItemMeta(isM);
 			}

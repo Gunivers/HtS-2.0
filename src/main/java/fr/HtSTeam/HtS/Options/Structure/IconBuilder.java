@@ -47,7 +47,7 @@ public abstract class IconBuilder<A> implements Listener {
 	}
 	
 	/**
-	 * @param material un ItemStackManager
+	 * @param material un ItemStackBuilder
 	 * @param defaultValue
 	 * 		Valeur par défaut. Sert de comparaison à la valeur actuel pour afficher ou nom le changement au récapitulatif du /start
 	 * @param gui

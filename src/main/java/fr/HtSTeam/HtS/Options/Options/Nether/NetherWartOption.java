@@ -11,7 +11,6 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.world.ChunkLoadEvent;
-import org.bukkit.material.MaterialData;
 import org.bukkit.material.NetherWarts;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;

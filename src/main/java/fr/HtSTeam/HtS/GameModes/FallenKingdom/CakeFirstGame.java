@@ -12,8 +12,8 @@ public class CakeFirstGame implements Listener {
 	
 	@EventHandler(priority=EventPriority.HIGHEST)
 	public void onConcretePlace(BlockPlaceEvent e) {
-		if((Tag.BANNERS.isTagged(e.getBlock().getType()) || e.getBlock().getType().equals(Material.CAKE)) /*&& e.getBlockAgainst().getType().equals(Material.CONCRETE)*/)
-			if(e.getBlockAgainst().getData() == 4 || e.getBlockAgainst().getData() == 5 || e.getBlockAgainst().getData() == 14) {
+		if((Tag.BANNERS.isTagged(e.getBlock().getType()) || e.getBlock().getType().equals(Material.CAKE)))
+			if(e.getBlockAgainst().getType().equals(Material.YELLOW_CONCRETE) || e.getBlockAgainst().getType().equals(Material.LIME_CONCRETE) || e.getBlockAgainst().getType().equals(Material.RED_CONCRETE)) {
 				e.setCancelled(false);
 			}
 	}
