@@ -16,12 +16,12 @@ import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
-public class AppleDrop extends OptionBuilder<Double>{
+public class AppleDropOption extends OptionBuilder<Double>{
 	
 	private boolean request;
 	private Player p;
 	
-	public AppleDrop() {
+	public AppleDropOption() {
 		super(Material.APPLE, "Loot des pommes", "§2Activé", 0.5, GUIRegister.other);
 	}
 	
