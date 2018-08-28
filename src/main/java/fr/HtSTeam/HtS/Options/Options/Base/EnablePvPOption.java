@@ -18,7 +18,7 @@ public class EnablePvPOption extends OptionBuilder<Integer> {
 	private Player p;
 	
 	public EnablePvPOption() {
-		super(Material.DIAMOND_SWORD, "Activation du PvP", "§220 minutes", 20, GUIRegister.base);
+		super(Material.DIAMOND_SWORD, "Activation du PvP", "§520§2 minutes", 20, GUIRegister.base);
 		switchState(false);
 	}
 
@@ -38,14 +38,14 @@ public class EnablePvPOption extends OptionBuilder<Integer> {
 				int value = Integer.parseInt(e.getMessage());
 				if(value >= 0 && value <= 60) {
 					setState(value);
-					p.sendMessage("§2PvP activé à " + getValue() + " minutes." );
+					p.sendMessage("§2Le PvP s'activera au bout de §5" + getValue() + "§2 minutes." );
 					parent.update(this);
 					request = false;
 					return;
 				}
-				p.sendMessage("§4Valeur non comprise entre 0 et 60.");
+				p.sendMessage("§4Valeur non comprise entre§5 0§2 et§5 60§2.");
 			} catch(NumberFormatException e2) {
-				p.sendMessage("§4Valeur invalide.");
+				p.sendMessage("§4Valeur invalide, veuillez réessayer.");
 			}
 		}
 	}
@@ -70,7 +70,7 @@ public class EnablePvPOption extends OptionBuilder<Integer> {
 
 	@Override
 	public String description() {
-		return "§2[Aide]§r Le PvP s'activer au bout de " + getValue() + " minutes.";
+		return "§2[Aide]§r Le PvP s'activera au bout de §5" + getValue() + "§2 minutes.";
 	}
 
 }
