@@ -26,7 +26,7 @@ public class FlintOption extends OptionBuilder<Integer>
 
 	public FlintOption()
 	{
-		super(Material.FLINT, "Probabilité du drop de Silex", "§230%", 30, GUIRegister.other);
+		super(Material.FLINT, "Probabilité du drop de Silex", "§530§2%", 30, GUIRegister.other);
 	}
 
 	@Override
@@ -74,7 +74,7 @@ public class FlintOption extends OptionBuilder<Integer>
 	public void setState(Integer value)
 	{
 		this.setValue(value >= min && value <= max ? value : -1);
-		this.getItemStack().setLore(value != -1 ? "§4Désactivé" : value + "%");
+		this.getItemStack().setLore(value != -1 ? "§4Désactivé" : "§5" + value + "§2%");
 	}
 
 	@Override
