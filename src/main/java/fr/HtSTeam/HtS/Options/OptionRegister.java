@@ -87,7 +87,7 @@ public class OptionRegister {
 		
 		//Other
 		public static NuggetsOption nuggetBucket = new NuggetsOption();
-		public static AppleDrop dropApple = new AppleDrop();
+		public static AppleDrop dropApple = new AppleDrop(); 
 		public static AlgueUrticanteOption alguae = new AlgueUrticanteOption();
 		public static HeadShot headShot = new HeadShot();
 		

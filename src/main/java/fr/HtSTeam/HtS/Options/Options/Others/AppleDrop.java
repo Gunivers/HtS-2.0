@@ -101,7 +101,7 @@ public class AppleDrop extends OptionBuilder<Double>{
 	
 	public void dropApple(Location loc, Block block){
 		new Randomizer();
-		int randomValue = Randomizer.Rand(100);
+		int randomValue = Randomizer.rand(100);
 
 		if(randomValue <= getValue()){
 			ItemStack item = new ItemStack(Material.APPLE, 1);
