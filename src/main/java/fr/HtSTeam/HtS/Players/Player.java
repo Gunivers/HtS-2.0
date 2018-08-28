@@ -11,8 +11,19 @@ public class Player {
 	private static ArrayList<Player> players = new ArrayList<Player>();
 	private static HashMap<UUID, Player> uuids = new HashMap<UUID, Player>();
 	
+	/**
+	 * Returns the list of all Player (not neceseraly online).
+	 * 
+	 * @return List of Player
+	 */
 	public static ArrayList<Player> getPlayers() { return players; }
-	public static Player getPlayerFromUUID(UUID uuid) { return uuids.get(uuid); }
+	
+	/**
+	 * Returns the instance of Player from a UniqueId.
+	 * Should not return null.
+	 * @return Player
+	 */
+	public static Player getPlayerFromUUID(UUID uuid) { if (uuids.containsKey(uuid)) return uuids.get(uuid); return null; }
 	
 	private UUID uuid;
 	private String name;
@@ -20,26 +31,69 @@ public class Player {
 
 	private TeamBuilder team;
 	private TeamBuilder fake_team;
-
-	private Player(org.bukkit.entity.Player p) {
+	
+	
+	/**
+	 * Creates an independent player, highly modular and safe.
+	 * 
+	 * @param player 
+	 * 			Bukkit Player
+	 * @return Player
+	 */
+	private Player(org.bukkit.entity.Player player) {
 		players.add(this);
-		uuids.put(p.getUniqueId(), this);
+		uuids.put(player.getUniqueId(), this);
 		
-		uuid = p.getUniqueId();
-		name = p.getName();
-		display_name = p.getDisplayName();
+		uuid = player.getUniqueId();
+		name = player.getName();
+		display_name = player.getDisplayName();
 	}
 	
-	public static Player instance(org.bukkit.entity.Player p) {
-		if (uuids.containsKey(p.getUniqueId()))
-			return uuids.get(p.getUniqueId());
-		return new Player(p);	
+	/**
+	 * Creates an independent player, highly modular and safe. Cannot instantiate twice. 
+	 * 
+	 * @param player 
+	 * 			Bukkit Player
+	 * @return Player (new or already existing instance)
+	 */
+	public static Player instance(org.bukkit.entity.Player player) {
+		if (uuids.containsKey(player.getUniqueId()))
+			return uuids.get(player.getUniqueId());
+		return new Player(player);	
 	}
 	
+	/**
+	 * Returns the UUID of this Player.
+	 * 
+	 * @return UUID
+	 */
 	public UUID getUUID() { return uuid; }
+	
+	/**
+	 * Returns the UUID of this Player.
+	 * 
+	 * @return String
+	 */
 	public String getName() { return name; }
+	
+	/**
+	 * Returns the displayed name of this Player.
+	 * 
+	 * @return String
+	 */
 	public String getDisplay() { return display_name; }
 	
+	/**
+	 * Returns the team of this Player.
+	 * 
+	 * @return TeamBuilder
+	 */
 	public TeamBuilder getTeam() { return team; }
+	
+	/**
+	 * Returns the fake team of this Player.
+	 * 
+	 * @return TeamBuilder
+	 */
 	public TeamBuilder getFakeTeam() { return fake_team; }
 }
