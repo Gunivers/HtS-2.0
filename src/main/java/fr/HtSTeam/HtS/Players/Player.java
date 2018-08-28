@@ -21,6 +21,9 @@ public class Player {
 	/**
 	 * Returns the instance of Player from a UniqueId.
 	 * Should not return null.
+	 * 
+	 * @param uuid
+	 * 		UniqueId of Player
 	 * @return Player
 	 */
 	public static Player getPlayerFromUUID(UUID uuid) { if (uuids.containsKey(uuid)) return uuids.get(uuid); return null; }
