@@ -26,7 +26,7 @@ import fr.HtSTeam.HtS.Options.Options.Nether.NetherWartOption;
 import fr.HtSTeam.HtS.Options.Options.Nether.ShulkerNetherOption;
 import fr.HtSTeam.HtS.Options.Options.Others.AlgueUrticanteOption;
 import fr.HtSTeam.HtS.Options.Options.Others.AppleDrop;
-import fr.HtSTeam.HtS.Options.Options.Others.HeadShot;
+import fr.HtSTeam.HtS.Options.Options.Others.HeadShotOption;
 import fr.HtSTeam.HtS.Options.Options.Others.NuggetsOption;
 import fr.HtSTeam.HtS.Options.Options.Presets.LoadPreset;
 import fr.HtSTeam.HtS.Options.Options.Presets.SavePreset;
@@ -89,7 +89,7 @@ public class OptionRegister {
 		public static NuggetsOption nuggetBucket = new NuggetsOption();
 		public static AppleDrop dropApple = new AppleDrop(); 
 		public static AlgueUrticanteOption alguae = new AlgueUrticanteOption();
-		public static HeadShot headShot = new HeadShot();
+		public static HeadShotOption headShot = new HeadShotOption();
 		
 		public static BorderOption borderOption;
 		public static SavePreset savePreset = new SavePreset();

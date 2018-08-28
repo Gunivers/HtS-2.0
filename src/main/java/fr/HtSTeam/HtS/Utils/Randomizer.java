@@ -5,9 +5,7 @@ import java.util.Random;
 public class Randomizer {
 
 	private static Random random = new Random();
-	
-	public Randomizer() { }
-	
+		
 	/**
 	 * @param n borne maximum du randomizer
 	 * @return un nombre aléatoire entre (inclu) et n (exclu)

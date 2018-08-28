@@ -14,10 +14,10 @@ import org.bukkit.potion.PotionEffectType;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
-public class HeadShot extends OptionBuilder<Boolean>{
+public class HeadShotOption extends OptionBuilder<Boolean>{
 	
 	
-	public HeadShot() {
+	public HeadShotOption() {
 		super(Material.BOW, "HeadShot", "§4Désactivé", false, GUIRegister.other);
 	}
 
