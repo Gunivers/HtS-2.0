@@ -20,10 +20,7 @@ public class Player {
 
 	private TeamBuilder team;
 	private TeamBuilder fake_team;
-	
-	private UUID target;
-	private UUID hunter;
-	
+
 	private Player(org.bukkit.entity.Player p) {
 		players.add(this);
 		uuids.put(p.getUniqueId(), this);
@@ -45,7 +42,4 @@ public class Player {
 	
 	public TeamBuilder getTeam() { return team; }
 	public TeamBuilder getFakeTeam() { return fake_team; }
-	
-	public UUID getTarget() { return target; }
-	public UUID getHunter() { return hunter; }
 }
