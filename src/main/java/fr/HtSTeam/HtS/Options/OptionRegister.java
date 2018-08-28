@@ -25,6 +25,7 @@ import fr.HtSTeam.HtS.Options.Options.Mobs.SkeletonNerfOption;
 import fr.HtSTeam.HtS.Options.Options.Nether.NetherWartOption;
 import fr.HtSTeam.HtS.Options.Options.Nether.ShulkerNetherOption;
 import fr.HtSTeam.HtS.Options.Options.Others.AlgueUrticanteOption;
+import fr.HtSTeam.HtS.Options.Options.Others.AppleDrop;
 import fr.HtSTeam.HtS.Options.Options.Others.HeadShot;
 import fr.HtSTeam.HtS.Options.Options.Others.NuggetsOption;
 import fr.HtSTeam.HtS.Options.Options.Presets.LoadPreset;
@@ -86,6 +87,7 @@ public class OptionRegister {
 		
 		//Other
 		public static NuggetsOption nuggetBucket = new NuggetsOption();
+		public static AppleDrop dropApple = new AppleDrop();
 		public static AlgueUrticanteOption alguae = new AlgueUrticanteOption();
 		public static HeadShot headShot = new HeadShot();
 		
