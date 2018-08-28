@@ -44,14 +44,14 @@ public class UHC implements GameMode {
 
 		if (TeamBuilder.teamList.size() == 0) {
 			for (Player player : Bukkit.getOnlinePlayers()) {
-				int[] coords = Randomizer.RandCoord(-(border - 50) / 2, (border - 50) / 2, 255, 255, -(border - 50) / 2,
+				int[] coords = Randomizer.randCoord(-(border - 50) / 2, (border - 50) / 2, 255, 255, -(border - 50) / 2,
 						(border - 50) / 2);
 				player.teleport(new Location(player.getWorld(), coords[0], coords[1], coords[2]));
 			}
 
 		} else {
 			for (TeamBuilder tm : TeamBuilder.teamList) {
-				int[] coords = Randomizer.RandCoord(-(border - 50) / 2, (border - 50) / 2, 255, 255, -(border - 50) / 2,
+				int[] coords = Randomizer.randCoord(-(border - 50) / 2, (border - 50) / 2, 255, 255, -(border - 50) / 2,
 						(border - 50) / 2);
 				for (Entry<UUID, TeamBuilder> entry : TeamBuilder.playerTeam.entrySet()) {
 					if (entry.getValue() == tm)

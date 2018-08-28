@@ -85,7 +85,7 @@ public class TargetCycle extends OptionBuilder<Integer> {
 			ArrayList<UUID> sub_cycle = new ArrayList<UUID>();
 			for (TeamBuilder tb : tbs) {
 				ArrayList<UUID> players = teamPlayers.get(tb);
-				UUID uuid = players.get(Randomizer.RandI(0, players.size() - 1)); 
+				UUID uuid = players.get(Randomizer.randI(0, players.size() - 1)); 
 				sub_cycle.add(uuid); 
 				players.remove(uuid);
 				teamPlayers.put(tb, players);

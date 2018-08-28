@@ -56,7 +56,7 @@ public class ShulkerShellOption extends OptionBuilder<Boolean> {
 		if(EnumState.getState().equals(EnumState.RUNNING) && getValue() && e.getEntity() instanceof Player && ((ModifiersGUI) parent).getInventory((Player) e.getEntity()).contains(ism)) {
 			Player p = (Player) e.getEntity();
 			World world = p.getWorld();
-			if(Randomizer.RandRate(63)) {
+			if(Randomizer.randRate(63)) {
 				if(shellUse.containsKey(p)) {
 					shellUse.replace(p, shellUse.get(p) + 1);
 					if(shellUse.get(p) == 3) {
@@ -80,18 +80,18 @@ public class ShulkerShellOption extends OptionBuilder<Boolean> {
         if(getValue() && e.getEntityType() == EntityType.SHULKER){
         	ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
             e.getDrops().clear();
-            if(Randomizer.RandRate(7)){
+            if(Randomizer.randRate(7)){
                 ItemStack book = new ItemStack(Material.ENCHANTED_BOOK);
                 EnchantmentStorageMeta esm = (EnchantmentStorageMeta) book.getItemMeta();
                 esm.addStoredEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
                 book.setItemMeta(esm);
                 drops.add(book);
             }
-            if(Randomizer.RandRate(15)) {
+            if(Randomizer.randRate(15)) {
             	ItemStack is = new ItemStack(Material.SHULKER_SHELL, 1);
         		ItemMeta isM = is.getItemMeta();
         		ArrayList<String> lore = new ArrayList<String>();
-        		int rand = Randomizer.Rand(1000000000);
+        		int rand = Randomizer.rand(1000000000);
         		lore.add("A un pourcentage de chance de bloquer un coup.");
         		String res = Integer.toString(rand);
         		String news = "";

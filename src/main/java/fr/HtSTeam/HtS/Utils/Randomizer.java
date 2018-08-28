@@ -12,7 +12,8 @@ public class Randomizer {
 	 * @param n borne maximum du randomizer
 	 * @return un nombre aléatoire entre (inclu) et n (exclu)
 	 */
-	public static int Rand(int n) {
+	public static int rand(int n) {
+		random = new Random();
 		return random.nextInt(n);
 	}
 
@@ -21,7 +22,8 @@ public class Randomizer {
 	 * @param max borne maximum du randomizer
 	 * @return un nombre aléatoire entre min (inclu) et max (inclu)
 	 */
-	public static int RandI(int min, int max) {
+	public static int randI(int min, int max) {
+		random = new Random();
 		return random.nextInt(max + 1 - min) + min;
 	}
 
@@ -29,8 +31,8 @@ public class Randomizer {
 	 * @param rate un nombre en 0 et 100
 	 * @return une booléenne aléatoire suivant le pourcentage rentré
 	 */
-	public static boolean RandRate(int rate) {
-		if (random.nextInt(100) < rate)
+	public static boolean randRate(int rate) {
+		if (rand(100) < rate)
 			return true;
 		return false;
 	}
@@ -44,11 +46,11 @@ public class Randomizer {
 	 * @param Mz un Z maximum
 	 * @return Une location (X, Y, Z) aléatoire en fonction des paramètres entrés
 	 */
-	public static int[] RandCoord(int mx, int Mx, int my, int My, int mz, int Mz) {
+	public static int[] randCoord(int mx, int Mx, int my, int My, int mz, int Mz) {
 		int coords[] = new int[3];
-		coords[0] = RandI(mx, Mx);
-		coords[1] = RandI(my, My);
-		coords[2] = RandI(mz, Mz);
+		coords[0] = randI(mx, Mx);
+		coords[1] = randI(my, My);
+		coords[2] = randI(mz, Mz);
 		return coords;
 	}
 }

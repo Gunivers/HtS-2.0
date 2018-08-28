@@ -126,7 +126,7 @@ public class MobBuddyOption extends OptionBuilder<Boolean> {
 		if (!getValue())
 			return;
 		if (!e.getEntity().hasMetadata("buddy") && (e.getEntity() instanceof Monster || e.getEntityType() == EntityType.SLIME) && e.getEntity().getKiller() instanceof Player) {
-			if (Randomizer.RandRate(17)) {
+			if (Randomizer.randRate(17)) {
 				ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
 				drops.add(new ItemStackBuilder(e.getEntityType(), 1, ChatColor.GREEN + "Appel à un ami", "Fait apparaître un monstre qui combattra à vos côtés (il ne vous suivera pas)."));
 				e.getDrops().addAll(drops);				

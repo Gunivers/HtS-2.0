@@ -88,7 +88,7 @@ public class GUIBuilder extends IconBuilder<Null> {
 	public void addReturnButton() {
 		if(!parent.equals(null)) {
 			GUIBuilder parent2 = parent;
-			int rand = Randomizer.Rand(1000000000);
+			int rand = Randomizer.rand(1000000000);
 			String res = Integer.toString(rand);
     		String news = "";
     		for(int i = 0; i < res.length(); i++)

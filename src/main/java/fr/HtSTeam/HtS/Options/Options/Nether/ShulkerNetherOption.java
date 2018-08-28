@@ -43,7 +43,7 @@ public class ShulkerNetherOption extends OptionBuilder<Boolean> {
 
 	@EventHandler
 	public void onChunkLoad(ChunkLoadEvent e) {
-		if (getValue() && e.getWorld().getEnvironment().equals(Environment.NETHER) && Randomizer.RandRate(10)) {
+		if (getValue() && e.getWorld().getEnvironment().equals(Environment.NETHER) && Randomizer.randRate(10)) {
 			Chunk c = e.getChunk();
 			int cx = c.getX() << 4;
 			int cz = c.getZ() << 4;
@@ -58,7 +58,7 @@ public class ShulkerNetherOption extends OptionBuilder<Boolean> {
 			}
 			if(blocks.size() == 0)
 				return;
-			Block b = blocks.get(Randomizer.RandI(0, blocks.size() - 1));
+			Block b = blocks.get(Randomizer.randI(0, blocks.size() - 1));
 			Shulker sh = (Shulker) (c.getWorld().spawnEntity(new Location(c.getWorld(), b.getX(), b.getY(), b.getZ()), EntityType.SHULKER));
 			sh.setColor(DyeColor.RED);
 		}

@@ -17,7 +17,7 @@ public class ChargedCreeper implements Listener {
 	@EventHandler
 	public void onCreeperSpawn(CreatureSpawnEvent e) {
 		if(e.getEntityType().equals(EntityType.CREEPER))
-			if(Randomizer.RandRate(10)) {
+			if(Randomizer.randRate(10)) {
 				Creeper c = (Creeper) e.getEntity();
 				c.setPowered(true);
 			}
