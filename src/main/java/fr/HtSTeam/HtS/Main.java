@@ -43,9 +43,9 @@ public class Main extends JavaPlugin {
 				FileExtractor.wdir = world.getName() + "/data/loot_tables";
 				world.setPVP(false);
 				world.setSpawnLocation(0, 205, 0);
+				world.setGameRule(GameRule.SEND_COMMAND_FEEDBACK, false);
 			}	
 		}
-		world.setGameRule(GameRule.SEND_COMMAND_FEEDBACK, false);
 		timer = new TimerTask(0, 1);
 		
 		getServer().getPluginManager().registerEvents(new Event(), plugin);

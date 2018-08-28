@@ -19,7 +19,6 @@ import org.bukkit.scoreboard.Team;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 
-@SuppressWarnings("unused")
 public class SimpleScoreboard implements Scoreboard {
 
     private static final String TEAM_PREFIX = "Scoreboard_";

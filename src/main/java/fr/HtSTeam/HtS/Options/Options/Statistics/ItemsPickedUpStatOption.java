@@ -11,7 +11,6 @@ import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.EnumStats;
 import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.StatisticHandler;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 
-@SuppressWarnings("deprecation")
 public class ItemsPickedUpStatOption extends OptionBuilder<Boolean> {
 	
 	public ItemsPickedUpStatOption() {

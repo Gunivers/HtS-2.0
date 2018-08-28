@@ -14,7 +14,6 @@ import fr.HtSTeam.HtS.Players.PlayerInGame;
 
 public class OptionCommand implements CommandExecutor {
 
-	@SuppressWarnings("unused")
 	private Main main;
 
 	public OptionCommand(Main main) {

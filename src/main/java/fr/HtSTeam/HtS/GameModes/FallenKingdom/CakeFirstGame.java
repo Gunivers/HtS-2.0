@@ -10,7 +10,6 @@ import org.bukkit.event.block.BlockPlaceEvent;
 public class CakeFirstGame implements Listener {
 
 	
-	@SuppressWarnings("deprecation")
 	@EventHandler(priority=EventPriority.HIGHEST)
 	public void onConcretePlace(BlockPlaceEvent e) {
 		if((Tag.BANNERS.isTagged(e.getBlock().getType()) || e.getBlock().getType().equals(Material.CAKE)) /*&& e.getBlockAgainst().getType().equals(Material.CONCRETE)*/)

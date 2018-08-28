@@ -22,7 +22,6 @@ import fr.HtSTeam.HtS.Utils.JSON;
 
 public class StartCommand implements CommandExecutor {
 
-	@SuppressWarnings("unused")
 	private Main main;
 	
 	public StartCommand(Main main) {

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitTask;
 
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Main;
@@ -31,8 +30,7 @@ public class TimerTask {
 		if (!isActivate) {
 			isActivate = true;
 			executeTimer();
-			@SuppressWarnings("unused")
-			BukkitTask task = new BukkitRunnable() {
+			new BukkitRunnable() {
 				public void run() {
 					if(!pause) {
 						time += step;
