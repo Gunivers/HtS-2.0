@@ -10,7 +10,6 @@ import org.bukkit.World.Environment;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.HtSTeam.HtS.Commands.CommandsManager;
-import fr.HtSTeam.HtS.Events.Strutcture.Event;
 import fr.HtSTeam.HtS.GameModes.GameMode;
 import fr.HtSTeam.HtS.GameModes.UHC.Common.UHC;
 import fr.HtSTeam.HtS.Options.OptionRegister;
@@ -47,9 +46,7 @@ public class Main extends JavaPlugin {
 			}	
 		}
 		timer = new TimerTask(0, 1);
-		
-		getServer().getPluginManager().registerEvents(new Event(), plugin);
-		
+				
 		ScoreboardLib.setPluginInstance(plugin);
 		OptionRegister.register();
 		CommandsManager.loadCommands(plugin);

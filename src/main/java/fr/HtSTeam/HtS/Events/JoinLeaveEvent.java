@@ -3,12 +3,12 @@ package fr.HtSTeam.HtS.Events;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.Events.Strutcture.EventHandler;
 import fr.HtSTeam.HtS.GameModes.UHC.SyT.RadarFrequencyOption;
 import fr.HtSTeam.HtS.GameModes.UHC.SyT.SyT;
 import fr.HtSTeam.HtS.Scoreboard.ScoreBoard;
