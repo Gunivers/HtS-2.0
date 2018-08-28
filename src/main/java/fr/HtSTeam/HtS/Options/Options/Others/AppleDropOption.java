@@ -65,7 +65,7 @@ public class AppleDropOption extends OptionBuilder<Double>{
 
 	@EventHandler
 	public void breakBlock(BlockBreakEvent e){
-		if((e.getBlock().getType().equals(Material.OAK_LEAVES) || e.getBlock().getType().equals(Material.DARK_OAK_LEAVES)) && !e.getPlayer().getItemInHand().getType().equals(Material.SHEARS)){
+		if((e.getBlock().getType().equals(Material.OAK_LEAVES) || e.getBlock().getType().equals(Material.DARK_OAK_LEAVES)) && !e.getPlayer().getInventory().getItemInMainHand().getType().equals(Material.SHEARS)){
 			e.setCancelled(true);
 			e.getBlock().getWorld().getBlockAt(e.getBlock().getLocation()).setType(Material.AIR);
 			dropApple(e.getBlock().getLocation(), e.getBlock());	
