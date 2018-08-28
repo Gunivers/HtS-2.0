@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Events.Strutcture;
+package fr.HtSTeam.HtS.Events.Structure;
 
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;

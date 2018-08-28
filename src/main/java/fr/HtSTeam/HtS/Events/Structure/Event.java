@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Events.Strutcture;
+package fr.HtSTeam.HtS.Events.Structure;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
