@@ -1,6 +1,7 @@
 package fr.HtSTeam.HtS.Players;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
 
 import fr.HtSTeam.HtS.Teams.TeamBuilder;
@@ -8,8 +9,10 @@ import fr.HtSTeam.HtS.Teams.TeamBuilder;
 public class Player {
 	
 	private static ArrayList<Player> players = new ArrayList<Player>();
+	private static HashMap<UUID, Player> uuids = new HashMap<UUID, Player>();
 	
 	public static ArrayList<Player> getPlayers() { return players; }
+	public static Player getPlayerFromUUID(UUID uuid) { return uuids.get(uuid); }
 	
 	private UUID uuid;
 	private String name;
@@ -23,6 +26,7 @@ public class Player {
 	
 	private Player(org.bukkit.entity.Player p) {
 		players.add(this);
+		uuids.put(p.getUniqueId(), this);
 		
 		uuid = p.getUniqueId();
 		name = p.getName();
@@ -30,9 +34,8 @@ public class Player {
 	}
 	
 	public static Player instance(org.bukkit.entity.Player p) {
-		for (Player player : players)
-			if (player.getUUID() == p.getUniqueId())
-				return player;
+		if (uuids.containsKey(p.getUniqueId()))
+			return uuids.get(p.getUniqueId());
 		return new Player(p);	
 	}
 	
