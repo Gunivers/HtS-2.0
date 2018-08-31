@@ -105,14 +105,14 @@ public class AppleDropOption extends OptionBuilder<Double>{
 
 		if(randomValue <= getValue()){
 			ItemStack item = new ItemStack(Material.APPLE, 1);
-			loc.getWorld().dropItemNaturally(loc, item).setVelocity(new Vector(0,0,0));
+			loc.getWorld().dropItemNaturally(loc, item);
 		}else if(randomValue <= getValue()+10.0){
 			if(block.getType().equals(Material.OAK_WOOD)) {
 				ItemStack item = new ItemStack(Material.OAK_SAPLING, 1);
-				loc.getWorld().dropItemNaturally(loc, item).setVelocity(new Vector(0,0,0));
+				loc.getWorld().dropItemNaturally(loc, item);
 			}else {
 				ItemStack item = new ItemStack(Material.DARK_OAK_SAPLING, 1);
-				loc.getWorld().dropItemNaturally(loc, item).setVelocity(new Vector(0,0,0));
+				loc.getWorld().dropItemNaturally(loc, item);
 			}
 		}		
 	}
