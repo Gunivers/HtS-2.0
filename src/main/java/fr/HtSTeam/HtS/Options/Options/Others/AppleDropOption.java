@@ -67,7 +67,6 @@ public class AppleDropOption extends OptionBuilder<Double>{
 	public void breakBlock(BlockBreakEvent e){
 		if((e.getBlock().getType().equals(Material.OAK_LEAVES) || e.getBlock().getType().equals(Material.DARK_OAK_LEAVES)) && !e.getPlayer().getInventory().getItemInMainHand().getType().equals(Material.SHEARS)){
 			e.setCancelled(true);
-			e.getBlock().getWorld().getBlockAt(e.getBlock().getLocation()).setType(Material.AIR);
 			dropApple(e.getBlock().getLocation(), e.getBlock());	
 		}
 	}
@@ -76,7 +75,6 @@ public class AppleDropOption extends OptionBuilder<Double>{
 	public void explodeBlock(BlockExplodeEvent e){
 		if((e.getBlock().getType().equals(Material.OAK_LEAVES) || e.getBlock().getType().equals(Material.DARK_OAK_LEAVES))){
 			e.setCancelled(true);
-			e.getBlock().getWorld().getBlockAt(e.getBlock().getLocation()).setType(Material.AIR);
 			dropApple(e.getBlock().getLocation(), e.getBlock());
 		}
 	}
@@ -85,7 +83,6 @@ public class AppleDropOption extends OptionBuilder<Double>{
 	public void leavesBlock(LeavesDecayEvent e){
 		if((e.getBlock().getType().equals(Material.OAK_LEAVES) || e.getBlock().getType().equals(Material.DARK_OAK_LEAVES))){
 			e.setCancelled(true);
-			e.getBlock().getWorld().getBlockAt(e.getBlock().getLocation()).setType(Material.AIR);
 			dropApple(e.getBlock().getLocation(), e.getBlock());
 		}
 	}
@@ -94,12 +91,16 @@ public class AppleDropOption extends OptionBuilder<Double>{
 	public void burnBlock(BlockBurnEvent e){
 		if((e.getBlock().getType().equals(Material.OAK_LEAVES) || e.getBlock().getType().equals(Material.DARK_OAK_LEAVES))){
 			e.setCancelled(true);
-			e.getBlock().getWorld().getBlockAt(e.getBlock().getLocation()).setType(Material.AIR);
 			dropApple(e.getBlock().getLocation(), e.getBlock());
 		}
 	}
 	
 	public void dropApple(Location loc, Block block){
+		loc.getWorld().getBlockAt(loc).setType(Material.AIR);
+		loc.setX(loc.getX()+0.5);
+		loc.setY(loc.getY()+0.5);
+		loc.setZ(loc.getZ()+0.5);
+		
 		int randomValue = Randomizer.rand(100);
 
 		if(randomValue <= getValue()){
