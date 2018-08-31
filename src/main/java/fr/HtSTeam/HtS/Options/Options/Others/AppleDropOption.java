@@ -22,7 +22,7 @@ public class AppleDropOption extends OptionBuilder<Double>{
 	private Player p;
 	
 	public AppleDropOption() {
-		super(Material.APPLE, "Loot des pommes", "§2Activé", 0.5, GUIRegister.other);
+		super(Material.APPLE, "Loot des pommes", "§2Activé", 1.0, GUIRegister.other);
 	}
 	
 	@Override
@@ -39,14 +39,14 @@ public class AppleDropOption extends OptionBuilder<Double>{
 			e.setCancelled(true);
 			try {
 				double value = Double.parseDouble(e.getMessage());
-				if(value >= 0 && value <= 100) {
-					setState(value);
+				if(value >= 0 && value <= 100 && value/0.5 == 1) {
+					setState(value*2);
 					p.sendMessage("§2Taux de loot de pommes à " + getValue() + "%." );
 					parent.update(this);
 					request = false;
 					return;
 				}
-				p.sendMessage("§4Valeur non comprise entre 0 et 100.");
+				p.sendMessage("§4Valeur non comprise entre 0 et 100 et non multiple de 0.5.");
 			} catch(NumberFormatException e2) {
 				p.sendMessage("§4Valeur invalide.");
 			}
@@ -101,12 +101,12 @@ public class AppleDropOption extends OptionBuilder<Double>{
 		loc.setY(loc.getY()+0.5);
 		loc.setZ(loc.getZ()+0.5);
 		
-		int randomValue = Randomizer.rand(100);
+		int randomValue = Randomizer.rand(200);
 
 		if(randomValue <= getValue()){
 			ItemStack item = new ItemStack(Material.APPLE, 1);
 			loc.getWorld().dropItemNaturally(loc, item).setVelocity(new Vector(0,0,0));
-		}else if(randomValue <= getValue()+5.0){
+		}else if(randomValue <= getValue()+10.0){
 			if(block.getType().equals(Material.OAK_WOOD)) {
 				ItemStack item = new ItemStack(Material.OAK_SAPLING, 1);
 				loc.getWorld().dropItemNaturally(loc, item).setVelocity(new Vector(0,0,0));
