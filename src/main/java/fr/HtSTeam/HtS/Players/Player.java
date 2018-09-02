@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 import fr.HtSTeam.HtS.Events.Structure.EventHandler;
@@ -106,6 +107,24 @@ public class Player {
 	 */
 	public TeamBuilder getFakeTeam() { return fake_team; }
 	
+	/**
+	 * Use this method to whether you should run your method in case the player is offline. You can add your method to beexecuted when the player reconnects
+	 * 	
+	 * @param addasync should it add this method to run at the player reconnection
+	 * @param args parameters' values of method
+	 * @return
+	 * 		true when the player is online <p></p>
+	 * 		false when the player is offline
+	 */
+	private boolean canExecute(final boolean addasync, final Object... args) {
+		if (Bukkit.getPlayer(uuid) != null)
+			return true;
+		else {
+			if (addasync)
+				addAsyncTask(args);
+			return false;
+		}
+	}
 	
 	/**
 	 * Add a method to be run when the player reconnects  
@@ -116,12 +135,12 @@ public class Player {
 	private void addAsyncTask(final Object... args) {
 		Method m = null;
 		for (Method o : getClass().getMethods())
-			if (o.getName().equals(Thread.currentThread().getStackTrace()[2].getMethodName()))
+			if (o.getName().equals(Thread.currentThread().getStackTrace()[3].getMethodName()))
 				m = o;
 		
 		if (m == null)
 			return;
-		
+
 		final Method method = m;
 		Runnable runnable = () -> {
 			try {
