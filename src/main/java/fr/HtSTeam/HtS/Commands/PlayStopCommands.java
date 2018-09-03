@@ -28,8 +28,6 @@ import org.bukkit.plugin.PluginManager;
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
-import fr.HtSTeam.HtS.Scoreboard.ScoreBoard;
-import fr.HtSTeam.HtS.Scoreboard.Scoreboard.Scoreboard;
 import fr.HtSTeam.HtS.Utils.JSON;
 import net.minecraft.server.v1_13_R2.Entity;
 import net.minecraft.server.v1_13_R2.NBTTagCompound;
@@ -80,15 +78,12 @@ public class PlayStopCommands implements CommandExecutor, Listener {
 			} else if (cmd.getName().equalsIgnoreCase("end") && sender.hasPermission("end.use")) {
 				EnumState.setState(EnumState.WAIT);
 				Main.timer.stop();
-				for(Scoreboard b : ScoreBoard.scoreboards.values())
-				    b.deactivate();
 				for(UUID uuid : PlayerInGame.playerInGame) {
 					Bukkit.getPlayer(uuid).setHealth(Bukkit.getPlayer(uuid).getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
 					Bukkit.getPlayer(uuid).setFoodLevel(20);
 					Bukkit.getPlayer(uuid).getInventory().clear();
 					Bukkit.getPlayer(uuid).setLevel(0);
 				}
-				ScoreBoard.scoreboards.clear();
 				PlayerInGame.playerInGame.clear();
 				PlayerInGame.uuidToName.clear();
 				return true;

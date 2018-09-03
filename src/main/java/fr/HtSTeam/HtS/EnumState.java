@@ -11,7 +11,6 @@ import fr.HtSTeam.HtS.Options.Structure.EndTrigger;
 import fr.HtSTeam.HtS.Options.Structure.IconBuilder;
 import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
 import fr.HtSTeam.HtS.Players.PlayerRemove;
-import fr.HtSTeam.HtS.Scoreboard.ScoreBoard;
 
 public enum EnumState implements Listener {
 	
@@ -33,7 +32,6 @@ public enum EnumState implements Listener {
 			StatisticHandler.init();
 		} else if (state.equals(EnumState.FINISHING)) {
 			IconBuilder.optionsList.keySet().stream().filter(key -> key instanceof EndTrigger).forEach(key -> ((EndTrigger) key).onPartyEnd());
-			ScoreBoard.scoreboards.forEach((uuid, sb) -> { sb.deactivate(); });
 			StatisticHandler.display();
 			try {
 				StatisticHandler.save();

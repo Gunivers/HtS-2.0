@@ -17,7 +17,6 @@ import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.Structure.IconBuilder;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
-import fr.HtSTeam.HtS.Scoreboard.ScoreBoard;
 import fr.HtSTeam.HtS.Utils.JSON;
 
 public class StartCommand implements CommandExecutor {
@@ -59,8 +58,6 @@ public class StartCommand implements CommandExecutor {
 						player.setSaturation(20);
 						player.getInventory().clear();
 						player.setGameMode(GameMode.SURVIVAL);
-						
-						ScoreBoard.send(player);
 					}
 				
 				for (Entity e : Main.world.getEntities())
