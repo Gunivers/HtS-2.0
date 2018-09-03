@@ -31,8 +31,13 @@ public class XmlFile {
 
 	private File file;
 	private Document doc;
+	
+	private String parent;
+	private String fileName;
 
 	public XmlFile(String parent, String fileName) {
+		this.parent = parent;
+		this.fileName = fileName;
 		file = new File(Main.plugin.getDataFolder() + "/" + parent + "/", fileName + ".xml");
 		if (file.exists()) {
 			try {
@@ -52,6 +57,10 @@ public class XmlFile {
 	public void save() {
 		if (!file.exists())
 			file.getParentFile().mkdirs();
+		else {
+			file.delete();
+			file = new File(Main.plugin.getDataFolder() + "/" + parent + "/", fileName + ".xml");
+		}
 		try {
 			Transformer tf = TransformerFactory.newInstance().newTransformer();
 			tf.setOutputProperty(OutputKeys.INDENT, "yes");
