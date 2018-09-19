@@ -13,12 +13,26 @@ import fr.HtSTeam.HtS.Options.Options.Presets.Disabler;
 
 public class DisabledPotionsPreset extends Disabler
 {
-
-	public DisabledPotionsPreset(String name, String nameIcon, String description, Material material, int page_id_max)
+	private static final String name = "Potions Impossibles";
+	/**<strong>Constructor</strong>
+	 * <br \>Construct a disabler with:
+	 * <ul>
+	 *  <li> name = "Potions Impossibles"
+	 *  <li> icon name = "§4Potions Impossibles"
+	 *  <li> description = "Désactive la création de potions"
+	 *  <li> icon = Material.POTION
+	 *  <li> max_page_id = 1
+	 * </ul>
+	 */
+	public DisabledPotionsPreset()
 	{
-		super(name, nameIcon, description, material, 2);
+		super(name, "§4" + name, "Désactive la création de potions", Material.POTION, 1);
 	}
 	
+	/**
+	 * It cancels the event if the item isn't a potion.
+	 * @see - JavaDoc of the overridden method
+	 */
 	@Override
 	@EventHandler
 	public void onPlayerClick(InventoryClickEvent e)
@@ -35,8 +49,14 @@ public class DisabledPotionsPreset extends Disabler
 		}
 	}
 	
+	/**
+	 * If the potion is disabled, this method cancels the event.
+	 * 
+	 * @param e
+	 *         a BrewEvent
+	 */
 	@EventHandler
-	public void onBrewItem(BrewEvent e)
+	public void onBrewPotion(BrewEvent e)
 	{
 		ItemStack[] potions = {e.getContents().getItem(0), e.getContents().getItem(1), e.getContents().getItem(2)};
 		

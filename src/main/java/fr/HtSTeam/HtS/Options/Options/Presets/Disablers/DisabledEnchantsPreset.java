@@ -19,12 +19,26 @@ import fr.HtSTeam.HtS.Options.Options.Presets.Disabler;
 public class DisabledEnchantsPreset extends Disabler
 {
 	private static final String name = "Enchantements Impossibles";
-	
+
+	/**<strong>Constructor</strong>
+	 * <br \>Construct a disabler with:
+	 * <ul>
+	 *  <li> name = "Enchantements Impossibles"
+	 *  <li> icon name = "§4Enchantements Impossibles"
+	 *  <li> description = "Désactive des enchantements"
+	 *  <li> icon = Material.ENCHANTED_BOOK
+	 *  <li> max_page_id = 2
+	 * </ul>
+	 */
 	public DisabledEnchantsPreset()
 	{
-		super(name, "§4" + name, "Désactive des enchantements", Material.STICK, 9);
+		super(name, "§4" + name, "Désactive des enchantements", Material.ENCHANTED_BOOK, 2);
 	}
 
+	/**
+	 * It cancels the event if the item isn't an enchanted_book.
+	 * @see - JavaDoc of the overridden method
+	 */
 	@Override
 	@EventHandler
 	public void onPlayerClick(InventoryClickEvent e)
@@ -44,6 +58,12 @@ public class DisabledEnchantsPreset extends Disabler
 		}
 	}
 	
+	/**
+	 * If the enchantment is disabled, this method cancels the event.
+	 * 
+	 * @param e
+	 *         an EnchantItemEvent
+	 */
 	@EventHandler
 	public void onEnchantItem(EnchantItemEvent e)
 	{

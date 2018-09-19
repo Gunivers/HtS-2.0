@@ -27,6 +27,13 @@ import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.GUIBuilder;
 
+/**
+ * This is the Disabler abstract class.
+ * <br \>It manages all the disablers, as it builds the gui and implements the save/load methods.
+ * <br \>It also overrides the refresh method so as to clear any exceptions when updating the pages.
+ * 
+ * @author A~Z
+ */
 public abstract class Disabler extends GUIBuilder implements OptionIO
 {
 	protected static final int rows = 8;
@@ -43,12 +50,31 @@ public abstract class Disabler extends GUIBuilder implements OptionIO
 	protected final ItemStackBuilder prevPageArrow = new ItemStackBuilder(Material.ARROW, 1, "§7Page précédente", "");
 	protected final ItemStackBuilder nextPageArrow = new ItemStackBuilder(Material.ARROW, 1, "§7Page suivante", "");
 	
+	/**<strong>Constructor</strong>
+	 * 
+	 * @param name
+	 *            The name of the opened gui
+	 * @param nameIcon
+	 *                The name of the option icon
+	 * @param description
+	 *                   The description of the option icon
+	 * @param material
+	 *                The icon
+	 * @param page_id_max
+	 *                   The max number of pages
+	 */
 	public Disabler(String name, String nameIcon, String description, Material material, int page_id_max)
 	{
 		super(name, rows +1, nameIcon, description, material, GUIRegister.presets);
 		this.page_id_max = page_id_max;
 	}
 
+	/**
+	 * <p>When the players clicks on the option icon, it will open the disabler's gui.</p>
+	 * 
+	 * @param p
+	 *         a player
+	 */
 	@Override
 	public void event(Player p)
 	{
@@ -56,8 +82,15 @@ public abstract class Disabler extends GUIBuilder implements OptionIO
 		this.page_id = 1;
 		
 		this.refresh(p);
+		p.openInventory(this.inv);
 	}
 	
+	/**
+	 * <p>This method loads the selected page in the gui.</p>
+	 * 
+	 * @param p
+	 *         a player
+	 */
 	@Override
 	public void refresh(Player p)
 	{
@@ -95,6 +128,21 @@ public abstract class Disabler extends GUIBuilder implements OptionIO
 		this.inv.setItem(9*rows +7, this.nothing);
 	}
 	
+	/**
+	 * <p>
+	 * When a player clicks in the gui, it does an action according to the picked item.
+	 * 	<ul>
+	 * 	<li> shulker box: save</li>
+	 * 	<li> arrow: previous page</li>
+	 * 	<li> paper: nothing</li>
+	 * 	<li> arrow: next page</li>
+	 * 	<li> red_stained_glass: nothing</li>
+	 * 	</ul>
+	 * </p>
+	 * 
+	 * @param e
+	 *         The event
+	 */
 	@EventHandler
 	public void onPlayerClick(InventoryClickEvent e)
 	{
@@ -140,6 +188,13 @@ public abstract class Disabler extends GUIBuilder implements OptionIO
 		}
 	}
 	
+	/**
+	 * <p>This method will load the items of the gui. As for me, the location remain unknown ¯\_(ツ)_/¯</p>
+	 * 
+	 * @author ikbrunel
+	 * @param o
+	 *         an Object. The location ?
+	 */
 	@Override
 	public void load(Object o)
 	{
@@ -174,6 +229,13 @@ public abstract class Disabler extends GUIBuilder implements OptionIO
 		}
 	}
 
+	/**
+	 * <p>This method will save the items in a very mysterious location ¯\_(ツ)_/¯</p>
+	 * 
+	 * @author ikbrunel
+	 * @return an ArrayList{String}
+	 *                             looking like containing the names of the element
+	 */
 	@Override
 	public ArrayList<String> save()
 	{
@@ -207,11 +269,21 @@ public abstract class Disabler extends GUIBuilder implements OptionIO
 		}
 	}
 
+	/**
+	 * <p>Return the items of the disabler's gui.</p>
+	 * 
+	 * @return an ItemStack[]
+	 */
 	public ItemStack[] getItems()
 	{
 		return items;
 	}
 	
+	/**
+	 * Return the name of the gui as an identifier.
+	 * 
+	 * @return a String
+	 */
 	@Override
 	public String getId()
 	{
