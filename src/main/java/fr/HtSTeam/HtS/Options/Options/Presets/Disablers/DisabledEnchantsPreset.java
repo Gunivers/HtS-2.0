@@ -5,14 +5,16 @@ import java.util.Map.Entry;
 
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.enchantment.EnchantItemEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
+
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import fr.HtSTeam.HtS.Options.Options.Presets.Disabler;
 
-import org.bukkit.entity.Player;
 
 public class DisabledEnchantsPreset extends Disabler
 {

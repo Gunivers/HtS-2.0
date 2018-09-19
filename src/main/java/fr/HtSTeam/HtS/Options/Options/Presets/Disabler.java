@@ -7,15 +7,19 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.EOFException;
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Base64;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.InventoryClickEvent;
+
 import org.bukkit.inventory.ItemStack;
+
 import org.bukkit.util.io.BukkitObjectInputStream;
 import org.bukkit.util.io.BukkitObjectOutputStream;
 
@@ -58,6 +62,13 @@ public abstract class Disabler extends GUIBuilder implements OptionIO
 	public void refresh(Player p)
 	{
 		this.inv.clear();
+
+		for (int i = 9*rows * (this.page_id -1); i < 9*rows * this.page_id; i++)
+		{
+			if (i >= this.items.length) break;
+			
+			this.inv.addItem(items[i]);
+		}
 		
 		this.page.setName("§5Page" + this.page_id);
 
@@ -68,19 +79,20 @@ public abstract class Disabler extends GUIBuilder implements OptionIO
 		this.inv.setItem(9*rows +1, this.nothing);
 		this.inv.setItem(9*rows +2, this.nothing);
 		
-		this.inv.setItem(9*rows +3, this.prevPageArrow);
+		if (this.page_id > 1)
+			this.inv.setItem(9*rows +3, this.prevPageArrow);
+		else
+			this.inv.setItem(9*rows +3, this.nothing);
+		
 		this.inv.setItem(9*rows +4, this.page);
-		this.inv.setItem(9*rows +5, this.nextPageArrow);
+		
+		if (this.page_id < this.page_id_max)
+			this.inv.setItem(9*rows +5, this.nextPageArrow);
+		else
+			this.inv.setItem(9*rows +5, this.nothing);
 
 		this.inv.setItem(9*rows +6, this.nothing);
 		this.inv.setItem(9*rows +7, this.nothing);
-
-		for (int i = 9*rows * (this.page_id -1); i < 9*rows * this.page_id; i++)
-		{
-			if (i >= this.items.length) break;
-			
-			this.inv.addItem(items[i]);
-		}
 	}
 	
 	@EventHandler
