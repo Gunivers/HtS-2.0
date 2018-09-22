@@ -5,7 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.inventory.ItemStack;
 
-import fr.HtSTeam.HtS.Options.Options.Presets.Disabler;
+import fr.HtSTeam.HtS.Options.Options.Presets.Disablers.Structure.Disabler;
 
 /**
  * This is the Disabler of Crafts

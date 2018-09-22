@@ -13,7 +13,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import fr.HtSTeam.HtS.Options.Options.Presets.Disabler;
+import fr.HtSTeam.HtS.Options.Options.Presets.Disablers.Structure.Disabler;
 
 
 public class DisabledEnchantsPreset extends Disabler

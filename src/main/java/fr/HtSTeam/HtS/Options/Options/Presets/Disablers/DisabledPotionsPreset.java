@@ -9,7 +9,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
 
-import fr.HtSTeam.HtS.Options.Options.Presets.Disabler;
+import fr.HtSTeam.HtS.Options.Options.Presets.Disablers.Structure.Disabler;
 
 public class DisabledPotionsPreset extends Disabler
 {

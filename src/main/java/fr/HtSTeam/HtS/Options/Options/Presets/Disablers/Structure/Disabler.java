@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Options.Options.Presets;
+package fr.HtSTeam.HtS.Options.Options.Presets.Disablers.Structure;
 
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 import fr.HtSTeam.HtS.Utils.Files.OptionIO;
@@ -16,6 +16,7 @@ import org.bukkit.Material;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
 import org.bukkit.inventory.ItemStack;
@@ -36,6 +37,7 @@ import fr.HtSTeam.HtS.Options.Structure.GUIBuilder;
  */
 public abstract class Disabler extends GUIBuilder implements OptionIO
 {
+	protected final ArrayList<Player> request = new ArrayList<>();
 	protected static final int rows = 8;
 	protected final int page_id_max;
 	
@@ -83,6 +85,8 @@ public abstract class Disabler extends GUIBuilder implements OptionIO
 		
 		this.refresh(p);
 		p.openInventory(this.inv);
+		
+		request.add(p);
 	}
 	
 	/**
@@ -146,6 +150,8 @@ public abstract class Disabler extends GUIBuilder implements OptionIO
 	@EventHandler
 	public void onPlayerClick(InventoryClickEvent e)
 	{
+		if (!request.contains(e.getWhoClicked())) return;
+		
 		if (!e.getInventory().getName().equals(inv.getName())) return;
 		
 		if (e.getCurrentItem() == this.nothing || e.getCurrentItem() == this.page)
@@ -186,6 +192,16 @@ public abstract class Disabler extends GUIBuilder implements OptionIO
 			this.page_id++;
 			this.refresh((Player) e.getWhoClicked());
 		}
+	}
+	
+	/**
+	 * <p>This method will remove the player that closes his inventory from the request list</p>
+	 * @param event
+	 */
+	@EventHandler
+	public void onCloseInventory(InventoryCloseEvent event)
+	{
+		request.remove(event.getPlayer());
 	}
 	
 	/**
