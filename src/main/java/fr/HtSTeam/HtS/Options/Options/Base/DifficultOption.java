@@ -30,7 +30,7 @@ public class DifficultOption extends OptionBuilder<Difficulty> {
 				break;
 		case 3: setState(Difficulty.PEACEFUL);
 				break;
-		}		
+		}
 	}
 	
 	private void setLore(Difficulty d) {
