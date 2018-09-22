@@ -73,6 +73,7 @@ public class SavePreset extends OptionBuilder<Null> {
 		} else if(request == 2 && e.getPlayer().equals(p)) {
 			e.setCancelled(true);
 			if(e.getMessage().toLowerCase().charAt(0) == 'o') {
+				file.delete();
 				save(file.getName().replaceAll(".xml", ""));
 				p = null;
 				request = 0;
