@@ -36,8 +36,15 @@ import fr.HtSTeam.HtS.Options.Options.Others.NuggetsOption;
 
 import fr.HtSTeam.HtS.Options.Options.Presets.LoadPreset;
 import fr.HtSTeam.HtS.Options.Options.Presets.SavePreset;
-import fr.HtSTeam.HtS.Options.Options.Presets.Disablers.*;
-import fr.HtSTeam.HtS.Options.Options.Probability.AppleDropOption;
+import fr.HtSTeam.HtS.Options.Options.Presets.Disablers.DisabledCraftsPreset;
+import fr.HtSTeam.HtS.Options.Options.Presets.Disablers.DisabledEnchantsPreset;
+import fr.HtSTeam.HtS.Options.Options.Presets.Disablers.DisabledPotionsPreset;
+
+import fr.HtSTeam.HtS.Options.Options.Probability.AppleDropProbaOption;
+import fr.HtSTeam.HtS.Options.Options.Probability.FlintDropProbaOption;
+import fr.HtSTeam.HtS.Options.Options.Probability.SpiderJockeyProbaOption;
+import fr.HtSTeam.HtS.Options.Options.Probability.ZombieJockeyProbaOption;
+
 import fr.HtSTeam.HtS.Options.Options.Statistics.ArrowHitStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.ArrowShotStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.DamageGivenStatOption;
@@ -98,9 +105,15 @@ public class OptionRegister {
 		//Crafts
 		public static ElytraCraftOption elytraCraft = new ElytraCraftOption();
 		
+		//Probability
+		public static AppleDropProbaOption appleDropProbability = new AppleDropProbaOption();
+		public static FlintDropProbaOption flintDropProbability = new FlintDropProbaOption();
+		public static SpiderJockeyProbaOption SpiderJockeyProbability = new SpiderJockeyProbaOption();
+		public static ZombieJockeyProbaOption ZombieJockeyProbability = new ZombieJockeyProbaOption();
+		
+		
 		//Other
 		public static NuggetsOption nuggetBucket = new NuggetsOption();
-		public static AppleDropOption dropApple = new AppleDropOption(); 
 		public static AlgueUrticanteOption alguae = new AlgueUrticanteOption();
 		public static HeadShotOption headShot = new HeadShotOption();
 		
