@@ -2,6 +2,7 @@ package fr.HtSTeam.HtS.Options;
 
 import fr.HtSTeam.HtS.Options.Options.AtDeath.GoldenAppleOption;
 import fr.HtSTeam.HtS.Options.Options.AtDeath.HeadOption;
+
 import fr.HtSTeam.HtS.Options.Options.Base.BorderOption;
 import fr.HtSTeam.HtS.Options.Options.Base.BreathOption;
 import fr.HtSTeam.HtS.Options.Options.Base.DayLightCycleOption;
@@ -11,7 +12,9 @@ import fr.HtSTeam.HtS.Options.Options.Base.FixDayOption;
 import fr.HtSTeam.HtS.Options.Options.Base.NoDamageOption;
 import fr.HtSTeam.HtS.Options.Options.Base.NoRegenOption;
 import fr.HtSTeam.HtS.Options.Options.Base.WeatherOption;
+
 import fr.HtSTeam.HtS.Options.Options.Crafts.ElytraCraftOption;
+
 import fr.HtSTeam.HtS.Options.Options.LootTables.BatOption;
 import fr.HtSTeam.HtS.Options.Options.LootTables.ChestOption;
 import fr.HtSTeam.HtS.Options.Options.LootTables.CrateOption;
@@ -19,35 +22,45 @@ import fr.HtSTeam.HtS.Options.Options.LootTables.FishingOption;
 import fr.HtSTeam.HtS.Options.Options.LootTables.GhastOption;
 import fr.HtSTeam.HtS.Options.Options.LootTables.SkeletonOption;
 import fr.HtSTeam.HtS.Options.Options.LootTables.ZombieOption;
+
 import fr.HtSTeam.HtS.Options.Options.Mobs.CreeperNerfOption;
 import fr.HtSTeam.HtS.Options.Options.Mobs.MobBuddyOption;
 import fr.HtSTeam.HtS.Options.Options.Mobs.SkeletonNerfOption;
+
 import fr.HtSTeam.HtS.Options.Options.Nether.NetherWartOption;
 import fr.HtSTeam.HtS.Options.Options.Nether.ShulkerNetherOption;
+
 import fr.HtSTeam.HtS.Options.Options.Others.AlgueUrticanteOption;
-import fr.HtSTeam.HtS.Options.Options.Others.AppleDropOption;
 import fr.HtSTeam.HtS.Options.Options.Others.HeadShotOption;
 import fr.HtSTeam.HtS.Options.Options.Others.NuggetsOption;
+
 import fr.HtSTeam.HtS.Options.Options.Presets.LoadPreset;
 import fr.HtSTeam.HtS.Options.Options.Presets.SavePreset;
+import fr.HtSTeam.HtS.Options.Options.Presets.Disablers.*;
+import fr.HtSTeam.HtS.Options.Options.Probability.AppleDropOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.ArrowHitStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.ArrowShotStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.DamageGivenStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.DamageReceivedStatOption;
+
 import fr.HtSTeam.HtS.Options.Options.Statistics.DisconnectionStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.EnchantmentsDoneStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.GoldenAppleEatenStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.ItemsPickedUpStatOption;
+
 import fr.HtSTeam.HtS.Options.Options.Statistics.KillsMonsterStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.KillsPassiveStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.KillsPlayerNameStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.KillsPlayerStatOption;
+
 import fr.HtSTeam.HtS.Options.Options.Statistics.MinedDiamondsStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.MinedGoldOresStatOption;
+
 import fr.HtSTeam.HtS.Options.Options.Statistics.PortalsCrossedStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.PotionDrunkStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.PotionThrownStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.TargetsStatOption;
+
 import fr.HtSTeam.HtS.Options.Options.Statistics.TimePlayedStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.TimeSneakedStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.TimeSprintedStatOption;
@@ -92,8 +105,14 @@ public class OptionRegister {
 		public static HeadShotOption headShot = new HeadShotOption();
 		
 		public static BorderOption borderOption;
+		
+		//Presets
 		public static SavePreset savePreset = new SavePreset();
 		public static LoadPreset loadPreset = new LoadPreset();
+		
+		public static DisabledCraftsPreset disabledCraftsPreset = new DisabledCraftsPreset();
+		public static DisabledEnchantsPreset disabledEnchantsPreset = new DisabledEnchantsPreset();
+		public static DisabledPotionsPreset disabledPotionsPreset = new DisabledPotionsPreset();
 		
 		// Statistics
 		

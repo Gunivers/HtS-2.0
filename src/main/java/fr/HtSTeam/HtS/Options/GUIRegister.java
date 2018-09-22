@@ -29,8 +29,10 @@ public class GUIRegister {
 	public static GUIBuilder loottables = new GUIBuilder("Loot Tables", 1, "Loot Tables", "Régler les Loot Tables", Material.BOOK, main);
 	public static GUIBuilder nether = new GUIBuilder("Nether", 1, "Nether", "Régler le Nether", Material.NETHERRACK, main);
 	public static GUIBuilder crafts = new GUIBuilder("Crafts", 1, "Crafts","Gérer les crafts customs", Material.CRAFTING_TABLE, main);
+	public static GUIBuilder probability = new GUIBuilder("Probabilités", 1, "Probabilités", "Modifie les probabiltés", Material.FEATHER, main);
 	public static GUIBuilder other = new GUIBuilder("Autre", 1, "Autre", "Options inclassables", Material.CHEST, main);
 	public static GUIBuilder disableMob = new GUIBuilder("Désactivation Mobs", 5, "Désactivation Mobs", "Désactiver le spawn de certains mobs", Material.WOLF_SPAWN_EGG, mob);
+	
 	public static StartingStuffGUI startingStuff = new StartingStuffGUI();
 
 	public static GUIBuilder stats = new GUIBuilder("Statistiques", 3, "Statistiques", "Permet de définir les statistiques trackées", Material.WRITABLE_BOOK, main);
