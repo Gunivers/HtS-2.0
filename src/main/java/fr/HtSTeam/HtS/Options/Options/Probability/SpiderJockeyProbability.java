@@ -13,9 +13,9 @@ import fr.HtSTeam.HtS.Options.Options.Probability.Structure.Probability;
  * @author A~Z
  *
  */
-public class SpiderJockeyProbaOption extends Probability
+public class SpiderJockeyProbability extends Probability
 {
-	public SpiderJockeyProbaOption()
+	public SpiderJockeyProbability()
 	{
 		super(Material.BONE, "Spider Jockey", "§62.0§2%", 2.d);
 	}

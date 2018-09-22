@@ -14,9 +14,9 @@ import fr.HtSTeam.HtS.Options.Options.Probability.Structure.Probability;
  * @author A~Z
  *
  */
-public class FlintDropProbaOption extends Probability
+public class FlintDropProbability extends Probability
 {	
-	public FlintDropProbaOption()
+	public FlintDropProbability()
 	{
 		super(Material.FLINT, "Drop de Silex", "§630.0§2%", 30.D);
 	}

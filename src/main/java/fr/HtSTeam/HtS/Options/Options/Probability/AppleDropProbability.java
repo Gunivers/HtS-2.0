@@ -18,9 +18,9 @@ import fr.HtSTeam.HtS.Utils.Randomizer;
  * @author TheDarven
  *
  */
-public class AppleDropProbaOption extends Probability
+public class AppleDropProbability extends Probability
 {
-	public AppleDropProbaOption()
+	public AppleDropProbability()
 	{
 		super(Material.APPLE, "Drop de Pomme", "§61.0§2%", 1.0);
 	}
