@@ -2,11 +2,11 @@ package fr.HtSTeam.HtS.Options.Options.Probability;
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockExplodeEvent;
 import org.bukkit.inventory.ItemStack;
 
-import fr.HtSTeam.HtS.Events.Structure.EventHandler;
 import fr.HtSTeam.HtS.Options.Options.Probability.Structure.Probability;
 
 /**
