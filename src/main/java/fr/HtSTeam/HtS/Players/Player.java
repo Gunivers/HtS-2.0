@@ -1,5 +1,7 @@
 package fr.HtSTeam.HtS.Players;
 
+import java.io.File;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -9,15 +11,17 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import fr.HtSTeam.HtS.Events.Structure.EventHandler;
+import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Teams.TeamBuilder;
+import fr.HtSTeam.HtS.Utils.Tag;
+import fr.HtSTeam.HtS.Utils.Files.XmlFile;
 
 public class Player {
 	
 	private static ArrayList<Player> players = new ArrayList<Player>();
 	private static HashMap<UUID, Player> uuids = new HashMap<UUID, Player>();
 	/**
-	 * Returns the list of all Player (not neceseraly online).
+	 * Returns the list of all Player (not necessarily online).
 	 * 
 	 * @return List of Player
 	 */
@@ -104,6 +108,41 @@ public class Player {
 		return new Player(player);	
 	}
 	
+	/**
+	 * Temporary, anyone to delete
+	 * @param uuid
+	 * @param name
+	 * @param display_name
+	 */
+	public Player(UUID uuid, String name, String display_name) {
+		players.add(this);
+		uuids.put(uuid, this);
+		
+		this.uuid = uuid;
+		this.name = name;
+		this.display_name = display_name;
+	}
+	@SuppressWarnings("serial")
+	public void save() {
+		ArrayList<Field> fields = new ArrayList<Field>();
+		for (int i = 3; i < getClass().getDeclaredFields().length; i++) {
+			fields.add(getClass().getDeclaredFields()[i]);
+		}
+		
+		new File(Main.plugin.getDataFolder() + "/" + "Players" + "/", uuid.toString()  + ".xml").delete();
+		
+		XmlFile f = new XmlFile("Players", uuid.toString());
+		fields.forEach(field -> { try {
+			field.setAccessible(true);
+			Object value = field.get(this);
+			if(value != null)
+				f.add(new Tag("field", new HashMap<String, String>() {{ put("name", field.getName()); }}, new ArrayList<Tag>(){{ add(new Tag(value.toString(), null, null)); }}));
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			}
+		});
+		f.save();
+	}
 	
 	/**
 	 * Use this method to whether you should run your method in case the player is offline. You can add your method to be executed when the player reconnects
@@ -162,7 +201,7 @@ public class Player {
 	 * 
 	 * @param e the event
 	 */
-	@EventHandler
+//	@EventHandler
 	public static void onPlayerjoin(PlayerJoinEvent e) {
 		getPlayerFromUUID(e.getPlayer().getUniqueId()).runAsyncTask();
 	}

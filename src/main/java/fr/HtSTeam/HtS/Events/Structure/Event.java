@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -44,6 +45,8 @@ public class Event implements Listener {
 	}
 		
 	private void invoke(Class<?> clazz, Object event) {
+		if (!eventMethods.containsKey(clazz))
+			return;
 		eventMethods.get(clazz).forEach(m -> { try {
 			m.invoke(null, event);
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
@@ -54,10 +57,10 @@ public class Event implements Listener {
 	// Events
 	
 	@org.bukkit.event.EventHandler
-	public void onPlayerJoinEvent(PlayerJoinEvent event) { invoke(event.getClass(), event); }
+	public void onPlayerJoinEvent(PlayerJoinEvent event) { Bukkit.broadcastMessage(event.getJoinMessage()); event.setJoinMessage(null); invoke(event.getClass(), event); }
 	
 	@org.bukkit.event.EventHandler
-	public void onPlayerQuitEvent(PlayerQuitEvent event) { invoke(event.getClass(), event); }
+	public void onPlayerQuitEvent(PlayerQuitEvent event) { String msg = event.getQuitMessage(); event.setQuitMessage(null); invoke(event.getClass(), event); Bukkit.broadcastMessage(msg); }
 	
 	@org.bukkit.event.EventHandler
 	public void onInventoryCloseEvent(InventoryCloseEvent event) { invoke(event.getClass(), event); }

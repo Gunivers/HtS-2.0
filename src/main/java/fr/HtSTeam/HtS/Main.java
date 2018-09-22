@@ -10,6 +10,7 @@ import org.bukkit.World.Environment;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.HtSTeam.HtS.Commands.CommandsManager;
+import fr.HtSTeam.HtS.Events.Structure.Event;
 import fr.HtSTeam.HtS.GameModes.GameMode;
 import fr.HtSTeam.HtS.GameModes.UHC.Common.UHC;
 import fr.HtSTeam.HtS.Options.OptionRegister;
@@ -44,7 +45,9 @@ public class Main extends JavaPlugin {
 			}	
 		}
 		timer = new TimerTask(0, 1);
-				
+		
+		Bukkit.getServer().getPluginManager().registerEvents(new Event(), plugin);
+		
 		OptionRegister.register();
 		CommandsManager.loadCommands(plugin);
 		new TeamRegister();
