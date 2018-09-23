@@ -6,7 +6,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Players.PlayerInGame;
-import fr.HtSTeam.HtS.Utils.ActionBar;
 
 public class CommandSyT implements CommandExecutor {
 
@@ -15,13 +14,13 @@ public class CommandSyT implements CommandExecutor {
 		if(sender instanceof Player) {
 			if(cmd.getName().equalsIgnoreCase("radar") && sender.hasPermission("radar.use")) {
 				if(args.length == 1) {
-					if(args[0].equals("1"))
-						new ActionBar("§4§lCible repérée : X Y Z", 30).sendAll();
-					else if(args[0].equals("2"))
-						new ActionBar("§4§lTrop faible signal détecté : impossible de localiser la cible.", 30).sendAll();
-					else if(args[0].equals("3"))
-						new ActionBar("§4§lAucun signal détecté : impossible de localiser la cible.", 30).sendAll();
-					}
+//					if(args[0].equals("1"))
+//						new ActionBar("§4§lCible repérée : X Y Z", 30).sendAll();
+//					else if(args[0].equals("2"))
+//						new ActionBar("§4§lTrop faible signal détecté : impossible de localiser la cible.", 30).sendAll();
+//					else if(args[0].equals("3"))
+//						new ActionBar("§4§lAucun signal détecté : impossible de localiser la cible.", 30).sendAll();
+				}
 				return true;
 			
 			} else if(cmd.getName().equalsIgnoreCase("target") && SyT.targetCycleOption.targetCycle.contains(((Player) sender).getUniqueId())) {

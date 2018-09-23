@@ -18,14 +18,13 @@ import fr.HtSTeam.HtS.Options.Structure.Annotation.AwaitingPlayer;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
 import fr.HtSTeam.HtS.Players.PlayerManager;
 import fr.HtSTeam.HtS.Players.PlayerReconnection;
-import fr.HtSTeam.HtS.Utils.ActionBar;
 
 public class RadarFrequencyOption extends OptionBuilder<Integer> implements StartTrigger {
 
 	private boolean request = false;
 	private Player p;
 	private int frequency = 20;
-	private int duration = 15;
+//	private int duration = 15;
 	
 	public static HashMap<UUID, Location> offlineLocation = new HashMap<UUID, Location>();
 	
@@ -83,16 +82,16 @@ public class RadarFrequencyOption extends OptionBuilder<Integer> implements Star
 			loc = Bukkit.getPlayer(targetUUID).getLocation();
 		if (loc.getBlockY() >= 36
 				&& loc.getWorld().getEnvironment() == Environment.NORMAL) {
-			ActionBar msg = new ActionBar(player, "§4§lCible repérée : " + loc.getBlockX() + " " + loc.getBlockY() + " " +loc.getBlockZ(), duration);
-			msg.send();
+//			ActionBar msg = new ActionBar(player, "§4§lCible repérée : " + loc.getBlockX() + " " + loc.getBlockY() + " " +loc.getBlockZ(), duration);
+//			msg.send();
 		} else if (loc.getBlockY() < 36
 				&& loc.getWorld().getEnvironment() == Environment.NORMAL) {
-			ActionBar msg = new ActionBar(player, "§4§lTrop faible signal détecté : impossible de localiser la cible.", duration);
-			msg.send();
+//			ActionBar msg = new ActionBar(player, "§4§lTrop faible signal détecté : impossible de localiser la cible.", duration);
+//			msg.send();
 		} else if (loc.getWorld().getEnvironment() == Environment.NETHER
 				|| player.getLocation().getWorld().getEnvironment() == Environment.NETHER) {
-			ActionBar msg = new ActionBar(player, "§4§lAucun signal détecté : impossible de localiser la cible.", duration);
-			msg.send();
+//			ActionBar msg = new ActionBar(player, "§4§lAucun signal détecté : impossible de localiser la cible.", duration);
+//			msg.send();
 		}
 	}
 

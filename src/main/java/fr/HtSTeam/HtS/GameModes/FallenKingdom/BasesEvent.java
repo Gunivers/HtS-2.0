@@ -14,7 +14,6 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
 import fr.HtSTeam.HtS.EnumState;
-import fr.HtSTeam.HtS.Utils.ActionBar;
 
 public class BasesEvent implements Listener {
 
@@ -51,7 +50,7 @@ public class BasesEvent implements Listener {
 			playerLocation.put(e.getPlayer().getUniqueId(), PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()));
 		} else {
 			if (!PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).equals(playerLocation.get(e.getPlayer().getUniqueId()))) {
-				new ActionBar(e.getPlayer(), PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).getMessage(), 1).send();
+//				new ActionBar(e.getPlayer(), PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()).getMessage(), 1).send();
 				playerLocation.replace(e.getPlayer().getUniqueId(), PlayerBase.isInBase(e.getPlayer(), e.getPlayer().getLocation()));
 			}
 		}
