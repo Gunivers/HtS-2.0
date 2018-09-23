@@ -2,15 +2,7 @@ package fr.HtSTeam.HtS.Options;
 
 import fr.HtSTeam.HtS.Options.Options.AtDeath.GoldenAppleOption;
 import fr.HtSTeam.HtS.Options.Options.AtDeath.HeadOption;
-import fr.HtSTeam.HtS.Options.Options.Base.BorderOption;
-import fr.HtSTeam.HtS.Options.Options.Base.BreathOption;
-import fr.HtSTeam.HtS.Options.Options.Base.DayLightCycleOption;
-import fr.HtSTeam.HtS.Options.Options.Base.DifficultOption;
-import fr.HtSTeam.HtS.Options.Options.Base.EnablePvPOption;
-import fr.HtSTeam.HtS.Options.Options.Base.FixDayOption;
-import fr.HtSTeam.HtS.Options.Options.Base.NoDamageOption;
-import fr.HtSTeam.HtS.Options.Options.Base.NoRegenOption;
-import fr.HtSTeam.HtS.Options.Options.Base.WeatherOption;
+import fr.HtSTeam.HtS.Options.Options.Base.*;
 import fr.HtSTeam.HtS.Options.Options.Crafts.ElytraCraftOption;
 import fr.HtSTeam.HtS.Options.Options.LootTables.BatOption;
 import fr.HtSTeam.HtS.Options.Options.LootTables.ChestOption;
@@ -74,6 +66,7 @@ public class OptionRegister {
 		public static NoRegenOption noRegen =  new NoRegenOption();
 		public static WeatherOption weather = new WeatherOption();
 		public static NoDamageOption noDamage = new NoDamageOption();
+		public static WorldDifficultyOption difficulty = new WorldDifficultyOption();
 		
 		// Loot Tables
 		public static BatOption batLoot = new BatOption();
@@ -147,7 +140,6 @@ public class OptionRegister {
 			
 			// Base
 			borderOption = new BorderOption();
-			new DifficultOption();
 			new DayLightCycleOption();
 			new FixDayOption();
 			new EnablePvPOption();
