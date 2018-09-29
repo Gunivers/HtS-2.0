@@ -1,16 +1,9 @@
 package fr.HtSTeam.HtS.Options;
 
-import fr.HtSTeam.HtS.Options.Options.AtDeath.GoldenAppleOption;
-import fr.HtSTeam.HtS.Options.Options.AtDeath.HeadOption;
+import fr.HtSTeam.HtS.Options.Options.AtDeath.*;
 import fr.HtSTeam.HtS.Options.Options.Base.*;
 import fr.HtSTeam.HtS.Options.Options.Crafts.ElytraCraftOption;
-import fr.HtSTeam.HtS.Options.Options.LootTables.BatOption;
-import fr.HtSTeam.HtS.Options.Options.LootTables.ChestOption;
-import fr.HtSTeam.HtS.Options.Options.LootTables.CrateOption;
-import fr.HtSTeam.HtS.Options.Options.LootTables.FishingOption;
-import fr.HtSTeam.HtS.Options.Options.LootTables.GhastOption;
-import fr.HtSTeam.HtS.Options.Options.LootTables.SkeletonOption;
-import fr.HtSTeam.HtS.Options.Options.LootTables.ZombieOption;
+import fr.HtSTeam.HtS.Options.Options.LootTables.*;
 import fr.HtSTeam.HtS.Options.Options.Mobs.CreeperNerfOption;
 import fr.HtSTeam.HtS.Options.Options.Mobs.MobBuddyOption;
 import fr.HtSTeam.HtS.Options.Options.Mobs.SkeletonNerfOption;
@@ -61,6 +54,7 @@ public class OptionRegister {
 		//AtDeath
 		public static GoldenAppleOption goldenApple = new GoldenAppleOption();
 		public static HeadOption head = new HeadOption();
+		public static DeadBodyOption deadBody = new DeadBodyOption();
 		
 		//Base
 		public static NoRegenOption noRegen =  new NoRegenOption();
