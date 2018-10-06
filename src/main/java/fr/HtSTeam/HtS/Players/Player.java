@@ -236,8 +236,27 @@ public class Player {
 	}
 	
 	
-	
-	public void sendJsonCommand(final LinkedHashMap<String, String> msg_cmd, String action) {
+	/**
+	 * Sends a JSON message to the player if he is connected, else it will send it when he reconnects
+	 * 
+	 * @param msg_cmd the message to send to the player
+	 * @param action run_command or suggest_command...
+	 * 
+	 * @deprecated msg_cmd and action will be merge for greater flexibility
+	 */
+	public void sendJsonCommand(final LinkedHashMap<String, String> msg_cmd, String action) { sendJsonCommand(msg_cmd, action, true); }
+	/**
+	 * Sends a JSON message to the player
+	 * 
+	 * @param msg_cmd the message to send to the player
+	 * @param action run_command or suggest_command...
+	 * @param addasync whether it should send the message when the player reconnects in case he was offline
+	 * 
+	 * @deprecated msg_cmd and action will be merge for greater flexibility
+	 */
+	public void sendJsonCommand(final LinkedHashMap<String, String> msg_cmd, String action, boolean addasync) {
+		if (!canExecute(addasync, msg_cmd, action))
+			return;
 		String message = null;
 		for (Entry<String, String> set : msg_cmd.entrySet())
 			if (message == null) {
@@ -284,7 +303,6 @@ public class Player {
 				packet = packetPlayOutChatClass.getConstructor(new Class<?>[] { iChatBaseComponentClass, byte.class })
 						.newInstance(chatCompontentText, (byte) 2);
 			}
-
 			Method craftPlayerHandleMethod = craftPlayerClass.getDeclaredMethod("getHandle");
 			Object craftPlayerHandle = craftPlayerHandleMethod.invoke(craftPlayer);
 			Field playerConnectionField = craftPlayerHandle.getClass().getDeclaredField("playerConnection");
@@ -377,7 +395,6 @@ public class Player {
 				packet = packetPlayOutChatClass.getConstructor(new Class<?>[] { iChatBaseComponentClass, byte.class })
 						.newInstance(chatCompontentText, (byte) 2);
 			}
-
 			Method craftPlayerHandleMethod = craftPlayerClass.getDeclaredMethod("getHandle");
 			Object craftPlayerHandle = craftPlayerHandleMethod.invoke(craftPlayer);
 			Field playerConnectionField = craftPlayerHandle.getClass().getDeclaredField("playerConnection");
