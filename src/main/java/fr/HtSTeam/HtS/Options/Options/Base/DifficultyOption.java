@@ -13,16 +13,11 @@ import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
 
-/**
- * 
- * @author A~Z
- *
- */
-public class WorldDifficultyOption extends OptionBuilder<Difficulty> implements StartTrigger
+public class DifficultyOption extends OptionBuilder<Difficulty> implements StartTrigger
 {
 	public int index = Arrays.asList(Difficulty.values()).indexOf(Difficulty.HARD);
 	
-	public WorldDifficultyOption()
+	public DifficultyOption()
 	{
 		super(Material.IRON_BARS, "Difficulté", "§4Difficile", Difficulty.HARD, GUIRegister.other, true);
 	}

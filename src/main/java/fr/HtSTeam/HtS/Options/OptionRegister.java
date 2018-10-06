@@ -60,7 +60,7 @@ public class OptionRegister {
 		public static NoRegenOption noRegen =  new NoRegenOption();
 		public static WeatherOption weather = new WeatherOption();
 		public static NoDamageOption noDamage = new NoDamageOption();
-		public static WorldDifficultyOption difficulty = new WorldDifficultyOption();
+		public static DifficultyOption difficulty = new DifficultyOption();
 		
 		// Loot Tables
 		public static BatOption batLoot = new BatOption();

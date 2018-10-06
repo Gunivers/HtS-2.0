@@ -17,7 +17,6 @@ import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.Structure.IconBuilder;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
-import fr.HtSTeam.HtS.Utils.JSON;
 
 public class StartCommand implements CommandExecutor {
 
@@ -38,14 +37,14 @@ public class StartCommand implements CommandExecutor {
 					if(value != null && key.getDefaultValue() != null  && !key.getDefaultValue().equals(value))
 						p.sendMessage(key.getName() + " : §4" + value.toString());
 				}
-				JSON.sendJsonRunCommand(p, "§2[Valider]", "/run");
+//				JSON.sendJsonRunCommand(p, "§2[Valider]", "/run");
 				return true;
 			
 			
 			
 			} else if(cmd.getName().equalsIgnoreCase("run") && sender.hasPermission("run.use") && EnumState.getState().equals(EnumState.WAIT)) {
 			
-				JSON.sendAll("§2La partie commence !", "§6Bonne chance !", 5);
+//				JSON.sendAll("§2La partie commence !", "§6Bonne chance !", 5);
 				
 				for(Player player : Bukkit.getOnlinePlayers())
 					if(!player.getGameMode().equals(GameMode.SPECTATOR)) {

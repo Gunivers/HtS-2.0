@@ -28,7 +28,6 @@ import org.bukkit.plugin.PluginManager;
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Players.PlayerInGame;
-import fr.HtSTeam.HtS.Utils.JSON;
 import net.minecraft.server.v1_13_R2.Entity;
 import net.minecraft.server.v1_13_R2.NBTTagCompound;
 
@@ -48,7 +47,7 @@ public class PlayStopCommands implements CommandExecutor, Listener {
 
 			if (cmd.getName().equalsIgnoreCase("pause") && sender.hasPermission("pause.use")) {
 				if(!pause) {
-					JSON.sendAll("§aÔ temps,", "§bsuspends ton vol !", 10);
+//					JSON.sendAll("§aÔ temps,", "§bsuspends ton vol !", 10);
 					Main.timer.inPause(true);
 					Bukkit.broadcastMessage("§4Le jeu est en pause !");
 					pause = true;

@@ -15,7 +15,6 @@ import org.bukkit.entity.Player;
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
-import fr.HtSTeam.HtS.Utils.JSON;
 import fr.HtSTeam.HtS.Utils.Tag;
 import fr.HtSTeam.HtS.Utils.Files.OptionIO;
 import fr.HtSTeam.HtS.Utils.Files.XmlFile;
@@ -37,7 +36,7 @@ public class LoadPreset extends OptionBuilder<Null> implements CommandExecutor {
 			LinkedHashMap<String, String> line = new LinkedHashMap<String, String>();
 			line.put(f.getName().replaceAll(".xml", "") + "  ", null);
 			line.put("§6[Charger]", "/load " + f.getName().replaceAll(".xml", ""));
-			JSON.sendJsonRunCommand(p, line);
+//			JSON.sendJsonRunCommand(p, line);
 		}
 		p.sendMessage("§a===================");
 	}
