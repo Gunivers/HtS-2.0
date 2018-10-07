@@ -16,6 +16,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Teams.TeamBuilder;
+import fr.HtSTeam.HtS.Utils.Nms;
 import fr.HtSTeam.HtS.Utils.Tag;
 import fr.HtSTeam.HtS.Utils.Files.XmlFile;
 
@@ -230,7 +231,7 @@ public class Player {
 	 * @param addasync whether it should send the message when the player reconnects in case he was offline
 	 */
 	public void sendMessage(String message, boolean addasync) {
-		if (!canExecute(addasync, message))
+		if (message == null || message.isEmpty() || !canExecute(addasync, message))
 			return;
 		Bukkit.getPlayer(uuid).sendMessage(message);
 	}
@@ -244,7 +245,7 @@ public class Player {
 	 * 
 	 * @deprecated msg_cmd and action will be merge for greater flexibility
 	 */
-	public void sendJsonCommand(final LinkedHashMap<String, String> msg_cmd, String action) { sendJsonCommand(msg_cmd, action, true); }
+	public void sendJsonMessage(final LinkedHashMap<String, String> msg_cmd, String action) { sendJsonMessage(msg_cmd, action, true); }
 	/**
 	 * Sends a JSON message to the player
 	 * 
@@ -254,9 +255,10 @@ public class Player {
 	 * 
 	 * @deprecated msg_cmd and action will be merge for greater flexibility
 	 */
-	public void sendJsonCommand(final LinkedHashMap<String, String> msg_cmd, String action, boolean addasync) {
-		if (!canExecute(addasync, msg_cmd, action))
+	public void sendJsonMessage(final LinkedHashMap<String, String> msg_cmd, String action, boolean addasync) {
+		if (msg_cmd == null || msg_cmd.isEmpty() || action == null || action.isEmpty() || !canExecute(addasync, msg_cmd, action))
 			return;
+		
 		String message = null;
 		for (Entry<String, String> set : msg_cmd.entrySet())
 			if (message == null) {
@@ -273,42 +275,88 @@ public class Player {
 					message = message + ",{\"text\":\"" + set.getKey() + "\"}";
 			}
 		message += ']';
+		
 		org.bukkit.entity.Player player = Bukkit.getPlayer(uuid);
-		String nmsver = Bukkit.getServer().getClass().getPackage().getName();
-		nmsver = nmsver.substring(nmsver.lastIndexOf(".") + 1);
 		try {
-			Class<?> craftPlayerClass = Class.forName("org.bukkit.craftbukkit." + nmsver + ".entity.CraftPlayer");
-			Object craftPlayer = craftPlayerClass.cast(player);
+			Object craftPlayer = Nms.craftPlayerClass.cast(player);
 			Object packet;
-			Class<?> packetPlayOutChatClass = Class.forName("net.minecraft.server." + nmsver + ".PacketPlayOutChat");
-			Class<?> packetClass = Class.forName("net.minecraft.server." + nmsver + ".Packet");
 
-			Class<?> iChatBaseComponentClass = Class.forName("net.minecraft.server." + nmsver + ".IChatBaseComponent");
-			Class<?> iChatBaseComponentChatSerializerClass = Class.forName("net.minecraft.server." + nmsver + ".IChatBaseComponent$ChatSerializer");
-			try {
-				Class<?> chatMessageTypeClass = Class.forName("net.minecraft.server." + nmsver + ".ChatMessageType");
-				Object[] chatMessageTypes = chatMessageTypeClass.getEnumConstants();
-				Object chatMessageType = null;
-				for (Object obj : chatMessageTypes) {
-					if (obj.toString().equals("CHAT")) {
-						chatMessageType = obj;
-					}
-				}
-				Object chatCompontentText = iChatBaseComponentChatSerializerClass.getDeclaredMethod("a", String.class).invoke(null, message);
-				packet = packetPlayOutChatClass
-						.getConstructor(new Class<?>[] { iChatBaseComponentClass, chatMessageTypeClass })
-						.newInstance(chatCompontentText, chatMessageType);
-			} catch (ClassNotFoundException cnfe) {
-				Object chatCompontentText = iChatBaseComponentChatSerializerClass.getDeclaredMethod("a", String.class).invoke(null, message);
-				packet = packetPlayOutChatClass.getConstructor(new Class<?>[] { iChatBaseComponentClass, byte.class })
-						.newInstance(chatCompontentText, (byte) 2);
-			}
-			Method craftPlayerHandleMethod = craftPlayerClass.getDeclaredMethod("getHandle");
+			Object[] chatMessageTypes = Nms.chatMessageTypeClass.getEnumConstants();
+			Object chatMessageType = null;
+			for (Object obj : chatMessageTypes)
+				if (obj.toString().equals("CHAT"))
+					chatMessageType = obj;
+
+			Object chatCompontentText = Nms.iChatBaseComponentChatSerializerClass.getDeclaredMethod("a", String.class).invoke(null, message);
+			packet = Nms.packetPlayOutChatClass.getConstructor(new Class<?>[] { Nms.iChatBaseComponentClass, Nms.chatMessageTypeClass }).newInstance(chatCompontentText, chatMessageType);
+			
+			Method craftPlayerHandleMethod = Nms.craftPlayerClass.getDeclaredMethod("getHandle");
 			Object craftPlayerHandle = craftPlayerHandleMethod.invoke(craftPlayer);
 			Field playerConnectionField = craftPlayerHandle.getClass().getDeclaredField("playerConnection");
 			Object playerConnection = playerConnectionField.get(craftPlayerHandle);
-			Method sendPacketMethod = playerConnection.getClass().getDeclaredMethod("sendPacket", packetClass);
+			Method sendPacketMethod = playerConnection.getClass().getDeclaredMethod("sendPacket", Nms.packetClass);
 			sendPacketMethod.invoke(playerConnection, packet);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
+	/**
+	 * Sends a title to the player if he is connected, else it will send it when he reconnects
+	 * 
+	 * @param title the title to send to the player
+	 * @param subtitle the subtitle to send to the player
+	 * @param duration the duration of the title
+	 */
+	public void sendTitle(String title, String subtitle, int duration) { sendTitle(title, subtitle, duration, true); }
+	/**
+	 * Sends a title to the player
+	 * 
+	 * @param title the title to send to the player
+	 * @param subtitle the subtitle to send to the player
+	 * @param duration the duration of the title
+	 * @param addasync whether it should send the message when the player reconnects in case he was offline
+	 */
+	public void sendTitle(String title, String subtitle, int duration, boolean addasync) {
+		if (title == null || title.isEmpty() || duration < 1 || !canExecute(addasync, title, subtitle, duration))
+			return;
+		
+		org.bukkit.entity.Player player = Bukkit.getPlayer(uuid);
+		try {
+			Object craftPlayer = Nms.craftPlayerClass.cast(player);
+			Object packet_title = null;
+			Object packet_subtitle = null;
+			Object packet_duration = null;
+			
+			Object[] titleTypes = Nms.packetPlayOutTitleEnumTitleActionClass.getEnumConstants();
+			Object titleType = null;
+			Object subtitleType = null;
+			for (Object obj : titleTypes)
+				if (obj.toString().equals("TITLE"))
+					titleType = obj;
+				else if (obj.toString().equals("SUBTITLE"))
+					subtitleType = obj;
+			
+			Object titleCompontentText = Nms.iChatBaseComponentChatSerializerClass.getDeclaredMethod("a", String.class).invoke(null, "{\"text\":\"" + title + "\"}");
+			packet_title = Nms.packetPlayOutTitleClass.getConstructor(new Class<?>[] { Nms.packetPlayOutTitleEnumTitleActionClass, Nms.iChatBaseComponentClass }).newInstance(titleType, titleCompontentText);
+			if (subtitle != null && !subtitle.isEmpty()) {
+				Object subtitleCompontentText = Nms.iChatBaseComponentChatSerializerClass.getDeclaredMethod("a", String.class).invoke(null, "{\"text\":\"" + subtitle + "\"}");
+				packet_subtitle = Nms.packetPlayOutTitleClass.getConstructor(new Class<?>[] { Nms.packetPlayOutTitleEnumTitleActionClass, Nms.iChatBaseComponentClass }).newInstance(subtitleType, subtitleCompontentText);
+			}
+			packet_duration = Nms.packetPlayOutTitleClass.getConstructor(new Class<?>[] { int.class, int.class, int.class }).newInstance(5, duration * 20, 5);
+			
+			Method craftPlayerHandleMethod = Nms.craftPlayerClass.getDeclaredMethod("getHandle");
+			Object craftPlayerHandle = craftPlayerHandleMethod.invoke(craftPlayer);
+			Field playerConnectionField = craftPlayerHandle.getClass().getDeclaredField("playerConnection");
+			Object playerConnection = playerConnectionField.get(craftPlayerHandle);
+			Method sendPacketMethod = playerConnection.getClass().getDeclaredMethod("sendPacket", Nms.packetClass);
+			sendPacketMethod.invoke(playerConnection, packet_title);
+			if (subtitle != null && !subtitle.isEmpty())
+				sendPacketMethod.invoke(playerConnection, packet_subtitle);
+			sendPacketMethod.invoke(playerConnection, packet_duration);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -332,7 +380,7 @@ public class Player {
 	 * @param addasync whether it should send the message when the player reconnects in case he was offline
 	 */
 	public void sendActionBar(String message, int duration, boolean addasync) {
-		if (!canExecute(addasync, message, duration))
+		if (message == null || message.isEmpty() || duration < 1 || !canExecute(addasync, message, duration))
 			return;
 		
 		actionBar(message);
@@ -364,42 +412,24 @@ public class Player {
 	 */
 	private void actionBar(String message) {
 		org.bukkit.entity.Player player = Bukkit.getPlayer(uuid);
-		String nmsver = Bukkit.getServer().getClass().getPackage().getName();
-		nmsver = nmsver.substring(nmsver.lastIndexOf(".") + 1);
 		try {
-			Class<?> craftPlayerClass = Class.forName("org.bukkit.craftbukkit." + nmsver + ".entity.CraftPlayer");
-			Object craftPlayer = craftPlayerClass.cast(player);
+			Object craftPlayer = Nms.craftPlayerClass.cast(player);
 			Object packet;
-			Class<?> packetPlayOutChatClass = Class.forName("net.minecraft.server." + nmsver + ".PacketPlayOutChat");
-			Class<?> packetClass = Class.forName("net.minecraft.server." + nmsver + ".Packet");
 
-			Class<?> chatComponentTextClass = Class.forName("net.minecraft.server." + nmsver + ".ChatComponentText");
-			Class<?> iChatBaseComponentClass = Class.forName("net.minecraft.server." + nmsver + ".IChatBaseComponent");
-			try {
-				Class<?> chatMessageTypeClass = Class.forName("net.minecraft.server." + nmsver + ".ChatMessageType");
-				Object[] chatMessageTypes = chatMessageTypeClass.getEnumConstants();
-				Object chatMessageType = null;
-				for (Object obj : chatMessageTypes) {
-					if (obj.toString().equals("GAME_INFO")) {
-						chatMessageType = obj;
-					}
-				}
-				Object chatCompontentText = chatComponentTextClass.getConstructor(new Class<?>[] { String.class })
-						.newInstance(message);
-				packet = packetPlayOutChatClass
-						.getConstructor(new Class<?>[] { iChatBaseComponentClass, chatMessageTypeClass })
-						.newInstance(chatCompontentText, chatMessageType);
-			} catch (ClassNotFoundException cnfe) {
-				Object chatCompontentText = chatComponentTextClass.getConstructor(new Class<?>[] { String.class })
-						.newInstance(message);
-				packet = packetPlayOutChatClass.getConstructor(new Class<?>[] { iChatBaseComponentClass, byte.class })
-						.newInstance(chatCompontentText, (byte) 2);
-			}
-			Method craftPlayerHandleMethod = craftPlayerClass.getDeclaredMethod("getHandle");
+			Object[] chatMessageTypes = Nms.chatMessageTypeClass.getEnumConstants();
+			Object chatMessageType = null;
+			for (Object obj : chatMessageTypes)
+				if (obj.toString().equals("GAME_INFO"))
+					chatMessageType = obj;
+			
+			Object chatCompontentText = Nms.chatComponentTextClass.getConstructor(new Class<?>[] { String.class }).newInstance(message);
+			packet = Nms.packetPlayOutChatClass.getConstructor(new Class<?>[] { Nms.iChatBaseComponentClass, Nms.chatMessageTypeClass }).newInstance(chatCompontentText, chatMessageType);
+			
+			Method craftPlayerHandleMethod = Nms.craftPlayerClass.getDeclaredMethod("getHandle");
 			Object craftPlayerHandle = craftPlayerHandleMethod.invoke(craftPlayer);
 			Field playerConnectionField = craftPlayerHandle.getClass().getDeclaredField("playerConnection");
 			Object playerConnection = playerConnectionField.get(craftPlayerHandle);
-			Method sendPacketMethod = playerConnection.getClass().getDeclaredMethod("sendPacket", packetClass);
+			Method sendPacketMethod = playerConnection.getClass().getDeclaredMethod("sendPacket", Nms.packetClass);
 			sendPacketMethod.invoke(playerConnection, packet);
 		} catch (Exception e) {
 			e.printStackTrace();

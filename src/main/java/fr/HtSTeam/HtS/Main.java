@@ -18,6 +18,7 @@ import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.JDBCHandler;
 import fr.HtSTeam.HtS.Options.Structure.TimerTask;
 import fr.HtSTeam.HtS.Players.DeathLoot;
 import fr.HtSTeam.HtS.Teams.TeamRegister;
+import fr.HtSTeam.HtS.Utils.Nms;
 import fr.HtSTeam.HtS.Utils.Files.FileExtractor;
 
 public class Main extends JavaPlugin {
@@ -44,25 +45,25 @@ public class Main extends JavaPlugin {
 				world.setGameRule(GameRule.SEND_COMMAND_FEEDBACK, false);
 			}	
 		}
+		
 		timer = new TimerTask(0, 1);
 		
+		try { Nms.init(); } catch (ClassNotFoundException e) { e.printStackTrace(); }
 		Bukkit.getServer().getPluginManager().registerEvents(new Event(), plugin);
+		
 		
 		OptionRegister.register();
 		CommandsManager.loadCommands(plugin);
 		new TeamRegister();
 		new JDBCHandler();
 		
-		try { HTSNAME += JDBCHandler.getHtsNumber(); } catch (SQLException e) { e.printStackTrace(); }		
+		try { HTSNAME += JDBCHandler.getHtsNumber(); } catch (SQLException e1) { e1.printStackTrace(); }		
 	}
 	
 	/*public static void run() {
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {	
 			@Override
 			public void run() {
-				System.out.println("=======================================");
-				Bukkit.getOnlinePlayers().forEach(p -> { System.out.println(p.getName() + "    " + p.getStatistic(Statistic.PLAYER_KILLS)); });
-				System.out.println("=======================================");
 			}
 		}, 0L, 1L);
 	}*/
