@@ -207,7 +207,7 @@ public abstract class Disabler extends GUIBuilder implements OptionIO
 	/**
 	 * <p>This method will load the items of the gui. As for me, the location remain unknown ¯\_(ツ)_/¯</p>
 	 * 
-	 * @author ikbrunel
+	 * @author oromis
 	 * @param o
 	 *         an Object. The location ?
 	 */
@@ -248,7 +248,7 @@ public abstract class Disabler extends GUIBuilder implements OptionIO
 	/**
 	 * <p>This method will save the items in a very mysterious location ¯\_(ツ)_/¯</p>
 	 * 
-	 * @author ikbrunel
+	 * @author oromis
 	 * @return an ArrayList{String}
 	 *                             looking like containing the names of the element
 	 */
