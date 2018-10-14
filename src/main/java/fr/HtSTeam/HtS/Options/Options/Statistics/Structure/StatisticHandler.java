@@ -12,9 +12,9 @@ import org.apache.commons.collections4.IterableUtils;
 import org.bukkit.Bukkit;
 
 import fr.HtSTeam.HtS.EnumState;
-import fr.HtSTeam.HtS.Players.PlayerInGame;
-import fr.HtSTeam.HtS.Players.PlayerManager;
-import fr.HtSTeam.HtS.Players.PlayerRemove;
+import fr.HtSTeam.HtS.Player.PlayerInGame;
+import fr.HtSTeam.HtS.Player.PlayerManager;
+import fr.HtSTeam.HtS.Player.PlayerRemove;
 
 public class StatisticHandler implements PlayerRemove {
 	

@@ -17,9 +17,9 @@ import fr.HtSTeam.HtS.Options.Options.Statistics.TargetsStatOption;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.AwaitingPlayer;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
-import fr.HtSTeam.HtS.Players.PlayerInGame;
-import fr.HtSTeam.HtS.Players.PlayerManager;
-import fr.HtSTeam.HtS.Players.PlayerReconnection;
+import fr.HtSTeam.HtS.Player.PlayerInGame;
+import fr.HtSTeam.HtS.Player.PlayerManager;
+import fr.HtSTeam.HtS.Player.PlayerReconnection;
 import fr.HtSTeam.HtS.Teams.TeamBuilder;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
@@ -34,10 +34,10 @@ public class TargetCycle extends OptionBuilder<Integer> {
 	}
 
 	@Override
-	public void event(Player p) {
+	public void event(fr.HtSTeam.HtS.Player.Player p) {
 		request = true;
 		p.closeInventory();
-		this.p = p;
+		this.p = Bukkit.getPlayer(p.getUUID());
 		p.sendMessage("§2Veuillez entrer la minute d'annonce des cibles.");		
 	}
 	

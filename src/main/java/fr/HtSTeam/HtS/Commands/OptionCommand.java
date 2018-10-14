@@ -6,10 +6,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
-import fr.HtSTeam.HtS.Players.PlayerInGame;
+import fr.HtSTeam.HtS.Player.Player;
+import fr.HtSTeam.HtS.Player.PlayerInGame;
 
 public class OptionCommand implements CommandExecutor {
 
@@ -20,7 +20,7 @@ public class OptionCommand implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
 		if (sender instanceof Player) {
-			Player p = (Player) sender;
+			Player p = Player.instance((org.bukkit.entity.Player) sender);
 			if (cmd.getName().equalsIgnoreCase("option") && sender.hasPermission("option.use")) {
 				GUIRegister.main.open(p);
 				return true;

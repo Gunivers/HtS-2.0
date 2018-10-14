@@ -1,5 +1,6 @@
 package fr.HtSTeam.HtS.GameModes.UHC.SyT;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,8 +19,8 @@ public class RadarOption extends OptionBuilder<Integer> {
 	}
 
 	@Override
-	public void event(Player p) {
-		this.p = p;
+	public void event(fr.HtSTeam.HtS.Player.Player p) {
+		this.p = Bukkit.getPlayer(p.getUUID());
 		p.closeInventory();
 		request = true;
 		p.sendMessage("§2Veuillez saisir le délais d'activation du Radar.");		

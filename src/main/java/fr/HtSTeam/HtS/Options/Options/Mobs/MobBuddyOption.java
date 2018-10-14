@@ -9,7 +9,6 @@ import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Monster;
-import org.bukkit.entity.Player;
 import org.bukkit.entity.Skeleton;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
@@ -25,6 +24,7 @@ import org.bukkit.metadata.FixedMetadataValue;
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Teams.TeamBuilder;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 import fr.HtSTeam.HtS.Utils.MobManager;
@@ -45,7 +45,7 @@ public class MobBuddyOption extends OptionBuilder<Boolean> {
 	public void onMobTarget(EntityTargetLivingEntityEvent e){
 		if (!getValue()) return;
 		if (e.getTarget() instanceof Player && e.getEntity().hasMetadata("buddy")) {
-			if (((Player)e.getTarget()).getUniqueId().toString().equalsIgnoreCase(e.getEntity().getMetadata("buddy").get(0).asString())) {
+			if (((Player)e.getTarget()).getUUID().toString().equalsIgnoreCase(e.getEntity().getMetadata("buddy").get(0).asString())) {
 				e.setCancelled(true);
 			} else if (!TeamBuilder.teamList.isEmpty()) {
 				if (TeamBuilder.playerTeam.get(UUID.fromString(e.getEntity().getMetadata("buddy").get(0).asString())).getTeamPlayers().contains(e.getTarget().getUniqueId()))

@@ -2,13 +2,13 @@ package fr.HtSTeam.HtS.Options.Options.Others;
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.inventory.ItemStack;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
 public class NuggetsOption extends OptionBuilder<Boolean>{
@@ -37,7 +37,7 @@ public class NuggetsOption extends OptionBuilder<Boolean>{
 	@EventHandler
 	public void onDropNuggets(PlayerBucketFillEvent e) {
 		if (getValue()) {
-			Player p = e.getPlayer();
+			Player p = Player.instance(e.getPlayer());
 			Block b = e.getBlockClicked();
 			if (b.getType() == Material.WATER) {
 				if (Randomizer.randRate(4))

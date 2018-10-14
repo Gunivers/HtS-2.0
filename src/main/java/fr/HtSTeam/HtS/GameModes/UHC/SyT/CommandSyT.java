@@ -5,7 +5,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import fr.HtSTeam.HtS.Players.PlayerInGame;
+import fr.HtSTeam.HtS.Player.PlayerInGame;
 
 public class CommandSyT implements CommandExecutor {
 

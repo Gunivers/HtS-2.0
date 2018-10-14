@@ -2,7 +2,6 @@ package fr.HtSTeam.HtS.Options.Options.Base;
 
 import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.entity.Player;
 
 import java.util.Arrays;
 
@@ -12,6 +11,7 @@ import org.bukkit.Difficulty;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
+import fr.HtSTeam.HtS.Player.Player;
 
 public class DifficultyOption extends OptionBuilder<Difficulty> implements StartTrigger
 {

@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Players;
+package fr.HtSTeam.HtS.Player;
 
 import java.util.ArrayList;
 import java.util.HashMap;

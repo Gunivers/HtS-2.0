@@ -3,7 +3,6 @@ package fr.HtSTeam.HtS.Options.Options.Statistics;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Statistic;
-import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Options.GUIRegister;
@@ -12,6 +11,7 @@ import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.StatisticHandler;
 import fr.HtSTeam.HtS.Options.Structure.EndTrigger;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
+import fr.HtSTeam.HtS.Player.Player;
 
 public class TimeSneakedStatOption extends OptionBuilder<Boolean> implements StartTrigger, EndTrigger {
 	

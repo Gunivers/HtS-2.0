@@ -1,6 +1,5 @@
-package fr.HtSTeam.HtS.Players;
+package fr.HtSTeam.HtS.Player;
 
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -13,6 +12,6 @@ public class PlayerDeath implements Listener {
 	
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void onDeath(PlayerDeathEvent e) {
-		IconBuilder.optionsList.keySet().stream().filter(key -> key instanceof DeathTrigger).forEach(key -> ((DeathTrigger) key).onDeath((Player)e.getEntity()));
+		IconBuilder.optionsList.keySet().stream().filter(key -> key instanceof DeathTrigger).forEach(key -> ((DeathTrigger) key).onDeath(Player.instance(e.getEntity())));
 	}
 }

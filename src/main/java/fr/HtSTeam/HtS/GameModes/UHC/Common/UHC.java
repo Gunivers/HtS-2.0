@@ -11,7 +11,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import fr.HtSTeam.HtS.GameModes.GameMode;
 import fr.HtSTeam.HtS.Options.OptionRegister;
-import fr.HtSTeam.HtS.Players.PlayerInGame;
+import fr.HtSTeam.HtS.Player.PlayerInGame;
 import fr.HtSTeam.HtS.Teams.TeamBuilder;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 

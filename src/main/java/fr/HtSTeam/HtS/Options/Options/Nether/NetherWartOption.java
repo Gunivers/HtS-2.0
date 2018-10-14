@@ -8,13 +8,13 @@ import org.bukkit.Material;
 import org.bukkit.NetherWartsState;
 import org.bukkit.World.Environment;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.material.NetherWarts;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
 public class NetherWartOption extends OptionBuilder<Boolean>{

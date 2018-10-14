@@ -3,7 +3,6 @@ package fr.HtSTeam.HtS.Options.Options.Base;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.World.Environment;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -14,6 +13,7 @@ import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
+import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Utils.PRIORITY;
 
 public class BreathOption extends OptionBuilder<Integer> implements StartTrigger {
@@ -38,7 +38,7 @@ public class BreathOption extends OptionBuilder<Integer> implements StartTrigger
 	
 	@EventHandler
 	public void onPlayerChat(AsyncPlayerChatEvent e) {		
-		if(request && e.getPlayer().equals(p)) {
+		if(request && e.getPlayer().getUniqueId().equals(p.getUUID())) {
 			e.setCancelled(true);
 			try {
 				int value = Integer.parseInt(e.getMessage());

@@ -6,10 +6,10 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 import fr.HtSTeam.HtS.Utils.Files.FileExtractor;
 

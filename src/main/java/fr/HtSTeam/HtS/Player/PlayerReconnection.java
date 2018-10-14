@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Players;
+package fr.HtSTeam.HtS.Player;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

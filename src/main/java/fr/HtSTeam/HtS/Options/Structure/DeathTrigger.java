@@ -1,6 +1,6 @@
 package fr.HtSTeam.HtS.Options.Structure;
 
-import org.bukkit.entity.Player;
+import fr.HtSTeam.HtS.Player.Player;
 
 public interface DeathTrigger {
 	

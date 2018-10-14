@@ -27,7 +27,7 @@ import org.bukkit.plugin.PluginManager;
 
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.Players.PlayerInGame;
+import fr.HtSTeam.HtS.Player.PlayerInGame;
 import net.minecraft.server.v1_13_R2.Entity;
 import net.minecraft.server.v1_13_R2.NBTTagCompound;
 

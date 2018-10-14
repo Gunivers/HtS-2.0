@@ -6,10 +6,10 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Utils.Files.FileExtractor;
 
 public class FishingOption extends OptionBuilder<Boolean> {

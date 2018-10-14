@@ -5,16 +5,15 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 import org.apache.commons.lang.ObjectUtils.Null;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Utils.Tag;
 import fr.HtSTeam.HtS.Utils.Files.OptionIO;
 import fr.HtSTeam.HtS.Utils.Files.XmlFile;
@@ -75,7 +74,7 @@ public class LoadPreset extends OptionBuilder<Null> implements CommandExecutor {
 				}
 			}
 		}
-		for(Player p2 : Bukkit.getOnlinePlayers())
+		for(Player p2 : Player.getPlayers())
 			if(p2.isOp()) 
 				p2.sendMessage("§2Import de " + f.getName().replaceAll(".xml", "") + " réussi.");
 	}

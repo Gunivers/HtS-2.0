@@ -1,7 +1,6 @@
 package fr.HtSTeam.HtS.Options.Options.Base;
 
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
@@ -10,6 +9,7 @@ import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
+import fr.HtSTeam.HtS.Player.Player;
 
 public class NoDamageOption extends OptionBuilder<Integer> {
 	
@@ -32,7 +32,7 @@ public class NoDamageOption extends OptionBuilder<Integer> {
 	
 	@EventHandler
 	public void onPlayerChat(AsyncPlayerChatEvent e) {		
-		if(request && e.getPlayer().equals(p)) {
+		if(request && e.getPlayer().getUniqueId().equals(p.getUUID())) {
 			e.setCancelled(true);
 			try {
 				int value = Integer.parseInt(e.getMessage());

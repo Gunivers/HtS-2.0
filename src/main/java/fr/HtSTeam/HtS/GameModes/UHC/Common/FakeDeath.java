@@ -16,8 +16,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.Players.PlayerInGame;
-import fr.HtSTeam.HtS.Players.PlayerRemove;
+import fr.HtSTeam.HtS.Player.PlayerInGame;
+import fr.HtSTeam.HtS.Player.PlayerRemove;
 
 public class FakeDeath implements Listener, PlayerRemove {
 	

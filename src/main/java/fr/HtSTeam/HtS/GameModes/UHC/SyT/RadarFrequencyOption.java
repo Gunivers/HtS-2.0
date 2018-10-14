@@ -16,8 +16,8 @@ import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.AwaitingPlayer;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
-import fr.HtSTeam.HtS.Players.PlayerManager;
-import fr.HtSTeam.HtS.Players.PlayerReconnection;
+import fr.HtSTeam.HtS.Player.PlayerManager;
+import fr.HtSTeam.HtS.Player.PlayerReconnection;
 
 public class RadarFrequencyOption extends OptionBuilder<Integer> implements StartTrigger {
 
@@ -33,8 +33,8 @@ public class RadarFrequencyOption extends OptionBuilder<Integer> implements Star
 	}
 
 	@Override
-	public void event(Player p) {
-		this.p = p;
+	public void event(fr.HtSTeam.HtS.Player.Player p) {
+		this.p = Bukkit.getPlayer(p.getUUID());
 		p.closeInventory();
 		request = true;
 		p.sendMessage("§2Veuillez saisir la fréquence du Radar.");

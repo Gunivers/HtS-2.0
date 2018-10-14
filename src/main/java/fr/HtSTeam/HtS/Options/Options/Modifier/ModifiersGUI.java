@@ -5,12 +5,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.UUID;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
@@ -19,7 +17,8 @@ import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.GUIBuilder;
 import fr.HtSTeam.HtS.Options.Structure.IconBuilder;
 import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
-import fr.HtSTeam.HtS.Players.PlayerInGame;
+import fr.HtSTeam.HtS.Player.Player;
+import fr.HtSTeam.HtS.Player.PlayerInGame;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 
 public class ModifiersGUI extends GUIBuilder implements StartTrigger, CommandExecutor {
@@ -60,7 +59,7 @@ public class ModifiersGUI extends GUIBuilder implements StartTrigger, CommandExe
 			}
 		if(!active) return;
 		for(UUID p : PlayerInGame.playerInGame)
-			customInventory.put(Bukkit.getPlayer(p), new CustomGUI());
+			customInventory.put(Player.getPlayerFromUUID(p), new CustomGUI());
 	}
 	
 	public CustomGUI getInventory(Player p) {

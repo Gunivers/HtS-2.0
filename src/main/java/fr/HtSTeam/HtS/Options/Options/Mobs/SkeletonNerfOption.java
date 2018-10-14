@@ -3,7 +3,6 @@ package fr.HtSTeam.HtS.Options.Options.Mobs;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
@@ -11,6 +10,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
+import fr.HtSTeam.HtS.Player.Player;
 
 public class SkeletonNerfOption extends OptionBuilder<Integer> {
 	
@@ -32,7 +32,7 @@ public class SkeletonNerfOption extends OptionBuilder<Integer> {
 	
 	@EventHandler
 	public void onPlayerChat(AsyncPlayerChatEvent e) {		
-		if(request && e.getPlayer().equals(p)) {
+		if(request && e.getPlayer().getUniqueId().equals(p.getUUID())) {
 			e.setCancelled(true);
 			try {
 				int value = Integer.parseInt(e.getMessage());

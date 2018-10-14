@@ -3,12 +3,12 @@ package fr.HtSTeam.HtS.Options.Options.Probability.Structure;
 import java.util.Random;
 
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Player.Player;
 
 /**
  * 
@@ -46,7 +46,7 @@ public class Probability extends OptionBuilder<Double>
 	@EventHandler
 	public void onPlayerChat(AsyncPlayerChatEvent e)
 	{
-		if (request && this.p.equals(e.getPlayer()))
+		if (request && this.p.getUUID().equals(e.getPlayer().getUniqueId()))
 		{
 			e.setCancelled(true);
 			

@@ -1,7 +1,6 @@
 package fr.HtSTeam.HtS.Options.Options.GameMode;
 
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.GameModes.FallenKingdom.FallenKingdom;
@@ -9,6 +8,7 @@ import fr.HtSTeam.HtS.GameModes.UHC.Common.UHC;
 import fr.HtSTeam.HtS.GameModes.UHC.SyT.SyT;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.OptionRegister;
+import fr.HtSTeam.HtS.Player.Player;
 
 public class FallenKingdomOption extends GameModeState {
 

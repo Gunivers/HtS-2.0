@@ -1,32 +1,26 @@
 package fr.HtSTeam.HtS.Options.Options.Presets.Disablers.Structure;
 
-import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
-import fr.HtSTeam.HtS.Utils.Files.OptionIO;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.EOFException;
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.Base64;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
-
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
-
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.ItemStack;
-
 import org.bukkit.util.io.BukkitObjectInputStream;
 import org.bukkit.util.io.BukkitObjectOutputStream;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.GUIBuilder;
+import fr.HtSTeam.HtS.Player.Player;
+import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
+import fr.HtSTeam.HtS.Utils.Files.OptionIO;
 
 /**
  * This is the Disabler abstract class.
@@ -150,7 +144,7 @@ public abstract class Disabler extends GUIBuilder implements OptionIO
 	@EventHandler
 	public void onPlayerClick(InventoryClickEvent e)
 	{
-		if (!request.contains(e.getWhoClicked())) return;
+		if (!request.contains(Player.instance((org.bukkit.entity.Player) e.getWhoClicked()))) return;
 		
 		if (!e.getInventory().getName().equals(inv.getName())) return;
 		
@@ -201,7 +195,7 @@ public abstract class Disabler extends GUIBuilder implements OptionIO
 	@EventHandler
 	public void onCloseInventory(InventoryCloseEvent event)
 	{
-		request.remove(event.getPlayer());
+		request.remove(Player.instance((org.bukkit.entity.Player) event.getPlayer()));
 	}
 	
 	/**
@@ -235,7 +229,7 @@ public abstract class Disabler extends GUIBuilder implements OptionIO
 		{
 			e.printStackTrace();
 			
-			for (Player p : Bukkit.getOnlinePlayers())
+			for (Player p : Player.getPlayers())
 			{
 				if (p.isOp())
 					p.sendMessage("§5[§2" + Main.HTSNAME + "§5]"
@@ -273,7 +267,7 @@ public abstract class Disabler extends GUIBuilder implements OptionIO
 		{
 			e.printStackTrace();
 			
-			for (Player p : Bukkit.getOnlinePlayers())
+			for (Player p : Player.getPlayers())
 			{
 				if (p.isOp())
 					p.sendMessage("§6[§2" + Main.HTSNAME + "§6]"

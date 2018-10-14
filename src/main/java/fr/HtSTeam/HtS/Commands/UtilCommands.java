@@ -8,8 +8,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import fr.HtSTeam.HtS.Players.PlayerInGame;
-import fr.HtSTeam.HtS.Players.PlayerManager;
+import fr.HtSTeam.HtS.Player.PlayerInGame;
+import fr.HtSTeam.HtS.Player.PlayerManager;
 import fr.HtSTeam.HtS.Utils.Files.OptionIO;
 
 public class UtilCommands implements CommandExecutor {

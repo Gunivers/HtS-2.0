@@ -6,13 +6,13 @@ import java.util.HashMap;
 
 import org.apache.commons.lang.ObjectUtils.Null;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Utils.Tag;
 import fr.HtSTeam.HtS.Utils.Files.OptionIO;
 import fr.HtSTeam.HtS.Utils.Files.XmlFile;
@@ -58,7 +58,7 @@ public class SavePreset extends OptionBuilder<Null> {
 	
 	@EventHandler
 	public void onPlayerChat(AsyncPlayerChatEvent e) {		
-		if(request == 1 && e.getPlayer().equals(p)) {
+		if(request == 1 && e.getPlayer().getUniqueId().equals(p.getUUID())) {
 			e.setCancelled(true);
 			File file = new File(Main.plugin.getDataFolder() + "/" + "Presets" + "/", e.getMessage() + ".xml");
 			if (file.exists()) {
@@ -70,7 +70,7 @@ public class SavePreset extends OptionBuilder<Null> {
 				request = 0;
 				p = null;
 			}
-		} else if(request == 2 && e.getPlayer().equals(p)) {
+		} else if(request == 2 && e.getPlayer().getUniqueId().equals(p.getUUID())) {
 			e.setCancelled(true);
 			if(e.getMessage().toLowerCase().charAt(0) == 'o') {
 				file.delete();

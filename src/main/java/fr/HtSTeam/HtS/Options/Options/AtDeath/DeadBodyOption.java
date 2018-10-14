@@ -50,7 +50,7 @@ public class DeadBodyOption extends OptionBuilder<Boolean> implements EndTrigger
 	}
 
 	@Override
-	public void event(Player p)
+	public void event(fr.HtSTeam.HtS.Player.Player p)
 	{
 		this.setState(!this.getValue());
 	}

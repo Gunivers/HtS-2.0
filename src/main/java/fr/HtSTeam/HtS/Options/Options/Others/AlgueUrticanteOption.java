@@ -1,12 +1,12 @@
 package fr.HtSTeam.HtS.Options.Options.Others;
 
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Player.Player;
 
 public class AlgueUrticanteOption extends OptionBuilder<Boolean> {
 		
@@ -31,7 +31,7 @@ public class AlgueUrticanteOption extends OptionBuilder<Boolean> {
 	
 	@EventHandler
 	public void onAlgaeCatch(EntityPickupItemEvent e) {
-		if(e.getEntity() instanceof Player && e.getItem().getItemStack().getType() == Material.TALL_GRASS && getValue()) {
+		if(e.getEntity() instanceof org.bukkit.entity.Player && e.getItem().getItemStack().getType() == Material.TALL_GRASS && getValue()) {
 			e.setCancelled(true);
 			e.getEntity().setHealth(e.getEntity().getHealth()-1);
 			e.getItem().remove();

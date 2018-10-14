@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Players;
+package fr.HtSTeam.HtS.Player;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -11,7 +11,12 @@ import java.util.Map.Entry;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Sound;
+import org.bukkit.World;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.potion.PotionEffect;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.HtSTeam.HtS.Main;
@@ -434,5 +439,51 @@ public class Player {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	
+	
+	
+	
+	
+	public void openInventory(Inventory inv) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void closeInventory() {
+		// TODO Auto-generated method stub
+		
+	}
+	public double getHealth() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	public void setHealth(double d) {
+		// TODO Auto-generated method stub
+		
+	}
+	public World getWorld() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public Location getLocation() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public void playSound(Location location, Sound blockAnvilLand, int i, int j) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void addPotionEffect(PotionEffect potionEffect) {
+		// TODO Auto-generated method stub
+		
+	}
+	public Inventory getInventory() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public boolean isOp() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

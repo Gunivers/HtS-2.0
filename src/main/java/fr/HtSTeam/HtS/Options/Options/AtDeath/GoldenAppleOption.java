@@ -1,11 +1,11 @@
 package fr.HtSTeam.HtS.Options.Options.AtDeath;
 
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Player.Player;
 
 public class GoldenAppleOption extends OptionBuilder<Boolean> {
 	

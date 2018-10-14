@@ -16,7 +16,7 @@ import fr.HtSTeam.HtS.GameModes.UHC.Common.UHC;
 import fr.HtSTeam.HtS.Options.OptionRegister;
 import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.JDBCHandler;
 import fr.HtSTeam.HtS.Options.Structure.TimerTask;
-import fr.HtSTeam.HtS.Players.DeathLoot;
+import fr.HtSTeam.HtS.Player.DeathLoot;
 import fr.HtSTeam.HtS.Teams.TeamRegister;
 import fr.HtSTeam.HtS.Utils.Nms;
 import fr.HtSTeam.HtS.Utils.Files.FileExtractor;
