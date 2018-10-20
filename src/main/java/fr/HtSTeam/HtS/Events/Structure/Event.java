@@ -13,12 +13,15 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.reflections.Reflections;
 import org.reflections.scanners.MethodAnnotationsScanner;
 import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
+
+import fr.HtSTeam.HtS.Player.Player;
 
 public class Event implements Listener {
 	
@@ -44,11 +47,11 @@ public class Event implements Listener {
 		System.out.println(annoted_methods.size() + " events registered!");
 	}
 		
-	private void invoke(Class<?> clazz, Object event) {
+	private void invoke(Class<?> clazz, Object event, Player player) {
 		if (!eventMethods.containsKey(clazz))
 			return;
 		eventMethods.get(clazz).forEach(m -> { try {
-			m.invoke(null, event);
+			m.invoke(null, event, player);
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			e.printStackTrace();
 		} });
@@ -57,24 +60,27 @@ public class Event implements Listener {
 	// Events
 	
 	@org.bukkit.event.EventHandler
-	public void onPlayerJoinEvent(PlayerJoinEvent event) { Bukkit.broadcastMessage(event.getJoinMessage()); event.setJoinMessage(null); invoke(event.getClass(), event); }
+	public void onPlayerJoinEvent(PlayerJoinEvent event) { org.bukkit.entity.Player p = null; if (event.getPlayer() != null) p = event.getPlayer(); Bukkit.broadcastMessage(event.getJoinMessage()); event.setJoinMessage(null); invoke(event.getClass(), event, Player.instance(p)); }
 	
 	@org.bukkit.event.EventHandler
-	public void onPlayerQuitEvent(PlayerQuitEvent event) { String msg = event.getQuitMessage(); event.setQuitMessage(null); invoke(event.getClass(), event); Bukkit.broadcastMessage(msg); }
+	public void onPlayerQuitEvent(PlayerQuitEvent event) { org.bukkit.entity.Player p = null; if (event.getPlayer() != null) p = event.getPlayer(); String msg = event.getQuitMessage(); event.setQuitMessage(null); invoke(event.getClass(), event, Player.instance(p)); Bukkit.broadcastMessage(msg); }
 	
 	@org.bukkit.event.EventHandler
-	public void onInventoryCloseEvent(InventoryCloseEvent event) { invoke(event.getClass(), event); }
+	public void onInventoryCloseEvent(InventoryCloseEvent event) { org.bukkit.entity.Player p = null; if (event.getPlayer() != null) p = (org.bukkit.entity.Player) event.getPlayer(); invoke(event.getClass(), event, Player.instance(p)); }
 	
 	@org.bukkit.event.EventHandler
-	public void onFoodLevelChangeEvent(FoodLevelChangeEvent event) { invoke(event.getClass(), event); }
+	public void onFoodLevelChangeEvent(FoodLevelChangeEvent event) { org.bukkit.entity.Player p = null; if (event.getEntity() != null && event.getEntity() instanceof org.bukkit.entity.Player) p = ((org.bukkit.entity.Player) event).getPlayer(); invoke(event.getClass(), event, Player.instance(p)); }
 	
 	@org.bukkit.event.EventHandler
-	public void onEntityDamageEvent(EntityDamageEvent event) { invoke(event.getClass(), event); }
+	public void onEntityDamageEvent(EntityDamageEvent event) { org.bukkit.entity.Player p = null; if (event.getEntity() != null) p = (org.bukkit.entity.Player) event.getEntity(); invoke(event.getClass(), event, Player.instance(p)); }
 	
 	@org.bukkit.event.EventHandler
-	public void onBlockBreakEvent(BlockBreakEvent event) { invoke(event.getClass(), event); }
+	public void onBlockBreakEvent(BlockBreakEvent event) { org.bukkit.entity.Player p = null; if (event.getPlayer() != null) p = event.getPlayer(); invoke(event.getClass(), event, Player.instance(p)); }
 	
 	@org.bukkit.event.EventHandler
-	public void onBlockPlaceEvent(BlockPlaceEvent event) { invoke(event.getClass(), event); }
+	public void onBlockPlaceEvent(BlockPlaceEvent event) { org.bukkit.entity.Player p = null; if (event.getPlayer() != null) p = event.getPlayer(); invoke(event.getClass(), event, Player.instance(p)); }
+	
+	@org.bukkit.event.EventHandler
+	public void onBlockPlaceEvent(PlayerChangedWorldEvent event) { org.bukkit.entity.Player p = null; if (event.getPlayer() != null) p = event.getPlayer(); invoke(event.getClass(), event, Player.instance(p)); }
 
 }

@@ -59,7 +59,7 @@ public class ModifiersGUI extends GUIBuilder implements StartTrigger, CommandExe
 			}
 		if(!active) return;
 		for(UUID p : PlayerInGame.playerInGame)
-			customInventory.put(Player.getPlayerFromUUID(p), new CustomGUI());
+			customInventory.put(Player.instance(p), new CustomGUI());
 	}
 	
 	public CustomGUI getInventory(Player p) {

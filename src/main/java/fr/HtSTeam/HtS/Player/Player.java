@@ -14,14 +14,18 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.World;
+import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.HtSTeam.HtS.Main;
+import fr.HtSTeam.HtS.Events.Structure.EventHandler;
 import fr.HtSTeam.HtS.Teams.TeamBuilder;
 import fr.HtSTeam.HtS.Utils.Nms;
+import fr.HtSTeam.HtS.Utils.PRIORITY;
 import fr.HtSTeam.HtS.Utils.Tag;
 import fr.HtSTeam.HtS.Utils.Files.XmlFile;
 
@@ -32,62 +36,28 @@ public class Player {
 	/**
 	 * Returns the list of all Player (not necessarily online).
 	 * 
-	 * @return List of Player
+	 * @return ArrayList<Player>
 	 */
 	public static ArrayList<Player> getPlayers() { return players; }
-	/**
-	 * Returns the instance of Player from a UniqueId.
-	 * Should not return null.
-	 * 
-	 * @param uuid
-	 * 		UniqueId of Player
-	 * @return Player
-	 */
-	public static Player getPlayerFromUUID(UUID uuid) { if (uuids.containsKey(uuid)) return uuids.get(uuid); return null; }
 	
 	
 	private ArrayList<Runnable> asynctasks = new ArrayList<Runnable>();
 	
+	private org.bukkit.entity.Player player;
 	
 	private UUID uuid;
 	private String name;
 	private String display_name;
-	/**
-	 * Returns the UUID of this Player.
-	 * 
-	 * @return UUID
-	 */
-	public UUID getUUID() { return uuid; }
-	/**
-	 * Returns the UUID of this Player.
-	 * 
-	 * @return String
-	 */
-	public String getName() { return name; }
-	/**
-	 * Returns the displayed name of this Player.
-	 * 
-	 * @return String
-	 */
-	public String getDisplay() { return display_name; }
-	
-	
+		
 	private TeamBuilder team;
 	private TeamBuilder fake_team;
-	/**
-	 * Returns the team of this Player.
-	 * 
-	 * @return TeamBuilder
-	 */
-	public TeamBuilder getTeam() { return team; }
 	
-	/**
-	 * Returns the fake team of this Player.
-	 * 
-	 * @return TeamBuilder
-	 */
-	public TeamBuilder getFakeTeam() { return fake_team; }
-	
+	private boolean op;
+	private World world;
+	private Location location;
+	private Inventory inventory;
+	private double health;
+		
 	
 	/**
 	 * Creates an independent player, highly modular and safe.
@@ -100,10 +70,19 @@ public class Player {
 		players.add(this);
 		uuids.put(player.getUniqueId(), this);
 		
+		this.player = player;
+		
 		uuid = player.getUniqueId();
 		name = player.getName();
 		display_name = player.getDisplayName();
+		
+		op = player.isOp();
+		world = player.getWorld();
+		location = player.getLocation();
+		inventory = player.getInventory();
+		health = player.getHealth();
 	}
+	
 	/**
 	 * Creates an independent player, highly modular and safe. Cannot instantiate twice. 
 	 * 
@@ -116,6 +95,22 @@ public class Player {
 			return uuids.get(player.getUniqueId());
 		return new Player(player);	
 	}
+	/**
+	 * Creates an independent player, highly modular and safe. Cannot instantiate twice. 
+	 * 
+	 * @param uuid 
+	 * 			UUID of Player
+	 * @return Player (new or already existing instance) <strong>[Can be Null]</strong>
+	 */
+	public static Player instance(UUID uuid) {
+		if (uuids.containsKey(uuid))
+			return uuids.get(uuid);
+		else if (Bukkit.getPlayer(uuid) != null)
+			return instance(Bukkit.getPlayer(uuid));
+		else 
+			return null;
+	}
+	
 	
 	/**
 	 * Temporary, anyone to delete
@@ -154,7 +149,7 @@ public class Player {
 	}
 	
 	/**
-	 * Use this method to whether you should run your method in case the player is offline. You can add your method to be executed when the player reconnects
+	 * Use this method to know whether you should run your method in case the player is offline. You can add your method to be executed when the player reconnects
 	 * 	
 	 * @param addasync should it add this method to run at the player reconnection
 	 * @param args parameters' values of method (do not put addasync in args)
@@ -206,13 +201,41 @@ public class Player {
 		asynctasks.clear();
 	}
 	/**
-	 * Event triggered when a player joined, executes the {@link #runAsyncTask() runAsyncTask} method
+	 * Event triggered when a player joined, executes the {@link #runAsyncTask() runAsyncTask} method.
 	 * 
 	 * @param e the event
+	 * @param p the player
 	 */
-//	@EventHandler
-	public static void onPlayerjoin(PlayerJoinEvent e) {
-		getPlayerFromUUID(e.getPlayer().getUniqueId()).runAsyncTask();
+	@EventHandler(PRIORITY.PLAYER)
+	public static void onPlayerJoin(PlayerJoinEvent e, Player p) {
+		p.player = e.getPlayer();
+		p.runAsyncTask();
+	}
+	
+	
+	/**
+	 * Event triggered when a player left.
+	 * 
+	 * @param e the event
+	 * @param p the player
+	 */
+	@EventHandler(PRIORITY.PLAYER)
+	public static void onPlayerQuit(PlayerQuitEvent e, Player p) {
+		org.bukkit.entity.Player bplayer = e.getPlayer();
+		p.op = bplayer.isOp();
+		p.world = bplayer.getWorld();
+		p.location = bplayer.getLocation();
+		p.inventory = bplayer.getInventory();
+		p.health = bplayer.getHealth();
+	}
+	
+	
+//	EVENTS --------------------------------------------------------------------------------------
+
+
+	@EventHandler(PRIORITY.PLAYER)
+	public static void onWorld(PlayerChangedWorldEvent e, Player p) {
+		p.world = e.getPlayer().getWorld();
 	}
 	
 	
@@ -221,8 +244,104 @@ public class Player {
 //	METHOS --------------------------------------------------------------------------------------
 	
 	
+	// RETURN
 	
-		
+	
+	/**
+	 * Returns the UUID of this Player.
+	 * 
+	 * @return UUID
+	 */
+	public UUID getUUID() { return uuid; }
+	
+	
+	/**
+	 * Returns the UUID of this Player.
+	 * 
+	 * @return String
+	 */
+	public String getName() { return name; }
+	
+	
+	/**
+	 * Returns the displayed name of this Player.
+	 * 
+	 * @return String
+	 */
+	public String getDisplay() { return display_name; }
+	
+	
+	/**
+	 * Returns the team of this Player.
+	 * 
+	 * @return TeamBuilder
+	 */
+	public TeamBuilder getTeam() { return team; }
+	
+	
+	/**
+	 * Returns the fake team of this Player.
+	 * 
+	 * @return TeamBuilder
+	 */
+	public TeamBuilder getFakeTeam() { return fake_team; }
+	
+	
+	/**
+	 * Returns true if this Player is op.
+	 * 
+	 * @return boolean
+	 */
+	public boolean isOp() { return op; }
+	
+	
+	/**
+	 * Returns world.
+	 * 
+	 * @return World
+	 */
+	public World getWorld() { return world; }
+	
+	
+	/**
+	 * Returns last known location.
+	 * 
+	 * @return Location
+	 */
+	public Location getLocation() {
+		if (canExecute(false))
+			location = player.getLocation();
+		return location;
+	}
+	
+
+	/**
+	 * Returns inventory.
+	 * 
+	 * @return Inventory
+	 */
+	public Inventory getInventory() {
+		if (canExecute(false))
+			inventory = player.getInventory();
+		return inventory;
+	}
+	
+	
+	/**
+	 * Returns health value.
+	 * 
+	 * @return double
+	 */
+	public double getHealth() {
+		if (canExecute(false))
+			health = player.getHealth();
+		return health;
+	}
+	
+	
+	// NO RETURN
+	
+	
 	/**
 	 * Sends a message to the player if he is connected, else it will send it when he reconnects
 	 * 
@@ -238,7 +357,7 @@ public class Player {
 	public void sendMessage(String message, boolean addasync) {
 		if (message == null || message.isEmpty() || !canExecute(addasync, message))
 			return;
-		Bukkit.getPlayer(uuid).sendMessage(message);
+		player.sendMessage(message);
 	}
 	
 	
@@ -281,7 +400,6 @@ public class Player {
 			}
 		message += ']';
 		
-		org.bukkit.entity.Player player = Bukkit.getPlayer(uuid);
 		try {
 			Object craftPlayer = Nms.craftPlayerClass.cast(player);
 			Object packet;
@@ -329,7 +447,6 @@ public class Player {
 		if (title == null || title.isEmpty() || duration < 1 || !canExecute(addasync, title, subtitle, duration))
 			return;
 		
-		org.bukkit.entity.Player player = Bukkit.getPlayer(uuid);
 		try {
 			Object craftPlayer = Nms.craftPlayerClass.cast(player);
 			Object packet_title = null;
@@ -416,7 +533,6 @@ public class Player {
 	 * @param message the message to send to the player
 	 */
 	private void actionBar(String message) {
-		org.bukkit.entity.Player player = Bukkit.getPlayer(uuid);
 		try {
 			Object craftPlayer = Nms.craftPlayerClass.cast(player);
 			Object packet;
@@ -444,46 +560,24 @@ public class Player {
 	
 	
 	
-	
-	
-	public void openInventory(Inventory inv) {
-		// TODO Auto-generated method stub
-		
+	public void openInventory(Inventory inventory) {
+		if(canExecute(false))
+			player.openInventory(inventory);
 	}
 	public void closeInventory() {
-		// TODO Auto-generated method stub
-		
+		if(canExecute(false))
+			player.closeInventory();
 	}
-	public double getHealth() {
-		// TODO Auto-generated method stub
-		return 0;
+	public void setHealth(double health) {
+		if(canExecute(false))
+			player.setHealth(health);
 	}
-	public void setHealth(double d) {
-		// TODO Auto-generated method stub
-		
-	}
-	public World getWorld() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	public Location getLocation() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	public void playSound(Location location, Sound blockAnvilLand, int i, int j) {
-		// TODO Auto-generated method stub
-		
+	public void playSound(Location location, Sound sound, int volume, int pitch) {
+		if(canExecute(false))
+			player.playSound(location, sound, volume, pitch);
 	}
 	public void addPotionEffect(PotionEffect potionEffect) {
-		// TODO Auto-generated method stub
-		
-	}
-	public Inventory getInventory() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	public boolean isOp() {
-		// TODO Auto-generated method stub
-		return false;
+		if(canExecute(false))
+			player.addPotionEffect(potionEffect);
 	}
 }
