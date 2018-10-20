@@ -127,7 +127,7 @@ public class Player {
 		this.display_name = display_name;
 	}
 	@SuppressWarnings("serial")
-	public void save() {
+	private void save() {
 		ArrayList<Field> fields = new ArrayList<Field>();
 		for (int i = 3; i < getClass().getDeclaredFields().length; i++) {
 			fields.add(getClass().getDeclaredFields()[i]);
@@ -227,11 +227,15 @@ public class Player {
 		p.location = bplayer.getLocation();
 		p.inventory = bplayer.getInventory();
 		p.health = bplayer.getHealth();
+		
+		p.save();
 	}
 	
 	
 //	EVENTS --------------------------------------------------------------------------------------
 
+	
+	
 
 	@EventHandler(PRIORITY.PLAYER)
 	public static void onWorld(PlayerChangedWorldEvent e, Player p) {
