@@ -47,8 +47,8 @@ public class Player {
 	
 	private UUID uuid;
 	private String name;
+	
 	private String display_name;
-		
 	private TeamBuilder team;
 	private TeamBuilder fake_team;
 	
@@ -111,42 +111,6 @@ public class Player {
 			return null;
 	}
 	
-	
-	/**
-	 * Temporary, anyone to delete
-	 * @param uuid
-	 * @param name
-	 * @param display_name
-	 */
-	public Player(UUID uuid, String name, String display_name) {
-		players.add(this);
-		uuids.put(uuid, this);
-		
-		this.uuid = uuid;
-		this.name = name;
-		this.display_name = display_name;
-	}
-	@SuppressWarnings("serial")
-	private void save() {
-		ArrayList<Field> fields = new ArrayList<Field>();
-		for (int i = 3; i < getClass().getDeclaredFields().length; i++) {
-			fields.add(getClass().getDeclaredFields()[i]);
-		}
-		
-		new File(Main.plugin.getDataFolder() + "/" + "Players" + "/", uuid.toString()  + ".xml").delete();
-		
-		XmlFile f = new XmlFile("Players", uuid.toString());
-		fields.forEach(field -> { try {
-			field.setAccessible(true);
-			Object value = field.get(this);
-			if(value != null)
-				f.add(new Tag("field", new HashMap<String, String>() {{ put("name", field.getName()); }}, new ArrayList<Tag>(){{ add(new Tag(value.toString(), null, null)); }}));
-			} catch (IllegalAccessException e) {
-				e.printStackTrace();
-			}
-		});
-		f.save();
-	}
 	
 	/**
 	 * Use this method to know whether you should run your method in case the player is offline. You can add your method to be executed when the player reconnects
@@ -231,6 +195,28 @@ public class Player {
 		p.save();
 	}
 	
+	
+	@SuppressWarnings("serial")
+	private void save() {
+		ArrayList<Field> fields = new ArrayList<Field>();
+		for (int i = 7; i < 10; i++) {
+			fields.add(getClass().getDeclaredFields()[i]);
+		}
+		
+		new File(Main.plugin.getDataFolder() + "/" + "Players" + "/", uuid.toString()  + ".xml").delete();
+		
+		XmlFile f = new XmlFile("Players", uuid.toString());
+		fields.forEach(field -> { try {
+			field.setAccessible(true);
+			Object value = field.get(this);
+			if(value != null)
+				f.add(new Tag("field", new HashMap<String, String>() {{ put("name", field.getName()); }}, new ArrayList<Tag>(){{ add(new Tag(value.toString(), null, null)); }}));
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			}
+		});
+		f.save();
+	}
 	
 //	EVENTS --------------------------------------------------------------------------------------
 
