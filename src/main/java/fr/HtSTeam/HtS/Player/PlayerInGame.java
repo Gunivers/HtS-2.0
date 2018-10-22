@@ -12,7 +12,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 import fr.HtSTeam.HtS.EnumState;
-import fr.HtSTeam.HtS.Teams.TeamBuilder;
 
 public class PlayerInGame implements Listener {
 
@@ -33,7 +32,7 @@ public class PlayerInGame implements Listener {
 	
 	public static void removeFromGame(UUID uuid) {
 		playerInGame.remove(uuid);
-		if (TeamBuilder.playerTeam.get(uuid) != null)
-			TeamBuilder.playerTeam.get(uuid).removePlayer(uuid);
+//		if (Team.playerTeam.get(uuid) != null)
+//			Team.playerTeam.get(uuid).removePlayer(uuid);
 	}
 }

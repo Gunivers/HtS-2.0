@@ -10,7 +10,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Player.PlayerInGame;
 import fr.HtSTeam.HtS.Player.PlayerRemove;
-import fr.HtSTeam.HtS.Teams.TeamBuilder;
+import fr.HtSTeam.HtS.Teams.Team;
 
 public class VictoryDetectionEvent implements Listener, PlayerRemove {
 
@@ -28,7 +28,7 @@ public class VictoryDetectionEvent implements Listener, PlayerRemove {
 
 	@Override
 	public void removePlayer(UUID uuid, String name) {
-		if (EnumState.getState() != EnumState.FINISHING && teamVictoryDetection && TeamBuilder.teamList.size() == 1) {
+		if (EnumState.getState() != EnumState.FINISHING && teamVictoryDetection && Team.teamList.size() == 1) {
 //			JSON.sendAll(ChatColor.valueOf(TeamBuilder.teamList.get(0).getTeamColor().toUpperCase()) + "La team " + TeamBuilder.teamList.get(0).getTeamName() + " a gagné !", null, 5);
 			EnumState.setState(EnumState.FINISHING);
 		} else if (EnumState.getState() != EnumState.FINISHING && PlayerInGame.playerInGame.size() == 1) {

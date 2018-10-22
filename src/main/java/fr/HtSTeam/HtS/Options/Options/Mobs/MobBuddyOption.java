@@ -25,7 +25,7 @@ import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Player.Player;
-import fr.HtSTeam.HtS.Teams.TeamBuilder;
+import fr.HtSTeam.HtS.Teams.Team;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 import fr.HtSTeam.HtS.Utils.MobManager;
 import fr.HtSTeam.HtS.Utils.Randomizer;
@@ -47,9 +47,9 @@ public class MobBuddyOption extends OptionBuilder<Boolean> {
 		if (e.getTarget() instanceof Player && e.getEntity().hasMetadata("buddy")) {
 			if (((Player)e.getTarget()).getUUID().toString().equalsIgnoreCase(e.getEntity().getMetadata("buddy").get(0).asString())) {
 				e.setCancelled(true);
-			} else if (!TeamBuilder.teamList.isEmpty()) {
-				if (TeamBuilder.playerTeam.get(UUID.fromString(e.getEntity().getMetadata("buddy").get(0).asString())).getTeamPlayers().contains(e.getTarget().getUniqueId()))
-					e.setCancelled(true);
+			} else if (!Team.teamList.isEmpty()) {
+//				if (Team.playerTeam.get(UUID.fromString(e.getEntity().getMetadata("buddy").get(0).asString())).getTeamPlayers().contains(e.getTarget().getUniqueId()))
+//					e.setCancelled(true);
 			}
 		}
 	}
@@ -66,7 +66,7 @@ public class MobBuddyOption extends OptionBuilder<Boolean> {
 			if (mob instanceof Zombie) {
 				Zombie m = (Zombie) mob;
 				ItemStack helmet = new ItemStack(Material.LEATHER_HELMET);
-				if (TeamBuilder.teamList.size() != 0) {
+				if (Team.teamList.size() != 0) {
 					LeatherArmorMeta meta = (LeatherArmorMeta) helmet.getItemMeta();
 					meta.setColor(getColor(e.getPlayer().getUniqueId()));
 					helmet.setItemMeta(meta);
@@ -75,7 +75,7 @@ public class MobBuddyOption extends OptionBuilder<Boolean> {
 			} else if (mob instanceof Skeleton) {
 				Skeleton m = (Skeleton) mob;
 				ItemStack helmet = new ItemStack(Material.LEATHER_HELMET);
-				if (TeamBuilder.teamList.size() != 0) {
+				if (Team.teamList.size() != 0) {
 					LeatherArmorMeta meta = (LeatherArmorMeta) helmet.getItemMeta();
 					meta.setColor(getColor(e.getPlayer().getUniqueId()));
 					helmet.setItemMeta(meta);
@@ -86,38 +86,38 @@ public class MobBuddyOption extends OptionBuilder<Boolean> {
 	}
 
 	private Color getColor(UUID uniqueId) {
-		switch (TeamBuilder.playerTeam.get(uniqueId).getTeamColor()) {
-			case "white":
-				return Color.WHITE;
-			case "gold":
-				return Color.ORANGE;
-			case "dark_red":
-				return Color.MAROON;
-			case "aqua":
-				return Color.AQUA;
-			case "yellow":
-				return Color.YELLOW;
-			case "green":
-				return Color.LIME;
-			case "light_purple":
-				return Color.FUCHSIA;
-			case "dark_gray":
-				return Color.GRAY;
-			case "gray":
-				return Color.SILVER;
-			case "dark_aqua":
-				return Color.TEAL;
-			case "dark_purple":
-				return Color.PURPLE;
-			case "dark_blue":
-				return Color.NAVY;
-			case "dark_green":
-				return Color.OLIVE;
-			case "red":
-				return Color.RED;
-			case "black":
-				return Color.BLACK;
-		}
+//		switch (Team.playerTeam.get(uniqueId).getTeamColor()) {
+//			case "white":
+//				return Color.WHITE;
+//			case "gold":
+//				return Color.ORANGE;
+//			case "dark_red":
+//				return Color.MAROON;
+//			case "aqua":
+//				return Color.AQUA;
+//			case "yellow":
+//				return Color.YELLOW;
+//			case "green":
+//				return Color.LIME;
+//			case "light_purple":
+//				return Color.FUCHSIA;
+//			case "dark_gray":
+//				return Color.GRAY;
+//			case "gray":
+//				return Color.SILVER;
+//			case "dark_aqua":
+//				return Color.TEAL;
+//			case "dark_purple":
+//				return Color.PURPLE;
+//			case "dark_blue":
+//				return Color.NAVY;
+//			case "dark_green":
+//				return Color.OLIVE;
+//			case "red":
+//				return Color.RED;
+//			case "black":
+//				return Color.BLACK;
+//		}
 		return null;
 	}
 

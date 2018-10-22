@@ -20,7 +20,7 @@ import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
 import fr.HtSTeam.HtS.Player.PlayerInGame;
 import fr.HtSTeam.HtS.Player.PlayerManager;
 import fr.HtSTeam.HtS.Player.PlayerReconnection;
-import fr.HtSTeam.HtS.Teams.TeamBuilder;
+import fr.HtSTeam.HtS.Teams.Team;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
 public class TargetCycle extends OptionBuilder<Integer> {
@@ -71,19 +71,19 @@ public class TargetCycle extends OptionBuilder<Integer> {
 	@Timer
 	public void defineTargets() {
 		List<UUID> cycle = new ArrayList<UUID>();
-		HashMap<TeamBuilder, ArrayList<UUID>> teamPlayers = new HashMap<TeamBuilder, ArrayList<UUID>>();
-		for (TeamBuilder tb : TeamBuilder.teamList)
-			teamPlayers.put(tb, new ArrayList<UUID>(tb.getTeamPlayers()));
+		HashMap<Team, ArrayList<UUID>> teamPlayers = new HashMap<Team, ArrayList<UUID>>();
+//		for (Team tb : Team.teamList)
+//			teamPlayers.put(tb, new ArrayList<UUID>(tb.getTeamPlayers()));
 
-		TeamBuilder previousTeam = null;
+		Team previousTeam = null;
 		while(!teamPlayers.isEmpty()) {
-			ArrayList<TeamBuilder> tbs = new ArrayList<TeamBuilder>(teamPlayers.keySet());
+			ArrayList<Team> tbs = new ArrayList<Team>(teamPlayers.keySet());
 			while (tbs.get(0) == previousTeam)
 				Collections.shuffle(tbs);
 			previousTeam = tbs.get(0);
 			
 			ArrayList<UUID> sub_cycle = new ArrayList<UUID>();
-			for (TeamBuilder tb : tbs) {
+			for (Team tb : tbs) {
 				ArrayList<UUID> players = teamPlayers.get(tb);
 				UUID uuid = players.get(Randomizer.randI(0, players.size() - 1)); 
 				sub_cycle.add(uuid); 
@@ -93,8 +93,8 @@ public class TargetCycle extends OptionBuilder<Integer> {
 					teamPlayers.remove(tb);
 			}
 			
-			while(!cycle.isEmpty() && TeamBuilder.playerTeam.get(sub_cycle.get(0)) == TeamBuilder.playerTeam.get(cycle.get(cycle.size() - 1)))
-				Collections.shuffle(sub_cycle);
+//			while(!cycle.isEmpty() && Team.playerTeam.get(sub_cycle.get(0)) == Team.playerTeam.get(cycle.get(cycle.size() - 1)))
+//				Collections.shuffle(sub_cycle);
 			cycle.addAll(sub_cycle);
 		}
 		

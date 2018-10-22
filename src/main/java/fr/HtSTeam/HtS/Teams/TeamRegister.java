@@ -14,20 +14,20 @@ public class TeamRegister implements OptionIO {
 	@Override
 	public void load(Object o) {
 		if (o instanceof String) {
-			new TeamBuilder(((String) o).split("#/#")[0], ((String) o).split("#/#")[1]);
+			new Team(((String) o).split("#/#")[0], ((String) o).split("#/#")[1]);
 		} else {
 			Tag option_tag = (Tag) o;
 			for (Tag t : option_tag.values)
-				new TeamBuilder(t.values.get(0).name.split("#/#")[0], t.values.get(0).name.split("#/#")[1]);
+				new Team(t.values.get(0).name.split("#/#")[0], t.values.get(0).name.split("#/#")[1]);
 		}
 	}
 
 	@Override
 	public ArrayList<String> save() {
-		if (TeamBuilder.teamList.isEmpty())
+		if (Team.teamList.isEmpty())
 			return null;
 		ArrayList<String> teams = new ArrayList<String>();
-		for(TeamBuilder team : TeamBuilder.teamList)
+		for(Team team : Team.teamList)
 			teams.add(team.getTeamName() + "#/#" + team.getTeamColor());
 		return teams;
 	}

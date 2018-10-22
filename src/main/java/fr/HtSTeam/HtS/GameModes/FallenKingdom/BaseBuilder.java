@@ -10,7 +10,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
-import fr.HtSTeam.HtS.Teams.TeamBuilder;
+import fr.HtSTeam.HtS.Teams.Team;
 
 public class BaseBuilder {
 	
@@ -18,7 +18,7 @@ public class BaseBuilder {
 	public static Map<String, BaseBuilder> nameBase = new HashMap<String, BaseBuilder>();
 	public static Map<UUID, BaseBuilder> playerBase = new HashMap<UUID, BaseBuilder>();
 	
-	private TeamBuilder team;
+	private Team team;
 	private String baseName;
 	private Block pos1, pos2;
 	private boolean neutral = false;
@@ -83,11 +83,11 @@ public class BaseBuilder {
 	/**Permet de définir la team lié à la base
 	 * @param team La team à qui appartient la base
 	 */
-	public void setTeam(TeamBuilder team) {
+	public void setTeam(Team team) {
 		if(neutral)
 			return;
 		this.team = team;
-		playerList = team.getTeamPlayers();
+//		playerList = team.getTeamPlayers();
 	}
 	
 	/**
@@ -134,7 +134,7 @@ public class BaseBuilder {
 	 * 
 	 * @return La team liée à la base
 	 */
-	public TeamBuilder getTeam() {
+	public Team getTeam() {
 		if(neutral)
 			return null;
 		return team;

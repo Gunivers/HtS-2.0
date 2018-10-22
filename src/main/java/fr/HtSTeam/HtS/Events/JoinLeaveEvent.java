@@ -1,8 +1,5 @@
 package fr.HtSTeam.HtS.Events;
 
-import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -11,18 +8,17 @@ import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.GameModes.UHC.SyT.RadarFrequencyOption;
 import fr.HtSTeam.HtS.GameModes.UHC.SyT.SyT;
-import fr.HtSTeam.HtS.Teams.TeamBuilder;
 
 public class JoinLeaveEvent {
 	
 	@EventHandler
 	public static void onJoin(PlayerJoinEvent e) {
-		Player p = e.getPlayer();
+//		Player p = e.getPlayer();
 		
-		if (TeamBuilder.teamList.size() != 0 && p.getGameMode() != GameMode.SPECTATOR && TeamBuilder.playerTeam.containsKey(p.getUniqueId())) {
-			p.setDisplayName(ChatColor.valueOf(TeamBuilder.playerTeam.get(p.getUniqueId()).getTeamColor().toUpperCase()) + p.getName() + "§r");
-			p.setPlayerListName(ChatColor.valueOf(TeamBuilder.playerTeam.get(p.getUniqueId()).getTeamColor().toUpperCase()) + p.getName());
-		}
+//		if (Team.teamList.size() != 0 && p.getGameMode() != GameMode.SPECTATOR && Team.playerTeam.containsKey(p.getUniqueId())) {
+//			p.setDisplayName(ChatColor.valueOf(Team.playerTeam.get(p.getUniqueId()).getTeamColor().toUpperCase()) + p.getName() + "§r");
+//			p.setPlayerListName(ChatColor.valueOf(Team.playerTeam.get(p.getUniqueId()).getTeamColor().toUpperCase()) + p.getName());
+//		}
 	}
 	
 	@EventHandler

@@ -23,7 +23,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Events.Structure.EventHandler;
-import fr.HtSTeam.HtS.Teams.TeamBuilder;
+import fr.HtSTeam.HtS.Teams.Team;
 import fr.HtSTeam.HtS.Utils.Nms;
 import fr.HtSTeam.HtS.Utils.PRIORITY;
 import fr.HtSTeam.HtS.Utils.Tag;
@@ -47,10 +47,10 @@ public class Player {
 	
 	private UUID uuid;
 	private String name;
-	
 	private String display_name;
-	private TeamBuilder team;
-	private TeamBuilder fake_team;
+	
+	private Team team;
+	private Team fake_team;
 	
 	private boolean op;
 	private World world;
@@ -199,7 +199,7 @@ public class Player {
 	@SuppressWarnings("serial")
 	private void save() {
 		ArrayList<Field> fields = new ArrayList<Field>();
-		for (int i = 7; i < 10; i++) {
+		for (int i = 5; i < 10; i++) {
 			fields.add(getClass().getDeclaredFields()[i]);
 		}
 		
@@ -266,7 +266,7 @@ public class Player {
 	 * 
 	 * @return TeamBuilder
 	 */
-	public TeamBuilder getTeam() { return team; }
+	public Team getTeam() { return team; }
 	
 	
 	/**
@@ -274,7 +274,7 @@ public class Player {
 	 * 
 	 * @return TeamBuilder
 	 */
-	public TeamBuilder getFakeTeam() { return fake_team; }
+	public Team getFakeTeam() { return fake_team; }
 	
 	
 	/**
@@ -547,6 +547,22 @@ public class Player {
 		}
 	}
 	
+	
+	public void setTeam(Team team) {
+		if (team != null)
+			team.add(this);
+		else
+			this.team.remove(this);
+		this.team = team;
+	}
+	
+	public void setFakeTeam(Team fake_team) {
+		if (fake_team != null)
+			fake_team.add(this);
+		else
+			this.fake_team.remove(this);
+		this.fake_team = fake_team;
+	}
 	
 	
 	

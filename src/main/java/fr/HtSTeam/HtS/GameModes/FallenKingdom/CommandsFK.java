@@ -19,7 +19,7 @@ import org.bukkit.plugin.PluginManager;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Player.PlayerInGame;
-import fr.HtSTeam.HtS.Teams.TeamBuilder;
+import fr.HtSTeam.HtS.Teams.Team;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 
 public class CommandsFK implements CommandExecutor, Listener {
@@ -31,7 +31,7 @@ public class CommandsFK implements CommandExecutor, Listener {
 	private int angleDo = 0;
 	private Block firstAngle;
 	private Block secondAngle;
-	private TeamBuilder team;
+	private Team team;
 
 	
 	public CommandsFK() {
@@ -53,11 +53,11 @@ public class CommandsFK implements CommandExecutor, Listener {
 				if(args.length >= 2 && args[0].equalsIgnoreCase("add")) {
 					
 					if(args.length == 3) {
-						if(!TeamBuilder.nameTeam.containsKey(args[2])) {
+						if(!Team.nameTeam.containsKey(args[2])) {
 							p.sendMessage("§4La team saisie n'existe pas !");
 							return true;
 						}
-						team = TeamBuilder.nameTeam.get(args[2]);
+						team = Team.nameTeam.get(args[2]);
 					}
 					
 					if(inCreation) { 
@@ -106,8 +106,8 @@ public class CommandsFK implements CommandExecutor, Listener {
 							for(BaseBuilder bm : BaseBuilder.baseList) {
 								if(bm.getBaseName().equals(args[2])) {
 									bm.addPlayer(Bukkit.getPlayer(uuid));
-									TeamBuilder.playerTeam.get(uuid).removePlayer(Bukkit.getPlayer(uuid));
-									bm.getTeam().addPlayer(Bukkit.getPlayer(uuid));
+//									Team.playerTeam.get(uuid).removePlayer(Bukkit.getPlayer(uuid));
+//									bm.getTeam().addPlayer(Bukkit.getPlayer(uuid));
 									p.sendMessage("§2Joueur bien ajouté !");
 									return true;
 								}
