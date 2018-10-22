@@ -25,12 +25,11 @@ import fr.HtSTeam.HtS.Player.Player;
 
 public class Event implements Listener {
 	
-	private ArrayList<Method> annoted_methods;
 	private HashMap<Class<?>, ArrayList<Method>> eventMethods = new HashMap<Class<?>, ArrayList<Method>>();
 
 	public Event() {
 		System.out.println("Registering events...");
-		annoted_methods = new ArrayList<Method>(new Reflections(new ConfigurationBuilder().setUrls(ClasspathHelper.forPackage("fr.HtSTeam.HtS")).setScanners(new MethodAnnotationsScanner())).getMethodsAnnotatedWith(EventHandler.class));
+		ArrayList<Method> annoted_methods = new ArrayList<Method>(new Reflections(new ConfigurationBuilder().setUrls(ClasspathHelper.forPackage("fr.HtSTeam.HtS")).setScanners(new MethodAnnotationsScanner())).getMethodsAnnotatedWith(EventHandler.class));
 		annoted_methods.removeIf(m -> m.getParameterCount() != 1);
 		HashSet<Class<?>> clazzes = new HashSet<Class<?>>();
 		annoted_methods.forEach(m -> { clazzes.add(m.getParameterTypes()[0]); });
@@ -72,7 +71,7 @@ public class Event implements Listener {
 	public void onFoodLevelChangeEvent(FoodLevelChangeEvent event) { org.bukkit.entity.Player p = null; if (event.getEntity() != null && event.getEntity() instanceof org.bukkit.entity.Player) p = ((org.bukkit.entity.Player) event).getPlayer(); invoke(event.getClass(), event, Player.instance(p)); }
 	
 	@org.bukkit.event.EventHandler
-	public void onEntityDamageEvent(EntityDamageEvent event) { org.bukkit.entity.Player p = null; if (event.getEntity() != null) p = (org.bukkit.entity.Player) event.getEntity(); invoke(event.getClass(), event, Player.instance(p)); }
+	public void onEntityDamageEvent(EntityDamageEvent event) { org.bukkit.entity.Player p = null; if (event.getEntity() != null && event.getEntity() instanceof org.bukkit.entity.Player) p = (org.bukkit.entity.Player) event.getEntity(); invoke(event.getClass(), event, Player.instance(p)); }
 	
 	@org.bukkit.event.EventHandler
 	public void onBlockBreakEvent(BlockBreakEvent event) { org.bukkit.entity.Player p = null; if (event.getPlayer() != null) p = event.getPlayer(); invoke(event.getClass(), event, Player.instance(p)); }

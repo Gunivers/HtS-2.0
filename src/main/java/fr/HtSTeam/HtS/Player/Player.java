@@ -67,6 +67,9 @@ public class Player {
 	 * @return Player
 	 */
 	private Player(org.bukkit.entity.Player player) {
+		if (player == null)
+			return;
+		
 		players.add(this);
 		uuids.put(player.getUniqueId(), this);
 		
@@ -91,7 +94,9 @@ public class Player {
 	 * @return Player (new or already existing instance)
 	 */
 	public static Player instance(org.bukkit.entity.Player player) {
-		if (uuids.containsKey(player.getUniqueId()))
+		if (player == null)
+			return null;
+		else if (uuids.containsKey(player.getUniqueId()))
 			return uuids.get(player.getUniqueId());
 		return new Player(player);	
 	}
