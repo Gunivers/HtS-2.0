@@ -20,7 +20,7 @@ import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
 import fr.HtSTeam.HtS.Player.PlayerInGame;
 import fr.HtSTeam.HtS.Player.PlayerManager;
 import fr.HtSTeam.HtS.Player.PlayerReconnection;
-import fr.HtSTeam.HtS.Teams.Team;
+import fr.HtSTeam.HtS.Team.Team;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
 public class TargetCycle extends OptionBuilder<Integer> {

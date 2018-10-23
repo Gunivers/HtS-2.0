@@ -4,7 +4,6 @@ import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.GameModes.FallenKingdom.CommandsFK;
 import fr.HtSTeam.HtS.GameModes.UHC.SyT.CommandSyT;
 import fr.HtSTeam.HtS.Options.OptionRegister;
-import fr.HtSTeam.HtS.Teams.TeamCommand;
 
 public class CommandsManager {
 	
@@ -16,7 +15,6 @@ public class CommandsManager {
 		main.getCommand("option").setExecutor(new OptionCommand());
 		main.getCommand("start").setExecutor(sc);
 		main.getCommand("run").setExecutor(sc);
-		main.getCommand("team").setExecutor(new TeamCommand());
 		main.getCommand("play").setExecutor(playStop);
 		main.getCommand("pause").setExecutor(playStop);
 		main.getCommand("end").setExecutor(playStop);

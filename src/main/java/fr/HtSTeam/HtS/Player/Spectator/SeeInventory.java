@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Players.Spectator;
+package fr.HtSTeam.HtS.Player.Spectator;
 
 import java.util.HashMap;
 import java.util.Map;

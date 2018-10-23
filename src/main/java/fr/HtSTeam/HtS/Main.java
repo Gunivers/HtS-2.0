@@ -1,7 +1,5 @@
 package fr.HtSTeam.HtS;
 
-import java.sql.SQLException;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
 import org.bukkit.GameRule;
@@ -9,15 +7,12 @@ import org.bukkit.World;
 import org.bukkit.World.Environment;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import fr.HtSTeam.HtS.Commands.CommandsManager;
+import fr.HtSTeam.HtS.Commands.Structure.Command;
 import fr.HtSTeam.HtS.Events.Structure.Event;
 import fr.HtSTeam.HtS.GameModes.GameMode;
 import fr.HtSTeam.HtS.GameModes.UHC.Common.UHC;
-import fr.HtSTeam.HtS.Options.OptionRegister;
-import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.JDBCHandler;
 import fr.HtSTeam.HtS.Options.Structure.TimerTask;
 import fr.HtSTeam.HtS.Player.DeathLoot;
-import fr.HtSTeam.HtS.Teams.TeamRegister;
 import fr.HtSTeam.HtS.Utils.Nms;
 import fr.HtSTeam.HtS.Utils.Files.FileExtractor;
 
@@ -49,15 +44,10 @@ public class Main extends JavaPlugin {
 		timer = new TimerTask(0, 1);
 		
 		try { Nms.init(); } catch (ClassNotFoundException e) { e.printStackTrace(); }
+		
+		new Command();
 		Bukkit.getServer().getPluginManager().registerEvents(new Event(), plugin);
-		
-		
-		OptionRegister.register();
-		CommandsManager.loadCommands(plugin);
-		new TeamRegister();
-		new JDBCHandler();
-		
-		try { HTSNAME += JDBCHandler.getHtsNumber(); } catch (SQLException e1) { e1.printStackTrace(); }		
+//		OptionRegister.register();
 	}
 	
 	/*public static void run() {

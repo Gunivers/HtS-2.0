@@ -23,7 +23,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Events.Structure.EventHandler;
-import fr.HtSTeam.HtS.Teams.Team;
+import fr.HtSTeam.HtS.Team.Team;
 import fr.HtSTeam.HtS.Utils.Nms;
 import fr.HtSTeam.HtS.Utils.PRIORITY;
 import fr.HtSTeam.HtS.Utils.Tag;

@@ -6,47 +6,47 @@ api-version: 1.13
 commands:
  option:
   description: Ouvre le menu des options
-  usage: Erreur syntaxe ! Faites /option
+  usage: Erreur syntaxe !
  start: 
   description: Lance la partie
-  usage: Erreur syntaxe ! Faites /start
+  usage: Erreur syntaxe !
  run:
   description: Force le lancement de la partie
-  usage: Erreur syntaxe ! Faites /run
- team:
+  usage: Erreur syntaxe !
+ teams:
   description: Commandes relatives aux teams
-  usage: Erreur syntaxe ! Faites /team <add|remove|join|leave|list|random> [Equipe] [couleur|Player]
+  usage: Erreur syntaxe !
  gui: 
   description: Ouvre l'inventaire des modifiers
-  usage: Erreur syntaxe ! Faites /gui
+  usage: Erreur syntaxe !
  base:
   description: Défini une base
   usage: Erreur syntaxe ! Faites /base <add|join|list|remove> [nomBase] [nomEquipe]
  load:
   description: Charge un preset
-  usage: Erreur syntaxe ! Faites /load (preset)
+  usage: Erreur syntaxe !
  pause:
   description: Met en pause le jeu
-  usage: Erreur syntaxe ! Faites /pause
+  usage: Erreur syntaxe !
  play:
   description: Relance le jeu en cours
-  usage: Erreur syntaxe ! Faites /play
+  usage: Erreur syntaxe !
  end:
   description: Stop la partie
-  usage: Erreur Syntaxe ! Faites /end
+  usage: Erreur Syntaxe !
  heal:
   description: Heal le joueur
-  usage: Erreur ! Faites /heal  <joueur>
+  usage: Erreur !
  feed:
   description: Nourris le joueur
-  usage: Erreur ! Faites /feed <joueur>
+  usage: Erreur !
  radar:
   description: Radar
-  usage: Erreur Syntaxe ! Faites /radar <exemple>
+  usage: Erreur Syntaxe !
  target:
   description: Target
-  usage: Erreur Syntaxe ! Faites /target
+  usage: Erreur Syntaxe !
   aliases: [cible]
  remove:
   description: Remove
-  usage: Erreur Syntaxe ! Faites /remove
+  usage: Erreur Syntaxe !

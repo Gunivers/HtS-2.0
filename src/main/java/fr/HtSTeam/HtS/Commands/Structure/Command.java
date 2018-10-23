@@ -42,17 +42,33 @@ public class Command implements TabExecutor {
 	public List<String> onTabComplete(CommandSender sender, org.bukkit.command.Command cmd, String alias, String[] args) {
 		if(sender instanceof org.bukkit.entity.Player && completeMethods.containsKey(cmd.getName())) {
 			try {
-				HashMap<Integer,ArrayList<String>> prop = (HashMap<Integer, ArrayList<String>>) completeMethods.get(cmd.getName()).invoke(null);
+				HashMap<String,ArrayList<String>> prop = (HashMap<String,ArrayList<String>>) completeMethods.get(cmd.getName()).invoke(null);
+				if (prop.isEmpty())
+					return null;
 				List<String> list = new ArrayList<String>();
-				if (prop.containsKey(args.length - 1))
-					if (!args[args.length - 1].isEmpty())
-						prop.get(args.length - 1).forEach(string -> { if (string.startsWith(args[args.length - 1])) list.add(string); });
+				if (args.length > 1) {
+					String key = "";
+					for (int i = 0; i < args.length - 1; i++) key += args[i];
+					for (String regex : prop.keySet()) if (regex != null && key.matches(regex)) { key = regex; break; }
+					
+					if (key == null || !prop.containsKey(key) || key.isEmpty())
+						return null;
+					else if (!args[args.length - 1].isEmpty())
+						prop.get(key).forEach(string -> { if (string.startsWith(args[args.length - 1])) list.add(string); });
 					else
-						list.addAll(prop.get(args.length - 1));
+						list.addAll(prop.get(key));
+				} else if (args.length == 1)
+					if (!args[0].isEmpty())
+						prop.get(null).forEach(string -> { if (string.startsWith(args[0])) list.add(string); });
+					else
+						list.addAll(prop.get(null));
+				else
+					return null;
 				Collections.sort(list);
 				return list;
 			} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 				e.printStackTrace();
+				return null;
 			}
 		}
 		return null;

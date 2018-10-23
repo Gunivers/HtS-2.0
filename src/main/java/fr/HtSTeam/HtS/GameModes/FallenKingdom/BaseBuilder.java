@@ -10,7 +10,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
-import fr.HtSTeam.HtS.Teams.Team;
+import fr.HtSTeam.HtS.Team.Team;
 
 public class BaseBuilder {
 	

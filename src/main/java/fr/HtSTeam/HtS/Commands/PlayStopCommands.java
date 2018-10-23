@@ -10,7 +10,6 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.v1_13_R2.entity.CraftEntity;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -28,8 +27,6 @@ import org.bukkit.plugin.PluginManager;
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Player.PlayerInGame;
-import net.minecraft.server.v1_13_R2.Entity;
-import net.minecraft.server.v1_13_R2.NBTTagCompound;
 
 public class PlayStopCommands implements CommandExecutor, Listener {
 
@@ -156,19 +153,19 @@ public class PlayStopCommands implements CommandExecutor, Listener {
 	}
 
 	public void freezeEntity(org.bukkit.entity.Entity en) {
-		Entity nmsEn = ((CraftEntity) en).getHandle();
-		NBTTagCompound compound = new NBTTagCompound();
-		nmsEn.c(compound);
-		compound.setByte("NoAI", (byte) 1);
-		nmsEn.f(compound);
+//		Entity nmsEn = ((CraftEntity) en).getHandle();
+//		NBTTagCompound compound = new NBTTagCompound();
+//		nmsEn.c(compound);
+//		compound.setByte("NoAI", (byte) 1);
+//		nmsEn.f(compound);
 	}
 
 	public void unfreezeEntity(org.bukkit.entity.Entity en) {
-		Entity nmsEn = ((CraftEntity) en).getHandle();
-		NBTTagCompound compound = new NBTTagCompound();
-		nmsEn.c(compound);
-		compound.setByte("NoAI", (byte) 0);
-		nmsEn.f(compound);
+//		Entity nmsEn = ((CraftEntity) en).getHandle();
+//		NBTTagCompound compound = new NBTTagCompound();
+//		nmsEn.c(compound);
+//		compound.setByte("NoAI", (byte) 0);
+//		nmsEn.f(compound);
 	}
 
 }

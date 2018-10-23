@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Teams;
+package fr.HtSTeam.HtS.Team;
 
 import java.util.ArrayList;
 

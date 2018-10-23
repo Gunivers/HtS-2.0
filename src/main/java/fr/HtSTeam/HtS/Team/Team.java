@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Teams;
+package fr.HtSTeam.HtS.Team;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,7 +33,7 @@ public class Team implements StartTrigger {
 		nameTeam.put(teamName, this);
 
 		this.teamName = teamName;
-		this.teamColor = teamColor;
+		this.teamColor = teamColor.toUpperCase();
 		alive = false;
 	}
 	
@@ -95,6 +95,9 @@ public class Team implements StartTrigger {
 	
 	/**	
 	 * Adds this player to the team
+	 * 
+	 * <strong>DO NOT USE</strong> - use {@link Player#setTeam(Team) setTeam} of the player
+	 * 
 	 * @param player
 	 */
 	public void add(Player player) {
@@ -103,6 +106,9 @@ public class Team implements StartTrigger {
 	
 	/**
 	 * Removes this player from the team
+	 * 
+	 * <strong>DO NOT USE</strong> - use {@link Player#setTeam(Team) setTeam} of the player
+	 * 
 	 * @param player
 	 */
 	public void remove(Player player) {

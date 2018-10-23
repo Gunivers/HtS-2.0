@@ -10,7 +10,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Player.PlayerInGame;
 import fr.HtSTeam.HtS.Player.PlayerRemove;
-import fr.HtSTeam.HtS.Teams.Team;
+import fr.HtSTeam.HtS.Team.Team;
 
 public class VictoryDetectionEvent implements Listener, PlayerRemove {
 
