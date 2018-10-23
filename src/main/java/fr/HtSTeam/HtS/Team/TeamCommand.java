@@ -1,6 +1,7 @@
 package fr.HtSTeam.HtS.Team;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -34,11 +35,15 @@ public class TeamCommand {
 	
 	@SuppressWarnings("serial")
 	@CommandHandler(EnumCommand.COMPLETE)
-	public static HashMap<String,ArrayList<String>> teams() {
+	public static HashMap<String,ArrayList<String>> teams()
+	{
+		final ArrayList<String> colors = new ArrayList<>();
+		Arrays.asList(ChatColor.values()).forEach(c -> colors.add(c.toString()));
+		
 		HashMap<String,ArrayList<String>> prop = new HashMap<String,ArrayList<String>>();
 		prop.put(null, new ArrayList<String>() {{ add("team"); add("player"); }});
 		prop.put("team", new ArrayList<String>() {{ add("create"); add("delete"); add("list"); }});
-		prop.put("teamcreate\\w[^ ]*", new ArrayList<String>() {{ add("white"); add("gold"); add("dark_red"); add("aqua"); add("yellow"); add("green"); add("light_purple"); add("dark_gray"); add("gray"); add("dark_aqua"); add("dark_purple"); add("dark_blue"); add("brown"); add("dark_green"); add("red"); add("black"); }});
+		prop.put("teamcreate\\w[^ ]*", colors);
 		prop.put("teamdelete", new ArrayList<String>(Team.nameTeam.keySet()));
 		prop.put("player", new ArrayList<String>() {{ add("join"); add("leave"); add("random"); add("give"); add("list"); }});
 		prop.put("playerjoin", new ArrayList<String>(Team.nameTeam.keySet()));
