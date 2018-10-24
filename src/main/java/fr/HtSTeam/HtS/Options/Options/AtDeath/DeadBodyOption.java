@@ -1,39 +1,27 @@
 package fr.HtSTeam.HtS.Options.Options.AtDeath;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map.Entry;
 import java.util.List;
+import java.util.Map.Entry;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.v1_13_R2.CraftWorld;
-import org.bukkit.craftbukkit.v1_13_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
-import com.mojang.authlib.GameProfile;
-
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.EndTrigger;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
-
-import net.minecraft.server.v1_13_R2.BlockPosition;
-import net.minecraft.server.v1_13_R2.ChatMessage;
-import net.minecraft.server.v1_13_R2.DataWatcher;
-import net.minecraft.server.v1_13_R2.EntityHuman;
-import net.minecraft.server.v1_13_R2.EnumGamemode;
-import net.minecraft.server.v1_13_R2.MathHelper;
-import net.minecraft.server.v1_13_R2.PacketPlayOutBed;
-import net.minecraft.server.v1_13_R2.PacketPlayOutEntityDestroy;
-import net.minecraft.server.v1_13_R2.PacketPlayOutEntityTeleport;
-import net.minecraft.server.v1_13_R2.PacketPlayOutNamedEntitySpawn;
-import net.minecraft.server.v1_13_R2.PacketPlayOutPlayerInfo;
+import fr.HtSTeam.HtS.Utils.Nms;
 
 /**
  * @author SwiftLee
@@ -41,6 +29,12 @@ import net.minecraft.server.v1_13_R2.PacketPlayOutPlayerInfo;
  */
 public class DeadBodyOption extends OptionBuilder<Boolean> implements EndTrigger
 {
+	private static final Class<?> CPlayer = Nms.craftPlayerClass;
+	private static final Class<?> EHuman = Nms.entityHumanClass;
+	private static final Class<?> CWorld = Nms.craftWorldClass;
+	private static final Class<?> PacketInfo = Nms.packetPlayOutPlayerInfoClass;
+	private static final Class<?> PlayerData = Nms.packetPlayOutPlayerInfo_PlayerInfoDataClass;
+	
 	private Integer entityID = 0;
 	private HashMap<Player, Entry<Location, Integer>> corpses = new HashMap<>();
 	
@@ -71,7 +65,14 @@ public class DeadBodyOption extends OptionBuilder<Boolean> implements EndTrigger
 	{
 		for (Player p : corpses.keySet())
 		{
-			this.destroyCorpse(p);
+			try
+			{
+				this.destroyCorpse(p);
+			} catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException
+					| IllegalArgumentException | InvocationTargetException | NoSuchFieldException e)
+			{
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -80,75 +81,109 @@ public class DeadBodyOption extends OptionBuilder<Boolean> implements EndTrigger
 	{
 		if (!this.getValue()) return;
 		
-		try
-		{
-			this.spawnCorpse(event.getEntity());
-		} catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e)
-		{
-			e.printStackTrace();
-		}
+		this.spawnCorpse(event.getEntity());
 	}
 	
-	private void spawnCorpse(Player p) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException
+	private boolean spawnCorpse(Player p)
 	{
-		BlockPosition pos = new BlockPosition(p.getLocation().getBlockX(), 0, p.getLocation().getBlockZ());
-		this.spawnCorpse(p, pos);
+		try
+		{
+			Object pos = Nms.blockPositionClass.getConstructor(int.class, int.class, int.class).newInstance(p.getLocation().getBlockX(), 0, p.getLocation().getBlockZ());
+			//BlockPosition pos = new BlockPosition(p.getLocation().getBlockX(), 0, p.getLocation().getBlockZ());
+			this.spawnCorpse(p, pos);
+		} catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException | NoSuchFieldException | SecurityException | IllegalArgumentException e)
+		{
+			return false;
+		}
+		
+		return true;
 	}
-	  
-	@SuppressWarnings("deprecation")
-	private void spawnCorpse(Player p, BlockPosition pos) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException
+
+	@Deprecated
+	private void spawnCorpse(Player p, Object pos) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException, NoSuchMethodException, InvocationTargetException, InstantiationException
 	{
 		HashMap<Location, Integer> temp = new HashMap<>();
 		temp.put(p.getLocation(), entityID.intValue());		//entityID.intValue() clones the instance so as to avoid synchronization issues.
 		corpses.put(p, temp.entrySet().iterator().next());
+
+		Constructor<?> ChatMessage = Nms.iChatBaseComponentClass.getConstructor(String.class, Object[].class);
 		
-		CraftPlayer p1 = (CraftPlayer) p;
+		Method getHandle = CPlayer.getDeclaredMethod("getHandle");
+		Method getUniqueId = CPlayer.getDeclaredMethod("getUniqueId");
+		Method getName = CPlayer.getDeclaredMethod("getName");
+		
+		Field infoAction_ADD_PLAYER = Nms.packetPlayOutPlayerInfo_PlayerInfoActionEnum.getDeclaredField("ADD_PLAYER");
+		Field gm_SURVIVAL = Nms.gamemodeEnum.getDeclaredField("SURVIVAL");
+		
+		Object cPlayer1 = Nms.craftPlayerClass.cast(p);
+		//CraftPlayer p1 = (CraftPlayer) p;
 
-		double locY = ((EntityHuman) p1.getHandle()).locY;
+		double locY = EHuman.getField("locY").getDouble(getHandle.invoke(cPlayer1));
+		double locX = EHuman.getField("locX").getDouble(getHandle.invoke(cPlayer1));
+		double locZ = EHuman.getField("locZ").getDouble(getHandle.invoke(cPlayer1));
+		//double locY = ((EntityHuman) p1.getHandle()).locY;
+		//double locX = ((EntityHuman) p1.getHandle()).locX;
+		//double locZ = ((EntityHuman) p1.getHandle()).locZ;
+		
+		float yaw = EHuman.getField("yaw").getFloat(getHandle.invoke(cPlayer1));
+		float pitch = EHuman.getField("pitch").getFloat(getHandle.invoke(cPlayer1));
+		//float yaw = ((EntityHuman) p1.getHandle()).yaw;
+		//float pitch = ((EntityHuman) p1.getHandle()).pitch;
 
-		DataWatcher dw = clonePlayerDatawatcher(p, entityID);
-		//dw.watch(10, p1.getHandle().getDataWatcher().getByte(10));
+		Object dataWatcher = clonePlayerDatawatcher(p, entityID);
+		//DataWatcher dw = clonePlayerDatawatcher(p, entityID);
+		// - dw.watch(10, p1.getHandle().getDataWatcher().getByte(10));
 
-		GameProfile prof = new GameProfile(p1.getUniqueId(), p1.getName());
+		Object gameProfile = Nms.gameProfileClass.getConstructors()[0].newInstance(getUniqueId.invoke(cPlayer1), getName.invoke(cPlayer1));
+		//GameProfile prof = new GameProfile(p1.getUniqueId(), p1.getName());
 
-		PacketPlayOutPlayerInfo packetInfo = new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER);
-		PacketPlayOutPlayerInfo.PlayerInfoData data = packetInfo.new PlayerInfoData(prof, 0, EnumGamemode.SURVIVAL, new ChatMessage("", new Object[0]));
+		Object packetInfo = PacketInfo.getConstructors()[1].newInstance(infoAction_ADD_PLAYER);
+		//PacketPlayOutPlayerInfo packetInfo = new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER);
+		Object data = PlayerData.getConstructors()[0].newInstance(gameProfile, 0, gm_SURVIVAL, ChatMessage.newInstance("", new Object[0]));
+		//PacketPlayOutPlayerInfo.PlayerInfoData data = packetInfo.new PlayerInfoData(prof, 0, EnumGamemode.SURVIVAL, new ChatMessage("", new Object[0]));
 	    
-		List<PacketPlayOutPlayerInfo.PlayerInfoData> dataList = new ArrayList<>();
+		List<Object> dataList = new ArrayList<>();
+		//List<PacketPlayOutPlayerInfo.PlayerInfoData> dataList = new ArrayList<>();
 	    
 		dataList.add(data);
 		setValue(packetInfo, "b", dataList);
 
-	    PacketPlayOutNamedEntitySpawn packetEntitySpawn = new PacketPlayOutNamedEntitySpawn();
+		Object packetEntitySpawn = Nms.packetPlayOutNamedEntitySpawnClass.getConstructor().newInstance();
+	    //PacketPlayOutNamedEntitySpawn packetEntitySpawn = new PacketPlayOutNamedEntitySpawn();
 	    setValue(packetEntitySpawn, "a", entityID);
-	    setValue(packetEntitySpawn, "b", prof.getId());
-	    setValue(packetEntitySpawn, "c", MathHelper.floor(((EntityHuman) p1.getHandle()).locX * 32D));
-	    setValue(packetEntitySpawn, "d", MathHelper.floor(locY * 32D));
-	    setValue(packetEntitySpawn, "e", MathHelper.floor(((EntityHuman) p1.getHandle()).locZ * 32D));
-	    setValue(packetEntitySpawn, "f", (byte) ((int) (((EntityHuman) p1.getHandle()).yaw * 256.0F / 360.0F)));
-	    setValue(packetEntitySpawn, "g", (byte) ((int) (((EntityHuman) p1.getHandle()).pitch * 256.0F / 360.0F)));
-	    setValue(packetEntitySpawn, "i", dw);
+	    setValue(packetEntitySpawn, "b", Nms.gameProfileClass.getDeclaredMethod("getId").invoke(gameProfile));
+	    //setValue(packetEntitySpawn, "b", prof.getId());
+	    setValue(packetEntitySpawn, "c", Math.floor(locX * 32D));
+	    setValue(packetEntitySpawn, "d", Math.floor(locY * 32D));
+	    setValue(packetEntitySpawn, "e", Math.floor(locZ * 32D));
+	    setValue(packetEntitySpawn, "f", (byte) ((int) (yaw * 256.0F / 360.0F)));
+	    setValue(packetEntitySpawn, "g", (byte) ((int) (pitch * 256.0F / 360.0F)));
+	    setValue(packetEntitySpawn, "i", Nms.dataWatcherClass.cast(dataWatcher));
+	    //setValue(packetEntitySpawn, "i", dw);
 
-	    PacketPlayOutBed packetBed = new PacketPlayOutBed();
+	    Object packetBed = Nms.packetPlayOutBedClass.getConstructor().newInstance();
+	    //PacketPlayOutBed packetBed = new PacketPlayOutBed();
 	    setValue(packetBed, "a", entityID);
 	    setValue(packetBed, "b", pos);
 
-	    PacketPlayOutEntityTeleport packetTeleport = new PacketPlayOutEntityTeleport();
+	    Object packetTeleport = Nms.packetPlayOutEntityTeleportClass.getConstructor().newInstance();
+	    //PacketPlayOutEntityTeleport packetTeleport = new PacketPlayOutEntityTeleport();
 	    setValue(packetTeleport, "a", entityID);
-	    setValue(packetTeleport, "b", MathHelper.floor(((EntityHuman) p1.getHandle()).locX * 32.0D));
-	    setValue(packetTeleport, "c", MathHelper.floor(locY * 32.0D));
-	    setValue(packetTeleport, "d", MathHelper.floor(((EntityHuman) p1.getHandle()).locZ * 32.0D));
-	    setValue(packetTeleport, "e", (byte) ((int) (((EntityHuman) p1.getHandle()).yaw * 256.0F / 360.0F)));
-	    setValue(packetTeleport, "f", (byte) ((int) (((EntityHuman) p1.getHandle()).pitch * 256.0F / 360.0F)));
+	    setValue(packetTeleport, "b", Math.floor(locX * 32.0D));
+	    setValue(packetTeleport, "c", Math.floor(locY * 32.0D));
+	    setValue(packetTeleport, "d", Math.floor(locZ * 32.0D));
+	    setValue(packetTeleport, "e", (byte) ((int) (yaw * 256.0F / 360.0F)));
+	    setValue(packetTeleport, "f", (byte) ((int) (pitch * 256.0F / 360.0F)));
 	    setValue(packetTeleport, "g", true);
 
-	    PacketPlayOutEntityTeleport packetTeleportDown = new PacketPlayOutEntityTeleport();
+	    Object packetTeleportDown = Nms.packetPlayOutEntityTeleportClass.getConstructor().newInstance();
+	    //PacketPlayOutEntityTeleport packetTeleportDown = new PacketPlayOutEntityTeleport();
 	    setValue(packetTeleportDown, "a", entityID);
-	    setValue(packetTeleportDown, "b", MathHelper.floor(((EntityHuman) p1.getHandle()).locX * 32.0D));
+	    setValue(packetTeleportDown, "b", Math.floor(locX * 32.0D));
 	    setValue(packetTeleportDown, "c", 0);
-	    setValue(packetTeleportDown, "d", MathHelper.floor(((EntityHuman) p1.getHandle()).locZ * 32.0D));
-	    setValue(packetTeleportDown, "e", (byte) ((int) (((EntityHuman) p1.getHandle()).yaw * 256.0F / 360.0F)));
-	    setValue(packetTeleportDown, "f", (byte) ((int) (((EntityHuman) p1.getHandle()).pitch * 256.0F / 360.0F)));
+	    setValue(packetTeleportDown, "d", Math.floor(locZ * 32.0D));
+	    setValue(packetTeleportDown, "e", (byte) ((int) (yaw * 256.0F / 360.0F)));
+	    setValue(packetTeleportDown, "f", (byte) ((int) (pitch * 256.0F / 360.0F)));
 	    setValue(packetTeleportDown, "g", true);
 
 	    for (Player player : Bukkit.getOnlinePlayers())
@@ -156,14 +191,24 @@ public class DeadBodyOption extends OptionBuilder<Boolean> implements EndTrigger
 	    	Location loc = p.getLocation().clone();
 	    	player.sendBlockChange(loc.subtract(0, loc.getY(), 0), Material.RED_BED, (byte) 0);
 	    	
-	    	CraftPlayer pl = ((CraftPlayer) player);
 	    	if (player != p)
 	    	{
-	    		pl.getHandle().playerConnection.sendPacket(packetInfo);
-	    		pl.getHandle().playerConnection.sendPacket(packetEntitySpawn);
-	    		pl.getHandle().playerConnection.sendPacket(packetTeleportDown);
-	    		pl.getHandle().playerConnection.sendPacket(packetBed);
-	    		pl.getHandle().playerConnection.sendPacket(packetTeleport);
+		    	Object pl = CPlayer.cast(player);
+		    	//CraftPlayer pl = ((CraftPlayer) player);
+		    	
+	    		Method sendPacket = Nms.playerConnectionClass.getDeclaredMethod("sendPacker", Nms.packetClass);
+	    		Field playerConnection = Nms.entityPlayerClass.getDeclaredField("playerConnection");
+	    		
+	    		sendPacket.invoke(playerConnection.get(getHandle.invoke(pl)), packetInfo);
+	    		sendPacket.invoke(playerConnection.get(getHandle.invoke(pl)), packetEntitySpawn);
+	    		sendPacket.invoke(playerConnection.get(getHandle.invoke(pl)), packetTeleportDown);
+	    		sendPacket.invoke(playerConnection.get(getHandle.invoke(pl)), packetBed);
+	    		sendPacket.invoke(playerConnection.get(getHandle.invoke(pl)), packetTeleport);
+	    		//pl.getHandle().playerConnection.sendPacket(packetInfo);
+	    		//pl.getHandle().playerConnection.sendPacket(packetEntitySpawn);
+	    		//pl.getHandle().playerConnection.sendPacket(packetTeleportDown);
+	    		//pl.getHandle().playerConnection.sendPacket(packetBed);
+	    		//pl.getHandle().playerConnection.sendPacket(packetTeleport);
 	    	}
 	    }
 	    
@@ -172,29 +217,46 @@ public class DeadBodyOption extends OptionBuilder<Boolean> implements EndTrigger
 	}
 	
 	@SuppressWarnings("deprecation")
-	private void destroyCorpse (Player p)
+	private void destroyCorpse (Player p) throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException
 	{
-		PacketPlayOutEntityDestroy packet = new PacketPlayOutEntityDestroy(corpses.get(p).getValue());
+		Method getHandle = CPlayer.getDeclaredMethod("getHandle");
+		Method sendPacket = Nms.playerConnectionClass.getDeclaredMethod("sendPacker", Nms.packetClass);
+		Field playerConnection = Nms.entityPlayerClass.getDeclaredField("playerConnection");
+		
+		Object packet = Nms.packetPlayOutEntityDestroyClass.getConstructor(int[].class).newInstance(corpses.get(p).getValue());
+		//PacketPlayOutEntityDestroy packet = new PacketPlayOutEntityDestroy(corpses.get(p).getValue());
 		
 		Block b = corpses.get(p).getKey().clone().subtract(0, 2, 0).getBlock();
 		
 		for (Player p2 : corpses.get(p).getKey().getWorld().getPlayers())
 		{
-			((CraftPlayer) p2).getHandle().playerConnection.sendPacket(packet);
+			Object cp = CPlayer.cast(p2);
+			sendPacket.invoke(playerConnection.get(getHandle.invoke(cp)), packet);
+			//((CraftPlayer) p2).getHandle().playerConnection.sendPacket(packet);
+			
 			p2.sendBlockChange(b.getLocation(), b.getType(), b.getData());
 		}
 	}
 	
-	public static DataWatcher clonePlayerDatawatcher(Player player, int currentEntityID)
+	public static Object clonePlayerDatawatcher(Player player, int currentEntityID) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException
 	{
+		Method getProfile = CPlayer.getDeclaredMethod("getProfile");
+		Method getHandle = CWorld.getDeclaredMethod("getHandle");
+		
+		Object eh = EHuman.getConstructors()[0].newInstance(getHandle.invoke(CWorld.cast(player.getWorld())), getProfile.invoke(CPlayer.cast(player)));
+		/**
 		EntityHuman eh = new EntityHuman(((CraftWorld) player.getWorld()).getHandle(), ((CraftPlayer) player).getProfile())
 			{
 				public boolean u() {return false;}
 				public boolean isSpectator() {return false;}
 			};
+		*/
 		
-		eh.f(currentEntityID);
-		return eh.getDataWatcher();
+		EHuman.getDeclaredMethod("f", int.class).invoke(eh, currentEntityID);
+		//eh.f(currentEntityID);
+		
+		return Nms.dataWatcherClass.cast(EHuman.getDeclaredMethod("getHandle").invoke(eh));
+		//return (DataWatcher) eh.getHandle();
 	}
 	
 	<T> void setValue(Object instance, String fieldName, T value) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException
