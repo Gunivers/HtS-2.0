@@ -34,9 +34,9 @@ public class DeadBodyOption extends OptionBuilder<Boolean> implements EndTrigger
 	private static final Class<?> CWorld = Nms.craftWorldClass;
 	private static final Class<?> PacketInfo = Nms.packetPlayOutPlayerInfoClass;
 	private static final Class<?> PlayerData = Nms.packetPlayOutPlayerInfo_PlayerInfoDataClass;
-	
-	private Integer entityID = 0;
-	private HashMap<Player, Entry<Location, Integer>> corpses = new HashMap<>();
+
+	private static HashMap<fr.HtSTeam.HtS.Player.Player, Entry<Location, Integer>> corpses = new HashMap<>();
+	private static Integer entityID = 0;
 	
 	public DeadBodyOption()
 	{
@@ -63,16 +63,9 @@ public class DeadBodyOption extends OptionBuilder<Boolean> implements EndTrigger
 	@Override
 	public void onPartyEnd()
 	{
-		for (Player p : corpses.keySet())
+		for (fr.HtSTeam.HtS.Player.Player p : corpses.keySet())
 		{
-			try
-			{
-				this.destroyCorpse(p);
-			} catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException
-					| IllegalArgumentException | InvocationTargetException | NoSuchFieldException e)
-			{
-				e.printStackTrace();
-			}
+			destroyCorpse(p);
 		}
 	}
 	
@@ -81,30 +74,33 @@ public class DeadBodyOption extends OptionBuilder<Boolean> implements EndTrigger
 	{
 		if (!this.getValue()) return;
 		
-		this.spawnCorpse(event.getEntity());
+		spawnCorpse(event.getEntity());
 	}
 	
-	private boolean spawnCorpse(Player p)
+	public static boolean spawnCorpse(Player p)
 	{
 		try
 		{
 			Object pos = Nms.blockPositionClass.getConstructor(int.class, int.class, int.class).newInstance(p.getLocation().getBlockX(), 0, p.getLocation().getBlockZ());
 			//BlockPosition pos = new BlockPosition(p.getLocation().getBlockX(), 0, p.getLocation().getBlockZ());
-			this.spawnCorpse(p, pos);
+			return spawnCorpse(p, pos);
 		} catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException | NoSuchFieldException | SecurityException | IllegalArgumentException e)
 		{
 			return false;
 		}
-		
-		return true;
 	}
 
 	@Deprecated
-	private void spawnCorpse(Player p, Object pos) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException, NoSuchMethodException, InvocationTargetException, InstantiationException
+	public static boolean spawnCorpse(Player p, Object pos) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException, NoSuchMethodException, InvocationTargetException, InstantiationException
 	{
+		fr.HtSTeam.HtS.Player.Player HtSPlayer = fr.HtSTeam.HtS.Player.Player.instance(p);
+		if (HtSPlayer == null)
+			return false;
+		
 		HashMap<Location, Integer> temp = new HashMap<>();
 		temp.put(p.getLocation(), entityID.intValue());		//entityID.intValue() clones the instance so as to avoid synchronization issues.
-		corpses.put(p, temp.entrySet().iterator().next());
+		
+		corpses.put(HtSPlayer, temp.entrySet().iterator().next());
 
 		Constructor<?> ChatMessage = Nms.iChatBaseComponentClass.getConstructor(String.class, Object[].class);
 		
@@ -214,21 +210,37 @@ public class DeadBodyOption extends OptionBuilder<Boolean> implements EndTrigger
 	    
 	    dataList.clear();
 	    entityID++;
+	    
+	    return true;
 	}
 	
-	@SuppressWarnings("deprecation")
-	private void destroyCorpse (Player p) throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException
+	public static boolean destroyCorpse(fr.HtSTeam.HtS.Player.Player player)
 	{
+		try
+		{
+			return destroyCorpse(Bukkit.getPlayer(player.getUUID()));
+		} catch (SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | NoSuchFieldException | NoSuchMethodException | InvocationTargetException e)
+		{
+			return false;
+		}
+	}
+	
+	@Deprecated
+	public static boolean destroyCorpse(Player p) throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException
+	{
+		fr.HtSTeam.HtS.Player.Player player = fr.HtSTeam.HtS.Player.Player.instance(p);
+			if (player == null) return false;
+		
 		Method getHandle = CPlayer.getDeclaredMethod("getHandle");
 		Method sendPacket = Nms.playerConnectionClass.getDeclaredMethod("sendPacker", Nms.packetClass);
 		Field playerConnection = Nms.entityPlayerClass.getDeclaredField("playerConnection");
 		
-		Object packet = Nms.packetPlayOutEntityDestroyClass.getConstructor(int[].class).newInstance(corpses.get(p).getValue());
+		Object packet = Nms.packetPlayOutEntityDestroyClass.getConstructor(int[].class).newInstance(corpses.get(player).getValue());
 		//PacketPlayOutEntityDestroy packet = new PacketPlayOutEntityDestroy(corpses.get(p).getValue());
 		
-		Block b = corpses.get(p).getKey().clone().subtract(0, 2, 0).getBlock();
+		Block b = corpses.get(player).getKey().clone().subtract(0, 2, 0).getBlock();
 		
-		for (Player p2 : corpses.get(p).getKey().getWorld().getPlayers())
+		for (Player p2 : corpses.get(player).getKey().getWorld().getPlayers())
 		{
 			Object cp = CPlayer.cast(p2);
 			sendPacket.invoke(playerConnection.get(getHandle.invoke(cp)), packet);
@@ -236,9 +248,12 @@ public class DeadBodyOption extends OptionBuilder<Boolean> implements EndTrigger
 			
 			p2.sendBlockChange(b.getLocation(), b.getType(), b.getData());
 		}
+		
+		corpses.remove(player);
+		return true;
 	}
 	
-	public static Object clonePlayerDatawatcher(Player player, int currentEntityID) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException
+	private static Object clonePlayerDatawatcher(Player player, int currentEntityID) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException
 	{
 		Method getProfile = CPlayer.getDeclaredMethod("getProfile");
 		Method getHandle = CWorld.getDeclaredMethod("getHandle");
@@ -259,7 +274,7 @@ public class DeadBodyOption extends OptionBuilder<Boolean> implements EndTrigger
 		//return (DataWatcher) eh.getHandle();
 	}
 	
-	<T> void setValue(Object instance, String fieldName, T value) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException
+	private static <T> void setValue(Object instance, String fieldName, T value) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException
 	{
 		Field field = instance.getClass().getDeclaredField(fieldName);
 		
