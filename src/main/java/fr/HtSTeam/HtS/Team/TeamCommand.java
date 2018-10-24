@@ -26,6 +26,8 @@ public class TeamCommand {
 				
 			} else if (args[1].equalsIgnoreCase("delete") && args.length == 3) {
 				
+			} else if (args[1].equalsIgnoreCase("list") && args.length == 3) {
+				
 			}
 		} else if (args[0].equalsIgnoreCase("player") && args.length > 1) {
 
@@ -38,7 +40,7 @@ public class TeamCommand {
 	public static HashMap<String,ArrayList<String>> teams()
 	{
 		final ArrayList<String> colors = new ArrayList<>();
-		Arrays.asList(ChatColor.values()).forEach(c -> colors.add(c.toString()));
+		Arrays.asList(ChatColor.values()).forEach(c -> colors.add(c.toString().toLowerCase()));
 		
 		HashMap<String,ArrayList<String>> prop = new HashMap<String,ArrayList<String>>();
 		prop.put(null, new ArrayList<String>() {{ add("team"); add("player"); }});
