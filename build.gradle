@@ -31,3 +31,9 @@ dependencies {
     compileOnly group: 'org.spigotmc', name: 'spigot-api', version:'1.13.1-R0.1-SNAPSHOT'
     compileOnly group: 'org.bukkit', name: 'bukkit', version:'1.13.1-R0.1-SNAPSHOT'
 }
+
+task runPython(type:Exec) {
+   workingDir './'
+   commandLine 'python', 'script_move.py'
+}
+build.finalizedBy(runPython)
