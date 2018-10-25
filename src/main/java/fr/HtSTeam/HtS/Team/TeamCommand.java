@@ -40,7 +40,7 @@ public class TeamCommand {
 	public static HashMap<String,ArrayList<String>> teams()
 	{
 		final ArrayList<String> colors = new ArrayList<>();
-		Arrays.asList(ChatColor.values()).forEach(c -> colors.add(c.toString().toLowerCase()));
+		Arrays.asList(ChatColor.values()).forEach(c -> colors.add(c.name().toLowerCase()));
 		
 		HashMap<String,ArrayList<String>> prop = new HashMap<String,ArrayList<String>>();
 		prop.put(null, new ArrayList<String>() {{ add("team"); add("player"); }});
