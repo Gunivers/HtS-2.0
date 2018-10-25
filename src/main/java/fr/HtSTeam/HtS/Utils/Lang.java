@@ -1,8 +1,7 @@
 package fr.HtSTeam.HtS.Utils;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,26 +38,22 @@ public class Lang {
 	 * @return string
 	 */
 	public static String get(final String string) {
-		try {
-			File file = new File(Lang.class.getClassLoader().getResource("langs/" + lang.toString() + ".lang").getFile());
-			try (Stream<String> stream = Files.lines(file.toPath())) {
-				List<String> list = stream.filter(s -> string.matches(s.split("=")[0])).collect(Collectors.toList());
-				if (list.isEmpty() || list.get(0).isEmpty())
-					return l(string);
-				else {
-					String str = list.get(0).split("=")[1];
-					for(String s : Arrays.asList(string.split("[.]")))
-						if (!list.get(0).split("=")[0].contains(s))
-							str = str.replaceFirst("(-REPLACE-)", s);
-					return str;
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-				return string;
+		try (Stream<String> stream = new BufferedReader(new InputStreamReader(Lang.class.getClassLoader().getResourceAsStream("langs/" + lang.toString() + ".lang"))).lines()) {
+			List<String> list = stream.filter(s -> string.matches(s.split("=")[0])).collect(Collectors.toList());
+			if (list.isEmpty() || list.get(0).isEmpty())
+				return en(string);
+			else {
+				String str = list.get(0).split("=")[1];
+				System.out.print(str);
+				for(String s : Arrays.asList(string.split("[.]")))
+					if (!list.get(0).split("=")[0].contains(s))
+						str = str.replaceFirst("(-REPLACE-)", s);
+				return str;
 			}
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
+			e.printStackTrace();
 			return string;
-		}
+		}		
 	}
 	
 	/**
@@ -66,26 +61,21 @@ public class Lang {
 	 * @param string
 	 * @return string
 	 */
-	private static String l(final String string) {
-		try {
-			File file = new File(Lang.class.getClassLoader().getResource("langs/en_UK.lang").getFile());
-			try (Stream<String> stream = Files.lines(file.toPath())) {
-				List<String> list = stream.filter(s -> string.matches(s.split("=")[0])).collect(Collectors.toList());
-				if (list.isEmpty() || list.get(0).isEmpty())
-					return string;
-				else {
-					String str = list.get(0).split("=")[1];
-					for(String s : Arrays.asList(string.split("[.]")))
-						if (!list.get(0).split("=")[0].contains(s))
-							str = str.replaceFirst("(-REPLACE-)", s);
-					return str;
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
+	private static String en(final String string) {
+		try (Stream<String> stream = new BufferedReader(new InputStreamReader(Lang.class.getClassLoader().getResourceAsStream("langs/en_UK.lang"))).lines()) {
+			List<String> list = stream.filter(s -> string.matches(s.split("=")[0])).collect(Collectors.toList());
+			if (list.isEmpty() || list.get(0).isEmpty())
 				return string;
+			else {
+				String str = list.get(0).split("=")[1];
+				for(String s : Arrays.asList(string.split("[.]")))
+					if (!list.get(0).split("=")[0].contains(s))
+						str = str.replaceFirst("(-REPLACE-)", s);
+				return str;
 			}
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
+			e.printStackTrace();
 			return string;
-		}
+		}	
 	}
 }

@@ -16,19 +16,46 @@ import fr.HtSTeam.HtS.Commands.Structure.CommandHandler;
 import fr.HtSTeam.HtS.Commands.Structure.EnumCommand;
 import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
+import fr.HtSTeam.HtS.Utils.Lang;
 
 public class TeamCommand {
+	
+	private static ArrayList<String> colors = new ArrayList<String>();
+	static { Arrays.asList(ChatColor.values()).forEach(c -> colors.add(c.name().toLowerCase())); }
 	
 	@CommandHandler
 	public static boolean teams(Player p , Command cmd, String msg, String[] args) {
 		if (args[0].equalsIgnoreCase("team") && args.length > 1) {
 			if (args[1].equalsIgnoreCase("create") && args.length == 4) {
-				
+				if (!colors.contains(args[3]))
+					return false;
+				Team t = new Team(args[2], args[3]);
+				p.sendMessage(Lang.get("team.command.team.create." + ChatColor.valueOf(t.getTeamColor()) + t.getTeamName()), false);
 			} else if (args[1].equalsIgnoreCase("delete") && args.length == 3) {
-				
-			} else if (args[1].equalsIgnoreCase("list") && args.length == 3) {
-				
-			}
+				if (!Team.nameTeam.containsKey(args[2]))
+					return false;
+				Team t = Team.nameTeam.get(args[2]);
+				String str = ChatColor.valueOf(t.getTeamColor()) + t.getTeamName();
+				t.delete();
+				p.sendMessage(Lang.get("team.command.team.delete." + str), false);
+			} else if (args[1].equalsIgnoreCase("delete") && args.length == 3) {
+				if (!Team.nameTeam.containsKey(args[2]))
+					return false;
+				Team t = Team.nameTeam.get(args[2]);
+				String str = ChatColor.valueOf(t.getTeamColor()) + t.getTeamName();
+				t.clear();
+				p.sendMessage(Lang.get("team.command.team.clear." + str), false);
+			} else if (args[1].equalsIgnoreCase("list") && args.length == 2) {
+				if (Team.teamList.isEmpty())
+					p.sendMessage(Lang.get("team.command.team.list.empty"), false);
+				else {
+					ArrayList<String> list = new ArrayList<String>();
+					Team.teamList.forEach(team -> list.add(ChatColor.valueOf(team.getTeamColor()) + team.getTeamName()));
+					p.sendMessage(Lang.get("team.command.team.list." + Team.teamList.size() + "." + String.join("§r, ", list)), false);
+				}
+			} else
+				return false;
+			return true;
 		} else if (args[0].equalsIgnoreCase("player") && args.length > 1) {
 
 		}
@@ -39,14 +66,12 @@ public class TeamCommand {
 	@CommandHandler(EnumCommand.COMPLETE)
 	public static HashMap<String,ArrayList<String>> teams()
 	{
-		final ArrayList<String> colors = new ArrayList<>();
-		Arrays.asList(ChatColor.values()).forEach(c -> colors.add(c.name().toLowerCase()));
-		
 		HashMap<String,ArrayList<String>> prop = new HashMap<String,ArrayList<String>>();
 		prop.put(null, new ArrayList<String>() {{ add("team"); add("player"); }});
-		prop.put("team", new ArrayList<String>() {{ add("create"); add("delete"); add("list"); }});
+		prop.put("team", new ArrayList<String>() {{ add("clear"); add("create"); add("delete"); add("list"); }});
 		prop.put("teamcreate\\w[^ ]*", colors);
 		prop.put("teamdelete", new ArrayList<String>(Team.nameTeam.keySet()));
+		prop.put("teamclear", new ArrayList<String>(Team.nameTeam.keySet()));
 		prop.put("player", new ArrayList<String>() {{ add("join"); add("leave"); add("random"); add("give"); add("list"); }});
 		prop.put("playerjoin", new ArrayList<String>(Team.nameTeam.keySet()));
 		return prop;

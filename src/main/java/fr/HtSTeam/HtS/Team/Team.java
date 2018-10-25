@@ -2,7 +2,6 @@ package fr.HtSTeam.HtS.Team;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
 import fr.HtSTeam.HtS.Player.Player;
@@ -10,7 +9,7 @@ import fr.HtSTeam.HtS.Player.Player;
 public class Team implements StartTrigger {
 
 	public static ArrayList<Team> teamList = new ArrayList<Team>();
-	public static Map<String, Team> nameTeam = new HashMap<String, Team>();
+	public static HashMap<String, Team> nameTeam = new HashMap<String, Team>();
 
 	private String teamName;
 	private String teamColor;

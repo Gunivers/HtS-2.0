@@ -1,1 +1,5 @@
-test.[a-zA-Z0-9_ ]*.message=Le message -REPLACE- vient d'être entré
+team.command.team.create.[a-zA-Z0-9\xA7_ ]*=The team -REPLACE-§r has been successfully created!
+team.command.team.delete.[a-zA-Z0-9\xA7_ ]*=The team -REPLACE-§r has been successfully deleted!
+team.command.team.clear.[a-zA-Z0-9\xA7_ ]*=The team -REPLACE-§r has been successfully cleared!
+team.command.team.list.empty=No teams exist.
+team.command.team.list.[a-zA-Z0-9\xA7_ ]*.[a-zA-Z0-9\xA7_ ]*=There are -REPLACE-§r teams: -REPLACE-§r.
