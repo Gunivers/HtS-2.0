@@ -13,7 +13,6 @@ import fr.HtSTeam.HtS.GameModes.GameMode;
 import fr.HtSTeam.HtS.GameModes.UHC.Common.UHC;
 import fr.HtSTeam.HtS.Options.Structure.TimerTask;
 import fr.HtSTeam.HtS.Player.DeathLoot;
-import fr.HtSTeam.HtS.Utils.Nms;
 import fr.HtSTeam.HtS.Utils.Files.FileExtractor;
 
 public class Main extends JavaPlugin {
@@ -44,7 +43,7 @@ public class Main extends JavaPlugin {
 		
 		timer = new TimerTask(0, 1);
 		
-		try { Nms.init(); } catch (ClassNotFoundException e) { e.printStackTrace(); }
+//		try { Nms.init(); } catch (ClassNotFoundException e) { e.printStackTrace(); }
 		
 		new Command();
 		Bukkit.getServer().getPluginManager().registerEvents(new Event(), plugin);
