@@ -1,6 +1,5 @@
 package fr.HtSTeam.HtS.Options.Options.AtDeath;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -32,8 +31,8 @@ public class DeadBodyOption extends OptionBuilder<Boolean> implements EndTrigger
 	private static final Class<?> CPlayer = Nms.craftPlayerClass;
 	private static final Class<?> EHuman = Nms.entityHumanClass;
 	private static final Class<?> CWorld = Nms.craftWorldClass;
-	private static final Class<?> PacketInfo = Nms.packetPlayOutPlayerInfoClass;
-	private static final Class<?> PlayerData = Nms.packetPlayOutPlayerInfo_PlayerInfoDataClass;
+//	private static final Class<?> PacketInfo = Nms.packetPlayOutPlayerInfoClass;
+//	private static final Class<?> PlayerData = Nms.packetPlayOutPlayerInfo_PlayerInfoDataClass;
 
 	private static HashMap<fr.HtSTeam.HtS.Player.Player, Entry<Location, Integer>> corpses = new HashMap<>();
 	private static Integer entityID = 0;
@@ -102,14 +101,14 @@ public class DeadBodyOption extends OptionBuilder<Boolean> implements EndTrigger
 		
 		corpses.put(HtSPlayer, temp.entrySet().iterator().next());
 
-		Constructor<?> ChatMessage = Nms.iChatBaseComponentClass.getConstructor(String.class, Object[].class);
+//		Constructor<?> ChatMessage = Nms.iChatBaseComponentClass.getConstructor(String.class, Object[].class);
 		
 		Method getHandle = CPlayer.getDeclaredMethod("getHandle");
 		Method getUniqueId = CPlayer.getDeclaredMethod("getUniqueId");
 		Method getName = CPlayer.getDeclaredMethod("getName");
 		
-		Field infoAction_ADD_PLAYER = Nms.packetPlayOutPlayerInfo_PlayerInfoActionEnum.getDeclaredField("ADD_PLAYER");
-		Field gm_SURVIVAL = Nms.gamemodeEnum.getDeclaredField("SURVIVAL");
+//		Field infoAction_ADD_PLAYER = Nms.packetPlayOutPlayerInfo_PlayerInfoActionEnum.getDeclaredField("ADD_PLAYER");
+//		Field gm_SURVIVAL = Nms.gamemodeEnum.getDeclaredField("SURVIVAL");
 		
 		Object cPlayer1 = Nms.craftPlayerClass.cast(p);
 		//CraftPlayer p1 = (CraftPlayer) p;
@@ -133,16 +132,16 @@ public class DeadBodyOption extends OptionBuilder<Boolean> implements EndTrigger
 		Object gameProfile = Nms.gameProfileClass.getConstructors()[0].newInstance(getUniqueId.invoke(cPlayer1), getName.invoke(cPlayer1));
 		//GameProfile prof = new GameProfile(p1.getUniqueId(), p1.getName());
 
-		Object packetInfo = PacketInfo.getConstructors()[1].newInstance(infoAction_ADD_PLAYER);
+//		Object packetInfo = PacketInfo.getConstructors()[1].newInstance(infoAction_ADD_PLAYER);
 		//PacketPlayOutPlayerInfo packetInfo = new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER);
-		Object data = PlayerData.getConstructors()[0].newInstance(gameProfile, 0, gm_SURVIVAL, ChatMessage.newInstance("", new Object[0]));
+//		Object data = PlayerData.getConstructors()[0].newInstance(gameProfile, 0, gm_SURVIVAL, ChatMessage.newInstance("", new Object[0]));
 		//PacketPlayOutPlayerInfo.PlayerInfoData data = packetInfo.new PlayerInfoData(prof, 0, EnumGamemode.SURVIVAL, new ChatMessage("", new Object[0]));
 	    
 		List<Object> dataList = new ArrayList<>();
 		//List<PacketPlayOutPlayerInfo.PlayerInfoData> dataList = new ArrayList<>();
 	    
-		dataList.add(data);
-		setValue(packetInfo, "b", dataList);
+//		dataList.add(data);
+//		setValue(packetInfo, "b", dataList);
 
 		Object packetEntitySpawn = Nms.packetPlayOutNamedEntitySpawnClass.getConstructor().newInstance();
 	    //PacketPlayOutNamedEntitySpawn packetEntitySpawn = new PacketPlayOutNamedEntitySpawn();
@@ -189,17 +188,17 @@ public class DeadBodyOption extends OptionBuilder<Boolean> implements EndTrigger
 	    	
 	    	if (player != p)
 	    	{
-		    	Object pl = CPlayer.cast(player);
+//		    	Object pl = CPlayer.cast(player);
 		    	//CraftPlayer pl = ((CraftPlayer) player);
 		    	
-	    		Method sendPacket = Nms.playerConnectionClass.getDeclaredMethod("sendPacker", Nms.packetClass);
-	    		Field playerConnection = Nms.entityPlayerClass.getDeclaredField("playerConnection");
+//	    		Method sendPacket = Nms.playerConnectionClass.getDeclaredMethod("sendPacker", Nms.packetClass);
+//	    		Field playerConnection = Nms.entityPlayerClass.getDeclaredField("playerConnection");
 	    		
-	    		sendPacket.invoke(playerConnection.get(getHandle.invoke(pl)), packetInfo);
-	    		sendPacket.invoke(playerConnection.get(getHandle.invoke(pl)), packetEntitySpawn);
-	    		sendPacket.invoke(playerConnection.get(getHandle.invoke(pl)), packetTeleportDown);
-	    		sendPacket.invoke(playerConnection.get(getHandle.invoke(pl)), packetBed);
-	    		sendPacket.invoke(playerConnection.get(getHandle.invoke(pl)), packetTeleport);
+//	    		sendPacket.invoke(playerConnection.get(getHandle.invoke(pl)), packetInfo);
+//	    		sendPacket.invoke(playerConnection.get(getHandle.invoke(pl)), packetEntitySpawn);
+//	    		sendPacket.invoke(playerConnection.get(getHandle.invoke(pl)), packetTeleportDown);
+//	    		sendPacket.invoke(playerConnection.get(getHandle.invoke(pl)), packetBed);
+//	    		sendPacket.invoke(playerConnection.get(getHandle.invoke(pl)), packetTeleport);
 	    		//pl.getHandle().playerConnection.sendPacket(packetInfo);
 	    		//pl.getHandle().playerConnection.sendPacket(packetEntitySpawn);
 	    		//pl.getHandle().playerConnection.sendPacket(packetTeleportDown);
@@ -231,19 +230,19 @@ public class DeadBodyOption extends OptionBuilder<Boolean> implements EndTrigger
 		fr.HtSTeam.HtS.Player.Player player = fr.HtSTeam.HtS.Player.Player.instance(p);
 			if (player == null) return false;
 		
-		Method getHandle = CPlayer.getDeclaredMethod("getHandle");
-		Method sendPacket = Nms.playerConnectionClass.getDeclaredMethod("sendPacker", Nms.packetClass);
-		Field playerConnection = Nms.entityPlayerClass.getDeclaredField("playerConnection");
+//		Method getHandle = CPlayer.getDeclaredMethod("getHandle");
+//		Method sendPacket = Nms.playerConnectionClass.getDeclaredMethod("sendPacket", Nms.packetClass);
+//		Field playerConnection = Nms.entityPlayerClass.getDeclaredField("playerConnection");
 		
-		Object packet = Nms.packetPlayOutEntityDestroyClass.getConstructor(int[].class).newInstance(corpses.get(player).getValue());
+//		Object packet = Nms.packetPlayOutEntityDestroyClass.getConstructor(int[].class).newInstance(corpses.get(player).getValue());
 		//PacketPlayOutEntityDestroy packet = new PacketPlayOutEntityDestroy(corpses.get(p).getValue());
 		
 		Block b = corpses.get(player).getKey().clone().subtract(0, 2, 0).getBlock();
 		
 		for (Player p2 : corpses.get(player).getKey().getWorld().getPlayers())
 		{
-			Object cp = CPlayer.cast(p2);
-			sendPacket.invoke(playerConnection.get(getHandle.invoke(cp)), packet);
+//			Object cp = CPlayer.cast(p2);
+//			sendPacket.invoke(playerConnection.get(getHandle.invoke(cp)), packet);
 			//((CraftPlayer) p2).getHandle().playerConnection.sendPacket(packet);
 			
 			p2.sendBlockChange(b.getLocation(), b.getType(), b.getData());

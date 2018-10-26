@@ -54,7 +54,6 @@ public class OptionRegister {
 		//AtDeath
 		public static GoldenAppleOption goldenApple = new GoldenAppleOption();
 		public static HeadOption head = new HeadOption();
-		public static DeadBodyOption deadBody = new DeadBodyOption();
 		
 		//Base
 		public static NoRegenOption noRegen =  new NoRegenOption();

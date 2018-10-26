@@ -28,7 +28,7 @@ public class Event implements Listener {
 	private HashMap<Class<?>, ArrayList<Method>> eventMethods = new HashMap<Class<?>, ArrayList<Method>>();
 
 	public Event() {
-		System.out.println("Registering events...");
+		System.out.println("[HtS] Registering events...");
 		ArrayList<Method> annoted_methods = new ArrayList<Method>(new Reflections(new ConfigurationBuilder().setUrls(ClasspathHelper.forPackage("fr.HtSTeam.HtS")).setScanners(new MethodAnnotationsScanner())).getMethodsAnnotatedWith(EventHandler.class));
 		annoted_methods.removeIf(m -> m.getParameterCount() != 1);
 		HashSet<Class<?>> clazzes = new HashSet<Class<?>>();
@@ -43,7 +43,7 @@ public class Event implements Listener {
 					.compareTo(o2.getAnnotation(EventHandler.class).value()));
 			eventMethods.put(clazz, methods);
 		});
-		System.out.println(annoted_methods.size() + " events registered!");
+		System.out.println("[HtS] " + annoted_methods.size() + " events registered!");
 	}
 		
 	private void invoke(Class<?> clazz, Object event, Player player) {

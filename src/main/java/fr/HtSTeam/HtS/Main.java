@@ -13,6 +13,7 @@ import fr.HtSTeam.HtS.GameModes.GameMode;
 import fr.HtSTeam.HtS.GameModes.UHC.Common.UHC;
 import fr.HtSTeam.HtS.Options.Structure.TimerTask;
 import fr.HtSTeam.HtS.Player.DeathLoot;
+import fr.HtSTeam.HtS.Utils.Nms;
 import fr.HtSTeam.HtS.Utils.Files.FileExtractor;
 
 public class Main extends JavaPlugin {
@@ -28,8 +29,21 @@ public class Main extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		plugin = this;
-		System.out.println("Lancement de HtS...");
+		System.out.println("[HtS] Starting HtS...");
 		
+		try { Nms.init(); } catch (ClassNotFoundException e) { e.printStackTrace(); }
+		
+		new Command();
+		Bukkit.getServer().getPluginManager().registerEvents(new Event(), plugin);
+//		OptionRegister.register();
+		
+		timer = new TimerTask(0, 1);
+		initWorlds();
+		
+		System.out.println("[HtS] HtS running!");
+	}
+	
+	private void initWorlds() {
 		for(World world : Bukkit.getWorlds()) {
 			world.setDifficulty(Difficulty.HARD);
 			if(world.getEnvironment() == Environment.NORMAL) {
@@ -40,14 +54,6 @@ public class Main extends JavaPlugin {
 				world.setGameRule(GameRule.SEND_COMMAND_FEEDBACK, false);
 			}	
 		}
-		
-		timer = new TimerTask(0, 1);
-		
-//		try { Nms.init(); } catch (ClassNotFoundException e) { e.printStackTrace(); }
-		
-		new Command();
-		Bukkit.getServer().getPluginManager().registerEvents(new Event(), plugin);
-//		OptionRegister.register();
 	}
 	
 	/*public static void run() {

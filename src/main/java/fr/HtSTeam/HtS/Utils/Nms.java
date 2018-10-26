@@ -6,7 +6,6 @@ public class Nms {
 	
 	public static Class<?> craftPlayerClass;
 	public static Class<?> entityHumanClass;
-	public static Class<?> entityPlayerClass;
 	
 	public static Class<?> craftWorldClass;
 	public static Class<?> blockPositionClass;
@@ -14,7 +13,6 @@ public class Nms {
 
 	public static Class<?> gameProfileClass;
 	public static Class<?> dataWatcherClass;
-	public static Class<?> playerConnectionClass;
 	
 	public static Class<?> packetClass;
 	
@@ -27,10 +25,6 @@ public class Nms {
 	public static Class<?> packetPlayOutTitleClass;
 	public static Class<?> packetPlayOutTitleEnumTitleActionClass;
 	
-	public static Class<?> packetPlayOutPlayerInfoClass;
-	public static Class<?> packetPlayOutPlayerInfo_PlayerInfoActionEnum;
-	public static Class<?> packetPlayOutPlayerInfo_PlayerInfoDataClass;
-	
 	public static Class<?> packetPlayOutNamedEntitySpawnClass;
 	public static Class<?> packetPlayOutBedClass;
 	public static Class<?> packetPlayOutEntityTeleportClass;
@@ -41,39 +35,37 @@ public class Nms {
 		String nmsver = Bukkit.getServer().getClass().getPackage().getName();
 		nmsver = nmsver.substring(nmsver.lastIndexOf(".") + 1);
 		
-		String nmsname = "net.minecraft.server" + nmsver + ".";
-		
+		String nmsPackage = "net.minecraft.server." + nmsver + ".";
 		
 		craftPlayerClass = Class.forName("org.bukkit.craftbukkit." + nmsver + ".entity.CraftPlayer");
-		entityHumanClass = Class.forName(nmsname + "EntityHuman");
-		entityPlayerClass = Class.forName(nmsname + "EntityPlayer");
+		entityHumanClass = Class.forName(nmsPackage + "EntityHuman");
+//		entityPlayerClass = Class.forName(nmsname + "EntityPlayer");
 		
 		craftWorldClass = Class.forName("org.bukkit.craftbukkit." + nmsver + ".CraftWorld");
-		blockPositionClass = Class.forName(nmsname + "BlockPosition");
-		gamemodeEnum = Class.forName(nmsname + "EnumGamemode");
+		blockPositionClass = Class.forName(nmsPackage + "BlockPosition");
+		gamemodeEnum = Class.forName(nmsPackage + "EnumGamemode");
 		
-		gameProfileClass = Class.forName("com.mojang.authlib.GameProfile");
-		dataWatcherClass = Class.forName(nmsname + "DataWatcher");
-		playerConnectionClass = Class.forName(nmsname + "PlayerConnection");
+		dataWatcherClass = Class.forName(nmsPackage + "DataWatcher");
+//		playerConnectionClass = Class.forName(nmsname + "PlayerConnection");
 		
-		packetClass = Class.forName(nmsname + "Packet");
+		packetClass = Class.forName(nmsPackage + "Packet");
 		
-		packetPlayOutChatClass = Class.forName(nmsname + "PacketPlayOutChat");
-		chatComponentTextClass = Class.forName(nmsname + "ChatComponentText");
-		iChatBaseComponentClass = Class.forName(nmsname + "IChatBaseComponent");
-		iChatBaseComponentChatSerializerClass = Class.forName(nmsname + "IChatBaseComponent$ChatSerializer");
-		chatMessageTypeClass = Class.forName(nmsname + "ChatMessageType");
+		packetPlayOutChatClass = Class.forName(nmsPackage + "PacketPlayOutChat");
+		chatComponentTextClass = Class.forName(nmsPackage + "ChatComponentText");
+		iChatBaseComponentClass = Class.forName(nmsPackage + "IChatBaseComponent");
+		iChatBaseComponentChatSerializerClass = Class.forName(nmsPackage + "IChatBaseComponent$ChatSerializer");
+		chatMessageTypeClass = Class.forName(nmsPackage + "ChatMessageType");
 		
-		packetPlayOutTitleClass = Class.forName(nmsname + "PacketPlayOutTitle");
-		packetPlayOutTitleEnumTitleActionClass = Class.forName(nmsname + "PacketPlayOutTitle$EnumTitleAction");
+		packetPlayOutTitleClass = Class.forName(nmsPackage + "PacketPlayOutTitle");
+		packetPlayOutTitleEnumTitleActionClass = Class.forName(nmsPackage + "PacketPlayOutTitle$EnumTitleAction");
 		
-		packetPlayOutPlayerInfoClass = Class.forName(nmsname + "PacketPlayOutPlayerInfo");
-		packetPlayOutPlayerInfo_PlayerInfoActionEnum = Class.forName(nmsname + "PacketPlayOutPlayerInfo$PlayerInfoActionEum");
-		packetPlayOutPlayerInfo_PlayerInfoDataClass = Class.forName(nmsname + "PacketPlayOutPlayerInfo$PlayerInfoData");
+//		packetPlayOutPlayerInfoClass = Class.forName(nmsname + "PacketPlayOutPlayerInfo");
+//		packetPlayOutPlayerInfo_PlayerInfoActionEnum = Class.forName(nmsname + "PacketPlayOutPlayerInfo$PlayerInfoActionEum");
+//		packetPlayOutPlayerInfo_PlayerInfoDataClass = Class.forName(nmsname + "PacketPlayOutPlayerInfo$PlayerInfoData");
 		
-		packetPlayOutNamedEntitySpawnClass = Class.forName(nmsname + "PacketPlayOutNamedEntitySpawn");
-		packetPlayOutBedClass = Class.forName(nmsname + "PacketPlayOutBed");
-		packetPlayOutEntityTeleportClass = Class.forName(nmsname + "PacketPlayOutEntityTeleport");
-		packetPlayOutEntityDestroyClass = Class.forName(nmsname + "PacketPlayOutEntityDestroy");
+		packetPlayOutNamedEntitySpawnClass = Class.forName(nmsPackage + "PacketPlayOutNamedEntitySpawn");
+		packetPlayOutBedClass = Class.forName(nmsPackage + "PacketPlayOutBed");
+		packetPlayOutEntityTeleportClass = Class.forName(nmsPackage + "PacketPlayOutEntityTeleport");
+		packetPlayOutEntityDestroyClass = Class.forName(nmsPackage + "PacketPlayOutEntityDestroy");
 	}
 }

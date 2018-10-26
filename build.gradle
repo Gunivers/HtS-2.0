@@ -7,6 +7,12 @@ version = '2.0'
 
 description = "HtS Plugin"
 
+eclipse {
+    project {
+        name = 'HtS-plugin'
+    }
+}
+
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 tasks.withType(JavaCompile) {
