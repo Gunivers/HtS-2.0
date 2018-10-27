@@ -9,11 +9,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
+import fr.HtSTeam.HtS.Commands.Structure.Command;
 import fr.HtSTeam.HtS.Commands.Structure.CommandHandler;
-import fr.HtSTeam.HtS.Commands.Structure.EnumCommand;
 import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 import fr.HtSTeam.HtS.Utils.Lang;
@@ -24,7 +23,7 @@ public class TeamCommand {
 	static { Arrays.asList(ChatColor.values()).forEach(c -> colors.add(c.name().toLowerCase())); }
 	
 	@CommandHandler
-	public static boolean teams(Player p , Command cmd, String msg, String[] args) {
+	public static boolean teams(Player p , org.bukkit.command.Command cmd, String msg, String[] args) {
 		if (args[0].equalsIgnoreCase("team") && args.length > 1) {
 			if (args[1].equalsIgnoreCase("create") && args.length == 4) {
 				if (!colors.contains(args[3]))
@@ -63,21 +62,21 @@ public class TeamCommand {
 	}
 	
 	@SuppressWarnings("serial")
-	@CommandHandler(EnumCommand.COMPLETE)
+	@CommandHandler(Command.Commands.COMPLETE)
 	public static HashMap<String,ArrayList<String>> teams()
 	{
 		HashMap<String,ArrayList<String>> prop = new HashMap<String,ArrayList<String>>();
 		prop.put(null, new ArrayList<String>() {{ add("team"); add("player"); }});
 		prop.put("team", new ArrayList<String>() {{ add("clear"); add("create"); add("delete"); add("list"); }});
-		prop.put("teamcreate\\w[^ ]*", colors);
-		prop.put("teamdelete", new ArrayList<String>(Team.nameTeam.keySet()));
-		prop.put("teamclear", new ArrayList<String>(Team.nameTeam.keySet()));
+		prop.put("team|create|\\w[^| ]*", colors);
+		prop.put("team|delete", new ArrayList<String>(Team.nameTeam.keySet()));
+		prop.put("team|clear", new ArrayList<String>(Team.nameTeam.keySet()));
 		prop.put("player", new ArrayList<String>() {{ add("join"); add("leave"); add("random"); add("give"); add("list"); }});
-		prop.put("playerjoin", new ArrayList<String>(Team.nameTeam.keySet()));
+		prop.put("player|join", new ArrayList<String>(Team.nameTeam.keySet()));
 		return prop;
 	}
 	
-	public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
+	public boolean onCommand(CommandSender sender, org.bukkit.command.Command cmd, String msg, String[] args) {
 		if (sender instanceof Player) {
 			org.bukkit.entity.Player p = (org.bukkit.entity.Player) sender;
 			if (cmd.getName().equalsIgnoreCase("team") && p.hasPermission("team.use") && args.length > 0) {

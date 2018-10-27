@@ -44,7 +44,6 @@ public class Lang {
 				return en(string);
 			else {
 				String str = list.get(0).split("=")[1];
-				System.out.print(str);
 				for(String s : Arrays.asList(string.split("[.]")))
 					if (!list.get(0).split("=")[0].contains(s))
 						str = str.replaceFirst("(-REPLACE-)", s);

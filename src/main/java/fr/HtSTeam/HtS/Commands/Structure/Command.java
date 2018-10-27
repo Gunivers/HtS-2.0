@@ -18,14 +18,19 @@ import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Player.Player;
 
 public class Command implements TabExecutor {
-		
+	
+	public enum Commands {
+		EXECUTE,
+		COMPLETE;
+	}
+	
 	private HashMap<String,Method> commandMethods = new HashMap<String,Method>();
 	private HashMap<String,Method> completeMethods = new HashMap<String,Method>();
 
 	public Command() {
 		System.out.println("[HtS] Registering commands...");
 		ArrayList<Method> annoted_methods = new ArrayList<Method>(new Reflections(new ConfigurationBuilder().setUrls(ClasspathHelper.forPackage("fr.HtSTeam.HtS")).setScanners(new MethodAnnotationsScanner())).getMethodsAnnotatedWith(CommandHandler.class));
-		annoted_methods.forEach(m -> { if(m.getAnnotation(CommandHandler.class).value().equals(EnumCommand.EXECUTE) && m.getParameterCount() == 4) commandMethods.put(m.getName(), m); else if(m.getAnnotation(CommandHandler.class).value().equals(EnumCommand.COMPLETE) && m.getParameterCount() == 0) completeMethods.put(m.getName(), m);});
+		annoted_methods.forEach(m -> { if(m.getAnnotation(CommandHandler.class).value().equals(Commands.EXECUTE) && m.getParameterCount() == 4) commandMethods.put(m.getName(), m); else if(m.getAnnotation(CommandHandler.class).value().equals(Commands.COMPLETE) && m.getParameterCount() == 0) completeMethods.put(m.getName(), m);});
 		commandMethods.keySet().forEach(name -> Main.plugin.getCommand(name).setExecutor(this));
 		System.out.println("[HtS] " + commandMethods.keySet().size() + " commands registered!");
 	}
@@ -47,8 +52,9 @@ public class Command implements TabExecutor {
 					return null;
 				List<String> list = new ArrayList<String>();
 				if (args.length > 1) {
-					String key = "";
-					for (int i = 0; i < args.length - 1; i++) key += args[i];
+					ArrayList<String> key_list = new ArrayList<String>();
+					for (int i = 0; i < args.length - 1; i++) key_list.add(args[i]);
+					String key = String.join("|", key_list);
 					for (String regex : prop.keySet()) if (regex != null && key.matches(regex)) { key = regex; break; }
 					
 					if (key == null || !prop.containsKey(key) || key.isEmpty())

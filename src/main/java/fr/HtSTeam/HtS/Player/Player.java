@@ -360,40 +360,30 @@ public class Player {
 	 * Sends a JSON message to the player if he is connected, else it will send it when he reconnects
 	 * 
 	 * @param msg_cmd the message to send to the player
-	 * @param action run_command or suggest_command...
-	 * 
-	 * @deprecated msg_cmd and action will be merge for greater flexibility
 	 */
-	public void sendJsonMessage(final LinkedHashMap<String, String> msg_cmd, String action) { sendJsonMessage(msg_cmd, action, true); }
+	public void sendJsonMessage(final LinkedHashMap<String, Entry<String, String>> message) { sendJsonMessage(message, true); }
 	/**
 	 * Sends a JSON message to the player
 	 * 
 	 * @param msg_cmd the message to send to the player
-	 * @param action run_command or suggest_command...
 	 * @param addasync whether it should send the message when the player reconnects in case he was offline
-	 * 
-	 * @deprecated msg_cmd and action will be merge for greater flexibility
 	 */
-	public void sendJsonMessage(final LinkedHashMap<String, String> msg_cmd, String action, boolean addasync) {
-		if (msg_cmd == null || msg_cmd.isEmpty() || action == null || action.isEmpty() || !canExecute(addasync, msg_cmd, action))
+	public void sendJsonMessage(final LinkedHashMap<String, Entry<String, String>> message, boolean addasync) {
+		if (message == null || message.isEmpty() || !canExecute(addasync, message))
 			return;
 		
-		String message = null;
-		for (Entry<String, String> set : msg_cmd.entrySet())
-			if (message == null) {
+		String msg = null;
+		for (Entry<String, Entry<String, String>> set : message.entrySet())
+			if (msg == null)
 				if (set.getValue() != null)
-					message = "[{\"text\":\"" + set.getKey() + "\",\"clickEvent\":{\"action\":\"" + action + "\",\"value\":\""
-							+ set.getValue() + "\"}}";
+					msg = "[{\"text\":\"" + set.getKey() + "\",\"clickEvent\":{\"action\":\"" + set.getValue().getKey() + "\",\"value\":\"" + set.getValue().getValue() + "\"}}";
 				else
-					message = "[{\"text\":\"" + set.getKey() + "\"}";
-			} else {
-				if (set.getValue() != null)
-					message = message + ",{\"text\":\"" + set.getKey()
-							+ "\",\"clickEvent\":{\"action\":\"" + action + "\",\"value\":\"" + set.getValue() + "\"}}";
-				else
-					message = message + ",{\"text\":\"" + set.getKey() + "\"}";
-			}
-		message += ']';
+					msg = "[{\"text\":\"" + set.getKey() + "\"}";
+			else if (set.getValue() != null)
+				msg = msg + ",{\"text\":\"" + set.getKey() + "\",\"clickEvent\":{\"action\":\"" + set.getValue().getKey() + "\",\"value\":\"" + set.getValue().getValue() + "\"}}";
+			else
+				msg = msg + ",{\"text\":\"" + set.getKey() + "\"}";
+		msg += ']';
 		
 		try {
 			Object craftPlayer = Nms.craftPlayerClass.cast(player);
