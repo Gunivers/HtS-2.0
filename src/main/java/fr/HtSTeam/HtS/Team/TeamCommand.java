@@ -68,11 +68,11 @@ public class TeamCommand {
 		HashMap<String,ArrayList<String>> prop = new HashMap<String,ArrayList<String>>();
 		prop.put(null, new ArrayList<String>() {{ add("team"); add("player"); }});
 		prop.put("team", new ArrayList<String>() {{ add("clear"); add("create"); add("delete"); add("list"); }});
-		prop.put("team|create|\\w[^| ]*", colors);
-		prop.put("team|delete", new ArrayList<String>(Team.nameTeam.keySet()));
-		prop.put("team|clear", new ArrayList<String>(Team.nameTeam.keySet()));
+		prop.put("team\\|create\\|\\w[^| ]*", colors);
+		prop.put("team\\|delete", new ArrayList<String>(Team.nameTeam.keySet()));
+		prop.put("team\\|clear", new ArrayList<String>(Team.nameTeam.keySet()));
 		prop.put("player", new ArrayList<String>() {{ add("join"); add("leave"); add("random"); add("give"); add("list"); }});
-		prop.put("player|join", new ArrayList<String>(Team.nameTeam.keySet()));
+		prop.put("player\\|join", new ArrayList<String>(Team.nameTeam.keySet()));
 		return prop;
 	}
 	

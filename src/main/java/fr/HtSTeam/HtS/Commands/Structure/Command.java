@@ -56,7 +56,6 @@ public class Command implements TabExecutor {
 					for (int i = 0; i < args.length - 1; i++) key_list.add(args[i]);
 					String key = String.join("|", key_list);
 					for (String regex : prop.keySet()) if (regex != null && key.matches(regex)) { key = regex; break; }
-					
 					if (key == null || !prop.containsKey(key) || key.isEmpty())
 						return null;
 					else if (!args[args.length - 1].isEmpty())
