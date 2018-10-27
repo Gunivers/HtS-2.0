@@ -38,7 +38,7 @@ public class Lang {
 	 * @return string
 	 */
 	public static String get(final String string) {
-		try (Stream<String> stream = new BufferedReader(new InputStreamReader(Lang.class.getClassLoader().getResourceAsStream("langs/" + lang.toString() + ".lang"))).lines()) {
+		try (Stream<String> stream = new BufferedReader(new InputStreamReader(Lang.class.getClassLoader().getResourceAsStream("langs/" + lang.toString() + ".lang"), "UTF8")).lines()) {
 			List<String> list = stream.filter(s -> string.matches(s.split("=")[0])).collect(Collectors.toList());
 			if (list.isEmpty() || list.get(0).isEmpty())
 				return en(string);
