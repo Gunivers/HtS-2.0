@@ -33,13 +33,7 @@ public class Player {
 	
 	private static ArrayList<Player> players = new ArrayList<Player>();
 	private static HashMap<UUID, Player> uuids = new HashMap<UUID, Player>();
-	/**
-	 * Returns the list of all Player (not necessarily online).
-	 * 
-	 * @return ArrayList<Player>
-	 */
-	public static ArrayList<Player> getPlayers() { return players; }
-	
+	private static HashMap<String, Player> names = new HashMap<String, Player>();
 	
 	private ArrayList<Runnable> asynctasks = new ArrayList<Runnable>();
 	
@@ -72,6 +66,7 @@ public class Player {
 		
 		players.add(this);
 		uuids.put(player.getUniqueId(), this);
+		names.put(player.getName(), this);
 		
 		this.player = player;
 		
@@ -112,6 +107,21 @@ public class Player {
 			return uuids.get(uuid);
 		else if (Bukkit.getPlayer(uuid) != null)
 			return instance(Bukkit.getPlayer(uuid));
+		else 
+			return null;
+	}
+	/**
+	 * Creates an independent player, highly modular and safe. Cannot instantiate twice. 
+	 * 
+	 * @param name 
+	 * 			Name of Player
+	 * @return Player (new or already existing instance) <strong>[Can be Null]</strong>
+	 */
+	public static Player instance(String name) {
+		if (names.containsKey(name))
+			return names.get(name);
+		else if (Bukkit.getPlayer(name) != null)
+			return instance(Bukkit.getPlayer(name));
 		else 
 			return null;
 	}
@@ -241,6 +251,12 @@ public class Player {
 	
 	// RETURN
 	
+	/**
+	 * Returns the list of all Player (not necessarily online).
+	 * 
+	 * @return ArrayList<Player>
+	 */
+	public static ArrayList<Player> getPlayers() { return players; }
 	
 	/**
 	 * Returns the UUID of this Player.
@@ -263,7 +279,7 @@ public class Player {
 	 * 
 	 * @return String
 	 */
-	public String getDisplay() { return display_name; }
+	public String getDisplayName() { return display_name; }
 	
 	
 	/**
