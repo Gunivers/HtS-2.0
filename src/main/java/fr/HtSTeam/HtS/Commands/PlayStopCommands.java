@@ -26,7 +26,6 @@ import org.bukkit.plugin.PluginManager;
 
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.Player.PlayerInGame;
 
 public class PlayStopCommands implements CommandExecutor, Listener {
 

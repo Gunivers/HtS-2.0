@@ -18,7 +18,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginManager;
 
 import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.Player.PlayerInGame;
 import fr.HtSTeam.HtS.Team.Team;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 

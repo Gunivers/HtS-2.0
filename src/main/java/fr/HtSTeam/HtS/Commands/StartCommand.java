@@ -16,7 +16,6 @@ import org.bukkit.entity.Player;
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.Structure.IconBuilder;
-import fr.HtSTeam.HtS.Player.PlayerInGame;
 
 public class StartCommand implements CommandExecutor {
 

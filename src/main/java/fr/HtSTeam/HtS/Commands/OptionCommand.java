@@ -9,7 +9,6 @@ import org.bukkit.command.CommandSender;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Player.Player;
-import fr.HtSTeam.HtS.Player.PlayerInGame;
 
 public class OptionCommand implements CommandExecutor {
 

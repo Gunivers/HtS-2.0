@@ -7,24 +7,33 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map.Entry;
 import java.util.UUID;
 import java.util.function.Consumer;
 
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.World;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Events.Structure.EventHandler;
+import fr.HtSTeam.HtS.Options.Structure.DeathTrigger;
+import fr.HtSTeam.HtS.Options.Structure.IconBuilder;
 import fr.HtSTeam.HtS.Team.Team;
+import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 import fr.HtSTeam.HtS.Utils.Nms;
 import fr.HtSTeam.HtS.Utils.PRIORITY;
 import fr.HtSTeam.HtS.Utils.ReflectionUtil;
@@ -48,8 +57,11 @@ public class Player {
 	private Team team;
 	private Team fake_team;
 	
-	private boolean op;
 	private boolean spectator;
+	private boolean alive;
+	private List<ItemStack> deathLoot = new ArrayList<ItemStack>();
+	
+	private boolean op;
 	
 	private double health;
 	
@@ -77,6 +89,9 @@ public class Player {
 		uuid = player.getUniqueId();
 		name = player.getName();
 		display_name = player.getDisplayName();
+		
+		spectator = false;
+		alive = true;
 		
 		op = player.isOp();
 		world = player.getWorld();
@@ -190,7 +205,7 @@ public class Player {
 	 * @param p the player
 	 */
 	@EventHandler(PRIORITY.PLAYER)
-	public static void onPlayerJoin(PlayerJoinEvent e, Player p) {
+	public static void join(PlayerJoinEvent e, Player p) {
 		p.player = e.getPlayer();
 		p.runAsyncTask();
 	}
@@ -203,7 +218,7 @@ public class Player {
 	 * @param p the player
 	 */
 	@EventHandler(PRIORITY.PLAYER)
-	public static void onPlayerQuit(PlayerQuitEvent e, Player p) {
+	public static void leave(PlayerQuitEvent e, Player p) {
 		org.bukkit.entity.Player bplayer = e.getPlayer();
 		p.op = bplayer.isOp();
 		p.world = bplayer.getWorld();
@@ -249,8 +264,18 @@ public class Player {
 		p.world = e.getPlayer().getWorld();
 	}
 	
-	
-	
+	@EventHandler(PRIORITY.PLAYER)
+	public void onPlayerJoin(PlayerJoinEvent e, Player p) {
+	    if(!EnumState.getState().equals(EnumState.WAIT))
+			if (p.isAlive())
+				p.setSpectator();
+	}
+
+
+	@EventHandler(PRIORITY.PLAYER)
+	public void onDeath(PlayerDeathEvent e, Player p) {
+		IconBuilder.optionsList.keySet().stream().filter(key -> key instanceof DeathTrigger).forEach(key -> ((DeathTrigger) key).onDeath(Player.instance(e.getEntity())));
+	}
 	
 //	METHOS --------------------------------------------------------------------------------------
 	
@@ -305,11 +330,27 @@ public class Player {
 	
 	
 	/**
-	 * Returns true if this Player is op.
+	 * Returns true if this Player is alive.
 	 * 
 	 * @return boolean
 	 */
-	public boolean isOp() { return op; }
+	public boolean isAlive() { return alive; }
+	
+	
+	/**
+	 * Returns true if this Player is a spectator.
+	 * 
+	 * @return boolean
+	 */
+	public boolean isSpectator() { return spectator; }
+	
+	/**
+	 * Returns a list of all items taht will be droped on death
+	 * @return List<ItemStack>
+	 */
+	public List<ItemStack> getDeathLoot() { return deathLoot; }
+	
+	
 	
 	
 	/**
@@ -317,10 +358,7 @@ public class Player {
 	 * 
 	 * @return boolean
 	 */
-	public boolean isSpectator() {
-		
-		return spectator;
-	}
+	public boolean isOp() { return op; }
 	
 	
 	/**
@@ -623,5 +661,21 @@ public class Player {
 	public void addPotionEffect(PotionEffect potionEffect) {
 		if(canExecute(false))
 			player.addPotionEffect(potionEffect);
+	}
+	public void addDeathLootItem(ItemStackBuilder ism) {
+		deathLoot.add(ism);
+	}
+	public void addDeathLootItem(Material material) {
+		deathLoot.add(new ItemStack(material, 1));
+	}
+	public void removeDeathLootItem(Material material) {
+		for (int i = 0; i < deathLoot.size(); i++)
+			if (deathLoot.get(i).getType().equals(material))
+				deathLoot.remove(deathLoot.get(i));
+	}
+	private void setSpectator() {
+		spectator = true;
+		if (canExecute(false))
+			player.setGameMode(GameMode.SPECTATOR);
 	}
 }

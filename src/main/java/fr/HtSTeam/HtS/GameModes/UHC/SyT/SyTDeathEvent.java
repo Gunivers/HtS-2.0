@@ -13,7 +13,6 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import fr.HtSTeam.HtS.EnumState;
-import fr.HtSTeam.HtS.Player.PlayerInGame;
 import fr.HtSTeam.HtS.Player.PlayerRemove;
 
 public class SyTDeathEvent implements Listener, PlayerRemove {

@@ -4,9 +4,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 
 import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.Player.PlayerDeath;
-import fr.HtSTeam.HtS.Player.PlayerInGame;
-import fr.HtSTeam.HtS.Player.PlayerReconnection;
 import fr.HtSTeam.HtS.Player.Spectator.CustomChat;
 import fr.HtSTeam.HtS.Player.Spectator.SeeInventory;
 import fr.HtSTeam.HtS.Team.TeamGive;
@@ -17,7 +14,6 @@ public class EventManager {
 
 		PluginManager pm = Bukkit.getServer().getPluginManager();
 		
-		pm.registerEvents(new PlayerDeath(), main);
 		pm.registerEvents(new TeamGive(), main);
 //		pm.registerEvents(new JoinLeaveEvent(), main);
 		pm.registerEvents(new CloseOptionsEvent(), main);

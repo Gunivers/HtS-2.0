@@ -21,7 +21,6 @@ import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.GUIBuilder;
 import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
 import fr.HtSTeam.HtS.Player.Player;
-import fr.HtSTeam.HtS.Player.PlayerInGame;
 import fr.HtSTeam.HtS.Utils.Files.OptionIO;
 
 public class StartingStuffGUI extends GUIBuilder implements StartTrigger, OptionIO {

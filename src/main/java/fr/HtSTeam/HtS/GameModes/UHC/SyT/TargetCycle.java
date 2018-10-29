@@ -17,9 +17,6 @@ import fr.HtSTeam.HtS.Options.Options.Statistics.TargetsStatOption;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.AwaitingPlayer;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
-import fr.HtSTeam.HtS.Player.PlayerInGame;
-import fr.HtSTeam.HtS.Player.PlayerManager;
-import fr.HtSTeam.HtS.Player.PlayerReconnection;
 import fr.HtSTeam.HtS.Team.Team;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 

@@ -12,7 +12,6 @@ import fr.HtSTeam.HtS.Events.Structure.Event;
 import fr.HtSTeam.HtS.GameModes.GameMode;
 import fr.HtSTeam.HtS.GameModes.UHC.Common.UHC;
 import fr.HtSTeam.HtS.Options.Structure.TimerTask;
-import fr.HtSTeam.HtS.Player.DeathLoot;
 import fr.HtSTeam.HtS.Utils.Nms;
 import fr.HtSTeam.HtS.Utils.Files.FileExtractor;
 

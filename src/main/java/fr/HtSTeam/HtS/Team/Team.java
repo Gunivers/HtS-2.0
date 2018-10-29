@@ -141,6 +141,6 @@ public class Team implements StartTrigger {
 
 	@Override
 	public void onPartyStart() {
-		teamList.forEach(team -> { if (!team.playerList.isEmpty()) team.alive = true; });
+		teamList.forEach(team -> { if (!team.playerList.isEmpty() && !team.isFakeTeam()) team.alive = true; });
 	}
 }

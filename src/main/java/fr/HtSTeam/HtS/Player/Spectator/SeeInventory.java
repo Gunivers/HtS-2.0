@@ -26,7 +26,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.Player.PlayerManager;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 
 public class SeeInventory implements Listener {

@@ -12,6 +12,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -81,5 +82,8 @@ public class Event implements Listener {
 	
 	@org.bukkit.event.EventHandler
 	public void onBlockPlaceEvent(PlayerChangedWorldEvent event) { org.bukkit.entity.Player p = null; if (event.getPlayer() != null) p = event.getPlayer(); invoke(event.getClass(), event, Player.instance(p)); }
+	
+	@org.bukkit.event.EventHandler
+	public void onBlockPlaceEvent(PlayerDeathEvent event) { org.bukkit.entity.Player p = null; if (event.getEntity() != null) p = event.getEntity(); invoke(event.getClass(), event, Player.instance(p)); }
 
 }

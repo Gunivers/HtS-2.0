@@ -11,7 +11,6 @@ import fr.HtSTeam.HtS.Options.Structure.DeathTrigger;
 import fr.HtSTeam.HtS.Options.Structure.EndTrigger;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Player.Player;
-import fr.HtSTeam.HtS.Player.PlayerInGame;
 
 public class TimePlayedStatOption extends OptionBuilder<Boolean> implements EndTrigger, DeathTrigger {
 	

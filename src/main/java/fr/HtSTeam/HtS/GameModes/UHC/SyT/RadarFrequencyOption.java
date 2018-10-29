@@ -16,8 +16,6 @@ import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.AwaitingPlayer;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
-import fr.HtSTeam.HtS.Player.PlayerManager;
-import fr.HtSTeam.HtS.Player.PlayerReconnection;
 
 public class RadarFrequencyOption extends OptionBuilder<Integer> implements StartTrigger {
 
