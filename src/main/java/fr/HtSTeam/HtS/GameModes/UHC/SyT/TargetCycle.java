@@ -101,24 +101,23 @@ public class TargetCycle extends OptionBuilder<Integer> {
 		TargetsStatOption.init();
 		
 		String cycleT = "";
-		for (UUID uuid : targetCycle)
-			cycleT += "->" + PlayerInGame.uuidToName.get(uuid);
+//		for (UUID uuid : targetCycle)
+//			cycleT += "->" + PlayerInGame.uuidToName.get(uuid);
 		System.out.println(cycleT);
 	}
 	
 	public void displayTarget() {
-		targetCycle.forEach(uuid -> { if (PlayerManager.isConnected(uuid)) displayTarget(uuid); else PlayerReconnection.add(uuid, this); });
+//		targetCycle.forEach(uuid -> { if (PlayerManager.isConnected(uuid)) displayTarget(uuid); else PlayerReconnection.add(uuid, this); });
 	}
 	
 	@AwaitingPlayer	
 	public void displayTarget(UUID uuid) {
-		if (targetCycle.indexOf(uuid) == targetCycle.size() - 1)
-			Bukkit.getPlayer(uuid)
-			.sendMessage("§4Votre cible est " + PlayerInGame.uuidToName.get(targetCycle.get(0)));
-		else
-			Bukkit.getPlayer(uuid)
-			.sendMessage("§4Votre cible est " + PlayerInGame.uuidToName.get(targetCycle.get(targetCycle.indexOf(uuid) + 1)));
-			
+//		if (targetCycle.indexOf(uuid) == targetCycle.size() - 1)
+//			Bukkit.getPlayer(uuid)
+//			.sendMessage("§4Votre cible est " + PlayerInGame.uuidToName.get(targetCycle.get(0)));
+//		else
+//			Bukkit.getPlayer(uuid)
+//			.sendMessage("§4Votre cible est " + PlayerInGame.uuidToName.get(targetCycle.get(targetCycle.indexOf(uuid) + 1)));
 	}
 	
 	public UUID getTarget(Player p) {

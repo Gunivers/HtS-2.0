@@ -31,8 +31,8 @@ public class SyTDeathEvent implements Listener, PlayerRemove {
 			Player eventKiller = e.getEntity().getKiller();
 			UUID killerHunter = SyT.targetCycleOption.getHunter(eventKiller);
 			UUID killerTarget = SyT.targetCycleOption.getTarget(eventKiller);
-			UUID victimHunter = SyT.targetCycleOption.getHunter(eventVictim);
-			UUID victimTarget = SyT.targetCycleOption.getTarget(eventVictim);
+//			UUID victimHunter = SyT.targetCycleOption.getHunter(eventVictim);
+//			UUID victimTarget = SyT.targetCycleOption.getTarget(eventVictim);
 
 			// Kill victim
 			if (killerTarget.equals(eventVictim.getUniqueId())) {
@@ -47,8 +47,8 @@ public class SyTDeathEvent implements Listener, PlayerRemove {
 				broadcast = eventVictim.getName() + " a été assassiné.";
 				if (EnumState.getState().equals(EnumState.RUNNING))
 					if (SyT.targetCycleOption.targetCycle.size() > 2) {
-						eventKiller.sendMessage(
-								"§2Cible éliminée. Nouvelle cible : " + PlayerInGame.uuidToName.get(victimTarget));
+//						eventKiller.sendMessage(
+//								"§2Cible éliminée. Nouvelle cible : " + PlayerInGame.uuidToName.get(victimTarget));
 					}
 
 				// Kill hunter
@@ -62,10 +62,10 @@ public class SyTDeathEvent implements Listener, PlayerRemove {
 				broadcast = eventVictim.getName() + " a échoué dans sa mission.";
 				if (EnumState.getState().equals(EnumState.RUNNING)) {
 					if (SyT.targetCycleOption.targetCycle.size() > 2) {
-						Bukkit.getPlayer(victimHunter).sendMessage(
-								"§2Cible éliminée. Nouvelle cible : " + PlayerInGame.uuidToName.get(victimTarget));
-						eventKiller.sendMessage(
-								"§6Celui-ci semblait vous vouloir du mal, il est fort probable qu'il cherchait à vous éliminer.");
+//						Bukkit.getPlayer(victimHunter).sendMessage(
+//								"§2Cible éliminée. Nouvelle cible : " + PlayerInGame.uuidToName.get(victimTarget));
+//						eventKiller.sendMessage(
+//								"§6Celui-ci semblait vous vouloir du mal, il est fort probable qu'il cherchait à vous éliminer.");
 					}
 				}
 				// Kill other people
@@ -81,12 +81,12 @@ public class SyTDeathEvent implements Listener, PlayerRemove {
 				broadcast = eventVictim.getName() + " est mort.";
 				if (EnumState.getState().equals(EnumState.RUNNING)) {
 					if (SyT.targetCycleOption.targetCycle.size() > 2) {
-						Bukkit.getPlayer(victimHunter)
-								.sendMessage("§2Votre cible a été tuée, une nouvelle cible vous est attribuée : "
-										+ PlayerInGame.uuidToName.get(victimTarget));
-						eventKiller
-								.sendMessage("§4Que faites-vous ?! Ce n'était pas la cible qui vous était attribuée !");
-						eventKiller.sendMessage("§7§oVous avez du remord...");
+//						Bukkit.getPlayer(victimHunter)
+//								.sendMessage("§2Votre cible a été tuée, une nouvelle cible vous est attribuée : "
+//										+ PlayerInGame.uuidToName.get(victimTarget));
+//						eventKiller
+//								.sendMessage("§4Que faites-vous ?! Ce n'était pas la cible qui vous était attribuée !");
+//						eventKiller.sendMessage("§7§oVous avez du remord...");
 					}
 				}
 			}
@@ -101,9 +101,9 @@ public class SyTDeathEvent implements Listener, PlayerRemove {
 	@Override
 	public void removePlayer(UUID uuid, String name) {
 		if (SyT.targetCycleOption.targetCycle.size() > 2)
-			Bukkit.getPlayer(SyT.targetCycleOption.getHunter(uuid))
-					.sendMessage("§2Votre cible a été tuée, une nouvelle cible vous est attribuée : "
-							+ PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(uuid)));
+//			Bukkit.getPlayer(SyT.targetCycleOption.getHunter(uuid))
+//					.sendMessage("§2Votre cible a été tuée, une nouvelle cible vous est attribuée : "
+//							+ PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(uuid)));
 		SyT.targetCycleOption.targetCycle.remove(uuid);
 	}
 
