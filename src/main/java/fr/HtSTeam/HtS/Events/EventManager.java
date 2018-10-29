@@ -17,12 +17,10 @@ public class EventManager {
 		pm.registerEvents(new TeamGive(), main);
 //		pm.registerEvents(new JoinLeaveEvent(), main);
 		pm.registerEvents(new CloseOptionsEvent(), main);
-		pm.registerEvents(new PlayerInGame(), main);
 		pm.registerEvents(new WaitEvent(), main);
 		pm.registerEvents(new CustomChat(), main);
 		pm.registerEvents(new ReloadServerEvent(), main);
 		pm.registerEvents(new SeeInventory(), main);
-		pm.registerEvents(new PlayerReconnection(), main);
 	}
 
 }
