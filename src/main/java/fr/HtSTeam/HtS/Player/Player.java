@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 import java.util.UUID;
+import java.util.function.Consumer;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -26,6 +27,7 @@ import fr.HtSTeam.HtS.Events.Structure.EventHandler;
 import fr.HtSTeam.HtS.Team.Team;
 import fr.HtSTeam.HtS.Utils.Nms;
 import fr.HtSTeam.HtS.Utils.PRIORITY;
+import fr.HtSTeam.HtS.Utils.ReflectionUtil;
 import fr.HtSTeam.HtS.Utils.Tag;
 import fr.HtSTeam.HtS.Utils.Files.XmlFile;
 
@@ -47,11 +49,13 @@ public class Player {
 	private Team fake_team;
 	
 	private boolean op;
+	private boolean spectator;
+	
+	private double health;
+	
 	private World world;
 	private Location location;
 	private Inventory inventory;
-	private double health;
-		
 	
 	/**
 	 * Creates an independent player, highly modular and safe.
@@ -207,16 +211,15 @@ public class Player {
 		p.inventory = bplayer.getInventory();
 		p.health = bplayer.getHealth();
 		
-		p.save();
+//		p.save();
 	}
 	
 	
 	@SuppressWarnings("serial")
-	private void save() {
+	void save() {
 		ArrayList<Field> fields = new ArrayList<Field>();
-		for (int i = 5; i < 10; i++) {
+		for (int i = ReflectionUtil.fieldIndex(getClass().getDeclaredFields(), "uuid"); i < ReflectionUtil.fieldIndex(getClass().getDeclaredFields(), "inventory") + 1; i++)
 			fields.add(getClass().getDeclaredFields()[i]);
-		}
 		
 		new File(Main.plugin.getDataFolder() + "/" + "Players" + "/", uuid.toString()  + ".xml").delete();
 		
@@ -232,6 +235,9 @@ public class Player {
 		});
 		f.save();
 	}
+	
+	
+	
 	
 //	EVENTS --------------------------------------------------------------------------------------
 
@@ -307,6 +313,17 @@ public class Player {
 	
 	
 	/**
+	 * Returns true if this Player is op.
+	 * 
+	 * @return boolean
+	 */
+	public boolean isSpectator() {
+		
+		return spectator;
+	}
+	
+	
+	/**
 	 * Returns world.
 	 * 
 	 * @return World
@@ -352,7 +369,17 @@ public class Player {
 	
 	// NO RETURN
 	
+	/**
+	 * You know how this shit works
+	 * 
+	 * @param action lambda expression
+	 */
+	public static void forEach(Consumer<Player> action) {
+		for (Player t : players)
+			action.accept(t);
+	}
 	
+
 	/**
 	 * Sends a message to the player if he is connected, else it will send it when he reconnects
 	 * 

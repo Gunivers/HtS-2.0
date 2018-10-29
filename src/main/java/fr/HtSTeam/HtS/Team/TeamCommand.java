@@ -1,31 +1,27 @@
 package fr.HtSTeam.HtS.Team;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
-import org.bukkit.Material;
 
 import fr.HtSTeam.HtS.Commands.Structure.Command;
 import fr.HtSTeam.HtS.Commands.Structure.CommandHandler;
 import fr.HtSTeam.HtS.Player.Player;
+import fr.HtSTeam.HtS.Utils.ColorUtil;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 import fr.HtSTeam.HtS.Utils.Lang;
 
 public class TeamCommand {
 	
-	private static ArrayList<String> colors = new ArrayList<String>();
-	static { Arrays.asList(ChatColor.values()).forEach(c -> colors.add(c.name().toLowerCase())); }
-	
 	@CommandHandler
 	public static boolean teams(Player sender, org.bukkit.command.Command cmd, String msg, String[] args) {
 		if (args[0].equalsIgnoreCase("team") && args.length > 1) {
 			if (args[1].equalsIgnoreCase("create") && args.length == 4) {
-				if (!colors.contains(args[3]))
+				if (!ColorUtil.getChatColors().contains(args[3]))
 					return false;
 				Team t = new Team(args[2], args[3]);
 				sender.sendMessage(Lang.get("team.command.team.create." + ChatColor.valueOf(t.getTeamColor()) + t.getTeamName()), false);
@@ -83,15 +79,9 @@ public class TeamCommand {
 					sender.sendMessage(Lang.get("team.command.player.list." + Team.teamList.size() + "." + String.join("§r, ", list)), false);
 				}
 			} else if (args[1].equalsIgnoreCase("give") && args.length == 2) {
-				for (org.bukkit.entity.Player player : Bukkit.getOnlinePlayers())
-					player.getInventory().clear();
+				Player.forEach(player -> player.getInventory().clear());
 				for (Team t : Team.teamList)
-					for (org.bukkit.entity.Player player : Bukkit.getOnlinePlayers())
-						if (!player.getGameMode().equals(GameMode.SPECTATOR)) {
-							ItemStackBuilder a = new ItemStackBuilder(Material.BLACK_WOOL, 1, ChatColor.valueOf(t.getTeamColor().toUpperCase()) + t.getTeamName(), "§fClique pour rejoindre l'équipe " + ChatColor.valueOf(t.getTeamColor().toUpperCase()) + t.getTeamName());
-							a.setGlint(true);
-							player.getInventory().addItem(a);
-						}
+					Player.forEach(player -> { if (player.isSpectator()) return; ItemStackBuilder itm = new ItemStackBuilder(ColorUtil.chatColorToWoolMaterial(t.getTeamColor()), 1, ChatColor.valueOf(t.getTeamColor()) + t.getTeamName(), Lang.get("team.command.player.give." + ChatColor.valueOf(t.getTeamColor()) + t.getTeamName())); itm.setGlint(true); player.getInventory().addItem(itm);});
 			} else if (args[1].equalsIgnoreCase("random") && args.length == 2) {
 				List<org.bukkit.entity.Player> onlinePlayer = new ArrayList<org.bukkit.entity.Player>();
 				if(Team.teamList.isEmpty())
@@ -129,7 +119,7 @@ public class TeamCommand {
 		HashMap<String,ArrayList<String>> prop = new HashMap<String,ArrayList<String>>();
 		prop.put(null, new ArrayList<String>() {{ add("team"); add("player"); }});
 		prop.put("team", new ArrayList<String>() {{ add("clear"); add("create"); add("delete"); add("list"); }});
-		prop.put("team\\|create\\|\\w[^| ]*", colors);
+		prop.put("team\\|create\\|\\w[^| ]*", ColorUtil.getChatColors());
 		prop.put("team\\|delete", new ArrayList<String>(Team.nameTeam.keySet()));
 		prop.put("team\\|clear", new ArrayList<String>(Team.nameTeam.keySet()));
 		prop.put("player", new ArrayList<String>() {{ add("join"); add("leave"); add("random"); add("give"); add("list"); }});
