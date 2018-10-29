@@ -2,11 +2,8 @@ package fr.HtSTeam.HtS.Team;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
 
 import fr.HtSTeam.HtS.Commands.Structure.Command;
 import fr.HtSTeam.HtS.Commands.Structure.CommandHandler;
@@ -14,6 +11,7 @@ import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Utils.ColorUtil;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 import fr.HtSTeam.HtS.Utils.Lang;
+import fr.HtSTeam.HtS.Utils.Randomizer;
 
 public class TeamCommand {
 	
@@ -86,27 +84,25 @@ public class TeamCommand {
 					Player.forEach(player -> { if (player.isSpectator()) return; player.getInventory().addItem(itm);});
 				}
 			} else if (args[1].equalsIgnoreCase("random") && args.length == 2) {
-				List<org.bukkit.entity.Player> onlinePlayer = new ArrayList<org.bukkit.entity.Player>();
 				if(Team.teamList.isEmpty())
 					return false;
-					for (org.bukkit.entity.Player co : Bukkit.getOnlinePlayers())
-						if (co.getGameMode() != GameMode.SPECTATOR)
-							onlinePlayer.add(co);
-							
-					ArrayList<Team> teamList = new ArrayList<Team>();
-					int size = Team.teamList.size();
-					for (int i = 0; i < size; i++)
-						if(!Team.teamList.get(i).isFakeTeam()) {
-							Team.teamList.get(i).clear();
-							teamList.add(Team.teamList.get(i));
-						}
-//					while (!onlinePlayer.isEmpty())
-//					for(Team team : teamList) {
-//						if(onlinePlayer.isEmpty()) break; 
-//						Player ran_p = onlinePlayer.get(Randomizer.randI(0, onlinePlayer.size() - 1)); 
-//						team.addPlayer(ran_p); 
-//						onlinePlayer.remove(ran_p); 
-//					}
+				
+				ArrayList<Player> players = new ArrayList<Player>();
+				Player.forEach(player -> { if (!player.isSpectator()) players.add(player); });			
+				ArrayList<Team> teamList = new ArrayList<Team>();
+				for (int i = 0; i < Team.teamList.size(); i++)
+					if(!Team.teamList.get(i).isFakeTeam()) {
+						Team.teamList.get(i).clear();
+						teamList.add(Team.teamList.get(i));
+					}
+				while (!players.isEmpty())
+					for(Team team : teamList) {
+						if(players.isEmpty()) break; 
+						Player ran_p = players.get(Randomizer.randI(0, players.size() - 1)); 
+						ran_p.setTeam(team); 
+						ran_p.sendMessage(Lang.get("team.command.player.join." + ChatColor.valueOf(team.getTeamColor()) + team.getTeamName() + "." + args[3]), false);
+						players.remove(ran_p); 
+					}
 
 			} else
 				return false;
