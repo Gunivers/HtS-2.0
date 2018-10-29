@@ -80,8 +80,11 @@ public class TeamCommand {
 				}
 			} else if (args[1].equalsIgnoreCase("give") && args.length == 2) {
 				Player.forEach(player -> player.getInventory().clear());
-				for (Team t : Team.teamList)
-					Player.forEach(player -> { if (player.isSpectator()) return; ItemStackBuilder itm = new ItemStackBuilder(ColorUtil.chatColorToWoolMaterial(t.getTeamColor()), 1, ChatColor.valueOf(t.getTeamColor()) + t.getTeamName(), Lang.get("team.command.player.give." + ChatColor.valueOf(t.getTeamColor()) + t.getTeamName())); itm.setGlint(true); player.getInventory().addItem(itm);});
+				for (Team t : Team.teamList) {
+					ItemStackBuilder itm = new ItemStackBuilder(ColorUtil.chatColorToWoolMaterial(t.getTeamColor()), 1, ChatColor.valueOf(t.getTeamColor()) + t.getTeamName(), Lang.get("team.command.player.give." + ChatColor.valueOf(t.getTeamColor()) + t.getTeamName()));
+					itm.setGlint(true);
+					Player.forEach(player -> { if (player.isSpectator()) return; player.getInventory().addItem(itm);});
+				}
 			} else if (args[1].equalsIgnoreCase("random") && args.length == 2) {
 				List<org.bukkit.entity.Player> onlinePlayer = new ArrayList<org.bukkit.entity.Player>();
 				if(Team.teamList.isEmpty())
