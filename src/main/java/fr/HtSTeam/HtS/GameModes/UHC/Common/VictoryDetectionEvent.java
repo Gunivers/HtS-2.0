@@ -27,12 +27,12 @@ public class VictoryDetectionEvent implements Listener, PlayerRemove {
 
 	@Override
 	public void removePlayer(UUID uuid, String name) {
-		if (EnumState.getState() != EnumState.FINISHING && teamVictoryDetection && Team.teamList.size() == 1) {
+//		if (EnumState.getState() != EnumState.FINISHING && teamVictoryDetection && Team.teamList.size() == 1) {
 //			JSON.sendAll(ChatColor.valueOf(TeamBuilder.teamList.get(0).getTeamColor().toUpperCase()) + "La team " + TeamBuilder.teamList.get(0).getTeamName() + " a gagné !", null, 5);
-			EnumState.setState(EnumState.FINISHING);
-		} else if (EnumState.getState() != EnumState.FINISHING && PlayerInGame.playerInGame.size() == 1) {
+//			EnumState.setState(EnumState.FINISHING);
+//		} else if (EnumState.getState() != EnumState.FINISHING && PlayerInGame.playerInGame.size() == 1) {
 //			JSON.sendAll(PlayerInGame.uuidToName.get(PlayerInGame.playerInGame.get(0))+ "§2 a gagné !", null, 5);
-			EnumState.setState(EnumState.FINISHING);
-		}
+//			EnumState.setState(EnumState.FINISHING);
+//		}
 	}
 }
