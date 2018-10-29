@@ -1,12 +1,9 @@
 package fr.HtSTeam.HtS.Commands;
 
-import java.util.UUID;
-
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.GameRule;
 import org.bukkit.World;
-import org.bukkit.attribute.Attribute;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -73,14 +70,14 @@ public class PlayStopCommands implements CommandExecutor, Listener {
 			} else if (cmd.getName().equalsIgnoreCase("end") && sender.hasPermission("end.use")) {
 				EnumState.setState(EnumState.WAIT);
 				Main.timer.stop();
-				for(UUID uuid : PlayerInGame.playerInGame) {
-					Bukkit.getPlayer(uuid).setHealth(Bukkit.getPlayer(uuid).getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
-					Bukkit.getPlayer(uuid).setFoodLevel(20);
-					Bukkit.getPlayer(uuid).getInventory().clear();
-					Bukkit.getPlayer(uuid).setLevel(0);
-				}
-				PlayerInGame.playerInGame.clear();
-				PlayerInGame.uuidToName.clear();
+//				for(UUID uuid : PlayerInGame.playerInGame) {
+//					Bukkit.getPlayer(uuid).setHealth(Bukkit.getPlayer(uuid).getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
+//					Bukkit.getPlayer(uuid).setFoodLevel(20);
+//					Bukkit.getPlayer(uuid).getInventory().clear();
+//					Bukkit.getPlayer(uuid).setLevel(0);
+//				}
+//				PlayerInGame.playerInGame.clear();
+//				PlayerInGame.uuidToName.clear();
 				return true;
 			}
 		}

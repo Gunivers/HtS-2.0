@@ -1,8 +1,5 @@
 package fr.HtSTeam.HtS.Commands;
 
-import java.util.UUID;
-
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -27,8 +24,8 @@ public class OptionCommand implements CommandExecutor {
 			
 			
 			} if (cmd.getName().equalsIgnoreCase("test") && sender.hasPermission("test.use")) {
-				for(UUID p2 : PlayerInGame.playerInGame)
-					System.out.println(Bukkit.getPlayer(p2).getDisplayName());
+//				for(UUID p2 : PlayerInGame.playerInGame)
+//					System.out.println(Bukkit.getPlayer(p2).getDisplayName());
 				return true;
 			}
 		}

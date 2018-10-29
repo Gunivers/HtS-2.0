@@ -1,8 +1,5 @@
 package fr.HtSTeam.HtS.Commands;
 
-import java.util.UUID;
-
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -16,22 +13,22 @@ public class UtilCommands implements CommandExecutor {
 		if (sender instanceof Player) {
 			if (cmd.getName().equalsIgnoreCase("heal") && sender.hasPermission("heal.use")) {
 				if (args.length == 1) {
-					for (UUID uuid : PlayerInGame.playerInGame)
-						if (PlayerInGame.uuidToName.get(uuid).equals(args[0]) && PlayerManager.isConnected(uuid)) {
-							Bukkit.getPlayer(uuid).setHealth(20);
-							return true;
-						}
+//					for (UUID uuid : PlayerInGame.playerInGame)
+//						if (PlayerInGame.uuidToName.get(uuid).equals(args[0]) && PlayerManager.isConnected(uuid)) {
+//							Bukkit.getPlayer(uuid).setHealth(20);
+//							return true;
+//						}
 					sender.sendMessage("§4Le joueur n'existe pas !");
 
 				}
 			}
 			if (cmd.getName().equalsIgnoreCase("feed") && sender.hasPermission("feed.use")) {
 				if (args.length == 1) {
-					for (UUID uuid : PlayerInGame.playerInGame)
-						if (PlayerInGame.uuidToName.get(uuid).equals(args[0]) && PlayerManager.isConnected(uuid)) {
-							Bukkit.getPlayer(uuid).setFoodLevel(20);
-							return true;
-						}
+//					for (UUID uuid : PlayerInGame.playerInGame)
+//						if (PlayerInGame.uuidToName.get(uuid).equals(args[0]) && PlayerManager.isConnected(uuid)) {
+//							Bukkit.getPlayer(uuid).setFoodLevel(20);
+//							return true;
+//						}
 					sender.sendMessage("§4Le joueur n'existe pas !");
 				}
 				return false;

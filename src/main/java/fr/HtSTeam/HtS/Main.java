@@ -21,7 +21,6 @@ public class Main extends JavaPlugin {
 	public static String HTSNAME = "HtS ";
 	
 	public static World world;
-	public static DeathLoot deathLoot = new DeathLoot();
 	public static TimerTask timer;
 	public static GameMode gamemode = new UHC();
 		
