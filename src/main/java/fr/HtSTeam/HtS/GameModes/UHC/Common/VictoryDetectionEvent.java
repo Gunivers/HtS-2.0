@@ -7,16 +7,14 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
-import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Player.PlayerRemove;
-import fr.HtSTeam.HtS.Team.Team;
 
 public class VictoryDetectionEvent implements Listener, PlayerRemove {
 
-	private boolean teamVictoryDetection;
+//	private boolean teamVictoryDetection;
 
 	public VictoryDetectionEvent(boolean b) {
-		teamVictoryDetection = b;
+//		teamVictoryDetection = b;
 		hasLast();
 	}
 
