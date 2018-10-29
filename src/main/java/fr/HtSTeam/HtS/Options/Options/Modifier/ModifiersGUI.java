@@ -3,7 +3,6 @@ package fr.HtSTeam.HtS.Options.Options.Modifier;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.UUID;
 
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -57,8 +56,8 @@ public class ModifiersGUI extends GUIBuilder implements StartTrigger, CommandExe
 				continue;
 			}
 		if(!active) return;
-		for(UUID p : PlayerInGame.playerInGame)
-			customInventory.put(Player.instance(p), new CustomGUI());
+//		for(UUID p : PlayerInGame.playerInGame)
+//			customInventory.put(Player.instance(p), new CustomGUI());
 	}
 	
 	public CustomGUI getInventory(Player p) {
