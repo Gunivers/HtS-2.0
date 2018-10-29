@@ -1,5 +1,8 @@
 package fr.HtSTeam.HtS;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
 import org.bukkit.GameRule;
@@ -12,6 +15,7 @@ import fr.HtSTeam.HtS.Events.Structure.Event;
 import fr.HtSTeam.HtS.GameModes.GameMode;
 import fr.HtSTeam.HtS.GameModes.UHC.Common.UHC;
 import fr.HtSTeam.HtS.Options.Structure.TimerTask;
+import fr.HtSTeam.HtS.Utils.Logger;
 import fr.HtSTeam.HtS.Utils.Nms;
 import fr.HtSTeam.HtS.Utils.Files.FileExtractor;
 
@@ -19,6 +23,7 @@ public class Main extends JavaPlugin {
 	
 	public static Main plugin;
 	public static String HTSNAME = "HtS ";
+	public static Logger logger;
 	
 	public static World world;
 	public static TimerTask timer;
@@ -27,6 +32,15 @@ public class Main extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		plugin = this;
+		
+		try
+		{
+			logger = new Logger(new File("log.txt"), this);
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		
 		System.out.println("[HtS] Starting HtS...");
 		
 		try { Nms.init(); } catch (ClassNotFoundException e) { e.printStackTrace(); }
