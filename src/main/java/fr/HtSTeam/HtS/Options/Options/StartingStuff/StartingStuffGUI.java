@@ -6,9 +6,7 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Base64;
-import java.util.UUID;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -34,12 +32,12 @@ public class StartingStuffGUI extends GUIBuilder implements StartTrigger, Option
 
 	@Override
 	public void onPartyStart() {
-		if(items.length > 0)
-			for(UUID uuid : PlayerInGame.playerInGame) {
-				for(ItemStack i : items)
-					if(i != null && i.getType() != Material.BARRIER)
-						Bukkit.getPlayer(uuid).getInventory().addItem(i);
-			}
+//		if(items.length > 0)
+//			for(UUID uuid : PlayerInGame.playerInGame) {
+//				for(ItemStack i : items)
+//					if(i != null && i.getType() != Material.BARRIER)
+//						Bukkit.getPlayer(uuid).getInventory().addItem(i);
+//			}
 	}
 	
 	@EventHandler()

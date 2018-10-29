@@ -45,8 +45,8 @@ public class TimePlayedStatOption extends OptionBuilder<Boolean> implements EndT
 
 	@Override
 	public void onPartyEnd() {
-		if (EnumStats.TIME_PLAYED.isTracked())
-			PlayerInGame.playerInGame.forEach(uuid -> { StatisticHandler.update(uuid, EnumStats.TIME_PLAYED, Main.timer.getTimerInSeconds()); });
+//		if (EnumStats.TIME_PLAYED.isTracked())
+//			PlayerInGame.playerInGame.forEach(uuid -> { StatisticHandler.update(uuid, EnumStats.TIME_PLAYED, Main.timer.getTimerInSeconds()); });
 	}
 
 	@Override

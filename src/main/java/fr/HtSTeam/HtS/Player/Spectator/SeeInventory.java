@@ -2,7 +2,6 @@ package fr.HtSTeam.HtS.Player.Spectator;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -101,11 +100,11 @@ public class SeeInventory implements Listener {
 	
 	
 	public void refresh(Player p) {
-		for(Entry<UUID, Inventory> entry : inventories.entrySet()) {
-			if(entry.getValue().getName().equals(p.getName()) && PlayerManager.isConnected(p.getUniqueId())) {
-				uuid = entry.getKey();
-			}
-		}
+//		for(Entry<UUID, Inventory> entry : inventories.entrySet()) {
+//			if(entry.getValue().getName().equals(p.getName()) && PlayerManager.isConnected(p.getUniqueId())) {
+//				uuid = entry.getKey();
+//			}
+//		}
 		
 		new BukkitRunnable() {
 			@Override

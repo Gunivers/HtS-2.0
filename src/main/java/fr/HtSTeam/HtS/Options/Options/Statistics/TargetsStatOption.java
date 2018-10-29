@@ -7,11 +7,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
 import fr.HtSTeam.HtS.EnumState;
-import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.GameModes.UHC.SyT.SyT;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.EnumStats;
-import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.StatisticHandler;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Player.PlayerRemove;
@@ -49,18 +46,18 @@ public class TargetsStatOption extends OptionBuilder<Boolean> implements PlayerR
 	}
 	
 	public static void init() {
-		PlayerInGame.playerInGame.forEach(uuid -> { if (PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(uuid)) != null) StatisticHandler.update(uuid, EnumStats.TARGETS, PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(uuid))); });
+//		PlayerInGame.playerInGame.forEach(uuid -> { if (PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(uuid)) != null) StatisticHandler.update(uuid, EnumStats.TARGETS, PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(uuid))); });
 	}
 	
 	@EventHandler
 	public void on(PlayerDeathEvent e) {
-		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.TARGETS.isTracked() && Main.gamemode.gamemodeToString().equals("SyT"))
-			PlayerInGame.playerInGame.forEach(uuid -> { if (PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(uuid)) != null) StatisticHandler.update(uuid, EnumStats.TARGETS, PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(uuid))); });
+//		if(EnumState.getState().equals(EnumState.RUNNING) && EnumStats.TARGETS.isTracked() && Main.gamemode.gamemodeToString().equals("SyT"))
+//			PlayerInGame.playerInGame.forEach(uuid -> { if (PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(uuid)) != null) StatisticHandler.update(uuid, EnumStats.TARGETS, PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(uuid))); });
 	}
 
 	@Override
 	public void removePlayer(UUID a, String b) {
-		PlayerInGame.playerInGame.forEach(uuid -> { if (PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(uuid)) != null) StatisticHandler.update(uuid, EnumStats.TARGETS, PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(uuid))); });		
+//		PlayerInGame.playerInGame.forEach(uuid -> { if (PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(uuid)) != null) StatisticHandler.update(uuid, EnumStats.TARGETS, PlayerInGame.uuidToName.get(SyT.targetCycleOption.getTarget(uuid))); });		
 	}
 
 	@Override

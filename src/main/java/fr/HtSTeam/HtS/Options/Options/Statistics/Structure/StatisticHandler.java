@@ -7,8 +7,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.UUID;
 
-import org.apache.commons.collections4.Equator;
-import org.apache.commons.collections4.IterableUtils;
 import org.bukkit.Bukkit;
 
 import fr.HtSTeam.HtS.EnumState;
@@ -17,27 +15,26 @@ import fr.HtSTeam.HtS.Player.PlayerRemove;
 public class StatisticHandler implements PlayerRemove {
 	
 	private static HashMap<UUID, HashMap<EnumStats, Object>> playerStats = new HashMap<UUID, HashMap<EnumStats, Object>>();
-	private static HashMap<EnumStats, ArrayList<String>> mvpStats = new HashMap<EnumStats, ArrayList<String>>();
+//	private static HashMap<EnumStats, ArrayList<String>> mvpStats = new HashMap<EnumStats, ArrayList<String>>();
 	private static ArrayList<EnumStats> stats = new ArrayList<EnumStats>();
 	
 	{
 		addToList();
 	}
 	
-	@SuppressWarnings("serial")
 	public static void init() {
-		for (UUID uuid : PlayerInGame.playerInGame) {
-			HashMap<EnumStats, Object> stats = new HashMap<EnumStats, Object>();
-			for (EnumStats s : EnumStats.values()) {
-				if (EnumStats.PLAYER_UUID == s)
-					stats.put(s, new HashSet<String>() {{ add(uuid.toString()); }});
-				else if (EnumStats.PLAYER_NAME == s)
-					stats.put(s, new HashSet<String>() {{ add(PlayerInGame.uuidToName.get(uuid)); }});
-				else if (s.isTracked())
-					stats.put(s, s.getDefaultValue());
-			}
-			playerStats.put(uuid, stats);
-		}
+//		for (UUID uuid : PlayerInGame.playerInGame) {
+//			HashMap<EnumStats, Object> stats = new HashMap<EnumStats, Object>();
+//			for (EnumStats s : EnumStats.values()) {
+//				if (EnumStats.PLAYER_UUID == s)
+//					stats.put(s, new HashSet<String>() {{ add(uuid.toString()); }});
+//				else if (EnumStats.PLAYER_NAME == s)
+//					stats.put(s, new HashSet<String>() {{ add(PlayerInGame.uuidToName.get(uuid)); }});
+//				else if (s.isTracked())
+//					stats.put(s, s.getDefaultValue());
+//			}
+//			playerStats.put(uuid, stats);
+//		}
 	}
 	
 	@Override
@@ -55,8 +52,8 @@ public class StatisticHandler implements PlayerRemove {
 	@SuppressWarnings("unchecked")
 	public static void display() {
 		playerStats.forEach((uuid, stats) -> {
-			if (!PlayerManager.isConnected(uuid))
-				return;
+//			if (!PlayerManager.isConnected(uuid))
+//				return;
 			Bukkit.getPlayer(uuid).sendMessage("===== Vos Statistiques =====");
 			stats.forEach((stat, value) -> {
 				if (stat.getDisplayName() != null && value != null && value instanceof Number)
@@ -78,22 +75,22 @@ public class StatisticHandler implements PlayerRemove {
 			ArrayList<Integer> values = new ArrayList<Integer>();
 			playerStats.forEach((uuid, stats) -> { values.add((int) stats.get(stat)); });
 			Collections.sort(values, Collections.reverseOrder());
-			ArrayList<String> mvps = new ArrayList<String>();
-			int size = (values.size() > 5) ? 5 : values.size();
-			for (int j = 0; j < size; j++) {
-				final int final_j = j;
-				playerStats.forEach((uuid, stats) -> { if (values.get(final_j) == stats.get(stat) && !IterableUtils.contains(mvps, PlayerInGame.uuidToName.get(uuid), new Equator<String>() {
-					@Override
-					public boolean equate(String o1, String o2) {
-						return o2.contains(o1);
-					}
-
-					@Override
-					public int hash(String o) {
-						return o.hashCode();
-					}
-				})) mvps.add(PlayerInGame.uuidToName.get(uuid) + " - " + stats.get(stat)); }); }
-			mvpStats.put(stat, mvps);
+//			ArrayList<String> mvps = new ArrayList<String>();
+//			int size = (values.size() > 5) ? 5 : values.size();
+//			for (int j = 0; j < size; j++) {
+//				final int final_j = j;
+//				playerStats.forEach((uuid, stats) -> { if (values.get(final_j) == stats.get(stat) && !IterableUtils.contains(mvps, PlayerInGame.uuidToName.get(uuid), new Equator<String>() {
+//					@Override
+//					public boolean equate(String o1, String o2) {
+//						return o2.contains(o1);
+//					}
+//
+//					@Override
+//					public int hash(String o) {
+//						return o.hashCode();
+//					}
+//				})) mvps.add(PlayerInGame.uuidToName.get(uuid) + " - " + stats.get(stat)); }); }
+//			mvpStats.put(stat, mvps);
 		}
 	}
 	
