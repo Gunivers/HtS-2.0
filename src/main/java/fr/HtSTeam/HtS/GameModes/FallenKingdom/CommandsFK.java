@@ -1,7 +1,5 @@
 package fr.HtSTeam.HtS.GameModes.FallenKingdom;
 
-import java.util.UUID;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -100,22 +98,22 @@ public class CommandsFK implements CommandExecutor, Listener {
 				
 				
 				} if(args.length == 3 && args[0].equalsIgnoreCase("join")) {
-					for(UUID uuid : PlayerInGame.playerInGame) {
-						if(PlayerInGame.uuidToName.get(uuid).equals(args[1])) {
-							for(BaseBuilder bm : BaseBuilder.baseList) {
-								if(bm.getBaseName().equals(args[2])) {
-									bm.addPlayer(Bukkit.getPlayer(uuid));
-//									Team.playerTeam.get(uuid).removePlayer(Bukkit.getPlayer(uuid));
-//									bm.getTeam().addPlayer(Bukkit.getPlayer(uuid));
-									p.sendMessage("§2Joueur bien ajouté !");
-									return true;
-								}
-							}
-							p.sendMessage("§4Base innexistante");
-							return true;
-						}
-							
-					}
+//					for(UUID uuid : PlayerInGame.playerInGame) {
+//						if(PlayerInGame.uuidToName.get(uuid).equals(args[1])) {
+//							for(BaseBuilder bm : BaseBuilder.baseList) {
+//								if(bm.getBaseName().equals(args[2])) {
+//									bm.addPlayer(Bukkit.getPlayer(uuid));
+////									Team.playerTeam.get(uuid).removePlayer(Bukkit.getPlayer(uuid));
+////									bm.getTeam().addPlayer(Bukkit.getPlayer(uuid));
+//									p.sendMessage("§2Joueur bien ajouté !");
+//									return true;
+//								}
+//							}
+//							p.sendMessage("§4Base innexistante");
+//							return true;
+//						}
+//							
+//					}
 					p.sendMessage("§4Joueur innexistant.");
 					return true;
 				
