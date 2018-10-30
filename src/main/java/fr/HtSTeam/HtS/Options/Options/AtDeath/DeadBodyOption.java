@@ -13,9 +13,6 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.entity.PlayerDeathEvent;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.DeathTrigger;
