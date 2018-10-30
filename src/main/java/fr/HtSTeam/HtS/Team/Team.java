@@ -13,7 +13,7 @@ public class Team implements StartTrigger {
 
 	private String teamName;
 	private String teamColor;
-	private boolean alive;
+	private boolean exists;
 
 	private boolean faketeam = false;
 
@@ -33,7 +33,7 @@ public class Team implements StartTrigger {
 
 		this.teamName = teamName;
 		this.teamColor = teamColor.toUpperCase();
-		alive = false;
+		exists = false;
 	}
 	
 	/**
@@ -56,8 +56,8 @@ public class Team implements StartTrigger {
 	 * Returns true if at least 1 player of this team is alive
 	 * @return boolean
 	 */
-	public boolean isAlive() {
-		return alive;
+	public boolean exists() {
+		return exists;
 	}
 	
 	/**
@@ -113,7 +113,7 @@ public class Team implements StartTrigger {
 	public void remove(Player player) {
 		playerList.remove(player);
 		if (playerList.isEmpty())
-			alive = false;
+			exists = false;
 	}
 	
 	/**
@@ -141,6 +141,6 @@ public class Team implements StartTrigger {
 
 	@Override
 	public void onPartyStart() {
-		teamList.forEach(team -> { if (!team.playerList.isEmpty() && !team.isFakeTeam()) team.alive = true; });
+		teamList.forEach(team -> { if (!team.playerList.isEmpty() && !team.isFakeTeam()) team.exists = true; });
 	}
 }

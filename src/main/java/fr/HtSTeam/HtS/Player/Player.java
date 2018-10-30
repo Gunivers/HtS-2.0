@@ -58,7 +58,7 @@ public class Player {
 	private Team fake_team;
 	
 	private boolean spectator;
-	private boolean alive;
+	private boolean inGame;
 	private List<ItemStack> deathLoot = new ArrayList<ItemStack>();
 	
 	private boolean op;
@@ -91,7 +91,7 @@ public class Player {
 		display_name = player.getDisplayName();
 		
 		spectator = false;
-		alive = true;
+		inGame = true;
 		
 		op = player.isOp();
 		world = player.getWorld();
@@ -267,7 +267,7 @@ public class Player {
 	@EventHandler(PRIORITY.PLAYER)
 	public void onPlayerJoin(PlayerJoinEvent e, Player p) {
 	    if(!EnumState.getState().equals(EnumState.WAIT))
-			if (p.isAlive())
+			if (p.isInGame())
 				p.setSpectator();
 	}
 
@@ -334,7 +334,7 @@ public class Player {
 	 * 
 	 * @return boolean
 	 */
-	public boolean isAlive() { return alive; }
+	public boolean isInGame() { return inGame; }
 	
 	
 	/**
