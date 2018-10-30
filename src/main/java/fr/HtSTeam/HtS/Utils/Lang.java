@@ -12,8 +12,9 @@ public class Lang {
 		en_UK,
 		fr_FR;
 	}
-	
+
 	private static Langs lang = Langs.en_UK;
+	public static final String REPLACE = "%REPLACE%";
 	
 	/**
 	 * Sets the displayed plugin's language 

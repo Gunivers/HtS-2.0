@@ -277,6 +277,9 @@ public class Player {
 		IconBuilder.optionsList.keySet().stream().filter(key -> key instanceof DeathTrigger).forEach(key -> ((DeathTrigger) key).onDeath(Player.instance(e.getEntity())));
 	}
 	
+	
+	
+	
 //	METHOS --------------------------------------------------------------------------------------
 	
 	
@@ -677,5 +680,9 @@ public class Player {
 		spectator = true;
 		if (canExecute(false))
 			player.setGameMode(GameMode.SPECTATOR);
+	}
+
+	public boolean hasPermission(String string) {
+		return false;
 	}
 }
