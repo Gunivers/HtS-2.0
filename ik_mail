@@ -1,5 +1,2 @@
 ---------- 𝖎𝖐𝖇𝖗𝖚𝖓𝖊𝖑  Mail ----------
-	from: A~Z
-
-Je comprends pas trop ce que tu veux faire dans Main#onDisable().
-Le logger ne pourra rien log du tout si tu le fermes avant, mais donnera au contraire forcément une WriteAbortedException xD
+Tout est cassé :/
