@@ -23,7 +23,7 @@ public class Main extends JavaPlugin {
 	
 	public static Main plugin;
 	public static String HTSNAME = "HtS ";
-	public static Logger logger;
+	public static Logger LOGGER;
 	
 	public static World world;
 	public static TimerTask timer;
@@ -31,17 +31,10 @@ public class Main extends JavaPlugin {
 		
 	@Override
 	public void onEnable() {
-		plugin = this;
+		plugin = this;	
+		try { LOGGER = new Logger(new File(plugin.getDataFolder() + "/logs/latest.log"), plugin); } catch (IOException e) { e.printStackTrace(); }
 		
-		try
-		{
-			logger = new Logger(new File("log.txt"), this);
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		
-		System.out.println("[HtS] Starting HtS...");
+		LOGGER.logInfo("Starting HtS...");
 		
 		try { Nms.init(); } catch (ClassNotFoundException e) { e.printStackTrace(); }
 		
@@ -52,7 +45,7 @@ public class Main extends JavaPlugin {
 		timer = new TimerTask(0, 1);
 		initWorlds();
 		
-		System.out.println("[HtS] HtS running!");
+		LOGGER.logInfo("HtS running!");
 	}
 	
 	private void initWorlds() {
@@ -66,6 +59,13 @@ public class Main extends JavaPlugin {
 				world.setGameRule(GameRule.SEND_COMMAND_FEEDBACK, false);
 			}	
 		}
+	}
+	
+	@Override
+	public void onDisable() {
+		LOGGER.logInfo("Shutting down HtS...");
+		try { Main.LOGGER.close(); } catch (IOException e) { e.printStackTrace(); }
+		LOGGER.logInfo("HtS shut down!");
 	}
 	
 	/*public static void run() {

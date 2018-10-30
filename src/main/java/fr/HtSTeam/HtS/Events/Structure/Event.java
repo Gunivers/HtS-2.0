@@ -22,6 +22,7 @@ import org.reflections.scanners.MethodAnnotationsScanner;
 import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
 
+import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Player.Player;
 
 public class Event implements Listener {
@@ -29,7 +30,7 @@ public class Event implements Listener {
 	private HashMap<Class<?>, ArrayList<Method>> eventMethods = new HashMap<Class<?>, ArrayList<Method>>();
 
 	public Event() {
-		System.out.println("[HtS] Registering events...");
+		Main.LOGGER.logInfo("[Events] Registering events...");
 		ArrayList<Method> annoted_methods = new ArrayList<Method>(new Reflections(new ConfigurationBuilder().setUrls(ClasspathHelper.forPackage("fr.HtSTeam.HtS")).setScanners(new MethodAnnotationsScanner())).getMethodsAnnotatedWith(EventHandler.class));
 		annoted_methods.removeIf(m -> m.getParameterCount() != 1);
 		HashSet<Class<?>> clazzes = new HashSet<Class<?>>();
@@ -44,7 +45,7 @@ public class Event implements Listener {
 					.compareTo(o2.getAnnotation(EventHandler.class).value()));
 			eventMethods.put(clazz, methods);
 		});
-		System.out.println("[HtS] " + annoted_methods.size() + " events registered!");
+		Main.LOGGER.logInfo("[Events] " + annoted_methods.size() + " events registered!");
 	}
 		
 	private void invoke(Class<?> clazz, Object event, Player player) {
