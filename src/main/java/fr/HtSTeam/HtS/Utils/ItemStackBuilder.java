@@ -2,6 +2,7 @@ package fr.HtSTeam.HtS.Utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -19,13 +20,13 @@ public class ItemStackBuilder extends ItemStack {
 
 	/**
 	 * @param item
-	 *            Type d'item
+	 *            The item type
 	 * @param number
-	 *            Nombre
+	 *            The item amount
 	 * @param name
-	 *            Nom de l'item
+	 *            The item name
 	 * @param lore
-	 *            Description de l'item
+	 *            The item lore
 	 */
 	public ItemStackBuilder(Material item, int number, String name, String lore) {
 		super(item, number);
@@ -35,16 +36,16 @@ public class ItemStackBuilder extends ItemStack {
 	}
 
 	/**
-	 * Génère un oeuf
+	 * Generate a spawn egg
 	 * 
 	 * @param entity
-	 *            l'entité de l'oeuf
+	 *            The egg entity type
 	 * @param number
-	 *            Nombre
+	 *            The item amount
 	 * @param name
-	 *            Nom de l'item
+	 *            The item name
 	 * @param lore
-	 *            Description de l'item
+	 *            The item lore
 	 */
 	public ItemStackBuilder(EntityType entity, int number, String name, String lore) {
 		this(MobManager.mobToEgg(entity), number, name, lore);
@@ -52,16 +53,16 @@ public class ItemStackBuilder extends ItemStack {
 	}
 
 	/**
-	 * Génère une tête
+	 * Generate a head
 	 * 
 	 * @param player
-	 *            un UUID
+	 *            A Player UUID
 	 * @param number
-	 *            Nombre
+	 *            The item amount
 	 * @param name
-	 *            Nom de l'item
+	 *            The item name
 	 * @param lore
-	 *            Description de l'item
+	 *            The item lore
 	 */
 	public ItemStackBuilder(UUID player, int number, String name, String lore) {
 		super(Material.PLAYER_HEAD, number);
@@ -74,21 +75,28 @@ public class ItemStackBuilder extends ItemStack {
 	}
 
 	/**
-	 * @return le nom de l'item
+	 * @return The item name
 	 */
 	public String getName() {
 		return getItemMeta().getDisplayName();
 	}
 
 	/**
-	 * @return la description de l'item
+	 * @return The item lore
 	 */
 	public String getLore() {
 		return getItemMeta().getLore().get(0);
 	}
+	
+	/**
+	 * @return The item lores
+	 */
+	public List<String> getLores() {
+		return getItemMeta().getLore();
+	}
 
 	/**
-	 * @return si l'item à l'effet de surbrillance
+	 * @return The tem glint state
 	 */
 	public boolean isGlint() {
 		return glint;
@@ -96,7 +104,7 @@ public class ItemStackBuilder extends ItemStack {
 
 	/**
 	 * @param name
-	 *            le nom de l'item
+	 *            The item name
 	 */
 	public void setName(String name) {
 		ItemMeta ism = getItemMeta();
@@ -122,7 +130,7 @@ public class ItemStackBuilder extends ItemStack {
 
 	/**
 	 * @param glint
-	 *            l'item est en subrillance
+	 *            The item glint state
 	 */
 	public void setGlint(boolean glint) {
 		this.glint = glint;
@@ -138,7 +146,7 @@ public class ItemStackBuilder extends ItemStack {
 
 	/**
 	 * @param material
-	 *            item de l'item
+	 *            The material item
 	 */
 	public void setItem(Material material) {
 		this.setType(material);
