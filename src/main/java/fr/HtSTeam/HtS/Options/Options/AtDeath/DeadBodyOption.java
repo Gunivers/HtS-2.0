@@ -18,6 +18,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
+import fr.HtSTeam.HtS.Options.Structure.DeathTrigger;
 import fr.HtSTeam.HtS.Options.Structure.EndTrigger;
 import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
 import fr.HtSTeam.HtS.Utils.Nms;
@@ -26,7 +27,7 @@ import fr.HtSTeam.HtS.Utils.Nms;
  * @author SwiftLee
  * @author A~Z
  */
-public class DeadBodyOption extends OptionBuilder<Boolean> implements EndTrigger
+public class DeadBodyOption extends OptionBuilder<Boolean> implements DeathTrigger, EndTrigger
 {
 	private static final Class<?> CPlayer = Nms.craftPlayerClass;
 	private static final Class<?> EHuman = Nms.entityHumanClass;
@@ -67,22 +68,21 @@ public class DeadBodyOption extends OptionBuilder<Boolean> implements EndTrigger
 			destroyCorpse(p);
 		}
 	}
-	
-	@EventHandler(priority = EventPriority.HIGHEST)
-	public void onPlayerDie(PlayerDeathEvent event)
+
+	@Override
+	public void onDeath(fr.HtSTeam.HtS.Player.Player p)
 	{
-		if (!this.getValue()) return;
-		
-		spawnCorpse(event.getEntity());
+		spawnCorpse(p);
 	}
 	
-	public static boolean spawnCorpse(Player p)
+	public static boolean spawnCorpse(fr.HtSTeam.HtS.Player.Player p)
 	{
 		try
 		{
 			Object pos = Nms.blockPositionClass.getConstructor(int.class, int.class, int.class).newInstance(p.getLocation().getBlockX(), 0, p.getLocation().getBlockZ());
 			//BlockPosition pos = new BlockPosition(p.getLocation().getBlockX(), 0, p.getLocation().getBlockZ());
-			return spawnCorpse(p, pos);
+			return spawnCorpse(Bukkit.getPlayer(p.getUUID()), pos);
+			
 		} catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException | NoSuchFieldException | SecurityException | IllegalArgumentException e)
 		{
 			return false;
