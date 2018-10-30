@@ -20,7 +20,6 @@ public class Logger implements Closeable
 	private final static String CLOSING_MESSAGE = "Closing Logger";
 	
 	private final static char SEPARATOR = '>';
-	private final static String TRANSITION = "\n──────────────────────────────────────────────────\n";
 	
 	private static enum LogType
 	{
@@ -28,7 +27,9 @@ public class Logger implements Closeable
 		
 		INFO("INFO"),
 		WARN("WARN"),
-		ERROR("ERROR");
+		ERROR("ERROR"),
+		
+		FATAL_ERROR("FATAL");
 		
 		public final String prefix;
 		
@@ -43,13 +44,27 @@ public class Logger implements Closeable
 	private boolean open = true;
 	
 	
-	public Logger(File log, JavaPlugin plugin) throws IOException
+	public Logger(File log, JavaPlugin plugin)
 	{
 		this.plugin = plugin;
 		this.log = log;
 		
-		this.writer = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(log)));
-		this.writer.writeChars(TRANSITION + INIT_MESSAGE);
+		DataOutputStream writer = null;
+		
+		try
+		{
+			if (!log.exists())
+				log.createNewFile();
+			
+			writer = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(log)));
+		}
+		catch (IOException e)
+		{
+			this.open = false;
+		}
+		
+		this.writer = writer;
+		this.log(LogType.SYSTEM, INIT_MESSAGE);
 	}
 	
 	
@@ -68,7 +83,7 @@ public class Logger implements Closeable
 	private void log(LogType type, String[] message) throws IOException
 	{
 		if(!this.open)
-			throw new WriteAbortedException("This logger is already closed", null);
+			throw new WriteAbortedException("This logger is already closed", new IOException());
 		
 		Date time = Logger.date.getTime();
 		String date = '['+ time.getHours() +":"+ time.getMinutes() +":"+ time.getSeconds() +']';
@@ -84,7 +99,7 @@ public class Logger implements Closeable
 	{
 		try (Logger logger = new Logger(this.log, this.plugin))
 		{
-			logger.log(LogType.SYSTEM, exception.getMessage());
+			logger.log(LogType.FATAL_ERROR, exception.getMessage());
 		} catch (IOException e)
 		{
 			e.printStackTrace();
@@ -94,12 +109,12 @@ public class Logger implements Closeable
 	@Override
 	public void close() throws IOException
 	{
-		this.writer.writeChars(TRANSITION + CLOSING_MESSAGE);
+		this.log(LogType.SYSTEM, CLOSING_MESSAGE);
 		this.writer.close();
 	}
 	
-	public void logInfo(String message) { this.log(LogType.INFO, message); }
-	public void logWarning(String message) { this.log(LogType.WARN, message); }
-	public void logError(String message) { this.log(LogType.ERROR, message); }
+	public void logInfo(String message)		  { this.log(LogType.INFO, message); }
+	public void logWarning(String message)	  { this.log(LogType.WARN, message); }
+	public void logError(String message)	  { this.log(LogType.ERROR, message); }
 	public void logError(Exception exception) { this.log(LogType.ERROR, exception.getMessage()); }
 }
