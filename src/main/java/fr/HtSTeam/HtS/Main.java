@@ -1,7 +1,6 @@
 package fr.HtSTeam.HtS;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
@@ -32,9 +31,9 @@ public class Main extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		plugin = this;
-		LOGGER = new Logger(new File(plugin.getDataFolder() + "/logs/latest.log"), this);
+		LOGGER = new Logger(new File(plugin.getDataFolder() + "/logs/latest.log"), plugin);
 		
-		System.out.println("[HtS] Starting HtS...");
+		LOGGER.logInfo("Starting HtS...");
 		
 		try { Nms.init(); } catch (ClassNotFoundException e) { e.printStackTrace(); }
 		
@@ -64,8 +63,8 @@ public class Main extends JavaPlugin {
 	@Override
 	public void onDisable() {
 		LOGGER.logInfo("Shutting down HtS...");
-		LOGGER.close(); 
 		LOGGER.logInfo("HtS shut down!");
+		LOGGER.close();
 	}
 	
 	/*public static void run() {
