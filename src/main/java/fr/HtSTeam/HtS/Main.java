@@ -1,6 +1,7 @@
 package fr.HtSTeam.HtS;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
@@ -22,7 +23,7 @@ public class Main extends JavaPlugin {
 	
 	public static Main plugin;
 	public static String HTSNAME = "HtS ";
-	public static Logger logger;
+	public static Logger LOGGER;
 	
 	public static World world;
 	public static TimerTask timer;
@@ -31,7 +32,7 @@ public class Main extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		plugin = this;
-		logger = new Logger(new File("log.txt"), this);
+		LOGGER = new Logger(new File(plugin.getDataFolder() + "/logs/latest.log"), this);
 		
 		System.out.println("[HtS] Starting HtS...");
 		
@@ -44,7 +45,7 @@ public class Main extends JavaPlugin {
 		timer = new TimerTask(0, 1);
 		initWorlds();
 		
-		System.out.println("[HtS] HtS running!");
+		LOGGER.logInfo("HtS running!");
 	}
 	
 	private void initWorlds() {
@@ -58,6 +59,13 @@ public class Main extends JavaPlugin {
 				world.setGameRule(GameRule.SEND_COMMAND_FEEDBACK, false);
 			}	
 		}
+	}
+	
+	@Override
+	public void onDisable() {
+		LOGGER.logInfo("Shutting down HtS...");
+		LOGGER.close(); 
+		LOGGER.logInfo("HtS shut down!");
 	}
 	
 	/*public static void run() {

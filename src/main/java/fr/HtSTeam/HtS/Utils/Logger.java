@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.WriteAbortedException;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -77,9 +78,27 @@ public class Logger implements Closeable
 		{
 			this.forceLog(e);
 		}
+		
+		switch (type)
+		{
+			case ERROR: plugin.getLogger().log(Level.FINE, message);
+				break;
+				
+			case FATAL_ERROR: plugin.getLogger().log(Level.FINER, message);
+				break;
+				
+			case INFO: plugin.getLogger().info(message);
+				break;
+				
+			case SYSTEM: plugin.getLogger().log(Level.CONFIG, message);
+				break;
+				
+			case WARN: plugin.getLogger().warning(message);
+				break;
+		}
 	}
 	
-	@SuppressWarnings("deprecation")
+	@Deprecated
 	private void log(LogType type, String[] message) throws IOException
 	{
 		if(!this.open)
@@ -97,20 +116,25 @@ public class Logger implements Closeable
 	@Deprecated
 	public void forceLog(Exception exception)
 	{
-		try (Logger logger = new Logger(this.log, this.plugin))
-		{
-			logger.log(LogType.FATAL_ERROR, exception.getMessage());
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-		}
+		Logger log = new Logger(this.log, this.plugin);
+		log.log(LogType.FATAL_ERROR, exception.getMessage());
+		log.close();
 	}
 
 	@Override
-	public void close() throws IOException
+	public void close()
 	{
 		this.log(LogType.SYSTEM, CLOSING_MESSAGE);
-		this.writer.close();
+		
+		try
+		{
+			this.writer.close();
+		} catch (IOException e)
+		{
+			this.forceLog(e);
+		}
+		
+		this.open = false;
 	}
 	
 	public void logInfo(String message)		  { this.log(LogType.INFO, message); }
