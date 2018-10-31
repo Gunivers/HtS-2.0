@@ -85,7 +85,7 @@ public class GUIBuilder extends IconBuilder<Null> {
 		}
 	}
 	
-	public void addReturnButton() {
+	protected void addReturnButton() {
 		if(!parent.equals(null)) {
 			GUIBuilder parent2 = parent;
 			int rand = Randomizer.rand(1000000000);

@@ -22,10 +22,10 @@ public class GameModeGUI extends GUIBuilder {
 		new GameModeIO();
 	}
 
-	@Override
+	/*@Override
 	public void event(Player p) {
 		super.event(p);
-	}
+	}*/
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onClicks(InventoryClickEvent e) {

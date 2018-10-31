@@ -79,7 +79,7 @@ public abstract class IconBuilder<A> implements Listener {
 	}
 	public A getValue() { return value; }
 
-	public void addAt(GUIBuilder gm) { 	
+	private void addAt(GUIBuilder gm) { 	
 		if(gm != null) 
 			gm.put(this);
 		}

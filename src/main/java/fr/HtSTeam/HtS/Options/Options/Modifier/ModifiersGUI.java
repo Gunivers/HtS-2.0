@@ -29,10 +29,10 @@ public class ModifiersGUI extends GUIBuilder implements StartTrigger, CommandExe
 		Main.plugin.getCommand("gui").setExecutor(this);
 	}
 	
-	@Override
+	/*@Override
 	public void event(Player p) {
 		super.event(p);
-	}
+	}*/
 	
 	@Override
 	@EventHandler
