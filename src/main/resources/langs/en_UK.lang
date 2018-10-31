@@ -1,6 +1,6 @@
-team.command.team.create.[a-zA-Z0-9,\xA7_ ]*=The team -REPLACE-§r has been successfully created!
-team.command.team.delete.[a-zA-Z0-9,\xA7_ ]*=The team -REPLACE-§r has been successfully deleted!
-team.command.team.clear.[a-zA-Z0-9,\xA7_ ]*=The team -REPLACE-§r has been successfully cleared!
+team.command.team.create=The team %REPLACE%§r has been successfully created!
+team.command.team.delete=The team %REPLACE%§r has been successfully deleted!
+team.command.team.clear=The team %REPLACE%§r has been successfully cleared!
 team.command.team.list.empty=No teams exist.
-team.command.team.list.[1].[a-zA-Z0-9,\xA7_ ]*=There is -REPLACE-§r team: -REPLACE-§r.
-team.command.team.list.[a-zA-Z0-9,\xA7_ ]*.[a-zA-Z0-9,\xA7_ ]*=There are -REPLACE-§r teams: -REPLACE-§r.
+team.command.team.list.1=There is 1 team: %REPLACE%§r.
+team.command.team.list=There are %REPLACE%§r teams: %REPLACE%§r.

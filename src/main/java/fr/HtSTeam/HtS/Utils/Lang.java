@@ -2,7 +2,6 @@ package fr.HtSTeam.HtS.Utils;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -13,8 +12,9 @@ public class Lang {
 		en_UK,
 		fr_FR;
 	}
-	
+
 	private static Langs lang = Langs.en_UK;
+	public static final String REPLACE = "%REPLACE%";
 	
 	/**
 	 * Sets the displayed plugin's language 
@@ -42,13 +42,8 @@ public class Lang {
 			List<String> list = stream.filter(s -> string.matches(s.split("=")[0])).collect(Collectors.toList());
 			if (list.isEmpty() || list.get(0).isEmpty())
 				return en(string);
-			else {
-				String str = list.get(0).split("=")[1];
-				for(String s : Arrays.asList(string.split("[.]")))
-					if (!list.get(0).split("=")[0].contains(s))
-						str = str.replaceFirst("(-REPLACE-)", s);
-				return str;
-			}
+			else
+				return list.get(0).split("=")[1];
 		} catch (Exception e) {
 			e.printStackTrace();
 			return string;
@@ -65,13 +60,8 @@ public class Lang {
 			List<String> list = stream.filter(s -> string.matches(s.split("=")[0])).collect(Collectors.toList());
 			if (list.isEmpty() || list.get(0).isEmpty())
 				return string;
-			else {
-				String str = list.get(0).split("=")[1];
-				for(String s : Arrays.asList(string.split("[.]")))
-					if (!list.get(0).split("=")[0].contains(s))
-						str = str.replaceFirst("(-REPLACE-)", s);
-				return str;
-			}
+			else
+				return list.get(0).split("=")[1];
 		} catch (Exception e) {
 			e.printStackTrace();
 			return string;

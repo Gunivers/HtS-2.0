@@ -22,28 +22,29 @@ public class TeamCommand {
 				if (!ColorUtil.getChatColors().contains(args[3]))
 					return false;
 				Team t = new Team(args[2], args[3]);
-				sender.sendMessage(Lang.get("team.command.team.create." + ChatColor.valueOf(t.getTeamColor()) + t.getTeamName()), false);
+				sender.sendMessage(Lang.get("team.command.team.create").replaceAll(Lang.REPLACE, ChatColor.valueOf(t.getTeamColor()) + t.getTeamName()), false);
 			} else if (args[1].equalsIgnoreCase("delete") && args.length == 3) {
 				if (!Team.nameTeam.containsKey(args[2]))
 					return false;
 				Team t = Team.nameTeam.get(args[2]);
-				String str = ChatColor.valueOf(t.getTeamColor()) + t.getTeamName();
 				t.delete();
-				sender.sendMessage(Lang.get("team.command.team.delete." + str), false);
+				sender.sendMessage(Lang.get("team.command.team.delete").replaceAll(Lang.REPLACE, ChatColor.valueOf(t.getTeamColor()) + t.getTeamName()), false);
 			} else if (args[1].equalsIgnoreCase("clear") && args.length == 3) {
 				if (!Team.nameTeam.containsKey(args[2]))
 					return false;
 				Team t = Team.nameTeam.get(args[2]);
-				String str = ChatColor.valueOf(t.getTeamColor()) + t.getTeamName();
 				t.clear();
-				sender.sendMessage(Lang.get("team.command.team.clear." + str), false);
+				sender.sendMessage(Lang.get("team.command.team.clear".replaceAll(Lang.REPLACE, ChatColor.valueOf(t.getTeamColor()) + t.getTeamName())), false);
 			} else if (args[1].equalsIgnoreCase("list") && args.length == 2) {
 				if (Team.teamList.isEmpty())
 					sender.sendMessage(Lang.get("team.command.team.list.empty"), false);
 				else {
 					ArrayList<String> list = new ArrayList<String>();
 					Team.teamList.forEach(team -> list.add(ChatColor.valueOf(team.getTeamColor()) + team.getTeamName()));
-					sender.sendMessage(Lang.get("team.command.team.list." + Team.teamList.size() + "." + String.join("§r, ", list)), false);
+					if (list.size() == 1)
+						sender.sendMessage(Lang.get("team.command.team.list.1").replaceAll(Lang.REPLACE, String.join("§r, ", list)), false);
+					else
+						sender.sendMessage(Lang.get("team.command.team.list").replaceFirst(Lang.REPLACE, Integer.toString(list.size())).replaceAll(Lang.REPLACE, String.join("§r, ", list)), false);
 				}
 			} else
 				return false;
@@ -56,16 +57,16 @@ public class TeamCommand {
 				Player player = Player.instance(args[3]);
 				player.setTeam(t);
 				if (sender != player)
-					sender.sendMessage(Lang.get("team.command.player.join.sender." + ChatColor.valueOf(t.getTeamColor()) + t.getTeamName() + "." + args[3]), false);
-				player.sendMessage(Lang.get("team.command.player.join." + ChatColor.valueOf(t.getTeamColor()) + t.getTeamName() + "." + args[3]), false);
+					sender.sendMessage(Lang.get("team.command.player.join.sender").replaceFirst(Lang.REPLACE, ChatColor.valueOf(t.getTeamColor()) + t.getTeamName()).replaceAll(Lang.REPLACE, args[3]), false);
+				player.sendMessage(Lang.get("team.command.player.join").replaceFirst(Lang.REPLACE, ChatColor.valueOf(t.getTeamColor()) + t.getTeamName()).replaceAll(Lang.REPLACE, args[3]), false);
 			} else if (args[1].equalsIgnoreCase("leave") && args.length == 3) {
 				if (Player.instance(args[2]) == null)
 					return false;
 				Player player = Player.instance(args[2]);
 				player.setTeam(null);
 				if (sender != player)
-					sender.sendMessage(Lang.get("team.command.player.leave.sender." + args[3]), false);
-				player.sendMessage(Lang.get("team.command.player.leave." + args[3]), false);
+					sender.sendMessage(Lang.get("team.command.player.leave.sender").replaceAll(Lang.REPLACE, args[3]), false);
+				player.sendMessage(Lang.get("team.command.player.leave.sender").replaceAll(Lang.REPLACE, args[3]), false);
 			} else if (args[1].equalsIgnoreCase("list") && args.length == 3) {
 				if (Team.teamList.isEmpty() || !Team.nameTeam.containsKey(args[2]))
 					return false;
@@ -74,12 +75,15 @@ public class TeamCommand {
 				else {
 					ArrayList<String> list = new ArrayList<String>();
 					Team.nameTeam.get(args[2]).getTeamPlayers().forEach(p -> list.add(p.getDisplayName()));
-					sender.sendMessage(Lang.get("team.command.player.list." + Team.teamList.size() + "." + String.join("§r, ", list)), false);
+					if (list.size() == 1)
+						sender.sendMessage(Lang.get("team.command.player.list.1").replaceAll(Lang.REPLACE, String.join("§r, ", list)), false);
+					else
+						sender.sendMessage(Lang.get("team.command.player.list").replaceFirst(Lang.REPLACE, Integer.toString(list.size())).replaceAll(Lang.REPLACE, String.join("§r, ", list)), false);
 				}
 			} else if (args[1].equalsIgnoreCase("give") && args.length == 2) {
 				Player.forEach(player -> player.getInventory().clear());
 				for (Team t : Team.teamList) {
-					ItemStackBuilder itm = new ItemStackBuilder(ColorUtil.chatColorToWoolMaterial(t.getTeamColor()), 1, ChatColor.valueOf(t.getTeamColor()) + t.getTeamName(), Lang.get("team.command.player.give." + ChatColor.valueOf(t.getTeamColor()) + t.getTeamName()));
+					ItemStackBuilder itm = new ItemStackBuilder(ColorUtil.chatColorToWoolMaterial(t.getTeamColor()), 1, ChatColor.valueOf(t.getTeamColor()) + t.getTeamName(), Lang.get("team.command.player.give").replaceAll(Lang.REPLACE, ChatColor.valueOf(t.getTeamColor()) + t.getTeamName()));
 					itm.setGlint(true);
 					Player.forEach(player -> { if (player.isSpectator()) return; player.getInventory().addItem(itm);});
 				}
@@ -100,7 +104,7 @@ public class TeamCommand {
 						if(players.isEmpty()) break; 
 						Player ran_p = players.get(Randomizer.randI(0, players.size() - 1)); 
 						ran_p.setTeam(team); 
-						ran_p.sendMessage(Lang.get("team.command.player.join." + ChatColor.valueOf(team.getTeamColor()) + team.getTeamName() + "." + args[3]), false);
+						ran_p.sendMessage(Lang.get("team.command.player.join").replaceFirst(Lang.REPLACE, ChatColor.valueOf(team.getTeamColor()) + team.getTeamName()).replaceAll(Lang.REPLACE, args[3]), false);
 						players.remove(ran_p); 
 					}
 
