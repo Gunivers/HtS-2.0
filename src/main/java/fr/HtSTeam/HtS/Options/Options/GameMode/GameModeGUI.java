@@ -11,7 +11,6 @@ import org.bukkit.inventory.ItemStack;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.GUIBuilder;
-import fr.HtSTeam.HtS.Player.Player;
 
 public class GameModeGUI extends GUIBuilder {
 

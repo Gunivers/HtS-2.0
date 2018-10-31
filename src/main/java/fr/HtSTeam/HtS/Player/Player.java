@@ -271,7 +271,7 @@ public class Player {
 	public void onPlayerJoin(PlayerJoinEvent e, Player p) {
 	    if(!EnumState.getState().equals(EnumState.WAIT))
 			if (p.isInGame())
-				p.setSpectator();
+				p.setSpectator(true);
 	}
 
 
@@ -422,7 +422,9 @@ public class Player {
 		return false;
 	}
 	
+	
 	// NO RETURN
+	
 	
 	/**
 	 * You know how this shit works
@@ -753,9 +755,11 @@ public class Player {
 	/**
 	 * Puts the player in spectator for the game.
 	 */
-	private void setSpectator() {
-		spectator = true;
-		if (canExecute(true))
+	public void setSpectator(boolean b) {
+		spectator = b;
+		if (canExecute(false) && b)
 			player.setGameMode(GameMode.SPECTATOR);
+		else if (canExecute(false))
+			player.setGameMode(GameMode.ADVENTURE);
 	}
 }
