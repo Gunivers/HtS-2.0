@@ -94,23 +94,25 @@ public class Team implements StartTrigger {
 	
 	/**	
 	 * Adds this player to the team
-	 * 
-	 * <strong>DO NOT USE</strong> - use {@link Player#setTeam(Team) setTeam} of the player
-	 * 
 	 * @param player
 	 */
 	public void add(Player player) {
+		if (faketeam)
+			player.setFakeTeam(this);
+		else
+			player.setTeam(this);
 		playerList.add(player);
 	}
 	
 	/**
 	 * Removes this player from the team
-	 * 
-	 * <strong>DO NOT USE</strong> - use {@link Player#setTeam(Team) setTeam} of the player
-	 * 
 	 * @param player
 	 */
 	public void remove(Player player) {
+		if (faketeam)
+			player.setFakeTeam(null);
+		else
+			player.setTeam(null);
 		playerList.remove(player);
 		if (playerList.isEmpty())
 			exists = false;

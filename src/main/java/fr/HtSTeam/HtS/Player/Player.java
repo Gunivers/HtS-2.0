@@ -70,6 +70,11 @@ public class Player {
 	private Inventory inventory;
 	
 	/**
+	 * Dull Constructor <strong>DO NOT USE</strong>
+	 */
+	public Player() {}
+	
+	/**
 	 * Creates an independent player, highly modular and safe.
 	 * 
 	 * @param player 
@@ -225,8 +230,6 @@ public class Player {
 		p.location = bplayer.getLocation();
 		p.inventory = bplayer.getInventory();
 		p.health = bplayer.getHealth();
-		
-//		p.save();
 	}
 	
 	
@@ -407,6 +410,17 @@ public class Player {
 		return health;
 	}
 	
+	
+	/**
+	 * Returns true if the player has been granted this permission
+	 * @param string
+	 * @return
+	 */
+	public boolean hasPermission(String perm) {
+		if (canExecute(false))
+			return player.hasPermission(perm);
+		return false;
+	}
 	
 	// NO RETURN
 	
@@ -627,62 +641,121 @@ public class Player {
 	}
 	
 	
+	
+	
+	/**	
+	 * Sets this player's team
+	 * 
+	 * <br><strong>DO NOT USE</strong> - use {@link Team#add(Player) add} of the Team</br>
+	 * 
+	 * @param Team
+	 */
 	public void setTeam(Team team) {
-		if (team != null)
-			team.add(this);
-		else
-			this.team.remove(this);
 		this.team = team;
 	}
-	
+	/**	
+	 * Sets this player's fake team
+	 * 
+	 * <br><strong>DO NOT USE</strong> - use {@link Team#add(Player) add} of the Team</br>
+	 * 
+	 * @param Team
+	 */
 	public void setFakeTeam(Team fake_team) {
-		if (fake_team != null)
-			fake_team.add(this);
-		else
-			this.fake_team.remove(this);
 		this.fake_team = fake_team;
 	}
 	
 	
 	
+	
+	/**
+	 * Makes the player open this inventory
+	 * @param inventory
+	 */
 	public void openInventory(Inventory inventory) {
 		if(canExecute(false))
 			player.openInventory(inventory);
 	}
+	/**
+	 * Closes the player inventory
+	 * @param inventory
+	 */
 	public void closeInventory() {
 		if(canExecute(false))
 			player.closeInventory();
 	}
+	
+	
+	
+	
+	/**
+	 * Sets the health of this player. Max is 20. (1 is half-heart)
+	 * @param health
+	 */
 	public void setHealth(double health) {
 		if(canExecute(false))
 			player.setHealth(health);
 	}
+	
+	
+	
+	/**
+	 * Plays the selected sound to the player.
+	 * @param location
+	 * @param sound
+	 * @param volume
+	 * @param pitch
+	 */
 	public void playSound(Location location, Sound sound, int volume, int pitch) {
 		if(canExecute(false))
 			player.playSound(location, sound, volume, pitch);
 	}
+	
+	
+	
+	/**
+	 * Sets this potion effect to the player
+	 * @param potionEffect
+	 */
 	public void addPotionEffect(PotionEffect potionEffect) {
 		if(canExecute(false))
 			player.addPotionEffect(potionEffect);
 	}
+	
+	
+	
+	/**
+	 * Adds item to the dropped items at this player's death.
+	 * @param ism
+	 */
 	public void addDeathLootItem(ItemStackBuilder ism) {
 		deathLoot.add(ism);
 	}
+	/**
+	 * Adds item to the dropped items at this player's death.
+	 * @param ism
+	 */
 	public void addDeathLootItem(Material material) {
 		deathLoot.add(new ItemStack(material, 1));
 	}
+	/**
+	 * Removes item to the dropped items at this player's death.
+	 * @param ism
+	 */
 	public void removeDeathLootItem(Material material) {
 		for (int i = 0; i < deathLoot.size(); i++)
 			if (deathLoot.get(i).getType().equals(material))
 				deathLoot.remove(deathLoot.get(i));
 	}
+	
+	
+	
+	
+	/**
+	 * Puts the player in spectator for the game.
+	 */
 	private void setSpectator() {
 		spectator = true;
-		if (canExecute(false))
+		if (canExecute(true))
 			player.setGameMode(GameMode.SPECTATOR);
-	}
-
-	public boolean hasPermission(String string) {
-		return false;
 	}
 }

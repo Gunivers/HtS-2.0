@@ -2,13 +2,11 @@ package fr.HtSTeam.HtS.Commands;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.GameModes.FallenKingdom.CommandsFK;
-import fr.HtSTeam.HtS.GameModes.UHC.SyT.CommandSyT;
 import fr.HtSTeam.HtS.Options.OptionRegister;
 
 public class CommandsManager {
 	
 	public static PlayStopCommands playStop = new PlayStopCommands();
-	public static CommandSyT csyt = new CommandSyT();
 	public static StartCommand sc = new StartCommand();
 	
 	public static void loadCommands(Main main) {
@@ -21,8 +19,6 @@ public class CommandsManager {
 		UtilCommands uc = new UtilCommands();
 		main.getCommand("heal").setExecutor(uc);
 		main.getCommand("feed").setExecutor(uc);
-		main.getCommand("radar").setExecutor(csyt);
-		main.getCommand("target").setExecutor(csyt);
 		main.getCommand("base").setExecutor(new CommandsFK());
 		main.getCommand("load").setExecutor(OptionRegister.loadPreset);
 		main.getCommand("remove").setExecutor(new RemoveCommand(main));
