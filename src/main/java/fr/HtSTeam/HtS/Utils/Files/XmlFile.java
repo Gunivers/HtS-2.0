@@ -31,7 +31,12 @@ public class XmlFile {
 
 	private File file;
 	private Document doc;
-
+	
+	/**
+	 * Creates an XML file or if it already exists, parses it.
+	 * @param parent folder name
+	 * @param fileName
+	 */
 	public XmlFile(String parent, String fileName) {
 		file = new File(Main.plugin.getDataFolder() + "/" + parent + "/", fileName + ".xml");
 		if (file.exists()) {
@@ -48,7 +53,10 @@ public class XmlFile {
 			}
 		}
 	}
-
+	
+	/**
+	 * Saves this file, overwrites any existing file.	
+	 */
 	public void save() {
 		if (!file.exists())
 			file.getParentFile().mkdirs();
@@ -66,11 +74,19 @@ public class XmlFile {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * Adds a node to root.
+	 * @param t
+	 */
 	public void add(Tag t) {
 		add(t, false);
 	}
-
+	/**
+	 * Adds a node to the XML file, can be child.
+	 * @param t node
+	 * @param child true if node is a child
+	 */
 	private void add(Tag t, boolean child) {
 		if (t.name.isEmpty())
 			return;
@@ -100,6 +116,13 @@ public class XmlFile {
 		parent.appendChild(doc.createTextNode(t.name));
 	}
 	
+	
+	/**
+	 * Returns all nodes having this attribute
+	 * @param attr_name
+	 * @param attr_value
+	 * @return Tag
+	 */
 	public ArrayList<Tag> get(String attr_name, String attr_value) {
 		ArrayList<Tag> tags = get();		
 		if (attr_name != null && attr_value != null) {
@@ -110,7 +133,10 @@ public class XmlFile {
 			return tags;
 		}
 	}
-	
+	/**
+	 * Returns all nodes of this file.
+	 * @return Tag
+	 */
 	public ArrayList<Tag> get() {
 		Node root = doc.getFirstChild();
 		if (root == null)
@@ -136,7 +162,11 @@ public class XmlFile {
 		}
 		return tags;
 	}
-
+	/**
+	 * Returns child nodes.
+	 * @param parent
+	 * @return Tag
+	 */
 	private ArrayList<Tag> get(Node parent) {
 		ArrayList<Tag> tags = new ArrayList<Tag>();
 		NodeList nodes = parent.getChildNodes();
