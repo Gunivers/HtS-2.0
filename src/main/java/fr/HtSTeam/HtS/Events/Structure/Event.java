@@ -35,9 +35,9 @@ public class Event implements Listener {
 	public Event() {
 		Main.LOGGER.logInfo("[Events] Registering events...");
 		ArrayList<Method> annoted_methods = new ArrayList<Method>(new Reflections(new ConfigurationBuilder().setUrls(ClasspathHelper.forPackage("fr.HtSTeam.HtS")).setScanners(new MethodAnnotationsScanner())).getMethodsAnnotatedWith(EventHandler.class));
-		annoted_methods.removeIf(m -> m.getParameterCount() != 1);
+		annoted_methods.removeIf(m -> m.getParameterCount() != 2);
 		HashSet<Class<?>> clazzes = new HashSet<Class<?>>();
-		annoted_methods.forEach(m -> { clazzes.add(m.getParameterTypes()[0]); });
+		annoted_methods.forEach(m -> { clazzes.add(m.getParameterTypes()[0]); Main.LOGGER.logInfo("[Events] > " + m.getParameterTypes()[0].getName().substring(m.getParameterTypes()[0].getName().lastIndexOf('.') + 1) + "    ...    " + m.getDeclaringClass().getName() + "." + m.getName()); });
 		clazzes.forEach(clazz -> {
 			ArrayList<Method> methods = new ArrayList<Method>();
 			annoted_methods.forEach(m -> {

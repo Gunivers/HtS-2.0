@@ -1,6 +1,11 @@
 package fr.HtSTeam.HtS.Player;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -39,20 +44,17 @@ import fr.HtSTeam.HtS.Team.Team;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 import fr.HtSTeam.HtS.Utils.Nms;
 import fr.HtSTeam.HtS.Utils.PRIORITY;
-import fr.HtSTeam.HtS.Utils.ReflectionUtil;
-import fr.HtSTeam.HtS.Utils.Tag;
-import fr.HtSTeam.HtS.Utils.Files.XmlFile;
 
 @SuppressWarnings("serial")
 public class Player implements Serializable {
 	
-	private static ArrayList<Player> players = new ArrayList<Player>();
-	private static HashMap<UUID, Player> uuids = new HashMap<UUID, Player>();
-	private static HashMap<String, Player> names = new HashMap<String, Player>();
+	private transient static ArrayList<Player> players = new ArrayList<Player>();
+	private transient static HashMap<UUID, Player> uuids = new HashMap<UUID, Player>();
+	private transient static HashMap<String, Player> names = new HashMap<String, Player>();
 	
-	private ArrayList<Runnable> asynctasks = new ArrayList<Runnable>();
+	private transient ArrayList<Runnable> asynctasks = new ArrayList<Runnable>();
 	
-	private org.bukkit.entity.Player player;
+	private transient org.bukkit.entity.Player player;
 	
 	private UUID uuid;
 	private String name;
@@ -215,6 +217,8 @@ public class Player implements Serializable {
 	 */
 	@EventHandler(PRIORITY.PLAYER)
 	public static void join(PlayerJoinEvent e, Player p) {
+		if (p == null)
+			return;
 		p.player = e.getPlayer();
 		p.runAsyncTask();
 	}
@@ -228,37 +232,50 @@ public class Player implements Serializable {
 	 */
 	@EventHandler(PRIORITY.PLAYER)
 	public static void leave(PlayerQuitEvent e, Player p) {
+		if (p == null)
+			return;
 		org.bukkit.entity.Player bplayer = e.getPlayer();
 		p.op = bplayer.isOp();
 		p.world = bplayer.getWorld();
 		p.location = bplayer.getLocation();
 		p.inventory = bplayer.getInventory();
 		p.health = bplayer.getHealth();
+		
+		p.save();
 	}
 	
-	
-	void save() {
-		ArrayList<Field> fields = new ArrayList<Field>();
-		for (int i = ReflectionUtil.fieldIndex(getClass().getDeclaredFields(), "uuid"); i < ReflectionUtil.fieldIndex(getClass().getDeclaredFields(), "inventory") + 1; i++)
-			fields.add(getClass().getDeclaredFields()[i]);
-		
-		new File(Main.plugin.getDataFolder() + "/" + "Players" + "/", uuid.toString()  + ".xml").delete();
-		
-		XmlFile f = new XmlFile("Players", uuid.toString());
-		fields.forEach(field -> { try {
-			field.setAccessible(true);
-			Object value = field.get(this);
-			if(value != null)
-				f.add(new Tag("field", new HashMap<String, String>() {{ put("name", field.getName()); }}, new ArrayList<Tag>(){{ add(new Tag(value.toString(), null, null)); }}));
-			} catch (IllegalAccessException e) {
-				e.printStackTrace();
-			}
-		});
-		f.save();
+	/**
+	 * Saves this player instance to a file.
+	 */
+	private void save() {
+		try {
+			FileOutputStream f = new FileOutputStream(new File(Main.plugin.getDataFolder() + "/players/" + this.uuid.toString() + ".player"));
+			ObjectOutputStream o = new ObjectOutputStream(f);
+
+			o.writeObject(this);
+
+			o.close();
+			f.close();
+		} catch (IOException ex) {
+			Main.LOGGER.logError(ex);
+		}
 	}
 	
-	
-	
+	public static void load() {
+		try {
+			FileInputStream fi = new FileInputStream(new File("myObjects.txt"));
+			ObjectInputStream oi = new ObjectInputStream(fi);
+
+			Player p = (Player) oi.readObject();
+
+			Main.LOGGER.logInfo("Loaded: " + p.getUUID() + " ... " + p.getName());
+			
+			oi.close();
+			fi.close();
+		} catch (IOException | ClassNotFoundException ex) {
+			Main.LOGGER.logError(ex);
+		}
+	}
 	
 //	EVENTS --------------------------------------------------------------------------------------
 
@@ -267,12 +284,16 @@ public class Player implements Serializable {
 
 	@EventHandler(PRIORITY.PLAYER)
 	public static void onWorld(PlayerChangedWorldEvent e, Player p) {
+		if (p == null)
+			return;
 		p.world = e.getPlayer().getWorld();
 	}
 	
 	@EventHandler(PRIORITY.PLAYER)
-	public void onPlayerJoin(PlayerJoinEvent e, Player p) {
-	    if(!EnumState.getState().equals(EnumState.WAIT))
+	public static void onPlayerJoin(PlayerJoinEvent e, Player p) {
+		if (p == null)
+			return;
+		if(!EnumState.getState().equals(EnumState.WAIT))
 			if (p.isInGame())
 				p.setSpectator(true);
 	}
@@ -280,7 +301,9 @@ public class Player implements Serializable {
 
 	@EventHandler(PRIORITY.PLAYER)
 	public void onDeath(PlayerDeathEvent e, Player p) {
-		IconBuilder.optionsList.keySet().stream().filter(key -> key instanceof DeathTrigger).forEach(key -> ((DeathTrigger) key).onDeath(Player.instance(e.getEntity())));
+		if (p == null)
+			return;
+		IconBuilder.optionsList.keySet().stream().filter(key -> key instanceof DeathTrigger).forEach(key -> ((DeathTrigger) key).onDeath(p));
 	}
 	
 	

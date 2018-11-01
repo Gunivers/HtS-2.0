@@ -40,7 +40,7 @@ public class Command implements TabExecutor {
 		Main.LOGGER.logInfo("[Commands] Registering commands...");
 		ArrayList<Method> annoted_methods = new ArrayList<Method>(new Reflections(new ConfigurationBuilder().setUrls(ClasspathHelper.forPackage("fr.HtSTeam.HtS")).setScanners(new MethodAnnotationsScanner())).getMethodsAnnotatedWith(CommandHandler.class));
 		annoted_methods.forEach(m -> { if(m.getAnnotation(CommandHandler.class).value().equals(Commands.EXECUTE) && m.getParameterCount() == 4) commandMethods.put(m.getName(), m); else if(m.getAnnotation(CommandHandler.class).value().equals(Commands.COMPLETE) && m.getParameterCount() == 0) completeMethods.put(m.getName(), m);});
-		commandMethods.keySet().forEach(name -> Main.plugin.getCommand(name).setExecutor(this));
+		commandMethods.keySet().forEach(name -> { Main.plugin.getCommand(name).setExecutor(this); Main.LOGGER.logInfo("[Commands] > " + name);});
 		Main.LOGGER.logInfo("[Commands] " + commandMethods.keySet().size() + " commands registered!");
 	}
 	
