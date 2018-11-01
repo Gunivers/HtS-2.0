@@ -1,5 +1,8 @@
 package fr.HtSTeam.HtS;
 
+import java.io.File;
+import java.io.FilenameFilter;
+import java.io.IOException;
 import java.sql.SQLException;
 
 import org.bukkit.Bukkit;
@@ -37,8 +40,27 @@ public enum EnumState implements Listener {
 				StatisticHandler.save();
 			} catch (SQLException e) { e.printStackTrace();	}
 		}
+		updateFile();
 	}
-	
+
 	public static EnumState getState() { return state; }
 	
+	/**
+	 * Creates a file its name being the current state. 
+	 */
+	private static void updateFile() {
+		File file = Main.plugin.getDataFolder().listFiles(new FilenameFilter() {
+			@Override
+			public boolean accept(File dir, String name) {
+				if (name.toLowerCase().endsWith("gamestate"))
+					return true;
+				return false;
+			}})[0];
+		file.delete();
+		try {
+			new File(state.toString() + ".gamestate").createNewFile();
+		} catch (IOException e) {
+			Main.LOGGER.logError(e);
+		}		
+	}
 }
