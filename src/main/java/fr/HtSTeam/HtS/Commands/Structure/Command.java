@@ -20,13 +20,22 @@ import fr.HtSTeam.HtS.Player.Player;
 public class Command implements TabExecutor {
 	
 	public enum Commands {
+		/**
+		 * Method to execute when executing command.
+		 */
 		EXECUTE,
+		/**
+		 * Method to execute to fetch tab complete.
+		 */
 		COMPLETE;
 	}
 	
 	private HashMap<String,Method> commandMethods = new HashMap<String,Method>();
 	private HashMap<String,Method> completeMethods = new HashMap<String,Method>();
-
+	
+	/**
+	 * Registers every annoted methods into Commands.
+	 */
 	public Command() {
 		Main.LOGGER.logInfo("[Commands] Registering commands...");
 		ArrayList<Method> annoted_methods = new ArrayList<Method>(new Reflections(new ConfigurationBuilder().setUrls(ClasspathHelper.forPackage("fr.HtSTeam.HtS")).setScanners(new MethodAnnotationsScanner())).getMethodsAnnotatedWith(CommandHandler.class));
@@ -35,6 +44,9 @@ public class Command implements TabExecutor {
 		Main.LOGGER.logInfo("[Commands] " + commandMethods.keySet().size() + " commands registered!");
 	}
 	
+	/**
+	 * Will execute concerned annoted method.
+	 */
 	@Override
 	public boolean onCommand(CommandSender sender, org.bukkit.command.Command cmd, String label, String[] args) {
 		if(sender instanceof org.bukkit.entity.Player && commandMethods.containsKey(cmd.getName()))
@@ -42,6 +54,9 @@ public class Command implements TabExecutor {
 		return false;
 	}
 	
+	/**
+	 * Will fetch tab complete from annoted method.
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<String> onTabComplete(CommandSender sender, org.bukkit.command.Command cmd, String alias, String[] args) {
