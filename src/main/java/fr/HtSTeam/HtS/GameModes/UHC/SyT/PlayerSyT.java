@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import fr.HtSTeam.HtS.Player.Player;
 
+@SuppressWarnings("serial")
 public class PlayerSyT extends Player { 
 	
 	public static ArrayList<PlayerSyT> alive = new ArrayList<PlayerSyT>();

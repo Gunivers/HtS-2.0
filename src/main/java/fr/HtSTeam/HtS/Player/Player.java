@@ -1,6 +1,7 @@
 package fr.HtSTeam.HtS.Player;
 
 import java.io.File;
+import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -42,7 +43,8 @@ import fr.HtSTeam.HtS.Utils.ReflectionUtil;
 import fr.HtSTeam.HtS.Utils.Tag;
 import fr.HtSTeam.HtS.Utils.Files.XmlFile;
 
-public class Player {
+@SuppressWarnings("serial")
+public class Player implements Serializable {
 	
 	private static ArrayList<Player> players = new ArrayList<Player>();
 	private static HashMap<UUID, Player> uuids = new HashMap<UUID, Player>();
@@ -235,7 +237,6 @@ public class Player {
 	}
 	
 	
-	@SuppressWarnings("serial")
 	void save() {
 		ArrayList<Field> fields = new ArrayList<Field>();
 		for (int i = ReflectionUtil.fieldIndex(getClass().getDeclaredFields(), "uuid"); i < ReflectionUtil.fieldIndex(getClass().getDeclaredFields(), "inventory") + 1; i++)
