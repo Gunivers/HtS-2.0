@@ -1,8 +1,12 @@
 package fr.HtSTeam.HtS.GameModes.UHC.SyT;
 
+import java.util.ArrayList;
+
 import fr.HtSTeam.HtS.Player.Player;
 
-public class PlayerSyT extends Player {
+public class PlayerSyT extends Player { 
+	
+	public static ArrayList<PlayerSyT> alive = new ArrayList<PlayerSyT>();
 	
 	private PlayerSyT target;
 	private PlayerSyT hunter;

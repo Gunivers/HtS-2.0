@@ -16,8 +16,6 @@ public class SyT extends UHC {
 		radarF = new RadarFrequencyOption();
 		radar = new RadarOption();
 		setTeamVictoryDetection(false);
-				
-		new SyTEventManager();
 	}
 
 	@Override

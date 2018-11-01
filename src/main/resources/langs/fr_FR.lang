@@ -1,0 +1,14 @@
+syt.deathevent.eventvictim.murder=%REPLACE%§r a été assassiné.
+
+
+radar.command.1=§4§lCible repérée : X Y Z
+radar.command.2=§4§lTrop faible signal détecté : impossible de localiser la cible.
+radar.command.3=§4§lAucun signal détecté : impossible de localiser la cible.
+target.command=Votre cible est : §l§c %REPLACE%§r.
+
+team.command.team.create=L'équipe %REPLACE%§r a été créée !
+team.command.team.delete=L'équipe %REPLACE%§r a été supprimée !
+team.command.team.clear=L'équipe %REPLACE%§r a été vidée !
+team.command.team.list.empty=Aucune équipe existe.
+team.command.team.list.1=Il y a 1 équipe: %REPLACE%§r.
+team.command.team.list=Il y a %REPLACE%§r équipes: %REPLACE%§r.

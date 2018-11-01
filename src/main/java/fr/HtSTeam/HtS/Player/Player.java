@@ -18,6 +18,8 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.World;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -414,7 +416,7 @@ public class Player {
 	/**
 	 * Returns true if the player has been granted this permission
 	 * @param string
-	 * @return
+	 * @return boolean
 	 */
 	public boolean hasPermission(String perm) {
 		if (canExecute(false))
@@ -422,6 +424,16 @@ public class Player {
 		return false;
 	}
 	
+	/**
+	 * Returns the Attribute of this player
+	 * @param Attribute
+	 * @return AttributeInstance
+	 */
+	public AttributeInstance getAttribute(Attribute attribute) {
+		if (canExecute(false))
+			return player.getAttribute(attribute);
+		return null;
+	}
 	
 	// NO RETURN
 	
