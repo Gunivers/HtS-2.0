@@ -1,6 +1,7 @@
 package fr.HtSTeam.HtS.Player;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -261,20 +262,31 @@ public class Player implements Serializable {
 		}
 	}
 	
+	/**
+	 * Loads every saved player.
+	 */
 	public static void load() {
-		try {
-			FileInputStream fi = new FileInputStream(new File("myObjects.txt"));
-			ObjectInputStream oi = new ObjectInputStream(fi);
+		File[] files = new File(Main.plugin.getDataFolder() + "/players").listFiles(new FileFilter() {
+			@Override
+			public boolean accept(File file) {
+				if (file.isDirectory() || !file.getName().toLowerCase().endsWith("player"))
+					return false;
+				return true;
+			}});
+		for (int i = 0; i < files.length; i++)
+			try {
+				FileInputStream fi = new FileInputStream(files[i]);
+				ObjectInputStream oi = new ObjectInputStream(fi);
 
-			Player p = (Player) oi.readObject();
+				Player p = (Player) oi.readObject();
 
-			Main.LOGGER.logInfo("Loaded: " + p.getUUID() + " ... " + p.getName());
-			
-			oi.close();
-			fi.close();
-		} catch (IOException | ClassNotFoundException ex) {
-			Main.LOGGER.logError(ex);
-		}
+				Main.LOGGER.logInfo("Loaded: " + p.getUUID() + " ... " + p.getName());
+
+				oi.close();
+				fi.close();
+			} catch (IOException | ClassNotFoundException ex) {
+				Main.LOGGER.logError(ex);
+			}
 	}
 	
 //	EVENTS --------------------------------------------------------------------------------------
