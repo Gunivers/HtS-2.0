@@ -14,6 +14,11 @@ public class GZipFile {
 	private String ext;
 	private String output_gzip_file;
 	
+	/**
+	 * Prepares to GZip the source file, will automaticaly increment if destination already exists.
+	 * @param source_file
+	 * @param output_gzip_file
+	 */
 	public GZipFile(String source_file, String output_gzip_file) {
 		this.source_file = source_file;
 		ext = "." + FilenameUtils.getExtension(source_file) + ".gz";
@@ -23,6 +28,9 @@ public class GZipFile {
 		this.output_gzip_file = output_gzip_file + "-" + i;
 	}
 	
+	/**
+	 * Creates the GZip file.
+	 */
 	public void gzipIt(){
 		byte[] buffer = new byte[1024];
 		try {
