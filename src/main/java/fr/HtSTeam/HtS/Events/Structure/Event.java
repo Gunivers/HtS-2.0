@@ -28,7 +28,10 @@ import fr.HtSTeam.HtS.Player.Player;
 public class Event implements Listener {
 	
 	private HashMap<Class<?>, ArrayList<Method>> eventMethods = new HashMap<Class<?>, ArrayList<Method>>();
-
+	
+	/**
+	 * Registers every annoted methods into Events.
+	 */
 	public Event() {
 		Main.LOGGER.logInfo("[Events] Registering events...");
 		ArrayList<Method> annoted_methods = new ArrayList<Method>(new Reflections(new ConfigurationBuilder().setUrls(ClasspathHelper.forPackage("fr.HtSTeam.HtS")).setScanners(new MethodAnnotationsScanner())).getMethodsAnnotatedWith(EventHandler.class));
@@ -47,7 +50,13 @@ public class Event implements Listener {
 		});
 		Main.LOGGER.logInfo("[Events] " + annoted_methods.size() + " events registered!");
 	}
-		
+	
+	/**
+	 * Dispatches the event to concerned methods.
+	 * @param clazz
+	 * @param event
+	 * @param player
+	 */
 	private void invoke(Class<?> clazz, Object event, Player player) {
 		if (!eventMethods.containsKey(clazz))
 			return;
