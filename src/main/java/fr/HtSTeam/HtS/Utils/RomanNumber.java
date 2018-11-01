@@ -7,7 +7,6 @@ public class RomanNumber {
 	private final static TreeMap<Integer, String> map = new TreeMap<Integer, String>();
 
 	static {
-
 		map.put(1000, "M");
 		map.put(900, "CM");
 		map.put(500, "D");
@@ -21,9 +20,13 @@ public class RomanNumber {
 		map.put(5, "V");
 		map.put(4, "IV");
 		map.put(1, "I");
-
 	}
-
+	
+	/**
+	 * Converts integer number to Roman figures.
+	 * @param number
+	 * @return String
+	 */
 	public final static String toRoman(int number) {
 		int l = map.floorKey(number);
 		if (number == l) {
