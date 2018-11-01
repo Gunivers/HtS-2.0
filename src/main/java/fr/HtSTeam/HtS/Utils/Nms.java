@@ -30,6 +30,10 @@ public class Nms {
 	public static Class<?> packetPlayOutEntityTeleportClass;
 	public static Class<?> packetPlayOutEntityDestroyClass;
 	
+	/**
+	 * Fetches all needed class for NMS.
+	 * @throws ClassNotFoundException
+	 */
 	public static void init() throws ClassNotFoundException
 	{
 		String nmsver = Bukkit.getServer().getClass().getPackage().getName();
