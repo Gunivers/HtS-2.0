@@ -40,7 +40,7 @@ import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Events.Structure.EventHandler;
 import fr.HtSTeam.HtS.Options.Structure.DeathTrigger;
-import fr.HtSTeam.HtS.Options.Structure.Icon;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Team.Team;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 import fr.HtSTeam.HtS.Utils.Nms;
@@ -315,7 +315,7 @@ public class Player implements Serializable {
 	public void onDeath(PlayerDeathEvent e, Player p) {
 		if (p == null)
 			return;
-		Icon.optionsList.keySet().stream().filter(key -> key instanceof DeathTrigger).forEach(key -> ((DeathTrigger) key).onDeath(p));
+		Option.optionsList.keySet().stream().filter(key -> key instanceof DeathTrigger).forEach(key -> ((DeathTrigger) key).onDeath(p));
 	}
 	
 	

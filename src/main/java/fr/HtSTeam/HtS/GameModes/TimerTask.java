@@ -17,7 +17,7 @@ import org.reflections.util.ConfigurationBuilder;
 
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Main;
-import fr.HtSTeam.HtS.Options.Structure.Icon;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
 
 public class TimerTask {
@@ -116,13 +116,13 @@ public class TimerTask {
 		stop = true;
 	}
 	
-	private HashMap<Icon<?>, ArrayList<Method>> methods = new HashMap<Icon<?>, ArrayList<Method>>();
+	private HashMap<Option<?>, ArrayList<Method>> methods = new HashMap<Option<?>, ArrayList<Method>>();
 	
 	/**
 	 * Fetches all annoted methods and orders them by priority.
 	 */
 	private void initMethods() {
-		for (Icon<?> ib : Icon.optionsList.keySet()) {
+		for (Option<?> ib : Option.optionsList.keySet()) {
 			if (!(ib.getValue() instanceof Integer))
 				continue;
 			ArrayList<Method> meths = new ArrayList<Method>(new Reflections(new ConfigurationBuilder().setUrls(ClasspathHelper.forClass(ib.getClass())).setScanners(new MethodAnnotationsScanner())).getMethodsAnnotatedWith(Timer.class));
@@ -135,7 +135,7 @@ public class TimerTask {
 	 * Executes every seconds method with that input time.
 	 */
 	private void executeMethods() {
-		for (Entry<Icon<?>, ArrayList<Method>> set : methods.entrySet())
+		for (Entry<Option<?>, ArrayList<Method>> set : methods.entrySet())
 			for (Method m : set.getValue())
 				try {
 					if (this.getTimerInSeconds() == (Integer) set.getKey().getValue())
