@@ -12,8 +12,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import fr.HtSTeam.HtS.Commands.Structure.Command;
 import fr.HtSTeam.HtS.Events.Structure.Event;
 import fr.HtSTeam.HtS.GameModes.GameMode;
+import fr.HtSTeam.HtS.GameModes.TimerTask;
 import fr.HtSTeam.HtS.GameModes.UHC.Common.UHC;
-import fr.HtSTeam.HtS.Options.Structure.TimerTask;
 import fr.HtSTeam.HtS.Utils.Logger;
 import fr.HtSTeam.HtS.Utils.Nms;
 import fr.HtSTeam.HtS.Utils.Files.FileExtractor;
@@ -41,7 +41,7 @@ public class Main extends JavaPlugin {
 		Bukkit.getServer().getPluginManager().registerEvents(new Event(), plugin);
 //		OptionRegister.register();
 		
-		timer = new TimerTask(0, 1);
+		timer = TimerTask.getInstance(0, 1);
 		initWorlds();
 		
 		LOGGER.logInfo("HtS running!");
