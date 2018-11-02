@@ -5,10 +5,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Player.Player;
 
-public class AlgueUrticanteOption extends OptionBuilder<Boolean> {
+public class AlgueUrticanteOption extends Option<Boolean> {
 		
 	public AlgueUrticanteOption() {
 		super(Material.VINE, "Algue Urticante", "§4Désactivé", false, GUIRegister.other, false);

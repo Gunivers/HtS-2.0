@@ -3,10 +3,10 @@ package fr.HtSTeam.HtS.Options.Options.AtDeath;
 import org.bukkit.Material;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Player.Player;
 
-public class HeadOption extends OptionBuilder<Boolean> {
+public class HeadOption extends Option<Boolean> {
 	
 	public HeadOption() {
 		super(Material.PLAYER_HEAD, "Drop de tête", "§2Activé", true, GUIRegister.atDeath);

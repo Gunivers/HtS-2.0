@@ -17,14 +17,14 @@ import org.bukkit.entity.Player;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.DeathTrigger;
 import fr.HtSTeam.HtS.Options.Structure.EndTrigger;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Utils.Nms;
 
 /**
  * @author SwiftLee
  * @author A~Z
  */
-public class DeadBodyOption extends OptionBuilder<Boolean> implements DeathTrigger, EndTrigger
+public class DeadBodyOption extends Option<Boolean> implements DeathTrigger, EndTrigger
 {
 	private static final Class<?> CPlayer = Nms.craftPlayerClass;
 	private static final Class<?> EHuman = Nms.entityHumanClass;

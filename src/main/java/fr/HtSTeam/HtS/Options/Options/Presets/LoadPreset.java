@@ -12,13 +12,13 @@ import org.bukkit.command.CommandSender;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.GUIRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Utils.Tag;
 import fr.HtSTeam.HtS.Utils.Files.OptionIO;
 import fr.HtSTeam.HtS.Utils.Files.XmlFile;
 
-public class LoadPreset extends OptionBuilder<Null> implements CommandExecutor {
+public class LoadPreset extends Option<Null> implements CommandExecutor {
 
 	File file;
 	

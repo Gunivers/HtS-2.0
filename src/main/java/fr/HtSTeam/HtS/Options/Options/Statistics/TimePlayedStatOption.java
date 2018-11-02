@@ -9,10 +9,10 @@ import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.EnumStats;
 import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.StatisticHandler;
 import fr.HtSTeam.HtS.Options.Structure.DeathTrigger;
 import fr.HtSTeam.HtS.Options.Structure.EndTrigger;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Player.Player;
 
-public class TimePlayedStatOption extends OptionBuilder<Boolean> implements EndTrigger, DeathTrigger {
+public class TimePlayedStatOption extends Option<Boolean> implements EndTrigger, DeathTrigger {
 	
 	public TimePlayedStatOption() {
 		super(Material.CLOCK, "Time Played", "§2Activé", true, GUIRegister.stats);		

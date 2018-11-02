@@ -7,10 +7,10 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.GUIRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Player.Player;
 
-public class BorderOption extends OptionBuilder<Integer> {
+public class BorderOption extends Option<Integer> {
 	
 	
 	private boolean request = false;

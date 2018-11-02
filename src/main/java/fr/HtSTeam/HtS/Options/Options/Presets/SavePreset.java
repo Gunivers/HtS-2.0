@@ -11,13 +11,13 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.GUIRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Utils.Tag;
 import fr.HtSTeam.HtS.Utils.Files.OptionIO;
 import fr.HtSTeam.HtS.Utils.Files.XmlFile;
 
-public class SavePreset extends OptionBuilder<Null> {
+public class SavePreset extends Option<Null> {
 
 	private int request = 0; 
 	private Player p;

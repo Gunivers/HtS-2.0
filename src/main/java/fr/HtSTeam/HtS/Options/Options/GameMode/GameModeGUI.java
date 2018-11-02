@@ -10,9 +10,9 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
-import fr.HtSTeam.HtS.Options.Structure.GUIBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Gui;
 
-public class GameModeGUI extends GUIBuilder {
+public class GameModeGUI extends Gui {
 
 	public static List<GameModeState> gameModeOption = new ArrayList<GameModeState>();
 	

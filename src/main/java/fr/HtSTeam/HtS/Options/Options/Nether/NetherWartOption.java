@@ -13,11 +13,11 @@ import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.material.NetherWarts;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
-public class NetherWartOption extends OptionBuilder<Boolean>{
+public class NetherWartOption extends Option<Boolean>{
 		
 	public NetherWartOption() {
 		super(Material.NETHER_WART_BLOCK, "Nether Warts", "§4Désactivé", false, GUIRegister.nether);

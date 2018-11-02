@@ -8,11 +8,11 @@ import java.nio.file.Paths;
 import org.bukkit.Material;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Utils.Files.FileExtractor;
 
-public class FishingOption extends OptionBuilder<Boolean> {
+public class FishingOption extends Option<Boolean> {
 		
 	public FishingOption() {
 		super(Material.FISHING_ROD, "Pêche modifiée", "§4Désactivé", false, GUIRegister.loottables, false);

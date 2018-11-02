@@ -3,10 +3,10 @@ package fr.HtSTeam.HtS.Options.Options.AtDeath;
 import org.bukkit.Material;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Player.Player;
 
-public class GoldenAppleOption extends OptionBuilder<Boolean> {
+public class GoldenAppleOption extends Option<Boolean> {
 	
 	public GoldenAppleOption() {
 		super(Material.GOLDEN_APPLE, "Drop de pomme d'or", "§2Activé", true, GUIRegister.atDeath);

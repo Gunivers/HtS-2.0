@@ -7,11 +7,11 @@ import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.inventory.ItemStack;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
-public class NuggetsOption extends OptionBuilder<Boolean>{
+public class NuggetsOption extends Option<Boolean>{
 
 	public NuggetsOption() {
 		super(Material.GOLD_NUGGET, "Loot des pépites", "§2Activé", true, GUIRegister.other);

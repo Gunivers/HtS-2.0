@@ -17,12 +17,12 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Options.GUIRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
-public class ShulkerShellOption extends OptionBuilder<Boolean> {
+public class ShulkerShellOption extends Option<Boolean> {
 	
 	private HashMap<Player, Integer> shellUse = new HashMap<>();
 	private ItemStackBuilder ism = new ItemStackBuilder(Material.SHULKER_SHELL, 1, "§rShulker Shell", "");

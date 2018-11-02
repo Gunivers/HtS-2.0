@@ -8,10 +8,10 @@ import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.EnumStats;
 import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.StatisticHandler;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Player.Player;
 
-public class KillsPlayerStatOption extends OptionBuilder<Boolean> {
+public class KillsPlayerStatOption extends Option<Boolean> {
 	
 	public KillsPlayerStatOption() {
 		super(Material.PLAYER_HEAD, "Kills Player", "§2Activé", true, GUIRegister.stats);		

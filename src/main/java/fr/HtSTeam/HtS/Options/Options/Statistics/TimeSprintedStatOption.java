@@ -9,11 +9,11 @@ import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.EnumStats;
 import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.StatisticHandler;
 import fr.HtSTeam.HtS.Options.Structure.EndTrigger;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
 import fr.HtSTeam.HtS.Player.Player;
 
-public class TimeSprintedStatOption extends OptionBuilder<Boolean> implements StartTrigger, EndTrigger {
+public class TimeSprintedStatOption extends Option<Boolean> implements StartTrigger, EndTrigger {
 	
 	private final double player_velocity = 5.612 * 100; // cm.s^-1
 	

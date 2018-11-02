@@ -7,10 +7,10 @@ import org.bukkit.event.entity.EntityRegainHealthEvent;
 import org.bukkit.event.entity.EntityRegainHealthEvent.RegainReason;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Player.Player;
 
-public class NoRegenOption extends OptionBuilder<Boolean> {
+public class NoRegenOption extends Option<Boolean> {
 	
 	public NoRegenOption() {
 		super(Material.INK_SAC, "Régération naturelle", "§4Désactivé", false, GUIRegister.base);

@@ -9,11 +9,11 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.EnumStats;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Player.PlayerRemove;
 
-public class TargetsStatOption extends OptionBuilder<Boolean> implements PlayerRemove {
+public class TargetsStatOption extends Option<Boolean> implements PlayerRemove {
 	
 	public TargetsStatOption() {
 		super(Material.PLAYER_HEAD, "TARGETS", "§2Activé", true, GUIRegister.stats);

@@ -8,12 +8,12 @@ import java.nio.file.Paths;
 import org.bukkit.entity.EntityType;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 import fr.HtSTeam.HtS.Utils.Files.FileExtractor;
 
-public class GhastOption extends OptionBuilder<Boolean>{
+public class GhastOption extends Option<Boolean>{
 
 	public GhastOption() {
 		super(new ItemStackBuilder(EntityType.GHAST, 1, "§rGhast", "§4Désactivé"), false, GUIRegister.loottables, false);

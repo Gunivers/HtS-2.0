@@ -9,11 +9,11 @@ import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
 import fr.HtSTeam.HtS.Player.Player;
 
-public class DifficultyOption extends OptionBuilder<Difficulty> implements StartTrigger
+public class DifficultyOption extends Option<Difficulty> implements StartTrigger
 {
 	public int index = Arrays.asList(Difficulty.values()).indexOf(Difficulty.HARD);
 	

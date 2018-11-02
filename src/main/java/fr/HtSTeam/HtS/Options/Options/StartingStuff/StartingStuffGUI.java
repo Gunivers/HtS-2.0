@@ -16,12 +16,12 @@ import org.bukkit.util.io.BukkitObjectOutputStream;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.GUIRegister;
-import fr.HtSTeam.HtS.Options.Structure.GUIBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Gui;
 import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
 import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Utils.Files.OptionIO;
 
-public class StartingStuffGUI extends GUIBuilder implements StartTrigger, OptionIO {
+public class StartingStuffGUI extends Gui implements StartTrigger, OptionIO {
 	
 	ItemStack[] items = new ItemStack[0];
 

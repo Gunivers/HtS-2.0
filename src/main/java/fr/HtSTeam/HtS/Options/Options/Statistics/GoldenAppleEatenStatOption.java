@@ -8,10 +8,10 @@ import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.EnumStats;
 import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.StatisticHandler;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Player.Player;
 
-public class GoldenAppleEatenStatOption extends OptionBuilder<Boolean> {
+public class GoldenAppleEatenStatOption extends Option<Boolean> {
 	
 	public GoldenAppleEatenStatOption() {
 		super(Material.GOLDEN_APPLE, "Golden Apple Eaten", "§2Activé", true, GUIRegister.stats);		

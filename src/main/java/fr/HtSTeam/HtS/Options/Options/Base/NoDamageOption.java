@@ -7,11 +7,11 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Options.GUIRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
 import fr.HtSTeam.HtS.Player.Player;
 
-public class NoDamageOption extends OptionBuilder<Integer> {
+public class NoDamageOption extends Option<Integer> {
 	
 	private boolean request;
 	private boolean damageOn;

@@ -11,14 +11,14 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.GUIRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
 import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Team.Team;
 import fr.HtSTeam.HtS.Utils.Lang;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
-public class TargetCycle extends OptionBuilder<Integer> {
+public class TargetCycle extends Option<Integer> {
 
 	private boolean request = false;
 	private Player p;

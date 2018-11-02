@@ -8,10 +8,10 @@ import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.EnumStats;
 import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.StatisticHandler;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Player.Player;
 
-public class PortalsCrossedStatOption extends OptionBuilder<Boolean> {
+public class PortalsCrossedStatOption extends Option<Boolean> {
 	
 	public PortalsCrossedStatOption() {
 		super(Material.NETHER_PORTAL, "Portals Crossed", "§2Activé", true, GUIRegister.stats);		

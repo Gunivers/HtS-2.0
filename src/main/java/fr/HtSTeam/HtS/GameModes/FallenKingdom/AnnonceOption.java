@@ -3,12 +3,12 @@ package fr.HtSTeam.HtS.GameModes.FallenKingdom;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
 import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Utils.PRIORITY;
 
-public class AnnonceOption extends OptionBuilder<Integer> {
+public class AnnonceOption extends Option<Integer> {
 
 	public AnnonceOption() {
 		super(Material.PAPER, "Annonce", "", 60, null);

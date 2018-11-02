@@ -17,7 +17,7 @@ import org.bukkit.util.io.BukkitObjectOutputStream;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.GUIRegister;
-import fr.HtSTeam.HtS.Options.Structure.GUIBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Gui;
 import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 import fr.HtSTeam.HtS.Utils.Files.OptionIO;
@@ -29,7 +29,7 @@ import fr.HtSTeam.HtS.Utils.Files.OptionIO;
  * 
  * @author A~Z
  */
-public abstract class Disabler extends GUIBuilder implements OptionIO
+public abstract class Disabler extends Gui implements OptionIO
 {
 	protected final ArrayList<Player> request = new ArrayList<>();
 	protected static final int rows = 8;

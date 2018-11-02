@@ -8,10 +8,10 @@ import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.EnumStats;
 import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.StatisticHandler;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Player.Player;
 
-public class EnchantmentsDoneStatOption extends OptionBuilder<Boolean> {
+public class EnchantmentsDoneStatOption extends Option<Boolean> {
 	
 	public EnchantmentsDoneStatOption() {
 		super(Material.ENCHANTING_TABLE, "Enchantments Done", "§2Activé", true, GUIRegister.stats);		

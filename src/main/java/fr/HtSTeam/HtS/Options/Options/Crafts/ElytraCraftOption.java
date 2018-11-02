@@ -8,11 +8,11 @@ import java.nio.file.Paths;
 import org.bukkit.Material;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Utils.Files.FileExtractor;
 
-public class ElytraCraftOption extends OptionBuilder<Boolean> {
+public class ElytraCraftOption extends Option<Boolean> {
 	
 	public ElytraCraftOption() {
 		super(Material.ELYTRA, "Craft des Elytra", "§4Désactivé", false, GUIRegister.crafts, false);

@@ -5,10 +5,10 @@ import org.bukkit.Material;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.GUIRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Player.Player;
 
-public class DayLightCycleOption extends OptionBuilder<Boolean> {
+public class DayLightCycleOption extends Option<Boolean> {
 	
 	public DayLightCycleOption() {
 		super(Material.TALL_GRASS, "Cycle jour/nuit", "§2Activé", true, GUIRegister.base);

@@ -7,7 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Player.Player;
 
 /**
@@ -15,7 +15,7 @@ import fr.HtSTeam.HtS.Player.Player;
  * @author A~Z
  *
  */
-public class Probability extends OptionBuilder<Double>
+public class Probability extends Option<Double>
 {
 	
 	private static final int min = 1;

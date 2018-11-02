@@ -5,11 +5,11 @@ import org.bukkit.Material;
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Options.Base.FixDayOption.DayPhase;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
 import fr.HtSTeam.HtS.Player.Player;
 
-public class FixDayOption extends OptionBuilder<DayPhase> implements StartTrigger {
+public class FixDayOption extends Option<DayPhase> implements StartTrigger {
 	
 	enum DayPhase {
 		AUBE,

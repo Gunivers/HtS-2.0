@@ -9,10 +9,10 @@ import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.EnumStats;
 import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.StatisticHandler;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Player.Player;
 
-public class KillsPassiveStatOption extends OptionBuilder<Boolean> {
+public class KillsPassiveStatOption extends Option<Boolean> {
 	
 	public KillsPassiveStatOption() {
 		super(Material.PLAYER_HEAD, "Kills Passive", "§2Activé", true, GUIRegister.stats);		

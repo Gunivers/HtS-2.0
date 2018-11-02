@@ -13,13 +13,13 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.GUIRegister;
-import fr.HtSTeam.HtS.Options.Structure.GUIBuilder;
-import fr.HtSTeam.HtS.Options.Structure.IconBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Gui;
+import fr.HtSTeam.HtS.Options.Structure.Icon;
 import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
 import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 
-public class ModifiersGUI extends GUIBuilder implements StartTrigger, CommandExecutor {
+public class ModifiersGUI extends Gui implements StartTrigger, CommandExecutor {
 	
 	private Map<Player, CustomGUI> customInventory = new HashMap<Player, CustomGUI>();
 	private boolean active = false;
@@ -37,7 +37,7 @@ public class ModifiersGUI extends GUIBuilder implements StartTrigger, CommandExe
 	@Override
 	@EventHandler
 	public void onClick(InventoryClickEvent e) {
-		for(Entry<ItemStackBuilder, IconBuilder<?>> ism : guiContent.entrySet()) {
+		for(Entry<ItemStackBuilder, Icon<?>> ism : guiContent.entrySet()) {
 			if(e.getCurrentItem() != null && !e.getCurrentItem().getType().equals(Material.BARRIER) && ism.getKey().equals(e.getCurrentItem())) {
 				e.setCancelled(true);
 				ism.getValue().event((Player) e.getWhoClicked());
@@ -50,7 +50,7 @@ public class ModifiersGUI extends GUIBuilder implements StartTrigger, CommandExe
 
 	@Override
 	public void onPartyStart() {
-		for(Entry<ItemStackBuilder, IconBuilder<?>> entry : guiContent.entrySet())
+		for(Entry<ItemStackBuilder, Icon<?>> entry : guiContent.entrySet())
 			if(entry.getValue().getValue() != null && entry.getValue().getValue().equals("Activé")) {
 				active = true;
 				continue;

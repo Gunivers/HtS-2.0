@@ -8,11 +8,11 @@ import java.nio.file.Paths;
 import org.bukkit.Material;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Utils.Files.FileExtractor;
 
-public class ChestOption extends OptionBuilder<Boolean> {
+public class ChestOption extends Option<Boolean> {
 		
 	public ChestOption() {
 		super(Material.CHEST, "Coffre", "§4Désactivé", false, GUIRegister.loottables, false);

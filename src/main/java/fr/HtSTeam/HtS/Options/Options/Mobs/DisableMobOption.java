@@ -1,13 +1,13 @@
 package fr.HtSTeam.HtS.Options.Options.Mobs;
 
-import fr.HtSTeam.HtS.Options.Structure.GUIBuilder;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Gui;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 
-public class DisableMobOption extends OptionBuilder<String> {
+public class DisableMobOption extends Option<String> {
 
-	public DisableMobOption(ItemStackBuilder material, String defaultValue, GUIBuilder gui) {
+	public DisableMobOption(ItemStackBuilder material, String defaultValue, Gui gui) {
 		super(material, defaultValue, gui);
 		// TODO Auto-generated constructor stub
 	}

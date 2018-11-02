@@ -11,10 +11,10 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Player.Player;
 
-public class HeadShotOption extends OptionBuilder<Boolean>{
+public class HeadShotOption extends Option<Boolean>{
 	
 	
 	public HeadShotOption() {

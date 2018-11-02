@@ -7,9 +7,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 
-public class RadarOption extends OptionBuilder<Integer> {
+public class RadarOption extends Option<Integer> {
 	
 	private boolean request = false;
 	private Player p;

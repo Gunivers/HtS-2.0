@@ -10,10 +10,10 @@ import fr.HtSTeam.HtS.EnumState;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.EnumStats;
 import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.StatisticHandler;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Player.Player;
 
-public class PotionThrownStatOption extends OptionBuilder<Boolean> {
+public class PotionThrownStatOption extends Option<Boolean> {
 	
 	public PotionThrownStatOption() {
 		super(Material.SPLASH_POTION, "Potion Thrown", "§2Activé", true, GUIRegister.stats);		

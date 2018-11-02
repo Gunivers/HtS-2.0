@@ -11,12 +11,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.AwaitingPlayer;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
 
-public class RadarFrequencyOption extends OptionBuilder<Integer> implements StartTrigger {
+public class RadarFrequencyOption extends Option<Integer> implements StartTrigger {
 
 	private boolean request = false;
 	private Player p;

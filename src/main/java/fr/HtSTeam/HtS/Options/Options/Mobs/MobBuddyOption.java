@@ -23,14 +23,14 @@ import org.bukkit.metadata.FixedMetadataValue;
 
 import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.GUIRegister;
-import fr.HtSTeam.HtS.Options.Structure.OptionBuilder;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Team.Team;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 import fr.HtSTeam.HtS.Utils.MobManager;
 import fr.HtSTeam.HtS.Utils.Randomizer;
 
-public class MobBuddyOption extends OptionBuilder<Boolean> {
+public class MobBuddyOption extends Option<Boolean> {
 	
 	public MobBuddyOption() {
 		super(Material.ZOMBIE_SPAWN_EGG, "Mob Buddy", "§4Désactivé", false, GUIRegister.mob);
