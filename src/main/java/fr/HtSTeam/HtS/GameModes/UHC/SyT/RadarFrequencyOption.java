@@ -46,7 +46,7 @@ public class RadarFrequencyOption extends Option<Integer> implements StartTrigge
 				if (value >= 0 && value <= 60) {
 					setState(value);
 					p.sendMessage("§2Radar toutes les " + getValue() + " minutes.");
-					parent.update(this);
+					getParent().update(this);
 					request = false;
 					return;
 				}
@@ -102,11 +102,11 @@ public class RadarFrequencyOption extends Option<Integer> implements StartTrigge
 		setValue(value);
 		frequency = value;
 		this.getItemStack().setLore("§2" + value + " minutes");
-		parent.update(this);
+		getParent().update(this);
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return "§2[Aide]§r Le radar s'éxécutera, après ça première activation, toutes les " + getValue() + "minutes.";
 	}
 }

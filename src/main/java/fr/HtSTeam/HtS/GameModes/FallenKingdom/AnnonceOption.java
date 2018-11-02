@@ -32,7 +32,7 @@ public class AnnonceOption extends Option<Integer> {
 	public void setState(Integer value) {}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return "CTF";
 		
 	}

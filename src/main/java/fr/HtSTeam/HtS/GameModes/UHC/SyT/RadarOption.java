@@ -30,7 +30,7 @@ public class RadarOption extends Option<Integer> {
 	public void setState(Integer value) {
 		setValue(value);
 		this.getItemStack().setLore("§2" + value + " minutes");
-		parent.update(this);
+		getParent().update(this);
 		
 	}
 	
@@ -43,7 +43,7 @@ public class RadarOption extends Option<Integer> {
 				if (value >= 0 && value <= 60) {
 					p.sendMessage("§2Radar à " + value + " minutes.");
 					setState(value);
-					parent.update(this);
+					getParent().update(this);
 					request = false;
 					return;
 				}
@@ -55,7 +55,7 @@ public class RadarOption extends Option<Integer> {
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return "§2[Aide]§r Le radar indique la position de la cible si celle-ci est à portée au-dessus de la couche 36 de l'overworld).\nCe dernier s'excute à " + getValue() + "minutes.";
 	}
 }

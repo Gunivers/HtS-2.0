@@ -44,7 +44,7 @@ public class TargetCycle extends Option<Integer> {
 				if(value >= 0 && value <= 60) {
 					setState(value);
 					p.sendMessage("§2Annonce à " + getValue() + " minutes." );
-					parent.update(this);
+					getParent().update(this);
 					request = false;
 					return;
 				}
@@ -59,7 +59,7 @@ public class TargetCycle extends Option<Integer> {
 	public void setState(Integer value) {
 		setValue(value);
 		this.getItemStack().setLore("§2" + value + " minutes");
-		parent.update(this);
+		getParent().update(this);
 	}
 		
 	@Timer
@@ -111,7 +111,7 @@ public class TargetCycle extends Option<Integer> {
 	}
 	
 	@Override
-	public String description() {
+	public String getDescription() {
 		return "§2[Aide]§r L'annonce des cibles se fera au bout de " + getValue() + " minutes de jeu.";
 	}
 }

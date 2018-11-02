@@ -11,7 +11,7 @@ import org.bukkit.event.Listener;
 
 import fr.HtSTeam.HtS.Options.Options.Statistics.Structure.StatisticHandler;
 import fr.HtSTeam.HtS.Options.Structure.EndTrigger;
-import fr.HtSTeam.HtS.Options.Structure.Icon;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
 import fr.HtSTeam.HtS.Player.PlayerRemove;
 
@@ -29,12 +29,12 @@ public enum EnumState implements Listener {
 			for (World world : Bukkit.getWorlds())
 				world.setPVP(false);
 		} else if(state.equals(EnumState.RUNNING)) {
-			Icon.optionsList.keySet().stream().filter(key -> key instanceof StartTrigger).forEach(key -> ((StartTrigger) key).onPartyStart());
+			Option.optionsList.keySet().stream().filter(key -> key instanceof StartTrigger).forEach(key -> ((StartTrigger) key).onPartyStart());
 			Main.gamemode.initialisation();
 			PlayerRemove.addLast();
 			StatisticHandler.init();
 		} else if (state.equals(EnumState.FINISHING)) {
-			Icon.optionsList.keySet().stream().filter(key -> key instanceof EndTrigger).forEach(key -> ((EndTrigger) key).onPartyEnd());
+			Option.optionsList.keySet().stream().filter(key -> key instanceof EndTrigger).forEach(key -> ((EndTrigger) key).onPartyEnd());
 			StatisticHandler.display();
 			try {
 				StatisticHandler.save();
