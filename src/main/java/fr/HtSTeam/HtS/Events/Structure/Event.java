@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Entity;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -14,6 +15,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -67,33 +69,46 @@ public class Event implements Listener {
 		} });
 	}
 	
+	/**
+	 * Returns the {@link Player Player(HtS)} if the entity is a {@link org.bukkit.entity.Player Player(Bukkit)} else null.
+	 * @param e
+	 * @return
+	 */
+	private Player getPlayer(Entity e) {
+		if (e instanceof org.bukkit.entity.Player)
+			return Player.instance((org.bukkit.entity.Player) e);
+		return null;
+	}
+	
 	// Events
 	
 	@org.bukkit.event.EventHandler
-	public void onPlayerJoinEvent(PlayerJoinEvent event) { org.bukkit.entity.Player p = null; if (event.getPlayer() != null) p = event.getPlayer(); Bukkit.broadcastMessage(event.getJoinMessage()); event.setJoinMessage(null); invoke(event.getClass(), event, Player.instance(p)); }
-	
-	@org.bukkit.event.EventHandler
-	public void onPlayerQuitEvent(PlayerQuitEvent event) { org.bukkit.entity.Player p = null; if (event.getPlayer() != null) p = event.getPlayer(); String msg = event.getQuitMessage(); event.setQuitMessage(null); invoke(event.getClass(), event, Player.instance(p)); Bukkit.broadcastMessage(msg); }
-	
-	@org.bukkit.event.EventHandler
-	public void onInventoryCloseEvent(InventoryCloseEvent event) { org.bukkit.entity.Player p = null; if (event.getPlayer() != null) p = (org.bukkit.entity.Player) event.getPlayer(); invoke(event.getClass(), event, Player.instance(p)); }
-	
-	@org.bukkit.event.EventHandler
-	public void onFoodLevelChangeEvent(FoodLevelChangeEvent event) { org.bukkit.entity.Player p = null; if (event.getEntity() != null && event.getEntity() instanceof org.bukkit.entity.Player) p = ((org.bukkit.entity.Player) event).getPlayer(); invoke(event.getClass(), event, Player.instance(p)); }
-	
-	@org.bukkit.event.EventHandler
-	public void onEntityDamageEvent(EntityDamageEvent event) { org.bukkit.entity.Player p = null; if (event.getEntity() != null && event.getEntity() instanceof org.bukkit.entity.Player) p = (org.bukkit.entity.Player) event.getEntity(); invoke(event.getClass(), event, Player.instance(p)); }
-	
-	@org.bukkit.event.EventHandler
-	public void onBlockBreakEvent(BlockBreakEvent event) { org.bukkit.entity.Player p = null; if (event.getPlayer() != null) p = event.getPlayer(); invoke(event.getClass(), event, Player.instance(p)); }
-	
-	@org.bukkit.event.EventHandler
-	public void onBlockPlaceEvent(BlockPlaceEvent event) { org.bukkit.entity.Player p = null; if (event.getPlayer() != null) p = event.getPlayer(); invoke(event.getClass(), event, Player.instance(p)); }
-	
-	@org.bukkit.event.EventHandler
-	public void onBlockPlaceEvent(PlayerChangedWorldEvent event) { org.bukkit.entity.Player p = null; if (event.getPlayer() != null) p = event.getPlayer(); invoke(event.getClass(), event, Player.instance(p)); }
-	
-	@org.bukkit.event.EventHandler
-	public void onBlockPlaceEvent(PlayerDeathEvent event) { org.bukkit.entity.Player p = null; if (event.getEntity() != null) p = event.getEntity(); invoke(event.getClass(), event, Player.instance(p)); }
+	public void onPlayerJoinEvent(PlayerJoinEvent event) { Bukkit.broadcastMessage(event.getJoinMessage()); event.setJoinMessage(null);	invoke(event.getClass(), event, getPlayer(event.getPlayer())); }
 
+	@org.bukkit.event.EventHandler
+	public void onPlayerQuitEvent(PlayerQuitEvent event) { String msg = event.getQuitMessage(); event.setQuitMessage(null);	invoke(event.getClass(), event, getPlayer(event.getPlayer())); Bukkit.broadcastMessage(msg); }
+
+	@org.bukkit.event.EventHandler
+	public void onInventoryCloseEvent(InventoryCloseEvent event) { invoke(event.getClass(), event, getPlayer(event.getPlayer()));}
+
+	@org.bukkit.event.EventHandler
+	public void onFoodLevelChangeEvent(FoodLevelChangeEvent event) { invoke(event.getClass(), event, getPlayer(event.getEntity()));	}
+
+	@org.bukkit.event.EventHandler
+	public void onEntityDamageEvent(EntityDamageEvent event) { invoke(event.getClass(), event, getPlayer(event.getEntity())); }
+
+	@org.bukkit.event.EventHandler
+	public void onBlockBreakEvent(BlockBreakEvent event) { invoke(event.getClass(), event, getPlayer(event.getPlayer())); }
+
+	@org.bukkit.event.EventHandler
+	public void onBlockPlaceEvent(BlockPlaceEvent event) { invoke(event.getClass(), event, getPlayer(event.getPlayer())); }
+
+	@org.bukkit.event.EventHandler
+	public void onBlockPlaceEvent(PlayerChangedWorldEvent event) { invoke(event.getClass(), event, getPlayer(event.getPlayer())); }
+
+	@org.bukkit.event.EventHandler
+	public void onBlockPlaceEvent(PlayerDeathEvent event) { invoke(event.getClass(), event, getPlayer(event.getEntity())); }
+
+	@org.bukkit.event.EventHandler
+	public void onAsyncPlayerChatEvent(AsyncPlayerChatEvent event) { invoke(event.getClass(), event, getPlayer(event.getPlayer())); }
 }
