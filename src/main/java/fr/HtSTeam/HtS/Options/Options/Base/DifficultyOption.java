@@ -13,66 +13,60 @@ import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
 import fr.HtSTeam.HtS.Player.Player;
 
-public class DifficultyOption extends Option<Difficulty> implements StartTrigger
-{
-	public int index = Arrays.asList(Difficulty.values()).indexOf(Difficulty.HARD);
+public class DifficultyOption extends Option<Difficulty> implements StartTrigger {
 	
-	public DifficultyOption()
-	{
-		super(Material.IRON_BARS, "Difficulté", "§4Difficile", Difficulty.HARD, GUIRegister.other, true);
+	public int index = Arrays.asList(Difficulty.values()).indexOf(Difficulty.HARD);
+
+	public DifficultyOption() {
+		super(Material.IRON_BARS, "Difficulté", "§4Difficile", Difficulty.HARD, GUIRegister.other);
 	}
 
 	@Override
-	public void event(Player p)
-	{
+	public void event(Player p) {
 		this.index = index + 1 % 4;
 		this.setState(Difficulty.values()[index]);
 	}
 
 	@Override
-	public void setState(Difficulty value)
-	{
+	public void setState(Difficulty value) {
 		String lore = "§";
-		
-		switch (value)
-		{
-			case EASY:
-				this.getItemStack().setType(Material.ZOMBIE_HEAD);
-				lore += "6";
-				break;
-				
-			case HARD:
-				this.getItemStack().setType(Material.WITHER_SKELETON_SKULL);
-				lore += "4";
-				break;
-				
-			case NORMAL:
-				this.getItemStack().setType(Material.SKELETON_SKULL);
-				lore += "5";
-				break;
-				
-			case PEACEFUL:
-				this.getItemStack().setType(Material.PLAYER_HEAD);
-				lore += "2";
-				break;
+
+		switch (value) {
+		case EASY:
+			this.getItemStack().setType(Material.ZOMBIE_HEAD);
+			lore += "6";
+			break;
+
+		case HARD:
+			this.getItemStack().setType(Material.WITHER_SKELETON_SKULL);
+			lore += "4";
+			break;
+
+		case NORMAL:
+			this.getItemStack().setType(Material.SKELETON_SKULL);
+			lore += "5";
+			break;
+
+		case PEACEFUL:
+			this.getItemStack().setType(Material.PLAYER_HEAD);
+			lore += "2";
+			break;
 		}
-		
+
 		lore += value.toString();
 		this.getItemStack().setLore(lore);
-		
+
 		this.setValue(value);
-		parent.update(this);
+		getParent().update(this);
 	}
 
 	@Override
-	public String description()
-	{
+	public String getDescription() {
 		return "§2Difficulté: §6" + Difficulty.values()[index].toString();
 	}
 
 	@Override
-	public void onPartyStart()
-	{
+	public void onPartyStart() {
 		for (World world : Bukkit.getWorlds())
 			world.setDifficulty(Difficulty.values()[index]);
 	}

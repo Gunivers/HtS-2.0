@@ -13,7 +13,6 @@ public class DayLightCycleOption extends Option<Boolean> {
 	public DayLightCycleOption() {
 		super(Material.TALL_GRASS, "Cycle jour/nuit", "§2Activé", true, GUIRegister.base);
 		Main.world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, true);
-		
 	}
 
 	@Override
@@ -29,11 +28,11 @@ public class DayLightCycleOption extends Option<Boolean> {
 			getItemStack().setLore("§2Activé");
 		else 
 			getItemStack().setLore("§4Désactivé");
-		parent.update(this);
+		getParent().update(this);
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return "§2[Aide]§r Le cycle jour/nuit est désactivé.";
 	}
 }

@@ -36,6 +36,7 @@ public abstract class ChatOption<A> extends Option<A> {
 	}
 	
 	public abstract boolean isCorrectValue(String value);
+	public abstract void dispRequestMessage();
 	
 	@EventHandler
 	public void onPlayerChat(AsyncPlayerChatEvent e) {		

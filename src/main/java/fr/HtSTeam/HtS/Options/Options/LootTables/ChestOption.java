@@ -15,7 +15,7 @@ import fr.HtSTeam.HtS.Utils.Files.FileExtractor;
 public class ChestOption extends Option<Boolean> {
 		
 	public ChestOption() {
-		super(Material.CHEST, "Coffre", "§4Désactivé", false, GUIRegister.loottables, false);
+		super(Material.CHEST, "Coffre", "§4Désactivé", false, GUIRegister.loottables);
 	}
 
 	@Override
@@ -41,11 +41,11 @@ public class ChestOption extends Option<Boolean> {
 			}
 		}
 		setValue(value);
-		parent.update(this);
+		getParent().update(this);
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		// TODO Auto-generated method stub
 		return null;
 	}

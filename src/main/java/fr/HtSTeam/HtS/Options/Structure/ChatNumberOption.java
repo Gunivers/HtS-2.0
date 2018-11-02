@@ -34,7 +34,7 @@ public abstract class ChatNumberOption extends ChatOption<Integer> {
 			if(val < min || val > max)
 				p.sendMessage("Valeur non comprise entre " + min + " et " + max + ".");
 			else {
-				setValue(val);
+				setState(val);
 				dispValidMessage();
 				return true;
 			}

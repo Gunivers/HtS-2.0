@@ -39,7 +39,7 @@ public class NoDamageOption extends Option<Integer> {
 				if(value >= 0 && value <= 60) {
 					setState(value);
 					p.sendMessage("§2Dégâts activé à " + getValue() + " minutes." );
-					parent.update(this);
+					getParent().update(this);
 					request = false;
 					return;
 				}
@@ -63,11 +63,11 @@ public class NoDamageOption extends Option<Integer> {
 	public void setState(Integer value) {
 		setValue(value);
 		this.getItemStack().setLore("§2" + value + " minutes");
-		parent.update(this);
+		getParent().update(this);
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return "§2[Aide]§r Les dégâts s'activeront au bout de " + getValue() + " minutes.";
 	}
 	

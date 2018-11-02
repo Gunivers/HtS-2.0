@@ -21,9 +21,9 @@ public class FixDayOption extends Option<DayPhase> implements StartTrigger {
 	int moment = 0;
 	int tick = 0;
 	public FixDayOption() {
-		super(Material.TERRACOTTA, "Moment au lancement", "§dAube", DayPhase.AUBE, GUIRegister.base, false);
+		super(Material.TERRACOTTA, "Moment au lancement", "§dAube", DayPhase.AUBE, GUIRegister.base);
 		getItemStack().setItem(Material.MAGENTA_TERRACOTTA);
-		parent.update(this);
+		getParent().update(this);
 		}
 
 	@Override
@@ -43,7 +43,7 @@ public class FixDayOption extends Option<DayPhase> implements StartTrigger {
 					 setState(DayPhase.NUIT);
 					 break;
 		}
-		parent.update(this);
+		getParent().update(this);
 	}
 
 	@Override
@@ -70,7 +70,7 @@ public class FixDayOption extends Option<DayPhase> implements StartTrigger {
 				 getItemStack().setItem(Material.BLUE_TERRACOTTA);
 				 break;
 		}
-		parent.update(this);
+		getParent().update(this);
 	}
 
 	@Override
@@ -80,7 +80,7 @@ public class FixDayOption extends Option<DayPhase> implements StartTrigger {
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return null;
 	}
 	

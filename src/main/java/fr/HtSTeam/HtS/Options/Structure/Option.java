@@ -36,6 +36,7 @@ public abstract class Option<A> extends Icon implements OptionIO {
 		this.defaultValue = defaultValue;
 		setValue(defaultValue);
 		this.addToList();
+		disp = true;
 	}
 	
 

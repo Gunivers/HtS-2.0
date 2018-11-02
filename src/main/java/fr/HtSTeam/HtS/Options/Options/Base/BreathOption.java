@@ -4,61 +4,32 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.World.Environment;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import fr.HtSTeam.HtS.Options.GUIRegister;
-import fr.HtSTeam.HtS.Options.Structure.Option;
+import fr.HtSTeam.HtS.Options.Structure.ChatNumberOption;
 import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
-import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Utils.PRIORITY;
 
-public class BreathOption extends Option<Integer> implements StartTrigger {
+public class BreathOption extends ChatNumberOption implements StartTrigger {
 	
-	private boolean request = false; 
-	private Player p;
 	private boolean activate = false;
 	private boolean alert = false;
 	
 	public BreathOption() {
-		super(Material.GUNPOWDER, "Souffle des profondeurs", "§4Désactivé", -1, GUIRegister.base);
-	}
-
-	@Override
-	public void event(Player p) {
-		request = true;
-		p.closeInventory();
-		this.p = p;
-		p.sendMessage("§2Veuillez entrer la minute d'activation du souffle des profondeurs (0 : désactivé).");
-		
+		super(Material.GUNPOWDER, "Souffle des profondeurs", "§4Désactivé", -1, GUIRegister.base, 0, 120);
 	}
 	
-	@EventHandler
-	public void onPlayerChat(AsyncPlayerChatEvent e) {		
-		if(request && e.getPlayer().getUniqueId().equals(p.getUUID())) {
-			e.setCancelled(true);
-			try {
-				int value = Integer.parseInt(e.getMessage());
-				if(value >= 0 && value <= 120) {
-					if(value > 0) {
-						setState(value);
-						p.sendMessage("§2Le souffle des profondeurs s'activera à " + value + " minutes." );
-						
-					} else {
-						setState(-1);
-						p.sendMessage("§2Le souffle des profondeurs a été désactivé.");	
-					}
-					parent.update(this);
-					request = false;
-					return;
-				}
-				p.sendMessage("§4Valeur non comprise entre 0 et 120.");
-			} catch(NumberFormatException e2) {
-				p.sendMessage("§4Valeur invalide.");
-			}
+	@Override
+	public void dispValidMessage() {
+		if(getValue() > 0)
+			p.sendMessage("§2Le souffle des profondeurs s'activera à " + getValue() + " minutes." );
+		else {
+			setValue(-1);
+			p.sendMessage("§2Le souffle des profondeurs a été désactivé.");	
 		}
 	}
 	
@@ -72,7 +43,7 @@ public class BreathOption extends Option<Integer> implements StartTrigger {
 			getItemStack().setItem(Material.GUNPOWDER);
 			getItemStack().setLore("§4Désactivé");
 		}
-		parent.update(this);
+		getParent().update(this);
 	}
 	
 	@EventHandler
@@ -110,7 +81,12 @@ public class BreathOption extends Option<Integer> implements StartTrigger {
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return "§2[Aide]§r Le souffle de profondeurs donnent des effets négatifs aux joueurs se trouvant sous la couche 36 de l'overworld limitant ainsi le temps de minage.\r Ce dernier s'active à " + getValue() + " minutes.";
+	}
+
+	@Override
+	public void dispRequestMessage() {
+		p.sendMessage("Veuillez saisir la minute d'activation du souffle des profondeurs.");
 	}
 }

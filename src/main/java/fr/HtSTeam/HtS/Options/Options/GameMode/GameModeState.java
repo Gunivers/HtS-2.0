@@ -23,7 +23,7 @@ public abstract class GameModeState extends Gui {
 			this.getItemStack().setLore("");
 			this.getItemStack().setGlint(false);
 		}
-		parent.update(this);
+		getParent().update(this);
 	}
 
 	@Override

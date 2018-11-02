@@ -15,7 +15,7 @@ public class NoRegenOption extends Option<Boolean> {
 	public NoRegenOption() {
 		super(Material.INK_SAC, "Régération naturelle", "§4Désactivé", false, GUIRegister.base);
 		getItemStack().setItem(Material.GRAY_DYE);
-		parent.update(this);
+		getParent().update(this);
 	}
 
 	@Override
@@ -42,11 +42,11 @@ public class NoRegenOption extends Option<Boolean> {
 			getItemStack().setItem(Material.GRAY_DYE);
 		}
 		setValue(value);
-		parent.update(this);		
+		getParent().update(this);		
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return "§2[Aide]§r La régénération naturelle est activée.";
 	}
 }

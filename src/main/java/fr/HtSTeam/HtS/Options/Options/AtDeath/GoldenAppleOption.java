@@ -28,11 +28,11 @@ public class GoldenAppleOption extends Option<Boolean> {
 //			Main.deathLoot.removeItem(Material.GOLDEN_APPLE);
 		}
 		setValue(value);
-		parent.update(this);		
+		getParent().update(this);		
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return "§2[Aide]§r À la mort d'un joueur, ce dernier droppera une pomme d'or.";
 	}
 }

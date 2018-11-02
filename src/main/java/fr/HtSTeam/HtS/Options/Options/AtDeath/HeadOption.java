@@ -10,7 +10,7 @@ public class HeadOption extends Option<Boolean> {
 	
 	public HeadOption() {
 		super(Material.PLAYER_HEAD, "Drop de tête", "§2Activé", true, GUIRegister.atDeath);
-		parent.update(this);
+		getParent().update(this);
 //		Main.deathLoot.addItem(Material.PLAYER_HEAD);
 	}
 
@@ -29,11 +29,11 @@ public class HeadOption extends Option<Boolean> {
 //			Main.deathLoot.removeItem(Material.PLAYER_HEAD);
 		}
 		setValue(value);
-		parent.update(this);
+		getParent().update(this);
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return "§2[Aide]§r À la mort du joueur, ce dernier droppera sa tête (simple objet décoratif).";
 	}
 }

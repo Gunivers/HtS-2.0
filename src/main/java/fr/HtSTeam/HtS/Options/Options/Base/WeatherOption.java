@@ -37,11 +37,11 @@ public class WeatherOption extends Option<Boolean> {
 			getItemStack().setItem(Material.BUCKET);
 		}	
 		setValue(value);
-		parent.update(this);		
+		getParent().update(this);		
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return "§2[Aide]§r La pluie est désactivée.";
 	}
 

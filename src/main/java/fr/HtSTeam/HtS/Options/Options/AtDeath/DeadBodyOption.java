@@ -37,7 +37,7 @@ public class DeadBodyOption extends Option<Boolean> implements DeathTrigger, End
 	
 	public DeadBodyOption()
 	{
-		super(Material.BONE, "Cadavres", "§2Activé", true, GUIRegister.atDeath, false);
+		super(Material.BONE, "Cadavres", "§2Activé", true, GUIRegister.atDeath);
 	}
 
 	@Override
@@ -279,7 +279,7 @@ public class DeadBodyOption extends Option<Boolean> implements DeathTrigger, End
 	}
 
 	@Override
-	public String description()
+	public String getDescription()
 	{
 		return "§6[AIDE] §2This option will spawn dead corpses lying on the ground when a player dies";
 	}

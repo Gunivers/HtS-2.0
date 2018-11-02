@@ -15,7 +15,7 @@ import fr.HtSTeam.HtS.Utils.Files.FileExtractor;
 public class ElytraCraftOption extends Option<Boolean> {
 	
 	public ElytraCraftOption() {
-		super(Material.ELYTRA, "Craft des Elytra", "§4Désactivé", false, GUIRegister.crafts, false);
+		super(Material.ELYTRA, "Craft des Elytra", "§4Désactivé", false, GUIRegister.crafts);
 	}
 
 	@Override
@@ -46,11 +46,11 @@ public class ElytraCraftOption extends Option<Boolean> {
 				e.printStackTrace();
 			}
 		}
-		parent.update(this);
+		getParent().update(this);
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return null;
 	}
 }

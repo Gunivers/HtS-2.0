@@ -16,7 +16,7 @@ import fr.HtSTeam.HtS.Utils.Files.FileExtractor;
 public class BatOption extends Option<Boolean> {
 		
 	public BatOption() {
-		super(new ItemStackBuilder(EntityType.BAT, 1, "§rChauve-souris", "§4Désactivé"), false, GUIRegister.loottables, false);
+		super(new ItemStackBuilder(EntityType.BAT, 1, "§rChauve-souris", "§4Désactivé"), false, GUIRegister.loottables);
 	}
 
 	@Override
@@ -43,11 +43,11 @@ public class BatOption extends Option<Boolean> {
 				e.printStackTrace();
 			}
 		}
-		parent.update(this);		
+		getParent().update(this);		
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return null;
 	}
 }

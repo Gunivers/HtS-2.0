@@ -16,7 +16,7 @@ public class UHCOption extends GameModeState {
 	public UHCOption() {
 		super("UHC", 1, "UHC", "§2Sélectionné", Material.GOLDEN_APPLE, GUIRegister.gameMode);
 		this.getItemStack().setGlint(true);
-		parent.update(this);
+		getParent().update(this);
 	}
 	
 	@Override
