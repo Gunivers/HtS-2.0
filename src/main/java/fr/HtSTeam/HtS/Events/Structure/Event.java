@@ -2,9 +2,11 @@ package fr.HtSTeam.HtS.Events.Structure;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map.Entry;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
@@ -192,6 +194,8 @@ import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
 
 import fr.HtSTeam.HtS.Main;
+import fr.HtSTeam.HtS.Options.Structure.Gui;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Player.Player;
 
 public class Event implements Listener {
@@ -204,7 +208,7 @@ public class Event implements Listener {
 	public Event() {
 		Main.LOGGER.logInfo("[Events] Registering events...");
 		ArrayList<Method> annoted_methods = new ArrayList<Method>(new Reflections(new ConfigurationBuilder().setUrls(ClasspathHelper.forPackage("fr.HtSTeam.HtS")).setScanners(new MethodAnnotationsScanner())).getMethodsAnnotatedWith(EventHandler.class));
-		annoted_methods.removeIf(m -> m.getParameterCount() != 2);
+		annoted_methods.removeIf(m -> m.getParameterCount() == 1 || m.getParameterCount() == 2);
 		HashSet<Class<?>> clazzes = new HashSet<Class<?>>();
 		annoted_methods.forEach(m -> { clazzes.add(m.getParameterTypes()[0]); Main.LOGGER.logInfo("[Events] > " + m.getParameterTypes()[0].getName().substring(m.getParameterTypes()[0].getName().lastIndexOf('.') + 1) + "    ...    " + m.getDeclaringClass().getName() + "." + m.getName()); });
 		clazzes.forEach(clazz -> {
@@ -226,14 +230,39 @@ public class Event implements Listener {
 	 * @param event
 	 * @param player
 	 */
-	private void invoke(Class<?> clazz, Object event, Player player) {
+	private void invoke(final Class<?> clazz, final Object event, final Player player) {
 		if (!eventMethods.containsKey(clazz))
 			return;
-		eventMethods.get(clazz).forEach(m -> { try {
-			m.invoke(null, event, player);
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			e.printStackTrace();
-		} });
+		for (Method method : eventMethods.get(clazz)) {
+			try {
+				if (Modifier.isStatic(method.getModifiers())) {
+					if (method.getParameterCount() == 1)
+						method.invoke(null, event);
+					else
+						method.invoke(null, event, player);
+				} else if (Gui.class.isAssignableFrom(method.getClass())) {;
+					for(Gui gui : Gui.guiList)
+						if (method.getClass().isInstance(gui) && method.getParameterCount() == 1) {
+							method.invoke(gui, event, player);
+							break;
+						} else {
+							method.invoke(gui, event, player);
+							break;
+						}
+				} else if (Option.class.isAssignableFrom(method.getClass())) {
+					for(Entry<Option<?>, Object> setOption : Option.optionsList.entrySet())
+						if (method.getClass().isInstance(setOption.getValue()) && method.getParameterCount() == 1) {
+							method.invoke(setOption.getValue(), event);
+							break;
+						} else {
+							method.invoke(setOption.getValue(), event, player);
+							break;
+						}
+				}
+			} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	/**
