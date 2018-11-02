@@ -37,7 +37,7 @@ public class ShulkerNetherOption extends Option<Boolean> {
 		else
 			getItemStack().setLore("§4Désactivé");
 		setValue(value);
-		parent.update(this);		
+		getParent().update(this);		
 	}
 	
 
@@ -65,7 +65,7 @@ public class ShulkerNetherOption extends Option<Boolean> {
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return "§2[Aide]§r Les Shulkers peuvent spawn naturellement dans le Nether.";
 	}
 }

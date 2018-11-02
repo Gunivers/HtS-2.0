@@ -25,7 +25,7 @@ public class DisableMobOption extends Option<String> {
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		// TODO Auto-generated method stub
 		return null;
 	}

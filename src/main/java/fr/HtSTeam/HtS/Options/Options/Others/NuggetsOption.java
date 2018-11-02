@@ -30,7 +30,7 @@ public class NuggetsOption extends Option<Boolean>{
 		else
 			getItemStack().setLore("§4Désactivé");
 		setValue(value);
-		parent.update(this);
+		getParent().update(this);
 	}
 	
 
@@ -49,7 +49,7 @@ public class NuggetsOption extends Option<Boolean>{
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return "§2[Aide]§r Lors du remplissage d'un sceau d'eau, il y a 2% de chances que celui-ci loot une nugget d'or ou de fer.";
 	}
 }

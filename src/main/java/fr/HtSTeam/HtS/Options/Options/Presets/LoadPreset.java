@@ -23,7 +23,7 @@ public class LoadPreset extends Option<Null> implements CommandExecutor {
 	File file;
 	
 	public LoadPreset() {
-		super(Material.ENDER_CHEST, "Charger", "Charge une configuration préalablement sauvegardée", null, GUIRegister.presets, false);
+		super(Material.ENDER_CHEST, "Charger", "Charge une configuration préalablement sauvegardée", null, GUIRegister.presets);
 	}
 
 	@Override
@@ -83,7 +83,7 @@ public class LoadPreset extends Option<Null> implements CommandExecutor {
 	public void setState(Null value) {}
 	
 	@Override
-	public String description() {
+	public String getDescription() {
 		return null;
 	}
 }

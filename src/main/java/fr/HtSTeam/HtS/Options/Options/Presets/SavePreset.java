@@ -24,7 +24,7 @@ public class SavePreset extends Option<Null> {
 	private File file;
 	
 	public SavePreset() {
-		super(Material.FEATHER, "Sauvegarder", "Sauvegarde la configuration actuelle", null, GUIRegister.presets, false);
+		super(Material.FEATHER, "Sauvegarder", "Sauvegarde la configuration actuelle", null, GUIRegister.presets);
 	}
 
 	@Override
@@ -91,7 +91,7 @@ public class SavePreset extends Option<Null> {
 	public void setState(Null value) {}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return null;
 	}
 

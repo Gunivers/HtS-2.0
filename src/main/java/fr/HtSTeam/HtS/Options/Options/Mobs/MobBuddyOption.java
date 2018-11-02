@@ -141,11 +141,11 @@ public class MobBuddyOption extends Option<Boolean> {
 		else
 			getItemStack().setLore("§4Désactivé");
 		setValue(value);
-		parent.update(this);		
+		getParent().update(this);		
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return "§2[Aide]§r À leur mort, les mobs hostiles ont 17% de chances de drop un oeuf.\r Ce dernier une fois invoqué combattra à vos côtés.";
 	}
 }

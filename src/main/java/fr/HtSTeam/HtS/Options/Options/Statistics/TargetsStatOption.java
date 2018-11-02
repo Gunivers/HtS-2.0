@@ -37,11 +37,11 @@ public class TargetsStatOption extends Option<Boolean> implements PlayerRemove {
 			EnumStats.TARGETS.setTracked(false);
 			getItemStack().setLore("§4Désactivé");
 		}
-		parent.update(this);
+		getParent().update(this);
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return null;
 	}
 	

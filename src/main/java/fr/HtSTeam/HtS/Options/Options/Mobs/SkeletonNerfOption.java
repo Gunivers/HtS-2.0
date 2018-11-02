@@ -39,7 +39,7 @@ public class SkeletonNerfOption extends Option<Integer> {
 				if(value >= 0 && value <= 60) {
 					setState(value);
 					p.sendMessage("§2Squelette activé à " + getValue() + " minutes." );
-					parent.update(this);
+					getParent().update(this);
 					request = false;
 					return;
 				}
@@ -72,7 +72,7 @@ public class SkeletonNerfOption extends Option<Integer> {
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return "§2[Aide]§r Les squelettes ne pourront vous tirer dessus pendant les " + getValue() + " minutes de jeu.";
 	}
 	

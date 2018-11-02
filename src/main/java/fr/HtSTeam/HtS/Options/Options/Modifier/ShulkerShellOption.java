@@ -28,7 +28,7 @@ public class ShulkerShellOption extends Option<Boolean> {
 	private ItemStackBuilder ism = new ItemStackBuilder(Material.SHULKER_SHELL, 1, "§rShulker Shell", "");
 	
 	public ShulkerShellOption() {
-		super(Material.SHULKER_SHELL, "Shulker Shell Modifier", "§4Désactivé", false, GUIRegister.modifiers, false);
+		super(Material.SHULKER_SHELL, "Shulker Shell Modifier", "§4Désactivé", false, GUIRegister.modifiers);
 	}
 
 	@Override
@@ -46,14 +46,14 @@ public class ShulkerShellOption extends Option<Boolean> {
 			CustomGUI.authorizedItem.remove(ism);
 		}
 		setValue(value);
-		parent.update(this);	
+		getParent().update(this);	
 	}
 
 	
 	
 	@EventHandler
 	public void onDamage(EntityDamageByEntityEvent e) {
-		if(EnumState.getState().equals(EnumState.RUNNING) && getValue() && e.getEntity() instanceof Player && ((ModifiersGUI) parent).getInventory((Player) e.getEntity()).contains(ism)) {
+		if(EnumState.getState().equals(EnumState.RUNNING) && getValue() && e.getEntity() instanceof Player && ((ModifiersGUI) getParent()).getInventory((Player) e.getEntity()).contains(ism)) {
 			Player p = (Player) e.getEntity();
 			World world = p.getWorld();
 			if(Randomizer.randRate(63)) {
@@ -62,7 +62,7 @@ public class ShulkerShellOption extends Option<Boolean> {
 					if(shellUse.get(p) == 3) {
 						world.playSound(p.getLocation(), Sound.ENTITY_ITEM_BREAK, 1, 1);
 						shellUse.replace(p, 0);
-						((ModifiersGUI) parent).getInventory((Player) e.getEntity()).removeItem(ism);
+						((ModifiersGUI) getParent()).getInventory((Player) e.getEntity()).removeItem(ism);
 					} else {
 						world.playSound(p.getLocation(), Sound.ITEM_SHIELD_BLOCK, 1, 1);
 					}
@@ -108,7 +108,7 @@ public class ShulkerShellOption extends Option<Boolean> {
     }
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return null;
 	}
 }

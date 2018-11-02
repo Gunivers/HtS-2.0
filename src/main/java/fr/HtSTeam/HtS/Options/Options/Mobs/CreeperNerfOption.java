@@ -43,12 +43,12 @@ public class CreeperNerfOption extends Option<Boolean> {
 		else 
 			getItemStack().setLore("§4Désactivé");
 		setValue(value);
-		parent.update(this);		
+		getParent().update(this);		
 	}
 
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return "§2[Aide]§r Les creepers ne peuvent pas porter le coup final au joueur, le laissant à 2 points de vie.";
 	}
 }

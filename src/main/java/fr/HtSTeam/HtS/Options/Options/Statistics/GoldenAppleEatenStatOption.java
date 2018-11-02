@@ -34,11 +34,11 @@ public class GoldenAppleEatenStatOption extends Option<Boolean> {
 			EnumStats.GOLDEN_APPLE_EATEN.setTracked(false);
 			getItemStack().setLore("§4Désactivé");
 		}
-		parent.update(this);
+		getParent().update(this);
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return null;
 	}
 	

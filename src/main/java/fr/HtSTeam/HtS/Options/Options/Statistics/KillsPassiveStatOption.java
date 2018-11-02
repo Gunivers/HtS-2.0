@@ -35,11 +35,11 @@ public class KillsPassiveStatOption extends Option<Boolean> {
 			EnumStats.KILLS_PASSIVE.setTracked(false);
 			getItemStack().setLore("§4Désactivé");
 		}
-		parent.update(this);
+		getParent().update(this);
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return null;
 	}
 	

@@ -34,11 +34,11 @@ public class KillsPlayerNameStatOption extends Option<Boolean> {
 			EnumStats.KILLS_PLAYER_NAME.setTracked(false);
 			getItemStack().setLore("§4Désactivé");
 		}
-		parent.update(this);
+		getParent().update(this);
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return null;
 	}
 	

@@ -33,7 +33,7 @@ public class HeadShotOption extends Option<Boolean>{
 		else
 			getItemStack().setLore("§4Désactivé");
 		setValue(value);
-		parent.update(this);
+		getParent().update(this);
 	}
 	
 	@EventHandler
@@ -62,7 +62,7 @@ public class HeadShotOption extends Option<Boolean>{
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return "§2[Aide]§r Possibilité de faire un head shot sur les joueurs adverses";
 	}
 }

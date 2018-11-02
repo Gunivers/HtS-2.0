@@ -29,7 +29,7 @@ public class Probability extends Option<Double>
 	
 	public Probability(Material material, String name, String description, Double defaultValue)
 	{
-		super(material, name, description, defaultValue, GUIRegister.probability, false);
+		super(material, name, description, defaultValue, GUIRegister.probability);
 		
 		this.name = name.toLowerCase();
 	}
@@ -59,7 +59,7 @@ public class Probability extends Option<Double>
 				{
 					p.sendMessage("§2La probabilité de "+ name +" est de §6" + value + "§2%.");
 					
-					parent.update(this);
+					getParent().update(this);
 					request = false;
 					
 					return;
@@ -83,7 +83,7 @@ public class Probability extends Option<Double>
 	}
 
 	@Override
-	public String description()
+	public String getDescription()
 	{
 		return "§1§o[Aide]§2 La probabilité de "+ name +" est "+ (this.getValue() != -1 ? " de §6"+ this.getValue() +"§2%" : "§4nulle");
 	}

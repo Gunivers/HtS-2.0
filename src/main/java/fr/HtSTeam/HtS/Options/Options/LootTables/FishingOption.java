@@ -41,11 +41,11 @@ public class FishingOption extends Option<Boolean> {
 			}
 		}
 		setValue(value);
-		parent.update(this);
+		getParent().update(this);
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return null;
 	}
 }

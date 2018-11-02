@@ -34,11 +34,11 @@ public class ItemsPickedUpStatOption extends Option<Boolean> {
 			EnumStats.ITEMS_PICKED_UP.setTracked(false);
 			getItemStack().setLore("§4Désactivé");
 		}
-		parent.update(this);
+		getParent().update(this);
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return null;
 	}
 	

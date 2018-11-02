@@ -36,11 +36,11 @@ public class PotionThrownStatOption extends Option<Boolean> {
 			EnumStats.POTION_THROWN.setTracked(false);
 			getItemStack().setLore("§4Désactivé");
 		}
-		parent.update(this);
+		getParent().update(this);
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return null;
 	}
 	

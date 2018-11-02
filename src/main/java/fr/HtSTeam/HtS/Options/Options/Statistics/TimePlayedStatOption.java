@@ -35,11 +35,11 @@ public class TimePlayedStatOption extends Option<Boolean> implements EndTrigger,
 			EnumStats.TIME_PLAYED.setTracked(false);
 			getItemStack().setLore("§4Désactivé");
 		}
-		parent.update(this);
+		getParent().update(this);
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return null;
 	}
 

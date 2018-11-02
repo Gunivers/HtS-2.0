@@ -36,11 +36,11 @@ public class ArrowHitStatOption extends Option<Boolean> {
 			EnumStats.ARROW_HIT.setTracked(false);
 			getItemStack().setLore("§4Désactivé");
 		}
-		parent.update(this);
+		getParent().update(this);
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return null;
 	}
 	

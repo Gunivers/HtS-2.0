@@ -36,7 +36,7 @@ public class NetherWartOption extends Option<Boolean>{
 		else
 			getItemStack().setLore("§4Désactivé");
 		setValue(value);
-		parent.update(this);
+		getParent().update(this);
 	}
 	
 	
@@ -68,7 +68,7 @@ public class NetherWartOption extends Option<Boolean>{
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return "§2[Aide]§r La nether wart peut naturellement apparaître dans le Nether.";
 	}
 }

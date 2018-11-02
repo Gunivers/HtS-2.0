@@ -17,7 +17,7 @@ public class ZombieOption extends Option<Boolean> {
 	
 	
 	public ZombieOption() {
-		super(new ItemStackBuilder(EntityType.ZOMBIE, 1, "§rZombie", "§4Désactivé"), false, GUIRegister.loottables, false);
+		super(new ItemStackBuilder(EntityType.ZOMBIE, 1, "§rZombie", "§4Désactivé"), false, GUIRegister.loottables);
 	}
 
 	@Override
@@ -43,11 +43,11 @@ public class ZombieOption extends Option<Boolean> {
 			}
 		}
 		setValue(value);
-		parent.update(this);
+		getParent().update(this);
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return null;
 	}
 }

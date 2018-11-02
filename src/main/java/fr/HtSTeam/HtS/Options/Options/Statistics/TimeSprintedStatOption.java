@@ -38,11 +38,11 @@ public class TimeSprintedStatOption extends Option<Boolean> implements StartTrig
 			EnumStats.TIME_SPRINTED.setTracked(false);
 			getItemStack().setLore("§4Désactivé");
 		}
-		parent.update(this);
+		getParent().update(this);
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return null;
 	}
 

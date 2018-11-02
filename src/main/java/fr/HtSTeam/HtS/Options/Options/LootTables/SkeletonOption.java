@@ -17,7 +17,7 @@ public class SkeletonOption extends Option<Boolean> {
 	
 	
 	public SkeletonOption() {
-		super(new ItemStackBuilder(EntityType.SKELETON, 1, "§rSquelette", "§4Désactivé"), false, GUIRegister.loottables, false);
+		super(new ItemStackBuilder(EntityType.SKELETON, 1, "§rSquelette", "§4Désactivé"), false, GUIRegister.loottables);
 	}
 
 	@Override
@@ -43,11 +43,11 @@ public class SkeletonOption extends Option<Boolean> {
 			}
 		}
 		setValue(value);
-		parent.update(this);
+		getParent().update(this);
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return null;
 	}
 

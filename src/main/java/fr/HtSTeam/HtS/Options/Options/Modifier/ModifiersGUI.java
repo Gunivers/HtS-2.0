@@ -15,6 +15,7 @@ import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.Gui;
 import fr.HtSTeam.HtS.Options.Structure.Icon;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Options.Structure.StartTrigger;
 import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
@@ -37,7 +38,7 @@ public class ModifiersGUI extends Gui implements StartTrigger, CommandExecutor {
 	@Override
 	@EventHandler
 	public void onClick(InventoryClickEvent e) {
-		for(Entry<ItemStackBuilder, Icon<?>> ism : guiContent.entrySet()) {
+		for(Entry<ItemStackBuilder, Icon> ism : guiContent.entrySet()) {
 			if(e.getCurrentItem() != null && !e.getCurrentItem().getType().equals(Material.BARRIER) && ism.getKey().equals(e.getCurrentItem())) {
 				e.setCancelled(true);
 				ism.getValue().event((Player) e.getWhoClicked());
@@ -50,8 +51,8 @@ public class ModifiersGUI extends Gui implements StartTrigger, CommandExecutor {
 
 	@Override
 	public void onPartyStart() {
-		for(Entry<ItemStackBuilder, Icon<?>> entry : guiContent.entrySet())
-			if(entry.getValue().getValue() != null && entry.getValue().getValue().equals("Activé")) {
+		for(Entry<ItemStackBuilder, Icon> entry : guiContent.entrySet())
+			if(entry.getValue() instanceof Option && ((Option<?>)entry.getValue()).getValue() != null && ((Option<?>)entry.getValue()).getValue().equals("Activé")) {
 				active = true;
 				continue;
 			}

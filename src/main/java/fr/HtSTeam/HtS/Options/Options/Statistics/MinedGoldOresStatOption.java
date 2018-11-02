@@ -34,11 +34,11 @@ public class MinedGoldOresStatOption extends Option<Boolean> {
 			EnumStats.MINED_GOLDORES.setTracked(false);
 			getItemStack().setLore("§4Désactivé");
 		}
-		parent.update(this);
+		getParent().update(this);
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return null;
 	}
 	

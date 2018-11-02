@@ -11,7 +11,7 @@ import fr.HtSTeam.HtS.Player.Player;
 public class AlgueUrticanteOption extends Option<Boolean> {
 		
 	public AlgueUrticanteOption() {
-		super(Material.VINE, "Algue Urticante", "§4Désactivé", false, GUIRegister.other, false);
+		super(Material.VINE, "Algue Urticante", "§4Désactivé", false, GUIRegister.other);
 	}
 
 	@Override
@@ -26,7 +26,7 @@ public class AlgueUrticanteOption extends Option<Boolean> {
 		else
 			getItemStack().setLore("§4Désactivé");
 		setValue(value);
-		parent.update(this);
+		getParent().update(this);
 	}
 	
 	@EventHandler
@@ -46,7 +46,7 @@ public class AlgueUrticanteOption extends Option<Boolean> {
 	}
 
 	@Override
-	public String description() {
+	public String getDescription() {
 		return null;
 	}
 }
