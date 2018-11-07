@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.Stack;
 import java.util.UUID;
 import java.util.function.Consumer;
 
@@ -53,7 +54,7 @@ public class Player implements Serializable {
 	private transient static HashMap<UUID, Player> uuids = new HashMap<UUID, Player>();
 	private transient static HashMap<String, Player> names = new HashMap<String, Player>();
 	
-	private transient ArrayList<Runnable> asynctasks = new ArrayList<Runnable>();
+	private transient Stack<Runnable> asynctasks = new Stack<Runnable>();
 	
 	private transient org.bukkit.entity.Player player;
 	
@@ -205,10 +206,8 @@ public class Player implements Serializable {
 	 * Runs every method added via {@link #addAsyncTask(Object...) addAsyncTask}
 	 */
 	private void runAsyncTask() {
-		if (asynctasks.isEmpty())
-			return;
-		asynctasks.forEach(task -> task.run());
-		asynctasks.clear();
+		while (!asynctasks.empty())
+			asynctasks.pop().run();
 	}
 	/**
 	 * Event triggered when a player joined, executes the {@link #runAsyncTask() runAsyncTask} method.
