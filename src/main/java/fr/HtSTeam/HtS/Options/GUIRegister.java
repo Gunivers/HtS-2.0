@@ -2,6 +2,7 @@ package fr.HtSTeam.HtS.Options;
 
 import org.bukkit.Material;
 
+import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Options.Options.GameMode.FallenKingdomOption;
 import fr.HtSTeam.HtS.Options.Options.GameMode.GameModeGUI;
 import fr.HtSTeam.HtS.Options.Options.GameMode.SyTOption;
@@ -11,6 +12,10 @@ import fr.HtSTeam.HtS.Options.Options.StartingStuff.StartingStuffGUI;
 import fr.HtSTeam.HtS.Options.Structure.Gui;
 
 public class GUIRegister {
+	
+	static {
+		Main.LOGGER.logInfo("[GUIs] > Registering GUIs...");
+	}
 
 	public final static Gui main = new Gui("Options", 3, "Options", "Ouvre les options", Material.BARRIER, null);
 	
@@ -39,4 +44,7 @@ public class GUIRegister {
 	
 	public static Gui presets = new Gui("Presets", 1, "Presets", "Permet de définir une configuration enregistrée", Material.MUSIC_DISC_WARD, main);
 	
+	static {
+		Main.LOGGER.logInfo("[GUIs] > " + Gui.guiList.size() + " GUI" + (Gui.guiList.size() > 1 ? "s" : "") + " registered!" );
+	}
 }

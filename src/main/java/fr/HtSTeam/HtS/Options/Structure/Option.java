@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.bukkit.Material;
 
+import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 import fr.HtSTeam.HtS.Utils.Files.OptionIO;
@@ -18,6 +19,13 @@ public abstract class Option<A> extends Icon implements OptionIO {
 	private final A defaultValue;
 	private A value;
 
+	/**
+	 * 	 * @param defaultValue
+	 * 		Valeur par défaut. Sert de comparaison à la valeur actuel pour afficher ou nom le changement au récapitulatif du /start
+	 * @param material
+	 * @param defaultValue
+	 * @param gui
+	 */
 	public Option(ItemStackBuilder material, A defaultValue, Gui gui) {
 		this(material, defaultValue, gui, -1);
 	}
@@ -37,6 +45,7 @@ public abstract class Option<A> extends Icon implements OptionIO {
 		setValue(defaultValue);
 		this.addToList();
 		disp = true;
+		Main.LOGGER.logInfo("[Options] > " + getClass().getSimpleName() + "    ...    " + getClass().getName());
 	}
 	
 

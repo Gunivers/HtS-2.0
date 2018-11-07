@@ -1,9 +1,25 @@
 package fr.HtSTeam.HtS.Options;
 
-import fr.HtSTeam.HtS.Options.Options.AtDeath.*;
-import fr.HtSTeam.HtS.Options.Options.Base.*;
+import fr.HtSTeam.HtS.Main;
+import fr.HtSTeam.HtS.Options.Options.AtDeath.GoldenAppleOption;
+import fr.HtSTeam.HtS.Options.Options.AtDeath.HeadOption;
+import fr.HtSTeam.HtS.Options.Options.Base.BorderOption;
+import fr.HtSTeam.HtS.Options.Options.Base.BreathOption;
+import fr.HtSTeam.HtS.Options.Options.Base.DayLightCycleOption;
+import fr.HtSTeam.HtS.Options.Options.Base.DifficultyOption;
+import fr.HtSTeam.HtS.Options.Options.Base.EnablePvPOption;
+import fr.HtSTeam.HtS.Options.Options.Base.FixDayOption;
+import fr.HtSTeam.HtS.Options.Options.Base.NoDamageOption;
+import fr.HtSTeam.HtS.Options.Options.Base.NoRegenOption;
+import fr.HtSTeam.HtS.Options.Options.Base.WeatherOption;
 import fr.HtSTeam.HtS.Options.Options.Crafts.ElytraCraftOption;
-import fr.HtSTeam.HtS.Options.Options.LootTables.*;
+import fr.HtSTeam.HtS.Options.Options.LootTables.BatOption;
+import fr.HtSTeam.HtS.Options.Options.LootTables.ChestOption;
+import fr.HtSTeam.HtS.Options.Options.LootTables.CrateOption;
+import fr.HtSTeam.HtS.Options.Options.LootTables.FishingOption;
+import fr.HtSTeam.HtS.Options.Options.LootTables.GhastOption;
+import fr.HtSTeam.HtS.Options.Options.LootTables.SkeletonOption;
+import fr.HtSTeam.HtS.Options.Options.LootTables.ZombieOption;
 import fr.HtSTeam.HtS.Options.Options.Mobs.CreeperNerfOption;
 import fr.HtSTeam.HtS.Options.Options.Mobs.MobBuddyOption;
 import fr.HtSTeam.HtS.Options.Options.Mobs.SkeletonNerfOption;
@@ -42,8 +58,13 @@ import fr.HtSTeam.HtS.Options.Options.Statistics.TargetsStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.TimePlayedStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.TimeSneakedStatOption;
 import fr.HtSTeam.HtS.Options.Options.Statistics.TimeSprintedStatOption;
+import fr.HtSTeam.HtS.Options.Structure.Option;
 
 public class OptionRegister {
+	
+	static {
+		Main.LOGGER.logInfo("[Options] > Registering options...");
+	}
 	
 		//Mobs
 		public static CreeperNerfOption creeperNerf = new CreeperNerfOption();
@@ -137,5 +158,9 @@ public class OptionRegister {
 			new FixDayOption();
 			new EnablePvPOption();
 			new BreathOption();
+		}
+		
+		static {
+			Main.LOGGER.logInfo("[Options] > " + Option.optionsList.size() + " option" + (Option.optionsList.size() > 1 ? "s" : "") + " registered!" );
 		}
 }

@@ -13,6 +13,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 import fr.HtSTeam.HtS.Utils.Randomizer;
@@ -60,6 +61,7 @@ public class Gui extends Icon {
 		inv = Bukkit.createInventory(null, maxSize, name);		
 		if(gui != null)
 			addReturnButton();
+		Main.LOGGER.logInfo("[GUIs] > " + getClass().getSimpleName() + "    ...    " + getClass().getName());
 	}
 	
 	// Common Methods
@@ -125,6 +127,10 @@ public class Gui extends Icon {
 			};
 		}
 	
+	}
+	
+	public int getSize() {
+		return maxSize;
 	}
 	
 	

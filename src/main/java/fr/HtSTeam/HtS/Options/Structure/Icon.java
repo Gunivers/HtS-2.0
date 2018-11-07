@@ -7,7 +7,6 @@ import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 
 public abstract class Icon {
 	
-	
 	private ItemStackBuilder icon;
 	private Gui parent;
 	
@@ -18,10 +17,10 @@ public abstract class Icon {
 	 * 		Nom de l'item
 	 * @param description
 	 * 		Description de l'item
-	 * @param defaultValue
-	 * 		Valeur par défaut. Sert de comparaison à la valeur actuel pour afficher ou nom le changement au récapitulatif du /start
 	 * @param gui
 	 * 		Inventaire où sera placé l'item
+	 * @param slot
+	 * 		Slot de l'inventaire dans lequel sera placé l'item. L'entier doit être plus petit que {@link Gui#getSize()}.
 	 */
 	protected Icon(Material material, String name, String description, Gui gui, int slot) {
 		this(new ItemStackBuilder(material, 1, "§r" + name, description), gui, slot);
