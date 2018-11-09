@@ -12,12 +12,12 @@ public class EntityTypeExtends {
 			case BLAZE:
 			case CAVE_SPIDER:
 			case CHICKEN:
-			//case COD:
+			case COD:
 			case COW:
 			case CREEPER:
-			//case DOLPHIN:
+			case DOLPHIN:
 			case DONKEY:
-			//case DROWNED:
+			case DROWNED:
 			case ELDER_GUARDIAN:
 			case ENDERMAN:
 			case ENDERMITE:
@@ -31,13 +31,13 @@ public class EntityTypeExtends {
 			case MUSHROOM_COW:
 			case OCELOT:
 			case PARROT:
-			//case PHANTOM:
+			case PHANTOM:
 			case PIG:
 			case PIG_ZOMBIE:
 			case POLAR_BEAR:
-			//case PUFFERFFISH:
+			case PUFFERFISH:
 			case RABBIT:
-				//case SALMON:
+			case SALMON:
 			case SHEEP:
 			case SHULKER:
 			case SILVERFISH:
@@ -47,8 +47,8 @@ public class EntityTypeExtends {
 			case SPIDER:
 			case SQUID:
 			case STRAY:
-			//case TROPICAL_FISH:
-			//case TURTLE:
+			case TROPICAL_FISH:
+			case TURTLE:
 			case VEX:
 			case VILLAGER:
 			case VINDICATOR:
@@ -71,12 +71,12 @@ public class EntityTypeExtends {
 		list.add(EntityType.BLAZE);
 		list.add(EntityType.CAVE_SPIDER);
 		list.add(EntityType.CHICKEN);
-		//list.add(EntityType.COD);
+		list.add(EntityType.COD);
 		list.add(EntityType.COW);
 		list.add(EntityType.CREEPER);
-		//list.add(EntityType.DOLPHIN);
+		list.add(EntityType.DOLPHIN);
 		list.add(EntityType.DONKEY);
-		//list.add(EntityType.DROWNED);
+		list.add(EntityType.DROWNED);
 		list.add(EntityType.ELDER_GUARDIAN);
 		list.add(EntityType.ENDERMAN);
 		list.add(EntityType.ENDERMITE);
@@ -90,13 +90,13 @@ public class EntityTypeExtends {
 		list.add(EntityType.MUSHROOM_COW);
 		list.add(EntityType.OCELOT);
 		list.add(EntityType.PARROT);
-		//list.add(EntityType.PHANTOM);
+		list.add(EntityType.PHANTOM);
 		list.add(EntityType.PIG);
 		list.add(EntityType.PIG_ZOMBIE);
 		list.add(EntityType.POLAR_BEAR);
-		//list.add(EntityType.PUFFERFFISH);
+		list.add(EntityType.PUFFERFISH);
 		list.add(EntityType.RABBIT);
-			//list.add(EntityType.SALMON);
+		list.add(EntityType.SALMON);
 		list.add(EntityType.SHEEP);
 		list.add(EntityType.SHULKER);
 		list.add(EntityType.SILVERFISH);
@@ -106,8 +106,8 @@ public class EntityTypeExtends {
 		list.add(EntityType.SPIDER);
 		list.add(EntityType.SQUID);
 		list.add(EntityType.STRAY);
-		//list.add(EntityType.TROPICAL_FISH);
-		//list.add(EntityType.TURTLE);
+		list.add(EntityType.TROPICAL_FISH);
+		list.add(EntityType.TURTLE);
 		list.add(EntityType.VEX);
 		list.add(EntityType.VILLAGER);
 		list.add(EntityType.VINDICATOR);
