@@ -47,6 +47,32 @@ import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 import fr.HtSTeam.HtS.Utils.Nms;
 import fr.HtSTeam.HtS.Utils.PRIORITY;
 
+/**
+ * Player is the class meant to replace the Bukkit Player while providing
+ * secure ways of dealing with not connected players and backups.
+ * 
+ * A Player object encapsulates all the information existing in Bukkit Player
+ * and data related to this Plugin. However, it may be split into different
+ * child so as to a Player object can remain as general as possible.
+ * <p>
+ * A Player object is guaranteed to exists as long as the concerned player 
+ * has logged on at least once. Although, it is possible to load any player
+ * from its data file.
+ * <p>
+ * A Player object also guarantees access to all of its data at all time.
+ * Nonetheless, if the player is not connected when writing or reading data,
+ * this will not reflect any changes that affected this player. Indeed,
+ * a Player data is updated when it is requested and the player is online.
+ * <p>
+ * A Player object includes a way to execute a given code when the player
+ * reconnects. This should not be chosen as default but thought thoroughly
+ * prior to implementing it. It should not be used for trivial information.
+ * <p>
+ * Finally, A Player object features a backup system thence it is serializable.
+ * It can restore any given data.
+ *
+ * @author ikbrunel
+ */
 @SuppressWarnings("serial")
 public class Player implements Serializable {
 	
@@ -78,9 +104,10 @@ public class Player implements Serializable {
 	private Inventory inventory;
 	
 	/**
-	 * Dull Constructor <strong>DO NOT USE</strong>
+	 * Sole constructor. (For invocation by subclass 
+	 * constructors, typically implicit.)
 	 */
-	public Player() {}
+	protected Player() {  }
 	
 	/**
 	 * Creates an independent player, highly modular and safe.
@@ -160,13 +187,11 @@ public class Player implements Serializable {
 	
 	
 	/**
-	 * Use this method to know whether you should run your method in case the player is offline. You can add your method to be executed when the player reconnects
+	 * Use this method to know whether you should run your method in case this player is offline. You can add your method to be executed when the player reconnects
 	 * 	
 	 * @param addasync should it add this method to run at the player reconnection
 	 * @param args parameters' values of method (do not put addasync in args)
-	 * @return
-	 * 		true when the player is online <p></p>
-	 * 		false when the player is offline
+	 * @return boolean
 	 */
 	private boolean canExecute(final boolean addasync, final Object... args) {
 		if (Bukkit.getPlayer(uuid) != null)
@@ -212,8 +237,8 @@ public class Player implements Serializable {
 	/**
 	 * Event triggered when a player joined, executes the {@link #runAsyncTask() runAsyncTask} method.
 	 * 
-	 * @param e the event
-	 * @param p the player
+	 * @param e
+	 * @param p
 	 */
 	@EventHandler(PRIORITY.PLAYER)
 	public static void join(PlayerJoinEvent e, Player p) {
@@ -224,12 +249,6 @@ public class Player implements Serializable {
 	}
 	
 	
-	/**
-	 * Event triggered when a player left.
-	 * 
-	 * @param e the event
-	 * @param p the player
-	 */
 	@EventHandler(PRIORITY.PLAYER)
 	public static void leave(PlayerQuitEvent e, Player p) {
 		if (p == null)
@@ -325,98 +344,56 @@ public class Player implements Serializable {
 	
 	// RETURN
 	
-	/**
-	 * Returns the list of all Player (not necessarily online).
-	 * 
-	 * @return ArrayList<Player>
-	 */
+
 	public static ArrayList<Player> getPlayers() { return players; }
 	
-	/**
-	 * Returns the UUID of this Player.
-	 * 
-	 * @return UUID
-	 */
+
 	public UUID getUUID() { return uuid; }
 	
 	
-	/**
-	 * Returns the UUID of this Player.
-	 * 
-	 * @return String
-	 */
 	public String getName() { return name; }
 	
-	
-	/**
-	 * Returns the displayed name of this Player.
-	 * 
-	 * @return String
-	 */
+
 	public String getDisplayName() { return display_name; }
 	
 	
 	/**
-	 * Returns the team of this Player.
+	 * Gets the team of this Player.
 	 * 
-	 * @return TeamBuilder
+	 * @return team can be null
 	 */
 	public Team getTeam() { return team; }
 	
 	
 	/**
-	 * Returns the fake team of this Player.
+	 * Gets the fake team of this Player.
 	 * 
-	 * @return TeamBuilder
+	 * @return fake_team can be null
 	 */
 	public Team getFakeTeam() { return fake_team; }
 	
-	
-	/**
-	 * Returns true if this Player is alive.
-	 * 
-	 * @return boolean
-	 */
+
 	public boolean isInGame() { return inGame; }
 	
 	
-	/**
-	 * Returns true if this Player is a spectator.
-	 * 
-	 * @return boolean
-	 */
 	public boolean isSpectator() { return spectator; }
 	
+	
 	/**
-	 * Returns a list of all items taht will be droped on death
-	 * @return List<ItemStack>
+	 * Returns the list of all dropped items on this player's death.
+	 * @return deathLoot
 	 */
 	public List<ItemStack> getDeathLoot() { return deathLoot; }
 	
 	
 	
 	
-	/**
-	 * Returns true if this Player is op.
-	 * 
-	 * @return boolean
-	 */
 	public boolean isOp() { return op; }
 	
 	
-	/**
-	 * Returns world.
-	 * 
-	 * @return World
-	 */
 	public World getWorld() { return world; }
 	
 	
-	/**
-	 * Returns last known location.
-	 * 
-	 * @return Location
-	 */
 	public Location getLocation() {
 		if (canExecute(false))
 			location = player.getLocation();
@@ -424,11 +401,6 @@ public class Player implements Serializable {
 	}
 	
 
-	/**
-	 * Returns inventory.
-	 * 
-	 * @return Inventory
-	 */
 	public Inventory getInventory() {
 		if (canExecute(false))
 			inventory = player.getInventory();
@@ -436,11 +408,6 @@ public class Player implements Serializable {
 	}
 	
 	
-	/**
-	 * Returns health value.
-	 * 
-	 * @return double
-	 */
 	public double getHealth() {
 		if (canExecute(false))
 			health = player.getHealth();
@@ -448,22 +415,14 @@ public class Player implements Serializable {
 	}
 	
 	
-	/**
-	 * Returns true if the player has been granted this permission
-	 * @param string
-	 * @return boolean
-	 */
+
 	public boolean hasPermission(String perm) {
 		if (canExecute(false))
 			return player.hasPermission(perm);
 		return false;
 	}
 	
-	/**
-	 * Returns the Attribute of this player
-	 * @param Attribute
-	 * @return AttributeInstance
-	 */
+	
 	public AttributeInstance getAttribute(Attribute attribute) {
 		if (canExecute(false))
 			return player.getAttribute(attribute);
@@ -474,7 +433,7 @@ public class Player implements Serializable {
 	
 	
 	/**
-	 * You know how this shit works
+	 * Loops through all registered players, connected or not.
 	 * 
 	 * @param action lambda expression
 	 */
@@ -485,16 +444,16 @@ public class Player implements Serializable {
 	
 
 	/**
-	 * Sends a message to the player if he is connected, else it will send it when he reconnects
+	 * Sends a message to this player if it is connected, else it will send the message when it reconnects
 	 * 
-	 * @param message the message to send to the player
+	 * @param message
 	 */
 	public void sendMessage(String message) { sendMessage(message, true); }
 	/**
-	 * Sends a message to the player
+	 * Sends a message to this player
 	 * 
-	 * @param message the message to send to the player
-	 * @param addasync whether it should send the message when the player reconnects in case he was offline
+	 * @param message
+	 * @param addasync whether it should send the message when this player reconnects in case it was offline
 	 */
 	public void sendMessage(String message, boolean addasync) {
 		if (message == null || message.isEmpty() || !canExecute(addasync, message))
@@ -504,16 +463,16 @@ public class Player implements Serializable {
 	
 	
 	/**
-	 * Sends a JSON message to the player if he is connected, else it will send it when he reconnects
+	 * Sends a JSON message to this player if it is connected, else it will send the message when this player reconnects
 	 * 
-	 * @param msg_cmd the message to send to the player
+	 * @param msg_cmd
 	 */
 	public void sendJsonMessage(final LinkedHashMap<String, Entry<String, String>> message) { sendJsonMessage(message, true); }
 	/**
-	 * Sends a JSON message to the player
+	 * Sends a JSON message to this player, acts like a tellraw command.
 	 * 
-	 * @param msg_cmd the message to send to the player
-	 * @param addasync whether it should send the message when the player reconnects in case he was offline
+	 * @param msg_cmd
+	 * @param addasync whether it should send the message when this player reconnects in case it was offline
 	 */
 	public void sendJsonMessage(final LinkedHashMap<String, Entry<String, String>> message, boolean addasync) {
 		if (message == null || message.isEmpty() || !canExecute(addasync, message))
@@ -560,20 +519,21 @@ public class Player implements Serializable {
 	
 	
 	/**
-	 * Sends a title to the player if he is connected, else it will send it when he reconnects
-	 * 
-	 * @param title the title to send to the player
-	 * @param subtitle the subtitle to send to the player
-	 * @param duration the duration of the title
+	 * Sends a title to this player in its Action Bar if this player is connected,
+	 * else it will send the title when it reconnects
+	 *  
+	 * @param title
+	 * @param subtitle
+	 * @param duration the duration (seconds) of the title to be displayed
 	 */
 	public void sendTitle(String title, String subtitle, int duration) { sendTitle(title, subtitle, duration, true); }
 	/**
-	 * Sends a title to the player
+	 * Sends a title to this player 
 	 * 
-	 * @param title the title to send to the player
-	 * @param subtitle the subtitle to send to the player
-	 * @param duration the duration of the title
-	 * @param addasync whether it should send the message when the player reconnects in case he was offline
+	 * @param title
+	 * @param subtitle
+	 * @param duration the duration (seconds) of the title to be displayed
+	 * @param addasync whether it should send the message when this player reconnects in case it was offline
 	 */
 	public void sendTitle(String title, String subtitle, int duration, boolean addasync) {
 		if (title == null || title.isEmpty() || duration < 1 || !canExecute(addasync, title, subtitle, duration))
@@ -620,18 +580,19 @@ public class Player implements Serializable {
 	
 	
 	/**
-	 * Sends a message to the player in his Action Bar if he is connected, else it will send it when he reconnects
+	 * Sends a message to this player in its Action Bar if this player is connected,
+	 * else it will send the message when it reconnects
 	 * 
-	 * @param message the message to send to the player
+	 * @param message
 	 * @param duration the duration (seconds) of the message to be displayed
 	 */
 	public void sendActionBar(String message, int duration) { sendActionBar(message, duration, true); }
 	/**
-	 * Sends a message to the player in his Action Bar
+	 * Sends a message to this player in its Action Bar
 	 * 
-	 * @param message the message to send to the player
+	 * @param message
 	 * @param duration the duration (seconds) of the message to be displayed
-	 * @param addasync whether it should send the message when the player reconnects in case he was offline
+	 * @param addasync whether it should send the message when this player reconnects in case it was offline
 	 */
 	public void sendActionBar(String message, int duration, boolean addasync) {
 		if (message == null || message.isEmpty() || duration < 1 || !canExecute(addasync, message, duration))
@@ -660,9 +621,9 @@ public class Player implements Serializable {
 		}
 	}
 	/**
-	 * Sends a message to the player in his Action Bar
+	 * Sends a message to this player in its Action Bar
 	 * 
-	 * @param message the message to send to the player
+	 * @param message
 	 */
 	private void actionBar(String message) {
 		try {
@@ -695,9 +656,9 @@ public class Player implements Serializable {
 	/**	
 	 * Sets this player's team
 	 * 
-	 * <br><strong>DO NOT USE</strong> - use {@link Team#add(Player) add} of the Team</br>
+	 * <br><strong>DO NOT USE</strong> - use {@link Team#add(Player) add} from Team instead.</br>
 	 * 
-	 * @param Team
+	 * @param team
 	 */
 	public void setTeam(Team team) {
 		this.team = team;
@@ -705,9 +666,9 @@ public class Player implements Serializable {
 	/**	
 	 * Sets this player's fake team
 	 * 
-	 * <br><strong>DO NOT USE</strong> - use {@link Team#add(Player) add} of the Team</br>
+	 * <br><strong>DO NOT USE</strong> - use {@link Team#add(Player) add} from Team instead.</br>
 	 * 
-	 * @param Team
+	 * @param fake_team
 	 */
 	public void setFakeTeam(Team fake_team) {
 		this.fake_team = fake_team;
@@ -716,18 +677,12 @@ public class Player implements Serializable {
 	
 	
 	
-	/**
-	 * Makes the player open this inventory
-	 * @param inventory
-	 */
+
 	public void openInventory(Inventory inventory) {
 		if(canExecute(false))
 			player.openInventory(inventory);
 	}
-	/**
-	 * Closes the player inventory
-	 * @param inventory
-	 */
+
 	public void closeInventory() {
 		if(canExecute(false))
 			player.closeInventory();
@@ -747,13 +702,7 @@ public class Player implements Serializable {
 	
 	
 	
-	/**
-	 * Plays the selected sound to the player.
-	 * @param location
-	 * @param sound
-	 * @param volume
-	 * @param pitch
-	 */
+
 	public void playSound(Location location, Sound sound, int volume, int pitch) {
 		if(canExecute(false))
 			player.playSound(location, sound, volume, pitch);
@@ -761,10 +710,7 @@ public class Player implements Serializable {
 	
 	
 	
-	/**
-	 * Sets this potion effect to the player
-	 * @param potionEffect
-	 */
+	
 	public void addPotionEffect(PotionEffect potionEffect) {
 		if(canExecute(false))
 			player.addPotionEffect(potionEffect);
@@ -772,24 +718,15 @@ public class Player implements Serializable {
 	
 	
 	
-	/**
-	 * Adds item to the dropped items at this player's death.
-	 * @param ism
-	 */
+
 	public void addDeathLootItem(ItemStackBuilder ism) {
 		deathLoot.add(ism);
 	}
-	/**
-	 * Adds item to the dropped items at this player's death.
-	 * @param ism
-	 */
+
 	public void addDeathLootItem(Material material) {
 		deathLoot.add(new ItemStack(material, 1));
 	}
-	/**
-	 * Removes item to the dropped items at this player's death.
-	 * @param ism
-	 */
+
 	public void removeDeathLootItem(Material material) {
 		for (int i = 0; i < deathLoot.size(); i++)
 			if (deathLoot.get(i).getType().equals(material))
@@ -800,7 +737,10 @@ public class Player implements Serializable {
 	
 	
 	/**
-	 * Puts the player in spectator for the game.
+	 * Puts this in spectator mode.
+	 * 
+	 * @param b false will put this player
+	 * 			in adventure mode.
 	 */
 	public void setSpectator(boolean b) {
 		spectator = b;

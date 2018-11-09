@@ -14,6 +14,7 @@ import fr.HtSTeam.HtS.Options.GUIRegister;
 import fr.HtSTeam.HtS.Options.Structure.Option;
 import fr.HtSTeam.HtS.Options.Structure.Annotation.Timer;
 import fr.HtSTeam.HtS.Player.Player;
+import fr.HtSTeam.HtS.Player.PlayerSyT;
 import fr.HtSTeam.HtS.Team.Team;
 import fr.HtSTeam.HtS.Utils.Lang;
 import fr.HtSTeam.HtS.Utils.Randomizer;

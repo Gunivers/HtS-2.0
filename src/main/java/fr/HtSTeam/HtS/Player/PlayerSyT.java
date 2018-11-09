@@ -1,8 +1,6 @@
-package fr.HtSTeam.HtS.GameModes.UHC.SyT;
+package fr.HtSTeam.HtS.Player;
 
 import java.util.ArrayList;
-
-import fr.HtSTeam.HtS.Player.Player;
 
 @SuppressWarnings("serial")
 public class PlayerSyT extends Player { 
