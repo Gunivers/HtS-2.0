@@ -28,7 +28,7 @@ public class ArrowHitStatOption extends Option<Boolean> {
 	public void setState(Boolean value) {
 		if (EnumState.getState().equals(EnumState.RUNNING))
 			return;
-		setValue(value);
+		this.value = value;
 		if(getValue()) {
 			EnumStats.ARROW_HIT.setTracked(true);
 			getItemStack().setLore("§2Activé");

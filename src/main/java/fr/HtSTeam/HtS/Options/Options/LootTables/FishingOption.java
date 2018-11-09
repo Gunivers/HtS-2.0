@@ -20,19 +20,19 @@ public class FishingOption extends Option<Boolean> {
 
 	@Override
 	public void event(Player p) {
-		setState(!getValue());
+		setState(!this.value);
 	}
 
 	@Override
 	public void setState(Boolean value) {
-		if(value && !getValue()) {
+		if(value && !this.value) {
 			try {
 				FileExtractor.extractFile(FileExtractor.lt + "fishing.json", FileExtractor.wdir + FileExtractor.Gdir);
 				getItemStack().setLore("§2Activé");
 			} catch (IOException | URISyntaxException e) {
 				e.printStackTrace();
 			}
-		} else if(!value && getValue()){
+		} else if(!value && this.value){
 			getItemStack().setLore("§4Désactivé");
 			try {
 				Files.delete(Paths.get(FileExtractor.wdir + FileExtractor.Gdir + "fishing.json"));
@@ -40,7 +40,7 @@ public class FishingOption extends Option<Boolean> {
 				e.printStackTrace();
 			}
 		}
-		setValue(value);
+		this.value = value;
 		getParent().update(this);
 	}
 

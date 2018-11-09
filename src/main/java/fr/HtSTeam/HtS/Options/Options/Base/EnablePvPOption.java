@@ -17,7 +17,7 @@ public class EnablePvPOption extends ChatNumberOption {
 	
 	@Override
 	public void dispValidMessage() {
-		p.sendMessage("§2Le PvP s'activera au bout de §5" + getValue() + "§2 minutes." );
+		p.sendMessage("§2Le PvP s'activera au bout de §5" + value + "§2 minutes." );
 	}
 
 	@Override
@@ -38,13 +38,13 @@ public class EnablePvPOption extends ChatNumberOption {
 
 	@Override
 	public void setState(Integer value) {
-		setValue(value);
+		this.value = value;
 		this.getItemStack().setLore("§2" + value + " minutes");
 		getParent().update(this);
 	}
 
 	@Override
 	public String getDescription() {
-		return "§2[Aide]§r Le PvP s'activera au bout de §5" + getValue() + "§2 minutes.";
+		return "§2[Aide]§r Le PvP s'activera au bout de §5" + value + "§2 minutes.";
 	}
 }

@@ -20,13 +20,13 @@ public class CreeperNerfOption extends Option<Boolean> {
 	
 	@Override
 	public void event(Player p) {
-		setState(!getValue());
+		setState(!value);
 	}
 
 	@EventHandler()
 	public void onCreeperOneShot(EntityDamageByEntityEvent e) {
 		Entity p = e.getEntity();
-		if (EnumState.getState().equals(EnumState.RUNNING) && !getValue() && ((p instanceof Player)) && e.getDamager() instanceof Creeper) {
+		if (EnumState.getState().equals(EnumState.RUNNING) && !value && ((p instanceof Player)) && e.getDamager() instanceof Creeper) {
 			double damage = e.getFinalDamage();
 			if (damage >= ((Player) p).getHealth()) {	
 				((Player) p).setHealth(2.0D);
@@ -42,7 +42,7 @@ public class CreeperNerfOption extends Option<Boolean> {
 			getItemStack().setLore("§2Activé");
 		else 
 			getItemStack().setLore("§4Désactivé");
-		setValue(value);
+		this.value = value;
 		getParent().update(this);		
 	}
 

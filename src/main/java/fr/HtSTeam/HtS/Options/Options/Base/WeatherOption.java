@@ -17,12 +17,12 @@ public class WeatherOption extends Option<Boolean> {
 
 	@Override
 	public void event(Player p) {
-		setState(!getValue());
+		setState(!value);
 	}
 	
 	@EventHandler
 	public void onWeather(WeatherChangeEvent e) {
-		if(!getValue() && e.toWeatherState()) 
+		if(!value && e.toWeatherState()) 
 			e.setCancelled(true);
 	}
 
@@ -36,7 +36,7 @@ public class WeatherOption extends Option<Boolean> {
 			getItemStack().setLore("§4Désactivé");
 			getItemStack().setItem(Material.BUCKET);
 		}	
-		setValue(value);
+		this.value = value;
 		getParent().update(this);		
 	}
 

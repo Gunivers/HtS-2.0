@@ -26,7 +26,7 @@ public class ItemsPickedUpStatOption extends Option<Boolean> {
 	public void setState(Boolean value) {
 		if (EnumState.getState().equals(EnumState.RUNNING))
 			return;
-		setValue(value);
+		this.value = value;
 		if(getValue()) {
 			EnumStats.ITEMS_PICKED_UP.setTracked(true);
 			getItemStack().setLore("§2Activé");

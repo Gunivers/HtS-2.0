@@ -20,19 +20,19 @@ public class ChestOption extends Option<Boolean> {
 
 	@Override
 	public void event(Player p) {
-		setState(!getValue());
+		setState(!value);
 	}
 
 	@Override
 	public void setState(Boolean value) {
-		if(value && !getValue()) {
+		if(value && !this.value) {
 			try {
 				FileExtractor.extractFile(FileExtractor.lt + "coffre.json", FileExtractor.wdir + FileExtractor.Cdir);
 				getItemStack().setLore("§2Activé");
 			} catch (IOException | URISyntaxException e) {
 				e.printStackTrace();
 			}
-		} else if(!value && getValue()){
+		} else if(!value && this.value){
 			try {
 				Files.delete(Paths.get(FileExtractor.wdir + FileExtractor.Cdir + "coffre.json"));
 				getItemStack().setLore("§4Désactivé");
@@ -40,7 +40,7 @@ public class ChestOption extends Option<Boolean> {
 				e.printStackTrace();
 			}
 		}
-		setValue(value);
+		this.value = value;
 		getParent().update(this);
 	}
 

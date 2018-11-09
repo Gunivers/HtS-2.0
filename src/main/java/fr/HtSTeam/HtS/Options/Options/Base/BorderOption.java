@@ -19,7 +19,7 @@ public class BorderOption extends ChatNumberOption {
 	
 	@Override
 	public void setState(Integer value) {
-		setValue(value * 2);	
+		value *= 2;	
 		this.getItemStack().setLore("§d" + value * 2 + " * " + value * 2);
 		border.setSize(value * 2);
 		getParent().update(this);
@@ -27,12 +27,12 @@ public class BorderOption extends ChatNumberOption {
 
 	@Override
 	public String getDescription() {
-		return "§2[Aide]§r La bordure se trouve à " + getValue() + " blocs du centre de la map.";
+		return "§2[Aide]§r La bordure se trouve à " + value + " blocs du centre de la map.";
 	}
 
 	@Override
 	public void dispValidMessage() {
-		p.sendMessage("§2Bordure à " + getValue() + " blocs du centre." );		
+		p.sendMessage("§2Bordure à " + value + " blocs du centre." );		
 	}
 
 	@Override

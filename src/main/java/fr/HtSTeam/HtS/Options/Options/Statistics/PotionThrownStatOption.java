@@ -28,7 +28,7 @@ public class PotionThrownStatOption extends Option<Boolean> {
 	public void setState(Boolean value) {
 		if (EnumState.getState().equals(EnumState.RUNNING))
 			return;
-		setValue(value);
+		this.value = value;
 		if(getValue()) {
 			EnumStats.POTION_THROWN.setTracked(true);
 			getItemStack().setLore("§2Activé");

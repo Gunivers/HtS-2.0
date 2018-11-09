@@ -76,7 +76,7 @@ public class FixDayOption extends Option<DayPhase> implements StartTrigger {
 	@Override
 	public void setState(DayPhase value) {
 		setLore(value);
-		setValue(value);
+		this.value = value;
 	}
 
 	@Override

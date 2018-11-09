@@ -17,7 +17,7 @@ public abstract class Option<A> extends Icon implements OptionIO {
 	public static Map<Option<?>, Object> optionsList = new HashMap<>();
 	private boolean disp;
 	private final A defaultValue;
-	private A value;
+	protected A value;
 
 	/**
 	 * 	 * @param defaultValue
@@ -42,7 +42,7 @@ public abstract class Option<A> extends Icon implements OptionIO {
 	public Option(ItemStackBuilder material, A defaultValue, Gui gui, int slot) {
 		super(material, gui, slot);
 		this.defaultValue = defaultValue;
-		setValue(defaultValue);
+		value = defaultValue;
 		this.addToList();
 		disp = true;
 		Main.LOGGER.logInfo("[Options] > " + getClass().getSimpleName() + "    ...    " + getClass().getName());
@@ -66,7 +66,7 @@ public abstract class Option<A> extends Icon implements OptionIO {
 	
 	@Override
 	public ArrayList<String> save() {
-		return (getValue() != null && !getValue().equals(getDefaultValue())) ? new ArrayList<String>(Arrays.asList(getValue().toString())) : null;
+		return (value != null && !value.equals(getDefaultValue())) ? new ArrayList<String>(Arrays.asList(value.toString())) : null;
 	}
 	
 	@Override
@@ -85,13 +85,8 @@ public abstract class Option<A> extends Icon implements OptionIO {
 	public A getDefaultValue() {
 		return defaultValue;
 	}
-
+	
 	public A getValue() {
 		return value;
 	}
-
-	public void setValue(A value) {
-		this.value = value;
-	}
-	
 }

@@ -59,7 +59,7 @@ public class RadarFrequencyOption extends Option<Integer> implements StartTrigge
 
 	@Timer
 	public void radar() {
-		setValue(getValue() + frequency);
+		value = getValue() + frequency;
 //		for (UUID uuid : SyT.targetCycleOption.targetCycle) {
 //			if (PlayerManager.isConnected(uuid))
 //				radar(uuid);
@@ -94,12 +94,12 @@ public class RadarFrequencyOption extends Option<Integer> implements StartTrigge
 
 	@Override
 	public void onPartyStart() {
-		setValue(SyT.radar.getValue());
+		value = SyT.radar.getValue();
 	}
 
 	@Override
 	public void setState(Integer value) {
-		setValue(value);
+		this.value = value;
 		frequency = value;
 		this.getItemStack().setLore("§2" + value + " minutes");
 		getParent().update(this);

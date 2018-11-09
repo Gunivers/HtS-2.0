@@ -78,13 +78,13 @@ public class Probability extends Option<Double>
 	@Override
 	public void setState(Double value)
 	{
-		this.setValue(value >= min && value <= max ? value : -1);
+		this.value = value >= min && value <= max ? value : -1;
 		this.getItemStack().setLore(value != -1 ? "§4Désactivé" : "§6"+ value +"§2%");
 	}
 
 	@Override
 	public String getDescription()
 	{
-		return "§1§o[Aide]§2 La probabilité de "+ name +" est "+ (this.getValue() != -1 ? " de §6"+ this.getValue() +"§2%" : "§4nulle");
+		return "§1§o[Aide]§2 La probabilité de "+ name +" est "+ (value != -1 ? " de §6"+ value +"§2%" : "§4nulle");
 	}
 }

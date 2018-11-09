@@ -20,29 +20,29 @@ public class ElytraCraftOption extends Option<Boolean> {
 
 	@Override
 	public void event(Player p) {
-		setState(!getValue());
+		setState(!value);
 	}
 
 	@Override
 	public void setState(Boolean value) {
-		if(value && !getValue()) {
+		if(value && !this.value) {
 				try {
 					FileExtractor.extractFile(FileExtractor.cr + "elytra.json", FileExtractor.wdir + FileExtractor.Rdir);
-					setValue(true);
+					this.value = true;
 					getItemStack().setLore("§2Activé");
 					
 				} catch (IOException | URISyntaxException e) {
-					setValue(false);
+					this.value = false;
 					e.printStackTrace();
 				}
-		} else if(!value && getValue()) {
+		} else if(!value && this.value) {
 			try {
 				Files.delete(Paths.get(FileExtractor.wdir + FileExtractor.Rdir + "elytra.json"));
-				setValue(false);
+				this.value = false;
 				getItemStack().setLore("§4Désactivé");
 				
 			} catch (IOException e) {
-				setValue(false);
+				this.value = false;
 				e.printStackTrace();
 			}
 		}

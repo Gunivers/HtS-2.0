@@ -56,7 +56,7 @@ public class DifficultyOption extends Option<Difficulty> implements StartTrigger
 		lore += value.toString();
 		this.getItemStack().setLore(lore);
 
-		this.setValue(value);
+		this.value = value;
 		getParent().update(this);
 	}
 

@@ -28,7 +28,7 @@ public class KillsMonsterStatOption extends Option<Boolean> {
 	public void setState(Boolean value) {
 		if (EnumState.getState().equals(EnumState.RUNNING))
 			return;
-		setValue(value);
+		this.value = value;
 		if(getValue()) {
 			EnumStats.KILLS_MONSTER.setTracked(true);
 			getItemStack().setLore("§2Activé");

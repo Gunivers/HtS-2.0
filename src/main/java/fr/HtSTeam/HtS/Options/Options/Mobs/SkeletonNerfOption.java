@@ -38,7 +38,7 @@ public class SkeletonNerfOption extends Option<Integer> {
 				int value = Integer.parseInt(e.getMessage());
 				if(value >= 0 && value <= 60) {
 					setState(value);
-					p.sendMessage("§2Squelette activé à " + getValue() + " minutes." );
+					p.sendMessage("§2Squelette activé à " + value + " minutes." );
 					getParent().update(this);
 					request = false;
 					return;
@@ -53,7 +53,7 @@ public class SkeletonNerfOption extends Option<Integer> {
 	@Timer
 	public void activateSkeleton() {
 		activate = true;
-		if(getValue() != 0)
+		if(value != 0)
 			Bukkit.broadcastMessage("§4Les squelettes sont activés !");
 	}
 	
@@ -67,13 +67,13 @@ public class SkeletonNerfOption extends Option<Integer> {
 
 	@Override
 	public void setState(Integer value) {
-		setValue(value);	
+		this.value = value;	
 		this.getItemStack().setLore("§d" + value + " minutes");
 	}
 
 	@Override
 	public String getDescription() {
-		return "§2[Aide]§r Les squelettes ne pourront vous tirer dessus pendant les " + getValue() + " minutes de jeu.";
+		return "§2[Aide]§r Les squelettes ne pourront vous tirer dessus pendant les " + value + " minutes de jeu.";
 	}
 	
 	

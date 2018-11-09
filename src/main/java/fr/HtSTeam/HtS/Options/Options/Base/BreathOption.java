@@ -25,10 +25,10 @@ public class BreathOption extends ChatNumberOption implements StartTrigger {
 	
 	@Override
 	public void dispValidMessage() {
-		if(getValue() > 0)
-			p.sendMessage("§2Le souffle des profondeurs s'activera à " + getValue() + " minutes." );
+		if(value > 0)
+			p.sendMessage("§2Le souffle des profondeurs s'activera à " + value + " minutes." );
 		else {
-			setValue(-1);
+			value = -1;
 			p.sendMessage("§2Le souffle des profondeurs a été désactivé.");	
 		}
 	}
@@ -36,7 +36,7 @@ public class BreathOption extends ChatNumberOption implements StartTrigger {
 	@Override
 	public void setState(Integer value) {
 		if(value != -1) {
-			setValue(value);
+			this.value = value;
 			getItemStack().setItem(Material.GLOWSTONE_DUST);
 			getItemStack().setLore("§d" + value + " minutes");
 		} else {
@@ -62,8 +62,8 @@ public class BreathOption extends ChatNumberOption implements StartTrigger {
 	
 	@Timer(PRIORITY.HIGHEST)
 	public void alert() {
-		if(getValue().equals(-1) || alert) return;
-		setValue(getValue() + 1);
+		if(value.equals(-1) || alert) return;
+		value++;
 		alert = true;
 		Bukkit.broadcastMessage("§4Les mineurs ont miné beaucoup trop profondement et ont ouvert des poches de soufre. Le soufre envahira les mines dans 1 minutes.");
 	}
@@ -76,13 +76,13 @@ public class BreathOption extends ChatNumberOption implements StartTrigger {
 
 	@Override
 	public void onPartyStart() {
-		if(getValue().equals(-1)) return;
-		setValue(getValue() - 1);
+		if(value.equals(-1)) return;
+		value--;
 	}
 
 	@Override
 	public String getDescription() {
-		return "§2[Aide]§r Le souffle de profondeurs donnent des effets négatifs aux joueurs se trouvant sous la couche 36 de l'overworld limitant ainsi le temps de minage.\r Ce dernier s'active à " + getValue() + " minutes.";
+		return "§2[Aide]§r Le souffle de profondeurs donnent des effets négatifs aux joueurs se trouvant sous la couche 36 de l'overworld limitant ainsi le temps de minage.\r Ce dernier s'active à " + value + " minutes.";
 	}
 
 	@Override

@@ -76,12 +76,12 @@ public class AppleDropProbabilityOption extends Probability
 		
 		int randomValue = Randomizer.rand(200);
 
-		if(randomValue <= getValue())
+		if(randomValue <= value)
 		{
 			ItemStack item = new ItemStack(Material.APPLE, 1);
 			loc.getWorld().dropItemNaturally(loc, item);
 		}
-		else if(randomValue <= getValue() + 10.0)
+		else if(randomValue <= value + 10.0)
 		{
 			if(block.getType().equals(Material.OAK_LEAVES))
 			{

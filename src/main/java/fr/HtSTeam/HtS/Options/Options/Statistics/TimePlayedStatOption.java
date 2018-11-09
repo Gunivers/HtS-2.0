@@ -27,7 +27,7 @@ public class TimePlayedStatOption extends Option<Boolean> implements EndTrigger,
 	public void setState(Boolean value) {
 		if (EnumState.getState().equals(EnumState.RUNNING))
 			return;
-		setValue(value);
+		this.value = value;
 		if(getValue()) {
 			EnumStats.TIME_PLAYED.setTracked(true);
 			getItemStack().setLore("§2Activé");

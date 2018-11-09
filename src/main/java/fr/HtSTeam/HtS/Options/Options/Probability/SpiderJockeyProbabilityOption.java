@@ -23,7 +23,7 @@ public class SpiderJockeyProbabilityOption extends Probability
 	@EventHandler
 	public void onMobSpawn(CreatureSpawnEvent event)
 	{
-		if (event.getEntityType() == EntityType.SPIDER && random.nextDouble() < this.getValue())
+		if (event.getEntityType() == EntityType.SPIDER && random.nextDouble() < value)
 		{
 			event.setCancelled(true);
 			Entity spider = event.getEntity();

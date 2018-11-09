@@ -24,7 +24,7 @@ public class FlintDropProbabilityOption extends Probability
 	@EventHandler
 	public void onBlockBreak(BlockBreakEvent e)
 	{
-		if (Material.GRAVEL == e.getBlock().getType() && random.nextDouble() < this.getValue())
+		if (Material.GRAVEL == e.getBlock().getType() && random.nextDouble() < value)
 		{
 			e.setCancelled(true);
 			this.dropFlint(e.getBlock());
@@ -34,7 +34,7 @@ public class FlintDropProbabilityOption extends Probability
 	@EventHandler
 	public void onBlockExplode(BlockExplodeEvent e)
 	{
-		if (Material.GRAVEL == e.getBlock().getType() && random.nextDouble() < this.getValue())
+		if (Material.GRAVEL == e.getBlock().getType() && random.nextDouble() < value)
 		{
 			e.setCancelled(true);
 			this.dropFlint(e.getBlock());

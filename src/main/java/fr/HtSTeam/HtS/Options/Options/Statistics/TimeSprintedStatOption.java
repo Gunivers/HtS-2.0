@@ -30,7 +30,7 @@ public class TimeSprintedStatOption extends Option<Boolean> implements StartTrig
 	public void setState(Boolean value) {
 		if (EnumState.getState().equals(EnumState.RUNNING))
 			return;
-		setValue(value);
+		this.value = value;
 		if(getValue()) {
 			EnumStats.TIME_SPRINTED.setTracked(true);
 			getItemStack().setLore("§2Activé");

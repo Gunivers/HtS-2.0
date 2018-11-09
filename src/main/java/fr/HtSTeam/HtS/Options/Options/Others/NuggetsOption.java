@@ -19,7 +19,7 @@ public class NuggetsOption extends Option<Boolean>{
 
 	@Override
 	public void event(Player p) {
-		setState(getValue());
+		setState(value);
 	}
 	
 	
@@ -29,14 +29,14 @@ public class NuggetsOption extends Option<Boolean>{
 			getItemStack().setLore("§2Activé");
 		else
 			getItemStack().setLore("§4Désactivé");
-		setValue(value);
+		this.value = value;
 		getParent().update(this);
 	}
 	
 
 	@EventHandler
 	public void onDropNuggets(PlayerBucketFillEvent e) {
-		if (getValue()) {
+		if (value) {
 			Player p = Player.instance(e.getPlayer());
 			Block b = e.getBlockClicked();
 			if (b.getType() == Material.WATER) {

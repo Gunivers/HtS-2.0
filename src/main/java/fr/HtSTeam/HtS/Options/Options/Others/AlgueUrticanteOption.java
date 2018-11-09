@@ -16,7 +16,7 @@ public class AlgueUrticanteOption extends Option<Boolean> {
 
 	@Override
 	public void event(Player p) {
-		setState(!getValue());
+		setState(!value);
 	}
 	
 	@Override
@@ -25,13 +25,13 @@ public class AlgueUrticanteOption extends Option<Boolean> {
 			getItemStack().setLore("§2Activé");
 		else
 			getItemStack().setLore("§4Désactivé");
-		setValue(value);
+		this.value = value;
 		getParent().update(this);
 	}
 	
 	@EventHandler
 	public void onAlgaeCatch(EntityPickupItemEvent e) {
-		if(e.getEntity() instanceof org.bukkit.entity.Player && e.getItem().getItemStack().getType() == Material.TALL_GRASS && getValue()) {
+		if(e.getEntity() instanceof org.bukkit.entity.Player && e.getItem().getItemStack().getType() == Material.TALL_GRASS && value) {
 			e.setCancelled(true);
 			e.getEntity().setHealth(e.getEntity().getHealth()-1);
 			e.getItem().remove();
@@ -39,10 +39,7 @@ public class AlgueUrticanteOption extends Option<Boolean> {
 	}
 	
 	public boolean isActivated() {
-		if (getValue() == true)
-			return true;
-		else
-			return false;
+		return value;
 	}
 
 	@Override

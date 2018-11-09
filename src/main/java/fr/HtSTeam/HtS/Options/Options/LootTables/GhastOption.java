@@ -21,19 +21,19 @@ public class GhastOption extends Option<Boolean>{
 
 	@Override
 	public void event(Player p) {
-		setState(!getValue());
+		setState(!value);
 	}
 
 	@Override
 	public void setState(Boolean value) {
-		if(value && !getValue()) {
+		if(value && !this.value) {
 			try {
 				FileExtractor.extractFile(FileExtractor.lt + "ghast.json", FileExtractor.wdir + FileExtractor.Edir);
 				getItemStack().setLore("§2Activé");
 			} catch (IOException | URISyntaxException e) {
 				e.printStackTrace();
 			}
-		} else if(!value && getValue()){
+		} else if(!value && this.value){
 			getItemStack().setLore("§4Désactivé");
 			try {
 				Files.delete(Paths.get(FileExtractor.wdir + FileExtractor.Edir + "ghast.json"));
@@ -41,7 +41,7 @@ public class GhastOption extends Option<Boolean>{
 				e.printStackTrace();
 			}
 		}
-		setValue(value);
+		this.value = value;
 		getParent().update(this);
 	}
 

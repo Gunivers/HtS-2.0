@@ -26,7 +26,7 @@ public class ShulkerNetherOption extends Option<Boolean> {
 
 	@Override
 	public void event(Player p) {
-		setState(!getValue());
+		setState(!value);
 	}
 	
 	
@@ -36,14 +36,14 @@ public class ShulkerNetherOption extends Option<Boolean> {
 			getItemStack().setLore("§2Activé");
 		else
 			getItemStack().setLore("§4Désactivé");
-		setValue(value);
+		this.value = value;
 		getParent().update(this);		
 	}
 	
 
 	@EventHandler
 	public void onChunkLoad(ChunkLoadEvent e) {
-		if (getValue() && e.getWorld().getEnvironment().equals(Environment.NETHER) && Randomizer.randRate(10)) {
+		if (value && e.getWorld().getEnvironment().equals(Environment.NETHER) && Randomizer.randRate(10)) {
 			Chunk c = e.getChunk();
 			int cx = c.getX() << 4;
 			int cz = c.getZ() << 4;

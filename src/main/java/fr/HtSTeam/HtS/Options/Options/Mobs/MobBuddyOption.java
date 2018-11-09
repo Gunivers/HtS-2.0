@@ -38,12 +38,12 @@ public class MobBuddyOption extends Option<Boolean> {
 	
 	@Override
 	public void event(Player p) {
-		setState(!getValue());
+		setState(!value);
 	}
 	
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onMobTarget(EntityTargetLivingEntityEvent e){
-		if (!getValue()) return;
+		if (!value) return;
 		if (e.getTarget() instanceof Player && e.getEntity().hasMetadata("buddy")) {
 			if (((Player)e.getTarget()).getUUID().toString().equalsIgnoreCase(e.getEntity().getMetadata("buddy").get(0).asString())) {
 				e.setCancelled(true);
@@ -56,7 +56,7 @@ public class MobBuddyOption extends Option<Boolean> {
 	
 	@EventHandler
 	public void onMobSpawn(PlayerInteractEvent e) {
-		if (!getValue() || e.getItem() == null)
+		if (!value || e.getItem() == null)
 			return;
 		if (e.getItem().getType() == Material.ZOMBIE_SPAWN_EGG && e.getItem().hasItemMeta() && (e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.RIGHT_CLICK_AIR)) {
 			e.setCancelled(true);
@@ -123,7 +123,7 @@ public class MobBuddyOption extends Option<Boolean> {
 
 	@EventHandler
 	public void onMobDeath(EntityDeathEvent e) {
-		if (!getValue())
+		if (!value)
 			return;
 		if (!e.getEntity().hasMetadata("buddy") && (e.getEntity() instanceof Monster || e.getEntityType() == EntityType.SLIME) && e.getEntity().getKiller() instanceof Player) {
 			if (Randomizer.randRate(17)) {
@@ -140,7 +140,7 @@ public class MobBuddyOption extends Option<Boolean> {
 			getItemStack().setLore("§2Activé");			
 		else
 			getItemStack().setLore("§4Désactivé");
-		setValue(value);
+		this.value = value;
 		getParent().update(this);		
 	}
 

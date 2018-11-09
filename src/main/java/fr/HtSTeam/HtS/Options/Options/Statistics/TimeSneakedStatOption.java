@@ -28,7 +28,7 @@ public class TimeSneakedStatOption extends Option<Boolean> implements StartTrigg
 	public void setState(Boolean value) {
 		if (EnumState.getState().equals(EnumState.RUNNING))
 			return;
-		setValue(value);
+		this.value = value;
 		if(getValue()) {
 			EnumStats.TIME_SNEAKED.setTracked(true);
 			getItemStack().setLore("§2Activé");

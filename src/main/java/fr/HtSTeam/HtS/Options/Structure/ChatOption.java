@@ -1,9 +1,9 @@
 package fr.HtSTeam.HtS.Options.Structure;
 
 import org.bukkit.Material;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
+import fr.HtSTeam.HtS.Events.Structure.EventHandler;
 import fr.HtSTeam.HtS.Player.Player;
 import fr.HtSTeam.HtS.Utils.ItemStackBuilder;
 
@@ -39,7 +39,7 @@ public abstract class ChatOption<A> extends Option<A> {
 	public abstract void dispRequestMessage();
 	
 	@EventHandler
-	public void onPlayerChat(AsyncPlayerChatEvent e) {		
+	public void onPlayerChat(AsyncPlayerChatEvent e, Player p) {		
 		if(request && e.getPlayer().getUniqueId().equals(p.getUUID())) {
 			e.setCancelled(true);
 			if(isCorrectValue(e.getMessage())) {

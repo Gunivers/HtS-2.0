@@ -22,7 +22,7 @@ public class ZombieJockeyProbabilityOption extends Probability
 	@EventHandler
 	public void onMobSpawn(CreatureSpawnEvent event)
 	{
-		if (event.getEntityType() == EntityType.ZOMBIE && random.nextDouble() < this.getValue())
+		if (event.getEntityType() == EntityType.ZOMBIE && random.nextDouble() < value)
 		{	
 			event.setCancelled(true);
 			event.getLocation().getWorld().spawnEntity(event.getLocation(), EntityType.CHICKEN).addPassenger(event.getEntity());

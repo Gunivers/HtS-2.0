@@ -20,12 +20,12 @@ public class NoRegenOption extends Option<Boolean> {
 
 	@Override
 	public void event(Player p) {
-		setState(!getValue());
+		setState(!value);
 	}
 	
 	@EventHandler
 	public void onFoodHealEvent(EntityRegainHealthEvent e) {
-		if(!getValue()) {
+		if(!value) {
 			Entity p = e.getEntity();
 			if(p instanceof Player && e.getRegainReason() == RegainReason.SATIATED)
 				e.setCancelled(true);
@@ -41,7 +41,7 @@ public class NoRegenOption extends Option<Boolean> {
 			getItemStack().setLore("§4Désactivé");
 			getItemStack().setItem(Material.GRAY_DYE);
 		}
-		setValue(value);
+		this.value = value;
 		getParent().update(this);		
 	}
 

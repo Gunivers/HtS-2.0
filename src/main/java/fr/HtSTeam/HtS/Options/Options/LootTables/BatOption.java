@@ -21,23 +21,23 @@ public class BatOption extends Option<Boolean> {
 
 	@Override
 	public void event(Player p) {
-		setState(!getValue());
+		setState(!value);
 	}
 
 	@Override
 	public void setState(Boolean value) {
-		if(value && !getValue()) {
+		if(value && !this.value) {
 			try {
 				FileExtractor.extractFile(FileExtractor.lt + "bat.json", FileExtractor.wdir + FileExtractor.Edir);
-				setValue(true);
+				this.value = true;
 				getItemStack().setLore("§2Activé");
 			} catch (IOException | URISyntaxException e) {
 				e.printStackTrace();
 			}
-		} else if(!value && getValue()){
+		} else if(!value && this.value){
 			try {
 				Files.delete(Paths.get(FileExtractor.wdir + FileExtractor.Edir + "bat.json"));
-				setValue(false);
+				this.value = false;
 				getItemStack().setLore("§4Désactivé");
 			} catch (IOException e) {
 				e.printStackTrace();

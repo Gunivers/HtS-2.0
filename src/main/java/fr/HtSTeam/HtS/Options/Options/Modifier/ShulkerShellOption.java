@@ -33,7 +33,7 @@ public class ShulkerShellOption extends Option<Boolean> {
 
 	@Override
 	public void event(Player p) {
-		setState(!getValue());
+		setState(!value);
 	}
 	
 	@Override
@@ -45,7 +45,7 @@ public class ShulkerShellOption extends Option<Boolean> {
 			getItemStack().setLore("§4Désactivé");
 			CustomGUI.authorizedItem.remove(ism);
 		}
-		setValue(value);
+		this.value = value;
 		getParent().update(this);	
 	}
 
@@ -53,7 +53,7 @@ public class ShulkerShellOption extends Option<Boolean> {
 	
 	@EventHandler
 	public void onDamage(EntityDamageByEntityEvent e) {
-		if(EnumState.getState().equals(EnumState.RUNNING) && getValue() && e.getEntity() instanceof Player && ((ModifiersGUI) getParent()).getInventory((Player) e.getEntity()).contains(ism)) {
+		if(EnumState.getState().equals(EnumState.RUNNING) && value && e.getEntity() instanceof Player && ((ModifiersGUI) getParent()).getInventory((Player) e.getEntity()).contains(ism)) {
 			Player p = (Player) e.getEntity();
 			World world = p.getWorld();
 			if(Randomizer.randRate(63)) {
@@ -77,7 +77,7 @@ public class ShulkerShellOption extends Option<Boolean> {
 	
 	@EventHandler
     public void onShulkerDeath(EntityDeathEvent e){
-        if(getValue() && e.getEntityType() == EntityType.SHULKER){
+        if(value && e.getEntityType() == EntityType.SHULKER){
         	ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
             e.getDrops().clear();
             if(Randomizer.randRate(7)){

@@ -23,7 +23,7 @@ public class HeadShotOption extends Option<Boolean>{
 
 	@Override
 	public void event(Player p) {
-		setState(!getValue());
+		setState(!value);
 	}
 	
 	@Override
@@ -32,7 +32,7 @@ public class HeadShotOption extends Option<Boolean>{
 			getItemStack().setLore("§2Activé");
 		else
 			getItemStack().setLore("§4Désactivé");
-		setValue(value);
+		this.value = value;
 		getParent().update(this);
 	}
 	
@@ -48,7 +48,7 @@ public class HeadShotOption extends Option<Boolean>{
 				boolean headshot = Y - shotY > 1.35d;
 
 				if (headshot) {
-					if (getValue()) {
+					if (value) {
 						Player p = (Player) e.getEntity();
 						((Player) proj.getShooter()).playSound(p.getLocation(), Sound.ENTITY_SLIME_SQUISH, 10, 10);
 						p.playSound(p.getLocation(), Sound.BLOCK_ANVIL_LAND, 10, 10);

@@ -15,19 +15,19 @@ public class GoldenAppleOption extends Option<Boolean> {
 
 	@Override
 	public void event(Player p) {
-		setState(!getValue());
+		setState(!value);
 	}
 
 	@Override
 	public void setState(Boolean value) {
-		if(value && !getValue()) {
+		if(value && !value) {
 				getItemStack().setLore("§2Activé");
 //				Main.deathLoot.addItem(Material.GOLDEN_APPLE);
-		} else if(!value && getValue()){
+		} else if(!value && value){
 			getItemStack().setLore("§4Désactivé");
 //			Main.deathLoot.removeItem(Material.GOLDEN_APPLE);
 		}
-		setValue(value);
+		this.value = value;
 		getParent().update(this);		
 	}
 

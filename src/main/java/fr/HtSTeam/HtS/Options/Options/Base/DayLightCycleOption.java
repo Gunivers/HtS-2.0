@@ -17,14 +17,14 @@ public class DayLightCycleOption extends Option<Boolean> {
 
 	@Override
 	public void event(Player p) {
-		setState(!getValue());	
+		setState(!value);	
 	}
 
 	@Override
 	public void setState(Boolean value) {
-		setValue(value);
-		Main.world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE,getValue());
-		if(getValue())
+		this.value = value;
+		Main.world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, value);
+		if(value)
 			getItemStack().setLore("§2Activé");
 		else 
 			getItemStack().setLore("§4Désactivé");

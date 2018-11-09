@@ -28,7 +28,7 @@ public class RadarOption extends Option<Integer> {
 	
 	@Override
 	public void setState(Integer value) {
-		setValue(value);
+		this.value = value;
 		this.getItemStack().setLore("§2" + value + " minutes");
 		getParent().update(this);
 		
