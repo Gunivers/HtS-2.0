@@ -113,7 +113,7 @@ public class Logger implements Closeable
 
 		for (String s : message)
 		{
-			System.out.println("[HtS]" + type.prefix + SEPARATOR + s);
+			if (this.base == null) System.out.println("[HtS]" + type.prefix + SEPARATOR + s);
 			this.writer.println(date + type.prefix + SEPARATOR + s);
 		}
 		
