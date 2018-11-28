@@ -1,6 +1,7 @@
 package fr.HtSTeam.HtS;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
@@ -31,7 +32,10 @@ public class Main extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		plugin = this;
-		LOGGER = new Logger(new File(plugin.getDataFolder() + "/logs/latest.log"), plugin);
+		
+		try {
+			LOGGER = new Logger(new File(plugin.getDataFolder() + "/logs/latest.log"), plugin.getLogger());
+		} catch (IOException e1) { e1.printStackTrace(); }
 		
 		LOGGER.logInfo("Starting HtS...");
 		

@@ -1,4 +1,4 @@
-package fr.HtSTeam.HtS.Utils;
+package fr.HtSTeam.test.Utils;
 
 import java.io.Closeable;
 import java.io.File;
@@ -8,9 +8,34 @@ import java.io.PrintWriter;
 import java.io.WriteAbortedException;
 import java.util.Calendar;
 import java.util.logging.Level;
+
+import fr.HtSTeam.HtS.Main;
 import fr.HtSTeam.HtS.Utils.Files.GZipFile;
 
-public class Logger implements Closeable
+public class LoggerTest
+{
+	public static void main(String[] args)
+	{
+		File file = new File("test_log.txt");
+		
+		try (Logger log = new Logger(file, null /*Main.plugin.getLogger()*/);)
+		{
+			log.logInfo("Info test");
+			log.logWarning("Warning test");
+			log.logError("Exception test");
+			
+			log.logError(new Exception("Throwable test"));
+			log.forceLog(new Exception("forceLog test"));
+			
+			log.logInfo("State after forceLog: " + (log.isOpen() ? "open" : "closed"));
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+	}
+}
+
+class Logger implements Closeable
 {
 	private final static Calendar calendar = Calendar.getInstance();
 
