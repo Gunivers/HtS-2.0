@@ -9,10 +9,7 @@ import java.io.WriteAbortedException;
 import java.util.Calendar;
 import java.util.logging.Level;
 
-import fr.HtSTeam.HtS.Utils.IOThrowable;
-import fr.HtSTeam.HtS.Utils.Logger;
 import fr.HtSTeam.HtS.Utils.Files.GZipFile;
-import fr.HtSTeam.HtS.Utils.Logger.LogType;
 
 public class LoggerTest
 {
