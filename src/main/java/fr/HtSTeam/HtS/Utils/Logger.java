@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.io.WriteAbortedException;
 import java.util.Calendar;
 import java.util.logging.Level;
+
 import fr.HtSTeam.HtS.Utils.Files.GZipFile;
 
 public class Logger implements Closeable
@@ -28,43 +29,35 @@ public class Logger implements Closeable
 		private LogType(String prefix) { this.prefix = ' '+ prefix +' '; }
 	}
 
-	private final File logFile;
+	private final File file;
 	private final PrintWriter writer;
 	private final java.util.logging.Logger base;
 
 	private boolean open = true;
 
 	/**
-	 * If the logFile does not exist, it will be created in a zip corresponding to its parent. <br \>
+	 * If the file does not exist, it will be created in a zip corresponding to its parent. <br \>
 	 * There should not be any thrown at this point, else reconsider the file you choosed and check if there's not already a Logger on this file.
 	 * <p>
 	 * The logs will also be sended to the base {@link java.util.logging.Logger}, if it is not null.
 	 * 
-	 * @param logFile
+	 * @param file
 	 *               a {@link java.io.File}
 	 * @param base
 	 *            a {@link java.util.logging.Logger}
 	 * @throws IOThrowable.
 	 *                     If there's an thrown here, you should reconsider your file choice.
 	 */
-	public Logger(File logFile, java.util.logging.Logger base) throws IOException
+	public Logger(File directory, java.util.logging.Logger base) throws IOException
 	{
-		if (!logFile.exists())
-			logFile.createNewFile();
+		if (!directory.exists() && !directory.mkdirs()) throw new IOException("Could not create the logging directory");
 		
-		this.logFile = logFile;
+		this.file = new File(directory + "/last.log");
 		this.base = base;
-		
-		if (logFile.getParentFile() != null && !logFile.getParentFile().exists())
-		{
-			logFile.getParentFile().mkdirs();
-		} else
-		{
-			GZipFile gZip = new GZipFile(logFile.getAbsolutePath(), logFile.getParent() +"/"+ calendar.get(Calendar.YEAR) +"-"+ calendar.get(Calendar.MONTH) +"-"+ calendar.get(Calendar.DAY_OF_MONTH));
-			gZip.gzipIt();
-		}
 
-		this.writer = new PrintWriter(new FileWriter(logFile, false));
+		if (!this.file.exists() && !this.file.createNewFile()) throw new IOException("Could not create the logging file");
+
+		this.writer = new PrintWriter(new FileWriter(file, false));
 		this.log(LogType.SYSTEM, INIT_MESSAGE);
 	}
 
@@ -134,7 +127,7 @@ public class Logger implements Closeable
 	@Deprecated
 	public boolean forceLog(Throwable thrown)
 	{
-		try (Logger logger = new Logger(this.logFile, this.base))
+		try (Logger logger = new Logger(this.file.getParentFile(), this.base))
 		{
 			logger.log(LogType.FATAL_ERROR, thrown.getMessage().split("\n"));
 			if (base != null) base.log(Level.FINER, "[HTS]", thrown);
@@ -154,6 +147,9 @@ public class Logger implements Closeable
 	{
 		this.log(LogType.SYSTEM, CLOSING_MESSAGE);
 		this.writer.close();
+		
+		GZipFile gZip = new GZipFile(file.getAbsolutePath(), file.getParent() +"/"+ calendar.get(Calendar.YEAR) +"-"+ calendar.get(Calendar.MONTH) +"-"+ calendar.get(Calendar.DAY_OF_MONTH));
+		gZip.gzipIt();
 	}
 
 	/**
