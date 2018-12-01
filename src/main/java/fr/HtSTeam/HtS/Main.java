@@ -32,10 +32,7 @@ public class Main extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		plugin = this;
-		
-		try {
-			LOGGER = new Logger(new File(plugin.getDataFolder() + "/logs/latest.log"), plugin.getLogger());
-		} catch (IOException e1) { e1.printStackTrace(); }
+		LOGGER = new Logger(new File(plugin.getDataFolder() + "/logs/latest.log"));
 		
 		LOGGER.logInfo("Starting HtS...");
 		
